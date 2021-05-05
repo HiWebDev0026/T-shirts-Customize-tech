@@ -1,20 +1,25 @@
+// cambien los nombres de las functions
+// renombrar los archivos controller.js cuando estén las rutas definidas
 
 
 
-/* async */ function controllerOne(req, res, next) {        //cambien los nombres
+/* async */ function controllerRoute(req, res, next) {        
 
 
     /* 
     try {
         
+
     } catch (error) {
+
+        next();
         
-     */
+    */
     
     return;
 }
 
-/* async */ function anotherController(req, res, next) {
+/* async */ function epicController(req, res, next) {
 
     
     
