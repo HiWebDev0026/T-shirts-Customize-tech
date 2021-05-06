@@ -10,3 +10,6 @@ module.exports = (sequelize) => {
     },
   });
 };
+
+
+/* testeando GIT PUSH  */
