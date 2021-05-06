@@ -1,25 +1,5 @@
-const {User} = require('../db.js');
+const {User, Shirt} = require('../db.js');
 
-// cambien los nombres de las functions
-// renombrar los archivos controller.js cuando estén las rutas definidas
-
-
-// User.belongsToMany(Shirt, {through: 'favorites'})
-// Shirt.belongsToMany(User, {through: 'favorites'})
-// User.hasMany(Order)
-// Order.belongsTo(User)
-
-// User.hasMany(Shirt)
-// Shirt.belongsTo(User)
-
-// Order.hasMany(Detail)
-// Detail.belongsTo(Order)
-
-// Shirt.hasOne(Detail)
-// Detail.belongsTo(Shirt)
-
-// Category.belongsToMany(Shirt, {through: 'shirt_category'})
-// Shirt.belongsToMany(Category, {through: 'shirt_category'})
 
 async function postUser(req, res, next) {        
     // this will have a validation before post
@@ -28,9 +8,26 @@ async function postUser(req, res, next) {
         const postedUser = await User.create(newUser);
         return res.status(200).json(postedUser)
     } catch (error) {
-        next({status: 409, message: 'Username already exist'});
+        next({status: 409, message: 'User already exist'});
     }
 }
+
+
+async function getUser(req, res, next) {     
+    const userId = req.params.id
+    try { 
+        const user = await User.findOne({where: {id: userId}, include: [Shirt]})
+        if (user) {
+            return res.status(200).json(user)
+        } else {
+            return next({status: 404, message: 'User not found'})
+        }
+        
+    } catch (error) {
+        next({status: 400, message: 'Bad body request'});
+    }
+}
+
 
 /* async */ function epicController(req, res, next) {
 
@@ -47,5 +44,6 @@ async function postUser(req, res, next) {
 }
 
 module.exports = {
-    postUser
+    postUser,
+    getUser
 }
