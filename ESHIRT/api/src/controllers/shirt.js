@@ -13,6 +13,21 @@ async function postShirt(req, res, next) {
     }
 }
 
+async function getShirt(req, res, next) {     
+    const shirtId = req.params.id
+    try { 
+        const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]})
+        if (shirt) {
+            return res.status(200).json(shirt)
+        } else {
+            return next({status: 404, message: 'Shirt not found'})
+        }
+        
+    } catch (error) {
+        next({status: 400, message: 'Bad body request'});
+    }
+}
+
 
 async function getShirts(req, res, next) {  
     const name = req.query.name
@@ -68,5 +83,6 @@ async function getShirts(req, res, next) {
 
 module.exports = {
     postShirt,
-    getShirts
+    getShirts,
+    getShirt
 }
