@@ -7,6 +7,8 @@ async function postShirt(req, res, next) {
     try {
         const newShirt = {...req.body, created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
+        await postedShirt.addCategory(req.body.categoryId);
+
         return res.status(200).json(postedShirt)
     } catch (error) {
         next({status: 409, message: 'Shirt already exist'});
@@ -53,33 +55,7 @@ async function getShirts(req, res, next) {
     }
 }
 
-/* async */ function controllerX(req, res, next) {        
 
-
-    /* 
-    try {
-        
-    } catch (error) {
-        
-     */
-    
-    return;
-}
-    
-
-/* async */ function controllerZ(req, res, next) {
-    
-        
-        
-        
-    /* try {
-            
-    } catch (error) {
-            
-    } */
-    
-    return;
-}
 
 module.exports = {
     postShirt,

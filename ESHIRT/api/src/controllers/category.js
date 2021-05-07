@@ -1,3 +1,5 @@
+const S = require('sequelize');
+const Op = S.Op;
 const {Category, Shirt} = require('../db.js');
 // cambien los nombres de las functions
 // renombrar los archivos controller.js cuando estén las rutas definidas
