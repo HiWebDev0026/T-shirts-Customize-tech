@@ -13,6 +13,3 @@ Lean Was here toooo
 ola eu sou brasileiro
 
 everybody say hi!
-
-
-bjgkfdlsbk
