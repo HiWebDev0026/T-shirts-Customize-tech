@@ -19,9 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {fillDB} = require('./src/fill_db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+  fillDB()
   server.listen(3001, () => {
     console.log('%s listening at 3001/nDATABASE UP'); // eslint-disable-line no-console
   });
