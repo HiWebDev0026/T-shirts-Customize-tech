@@ -3,18 +3,21 @@ import {fabric} from 'fabric';
 import img from '../../assets/img/random_remera_front.png';
 
 function ShirtModel(props) {
+
     const [shirt, setShirt] = useState();
 
     const shirtRef = useRef(null);
     const imageRef = useRef(null);
     
-    useLayoutEffect(()=>{
-        let htmlImg = ['<img src="../../assets/img/random_remera_front.png" />'];
+    useEffect(()=>{
+
         let imgBlob = new Image();
+        imgBlob.style.width = '12px';
         imgBlob.src = img;
+        
         console.log(imgBlob);
 
-        /* et canvas = new fabric.Canvas('canvas', {
+        /* let canvas = new fabric.Canvas('canvas', {
             height: 550,
             width: 580,
             backgroundColor: 'rgb(0, 0, 0, 0.2)',
@@ -25,8 +28,8 @@ function ShirtModel(props) {
         
             let canvas = new fabric.Canvas('canvas', {
                 
-                width: 530,
-                height: 550,
+                width: 430,
+                height: 560,
                 backgroundColor: 'rgb(255, 255, 255, 0.4)',
                 
                 preserveObjectStacking: true,
@@ -38,12 +41,13 @@ function ShirtModel(props) {
                  e.target.height = 80; })
 
             .add(new fabric.Image(imgBlob, {
-                width: 580,
-                height: 550,
+                width: 490,
+                height: 560,
+                left: -50,
                 selectable: false,
                 objectCaching: false,
                 
-            }).bringForward());
+            }));
 
             
 
@@ -94,7 +98,7 @@ function ShirtModel(props) {
         setShirt(canvas); 
         /* canvas.renderAll(); */
 
-        setTimeout(() => canvas.renderAll(), 100);
+        setTimeout(() => canvas.renderAll(), 10);
         
 
     }, [])

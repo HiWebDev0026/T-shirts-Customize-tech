@@ -1,29 +1,53 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 
 function PhaseController(props) {
 
 
 
+
+
+    const phases = [
+                    {index: 1, name: 'Modelo', phase: 'modelSelected'}, 
+                    {index: 2, name: 'Talle', phase: 'sizeSelected'},
+                    {index: 3, name: 'Color', phase: 'colorSelected'},
+                    {index: 4, name: 'Diseño', phase: 'designSelected'}
+                    ]
+
+
     return (
-        <div style={{display: 'flex', border: '1px solid black', flexWrap: 'wrap',width: '100%', height: '30%',justifyContent: 'space-around'}}>
-            {[
-            
-            {index: 1, name: 'Modelo', phase: 'modelSelected'}, 
-            {index: 2, name: 'Talle', phase: 'sizeSelected'},
-            {index: 3, name: 'Color', phase: 'colorSelected'},
-            {index: 4, name: 'Diseño', phase: 'designSelected'}].map((elem,index) => {
+        <div style={{
+
+            display: 'flex', 
+            border: '1px solid black', 
+            flexWrap: 'wrap',
+            width: '65%',
+            margin: '0 auto',
+            height: '12%',
+            justifyContent: 'space-around'}}>
+            {phases.map((elem,index) => {
 
                 return (
                     <div 
                         key={index}
                         style={{minHeight: '90%', 
-                                border: '1px solid black', 
+                                border: '1px solid black',
+                                borderRadius: '50%',
                                 textAlign: 'center', 
-                                width: '20%', 
+                                width: 'max-content', 
                                 minWidth: '6em'}}>
-                                            <button onClick={()=> props.setPhase({[elem.phase]: false})}
-                                                    disabled={props.phase[elem.phase] == 'pending'}>
+                                            <button onClick={()=> {props.setPhase({
+                                                                                    modelSelected: props.phase.modelSelected == 'pending' ? 'pending' : true,
+                                                                                    sizeSelected: props.phase.sizeSelected == 'pending' ? 'pending' : true,
+                                                                                    colorSelected: props.phase.colorSelected == 'pending' ? 'pending' : true,
+                                                                                    designSelected: props.phase.designSelected == 'pending' ? 'pending' : true,
+                                                                                    [elem.phase]: false
+                                                                                      }
+                                                                                );
+                                                                    
+                                                                    }}
+                                                    disabled={props.phase[elem.phase] == 'pending'}
+                                                    value={elem.phase}>
                                                                     {elem.name}
                                                 </button>
                         {elem.index}

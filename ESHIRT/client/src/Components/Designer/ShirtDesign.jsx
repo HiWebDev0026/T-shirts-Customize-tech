@@ -7,8 +7,10 @@ function ShirtDesign(props) {
 
 
     return (<div>
-        'DESIGN'
-    </div>)
+
+                'DESIGN'
+
+        </div>)
 }
 
 export default ShirtDesign;
