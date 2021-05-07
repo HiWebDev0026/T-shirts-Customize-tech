@@ -2,7 +2,7 @@ const {User, Shirt} = require('../db.js');
 
 function validation(data){
     let {name, email, password, country, city, adress, phone}= data
-    if (!name || !email || !password || !password || !country || !city || !adress || !phone || typeof phone !== 'integer'){
+    if (!name || !email || !password || !country || !city || !adress || !phone || typeof phone !== 'integer'){
         return false
     }
 }
