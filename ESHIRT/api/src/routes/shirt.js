@@ -1,8 +1,8 @@
 const {Router}= require('express')
-const {postShirt}= require('../controllers/shirt')
+const {postShirt, getShirts}= require('../controllers/shirt')
 const router= Router()
 
-router.get('/', )
+router.get('/', getShirts)
 router.post('/', postShirt)
 router.put('/', )
 router.delete('/', )
