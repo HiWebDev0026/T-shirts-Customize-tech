@@ -12,7 +12,7 @@ body {
   margin: auto;
   position: relative;
   overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
+  /* border-radius: 10px 10px 10px 10px; */
   box-shadow: 0;
   transform: scale(0.95);
   transition: box-shadow 0.5s, transform 0.5s;
@@ -55,7 +55,7 @@ body {
 .wrapper .container .bottom .left {
   height: 100%;
   width: 50%;
-  background: #f4f4f4;
+  background: rgba(255, 127, 80, 0.397);
   position: relative;
   float: left;
 }
@@ -71,7 +71,7 @@ body {
   float: right;
   width: calc(30% - 2px);
   height: 100%;
-  background: #f1f1f1;
+  background: rgba(255, 127, 80, 0.397);
   transition: background 0.5s;
   border-left: solid thin rgba(0, 0, 0, 0.1);
 }
@@ -110,13 +110,13 @@ body {
 
 .wrapper .inside {
   z-index: 9;
-  background: #75a14c;
-  width: 140px;
-  height: 140px;
+  background: rgba(255, 127, 80, 0.397);
+  width: 130px;
+  height: 130px;
   position: absolute;
   top: -70px;
   right: -70px;
-  border-radius: 0px 0px 200px 200px;
+  /* border-radius: 0px 0px 200px 200px; */
   transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
 }
@@ -159,7 +159,7 @@ body {
 .wrapper .inside .contents h1,
 .wrapper .inside .contents p,
 .wrapper .inside .contents table {
-  color: white;
+  color: black;
 }
 .wrapper .inside .contents p {
   font-size: 13px;
