@@ -26,11 +26,15 @@ body {
   height: 100%;
 }
 .wrapper .container .top {
+  display: flex;
   height: 80%;
   width: 100%;
-  background: url(https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg) no-repeat center  ;
   background-size: 100%;
- 
+  align-items: center;
+}
+.image{
+  height: 80%;
+  width: 100%;
 }
 .wrapper .container .bottom {
   width: 200%;
@@ -61,6 +65,9 @@ body {
   width: calc(70% - 40px);
 }
 .wrapper .container .bottom .left .buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   float: right;
   width: calc(30% - 2px);
   height: 100%;

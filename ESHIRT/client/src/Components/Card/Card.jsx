@@ -1,24 +1,25 @@
-import "./App.css";
+import style from "./Card.module.css";
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 
-
-
-function App() {
+function Card({title, price, width, height, model, color, image}){
+  console.log(title)
   return (
-    <div className="wrapper">
-      <div className="container">
-        <div className="top"></div>
-        <div className="bottom">
-          <div className="left">
-            <div className="details">
-              <h1>Chair</h1>
-              <p>£250</p>
+    <div className={style.wrapper}>
+      <div className={style.container}>
+        <div className={style.top}>
+          <img className={style.image} src= {image}/>
+        </div>
+        <div className={style.bottom}>
+          <div className={style.left}>
+            <div className={style.details}>
+              <h1>{title}</h1>
+              <p>£{price}</p>
             </div>
-            <div className="buy">
+            <div className={style.buy}>
               <IconButton aria-label="add" >
                 <AddShoppingCartIcon color="secondary" value="cart"fontSize="large"className="cart" />
                  
@@ -28,29 +29,29 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="inside">
-        <div className="icon">
+      <div className={style.inside}>
+        <div className={style.icon}>
         <IconButton aria-label="add" >
                 <DehazeIcon  fontSize="large"className="dtl" />              
               </IconButton>
         </div>
-        <div className="contents">
+        <div className={style.contents}>
           <table>
             <tr>
-              <th>Width</th>
               <th>Height</th>
+              <th>Width</th>
             </tr>
             <tr>
-              <td>3000mm</td>
-              <td>4000mm</td>
+              <td>{height}cm</td>
+              <td>{width}cm</td>
             </tr>
             <tr>
-              <th>Something</th>
-              <th>Something</th>
+              <th>Model</th>
+              <th>Color</th>
             </tr>
             <tr>
-              <td>200mm</td>
-              <td>200mm</td>
+              <td>{model}</td>
+              <td>{color}</td>
             </tr>
           </table>
         </div>
@@ -59,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default Card;
