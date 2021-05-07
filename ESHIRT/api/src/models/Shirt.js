@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
     public: {
       type: DataTypes.BOOLEAN,
       allowNull: false
+    },
+    created_by_user: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   });
 };
