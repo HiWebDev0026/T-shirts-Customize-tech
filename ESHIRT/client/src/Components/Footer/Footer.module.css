@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background: #55d6aa;
+}
+
+h3{
+    padding: 20px;
+}
