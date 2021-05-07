@@ -30,6 +30,46 @@ async function getShirt(req, res, next) {
     }
 }
 
+async function deleteShirt(req, res, next) {     
+    const shirtId = req.params.id
+    try { 
+        const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]})
+        if (shirt) {
+            shirt.destroy()
+            return res.status(200).json({message: "shirt deleted"})
+        } else {
+            return next({status: 404, message: 'Shirt not found'})
+        }
+        
+    } catch (error) {
+        next({status: 400, message: 'Bad body request'});
+    }
+}
+
+
+async function putShirt(req, res, next) {
+    const shirtId = req.params.id     
+    //body must send data to modify
+    const body = req.body               //cambio el alias
+    const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
+    try {                               //buscamos el id
+        const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]}) 
+        if (shirt) {
+            for (const header of HEADERS) {  //tomamos cada columna 
+                shirt[header] = body[header] //usamos bracket notation porque cada header es un STRING!
+            }
+            shirt.save()
+            return res.status(200).json(shirt)
+        } else {
+            return next({status: 404, message: 'Shirt not found'})
+        }
+        
+    } catch (error) {
+        next({status: 400, message: 'Bad body request'});
+    }
+}
+
+
 
 async function getShirts(req, res, next) {  
     const name = req.query.name
@@ -60,5 +100,7 @@ async function getShirts(req, res, next) {
 module.exports = {
     postShirt,
     getShirts,
-    getShirt
+    getShirt,
+    putShirt,
+    deleteShirt
 }
