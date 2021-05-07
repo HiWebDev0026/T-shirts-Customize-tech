@@ -1,8 +1,17 @@
 const {User, Shirt} = require('../db.js');
 
+function validation(data){
+    let {name, email, password, country, city, adress, phone}= data
+    if (!name || !email || !password || !password || !country || !city || !adress || !phone || typeof phone !== 'integer'){
+        return false
+    }
+}
 
 async function postUser(req, res, next) {        
     // this will have a validation before post
+    if (!validation(req.body)){
+        next({status: 400, message: 'Bad body request'})
+    }
     try {
         const newUser = req.body
         const postedUser = await User.create(newUser);
