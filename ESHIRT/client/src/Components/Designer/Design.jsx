@@ -6,13 +6,25 @@ import ShirtModel from './ShirtModel'
 import ShirtSize from './ShirtSize';
 import ShirtDesign from './ShirtDesign';
 
+
 function Design(props) {
+
     const [phase, setPhase] = useState({
         modelSelected: false,
         sizeSelected: 'pending',
         colorSelected: 'pending',
         designSelected: 'pending',
     });
+
+
+    const phaseSetter = (args) => {
+        setPhase(prevPhase => {
+            return {
+                ...prevPhase,
+                ...args
+            }
+        })
+    }
 
     return (
         <div style={{
@@ -22,18 +34,12 @@ function Design(props) {
             flexDirection: 'column'}}>
             <PhaseController 
                 phase={phase} 
-                setPhase={(args)=> 
-                    setPhase(prevPhase => {
-                                        return {
-                                            ...prevPhase,
-                                            ...args
-                        }
-                    })} />
+                setPhase={phaseSetter} />
                         
-                        {!phase.modelSelected && <ShirtModel />}
-                        {!phase.sizeSelected && <ShirtSize />}
-                        {!phase.colorSelected && <ShirtColor />}
-                        {!phase.designSelected && <ShirtDesign />}
+                        {!phase.modelSelected && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.sizeSelected && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.colorSelected && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.designSelected && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
         </div>
     )
 }
