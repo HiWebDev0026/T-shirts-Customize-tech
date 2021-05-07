@@ -2,17 +2,18 @@ const {User, Shirt} = require('../db.js');
 
 function validation(data){
     let {name, email, password, country, city, adress, phone}= data
-    if (!name || !email || !password || !country || !city || !adress || !phone || typeof phone !== 'integer'){
-        return false
-    }
+    if (name && email && password && country && city && adress && phone && typeof phone === 'number'){
+        return true
+    } else {return false}
 }
 
 async function postUser(req, res, next) {        
     // this will have a validation before post
-    if (!validation(req.body)){
-        next({status: 400, message: 'Bad body request'})
-    }
+    let {name, email, password, country, city, adress, phone}= req.body
     try {
+        if (!(name && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
+           return next({status: 400, message: 'Bad body request'})
+        }
         const newUser = req.body
         const postedUser = await User.create(newUser);
         return res.status(200).json(postedUser)
