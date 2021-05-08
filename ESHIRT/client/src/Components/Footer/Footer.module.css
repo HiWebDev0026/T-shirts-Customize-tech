@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .container{
     display: flex;
     justify-content: center;
-    background: #55d6aa;
+    background: rgba(255, 127, 80, 0.397);
 }
 
-h3{
+
+
+.about, h3{
     padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #24252A; /* Cambiar acá el color de las letras*/
+    text-decoration: none;
 }

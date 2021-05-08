@@ -6,7 +6,7 @@ function Footer(){
     return(
         <div className={Style.container}>   
             <h3>Design By Group 8 from Henry</h3>
-            <NavLink to='/' ><h3>About Us</h3></NavLink>
+            <h3><NavLink className={Style.about} to='/' >About Us</NavLink></h3>
         </div>
     )
 }

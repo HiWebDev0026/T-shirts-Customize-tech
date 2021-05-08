@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.inputBox{
+    text-align: center;
+    border: rgba(255, 127, 80, 0.397);
+    height: 40px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.inputBtn{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    height: 38px;
+    width: 90px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-color: rgba(255, 127, 80, 0.397) ;
+    transition-duration: 0.4s;
+}
+
+.inputBtn:hover{
+    background-color:#24252A;
+    color: rgba(255, 127, 80, 0.397);
+}
