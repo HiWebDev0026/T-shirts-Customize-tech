@@ -3,10 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -30,13 +30,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Shirts, Users } = sequelize.models;
+const { Shirt, User, Order, Detail, Category } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Users.belongToMany(Shirts, {through: 'favorites'})
-Users.hasMany(Order)
+User.belongsToMany(Shirt, {through: 'favorites'})
+Shirt.belongsToMany(User, {through: 'favorites'})
+User.hasMany(Order)
+Order.belongsTo(User)
+
+User.hasMany(Shirt)
+Shirt.belongsTo(User)
+
+Order.hasMany(Detail)
+Detail.belongsTo(Order)
+
+Shirt.hasOne(Detail)
+Detail.belongsTo(Shirt)
+
+Category.belongsToMany(Shirt, {through: 'shirt_category'})
+Shirt.belongsToMany(Category, {through: 'shirt_category'})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
