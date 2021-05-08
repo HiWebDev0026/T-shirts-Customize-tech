@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 /* import NavBar from '../NavBar/NavBar'; */
 import PhaseController from './PhaseController';
 import ShirtColor from './ShirtColor';
@@ -10,12 +11,27 @@ import ShirtDesign from './ShirtDesign';
 function Design(props) {
 
     const [phase, setPhase] = useState({
-                                modelSelected: false, 
-                                sizeSelected: 'pending',
-                                colorSelected: 'pending',
-                                designSelected: 'pending',
+                                modelSelected: {status: false, data: ''},
+                                sizeSelected: {status: 'pending', data: ''},
+                                colorSelected: {status: 'pending', data: ''},
+                                designSelected: {status: 'pending', data: ''},
+                                allGoodForSubmit: false,
                             });
 
+
+
+    useEffect(()=> {
+        
+        for(let prop in phase) {
+            if(phase[prop].status == false) {
+                return setPhase(prevPhase => {
+                    return {...prevPhase, allGoodForSubmit: false,}})
+            }
+        }
+        return setPhase(prevPhase => {
+            return {...prevPhase, allGoodForSubmit: true,}})
+
+    }, [phase.allGoodForSubmit])
 
     const phaseSetter = (args) => {
         setPhase(prevPhase => {
@@ -25,6 +41,24 @@ function Design(props) {
             }
         })
     }
+
+    const submitToDB = (e) => {
+        e.preventDefault();
+        axios({
+            method: "POST",
+            url: 'http://localhost:3001/shirt',
+            data: {
+                userId: 1,
+                name: 'kjnjhgffhjkiyz',
+                print: phase.designSelected.data,
+                size: phase.sizeSelected.data,
+                color: phase.colorSelected.data,
+                model: phase.modelSelected.data,
+            }
+        })
+    }
+
+
 
     return (
         <div style={{
@@ -36,10 +70,14 @@ function Design(props) {
                 phase={phase} 
                 setPhase={phaseSetter} />
                         
-                        {!phase.modelSelected && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.sizeSelected && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.colorSelected && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.designSelected && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.modelSelected.status && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
+                        {phase.allGoodForSubmit && <form onSubmit={submitToDB}>
+
+                                    <input type="submit" value="postear remera"/>
+                            </form>}
         </div>
     )
 }

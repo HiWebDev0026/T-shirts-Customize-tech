@@ -9,9 +9,9 @@ import {Route} from 'react-router-dom';
 function App() {
   return (
     <div className= 'App'>
-      <Route path= '/' component={NavBar}/>
-      <Route exact path= '/' component={Home}/>
-      <Route exact path= '/catalogue' component={Catalogue}/>
+      <Route path= '/' component={NavBar}/>    
+      <Route exact path= '/catalogue' component={Catalogue}/>  
+      <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
       <Route path= '/' component={Footer}/>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -35,10 +35,12 @@ var tShirts = [
         "slideShadows": true
         }} pagination={true} className='mySwiper'>
             <SwiperSlide className='create'>
-                <h2>Design your own T-Shirt!</h2>
-                {/* <Link to='/design'> */}
-                    <button>Let's Go!</button>
-                {/* </Link> */}
+                <h2 className='designTitle'>Design your own T-Shirt!</h2>
+                    <Link to='/design' className="link">
+                    <button>
+                        Let's Go!    
+                    </button>
+                    </Link>
             </SwiperSlide>
             {
                 tShirts&&tShirts.map ((img)=> {
@@ -50,10 +52,10 @@ var tShirts = [
                 })
             }
             <SwiperSlide className='catalogue'>
-                <h2>Our catalogue ;) </h2>
-                {/* <Link to='/catalogue'> */}
+                <h2 className='cataloguetitle'>Our catalogue ;) </h2>
+                <Link className='catalogueLink' to='/catalogue'>
                     <button>Check it out!</button>
-                {/* </Link> */}
+                </Link>
             </SwiperSlide> 
         </Swiper>
     </div>

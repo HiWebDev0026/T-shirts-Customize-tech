@@ -1,8 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 
 function ShirtSize(props) {
+
+
+    const [data, setData] = useState(null);
 /* 
     useEffect(()=> {
 
@@ -11,12 +14,27 @@ function ShirtSize(props) {
 
     }, []) */
 
-    return (<div>
-        'SIZE'
-
-        <button onClick={()=> props.setPhase({sizeSelected: true, colorSelected: false})}>
-            {!props.phase.sizeSelected ? 'Seleccionar Tamaño' : 'Seleccionar otro tamaño?'}
-        </button>
+    return (<div style={{display: 'flex', flexDirection: 'column', width: '60%', alignItems: 'center'}}>
+                <div style={{width: 'max-content', display:'flex'}}>
+                    <h3 style={{width: 'max-content', color: 'white'}}>
+                    'SIZE'
+                    </h3>
+                </div>
+                <div style={{margin: '0 auto', width: 'max-content'}}>
+                        <form onSubmit={()=> {if(data!==null) {
+                                                            props.setPhase({
+                                                            sizeSelected: {data, status: true}, 
+                                                            colorSelected: {...props.phase.colorSelected, status: false}})};
+                                                            return;}}>
+                            <select onChange={(e)=> setData(e.target.value)}>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                            </select>
+                            <input type="submit" disabled={data===null} value={data !== null ? 'Continuar' : 'Seleccionar tamaño'} />
+                        </form>
+                </div>
     </div>)
 }
 

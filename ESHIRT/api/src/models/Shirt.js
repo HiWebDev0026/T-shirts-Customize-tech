@@ -6,34 +6,38 @@ module.exports = (sequelize) => {
   sequelize.define('shirt', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     color: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     model: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     size: {
       type: DataTypes.ENUM('S', 'M', 'L', 'XL', 'XXL'),
-      allowNull: false,
+      allowNull: true,
     },
     print: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
+      allowNull: true
     },
+    // print: {
+    //   type: DataTypes.BLOB('long'),
+    //   allowNull: true,
+    //   // validate: {
+    //   //   isUrl: true
+    //   // }
+    // },
     score: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     public: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     },
     created_by_user: {
       type: DataTypes.BOOLEAN,

@@ -5,6 +5,13 @@ body {
   height: 100%;
 }
 
+.link{
+  text-decoration: none;
+  color: inherit;
+  grid-column: 3;
+  grid-row: 4;
+}
+
 .swiper-container {
   width: 100%;
   padding-top: 50px;
@@ -30,12 +37,31 @@ body {
     grid-template-rows: repeat(6, 1fr);
 }
 
+.designTitle{
+  text-align: center;
+}
+
+.create:hover{
+  color: black;
+}
+
 .catalogue {
     background-image: url('https://i.pinimg.com/originals/18/f1/84/18f184a49e25dd94769fd30530f78adf.jpg');
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
     border: solid 4px black;
+}
+
+.cataloguetitle{
+  text-align: center;
+}
+
+.catalogueLink{
+  text-decoration: none;
+  color: inherit;
+  grid-column: 3;
+  grid-row: 4;
 }
 
 h2{

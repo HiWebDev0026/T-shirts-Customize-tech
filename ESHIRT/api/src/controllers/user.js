@@ -1,14 +1,9 @@
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const {User, Shirt} = require('../db.js');
 
-function validation(data){
-    let {name, email, password, country, city, adress, phone}= data
-    if (name && email && password && country && city && adress && phone && typeof phone === 'number'){
-        return true
-    } else {return false}
-}
 
 async function postUser(req, res, next) {        
-    // this will have a validation before post
     let {name, email, password, country, city, adress, phone}= req.body
     try {
         if (!(name && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
@@ -39,13 +34,26 @@ async function getUser(req, res, next) {
 }
 
 async function getUsers(req, res, next) {  
-    
-    // NEEDS REFACTORING
+    const name = req.query.name
 
-    try { const users = await User.findAll({include: [Shirt]})
-    return res.status(200).json(users)
+    try { 
+        if (!name) {
+            const users = await User.findAll({include: [Shirt]})
+            return res.status(200).json(users)
+        } else {
+            const users = await User.findAll({
+                where: {
+                    name: {
+                        [Op.like]: `%${name}%`
+                    }
+                }, 
+                include: [Shirt]
+            })
+            return res.status(200).json(users)
+        }
 
     } catch (error) {
+        console.log(error)
         next({status: 404, message: 'Users not found'});
     }
 }
@@ -88,20 +96,6 @@ async function deleteUser(req, res, next) {
     }
 }
 
-
-/* async */ function epicController(req, res, next) {
-
-    
-    
-    
-    /* try {
-        
-    } catch (error) {
-        
-    } */
-
-    return;
-}
 
 module.exports = {
     postUser,
