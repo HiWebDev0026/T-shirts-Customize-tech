@@ -1,0 +1,35 @@
+.container1{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: rgb(255, 234, 234);
+}
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+  }
+  
+  .pagination a {
+    padding: 10px;
+    
+    border: 1px solid #030303;
+    color: #030303;
+  }
+  
+  .pagination__link {
+    font-weight: bold;
+  }
+  
+  .pagination__link--active a {
+    color: #030303;
+    background: #030303;
+  }
+  
+  .pagination__link--disabled a {
+    color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+  }
+  
