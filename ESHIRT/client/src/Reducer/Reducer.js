@@ -1,4 +1,11 @@
 function rootReducer(state= initialState, action) {
+    
+    const initialState={
+        shirt:[],
+        shirts:[],
+        category:[],
+    }
+
 
     // switch(action.type){
     //     case GET_AGE_APPROPRIATE_OPTIONS:
