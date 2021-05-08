@@ -21,8 +21,17 @@ function Design(props) {
 
 
     useEffect(()=> {
+        
+        for(let prop in phase) {
+            if(phase[prop].status == false) {
+                return setPhase(prevPhase => {
+                    return {...prevPhase, allGoodForSubmit: false,}})
+            }
+        }
+        return setPhase(prevPhase => {
+            return {...prevPhase, allGoodForSubmit: true,}})
 
-    }, [phase.designSelected.status])
+    }, [phase.allGoodForSubmit])
 
     const phaseSetter = (args) => {
         setPhase(prevPhase => {
@@ -37,14 +46,14 @@ function Design(props) {
         e.preventDefault();
         axios({
             method: "POST",
-            url: 'http://localhost:3000/postShirt',
+            url: 'http://localhost:3001/shirt',
             data: {
-                name: 'test',
+                userId: 1,
+                name: 'kjnjhgffhjkiyz',
                 print: phase.designSelected.data,
                 size: phase.sizeSelected.data,
-                model: phase.modelSelected.model,
-                
-
+                color: phase.colorSelected.data,
+                model: phase.modelSelected.data,
             }
         })
     }
@@ -65,12 +74,9 @@ function Design(props) {
                         {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
                         {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
                         {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
-                        {phase.allGoodForSubmit && <form onSubmit={(e)=>{
-                            e.preventDefault();
+                        {phase.allGoodForSubmit && <form onSubmit={submitToDB}>
 
-                        }}>
-
-                                    <input type="submit" />
+                                    <input type="submit" value="postear remera"/>
                             </form>}
         </div>
     )

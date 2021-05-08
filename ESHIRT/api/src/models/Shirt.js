@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     print: {
-      type: DataTypes.STRING,
+      type: DataTypes.BLOB('long'),
       allowNull: true,
       // validate: {
       //   isUrl: true
