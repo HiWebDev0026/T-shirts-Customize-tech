@@ -55,26 +55,12 @@ function rootReducer(state= initialState, action) {
 
         case 'GET_SHIRTS':
             
-            /* let random= action.payload
-            function getRandom(arr, n) {
-                var result = new Array(n),
-                    len = arr.length,
-                    taken = new Array(len);
-                if (n > len)
-                    throw new RangeError("getRandom: more elements taken than available");
-                while (n--) {
-                    var x = Math.floor(Math.random() * len);
-                    result[n] = arr[x in taken ? taken[x] : x];
-                    taken[x] = --len in taken ? taken[len] : len;
-                }
-                return result;
-            }
-            random= getRandom(random, 6) */
-            
+            let random= action.payload.slice(0,6)           
+            console.log(random)
             return {
                 ...state,
                 allShirts: action.payload,
-                /* random6: random */
+                random6: random
             }
         case 'GET_SHIRTS_NAME':
             return {
