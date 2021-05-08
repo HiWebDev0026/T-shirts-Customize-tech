@@ -25,7 +25,7 @@ function PhaseController(props) {
             margin: '0 auto',
             height: '12%',
             justifyContent: 'space-around'}}>
-                
+
             {phases.map((elem,index) => {
 
                 return (
@@ -42,6 +42,7 @@ function PhaseController(props) {
                                                                                     sizeSelected: {...props.phase.sizeSelected, status: props.phase.sizeSelected == 'pending' ? 'pending' : true},
                                                                                     colorSelected: {...props.phase.colorSelected, status: props.phase.colorSelected == 'pending' ? 'pending' : true},
                                                                                     designSelected: {...props.phase.designSelected,status: props.phase.designSelected =='pending' ? 'pending' : true},
+                                                                                    allGoodForSubmit: false,
                                                                                     [elem.phase]: {...props.phase[elem.phase], status: false}
                                                                                       }
                                                                                 );

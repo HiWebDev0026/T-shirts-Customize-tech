@@ -5,7 +5,7 @@ const {Shirt, User, Detail, Category} = require('../db.js');
 async function postShirt(req, res, next) {        
     // this will have a validation before post
     try {
-        const newShirt = {...req.body, created_by_user: true} 
+        const newShirt = {...req.body,created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
         await postedShirt.addCategory(req.body.categoryId);
 
