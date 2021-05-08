@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
+    "axios": "^0.21.1",
     "fabric": "^4.4.0",
     "material-ui": "^0.20.2",
     "react": "^17.0.1",

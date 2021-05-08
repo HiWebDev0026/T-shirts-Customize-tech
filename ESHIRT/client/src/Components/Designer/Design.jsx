@@ -10,10 +10,10 @@ import ShirtDesign from './ShirtDesign';
 function Design(props) {
 
     const [phase, setPhase] = useState({
-                                modelSelected: false, 
-                                sizeSelected: 'pending',
-                                colorSelected: 'pending',
-                                designSelected: 'pending',
+                                modelSelected: {status: false, data: ''},
+                                sizeSelected: {status: 'pending', data: ''},
+                                colorSelected: {status: 'pending', data: ''},
+                                designSelected: {status: 'pending', data: ''}
                             });
 
 
@@ -26,6 +26,8 @@ function Design(props) {
         })
     }
 
+
+
     return (
         <div style={{
             minHeight: '90vh', 
@@ -36,10 +38,10 @@ function Design(props) {
                 phase={phase} 
                 setPhase={phaseSetter} />
                         
-                        {!phase.modelSelected && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.sizeSelected && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.colorSelected && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.designSelected && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.modelSelected.status && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
+                        {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
         </div>
     )
 }

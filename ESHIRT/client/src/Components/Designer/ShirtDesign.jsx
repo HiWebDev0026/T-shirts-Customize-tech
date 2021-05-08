@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
 
 function ShirtDesign(props) {
 
+        const [data, setData] = useState();
 
+    return (
+    
+                <div>
 
-    return (<div>
-
-                'DESIGN'
-
-        </div>)
+                                
+                        </div>)
 }
 
 export default ShirtDesign;

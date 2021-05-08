@@ -25,6 +25,7 @@ function PhaseController(props) {
             margin: '0 auto',
             height: '12%',
             justifyContent: 'space-around'}}>
+                
             {phases.map((elem,index) => {
 
                 return (
@@ -37,16 +38,16 @@ function PhaseController(props) {
                                 width: 'max-content', 
                                 minWidth: '6em'}}>
                                             <button onClick={()=> {props.setPhase({
-                                                                                    modelSelected: props.phase.modelSelected == 'pending' ? 'pending' : true,
-                                                                                    sizeSelected: props.phase.sizeSelected == 'pending' ? 'pending' : true,
-                                                                                    colorSelected: props.phase.colorSelected == 'pending' ? 'pending' : true,
-                                                                                    designSelected: props.phase.designSelected == 'pending' ? 'pending' : true,
-                                                                                    [elem.phase]: false
+                                                                                    modelSelected: {...props.phase.modelSelected, status: props.phase.modelSelected == 'pending' ? 'pending' : true},
+                                                                                    sizeSelected: {...props.phase.sizeSelected, status: props.phase.sizeSelected == 'pending' ? 'pending' : true},
+                                                                                    colorSelected: {...props.phase.colorSelected, status: props.phase.colorSelected == 'pending' ? 'pending' : true},
+                                                                                    designSelected: {...props.phase.designSelected,status: props.phase.designSelected =='pending' ? 'pending' : true},
+                                                                                    [elem.phase]: {...props.phase[elem.phase], status: false}
                                                                                       }
                                                                                 );
                                                                     
                                                                     }}
-                                                    disabled={props.phase[elem.phase] == 'pending'}
+                                                    disabled={props.phase[elem.phase].status == 'pending'}
                                                     value={elem.phase}>
                                                                     {elem.name}
                                                 </button>
