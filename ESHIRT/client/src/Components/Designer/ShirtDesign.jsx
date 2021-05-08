@@ -88,7 +88,7 @@ function ShirtDesign(props) {
                         <canvas id="canvas" />
                         <form onSubmit={(e)=> {
                                 e.preventDefault();
-                                props.setPhase({...props.phase, designSelected: {status: true, data}})
+                                props.setPhase({...props.phase, designSelected: {status: true, data}, allGoodForSubmit: true,})
                         }}>
                                 <input type="file" onChange={setPhotoHandler}/>
                                 <input type="submit" value={"Añadir foto"} />
