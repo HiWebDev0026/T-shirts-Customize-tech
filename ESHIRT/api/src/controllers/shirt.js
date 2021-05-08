@@ -56,7 +56,11 @@ async function putShirt(req, res, next) {
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]}) 
         if (shirt) {
             for (const header of HEADERS) {  //tomamos cada columna 
-                shirt[header] = body[header] //usamos bracket notation porque cada header es un STRING!
+                if (header === 'categories') { 
+                    await shirt.setCategories(body[header]); //array de ids 
+                } else {
+                    shirt[header] = body[header] //usamos bracket notation porque cada header es un STRING!
+                }
             }
             shirt.save()
             return res.status(200).json(shirt)
