@@ -53,6 +53,17 @@ body {
     border: solid 4px black;
 }
 
+.cataloguetitle{
+  text-align: center;
+}
+
+.catalogueLink{
+  text-decoration: none;
+  color: inherit;
+  grid-column: 3;
+  grid-row: 4;
+}
+
 h2{
     color: white;
     grid-column: 2/5;

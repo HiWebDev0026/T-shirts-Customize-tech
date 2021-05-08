@@ -52,10 +52,10 @@ var tShirts = [
                 })
             }
             <SwiperSlide className='catalogue'>
-                <h2>Our catalogue ;) </h2>
-                {/* <Link to='/catalogue'> */}
+                <h2 className='cataloguetitle'>Our catalogue ;) </h2>
+                <Link className='catalogueLink' to='/catalogue'>
                     <button>Check it out!</button>
-                {/* </Link> */}
+                </Link>
             </SwiperSlide> 
         </Swiper>
     </div>
