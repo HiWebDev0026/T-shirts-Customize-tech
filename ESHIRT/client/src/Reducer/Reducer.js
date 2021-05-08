@@ -35,14 +35,11 @@ function rootReducer(state= initialState, action) {
                 userId: action.payload
             }
         case 'POST_USER':
-            /* 
-            {...user,
-            userId: newId
-            }
-            */
             return
+
         case 'PUT_USER':
             return
+            
         case 'DELETE_USER':
             return {
                 ...state,
@@ -73,14 +70,11 @@ function rootReducer(state= initialState, action) {
                 shirtId: action.payload
             }
         case 'POST_SHIRT':
-            /* 
-            {...user,
-            userId: newId
-            }
-            */
             return
+
         case 'PUT_SHIRT':
             return
+
         case 'DELETE_SHIRT':
             return {
                 ...state,
@@ -101,14 +95,11 @@ function rootReducer(state= initialState, action) {
                 categoriesByName: action.payload
             }
         case 'POST_CATEGORY':
-            /* 
-            {...user,
-            userId: newId
-            }
-            */
             return
+
         case 'PUT_CATEGORY':
             return
+
         case 'DELETE_CATEGORY':
             return {
                 ...state,
