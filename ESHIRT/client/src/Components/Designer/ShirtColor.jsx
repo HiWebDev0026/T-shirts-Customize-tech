@@ -4,7 +4,7 @@ import img from '../../assets/img/random_remera_front.png';
 
 function ShirtModel(props) {
 
-    const [shirt, setShirt] = useState();
+    const [data, setData] = useState(null);
 
     const shirtRef = useRef(null);
     const imageRef = useRef(null);
@@ -50,54 +50,6 @@ function ShirtModel(props) {
                 
             }));
 
-            
-
-            
-
-            
-                /* var maxScaleX = 2;
-                var maxScaleY = 2;
-
-                if(this.scaleX > maxScaleX) {
-                    this.scaleX = maxScaleX;
-                    this.left = this.lastGoodLeft;
-                    this.top = this.lastGoodTop;
-                    
-                  }
-                  if(this.scaleY > maxScaleY) {
-                    this.scaleY = maxScaleY;
-                    this.left = this.lastGoodLeft;
-                    this.top = this.lastGoodTop;
-                  }
-                  this.lastGoodTop = this.top;
-                  this.lastGoodLeft = this.left; */
-                /* let addedTangle        = e.target
-                ,   maxWidth     = addedTangle.get("maxWidth")
-                ,   maxHeight    = addedTangle.get("maxHeight")
-                ,   actualWidth  = addedTangle.scaleX * addedTangle.width
-                ,   actualHeight = addedTangle.scaleY * addedTangle.height;
-            
-                if(!isNaN(maxWidth) && actualWidth >= maxWidth){
-                    // dividing maxWidth by the addedTangle.width gives us our 'max scale' 
-                    addedTangle.set({scaleX: maxWidth/addedTangle.width})
-                }
-            
-                if(!isNaN(maxHeight) && actualHeight >= maxHeight){
-                    addedTangle.set({scaleY: maxHeight/addedTangle.height})
-                } */
-            
-                /* console.log("width:" + (addedTangle.width * addedTangle.scaleX) + " height:" + (addedTangle.height * addedTangle.scaleY)) }*/
-                
-/* canvas.on('scaling', );
-
-            
-         */
-        
-                
-        
-            
-        setShirt(canvas); 
-        /* canvas.renderAll(); */
 
         setTimeout(() => canvas.renderAll(), 10);
         
@@ -105,21 +57,34 @@ function ShirtModel(props) {
     }, [])
 
     return (
-        <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column-reverse', width: 'max-content', margin: '0 auto'}}>
+        <div style={{
+                    display: 'flex', 
+                    justifyContent: 'space-around', 
+                    flexDirection: 'column-reverse', 
+                    width: 'max-content',
+                    margin: '0 auto'}}>
             
             <canvas ref={shirtRef} id="canvas"/>
-            <div style={{display: 'flex', flexDirection: 'column', width: '5%'}}>
-            <button style={{backgroundColor: 'yellow', width: '30%'}} onClick={()=> {
+            <div style={{
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        width: '5%'}}>
 
-                let img = new Image();
+            <button style={{backgroundColor: 'yellow', 
+                            width: '30%'}} 
+
+                    onClick={()=> {
+
+                let imgTwo = new Image();
                 /* let reader = new FileReader(); */
                 
                 /* reader.onloadend = function() {
                     var base64data = reader.result;                
                     console.log(base64data);
                 } */
-                img.src = shirtRef.current.toDataURL();
-                
+                imgTwo.src = shirtRef.current.toDataURL();
+                console.log(imgTwo);
+                setData('yellow')
                 shirtRef.current.style.backgroundColor = 'yellow'
                 /* imageRef.current.appendChild = img; */
 
@@ -131,18 +96,33 @@ function ShirtModel(props) {
             }}>AM</button>
             <button style={{backgroundColor: 'red', width: '30%'}} onClick={() => {
                 shirtRef.current.style.backgroundColor = 'red'
+                setData('red')
                 return;
             }}>
                 R
             </button>
-            <button style={{backgroundColor: 'rgb(12, 155, 255, 0.6)', width: '30%'}} onClick={() => {
-                shirtRef.current.style.backgroundColor = 'rgb(12, 155, 255, 0.6)'
-                return;
+            <button 
+                style={{backgroundColor: 'rgb(12, 155, 255, 0.6)', width: '30%'}} 
+                onClick={() => {
+                    shirtRef.current.style.backgroundColor = 'rgb(12, 155, 255, 0.6)'
+                    setData('lightblue')
+                    return;
             }}>
                 CEL
             </button>
             </div>
+            <form onSubmit={(e)=> {
+                e.preventDefault();
+                if(data !== null) {
+                        props.setPhase({
+                                colorSelected: {status: true, data},
+                                designSelected: {...props.phase.designSelected, status: false}
+                            })
+            }}}>
+            <input type="submit" disabled={data===null} />
+                Seleccionado? Estampar!
             
+            </form>
         </div>
     )
 }
