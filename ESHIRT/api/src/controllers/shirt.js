@@ -7,7 +7,9 @@ async function postShirt(req, res, next) {
     try {
         const newShirt = {...req.body, created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
-        await postedShirt.addCategory(req.body.categoryId);
+        if (req.body.categoryId) {
+            await postedShirt.addCategory(req.body.categoryId);
+        }
 
         return res.status(200).json(postedShirt)
     } catch (error) {
