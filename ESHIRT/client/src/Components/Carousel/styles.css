@@ -5,6 +5,13 @@ body {
   height: 100%;
 }
 
+.link{
+  text-decoration: none;
+  color: inherit;
+  grid-column: 3;
+  grid-row: 4;
+}
+
 .swiper-container {
   width: 100%;
   padding-top: 50px;
@@ -28,6 +35,14 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
+}
+
+.designTitle{
+  text-align: center;
+}
+
+.create:hover{
+  color: black;
 }
 
 .catalogue {
