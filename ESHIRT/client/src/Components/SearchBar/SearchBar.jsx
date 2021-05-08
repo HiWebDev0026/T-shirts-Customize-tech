@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import Style from './SearchBar.module.css';
 
 function SearchBar(){
 
@@ -13,8 +14,8 @@ function SearchBar(){
 
     return(
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Find your next shirt" value={Searched} onChange={e => setSearched(e.target.value)}/>
-            <input type="submit" value="Buscar" />
+            <input className={Style.inputBox} type="text" placeholder="Find your next shirt" value={Searched} onChange={e => setSearched(e.target.value)}/>
+            <input className={Style.inputBtn} type="submit" value="Buscar" />
           </form>
     );
 }

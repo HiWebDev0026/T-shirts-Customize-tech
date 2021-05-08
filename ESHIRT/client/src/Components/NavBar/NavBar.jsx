@@ -2,36 +2,25 @@ import React from 'react';
 import Logo from '../../Images/E-Shirt.png'
 import SearchBar from '../SearchBar/SearchBar';
 import {NavLink} from 'react-router-dom';
-import './NavBar.css';
+import Style from './NavBar.module.css';
 
 function Navbar() {
   return (
     <header>
-        <div class="container">
-        <img class="logo" src={Logo} alt="logo"/>
+        {/* <img className={Style.logo} src={Logo} alt='logo'/> */}
+        <span className={Style.logo}>E-Shirt</span>
 
         <nav>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/catalogue">Catalog</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/cart">Cart</a></li>
+            <ul className={Style.navLinks}>
+                <li><NavLink className={Style.eachLink} exact to='/home'>Home</NavLink></li>
+                <li><NavLink className={Style.eachLink} to='/catalogue'>Catalog</NavLink></li>
+                <li><NavLink className={Style.eachLink} to="/">Login</NavLink></li>
+                <li><NavLink className={Style.eachLink} to="/">Cart</NavLink></li>
             </ul>
         </nav>
 
-        <SearchBar class="searchBar" />
-        </div>
+        <SearchBar className={Style.searchBar} />
   </header>
-    // <div>
-    //     <NavLink exact to="/home"><img src={Logo} alt="logo"/></NavLink> 
-    //     <div>
-    //         <NavLink  exact to="/home">Home</NavLink>
-    //         <NavLink to="/">Catalog</NavLink>
-    //         <NavLink to="/">Login</NavLink>
-    //         <NavLink to="/">Cart</NavLink>
-    //     </div>
-    //     <SearchBar />
-    // </div>
   );
 };
 

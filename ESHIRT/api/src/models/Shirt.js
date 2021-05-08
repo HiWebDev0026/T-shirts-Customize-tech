@@ -21,12 +21,16 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     print: {
-      type: DataTypes.BLOB('long'),
-      allowNull: true,
-      // validate: {
-      //   isUrl: true
-      // }
+      type: DataTypes.STRING,
+      allowNull: true
     },
+    // print: {
+    //   type: DataTypes.BLOB('long'),
+    //   allowNull: true,
+    //   // validate: {
+    //   //   isUrl: true
+    //   // }
+    // },
     score: {
       type: DataTypes.INTEGER,
       allowNull: true,
