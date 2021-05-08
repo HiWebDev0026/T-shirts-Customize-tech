@@ -111,14 +111,18 @@ function ShirtModel(props) {
                 CEL
             </button>
             </div>
-            <button onClick={()=> {
+            <form onSubmit={(e)=> {
+                e.preventDefault();
                 if(data !== null) {
                         props.setPhase({
-                            colorSelected: {status: true, data}
+                                colorSelected: {status: true, data},
+                                designSelected: {...props.phase.designSelected, status: false}
                             })
-            }}} disabled={data===null}>
+            }}}>
+            <input type="submit" disabled={data===null} />
                 Seleccionado? Estampar!
-            </button>
+            
+            </form>
         </div>
     )
 }
