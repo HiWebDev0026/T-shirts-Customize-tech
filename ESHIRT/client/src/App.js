@@ -1,11 +1,9 @@
-import "./App.css";
-import Card from './Components/Catalogue/Card/Card'
-import Cards from './Components/Catalogue/Cards/Cards'
 
+import './App.css';
 function App() {
   return (
-    <div>  
-    <Cards/>
+    <div className="App">
+      <h1>Henry Shirts</h1>
     </div>
   )
 }
