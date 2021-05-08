@@ -12,10 +12,10 @@ function Navbar() {
 
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Catalog</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/catalogue">Catalog</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/cart">Cart</a></li>
             </ul>
         </nav>
 
