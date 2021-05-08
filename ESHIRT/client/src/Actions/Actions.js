@@ -65,7 +65,7 @@ export function putUser(dataToModify, userId){
         try {
         const res= await axios.put(`http://localhost:3001/user/${userId}`, dataToModify, {responseType: 'json'})
         const modifiedUser= res.data
-        dispatch({type: 'PUT_USER', payload: {...user, userId:modifiedUser.id}})
+        dispatch({type: 'PUT_USER', payload: {...dataToModify, userId:modifiedUser.id}})
         } catch (err){
             console.log(err.response.data);
         }
@@ -122,7 +122,7 @@ export function getShirtById(shirtId){
         try {
             const res = await axios.get(`http://localhost:3001/shirt/${shirtId}`, {responseType: 'json'})
             const shirt = res.data
-            dispatch({type: 'GET_USER', payload: shirt})
+            dispatch({type: 'GET_SHIRT', payload: shirt})
         } catch (err) {
             console.log(err.response.data);
         }
@@ -148,7 +148,7 @@ export function putShirt(dataToModify, shirtId){
         try {
             const res= await axios.put(`http://localhost:3001/user/${shirtId}`, dataToModify, {responseType: 'json'})
             const modifiedShirt = res.data
-            dispatch({type: 'PUT_SHIRT', payload: {...shirt, shirtId: modifiedShirt.id}})
+            dispatch({type: 'PUT_SHIRT', payload: {...dataToModify, shirtId: modifiedShirt.id}})
         } catch (err){
             console.log(err.response.data);
         }
@@ -185,7 +185,7 @@ export function getCategories(){
             const res= await axios.get('http://localhost:3001/category', {responseType: 'json'})
             const categories = res.data
             console.log(res)
-            dispatch({type: 'GET_CATEGORIES', payload: users})
+            dispatch({type: 'GET_CATEGORIES', payload: categories})
         } catch (err) {
             console.log(err.response.data);
         }
@@ -224,7 +224,7 @@ export function putCategory(dataToModify, categoryId){
         try {
             const res = await axios.put(`http://localhost:3001/category/${categoryId}`, dataToModify, {responseType: 'json'})
             const modifiedCategory = res.data
-            dispatch({type: 'PUT_CATEGORY', payload: {...category, categoryId: modifiedCategory.id}})
+            dispatch({type: 'PUT_CATEGORY', payload: {...dataToModify, categoryId: modifiedCategory.id}})
         } catch (err){
             console.log(err.response.data);
         }
