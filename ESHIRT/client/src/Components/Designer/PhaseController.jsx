@@ -19,7 +19,7 @@ function PhaseController(props) {
         <div style={{
 
             display: 'flex', 
-            border: '1px solid black', 
+            border: '1px solid white', 
             flexWrap: 'wrap',
             width: '65%',
             margin: '0 auto',
@@ -30,8 +30,8 @@ function PhaseController(props) {
                 return (
                     <div 
                         key={index}
-                        style={{minHeight: '90%', 
-                                border: '1px solid black',
+                        style={{height: '60%', 
+                                border: '1px solid white',
                                 borderRadius: '50%',
                                 textAlign: 'center', 
                                 width: 'max-content', 

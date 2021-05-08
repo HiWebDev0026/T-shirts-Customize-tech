@@ -10,27 +10,12 @@ import ShirtDesign from './ShirtDesign';
 function Design(props) {
 
     const [phase, setPhase] = useState({
-                                modelSelected: false,
+                                modelSelected: false, 
                                 sizeSelected: 'pending',
                                 colorSelected: 'pending',
                                 designSelected: 'pending',
                             });
 
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(()=> {
-
-        window.addEventListener('resize', handleWidth)
-
-        return ()=> window.removeEventListener('resize', handleWidth)
-
-    })
-
-    const handleWidth = () => {
-
-        setWidth(window.innerWidth);
-        return;
-    }
 
     const phaseSetter = (args) => {
         setPhase(prevPhase => {
@@ -53,7 +38,7 @@ function Design(props) {
                         
                         {!phase.modelSelected && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
                         {!phase.sizeSelected && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.colorSelected && <ShirtColor phase={phase} width={width} setPhase={phaseSetter}/>}
+                        {!phase.colorSelected && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
                         {!phase.designSelected && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
         </div>
     )
