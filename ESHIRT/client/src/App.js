@@ -1,4 +1,3 @@
-
 import './App.css';
 import Home from './Components/Home/Home.jsx'
 import NavBar from './Components/NavBar/NavBar.jsx';
@@ -6,7 +5,6 @@ import Cards from './Components/Catalogue/Cards/Cards.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import Design from './Components/Designer/Design.jsx';
 import {Route} from 'react-router-dom';
-
 
 function App() {
   return (
