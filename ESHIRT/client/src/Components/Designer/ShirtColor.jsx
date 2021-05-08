@@ -11,8 +11,7 @@ function ShirtModel(props) {
     
     useEffect(()=>{
 
-        let imgBlob = new Image();
-        imgBlob.style.width = '12px';
+        let imgBlob = new Image(340, 420);
         imgBlob.src = img;
         
         console.log(imgBlob);
@@ -28,10 +27,9 @@ function ShirtModel(props) {
         
             let canvas = new fabric.Canvas('canvas', {
                 
-                width: 430,
-                height: 560,
+                width: 350,
+                height: 410,
                 backgroundColor: 'rgb(255, 255, 255, 0.4)',
-                
                 preserveObjectStacking: true,
 
             })
@@ -41,9 +39,12 @@ function ShirtModel(props) {
                  e.target.height = 80; })
 
             .add(new fabric.Image(imgBlob, {
-                width: 490,
-                height: 560,
-                left: -50,
+                scaleX: 0.8,
+                scaleY: 0.7,
+                
+                width: 492,
+                height: 585,
+                left: -38,
                 selectable: false,
                 objectCaching: false,
                 
@@ -104,7 +105,7 @@ function ShirtModel(props) {
     }, [])
 
     return (
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+        <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'column-reverse', width: 'max-content', margin: '0 auto'}}>
             
             <canvas ref={shirtRef} id="canvas"/>
             <div style={{display: 'flex', flexDirection: 'column', width: '5%'}}>
