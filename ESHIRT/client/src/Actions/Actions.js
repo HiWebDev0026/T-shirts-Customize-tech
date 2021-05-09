@@ -185,7 +185,7 @@ export function getCategories(){
         try {
             const res= await axios.get('http://localhost:3001/category', {responseType: 'json'})
             const categories = res.data
-            console.log(res)
+            console.log('categorias', categories)
             dispatch({type: 'GET_CATEGORIES', payload: categories})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
@@ -204,6 +204,11 @@ export function getCategoriesByName(categoryName){
             console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
+}
+
+export function filterByCategory(categories){
+    return {type: 'FILTER_BY_CATEGORY', payload: categories}
+        
 }
 
 export function postCategory(category){
