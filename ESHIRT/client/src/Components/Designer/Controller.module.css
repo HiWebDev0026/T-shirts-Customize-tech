@@ -1,3 +1,5 @@
+
+
 .controllerContainer {
 
     display: flex;
@@ -16,7 +18,7 @@
 
 .buttonsContainer {
     height: 65%; 
-    border: 1px solid white;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,10 +37,42 @@
     background-color: coral;
     font-size: 16px;
     font-weight: 900;
+    border: 2px solid gray;
 }
+
+
+
+.selectedButtons  {
+    height: min-content;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(253, 237, 231);
+    font-size: 16px;
+    font-weight: 900;
+}
+
+
 
 .btnDescription > h4 {
     color: coral;
     margin: 0 auto;
     
+}
+
+.btnSelected > h4{
+    color: rgb(253, 237, 231);
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    
+    .controllerContainer {
+        width: 95%;
+    }
+
+    .buttonsContainer {
+        width: 20%;
+    }
 }
