@@ -91,3 +91,8 @@ h2{
     border: solid 2px black;
     color:black;
 }
+
+.image{
+  height: 100%;
+  width:100%;
+}

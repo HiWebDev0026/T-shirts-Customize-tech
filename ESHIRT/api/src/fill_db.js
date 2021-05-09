@@ -88,10 +88,10 @@ const shirt1 = {
     "userId": "1",
     "categoryId": "1",
     "name": "SHIRT1",
-    "color": "green",
+    "color": "white",
     "model": "cuello-v2",
     "size": "M",
-    "print": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2m0RU6jww4i6PMly3spXAJzkIKPdsV-cBKWZDlOdTwf0PSYV9i1M5hGkVzMBiOnM7rVo_5k&usqp=CAc2",
+    "print": "http://www.wellcoders.com/images/GARMENTS/D/W/V/W/MAIN/d2087xWxVxWxMAIN.jpg",
     "score": "5",
     "public": "true"
 }
@@ -100,10 +100,10 @@ const shirt2 = {
     "userId": "1",
     "categoryId": "1",
     "name": "SHIRT2",
-    "color": "blue",
+    "color": "black",
     "model": "cuello-v2",
     "size": "M",
-    "print": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2m0RU6jww4i6PMly3spXAJzkIKPdsV-cBKWZDlOdTwf0PSYV9i1M5hGkVzMBiOnM7rVo_5k&usqp=CAc2",
+    "print": "https://images1.teeshirtpalace.com/images/productImages/av/ChillinWithMyVillainsHorrorMovieFunny/productImage/ChillinWithMyVillainsHorrorMovieFunny-black-av-front.jpg?width=713",
     "score": "3",
     "public": "true"
 }
@@ -112,10 +112,10 @@ const shirt3 = {
     "userId": "2",
     "categoryId": "2",
     "name": "SHIRT3",
-    "color": "white",
-    "model": "cuello-v2",
+    "color": "black",
+    "model": "cuello-u",
     "size": "M",
-    "print": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2m0RU6jww4i6PMly3spXAJzkIKPdsV-cBKWZDlOdTwf0PSYV9i1M5hGkVzMBiOnM7rVo_5k&usqp=CAc2",
+    "print": "https://cdn.shopify.com/s/files/1/0443/3113/9234/products/t-shirt-femme-jpeux-pas-jai-pole-dance-noir-494817.jpg?v=1604670113",
     "score": "3",
     "public": "true"
 }
@@ -264,7 +264,23 @@ const shirt15 = {
     "public": "true"
 }
 
+    
+const setToLower = (array) => {
+    for (const body of array) {
+        for (const field in body) {
+            if (field !== 'print' && field !== 'size' && field !== 'public') {
+                body[field] = body[field].toLowerCase()
+            }
+        }    
+    }
+}
+
+
 async function fillDB () {
+    setToLower([
+        shirt1, shirt2, shirt3, shirt4, shirt5, shirt6, shirt7, shirt8, 
+        shirt9, shirt10, shirt11, shirt12, shirt13, shirt14, shirt15
+    ]) // sets all names and properties to lower case    
     try {
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);

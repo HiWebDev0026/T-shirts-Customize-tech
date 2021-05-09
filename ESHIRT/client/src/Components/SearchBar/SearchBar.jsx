@@ -1,24 +1,31 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {getShirtsByName} from '../../Actions/Actions';
+import { useDispatch } from 'react-redux';
 import Style from './SearchBar.module.css';
+
 
 function SearchBar(){
 
-    const [Searched, setSearched] = useState("");
+    let dispatch = useDispatch()
+    const [state, setState]= useState('')
+    function handleChange(e) {
+        setState(e.target.value)
+    }
 
     function handleSubmit(e){
         e.preventDefault();
-        // acá voy a hacer el dispatch
-        setSearched("");
+        dispatch(getShirtsByName(state))
+        setState('');
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <input className={Style.inputBox} type="text" placeholder="Find your next shirt" value={Searched} onChange={e => setSearched(e.target.value)}/>
-            <input className={Style.inputBtn} type="submit" value="Buscar" />
-          </form>
-    );
+        <div>
+            <form onSubmit = {(e)=> handleSubmit(e)}>
+                <input className={Style.inputBox} type='text' placeholder= 'Find your next shirt' value ={state} onChange={(e)=>handleChange(e)}/>
+             <input className={Style.inputBtn} type='submit' value= 'Search'/>
+            </form>
+        </div>
+    )
 }
-
 
 export default SearchBar;

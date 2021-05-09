@@ -15,7 +15,7 @@ export function getUsers(){
             console.log(res)
             dispatch({type: 'GET_USERS', payload: users})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -28,7 +28,7 @@ export function getUsersByName(userName){
             const users= res.data
             dispatch({type: 'GET_USERS_NAME', payload: users})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -41,7 +41,7 @@ export function getUserById(userId){
             const user= res.data
             dispatch({type: 'GET_USER', payload: user})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -54,7 +54,7 @@ export function postUser(user){
             const newUser= res.data
             dispatch({type: 'POST_USER', payload: {...user, userId:newUser.id}})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -67,7 +67,7 @@ export function putUser(dataToModify, userId){
         const modifiedUser= res.data
         dispatch({type: 'PUT_USER', payload: {...dataToModify, userId:modifiedUser.id}})
         } catch (err){
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -79,7 +79,7 @@ export function deleteUser(userId){
             const res= await axios.delete(`http://localhost:3001/user/${userId}`, {responseType: 'json'})
             dispatch({type: 'DELETE_USER', payload: res.status})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }        
     }
     
@@ -98,20 +98,21 @@ export function getShirts(){
             console.log(res);
             dispatch({type: 'GET_SHIRTS', payload: shirts})
         } catch (err) {
-            console.log(err.response);
+            console.log((err.response && err.response.data) || 'Server not working!');
+
         }
     }
 }
 
 export function getShirtsByName(shirtName){
-    
+    console.log("Estoy en la action", shirtName);
     return async (dispatch) => {
         try {
             const res = await axios.get(`http://localhost:3001/shirt?name=${shirtName}`, {responseType: 'json'})
             const shirts = res.data
             dispatch({type: 'GET_SHIRTS_NAME', payload: shirts})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -124,7 +125,7 @@ export function getShirtById(shirtId){
             const shirt = res.data
             dispatch({type: 'GET_SHIRT', payload: shirt})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -137,7 +138,7 @@ export function postShirt(shirt){
             const newShirt = res.data
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -150,7 +151,7 @@ export function putShirt(dataToModify, shirtId){
             const modifiedShirt = res.data
             dispatch({type: 'PUT_SHIRT', payload: {...dataToModify, shirtId: modifiedShirt.id}})
         } catch (err){
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -163,7 +164,7 @@ export function deleteShirt(shirtId){
             const res = await axios.delete(`http://localhost:3001/shirt/${shirtId}`, {responseType: 'json'})
             dispatch({type: 'DELETE_SHIRT', payload: res.status})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }        
     }
     
@@ -187,7 +188,7 @@ export function getCategories(){
             console.log(res)
             dispatch({type: 'GET_CATEGORIES', payload: categories})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -200,7 +201,7 @@ export function getCategoriesByName(categoryName){
             const categories = res.data
             dispatch({type: 'GET_CATEGORIES_NAME', payload: categories})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -213,7 +214,7 @@ export function postCategory(category){
             const newCategory = res.data
             dispatch({type: 'POST_CATEGORY', payload: {...category, categoryId: newCategory.id}})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -226,7 +227,7 @@ export function putCategory(dataToModify, categoryId){
             const modifiedCategory = res.data
             dispatch({type: 'PUT_CATEGORY', payload: {...dataToModify, categoryId: modifiedCategory.id}})
         } catch (err){
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }
     }
 }
@@ -238,7 +239,7 @@ export function deleteCategory(categoryId){
             const res = await axios.delete(`http://localhost:3001/category/${categoryId}`, {responseType: 'json'})
             dispatch({type: 'DELETE_CATEGORY', payload: res.status})
         } catch (err) {
-            console.log(err.response.data);
+            console.log((err.response && err.response.data) || 'Server not working!');
         }        
     }   
 }
