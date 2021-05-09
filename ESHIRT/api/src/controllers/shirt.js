@@ -15,7 +15,8 @@ const setToLower = (body) => {
 async function postShirt(req, res, next) {        
     // this will have a validation before post
     try {
-        const body = setToLower(req.body)
+        //const body = setToLower(req.body)
+        const body = {...req.body, name: req.body.name.toLowerCase()}
         const newShirt = {...body, created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
         if (body.categoryId) {
