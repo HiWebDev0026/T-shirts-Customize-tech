@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     print: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true
     },
     // print: {
