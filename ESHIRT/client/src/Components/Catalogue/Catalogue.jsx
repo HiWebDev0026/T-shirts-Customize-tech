@@ -16,21 +16,26 @@ function Catalogue(){
     const dispatch= useDispatch()
     const allShirts= useSelector(state => state.allShirts)
     const shirtsByName= useSelector(state => state.shirtsByName)
+    const filteredByCategory= useSelector(state => state.filteredByCategory)
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
 
 
     useEffect(()=>{
-        dispatch(getShirts())
+        if (shirtsByName.length !== 0){
+        dispatch(getShirts())}
     }, [])
 
+    useEffect(() => {
+        filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
+    })
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
   }
+  
   const offset = currentPage * INITIAL_PAGE;
-
-  const currentPageData = allShirts
+  const currentPageData = data
     .slice(offset, offset + INITIAL_PAGE)
     .map(e => {
         return <Card
@@ -44,8 +49,9 @@ function handlePageClick({ selected: selectedPage }) {
     })
     
 
-  const pageCount = Math.ceil(allShirts.length / INITIAL_PAGE);
+  const pageCount = Math.ceil(data.length / INITIAL_PAGE);
 
+    console.log(allShirts, shirtsByName, filteredByCategory)
 
     return (
         <div className={style.container1}>
