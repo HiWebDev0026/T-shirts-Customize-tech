@@ -1,9 +1,9 @@
 #root { height: 100% }
-html,
-body {
+
+/* body {
   position: relative;
   height: 100%;
-}
+} */
 
 .link{
   text-decoration: none;
@@ -28,6 +28,10 @@ body {
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+.swiper-pagination-bullet{
+  background: whitesmoke;
 }
 
 .create{
@@ -71,7 +75,7 @@ h2{
 }
 
 
-button { 
+.btn { 
     width:80px;
     height:40px;
     grid-column: 3;
@@ -82,7 +86,7 @@ button {
     font-weight: 800;
 }
 
-button:hover{
+.btn:hover{
     background-color: white;
     border: solid 2px black;
     color:black;

@@ -1,13 +1,9 @@
-html,
-body {
-  /* background: white; */
-  font-family: sans-serif;
-  padding: 25px;
-}
+
+
 
 .wrapper {
-  width: 300px;
-  height: 400px;
+  width: 23vw;
+  height: 55vh;
   background: white;
   margin: auto;
   position: relative;

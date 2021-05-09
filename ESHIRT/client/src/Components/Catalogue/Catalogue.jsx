@@ -3,6 +3,8 @@ import React, {useState, useEffect} from "react";
 import Card from './Card/Card.jsx'
 import ReactPaginate from "react-paginate";
 import Button from '@material-ui/core/Button'
+import {useDispatch, useSelector} from 'react-redux'
+import {getShirts} from '../../Actions/Actions'
 
 // {title, price, width, height, model, color}
 
@@ -18,13 +20,15 @@ function Catalogue(){
         {title: 'Ger', price: 90, width: 115, height: 160, model:'T-SHIRT', color: 'Green', image: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg'},
         {title: 'Dani', price: 90, width: 115, height: 160, model:'T-SHIRT', color: 'Pink', image: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg'}
     ]
+    const dispatch= useDispatch()
+    const allShirts= useSelector(state => state.allShirts)
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
 
 
-useEffect(()=>{
-    
-})
+    useEffect(()=>{
+        dispatch(getShirts())
+    }, [])
 
 
 function handlePageClick({ selected: selectedPage }) {
@@ -32,7 +36,7 @@ function handlePageClick({ selected: selectedPage }) {
   }
   const offset = currentPage * INITIAL_PAGE;
 
-  const currentPageData = example
+  const currentPageData = allShirts
     .slice(offset, offset + INITIAL_PAGE)
     .map(e => {
         return <Card
@@ -53,6 +57,9 @@ function handlePageClick({ selected: selectedPage }) {
     return (
         <div>
         <div className={style.container1}>
+   
+        <div>{currentPageData}</div>
+
         <ReactPaginate
         previousLabel={<Button color="primary">← Previous</Button>}
         nextLabel={<Button color="primary">Next →</Button>}
@@ -63,12 +70,9 @@ function handlePageClick({ selected: selectedPage }) {
         disabledClassName={"pagination__link--disabled"}
         activeClassName={"pagination__link--active"}
         containerClassName={style.pagination}
-      />
-   
-     {currentPageData}  
-        </div>
-        
-        
+        />
+
+        </div>   
         </div>
     )
 }
