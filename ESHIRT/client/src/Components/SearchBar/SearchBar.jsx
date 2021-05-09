@@ -18,7 +18,7 @@ function SearchBar(){
         e.preventDefault();
         dispatch(getShirtsByName(state))
         setState('');
-        history.push('/catologue')
+        history.push('/catalogue')
     }
 
     return(
