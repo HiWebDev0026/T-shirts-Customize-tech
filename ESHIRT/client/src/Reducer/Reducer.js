@@ -60,6 +60,7 @@ function rootReducer(state= initialState, action) {
                 random6: random
             }
         case 'GET_SHIRTS_NAME':
+            console.log("estoy en el reducer", action.payload);
             return {
                 ...state,
                 shirtsByName: action.payload
