@@ -21,7 +21,7 @@ function Card({title, score, size, model, color, image}){
             </div>
             <div className={style.buy}>
               <IconButton aria-label="add" >
-                <AddShoppingCartIcon color="secondary" value="cart"fontSize="large"className="cart" />
+                <AddShoppingCartIcon color="secondary" value="cart" fontSize="small"className="cart" />
                  
                
               </IconButton>
@@ -32,7 +32,7 @@ function Card({title, score, size, model, color, image}){
       <div className={style.inside}>
         <div className={style.icon}>
         <IconButton aria-label="add" >
-                <DehazeIcon  fontSize="large"className="dtl" />              
+                <DehazeIcon  fontSize="small" className="dtl" />              
               </IconButton>
         </div>
         <div className={style.contents}>
