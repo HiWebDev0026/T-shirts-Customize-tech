@@ -37,7 +37,7 @@ var tShirts = [
             <SwiperSlide className='create'>
                 <h2 className='designTitle'>Design your own T-Shirt!</h2>
                     <Link to='/design' className="link">
-                    <button>
+                    <button className='btn'>
                         Let's Go!    
                     </button>
                     </Link>
@@ -54,7 +54,7 @@ var tShirts = [
             <SwiperSlide className='catalogue'>
                 <h2 className='cataloguetitle'>Our catalogue ;) </h2>
                 <Link className='catalogueLink' to='/catalogue'>
-                    <button>Check it out!</button>
+                    <button className='btn'>Check it out!</button>
                 </Link>
             </SwiperSlide> 
         </Swiper>
