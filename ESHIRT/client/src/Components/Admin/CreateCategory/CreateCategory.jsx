@@ -9,7 +9,7 @@ export default function CreateCategory (){
 
     const [category,setCategory]= useState('');
     const [remove,setRemove]= useState(true);
-    const [edit, setEdit]=useState(false);
+    const [editButtonTarget, setEditButtonTarget] = useState(0)
     const [change, setChange]=useState('');
  
     console.log('ESTADO',category);
@@ -35,11 +35,17 @@ export default function CreateCategory (){
         setRemove(!remove);
     };
 
-    function handleEdit (){
-        return <div>
-                <input type='text' value={change} onChange={(e)=> setChange(e.target.value)}/>
-                <input type='submit'/>
-               </div>
+    function handleEdit (e) {
+        setEditButtonTarget(e.target.value)
+    }
+
+    function showEditbutton (){
+        return (
+        <div>
+            <input type='text' value={change} onChange={(e)=> setChange(e.target.value)}/>
+            <input type='submit'/>
+        </div>
+        )
     }
 
     return(
@@ -53,17 +59,14 @@ export default function CreateCategory (){
                         return <div key={category.id}>
                                     <p>{category.name}</p>
                                     <button value={category.id} onClick={handleDelete}>X</button>
-                                    <button value={category.id} onClick={(e)=>setEdit(true)}>Edit</button>
-                                    <div>
-                                        {edit&&handleEdit()}
-                                    </div>
+                                    <button value={category.id} onClick={handleEdit}>Edit</button>
+                                    {editButtonTarget == category.id && showEditbutton()}
                             </div>
                             
                         })
                         :<p>Categories not found</p>
                     }
                 </div>
-                {edit&&handleEdit()}
             </div>
             <form id='miForm' onSubmit={handleSubmit}>
             <h1>Create new category</h1>
