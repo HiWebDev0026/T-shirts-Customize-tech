@@ -96,10 +96,13 @@ function rootReducer(state= initialState, action) {
                 categoriesByName: action.payload
             }
         case 'POST_CATEGORY':
-            return
+            return {
+                ...state,
+                allCategories: [...state.allCategories, action.payload]
+            }
 
         case 'PUT_CATEGORY':
-            return
+            return 
 
         case 'DELETE_CATEGORY':
             return {

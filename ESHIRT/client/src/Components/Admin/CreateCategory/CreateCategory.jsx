@@ -34,6 +34,7 @@ export default function CreateCategory (){
 
     function handleEdit (e) {
         console.log('EDIT',e.target.value);
+       return  <input type='text'/>
     }
 
     return(
@@ -42,7 +43,7 @@ export default function CreateCategory (){
                 <h1>Categories</h1>
                 <div>
                     {
-                        categories?
+                        categories.length>0?
                         categories.map((category)=>{
                         return <div key={category.id}>
                                     <p>id {category.id}</p>
