@@ -8,9 +8,10 @@ const {Category, Shirt} = require('../db.js');
     
 async function postCategory(req, res, next) {
     
-        
+      
     try {
-        const newCategory= req.body
+        
+        const newCategory= {...req.body, name: req.body.name.toLowerCase()}
         const postedCategory = await Category.create(newCategory);
         return res.status(200).json(postedCategory)
     } catch (error) {
@@ -61,7 +62,7 @@ async function deleteCategory(req, res, next) {
 async function putCategory(req, res, next) {
     const categoryId = req.params.id     
     //body must send data to modify
-    const body = req.body               //cambio el alias
+    const body = {...req.body, name: req.body.name.toLowerCase()}          //cambio el alias
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const category = await Category.findOne({where: {id: categoryId}, include: [Shirt]}) 
@@ -72,7 +73,7 @@ async function putCategory(req, res, next) {
             category.save()
             return res.status(200).json(category)
         } else {
-            return next({status: 404, message: 'Shirt not found'})
+            return next({status: 404, message: 'Category not found'})
         }
         
     } catch (error) {
