@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom'
 import {getShirtsByName} from '../../Actions/Actions';
 import { useDispatch } from 'react-redux';
 import Style from './SearchBar.module.css';
@@ -11,11 +12,13 @@ function SearchBar(){
     function handleChange(e) {
         setState(e.target.value)
     }
+    const history = useHistory()
 
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getShirtsByName(state))
         setState('');
+        history.push('/catologue')
     }
 
     return(
