@@ -22,7 +22,7 @@ function ShirtDesign(props) {
                 }) */
         
                 
-        let canvas = new fabric.Canvas('canvas', {
+        let canvas = new fabric.StaticCanvas('canvas', {
                         
                         width: 350,
                         height: 410,
@@ -30,11 +30,6 @@ function ShirtDesign(props) {
                         preserveObjectStacking: true,
         
         })
-          .on('selection:created', (e) => {
-        
-                        e.target.lockScalingX = true;
-                         e.target.height = 80; })
-        
           .add(new fabric.Image(imgBlob, {
                         scaleX: 0.8,
                         scaleY: 0.7,

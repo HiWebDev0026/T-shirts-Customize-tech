@@ -1,0 +1,14 @@
+.container {
+    display: flex; 
+    flex-direction: column; 
+    width: 60%; 
+    align-items: center;
+    margin: 0 auto;
+}
+
+.title > h3 {
+    width: 'max-content';
+    display:'flex';
+    margin: 0 auto;
+    color: white;
+}
