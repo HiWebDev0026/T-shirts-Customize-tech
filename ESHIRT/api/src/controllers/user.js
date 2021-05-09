@@ -4,12 +4,14 @@ const {User, Shirt} = require('../db.js');
 
 
 async function postUser(req, res, next) {        
-    let {name, email, password, country, city, adress, phone}= req.body
+    let {name, lastname, email, password, country, city, adress, phone}= req.body
+    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.name.toLowerCase(), lastname: req.body.name.toLowerCase(),
+     country:req.body.name.toLowerCase(), city:req.body.name.toLowerCase(), adress:req.body.name.toLowerCase(),}
     try {
-        if (!(name && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
+        if (!(name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
            return next({status: 400, message: 'Bad body request'})
         }
-        const newUser = req.body
+        const newUser = body
         const postedUser = await User.create(newUser);
         return res.status(200).json(postedUser)
     } catch (error) {
@@ -61,7 +63,9 @@ async function getUsers(req, res, next) {
 async function putUser(req, res, next) {
     const userId = req.params.id     
     //body must send data to modify
-    const body = req.body               //cambio el alias
+                  //cambio el alias
+    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.name.toLowerCase(), lastname: req.body.name.toLowerCase(),
+        country:req.body.name.toLowerCase(), city:req.body.name.toLowerCase(), adress:req.body.name.toLowerCase(),}
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const user = await User.findOne({where: {id: userId}, include: [Shirt]}) 
