@@ -13,7 +13,7 @@ function Design(props) {
     const [phase, setPhase] = useState({
                                 modelSelected: {status: false, data: ''},
                                 sizeSelected: {status: 'pending', data: ''},
-                                colorSelected: {status: 'pending', data: ''},
+                                colorSelected: {status: 'pending', data: 'white'},
                                 designSelected: {status: 'pending', data: ''},
                                 allGoodForSubmit: false,
                             });

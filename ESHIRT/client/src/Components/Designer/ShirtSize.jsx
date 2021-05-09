@@ -26,7 +26,7 @@ function ShirtSize(props) {
                                                             sizeSelected: {data, status: true}, 
                                                             colorSelected: {...props.phase.colorSelected, status: false}})};
                                                             return;}}>
-                            <select onChange={(e)=> setData(e.target.value)}>
+                            <select type="datalist"onChange={(e)=> setData(e.target.value)} value={data}>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
                                 <option value="M">M</option>

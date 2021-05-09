@@ -48,7 +48,7 @@ function ShirtDesign(props) {
                     }));
         
         
-                setTimeout(() => canvas.renderAll(), 10);
+                setTimeout(() => canvas.renderAll(), 222);
         })
 
         useEffect(()=> {
@@ -56,8 +56,6 @@ function ShirtDesign(props) {
                         const conversion = async () => {
                                 const fileConverted = await convertBase64(data);
                                 setData(fileConverted);
-                                
-                                
                                 return;
                         }
 
@@ -83,7 +81,6 @@ function ShirtDesign(props) {
             
 
     return (
-    
                 <div>
                         <canvas id="canvas" />
                         <form onSubmit={(e)=> {
@@ -93,7 +90,6 @@ function ShirtDesign(props) {
                                 <input type="file" onChange={setPhotoHandler}/>
                                 <input type="submit" value={"Añadir foto"} />
                         </form>
-                                
                 </div>)
 }
 

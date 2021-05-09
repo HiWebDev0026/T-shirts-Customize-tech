@@ -98,7 +98,7 @@ export function getShirts(){
             console.log(res);
             dispatch({type: 'GET_SHIRTS', payload: shirts})
         } catch (err) {
-            console.log(err.response.data);
+            console.log(err.response);
         }
     }
 }
