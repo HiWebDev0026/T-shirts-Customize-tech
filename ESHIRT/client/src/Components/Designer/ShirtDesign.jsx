@@ -42,13 +42,15 @@ function ShirtDesign(props) {
                         /* return convertToHTMLElement(data, canvas) */
                         const inputImage = new fabric.Image(data, {
 
-                                scaleY: 0.9,
-                                scaleX: 0.2,
+                                
                                 left: 86,
                                 top: 120,
                                     
-                        }).scaleToWidth(120).scaleToHeight(120)
-
+                        }).scale(1);
+                        
+                        
+                        inputImage.scaleToWidth(data.width/data.height > 1.5 ? 100 : data.width/data.height <= 1.15 ? 170 : 121, true).scaleToHeight(data.width/data.height > 1.5 ? 100: data.width/data.height <= 1.15 ? 170 : 121, true)
+                        console.log(data.width, data.height);
                         canvas.add(inputImage);
 
                     }
@@ -102,12 +104,7 @@ function ShirtDesign(props) {
                 
         }
 
-        const convertBase64 = (file) => new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-        })
+        
                 
         /* console.log(data.src); */
             

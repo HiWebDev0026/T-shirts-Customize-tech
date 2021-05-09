@@ -42,7 +42,7 @@ function PhaseController(props) {
                                                     value={elem.phase}>
                                                                     {elem.index}
                                                 </button>
-                                                <div className={ControllerCSS.btnDescription}>
+                                                <div className={props.phase[elem.phase].status ? ControllerCSS.btnDescription : ControllerCSS.btnSelected}>
 
                         <h4>{elem.name}</h4>
                         </div>

@@ -53,10 +53,17 @@
     font-weight: 900;
 }
 
+
+
 .btnDescription > h4 {
     color: coral;
     margin: 0 auto;
     
+}
+
+.btnSelected > h4{
+    color: rgb(253, 237, 231);
+    margin: 0 auto;
 }
 
 @media (max-width: 800px) {
