@@ -46,7 +46,6 @@ function Filter(){
                 )
             })}
             <button onClick={handleClick}>FILTER</button>
-            
         </div>
     )
 }

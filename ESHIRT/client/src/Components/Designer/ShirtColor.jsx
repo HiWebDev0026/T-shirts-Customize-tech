@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import {fabric} from 'fabric';
 import img from '../../assets/img/random_remera_front.png';
-
+import ColorCSS from './ShirtColor.module.css';
 import ColorBattery from './ColorBattery.jsx';
 
 function ShirtModel(props) {
@@ -23,13 +23,13 @@ function ShirtModel(props) {
         
             let canvas = new fabric.StaticCanvas('canvas', {
                 
-                width: 350,
-                height: 410,
-                backgroundColor: data,
-                selectable: false,
-                preserveObjectStacking: true,
-                lockMovementY: true,
-                lockMovementX: true,
+                    width: 350,
+                    height: 410,
+                    backgroundColor: data,
+                    selectable: false,
+                    preserveObjectStacking: true,
+                    lockMovementY: true,
+                    lockMovementX: true,
 
             })
                  .add(new fabric.Rect({
@@ -39,7 +39,8 @@ function ShirtModel(props) {
                     lockMovementY: true,
                     lockMovementX: true,
                     selectable: false,
-                })).add(new fabric.Image(imgBlob, {
+                }))
+                .add(new fabric.Image(imgBlob, {
                     scaleX: 0.8,
                     scaleY: 0.7,
                     evented: false,
@@ -59,28 +60,27 @@ function ShirtModel(props) {
     }, [props.phase.colorSelected.data])
 
     return (
-        <div style={{
-                    display: 'flex', 
-                    justifyContent: 'space-around', 
-                    flexDirection: 'column-reverse', 
-                    width: 'max-content',
-                    margin: '0 auto'}}>
+        <div className={ColorCSS.container}>
             
             <canvas ref={shirtRef} id="canvas"/>
             <div ref={imageRef}></div>
-            <ColorBattery props={{setData: (arg)=> setData(arg), setPhase: (arg)=> props.setPhase(arg)}} />
-            <form onSubmit={(e)=> {
-                e.preventDefault();
-                if(data !== null) {
-                        props.setPhase({
-                                colorSelected: {status: true, data},
-                                designSelected: {...props.phase.designSelected, status: false}
-                            })
-            }}}>
-            <input type="submit" disabled={data===null} />
-                Elegí el color
-            
-            </form>
+            <ColorBattery props={{
+                                setData: (arg)=> setData(arg), 
+                                setPhase: (arg)=> props.setPhase(arg)}} />
+                    <form onSubmit={(e)=> {
+                        e.preventDefault();
+                        if(data !== null) {
+                                props.setPhase({
+                                        colorSelected: {status: true, data},
+                                        designSelected: {...props.phase.designSelected, status: false}
+                                    })
+                    }}}>
+                    <input 
+                            type="submit" 
+                            disabled={data===null} />
+                        Elegí el color
+                    
+                    </form>
         </div>
     )
 }

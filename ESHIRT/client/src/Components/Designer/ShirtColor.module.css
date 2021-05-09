@@ -1,0 +1,8 @@
+.container {
+    
+        display: flex; 
+        justify-content: space-around; 
+        padding-top: 6%;
+        width: max-content;
+        margin: 0 auto;
+}
