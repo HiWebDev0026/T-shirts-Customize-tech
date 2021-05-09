@@ -1,4 +1,28 @@
+var fs = require('fs');
+    
 const {User, Category, Shirt} = require('./db.js')
+
+var utils = {};
+
+
+utils.readFile = function (filename, callback) {
+	var randExtraTime = Math.random() * 200;
+	setTimeout(function () {
+		fs.readFile(filename, function (err, buffer) {
+			if (err) callback(err);
+			else callback(null, buffer.toString());
+		});
+	}, randExtraTime);
+};
+
+utils.promisifiedReadFile = function (filename) {
+	return new Promise(function (resolve, reject) {
+		utils.readFile(filename, function (err, str) {
+			if (err) reject(err);
+			else resolve(str);
+		});
+	});
+};
 
 const user1 = {
     "name": "USER1",
@@ -280,8 +304,11 @@ async function fillDB () {
     setToLower([
         shirt1, shirt2, shirt3, shirt4, shirt5, shirt6, shirt7, shirt8, 
         shirt9, shirt10, shirt11, shirt12, shirt13, shirt14, shirt15
-    ]) // sets all names and properties to lower case    
+    ]) // sets all names and properties to lower case
+        
     try {
+    shirt1.print = await utils.promisifiedReadFile('./src/images/img1.txt')
+    shirt2.print = await utils.promisifiedReadFile('./src/images/img2.txt')
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);
     const postedUser3 = await User.create(user3);
