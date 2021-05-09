@@ -5,8 +5,8 @@ const {User, Shirt} = require('../db.js');
 
 async function postUser(req, res, next) {        
     let {name, lastname, email, password, country, city, adress, phone}= req.body
-    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.name.toLowerCase(), lastname: req.body.name.toLowerCase(),
-     country:req.body.name.toLowerCase(), city:req.body.name.toLowerCase(), adress:req.body.name.toLowerCase(),}
+    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.email.toLowerCase(), lastname: req.body.lastname.toLowerCase(),
+     country:req.body.country.toLowerCase(), city:req.body.city.toLowerCase(), adress:req.body.adress.toLowerCase(),}
     try {
         if (!(name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
            return next({status: 400, message: 'Bad body request'})
@@ -64,12 +64,14 @@ async function putUser(req, res, next) {
     const userId = req.params.id     
     //body must send data to modify
                   //cambio el alias
-    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.name.toLowerCase(), lastname: req.body.name.toLowerCase(),
-        country:req.body.name.toLowerCase(), city:req.body.name.toLowerCase(), adress:req.body.name.toLowerCase(),}
+    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.email.toLowerCase(), lastname: req.body.lastname.toLowerCase(),
+        country:req.body.country.toLowerCase(), city:req.body.city.toLowerCase(), adress:req.body.adress.toLowerCase()}
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const user = await User.findOne({where: {id: userId}, include: [Shirt]}) 
-        if (body.name) {
+
+        const {name, lastname, email, password, country, city, adress, phone} = body //destructuring
+        if ((name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )) { //validamos
             for (const header of HEADERS) {  //tomamos cada columna 
                 user[header] = body[header] //usamos bracket notation porque cada header es un STRING!
             }
