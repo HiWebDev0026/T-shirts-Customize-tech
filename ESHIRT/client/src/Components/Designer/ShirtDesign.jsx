@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {fabric} from 'fabric';
 import img from '../../assets/img/random_remera_front.png';
+import Design from './Design';
+import PrintCSS from './ShirtDesign.module.css';
 
 
 
@@ -10,17 +12,11 @@ function ShirtDesign(props) {
 
       
         useEffect(()=> {
-        let imgBlob = new Image(340, 420);
-                imgBlob.src = img;
-                
-                console.log(imgBlob);
-        
-                /* let canvas = new fabric.Canvas('canvas', {
-                    height: 550,
-                    width: 580,
-                    backgroundColor: 'rgb(0, 0, 0, 0.2)',
-                }) */
-        
+                        let imgBlob = new Image(340, 420);
+                        imgBlob.src = img;
+
+                         console.log(imgBlob);
+
                 
         let canvas = new fabric.StaticCanvas('canvas', {
                         
@@ -40,29 +36,70 @@ function ShirtDesign(props) {
                         selectable: false,
                         objectCaching: false,
                         
-                    }));
+                    }))
+
+                    if(data!==null) {
+                        /* return convertToHTMLElement(data, canvas) */
+                        const inputImage = new fabric.Image(data, {
+
+                                scaleY: 0.9,
+                                scaleX: 0.2,
+                                left: 86,
+                                top: 120,
+                                    
+                        }).scaleToWidth(120).scaleToHeight(120)
+
+                        canvas.add(inputImage);
+
+                    }
         
         
                 setTimeout(() => canvas.renderAll(), 222);
         })
 
-        useEffect(()=> {
+        /* useEffect(()=> {
                 if(data !== null && typeof data !== 'string') {
                         const conversion = async () => {
                                 const fileConverted = await convertBase64(data);
-                                setData(fileConverted);
+                                props.setPhase({status: true, data: fileConverted});
                                 return;
                         }
 
                         conversion();
                 }
-        }, [data])
+        }, [data]) */
 
+        const convertToHTMLElement = async (file)=> {
+                
+                const reader = new FileReader();
 
-        const setPhotoHandler = (e) => {
+                reader.onload = function(e)  {
 
-                setData(e.target.files[0]);
+                        const imgUploaded = new Image();
+                        imgUploaded.src = e.target.result;
+                        setData(imgUploaded);
+                }
+
+                     reader.readAsDataURL(file);
+                     
+
+                     
+        }
+
+        const setPhotoHandler = async (e) => {
+
+                
+                try {
+                        const HTMLImage = await convertToHTMLElement(e.target.files[0])
+                        
+                        console.log(HTMLImage);
+                        
+
+                } catch(err) {
+                        console.log(err);
+                }
                 return;
+                
         }
 
         const convertBase64 = (file) => new Promise((resolve, reject) => {
@@ -72,19 +109,19 @@ function ShirtDesign(props) {
                 reader.onerror = error => reject(error);
         })
                 
-        
+        /* console.log(data.src); */
             
 
     return (
-                <div>
+                <div className={PrintCSS.container}>
                         <canvas id="canvas" />
-                        <form onSubmit={(e)=> {
-                                e.preventDefault();
-                                props.setPhase({...props.phase, designSelected: {status: true, data}, allGoodForSubmit: true,})
-                        }}>
-                                <input type="file" onChange={setPhotoHandler}/>
-                                <input type="submit" value={"Añadir foto"} />
-                        </form>
+                                        <form onSubmit={(e)=> {
+                                                e.preventDefault();
+                                                props.setPhase({...props.phase, designSelected: {status: true, data}, allGoodForSubmit: true,})
+                                        }}>
+                                                <input type="file" onChange={setPhotoHandler}/>
+                                                <input type="submit" disabled={data == null} value={"Añadir foto"} />
+                                        </form>
                 </div>)
 }
 

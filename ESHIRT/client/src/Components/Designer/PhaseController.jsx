@@ -26,7 +26,7 @@ function PhaseController(props) {
                         key={index}
                         className={ControllerCSS.buttonsContainer}
                         >
-                                            <button className={ControllerCSS.buttons}
+                                            <button className={props.phase[elem.phase].status ? ControllerCSS.buttons : ControllerCSS.selectedButtons}
                                                     onClick={()=> {props.setPhase({
                                                                                     modelSelected: {...props.phase.modelSelected, status: props.phase.modelSelected.status == 'pending' ? 'pending' : true},
                                                                                     sizeSelected: {...props.phase.sizeSelected, status: props.phase.sizeSelected.status == 'pending' ? 'pending' : true},

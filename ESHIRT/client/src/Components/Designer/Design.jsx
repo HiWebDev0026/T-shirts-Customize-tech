@@ -6,16 +6,18 @@ import ShirtColor from './ShirtColor';
 import ShirtModel from './ShirtModel'
 import ShirtSize from './ShirtSize';
 import ShirtDesign from './ShirtDesign';
+import FinalShirt from './FinalShirt';
 import DesignCSS from './Design.module.css';
+
 
 
 function Design(props) {
 
     const [phase, setPhase] = useState({
-                                modelSelected: {status: false, data: ''},
+                                modelSelected: {status: false, data: null},
                                 sizeSelected: {status: 'pending', data: null},
                                 colorSelected: {status: 'pending', data: 'white'},
-                                designSelected: {status: 'pending', data: ''},
+                                designSelected: {status: 'pending', data: null},
                                 allGoodForSubmit: false,
                             });
 
@@ -46,22 +48,7 @@ function Design(props) {
         })
     }
 
-    const submitToDB = (e) => {
-        e.preventDefault();
-        axios({
-            method: "POST",
-            url: 'http://localhost:3001/shirt',
-            data: {
-                userId: 1,
-                name: 'kjnjhgffhjkiyz',
-                print: phase.designSelected.data,
-                size: phase.sizeSelected.data,
-                color: phase.colorSelected.data,
-                model: phase.modelSelected.data,
-            }
-        })
-    }
-
+    
     console.log('i render');
 
     return (
@@ -74,10 +61,7 @@ function Design(props) {
                         {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
                         {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
                         {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
-                        {phase.allGoodForSubmit && <form onSubmit={submitToDB}>
-
-                                    <input type="submit" value="postear remera"/>
-                            </form>}
+                        {phase.allGoodForSubmit && <FinalShirt phase={phase} setPhase={phaseSetter}/>}
         </div>
     )
 }
