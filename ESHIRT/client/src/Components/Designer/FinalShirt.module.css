@@ -1,9 +1,38 @@
 .container {
     width: 65%;
     display: flex;
+    justify-content: space-around;
+    margin: 75px auto 25px auto;
+    
 }
 
+.finalShirt {
+width: 100%;
+}
+
+.finalShirt img {
+    width: 89%;
+    
+    
+}
 .submitContainer {
     display: flex;
     flex-direction: column;
+    
+}
+
+.uploadText h3{
+    color: white;
+    font-size: 22px;
+}
+
+.uploadForm {
+    margin: 0 auto;
+}
+
+.uploadForm input {
+    border-radius: 30px;
+    width: 100%;
+    border: 2px solid coral;
+    font-size: 15px;
 }

@@ -8,7 +8,7 @@ export default function FinalShirt(props) {
 
     const {phase} = props;
 
-    useEffect(()=> {
+   /*  useEffect(()=> {
 
         let imgBlob = new Image();
         imgBlob.src = img;
@@ -51,16 +51,19 @@ export default function FinalShirt(props) {
         canvas.add(print);
     }
 
-    })
+    }) */
 
     return (
         <div className={FinalCSS.container}>
-            <canvas id="canvas" />
+            <div className={FinalCSS.finalShirt}>
+                {/* <canvas id="canvas" /> */}
+                <img src={props.phase.designSelected.data}/>
+            </div>
             <div className={FinalCSS.submitContainer}>
-                <div>
-                    <h3>Finished? Upload your design!</h3>
+                <div className={FinalCSS.uploadText}>
+                    <h3>Do you like your shirt? Upload your design!</h3>
                 </div>
-                <div>
+                <div className={FinalCSS.uploadForm}>
                     <form onSubmit={(e)=> submitToDB(e, phase)}>
                         <input type="submit" />
                     </form>

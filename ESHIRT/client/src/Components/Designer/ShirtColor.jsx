@@ -23,13 +23,13 @@ function ShirtModel(props) {
         
             let canvas = new fabric.StaticCanvas('canvas', {
                 
-                width: 350,
-                height: 410,
-                backgroundColor: data,
-                selectable: false,
-                preserveObjectStacking: true,
-                lockMovementY: true,
-                lockMovementX: true,
+                    width: 350,
+                    height: 410,
+                    backgroundColor: data,
+                    selectable: false,
+                    preserveObjectStacking: true,
+                    lockMovementY: true,
+                    lockMovementX: true,
 
             })
                  .add(new fabric.Rect({
