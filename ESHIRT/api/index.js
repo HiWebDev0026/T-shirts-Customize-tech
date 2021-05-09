@@ -25,6 +25,6 @@ const {fillDB} = require('./src/fill_db.js');
 conn.sync({ force: true }).then(() => {
   fillDB()
   server.listen(3001, () => {
-    console.log('%s listening at 3001/nDATABASE UP'); // eslint-disable-line no-console
+    console.log('%s listening at 3001\nDATABASE UP'); // eslint-disable-line no-console
   });
 });

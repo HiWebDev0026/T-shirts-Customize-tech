@@ -13,7 +13,7 @@ function Design(props) {
     const [phase, setPhase] = useState({
                                 modelSelected: {status: false, data: ''},
                                 sizeSelected: {status: 'pending', data: ''},
-                                colorSelected: {status: 'pending', data: ''},
+                                colorSelected: {status: 'pending', data: 'white'},
                                 designSelected: {status: 'pending', data: ''},
                                 allGoodForSubmit: false,
                             });
@@ -22,16 +22,19 @@ function Design(props) {
 
     useEffect(()=> {
         
+    console.log('useeffect');
         for(let prop in phase) {
             if(phase[prop].status == false) {
                 return setPhase(prevPhase => {
                     return {...prevPhase, allGoodForSubmit: false,}})
             }
         }
-        return setPhase(prevPhase => {
+    
+
+        setPhase(prevPhase => {
             return {...prevPhase, allGoodForSubmit: true,}})
 
-    }, [phase.allGoodForSubmit])
+    }, [])
 
     const phaseSetter = (args) => {
         setPhase(prevPhase => {
@@ -58,7 +61,7 @@ function Design(props) {
         })
     }
 
-
+    console.log('i render');
 
     return (
         <div style={{

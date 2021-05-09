@@ -99,6 +99,7 @@ export function getShirts(){
             dispatch({type: 'GET_SHIRTS', payload: shirts})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
+
         }
     }
 }
