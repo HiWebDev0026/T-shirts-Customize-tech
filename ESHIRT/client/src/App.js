@@ -1,10 +1,13 @@
 import './App.css';
+import {Route} from 'react-router-dom';
+
 import Home from './Components/Home/Home.jsx'
 import NavBar from './Components/NavBar/NavBar.jsx';
 import Catalogue from './Components/Catalogue/Catalogue.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import Design from './Components/Designer/Design.jsx';
-import {Route} from 'react-router-dom';
+import CreateCategory from './Components/Admin/CreateCategory/CreateCategory.jsx'
+
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
+      <Route exact path= '/add_category' component={CreateCategory}/>
       <Route path= '/' component={Footer}/>
     </div>
   )

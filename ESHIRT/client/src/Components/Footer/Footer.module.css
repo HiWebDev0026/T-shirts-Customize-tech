@@ -6,6 +6,8 @@
     background: coral;
     align-self: flex-end;
     width: 100%;
+    height: 10vh;
+    align-items: center;
 }
 
 

@@ -5,8 +5,8 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 
-function Card({title, price, width, height, model, color, image}){
-  console.log(title)
+function Card({title, score, size, model, color, image}){
+  
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
@@ -17,7 +17,7 @@ function Card({title, price, width, height, model, color, image}){
           <div className={style.left}>
             <div className={style.details}>
               <h1>{title}</h1>
-              <p>£{price}</p>
+              <p>£</p>
             </div>
             <div className={style.buy}>
               <IconButton aria-label="add" >
@@ -38,12 +38,12 @@ function Card({title, price, width, height, model, color, image}){
         <div className={style.contents}>
           <table>
             <tr>
-              <th>Height</th>
-              <th>Width</th>
+              <th>Size</th>
+              <th>Score</th>
             </tr>
             <tr>
-              <td>{height}cm</td>
-              <td>{width}cm</td>
+              <td>{size}</td>
+              <td>{score}</td>
             </tr>
             <tr>
               <th>Model</th>
