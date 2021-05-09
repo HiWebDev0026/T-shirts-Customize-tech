@@ -104,7 +104,7 @@ export function getShirts(){
 }
 
 export function getShirtsByName(shirtName){
-    
+    console.log("Estoy en la action", shirtName);
     return async (dispatch) => {
         try {
             const res = await axios.get(`http://localhost:3001/shirt?name=${shirtName}`, {responseType: 'json'})
