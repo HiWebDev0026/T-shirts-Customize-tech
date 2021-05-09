@@ -8,8 +8,19 @@
 
 .title > h3 {
 
-    width: 'max-content';
+    width: 100%;
     display:'flex';
     margin: 0 auto;
     color: white;
+}
+
+.formContainer {
+    margin: 0 auto; 
+    width: 70%;
+}
+
+.form {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
 }

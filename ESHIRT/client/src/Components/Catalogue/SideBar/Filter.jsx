@@ -40,7 +40,6 @@ function Filter(){
                 return <label><input type="checkbox" id={i} value={e.name} onChange={handleChange}/> {e.name} </label>
             })}
             <button onClick={handleClick}>FILTER</button>
-            
         </div>
     )
 }

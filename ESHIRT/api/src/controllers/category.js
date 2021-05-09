@@ -66,7 +66,7 @@ async function putCategory(req, res, next) {
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const category = await Category.findOne({where: {id: categoryId}, include: [Shirt]}) 
-        if (category) {
+        if (body.name) {
             for (const header of HEADERS) {  //tomamos cada columna 
                 category[header] = body[header] //usamos bracket notation porque cada header es un STRING!
             }

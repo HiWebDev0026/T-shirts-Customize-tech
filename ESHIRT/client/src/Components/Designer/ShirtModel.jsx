@@ -17,7 +17,7 @@ function ShirtModel(props) {
     return (
         <div className={ModelCSS.container}>
             <div className={ModelCSS.title}>
-                <h3>'Modelo' (cuello-v, sin manga, etc)</h3>
+                <h3>Choose the model of your shirt</h3>
             </div>
             <form onSubmit={(e)=> {
                         e.preventDefault();
