@@ -16,10 +16,10 @@ async function postShirt(req, res, next) {
     // this will have a validation before post
     try {
         const body = setToLower(req.body)
-        const newShirt = {...req.body, created_by_user: true} 
+        const newShirt = {...body, created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
-        if (req.body.categoryId) {
-            await postedShirt.addCategory(req.body.categoryId);
+        if (body.categoryId) {
+            await postedShirt.addCategory(body.categoryId);
         }
 
         return res.status(200).json(postedShirt)
