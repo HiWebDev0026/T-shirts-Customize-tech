@@ -6,7 +6,7 @@ import Style from './NavBar.module.css';
 
 function Navbar() {
   return (
-    <header>
+    <header className={Style.header}>
         {/* <img className={Style.logo} src={Logo} alt='logo'/> */}
         <span className={Style.logo}>E-Shirt</span>
 
