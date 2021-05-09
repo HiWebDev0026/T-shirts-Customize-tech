@@ -21,33 +21,35 @@ function ShirtModel(props) {
         
         console.log(imgBlob);
         
-            let canvas = new fabric.Canvas('canvas', {
+            let canvas = new fabric.StaticCanvas('canvas', {
                 
                 width: 350,
                 height: 410,
                 backgroundColor: data,
+                selectable: false,
                 preserveObjectStacking: true,
+                lockMovementY: true,
+                lockMovementX: true,
 
             })
-            .on('selection:created', (e) => {
-
-                e.target.lockScalingX = true;
-                 e.target.height = 80; })
-
                  .add(new fabric.Rect({
                     width: 350,
                     height: 410,
                     fill: props.phase.colorSelected.data,
+                    lockMovementY: true,
+                    lockMovementX: true,
                     selectable: false,
                 })).add(new fabric.Image(imgBlob, {
                     scaleX: 0.8,
                     scaleY: 0.7,
-                
+                    evented: false,
+                    lockMovementY: true,
+                    lockMovementX: true,
                     width: 492,
                     height: 585,
                     left: -38,
                     selectable: false,
-                    objectCaching: false,
+                    
                 }));
 
 

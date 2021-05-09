@@ -6,13 +6,14 @@ import ShirtColor from './ShirtColor';
 import ShirtModel from './ShirtModel'
 import ShirtSize from './ShirtSize';
 import ShirtDesign from './ShirtDesign';
+import DesignCSS from './Design.module.css';
 
 
 function Design(props) {
 
     const [phase, setPhase] = useState({
                                 modelSelected: {status: false, data: ''},
-                                sizeSelected: {status: 'pending', data: ''},
+                                sizeSelected: {status: 'pending', data: null},
                                 colorSelected: {status: 'pending', data: 'white'},
                                 designSelected: {status: 'pending', data: ''},
                                 allGoodForSubmit: false,
@@ -22,7 +23,7 @@ function Design(props) {
 
     useEffect(()=> {
         
-    console.log('useeffect');
+   /*  console.log('useeffect'); */
         for(let prop in phase) {
             if(phase[prop].status == false) {
                 return setPhase(prevPhase => {
@@ -64,11 +65,7 @@ function Design(props) {
     console.log('i render');
 
     return (
-        <div style={{
-            minHeight: '90vh', 
-            height: '100vh',
-            display: 'flex', 
-            flexDirection: 'column'}}>
+        <div className={DesignCSS.mainContainer}>
             <PhaseController 
                 phase={phase} 
                 setPhase={phaseSetter} />

@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react';
+import ModelCSS from './ShirtModel.module.css';
 
 
 function ShirtModel(props) {
@@ -14,9 +15,12 @@ function ShirtModel(props) {
    }, []) */
 
     return (
-        <div>
-            'Modelo' (cuello-v, sin manga, etc)
-            <form onSubmit={()=> {
+        <div className={ModelCSS.container}>
+            <div className={ModelCSS.title}>
+                <h3>'Modelo' (cuello-v, sin manga, etc)</h3>
+            </div>
+            <form onSubmit={(e)=> {
+                        e.preventDefault();
                         if(data!== null) {
                             props.setPhase({
                             modelSelected: {data, status: true}, 

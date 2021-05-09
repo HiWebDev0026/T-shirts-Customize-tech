@@ -8,7 +8,7 @@ export default function ColorBattery(props) {
 
 
     return (<div>
-        <button style={{backgroundColor: 'yellow', 
+                <button style={{backgroundColor: 'yellow', 
                             width: '30%'}} 
 
                     onClick={()=> colorModifier('yellow', props.props, setData)}>AM</button>

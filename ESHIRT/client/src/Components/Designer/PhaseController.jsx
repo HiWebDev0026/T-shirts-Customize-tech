@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import ControllerCSS from './Controller.module.css';
 
 
 function PhaseController(props) {
@@ -16,32 +17,21 @@ function PhaseController(props) {
 
 
     return (
-        <div style={{
-
-            display: 'flex', 
-            border: '1px solid white', 
-            flexWrap: 'wrap',
-            width: '65%',
-            margin: '0 auto',
-            height: '12%',
-            justifyContent: 'space-around'}}>
+        <div className={ControllerCSS.controllerContainer}>
 
             {phases.map((elem,index) => {
 
                 return (
                     <div 
                         key={index}
-                        style={{height: '60%', 
-                                border: '1px solid white',
-                                borderRadius: '50%',
-                                textAlign: 'center', 
-                                width: 'max-content', 
-                                minWidth: '6em'}}>
-                                            <button onClick={()=> {props.setPhase({
-                                                                                    modelSelected: {...props.phase.modelSelected, status: props.phase.modelSelected == 'pending' ? 'pending' : true},
-                                                                                    sizeSelected: {...props.phase.sizeSelected, status: props.phase.sizeSelected == 'pending' ? 'pending' : true},
-                                                                                    colorSelected: {...props.phase.colorSelected, status: props.phase.colorSelected == 'pending' ? 'pending' : true},
-                                                                                    designSelected: {...props.phase.designSelected,status: props.phase.designSelected =='pending' ? 'pending' : true},
+                        className={ControllerCSS.buttonsContainer}
+                        >
+                                            <button className={ControllerCSS.buttons}
+                                                    onClick={()=> {props.setPhase({
+                                                                                    modelSelected: {...props.phase.modelSelected, status: props.phase.modelSelected.status == 'pending' ? 'pending' : true},
+                                                                                    sizeSelected: {...props.phase.sizeSelected, status: props.phase.sizeSelected.status == 'pending' ? 'pending' : true},
+                                                                                    colorSelected: {...props.phase.colorSelected, status: props.phase.colorSelected.status == 'pending' ? 'pending' : true},
+                                                                                    designSelected: {...props.phase.designSelected,status: props.phase.designSelected.status =='pending' ? 'pending' : true},
                                                                                     allGoodForSubmit: false,
                                                                                     [elem.phase]: {...props.phase[elem.phase], status: false}
                                                                                       }
@@ -50,9 +40,12 @@ function PhaseController(props) {
                                                                     }}
                                                     disabled={props.phase[elem.phase].status == 'pending'}
                                                     value={elem.phase}>
-                                                                    {elem.name}
+                                                                    {elem.index}
                                                 </button>
-                        {elem.index}
+                                                <div className={ControllerCSS.btnDescription}>
+
+                        <h4>{elem.name}</h4>
+                        </div>
                     </div>
                 )
             })} 

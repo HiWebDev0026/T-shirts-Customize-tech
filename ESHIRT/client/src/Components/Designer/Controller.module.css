@@ -1,0 +1,44 @@
+.controllerContainer {
+
+    display: flex;
+    border: 1px solid white;
+    flex-wrap: wrap;
+    width: 65%;
+    margin: 0 auto;
+    height: 15%;
+    align-items: center;
+    background: transparent;
+    border-radius: 25px;
+    position: relative;
+    justify-content: space-around;
+
+}
+
+.buttonsContainer {
+    height: 65%; 
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+    align-items: center;
+    width: max-content; 
+    min-width: 6em;
+}
+
+.buttons {
+    height: min-content;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: coral;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.btnDescription > h4 {
+    color: coral;
+    margin: 0 auto;
+    
+}
