@@ -1,29 +1,31 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {getShirtsByName} from '../../Actions/Actions';
 import { useDispatch } from 'react-redux';
 import Style from './SearchBar.module.css';
-import {getShirtsByName} from '../../Actions/Actions';
-import {NavLink} from 'react-router-dom';
+
 
 function SearchBar(){
 
-    const [searched, setSearched] = useState("");
-    const dispatch= useDispatch();
+    let dispatch = useDispatch()
+    const [state, setState]= useState('')
+    function handleChange(e) {
+        setState(e.target.value)
+    }
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log("Estoy en el handleSubmit");
-        dispatch(getShirtsByName(searched)) // acá voy a hacer el dispatch
-        setSearched("");
+        dispatch(getShirtsByName(state))
+        setState('');
     }
 
     return(
-        <form onSubmit= {(e)=> handleSubmit(e)}>
-            <input className={Style.inputBox} type="text" placeholder="Find your next shirt" value={searched} onChange={e => setSearched(e.target.value)}/>
-           <NavLink to='/catalogue'><input className={Style.inputBtn} type="submit" value="Buscar" /></NavLink>
-          </form>
-    );
+        <div>
+            <form onSubmit = {(e)=> handleSubmit(e)}>
+                <input className={Style.inputBox} type='text' placeholder= 'Find your next shirt' value ={state} onChange={(e)=>handleChange(e)}/>
+             <input className={Style.inputBtn} type='submit' value= 'Search'/>
+            </form>
+        </div>
+    )
 }
-
 
 export default SearchBar;
