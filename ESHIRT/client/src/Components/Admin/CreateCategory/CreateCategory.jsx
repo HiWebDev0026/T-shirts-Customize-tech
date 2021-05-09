@@ -23,7 +23,8 @@ export default function CreateCategory (){
     function handleSubmit (e) {
         console.log('ENTRE')
         e.preventDefault();
-        dispatch(postCategory({"name":category}));
+        dispatch(postCategory({'name':category}));
+        setCategory('');   
     };
 
     function handleDelete (e) {
@@ -32,9 +33,8 @@ export default function CreateCategory (){
         setRemove(!remove);
     };
 
-    function handleEdit (e) {
-        console.log('EDIT',e.target.value);
-       return  <input type='text'/>
+    function handleEdit (e){
+        console.log('EDIT', e.target.value)
     }
 
     return(
@@ -46,7 +46,6 @@ export default function CreateCategory (){
                         categories.length>0?
                         categories.map((category)=>{
                         return <div key={category.id}>
-                                    <p>id {category.id}</p>
                                     <p>{category.name}</p>
                                     <button value={category.id} onClick={handleDelete}>X</button>
                                     <button value={category.id} onClick={handleEdit}>Edit</button>
@@ -57,7 +56,7 @@ export default function CreateCategory (){
                     }
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form id='miForm' onSubmit={handleSubmit}>
             <h1>Create new category</h1>
             <input type='text' value={category} placeholder='type category' onChange={(e)=>setCategory(e.target.value)}/>
             <input type="submit" value="Submit"></input>
