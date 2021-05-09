@@ -69,7 +69,7 @@ async function putUser(req, res, next) {
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const user = await User.findOne({where: {id: userId}, include: [Shirt]}) 
-        if (user) {
+        if (body.name) {
             for (const header of HEADERS) {  //tomamos cada columna 
                 user[header] = body[header] //usamos bracket notation porque cada header es un STRING!
             }
