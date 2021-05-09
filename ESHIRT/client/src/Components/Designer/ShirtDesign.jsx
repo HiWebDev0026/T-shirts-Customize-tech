@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {fabric} from 'fabric';
 import img from '../../assets/img/random_remera_front.png';
 import Design from './Design';
@@ -9,8 +9,7 @@ import PrintCSS from './ShirtDesign.module.css';
 function ShirtDesign(props) {
 
         const [data, setData] = useState(null);
-
-      
+        const finalCanvas = useRef(null);
         useEffect(()=> {
                         let imgBlob = new Image(340, 420);
                         imgBlob.src = img;
@@ -111,10 +110,14 @@ function ShirtDesign(props) {
 
     return (
                 <div className={PrintCSS.container}>
-                        <canvas id="canvas" />
+                        <canvas id="canvas" ref={finalCanvas}/>
                                         <form onSubmit={(e)=> {
                                                 e.preventDefault();
-                                                props.setPhase({...props.phase, designSelected: {status: true, data}, allGoodForSubmit: true,})
+                                                
+                                                
+                                                const finalImage = finalCanvas.current.toDataURL();
+
+                                                props.setPhase({...props.phase, designSelected: {status: true, data: finalImage}, allGoodForSubmit: true,})
                                         }}>
                                                 <input type="file" onChange={setPhotoHandler}/>
                                                 <input type="submit" disabled={data == null} value={"Añadir foto"} />
