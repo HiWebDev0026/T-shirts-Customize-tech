@@ -37,7 +37,13 @@ function Filter(){
     return (
         <div>   
             {allCategories.map((e, i) => {
-                return <label><input type="checkbox" id={i} value={e.name} onChange={handleChange}/> {e.name} </label>
+                return ( 
+                    <div className={style.box}>
+                        <input className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
+                        <span class="check"></span>
+                        <label for={i}>{e.name}</label>
+                    </div>
+                )
             })}
             <button onClick={handleClick}>FILTER</button>
             

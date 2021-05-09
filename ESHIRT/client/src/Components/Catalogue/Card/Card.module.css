@@ -53,9 +53,10 @@
   float: left;
 }
 .wrapper .container .bottom .left .details {
-  padding: 20px;
+  padding: 0.5vh;
   float: left;
   width: calc(70% - 40px);
+  font-size: 1.5vh;
 }
 .wrapper .container .bottom .left .buy {
   display: flex;
@@ -104,19 +105,19 @@
 .wrapper .inside {
   z-index: 9;
   background: rgba(255, 127, 80, 0.397);
-  width: 130px;
-  height: 130px;
+  width: 11vh;
+  height: 11vh;
   position: absolute;
-  top: -70px;
-  right: -70px;
+  top: -7vh;
+  right: -7vh;
   /* border-radius: 0px 0px 200px 200px; */
   transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
 }
 .wrapper .inside .icon {
   position: absolute;
-  right: 70px;
-  top: 70px;
+  right: 6vh;
+  top: 6vh;
   color: white;
   opacity: 1;
   
@@ -155,5 +156,5 @@
   color: black;
 }
 .wrapper .inside .contents p {
-  font-size: 13px;
+  font-size: 1vh;
 }
