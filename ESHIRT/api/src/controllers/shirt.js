@@ -2,11 +2,20 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const {Shirt, User, Detail, Category} = require('../db.js');
 
+const setToLower = (body) => {
+    for (const field in body) {
+        if (field !== 'print' && field !== 'size' && field !== 'public') {
+            body[field] = body[field].toLowerCase()
+        }
+    }
+    return body
+}
+
+
 async function postShirt(req, res, next) {        
     // this will have a validation before post
-
-
     try {
+        const body = setToLower(req.body)
         const newShirt = {...req.body, created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
         if (req.body.categoryId) {
@@ -25,6 +34,9 @@ async function getShirt(req, res, next) {
     try { 
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]})
         if (shirt) {
+            console.log(shirt)
+            console.log(typeof shirt.print)
+            console.log(shirt.print)
             return res.status(200).json(shirt)
         } else {
             return next({status: 404, message: 'Shirt not found'})
@@ -55,7 +67,7 @@ async function deleteShirt(req, res, next) {
 async function putShirt(req, res, next) {
     const shirtId = req.params.id     
     //body must send data to modify
-    const body = req.body               //cambio el alias
+    const body = setToLower(req.body)
     const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
     try {                               //buscamos el id
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]}) 
@@ -81,13 +93,14 @@ async function putShirt(req, res, next) {
 
 
 async function getShirts(req, res, next) {  
-    const name = req.query.name
+    let name = req.query.name
     // NEEDS REFACTORING
     try { 
         if (!name) {
             const shirts = await Shirt.findAll({include: [Category]})
             return res.status(200).json(shirts)
         } else {
+            name = name.toLowerCase()
             const shirts = await Shirt.findAll({
                 where: {
                     name: {

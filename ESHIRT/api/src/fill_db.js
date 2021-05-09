@@ -264,7 +264,23 @@ const shirt15 = {
     "public": "true"
 }
 
+    
+const setToLower = (array) => {
+    for (const body of array) {
+        for (const field in body) {
+            if (field !== 'print' && field !== 'size' && field !== 'public') {
+                body[field] = body[field].toLowerCase()
+            }
+        }    
+    }
+}
+
+
 async function fillDB () {
+    setToLower([
+        shirt1, shirt2, shirt3, shirt4, shirt5, shirt6, shirt7, shirt8, 
+        shirt9, shirt10, shirt11, shirt12, shirt13, shirt14, shirt15
+    ]) // sets all names and properties to lower case    
     try {
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);
