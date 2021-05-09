@@ -3,7 +3,9 @@
 .container{
     display: flex;
     justify-content: center;
-    background: rgba(255, 127, 80, 0.397);
+    background: coral;
+    align-self: flex-end;
+    width: 100%;
 }
 
 
