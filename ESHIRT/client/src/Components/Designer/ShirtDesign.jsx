@@ -70,7 +70,7 @@ function ShirtDesign(props) {
                 }
         }, [data]) */
 
-        const convertToHTMLElement = async (file)=> {
+    /*     const convertToHTMLElement = async (file)=> {
                 
                 const reader = new FileReader();
 
@@ -101,7 +101,7 @@ function ShirtDesign(props) {
                 }
                 return;
                 
-        }
+        } */
 
         
                 
