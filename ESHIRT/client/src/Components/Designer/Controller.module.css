@@ -3,7 +3,7 @@
 .controllerContainer {
 
     display: flex;
-    border: 1px solid white;
+    padding-top: 3%;
     flex-wrap: wrap;
     width: 65%;
     margin: 0 auto;

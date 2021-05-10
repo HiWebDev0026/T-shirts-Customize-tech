@@ -11,8 +11,8 @@ function ShirtModel(props) {
     const shirtRef = useRef(null);
     const imageRef = useRef(null);
 
-    let imgBlob = new Image(340, 420);
-        imgBlob.src = img;
+    /* let imgBlob = new Image(340, 420);
+        imgBlob.src = img; */
     
     useEffect(()=>{
 
@@ -30,6 +30,7 @@ function ShirtModel(props) {
                     preserveObjectStacking: true,
                     lockMovementY: true,
                     lockMovementX: true,
+                    
 
             })
                  .add(new fabric.Rect({
@@ -39,6 +40,7 @@ function ShirtModel(props) {
                     lockMovementY: true,
                     lockMovementX: true,
                     selectable: false,
+                    
                 }))
                 .add(new fabric.Image(imgBlob, {
                     scaleX: 0.8,

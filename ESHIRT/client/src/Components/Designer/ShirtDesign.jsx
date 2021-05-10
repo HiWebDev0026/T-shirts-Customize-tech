@@ -10,11 +10,12 @@ function ShirtDesign(props) {
 
         const [data, setData] = useState(null);
         const finalCanvas = useRef(null);
+
         useEffect(()=> {
-                        let imgBlob = new Image(340, 420);
+                        let imgBlob = new Image();
                         imgBlob.src = img;
 
-                         console.log(imgBlob);
+                        console.log(imgBlob);
 
                 
         let canvas = new fabric.StaticCanvas('canvas', {
@@ -23,12 +24,12 @@ function ShirtDesign(props) {
                         height: 410,
                         backgroundColor: props.phase.colorSelected.data,
                         preserveObjectStacking: true,
+                        selection: false,
         
         })
           .add(new fabric.Image(imgBlob, {
                         scaleX: 0.8,
                         scaleY: 0.7,
-                        
                         width: 492,
                         height: 585,
                         left: -38,
