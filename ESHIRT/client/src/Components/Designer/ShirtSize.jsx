@@ -19,16 +19,15 @@ function ShirtSize(props) {
                     <h3>
                     Choose the size of your custom shirt
                     </h3>
-                </div>
                 <div className={SizeCSS.formContainer}>
                         <form className={SizeCSS.form} onSubmit={(e)=> {
-                                                e.preventDefault();
-                                                if(data!==null) {
+                            e.preventDefault();
+                            if(data!==null) {
                                                             props.setPhase({
                                                             sizeSelected: {data, status: true}, 
                                                             colorSelected: {...props.phase.colorSelected, status: false}})};
                                                             return;}}>
-                                                                <div>
+                                                                
                                                                     <select type="datalist" 
                                                                             onChange={(e)=> setData(e.target.value)} 
                                                                             value={data}>
@@ -39,11 +38,12 @@ function ShirtSize(props) {
                                                                         <option value="S">S</option>
 
                                                                     </select>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="submit" disabled={data===null} value={data !== null ? 'Continuar' : 'Seleccionar tamaño'} />
-                                                                </div>
+                                                                
+                                                                
+                                                                    <input type="submit" disabled={data===null} value={data !== null ? 'Next' : 'Select size'} />
+                                                                
                         </form>
+                </div>
                 </div>
     </div>)
 }

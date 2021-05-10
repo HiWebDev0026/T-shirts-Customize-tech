@@ -1,5 +1,6 @@
 import React from 'react';
 import colorModifier from './helpers/shirtRenderer';
+import ColorBatteryCSS from './ColorBattery.module.css'
 
 export default function ColorBattery(props) {
 
@@ -7,7 +8,7 @@ export default function ColorBattery(props) {
 
 
 
-    return (<div>
+    return (<div className={ColorBatteryCSS.container}>
                 <button style={{backgroundColor: 'yellow', 
                             width: '30%'}} 
 
@@ -17,7 +18,7 @@ export default function ColorBattery(props) {
                 R
             </button>
             <button 
-                style={{backgroundColor: 'rgb(12, 155, 255, 0.6)',width: '16px'}} 
+                style={{backgroundColor: 'rgb(12, 155, 255, 0.6)',width: '30%'}} 
                 onClick={() => colorModifier('lightblue', props.props, setData)}>
                 CC
             </button>
@@ -30,7 +31,7 @@ export default function ColorBattery(props) {
                 VI
             </button>
             <button 
-                style={{backgroundColor: 'orange',width: '16px'}} 
+                style={{backgroundColor: 'orange',width: '30%'}} 
                 onClick={() => colorModifier('orange', props.props, setData)}>
                 OR
             </button>
@@ -43,7 +44,7 @@ export default function ColorBattery(props) {
                 GRAY
             </button>
             <button 
-                style={{backgroundColor: 'cyan',width: '16px'}} 
+                style={{backgroundColor: 'cyan',width: '30%'}} 
                 onClick={() => colorModifier('cyan', props.props, setData)}>
                 CY
             </button>

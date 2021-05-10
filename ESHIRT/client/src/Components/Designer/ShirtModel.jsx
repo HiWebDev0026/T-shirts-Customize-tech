@@ -18,24 +18,24 @@ function ShirtModel(props) {
         <div className={ModelCSS.container}>
             <div className={ModelCSS.title}>
                 <h3>Choose the model of your shirt</h3>
-            </div>
             <form onSubmit={(e)=> {
-                        e.preventDefault();
-                        if(data!== null) {
-                            props.setPhase({
-                            modelSelected: {data, status: true}, 
-                            sizeSelected: {...props.phase.sizeSelected, status:false}})}}}>
+                e.preventDefault();
+                if(data!== null) {
+                    props.setPhase({
+                        modelSelected: {data, status: true}, 
+                        sizeSelected: {...props.phase.sizeSelected, status:false}})}}}>
 
                 <select onChange={(e)=> {
                     setData(e.target.value);
                 }}>
-                    <option value="Cuello V">Cuello V</option>
-                    <option value="Manga corta">Manga corta</option>
-                    <option value="Sin manga">Sin manga</option>
-                    <option value="Deportiva">Deportiva</option>
+                    <option value="Cuello V">V-neck</option>
+                    <option value="Manga corta">T-shirt</option>
+                    <option value="Sin manga">Long sleeves</option>
+                    <option value="Deportiva">Sport</option>
                 </select>
-                <input type="submit" disabled={data===null} value={data == null ? 'Seleccionar Modelo' : 'Continuar'}/>
+                <input type="submit" disabled={data===null} value={data == null ? 'Select model' : 'Next'}/>
             </form>
+            </div>
 
         </div>
     )

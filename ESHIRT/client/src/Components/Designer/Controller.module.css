@@ -1,14 +1,15 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .controllerContainer {
 
     display: flex;
+    flex-direction: column;
     padding-top: 3%;
     flex-wrap: wrap;
-    width: 65%;
+    width: 20%;
     margin: 0 auto;
-    height: 15%;
-    align-items: center;
+    height: 80vh;
+    align-items: flex-start;
     background: transparent;
     border-radius: 25px;
     position: relative;
@@ -17,8 +18,7 @@
 }
 
 .buttonsContainer {
-    height: 65%; 
-    
+    height: max-content; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,13 +31,17 @@
 .buttons {
     height: min-content;
     margin: 0 auto;
-    border-radius: 50%;
+    color: coral;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: coral;
+    background-color: black;
     font-size: 16px;
     font-weight: 900;
-    border: 2px solid gray;
+    border: 2px solid coral;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    transition: ease 0.5s;
 }
 
 
@@ -45,10 +49,10 @@
 .selectedButtons  {
     height: min-content;
     margin: 0 auto;
-    border-radius: 50%;
+    
     padding-left: 10px;
     padding-right: 10px;
-    background-color: rgb(253, 237, 231);
+    background-color: coral;
     font-size: 16px;
     font-weight: 900;
 }
@@ -58,12 +62,17 @@
 .btnDescription > h4 {
     color: coral;
     margin: 0 auto;
-    
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .btnSelected > h4{
     color: rgb(253, 237, 231);
     margin: 0 auto;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 @media (max-width: 800px) {
