@@ -10,6 +10,7 @@ const initialState={
 
     allCategories: [],
     categoriesByName: [],
+    filteredByCategory: [],
     
     confirmation: {}, // Para confirmacion del post, put & delete 
 }
@@ -95,6 +96,29 @@ function rootReducer(state= initialState, action) {
                 ...state,
                 categoriesByName: action.payload
             }
+        case 'FILTER_BY_CATEGORY':
+            
+            if(!action.payload){
+                return {
+                    ...state,
+                    filteredByCategory:[]
+                }
+            }
+        
+            let filter=[]    
+            action.payload.map(category => {
+                let render= []
+                state.shirtsByName.length>0 ? render= state.shirtsByName : render= state.allShirts
+                render.map(shirt => {
+                    let check= shirt.categories.filter(i => i.name === category)
+                    if (check.length !== 0){filter.push(shirt)}
+                })
+            })
+            return {
+                ...state,
+                filteredByCategory: filter
+            }
+            
         case 'POST_CATEGORY':
             return {
                 ...state,

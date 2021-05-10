@@ -1,0 +1,104 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    border: 2px solid coral;
+    margin-top: 1vh;
+}
+
+.both{
+    display: flex;
+    background-color: black;
+}
+
+.btn{
+    position: relative;
+   height: 5vh;
+   align-self: flex-start;
+   background-color: black;
+   color: coral;
+   border: 2px solid coral;
+   margin: 0.5vh;
+   bottom: 10vh;
+}
+
+.btn:hover{
+    background-color: coral;
+    color: black;
+}
+
+
+.boxes {
+    display: flex;
+    margin: 0.5vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: black;
+    color: coral;
+    width: 100%;
+    height: 30vh;
+}
+
+.h3{
+    height: 3vh;
+    width: 100%;
+    color: coral;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+}
+
+.input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  .label {
+    position: relative;
+    margin-right: 1em;
+    padding-left: 2em;
+    padding-right: 1em;
+    line-height: 2;
+    cursor: pointer;
+    border: 2px solid coral;
+    width: 6vh;
+    text-align: center;
+  }
+  .label:before {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    border: 2px solid coral;
+    border-radius: 0.25em;
+    z-index: -1;
+  }
+  
+  /* Checked */
+  .input[type=checkbox]:checked + .label{
+    padding-left: 1em;
+    color: black;
+    background-color: coral;
+  }
+  .input[type=checkbox]:checked + .label:before{
+    top: 0;
+    width: 100%;
+    height: 2em;
+    background: coral;
+  }
+  
+  /* Transition */
+  .label,
+  .label::before {
+    transition: 0.25s all ease;
+  }
