@@ -3,19 +3,49 @@ const Op = Sequelize.Op;
 const {User, Shirt} = require('../db.js');
 
 
+const setToLowerCase = (body) => {
+    return {
+        ...body,
+        name: body.name.toLowerCase(), 
+        lastname: body.lastname.toLowerCase(),
+        country: body.country.toLowerCase(), 
+        city: body.city.toLowerCase(), 
+        adress: body.adress.toLowerCase()        
+    }
+}
+
+const validatePost = (body) => {
+    const {name, lastname, email, password, country, city, adress, phone} = body
+    return (
+        name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone)
+    )
+}
+
+const validatePut = (body) => {
+    if (Object.keys(body).length === 0) { return false; } // body is an empty object
+
+    const modelFileds = ["name", "lastname", "email", "country", "city", "adress", "phone"]
+
+    for (const field of modelFileds) {
+        if (body.hasOwnProperty(field) && !body[field]) { return false; } // body.name = "" returns false
+        if (body[field] && field === "email" && !/\S+@\S+.\S+/.test(body[field])) { return false; } // bad email format 
+        if (body[field] && field === "phone" && isNaN(phone)) {return false;} // phone is not a number
+    }
+
+    return true;
+}
+
+
+
 async function postUser(req, res, next) {        
-    let {name, lastname, email, password, country, city, adress, phone}= req.body
-    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.email.toLowerCase(), lastname: req.body.lastname.toLowerCase(),
-     country:req.body.country.toLowerCase(), city:req.body.city.toLowerCase(), adress:req.body.adress.toLowerCase(),}
     try {
-        if (!(name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )){
-           return next({status: 400, message: 'Bad body request'})
-        }
-        const newUser = body
+        if (!validatePost(req.body)){ return next({status: 400, message: 'Bad body request'})};
+        
+        const newUser = setToLowerCase(req.body)
         const postedUser = await User.create(newUser);
         return res.status(200).json(postedUser)
     } catch (error) {
-        next({status: 409, message: 'User already exist'});
+        next({status: 409, message: 'User already exists'});
     }
 }
 
@@ -61,25 +91,22 @@ async function getUsers(req, res, next) {
 }
 
 async function putUser(req, res, next) {
-    const userId = req.params.id     
-    //body must send data to modify
-                  //cambio el alias
-    const body = {...req.body, name: req.body.name.toLowerCase(), email: req.body.email.toLowerCase(), lastname: req.body.lastname.toLowerCase(),
-        country:req.body.country.toLowerCase(), city:req.body.city.toLowerCase(), adress:req.body.adress.toLowerCase()}
-    const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
-    try {                               //buscamos el id
-        const user = await User.findOne({where: {id: userId}, include: [Shirt]}) 
-
-        const {name, lastname, email, password, country, city, adress, phone} = body //destructuring
-        if ((name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone) )) { //validamos
-            for (const header of HEADERS) {  //tomamos cada columna 
-                user[header] = body[header] //usamos bracket notation porque cada header es un STRING!
-            }
-            user.save()
-            return res.status(200).json(user)
-        } else {
-            return next({status: 404, message: 'User not found'})
+    const userId = req.params.id
+    const body = req.body     
+    try {
+        const user = await User.findOne({where: {id: userId}, include: [Shirt]})
+        if (!user) { return next({status: 404, message: 'User not found'}) } 
+        if (!validatePut(body)) { return next({status: 400, message: 'Bad body request'})}
+        
+        for (const field in body) {
+            if (field !== "phone" && field !== "email") {
+                user[field] = body[field].toLowerCase()    
+            } else {
+                user[field] = body[field]
+            }   
         }
+        user.save()
+            return res.status(200).json(user)
         
     } catch (error) {
         next({status: 400, message: 'Bad body request'});
