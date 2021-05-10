@@ -22,7 +22,7 @@ function Catalogue(){
 
 
     useEffect(()=>{
-        if (shirtsByName.length !== 0){
+        if (shirtsByName.length === 0){
         dispatch(getShirts())}
     }, [])
 
