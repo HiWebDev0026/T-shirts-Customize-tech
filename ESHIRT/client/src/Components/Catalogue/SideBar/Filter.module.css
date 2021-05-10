@@ -1,58 +1,98 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+.both{
+    display: flex;
+    background-color: black;
+}
+
+.btn{
+   height: 5vh;
+   align-self: flex-start;
+   background-color: black;
+   color: coral;
+   border: 2px solid coral;
+}
+
+.btn:hover{
+    background-color: coral;
+    color: black;
+}
+
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: black;
+    color: coral;
+    width: 100%;
+    height: 50vh;
+}
+
+.h3{
+    height: 3vh;
+    width: 100%;
+    color: coral;
+}
 
 .box {
-    width: 5vh;
-    margin: 25px 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    user-select: none;
-  }
-  .box label {
-    font-size: 2.5vh;
-    color: #4d4d4d;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+}
+
+.input[type=checkbox] {
     position: absolute;
-    z-index: 10;
-    padding-left: 7vh;
-    cursor: pointer;
-  }
-  .box input {
     opacity: 0;
-    visibility: hidden;
-    position: absolute;
+    z-index: -1;
   }
-  .box input:checked ~ .check {
-    border-color: #00ea90;
-    box-shadow: 0px 0px 0px 15px #00ea90 inset;
-  }
-  .box input:checked ~ .check::after {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .box .check {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  
+  .label {
     position: relative;
-    border-radius: 10px;
-    background-color: black;
-    border: 2px solid #00ea90;
-    box-shadow: 0px 0px 0px 0px #00ea90 inset;
-    transition: all 0.15s cubic-bezier(0, 1.05, 0.72, 1.07);
+    margin-right: 1em;
+    padding-left: 2em;
+    padding-right: 1em;
+    line-height: 2;
+    cursor: pointer;
+    border: 2px solid coral;
+    width: 6vh;
+    text-align: center;
   }
-  .box .check::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 4;
+  .label:before {
+    box-sizing: border-box;
+    content: " ";
     position: absolute;
-    transform: scale(0);
-    background-size: 50%;
-    background-image: url("http://s6.picofile.com/d/8392306668/c38c12a0-6db3-47d4-a80c-7dad8fab5186/checkmark.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    transition-delay: 0.2s !important;
-    transition: all 0.25s cubic-bezier(0, 1.05, 0.72, 1.07);
+    top: 0.3em;
+    left: 0;
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    border: 2px solid coral;
+    border-radius: 0.25em;
+    z-index: -1;
+  }
+  
+  /* Checked */
+  .input[type=checkbox]:checked + .label{
+    padding-left: 1em;
+    color: black;
+    background-color: coral;
+  }
+  .input[type=checkbox]:checked + .label:before{
+    top: 0;
+    width: 100%;
+    height: 2em;
+    background: coral;
+  }
+  
+  /* Transition */
+  .label,
+  .label::before {
+    transition: 0.25s all ease;
   }

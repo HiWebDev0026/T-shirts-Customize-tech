@@ -1,5 +1,6 @@
 .container{
     display: flex;
-    width: inherit;
+    flex-direction: column;
+    width: 100%;
     color: white;
 }
