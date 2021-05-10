@@ -35,17 +35,21 @@ function Filter(){
 
 
     return (
-        <div>   
+        <div className={style.container}>   
+            <h3 className={style.h3}>Filter by category</h3>
+            <div className={style.both}>
+            <div className={style.boxes}>
             {allCategories.map((e, i) => {
                 return ( 
                     <div className={style.box}>
                         <input className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
-                        <span class="check"></span>
-                        <label for={i}>{e.name}</label>
+                        <label className={style.label} for={i}>{e.name}</label>
                     </div>
                 )
             })}
-            <button onClick={handleClick}>FILTER</button>
+            </div>
+                <button className={style.btn} onClick={handleClick}>FILTER</button>
+            </div>
         </div>
     )
 }

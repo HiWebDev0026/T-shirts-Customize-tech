@@ -48,7 +48,7 @@
 .wrapper .container .bottom .left {
   height: 100%;
   width: 50%;
-  background: rgba(255, 127, 80, 0.397);
+  background: rgba(255, 127, 80, 0.719);
   position: relative;
   float: left;
 }
@@ -65,7 +65,7 @@
   float: right;
   width: calc(30% - 2px);
   height: 100%;
-  background: rgba(255, 127, 80, 0.397);
+  background: rgba(255, 127, 80, 0.246);
   transition: background 0.5s;
   border-left: solid thin rgba(0, 0, 0, 0.1);
 }
@@ -104,7 +104,7 @@
 
 .wrapper .inside {
   z-index: 9;
-  background: rgba(255, 127, 80, 0.397);
+  background: rgba(255, 127, 80, 0.781);
   width: 11vh;
   height: 11vh;
   position: absolute;
