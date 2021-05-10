@@ -1,2 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+.general {color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
 
-.general {color:white;}
+.TitleCategory{
+    display: flex;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 500%;
+}
+.Categories{
+display: flex;
+justify-content: space-around;
+}
+.Titles{
+    font-size: 150% ;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.Contenedores{
+    display:flex;
+    justify-content: center;
+}
+.Tarjet{
+    border: 2px solid coral;
+    background-color: rgba(255, 127, 80, 0.151);
+    border-radius: 5px ;
+
+    
+}
+.Titles:first-letter {
+    text-transform: uppercase;
+}    
+.Btn{
+    background-color: yellowgreen;
+    border-radius: 5px;
+    border-radius: 5px;
+}
+.Btn1{
+    border-radius: 5px;
+}
+.Btn1:hover{
+    background-color: red;
+    color: white;
+}
+.Btn2{
+    border-radius: 5px;
+}
+.Btn2:hover{
+    background-color: rgb(255, 255, 0);
+    border-radius: 5px;
+}
+.Create{
+    font-size: 250%;
+    display: flex;
+    justify-content: center;
+    color: coral;
+}
+.Contains{
+    display:flex;
+    justify-content: center;
+}
+.ContainCreate{
+    display: flex;
+    justify-content: center;
+}
+.Create1{
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+.Create2{
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+}
+.Create2:hover{
+    background-color: yellowgreen;
+    border-radius: 5px;
+}
