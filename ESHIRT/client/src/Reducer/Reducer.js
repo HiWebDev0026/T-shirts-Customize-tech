@@ -125,6 +125,15 @@ function rootReducer(state= initialState, action) {
             }
 
         case 'PUT_CATEGORY':
+            let index=  state.allCategories.finiIndex(category=>category.id === action.payload.id);
+            state.allCategories[index] = action.payload;
+            
+            return{
+                ...state,
+                allCategories: state.allCategories
+            }
+
+
             return 
 
         case 'DELETE_CATEGORY':

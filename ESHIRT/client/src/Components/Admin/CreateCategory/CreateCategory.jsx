@@ -10,24 +10,32 @@ export default function CreateCategory (){
     const [category,setCategory]= useState('');
     const [remove,setRemove]= useState(true);
     const [editButtonTarget, setEditButtonTarget] = useState(0)
+    const [edit,setEdit] = useState(false);
+    const [sent, setSent] = useState(false);
     const [change, setChange]=useState('');
  
-    console.log('ESTADO',category);
 
     const categories= useSelector((state)=>state.allCategories)
     const dispatch= useDispatch();
-    console.log('VER',categories);
+
 
     useEffect(()=>{
         dispatch(getCategories());
-    },[remove]);
+    },[remove,edit,sent]);
 
     function handleSubmit (e) {
-        console.log('ENTRE')
         e.preventDefault();
         dispatch(postCategory({'name':category}));
-        setCategory('');   
+        setSent(!sent);
+        // setCategory('');   
     };
+
+    function handleEdit (e) {
+        dispatch(putCategory({'name':change},editButtonTarget));
+        setEdit(!edit);
+        // setEditButtonTarget(false);
+        setChange('');
+    }
 
     function handleDelete (e) {
         console.log('ID',e.target.value);
@@ -35,18 +43,15 @@ export default function CreateCategory (){
         setRemove(!remove);
     };
 
-    function handleEdit (e) {
-        setEditButtonTarget(e.target.value)
-    }
-
     function showEditbutton (){
         return (
         <div>
-            <input type='text' value={change} onChange={(e)=> setChange(e.target.value)}/>
-            <input className={Style.Btn} type='submit'/>
+            <input type='text' value={change} placeholder='type new name' onChange={(e)=> setChange(e.target.value)}/>
+            <input className={Style.Btn} type='submit' onClick={handleEdit}/>
+            <button onClick={(e)=>setEditButtonTarget(false)}>Done</button>
         </div>
         )
-    }
+    };
 
     return(
         <div className={Style.general}>
@@ -60,7 +65,7 @@ export default function CreateCategory (){
                                     <p className={Style.Titles}>{category.name}</p>
                                     <div className={Style.Contenedores}>
                                     <button className={Style.Btn1} value={category.id} onClick={handleDelete}>X</button>
-                                    <button className={Style.Btn2} value={category.id} onClick={handleEdit}>Edit</button>
+                                    <button className={Style.Btn2} value={category.id} onClick={(e)=>setEditButtonTarget(e.target.value)}>Edit</button>
                                     {editButtonTarget == category.id && showEditbutton()}
                                     </div>
                             </div>
@@ -72,11 +77,11 @@ export default function CreateCategory (){
             </div>
 
             <div className={Style.Contains}>
-            <form id='miForm' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <h1 className={Style.Create}>Create new category</h1>
             <div className={Style.ContainCreate} >
-            <input className={Style.Create1} type='text' value={category} placeholder='Type Category' onChange={(e)=>setCategory(e.target.value)}/>
-            <input className={Style.Create2} type="submit" value="ADD"></input>
+            <input className={Style.Create1} type='search' value={category} placeholder='Type Category' onChange={(e)=>setCategory(e.target.value)}/>
+            <input className={Style.Create2} type="submit" value="ADD"/>
             </div>
             </form>
             </div>
