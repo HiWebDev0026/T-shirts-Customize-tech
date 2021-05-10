@@ -310,10 +310,14 @@ async function fillDB () {
     shirt1.print = await utils.promisifiedReadFile('./src/images/img1.txt')
     shirt2.print = await utils.promisifiedReadFile('./src/images/img2.txt')
     shirt3.print = await utils.promisifiedReadFile('./src/images/img3.txt')
-    shirt4.print = await utils.promisifiedReadFile('./src/images/img4.txt')
+    shirt4.print = await utils.promisifiedReadFile('./src/images/img9.txt')
     shirt5.print = await utils.promisifiedReadFile('./src/images/img5.txt')
     shirt6.print = await utils.promisifiedReadFile('./src/images/img6.txt')
     shirt7.print = await utils.promisifiedReadFile('./src/images/img7.txt')
+    shirt8.print = await utils.promisifiedReadFile('./src/images/img8.txt')
+    shirt9.print = await utils.promisifiedReadFile('./src/images/img4.txt')
+    shirt10.print = await utils.promisifiedReadFile('./src/images/img10.txt')
+    shirt11.print = await utils.promisifiedReadFile('./src/images/img11.txt')
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);
     const postedUser3 = await User.create(user3);
