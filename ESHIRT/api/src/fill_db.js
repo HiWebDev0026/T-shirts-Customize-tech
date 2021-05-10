@@ -108,12 +108,28 @@ const category6 = {
     "name": "dc"
 }
 
+const category7 = {
+    "name": "pokemon"
+}
+
+const category8 = {
+    "name": "animals"
+}
+
+const category9 = {
+    "name": "food"
+}
+
+const category10 = {
+    "name": "effects"
+}
+
 const shirt1 = {
     "userId": "1",
-    "categoryId": "1",
-    "name": "SHIRT1",
-    "color": "white",
-    "model": "cuello-v2",
+    "categoryId": "4",
+    "name": "About Us!",
+    "color": "red",
+    "model": "cuello-u",
     "size": "M",
     "print": "http://www.wellcoders.com/images/GARMENTS/D/W/V/W/MAIN/d2087xWxVxWxMAIN.jpg",
     "score": "5",
@@ -122,10 +138,10 @@ const shirt1 = {
 
 const shirt2 = {
     "userId": "1",
-    "categoryId": "1",
-    "name": "SHIRT2",
-    "color": "black",
-    "model": "cuello-v2",
+    "categoryId": "7",
+    "name": "Pikachu",
+    "color": "yellow",
+    "model": "cuello-u",
     "size": "M",
     "print": "https://images1.teeshirtpalace.com/images/productImages/av/ChillinWithMyVillainsHorrorMovieFunny/productImage/ChillinWithMyVillainsHorrorMovieFunny-black-av-front.jpg?width=713",
     "score": "3",
@@ -134,9 +150,9 @@ const shirt2 = {
 
 const shirt3 = {
     "userId": "2",
-    "categoryId": "2",
-    "name": "SHIRT3",
-    "color": "black",
+    "categoryId": "8",
+    "name": "Footprint",
+    "color": "orange",
     "model": "cuello-u",
     "size": "M",
     "print": "https://cdn.shopify.com/s/files/1/0443/3113/9234/products/t-shirt-femme-jpeux-pas-jai-pole-dance-noir-494817.jpg?v=1604670113",
@@ -147,8 +163,8 @@ const shirt3 = {
 const shirt4 = {
     "userId": "3",
     "categoryId": "4",
-    "name": "SHIRT4",
-    "color": "white",
+    "name": "Henry",
+    "color": "grey",
     "model": "cuello-u",
     "size": "L",
     "print": "https://designyourown.pk/wp-content/uploads/2017/06/design-your-own-tshirt-creo-design-02-white-programmer-t-shirt.jpg",
@@ -158,9 +174,9 @@ const shirt4 = {
 
 const shirt5 = {
     "userId": "4",
-    "categoryId": "4",
-    "name": "SHIRT5",
-    "color": "white",
+    "categoryId": "9",
+    "name": "Chow Mien",
+    "color": "violet",
     "model": "cuello-u",
     "size": "S",
     "print": "https://rlv.zcache.com/trust_me_im_a_programmer_t_shirt-rd8277d0fe0424aedbff652af6dcbfd49_k2gr0_704.jpg",
@@ -170,9 +186,9 @@ const shirt5 = {
 
 const shirt6 = {
     "userId": "5",
-    "categoryId": "4",
-    "name": "SHIRT6",
-    "color": "black",
+    "categoryId": "10",
+    "name": "Tsunami",
+    "color": "cyan",
     "model": "cuello-u",
     "size": "M",
     "print": "https://i.ebayimg.com/images/g/iz8AAOSw3bxa-tIQ/s-l400.jpg",
@@ -330,20 +346,22 @@ async function fillDB () {
     const categoryPosted4 = await Category.create(category4);
     const categoryPosted5 = await Category.create(category5);
     const categoryPosted6 = await Category.create(category6);
+    const categoryPosted7 = await Category.create(category7);
+    const categoryPosted8 = await Category.create(category8);
+    const categoryPosted9 = await Category.create(category9);
+    const categoryPosted10 = await Category.create(category10);
     const shirtPosted1 = await Shirt.create({...shirt1, created_by_user: true});
-    await shirtPosted1.addCategory(categoryPosted1.id);
+    await shirtPosted1.addCategory(categoryPosted4.id);
     const shirtPosted2 = await Shirt.create({...shirt2, created_by_user: true});
-    await shirtPosted2.addCategory(categoryPosted2.id);
+    await shirtPosted2.addCategory(categoryPosted7.id);
     const shirtPosted3 = await Shirt.create({...shirt3, created_by_user: true});
-    await shirtPosted3.addCategory(categoryPosted1.id);
-    await shirtPosted3.addCategory(categoryPosted2.id);
-    await shirtPosted3.addCategory(categoryPosted3.id);
+    await shirtPosted3.addCategory(categoryPosted8.id);
     const shirtPosted4 = await Shirt.create({...shirt4, created_by_user: true});
     await shirtPosted4.addCategory(categoryPosted4.id);
     const shirtPosted5 = await Shirt.create({...shirt5, created_by_user: true});
-    await shirtPosted5.addCategory(categoryPosted4.id);
+    await shirtPosted5.addCategory(categoryPosted9.id);
     const shirtPosted6 = await Shirt.create({...shirt6, created_by_user: true});
-    await shirtPosted6.addCategory(categoryPosted4.id);
+    await shirtPosted6.addCategory(categoryPosted10.id);
     const shirtPosted7 = await Shirt.create({...shirt7, created_by_user: true});
     await shirtPosted7.addCategory(categoryPosted4.id);
     const shirtPosted8 = await Shirt.create({...shirt8, created_by_user: true});
