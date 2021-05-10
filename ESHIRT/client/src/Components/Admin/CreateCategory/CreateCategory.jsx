@@ -43,7 +43,7 @@ export default function CreateCategory (){
         return (
         <div>
             <input type='text' value={change} onChange={(e)=> setChange(e.target.value)}/>
-            <input type='submit'/>
+            <input className={Style.Btn} type='submit'/>
         </div>
         )
     }
@@ -51,16 +51,18 @@ export default function CreateCategory (){
     return(
         <div className={Style.general}>
             <div>
-                <h1>Categories</h1>
-                <div>
+                <h1 className= {Style.TitleCategory}>Categories</h1>
+                <div className={Style.Categories}>
                     {
                         categories.length>0?
                         categories.map((category)=>{
-                        return <div key={category.id}>
-                                    <p>{category.name}</p>
-                                    <button value={category.id} onClick={handleDelete}>X</button>
-                                    <button value={category.id} onClick={handleEdit}>Edit</button>
+                        return <div className={Style.Tarjet} key={category.id}>
+                                    <p className={Style.Titles}>{category.name}</p>
+                                    <div className={Style.Contenedores}>
+                                    <button className={Style.Btn1} value={category.id} onClick={handleDelete}>X</button>
+                                    <button className={Style.Btn2} value={category.id} onClick={handleEdit}>Edit</button>
                                     {editButtonTarget == category.id && showEditbutton()}
+                                    </div>
                             </div>
                             
                         })
@@ -68,11 +70,16 @@ export default function CreateCategory (){
                     }
                 </div>
             </div>
+
+            <div className={Style.Contains}>
             <form id='miForm' onSubmit={handleSubmit}>
-            <h1>Create new category</h1>
-            <input type='text' value={category} placeholder='type category' onChange={(e)=>setCategory(e.target.value)}/>
-            <input type="submit" value="Submit"></input>
+            <h1 className={Style.Create}>Create new category</h1>
+            <div className={Style.ContainCreate} >
+            <input className={Style.Create1} type='text' value={category} placeholder='Type Category' onChange={(e)=>setCategory(e.target.value)}/>
+            <input className={Style.Create2} type="submit" value="ADD"></input>
+            </div>
             </form>
+            </div>
         </div>
     );
 };
