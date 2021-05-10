@@ -52,7 +52,6 @@ function rootReducer(state= initialState, action) {
         //////// SHIRTS ///////
 
         case 'GET_SHIRTS':
-            
             let random= action.payload.slice(0,6)           
             console.log(random)
             return {
