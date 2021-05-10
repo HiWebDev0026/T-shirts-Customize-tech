@@ -35,9 +35,6 @@ async function getShirt(req, res, next) {
     try { 
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]})
         if (shirt) {
-            console.log(shirt)
-            console.log(typeof shirt.print)
-            console.log(shirt.print)
             return res.status(200).json(shirt)
         } else {
             return next({status: 404, message: 'Shirt not found'})
