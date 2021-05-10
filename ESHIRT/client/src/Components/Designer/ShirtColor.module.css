@@ -6,3 +6,15 @@
         width: 80%;
         margin: 0 auto;
 }
+
+.side{
+        display: flex;
+        flex-direction: column;
+}
+
+.side > input {
+        border: 2px solid coral;
+        background-color: black;
+        color: coral;
+        height: 3vh;
+    }

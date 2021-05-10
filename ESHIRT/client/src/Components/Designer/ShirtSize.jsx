@@ -27,7 +27,7 @@ function ShirtSize(props) {
                                                             sizeSelected: {data, status: true}, 
                                                             colorSelected: {...props.phase.colorSelected, status: false}})};
                                                             return;}}>
-                                                                <div className={SizeCSS.select}>
+                                                                
                                                                     <select type="datalist" 
                                                                             onChange={(e)=> setData(e.target.value)} 
                                                                             value={data}>
@@ -38,10 +38,10 @@ function ShirtSize(props) {
                                                                         <option value="S">S</option>
 
                                                                     </select>
-                                                                </div>
-                                                                <div>
+                                                                
+                                                                
                                                                     <input type="submit" disabled={data===null} value={data !== null ? 'Next' : 'Select size'} />
-                                                                </div>
+                                                                
                         </form>
                 </div>
                 </div>

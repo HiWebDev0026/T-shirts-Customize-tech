@@ -65,7 +65,7 @@ function ShirtModel(props) {
         <div className={ColorCSS.container}>
             
             <canvas ref={shirtRef} id="canvas"/>
-            <div ref={imageRef}></div>
+            <div className={ColorCSS.side}>
             <ColorBattery props={{
                                 setData: (arg)=> setData(arg), 
                                 setPhase: (arg)=> props.setPhase(arg)}} />
@@ -83,6 +83,7 @@ function ShirtModel(props) {
                         Elegí el color
                     
                     </form>
+            </div>        
         </div>
     )
 }
