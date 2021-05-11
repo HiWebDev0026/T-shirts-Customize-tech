@@ -21,7 +21,7 @@ SwiperCore.use([EffectCoverflow,Pagination]);
 
 export default function Carousel (){
 
-const tShirts = useSelector((state)=>state.random6);
+const tShirts = useSelector((state)=>state.shirtReducer.random6);
 const dispatch = useDispatch();
 
 useEffect(()=>{
