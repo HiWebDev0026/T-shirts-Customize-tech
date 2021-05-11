@@ -1,57 +1,53 @@
-import React, {useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+
 import FinalCSS from './FinalShirt.module.css';
-import submitToDB from './helpers/dbHandler';
+// import submitToDB from './helpers/dbHandler';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
+import { postShirt } from '../../Actions/index.js';
 export default function FinalShirt(props) {
 
 
+    
+
     const {phase} = props;
+  
+    const shirts= useSelector((state)=>state.allShirts)
+    const dispatch= useDispatch();
 
-   /*  useEffect(()=> {
+    const [shirt,setShirt]= useState('');
 
-        let imgBlob = new Image();
-        imgBlob.src = img;
-        let canvas = new fabric.StaticCanvas('canvas', {
+    // const [input, setInput] = useState({
+    //     userId: '',
+    //     name: '',
+    //     print: '',
+    //     size: '',
+    //     color: '',
+    //     model: '',
+    // });
+    // function handleChange(e) {
+    //     const value = e.target.value;
+    //     const name = e.target.name
+    //     setInput({
+    //         ...input,
+    //         [name]: value
+    //     });
+    // }
 
-                width: 350,
-                height: 410,
-                selectable: false,
-                preserveObjectStacking: true,
-                lockMovementY: true,
-                lockMovementX: true,
 
-        }).add(new fabric.Rect({
-                width: 350,
-                height: 410,
-                fill: props.phase.colorSelected.data,
-                lockMovementY: true,
-                lockMovementX: true,
-                selectable: false,
-        })).add(new fabric.Image(imgBlob, {
-                scaleX: 0.8,
-                scaleY: 0.7,
-            
-                width: 492,
-                height: 585,
-                left: -38,
-                selectable: false,
-                objectCaching: false,
-            
-        }))
-
-        if(props.phase.designSelected.data !== null) {
-        
-        let print = new fabric.Image(props.phase.designSelected.data, {
-                scaleY: 0.9,
-                scaleX: 0.2,
-                left: 86,
-                top: 120,
-        }).scaleToWidth(120).scaleToHeight(120)
-        canvas.add(print);
-    }
-
-    }) */
+    function handleSubmit (e, phase) {
+        e.preventDefault();
+        dispatch(postShirt( 
+            {
+            userId: 1,
+            name: 'kjnjhgffhjkiyz',
+            print: phase.designSelected.data,
+            size: phase.sizeSelected.data,
+            color: phase.colorSelected.data,
+            public: true,
+            model: phase.modelSelected.data,
+    }));}
 
     return (
         <div className={FinalCSS.container}>
@@ -64,7 +60,7 @@ export default function FinalShirt(props) {
                     <h3>Do you like your shirt? Upload your design!</h3>
                 </div>
                 <div className={FinalCSS.uploadForm}>
-                    <form onSubmit={(e)=> submitToDB(e, phase)}>
+                    <form onSubmit={(e)=> handleSubmit(e, phase)}>
                         <input type="submit" />
                     </form>
                 </div>

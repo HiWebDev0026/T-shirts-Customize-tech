@@ -15,12 +15,12 @@ const setToLower = (body) => {
 const validatePost = (body) => {
     const {name, color, model, size, print, public, score, categories} = body;
     
-    if (!(name && color && model && size && print && public)) {return false; }
-    if (isNaN(print) && print.length < 50) {return false;}
-    if (score && isNaN(score)) { return false; }
-    if (categories && !Array.isArray(categories)) {return false; }
-    if (public !== 'true' && public !== "false") { return false; }
-    if (size && size !== ['S', 'M', 'L', 'XL', 'XXL'].find(s => s === size)) { return false; }
+    if (!(name && color && model && size && print && public)) { console.log("importante files"); return false; }
+    if (isNaN(print) && print.length < 50) {console.log("print"); return false;}
+    if (score && isNaN(score)) { console.log("score"); return false; }
+    if (categories && !Array.isArray(categories)) {console.log("categories"); return false; }
+    if (typeof public !== "boolean") { console.log("public"); return false; }
+    if (size && size !== ['S', 'M', 'L', 'XL', 'XXL'].find(s => s === size)) { console.log("size"); return false; }
 
     return true;
 }
@@ -50,7 +50,7 @@ async function postShirt(req, res, next) {
     // this will have a validation before post
     try {
         
-        if (!validatePost(req.body)) {console.log('hjd'); return next({status: 400, message: 'Bad body request'})}
+        if (!validatePost(req.body)) {return next({status: 400, message: 'Bad body request'})}
 
         const newShirt = {...req.body, name: req.body.name.toLowerCase(), created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
