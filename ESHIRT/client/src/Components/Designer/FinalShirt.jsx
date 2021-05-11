@@ -1,40 +1,13 @@
-import React,{useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-
+import React from 'react';
+import {useDispatch} from 'react-redux';
 import FinalCSS from './FinalShirt.module.css';
-// import submitToDB from './helpers/dbHandler';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
 import { postShirt } from '../../Actions/index.js';
 export default function FinalShirt(props) {
 
-
-    
-
     const {phase} = props;
-  
-    const shirts= useSelector((state)=>state.allShirts)
     const dispatch= useDispatch();
-
-    const [shirt,setShirt]= useState('');
-
-    // const [input, setInput] = useState({
-    //     userId: '',
-    //     name: '',
-    //     print: '',
-    //     size: '',
-    //     color: '',
-    //     model: '',
-    // });
-    // function handleChange(e) {
-    //     const value = e.target.value;
-    //     const name = e.target.name
-    //     setInput({
-    //         ...input,
-    //         [name]: value
-    //     });
-    // }
-
 
     function handleSubmit (e, phase) {
         e.preventDefault();
