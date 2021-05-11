@@ -25,6 +25,26 @@ const validatePost = (body) => {
     return true;
 }
 
+const validatePut = (body) => {
+    if (Object.keys(body).length === 0) { return false; } // body is an empty object
+
+    const modelFileds = ["name", "color", "model", "size", "print", "score", "public"]
+
+    for (const field of modelFileds) {
+        if (body.hasOwnProperty(field)) {
+            if (!body[field]) { return false; } // body.name = "" returns false
+            if (field === "size" && body[field] !== ['S', 'M', 'L', 'XL', 'XXL'].find(size => size === body[field])) { return false; }  
+            if (field === "print" && body[field].length < 50) {return false;}
+            if (field === "score" && isNaN(body[field])) {return false;}
+            if (field === "public" && body[field] !== "true" && body[field] !== "false") {return false}
+            if (field === "categories" && !Array.isArray(body[field])) {return false;} 
+        }
+    }
+
+    return true;
+
+}
+
 
 async function postShirt(req, res, next) {        
     // this will have a validation before post
@@ -91,28 +111,35 @@ async function deleteShirt(req, res, next) {
 
 
 async function putShirt(req, res, next) {
-    const shirtId = req.params.id     
-    //body must send data to modify
-    const body = setToLower(req.body)
-    const HEADERS = Object.keys(body)   //guardo en un array las keys del body (o sea la columnas de la tabla)
-    try {                               //buscamos el id
+    const shirtId = req.params.id
+    const body = req.body        
+    try {                               
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]}) 
-        if (shirt) {
-            for (const header of HEADERS) {  //tomamos cada columna 
-                if (header === 'categories') { 
-                    await shirt.setCategories(body[header]); //array de ids 
-                } else {
-                    shirt[header] = body[header] //usamos bracket notation porque cada header es un STRING!
-                }
+        if (!shirt) { throw {status: 404, message: 'Shirt not found'} }
+        if (!validatePut(body)) { throw {status: 400, message: 'Bad body request'}}
+
+        for (const field in body) {
+            if (field === "categories") {
+                const categories = body[field].map(id => {
+                    if (!isNaN(id) && Number(id) > 0) {
+                        return id
+                    } else {
+                        throw {status: 400, message: 'Bad Category Id Format'}
+                    }
+                })
+                await shirt.setCategories(categories);
+            } else if (field === "name") {
+                shirt[field] = body[field].toLowerCase()
+            } else {
+                shirt[field] = body[field]
             }
-            shirt.save()
-            return res.status(200).json(shirt)
-        } else {
-            return next({status: 404, message: 'Shirt not found'})
         }
+        shirt.save()
+        shirt.categories = body.categories //after save(), this will send categories in body
+        return res.status(200).json(shirt)
         
     } catch (error) {
-        next({status: 400, message: 'Bad body request'});
+        next(error);
     }
 }
 
