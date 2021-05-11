@@ -24,10 +24,10 @@ let value1= ""
 </div>
 <div className={Style.Btns}>
           <NavLink to= '/home'>
-             <button>Cancel</button> 
+             <button className={Style.Btn1}>Cancel</button> 
              </NavLink>
             
-             <button type='submit'>Search</button>
+             <button className={Style.Btn2} type='submit'>Search</button>
        
         </div>
         </form>

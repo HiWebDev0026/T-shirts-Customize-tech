@@ -9,3 +9,20 @@
 .Btns{
     margin-left: 53%;
 }
+.email{
+    border-radius: 10px;
+}
+.Btn1{
+    border-radius: 10px;
+}
+.Btn1:hover{
+    background-color: thistle;
+    border-radius: 10px;
+}
+.Btn2{
+    border-radius: 10px;
+}
+.Btn2:hover{
+    background-color: rgb(159, 218, 212);
+    border-radius: 10px;
+}
