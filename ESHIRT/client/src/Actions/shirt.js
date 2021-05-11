@@ -44,7 +44,7 @@ export function getShirtById(shirtId){
 export function postShirt(shirt){
 
     return async (dispatch) => {
-        try {
+        try {console.log(shirt)
             const res = await axios.post(`http://localhost:3001/shirt`, shirt, {responseType: 'json'})
             const newShirt = res.data
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
