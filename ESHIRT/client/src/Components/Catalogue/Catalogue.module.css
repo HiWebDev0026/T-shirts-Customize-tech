@@ -1,8 +1,8 @@
 .box{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 60vh;
+  flex-direction: column;
+  height: 80vh;
+  width: 60%;
 }
 
 .sideBar{
@@ -14,6 +14,8 @@
 
 .shirts{
   display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
   height: inherit;
   width: 80%;
   flex-wrap: wrap;
@@ -31,14 +33,17 @@
 
 .pages{
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 10vh;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .pagination {
     display: flex;
+    padding: 0;
     justify-content: space-around;
+    align-items: center;
     list-style: none;
     cursor: pointer;
     height: 10vh;
@@ -66,3 +71,8 @@
     
   }
   
+.cart{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
