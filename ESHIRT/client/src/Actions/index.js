@@ -4,7 +4,7 @@ import {
     getUserById,
     postUser,
     putUser,
-    deleteUser
+    deleteUser   
 } from './user.js'
 
 import {
