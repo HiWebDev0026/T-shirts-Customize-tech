@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getShirts} from '../../Actions/index'
 
 import SideBar from './SideBar/SideBar'
+import { SideCart } from "../Cart/SideCart";
 
 
 // {title, price, width, height, model, color}
@@ -61,27 +62,29 @@ function handlePageClick({ selected: selectedPage }) {
     return (
         <div className={style.container1}>
         
-        <div className={style.box}>
             
             <div className={style.sideBar}>
                 <SideBar/>
             </div>
-        
-        <div className={style.shirts}>{currentPageData}</div>
-        </div>
+        <div className={style.box}>
+            <div className={style.shirts}>{currentPageData}</div>
+            <div className={style.pages}>
+                <ReactPaginate
+                    previousLabel={'← Previous'}
+                    nextLabel={'Next →'}
+                    pageCount={pageCount}
+                    onPageChange={handlePageClick}        
+                    previousLinkClassName={"pagination__link"}
+                    nextLinkClassName={"pagination__link"}
+                    disabledClassName={style.pagination__link__disabled}
+                    activeClassName={style.pagination__link__active}
+                    containerClassName={style.pagination}
+                />
+            </div>
 
-        <div className={style.pages}>
-        <ReactPaginate
-        previousLabel={'← Previous'}
-        nextLabel={'Next →'}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}        
-        previousLinkClassName={"pagination__link"}
-        nextLinkClassName={"pagination__link"}
-        disabledClassName={style.pagination__link__disabled}
-        activeClassName={style.pagination__link__active}
-        containerClassName={style.pagination}
-        />
+        </div>
+        <div className={style.cart}>
+            <SideCart/>
         </div>
 
         </div>   
