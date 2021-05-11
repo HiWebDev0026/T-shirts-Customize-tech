@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {getShirts} from '../../Actions/Actions.js'
+//import {getShirts} from '../../Actions/Actions.js'
+import {getShirts} from '../../Actions/index.js'
 
 // Import Swiper styles
 import 'swiper/swiper.min.css';

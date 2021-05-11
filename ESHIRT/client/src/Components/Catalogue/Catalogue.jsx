@@ -4,9 +4,13 @@ import Card from './Card/Card.jsx'
 import ReactPaginate from "react-paginate";
 import Button from '@material-ui/core/Button'
 import {useDispatch, useSelector} from 'react-redux'
-import {getShirts} from '../../Actions/Actions'
+
+//import {getShirts} from '../../Actions/Actions'
+import {getShirts} from '../../Actions/index'
+
 import SideBar from './SideBar/SideBar'
- 
+
+
 // {title, price, width, height, model, color}
 
 const INITIAL_PAGE= 6;
