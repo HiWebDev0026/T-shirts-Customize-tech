@@ -19,9 +19,9 @@ const INITIAL_PAGE= 6;
 function Catalogue(){
     
     const dispatch= useDispatch()
-    const allShirts= useSelector(state => state.allShirts)
-    const shirtsByName= useSelector(state => state.shirtsByName)
-    const filteredByCategory= useSelector(state => state.filteredByCategory)
+    const allShirts= useSelector(state => state.shirtReducer.allShirts)
+    const shirtsByName= useSelector(state => state.shirtReducer.shirtsByName)
+    const filteredByCategory= useSelector(state => state.categoryReducer.filteredByCategory)
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
 
@@ -42,8 +42,8 @@ function handlePageClick({ selected: selectedPage }) {
   
   const offset = currentPage * INITIAL_PAGE;
   const currentPageData = data
-    .slice(offset, offset + INITIAL_PAGE)
-    .map(e => {
+  .slice(offset, offset + INITIAL_PAGE)
+  .map(e => {
         return <Card
             title= {e.name}
             size= {e.size}

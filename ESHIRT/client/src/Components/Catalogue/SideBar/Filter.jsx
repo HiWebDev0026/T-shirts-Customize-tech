@@ -2,12 +2,12 @@ import React from 'react'
 import style from './Filter.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import {filterByCategory, getCategories} from '../../../Actions/Actions'
+import {filterByCategory, getCategories} from '../../../Actions/index'
 
 function Filter(){
     
     const dispatch= useDispatch()
-    const allCategories= useSelector(state => state.allCategories)
+    const allCategories= useSelector(state => state.categoryReducer.allCategories)
     const [filtered, setFiltered]= useState([])
 
     useEffect(() => {
