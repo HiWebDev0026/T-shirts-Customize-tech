@@ -27,10 +27,18 @@ const shirtReducer = (state=initialState, action) => {
                 shirtId: action.payload
             }
         case 'POST_SHIRT':
-            return
+            return {
+                ...state,
+                allShirts: [...state.allShirts, action.payload]
+            }
 
         case 'PUT_SHIRT':
-            return
+            return {
+                ...state, 
+                allShirts: [...state.allShirts].forEach(
+                    (el, ix) => el.id == action.payload.id && (state.allShirts[ix] = action.payload)
+                )
+            }
 
         case 'DELETE_SHIRT':
             return {
