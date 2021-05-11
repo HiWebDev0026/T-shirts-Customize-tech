@@ -105,3 +105,7 @@ dist
 
 # package-lock.json
 package-lock.json
+
+#postgres
+./postgres/
+/postgres/data/

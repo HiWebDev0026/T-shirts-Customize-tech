@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+    database:
+        
+        image: postgres:latest
+        restart: always
+        
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: Interaccion90
+            POSTGRES_DB: eshirt
+        expose:
+            - "5432"
+    
+
+
+    api:
+        restart: always
+        build:
+            context: ./api
+        ports:
+            - "3001:3001"
+        depends_on: 
+            - database
+        volumes:
+            - /api/node_modules
+            - ./api:/app
+
+    client:
+        restart: always
+        command: npm start
+        build:
+            context: ./client
+            
+        ports:
+            - "3000:3000"
+        volumes:
+                - /client/node_modules
+                - ./client:/app
+volumes:
+    apiDb:    
+    
+        
