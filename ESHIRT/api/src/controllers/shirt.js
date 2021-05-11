@@ -1,3 +1,4 @@
+const { NUMBER } = require('sequelize');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const {Shirt, User, Detail, Category} = require('../db.js');
@@ -11,22 +12,49 @@ const setToLower = (body) => {
     return body
 }
 
+const validatePost = (body) => {
+    const {name, color, model, size, print, public, score, categories} = body;
+    
+    if (!(name && color && model && size && print && public)) {return false; }
+    if (isNaN(print) && print.length < 50) {return false;}
+    if (score && isNaN(score)) { return false; }
+    if (categories && !Array.isArray(categories)) {return false; }
+    if (public !== 'true' && public !== "false") { return false; }
+    if (size && size !== ['S', 'M', 'L', 'XL', 'XXL'].find(s => s === size)) { return false; }
+
+    return true;
+}
+
 
 async function postShirt(req, res, next) {        
     // this will have a validation before post
     try {
-        //const body = setToLower(req.body)
-        const body = {...req.body, name: req.body.name.toLowerCase()}
-        const newShirt = {...body, created_by_user: true} 
+        
+        if (!validatePost(req.body)) {console.log('hjd'); return next({status: 400, message: 'Bad body request'})}
+
+        const newShirt = {...req.body, name: req.body.name.toLowerCase(), created_by_user: true} 
         const postedShirt = await Shirt.create(newShirt);
-        if (body.categoryId) {
-            await postedShirt.addCategory(body.categoryId);
+        
+        if (newShirt.categories) {
+            try {
+                for (const categoryId of newShirt.categories) {
+                    const id = Number(categoryId);
+                    if (!isNaN(id) && id > 0) {
+                        await postedShirt.addCategory(id);
+                    } else {
+                        throw {status: 400, message: 'Bad Category Id Format'}
+                    }        
+                }
+            } catch (err) {
+                return next(err)
+            }
+            
         }
 
         return res.status(200).json(postedShirt)
     } catch (error) {
         console.log(error);
-        next({status: 409, message: 'Shirt already exist'});
+        next({status: 409, message: 'Shirt already exists'});
     }
 }
 
