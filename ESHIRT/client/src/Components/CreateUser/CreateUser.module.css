@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.containerForm{
+    display: grid;
+    grid-template-columns: none;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(45px, 10px);
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+.container{
+  
+}
+
+.createTitle{
+    font-family: "Montserrat", sans-serif;
+    justify-content:center;
+    color: white;
+}
+.createTitle1{
+    font-family: "Montserrat", sans-serif;
+    justify-content:center;
+    color: white;
+
+}
+
+.name {
+    background-color: rgb(231, 238, 231);
+    font-family: "Montserrat", sans-serif;
+    grid-row: 1 ;
+    font-size: 150%;
+    border-radius: 10px;
+  }
+  .lastname {
+    background-color: rgb(231, 238, 231);
+    grid-row: 2;
+    font-family: "Montserrat", sans-serif;
+    font-size: 150%;
+    border-radius: 10px;
+  }
+  .email {
+    background-color: rgb(231, 238, 231);
+    grid-row: 3;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+   
+  }
+  .password {
+    background-color: rgb(231, 238, 231);
+    grid-row: 4 ;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+  }
+  .country {
+    background-color: rgb(231, 238, 231);
+    grid-row: 5;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+  }
+  .city {
+    background-color: rgb(231, 238, 231);
+    font-family: "Montserrat", sans-serif;
+    grid-row: 6 ;
+    font-size: 150%;
+    border-radius: 10px;
+  }
+  .adress {
+    background-color: rgb(231, 238, 231);
+    grid-row: 7;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+  }
+  .phone {
+    background-color: rgb(231, 238, 231);
+    grid-row: 8 ;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+  }
+
+  .create {
+    background-color: rgba(187, 184, 183, 0.877);
+    grid-row: 9 ;
+    font-size: 150%;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+  }
+  .create:hover{
+      background-color: rgba(163, 170, 163, 0.877);
+      color: white;
+  }
