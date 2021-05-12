@@ -21,24 +21,6 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const {fillDB} = require('./src/fill_db.js');
 
-// Syncing all the models at once.
-
-//try {
-  /* setTimeout( *///conn.sync({ force: true }).then(() => {
-    //fillDB();
-   // server.listen(3001, () => {
-     // console.log('%s listening at 3001\nDATABASE UP'); // eslint-disable-line no-console
-  //  });
- // });/*  2000); */
-//} catch (error) {
-  // setTimeout(()=> conn.sync({ force: true }).then(() => {
-  //   fillDB();
-  //   server.listen(3001, () => {
-  //     console.log('%s listening at 3001\nDATABASE UP'); // eslint-disable-line no-console
-  //   });
-  // }), 2000); 
-//}
-
 
 conn.sync({ force: true }).then(() => {
     fillDB();
