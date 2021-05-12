@@ -11,7 +11,7 @@ import Login from './Components/Login/Login';
 import CreateUser from './Components/CreateUser/CreateUser';
 import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
-import Users from './Components/Admin/Users/Users'
+import Users from './Components/Admin/Users/Users';
 
 
 function App() {
