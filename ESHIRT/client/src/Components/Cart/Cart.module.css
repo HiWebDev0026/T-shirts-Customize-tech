@@ -1,64 +1,92 @@
-.general{color:white}
-
-.title{
-    border: solid 1px red;
-    width: 60%;
-    height:30%;
-    margin-top:10px;
-    margin-top:10px;
+.general{
+    color:white;
 }
 
-.general img{
-    width:25%;
-    height:90%;
-    margin:2px;
-    padding: 2px;
+.container{
+    border: solid 2px red;
+    width: 100%;
+    display:flex;
+    
+}
+
+.title{
+    border: solid 2px pink;
+    display: flex;
+    justify-content: center;
+}
+
+.left{
+    border: solid 2px blue;
+    width: 70%;
+    height: 0%;
+    position: relative;
+
 }
 
 .cartCard{
-    width:50%;
-    margin:3px;
     border: solid 2px white;
-    border-radius: 3px;
     display: flex;
-    align-items: center;
-    margin-left: 10px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+
+.picture{
+    border: solid 2px purple;
+    width: 25%;
+}
+
+.column1{
+    border: solid 2px orange;
+    width: 45%;
+    margin:auto;
+}
+
+.detail{
+    border: solid 2px grey;
+    margin-bottom: 10px;
+    
 }
 
 .name{
-    font-size:15px;
+    font-size:20px;
 }
 
 .sku{
     font-size:10px;
 }
 
-.cartCard button{
-    width:30px;
-    height:20px;
-}
-
-.info{
-    border: solid 1px red;
-    width: 40%;
-    height: 30%;
-    margin-top: 10px;
-    margin-left: 2px;
-}
-
 .btns{
-    border: solid 1px red;
-    width: 40%;
-    height: 30%;
+    border: solid 2px rgb(21, 77, 112);
+}
+
+.column2{
+    border: solid 2px orangered;
+    width: 10%;
+    display:flex;
+    align-items: center;
+}
+.column3{
+    border: solid 2px greenyellow;
+    width: 20%;  
+}
+.image{
+    width:100%;
+}
+
+.rigth{
+    border: solid 2px yellow;
+    width: 30%;
+    position: relative;
+    top:0%;
+    left:0%;
+}
+
+.total{
+    border: solid 2px green;
     display: flex;
     justify-content: center;
-    margin-left: 2px;
-    margin-top: 2px;
 }
 
-.details{
-    border: solid 1px blue;
-    width: 60%;
-    height: 40%;
-    padding-bottom: 15px;
+.q{
+    width: 40%;
 }

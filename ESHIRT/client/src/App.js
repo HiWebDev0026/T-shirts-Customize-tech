@@ -10,6 +10,7 @@ import CreateCategory from './Components/Admin/CreateCategory/CreateCategory.jsx
 import Login from './Components/Login/Login';
 import CreateUser from './Components/CreateUser/CreateUser';
 import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
+import Cart from './Components/Cart/Cart.jsx';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
       <Route exact path= '/add_category' component={CreateCategory}/> 
+      <Route exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
       <Route exact path= '/create_user' component={CreateUser}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
