@@ -1,6 +1,6 @@
-import React from "react";
-import ReactPaginate from "react-paginate";
-import { BsFillHeartFill,BsFillTrashFill } from "react-icons/bs";
+import React,{useEffect,useState} from 'react';
+import ReactPaginate from 'react-paginate';
+import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
 
 import Style from './Cart.module.css'
 
@@ -11,11 +11,6 @@ export default function Cart (){
             name: 'Dani',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'S',
-            color: 'yellow',
-            model: 'v-neck',
-            score: 4,
-            public: false,
-            created_by_user: true,
             id: 12323,
             price: 30,
             quantity:1
@@ -24,11 +19,6 @@ export default function Cart (){
             name: 'Ema',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'XL',
-            color: 'white',
-            model: 'round',
-            score: 5,
-            public: true,
-            created_by_user: false,
             id: 87879,
             price: 35,
             quantity:2
@@ -37,12 +27,7 @@ export default function Cart (){
             name: 'Ger',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'L',
-            color: 'green',
-            model: 't-shirt',
-            score: 3,
-            public: false,
-            created_by_user: false,
-            id: 7978878,
+            id: 263625365,
             price: 40,
             quantity:3
         },
@@ -50,12 +35,7 @@ export default function Cart (){
             name: 'Eze',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'M',
-            color: 'yellow',
-            model: 'v-neck',
-            score: 4,
-            public: false,
-            created_by_user: true,
-            id: 12323,
+            id: 895868975,
             price: 30,
             quantity:1
         },
@@ -63,12 +43,7 @@ export default function Cart (){
             name: 'Javi',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'M',
-            color: 'white',
-            model: 'round',
-            score: 5,
-            public: true,
-            created_by_user: false,
-            id: 87879,
+            id: 8787887709,
             price: 35,
             quantity:2
         },
@@ -76,11 +51,6 @@ export default function Cart (){
             name: 'Lean',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'M',
-            color: 'green',
-            model: 't-shirt',
-            score: 3,
-            public: false,
-            created_by_user: false,
             id: 7978878,
             price: 40,
             quantity:3
@@ -89,25 +59,28 @@ export default function Cart (){
             name: 'Agus',
             print: 'https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg',
             size: 'M',
-            color: 'green',
-            model: 't-shirt',
-            score: 3,
-            public: false,
-            created_by_user: false,
-            id: 7978878,
+            id: 66666655,
             price: 40,
             quantity:3
         }]
     
     let sizes=['S','M','L','XL']    
 
-    // function handleDelete (e) {
-    //     console.log('ENTRE')
-    //     items = items.filter((i)=>{return i.id !== e.target.id});
-    //     console.log('ID', e.target.id)
-    //     console.log('FILTRADO', items)
-    // }
-    
+    const [products,setProducts]=useState([]);
+    const [remove,setRemove]=useState(false);
+
+    useEffect(()=>{
+        setProducts(items);
+        console.log('PRODUCTS',products);
+    },[remove]);
+
+    function handleDelete(item){
+        const cartItems= items.slice();
+        // setState({cartItems:cartItems.filter(i=>i.d !==item.id)});
+        //setStatus es el global y cartItems: es para un estado global que es cartitems: []
+        ;
+    }
+
     return(
         <div className={Style.general}>
             <div className={Style.container}>
@@ -115,11 +88,11 @@ export default function Cart (){
                     <div className={Style.title}>
                         <h2>Let's do some shopping!</h2>
                     </div >
-                    <div>
+                    <ul>
                         {
-                            items.length>0?
-                            items.map(it=>{
-                                return <div className={Style.cartCard}> 
+                            products.length>0?
+                            products.map(it=>{
+                                return <li key={it.id} className={Style.cartCard}> 
                                             <div className={Style.picture}>
                                                 <img src={it.print} alt={'product'+ it.id} className={Style.image}/>
                                             </div>
@@ -129,8 +102,15 @@ export default function Cart (){
                                                     <div className={Style.sku}>SKU:{it.id}</div>
                                                 </div>
                                                 <div className={Style.btns}>
-                                                    <button id={it.id}><BsFillTrashFill/></button>
-                                                    <button><BsFillHeartFill/></button>
+                                                    <div>
+                                                        <button value={it.id} onClick={handleDelete(it)}><BsFillTrashFill/></button>
+                                                    </div>
+                                                    <div>
+                                                        <button><BsFillHeartFill/></button>
+                                                    </div>
+                                                    <div>
+                                                        <input type='button' value='Edit'/>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className={Style.column2}>
@@ -152,19 +132,23 @@ export default function Cart (){
                                                     <input type="number"  min="1" max="10" value={it.quantity} className={Style.q}/>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </li>
                             })
                         :<p>No selected items</p>
                         }
-                    </div>
+                    </ul>
                 </div>
                 <div className={Style.rigth}>
                     <div className={Style.total}>
                         <h2>Total</h2>
                     </div>
-                    <div>You have {items.length-1} items in your shopping cart </div>
+                    <div>{
+                        products.length === 0? 
+                        <div>Your cart is empty</div>
+                        :<div>You have {items.length} items in your shopping cart</div>
+                    }</div>
                     <div>${items.reduce((a,c)=>a+c.price*c.quantity,0)}</div>
-                    <button>Go bach shopping</button>
+                    <button>Go back shopping</button>
                     <button>Purchase</button>
                     
                 </div>
