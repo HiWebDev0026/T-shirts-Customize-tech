@@ -1,39 +1,43 @@
 import style from "./Card.module.css";
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 
-function Card({title, score, size, model, color, image}){
-  
+import { FaCartPlus } from "react-icons/fa";
+
+function Card({ title, score, size, model, color, image, id }) {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
         <div className={style.top}>
-          <img className={style.image} src= {image}/>
+          <img className={style.image} src={image} />
         </div>
         <div className={style.bottom}>
           <div className={style.left}>
             <div className={style.details}>
-              <h1>{title}</h1>
-              <p>£</p>
+              <a href="#popup1">{title}</a>
+            </div>
+            <div id="popup1" className={style.overlay}>
+              <div className={style.popup}>
+                <a className={style.close} href="#">
+                  &times;
+                </a>
+                <div className={style.content}>
+                  <p>{model}</p>
+                  <p>{color}</p>
+                </div>
+              </div>
             </div>
             <div className={style.buy}>
-              <IconButton aria-label="add" >
-                <AddShoppingCartIcon color="secondary" value="cart" fontSize="small"className="cart" />
-                 
-               
-              </IconButton>
+              <buton>
+                <FaCartPlus />{" "}
+              </buton>
             </div>
           </div>
         </div>
       </div>
-      <div className={style.inside}>
+      {/* <div className={style.inside}>
         <div className={style.icon}>
-        <IconButton aria-label="add" >
-                <DehazeIcon  fontSize="small" className="dtl" />              
-              </IconButton>
+      
         </div>
         <div className={style.contents}>
           <table>
@@ -55,7 +59,7 @@ function Card({title, score, size, model, color, image}){
             </tr>
           </table>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
