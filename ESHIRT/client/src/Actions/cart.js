@@ -11,3 +11,21 @@ export function deleteItem(id){
         dispatch({type: 'DELETE_ITEM', payload: id})
     }
 }
+
+export function addOne(id){
+    return (dispatch) => {
+        dispatch({type: 'ADD_ONE', payload: id})
+    }
+}
+
+export function outOne(id){
+    return (dispatch) => {
+        dispatch({type: 'OUT_ONE', payload: id})
+    }
+}
+
+export function changeSize(id){
+    return (dispatch) => {
+        dispatch({type: 'CHANGE_SIZE', payload: id})
+    }
+}
