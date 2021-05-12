@@ -2,20 +2,36 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-/*const {
+/* const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
-} = process.env;*/
+} = process.env; */
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-        ssl: {
+
+
+let sequelize =
+  process.env.NODE_ENV === "production"
+    ? new Sequelize(`${process.env.DATABASE_URL}`, {
+        pool: {
+          max: 3,
+          min: 1,
+          idle: 10000,
+        },
+        dialectOptions: {
+          ssl: {
             require: true,
-            rejectUnauthorized: false
-        }
-    }
-});
+            // Ref.: https://github.com/brianc/node-postgres/issues/2009
+            rejectUnauthorized: false,
+          },
+          keepAlive: true,
+        },
+        ssl: true,
+      })
+    : new Sequelize(
+        `${process.env.DATABASE_URL}`,
+        { logging: false, native: false }
+      );
+
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

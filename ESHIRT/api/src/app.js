@@ -32,11 +32,8 @@ server.use((req, res, next) => {
         })
     );*/
            
-server.use(express.static(path.join(__dirname, '../../client/build')))
+
 server.use('/', routes);
-server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../../client/build/index.html'))
-})
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
