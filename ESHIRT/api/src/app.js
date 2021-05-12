@@ -25,7 +25,7 @@ server.use((req, res, next) => {
 
 
 server.use(
-        '/api',
+        '/',
         createProxyMiddleware({
             target: 'http://localhost:3001',
             changeOrigin: true,
