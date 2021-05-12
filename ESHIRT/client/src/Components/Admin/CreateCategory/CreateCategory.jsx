@@ -17,6 +17,7 @@ export default function CreateCategory (){
  
 
     const categories= useSelector((state)=>state.categoryReducer.allCategories)
+    
     const dispatch= useDispatch();
 
 
