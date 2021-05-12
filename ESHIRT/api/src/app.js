@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const path = require('path');
-const proxy = require('http-proxy-middleware')
+const {createProxyMiddleware} = require('http-proxy-middleware')
 
 require('./db.js');
 
@@ -24,7 +24,14 @@ server.use((req, res, next) => {
 });
 
 
-server.use(proxy(['/api' ], { target: 'http://localhost:3001' }));
+server.use(
+        '/api',
+        createProxyMiddleware({
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+        })
+    );
+           
 server.use(express.static(path.join(__dirname, '../client/build')))
 server.use('/', routes);
 server.get('*', (req, res) => {
