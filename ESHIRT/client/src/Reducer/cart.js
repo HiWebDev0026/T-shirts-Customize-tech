@@ -5,35 +5,38 @@ const initialState={
 
 const cartReducer = (state=initialState, action) => {
     switch (action.type){
-        case 'GET_ITEMS':
-            return state.items
-
+        
         case 'PUSH_ITEM':
+            let flag= false
             let alreadyIn= action.payload.id
-            state.items.map(item => {
+            state.items.forEach(item => {
                 if (item.id === alreadyIn){
-                    return {
-                        ...state,
-                        amount: {
-                            ...state.amount,
-                            [alreadyIn]: [alreadyIn]+1
-                        }
-                    }
+                    flag= true
+                    let value= state.amount[item.id]
+                    console.log(value)
+                    let auxItems= state.items
+                    let auxAmount= state.amount
+                    auxAmount[alreadyIn]+=1 
+                    return {auxItems, auxAmount}
                 }
             })
-            return {
-                ...state,
-                items: [...state.items, action.payload],
-                amount: {
-                    ...state.amount,
-                    [alreadyIn]: 1}
+            if (!flag){
+                return {
+                    ...state,
+                    items: [...state.items, action.payload],
+                    amount: {
+                        [alreadyIn]: 1
+                    }
+                }
             }
+            
 
         case 'DELETE_ITEM':
-            let deleted= state.filter(i => i.id !== action.payload)
+            let deleted= state.items.filter(i => i.id !== action.payload)
+            delete state.amount[action.payload]
             return {
                 ...state,
-                items: deleted
+                items: deleted,
             }
 
         default: return state
