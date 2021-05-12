@@ -1,9 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-
-//import {getCategories,postCategory,deleteCategory,putCategory} from '../../../Actions/Actions.js'
 import {getCategories,postCategory,deleteCategory,putCategory} from '../../../Actions/index.js'
-
 import Style from './CreateCategory.module.css';
 
 export default function CreateCategory (){
