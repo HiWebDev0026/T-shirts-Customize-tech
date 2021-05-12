@@ -1,2 +1,2 @@
-  
-web: node ESHIRT/api/app.js
+web: cd ESHIRT && cd api && npm i && npm start
+server: cd ESHIRT && cd api && npm i && npm start
