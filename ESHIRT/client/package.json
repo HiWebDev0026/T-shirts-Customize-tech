@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
     "fabric": "^4.4.0",
     "install": "^0.13.0",
     "material-ui": "^0.20.2",
