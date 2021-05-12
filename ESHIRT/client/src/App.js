@@ -11,6 +11,7 @@ import Login from './Components/Login/Login';
 import CreateUser from './Components/CreateUser/CreateUser';
 import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
+import Users from './Components/Admin/Users/Users'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
       <Route exact path= '/create_user' component={CreateUser}/>
+      <Route exact path= '/users' component={Users}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <Route path= '/' component={Footer}/>
     </div>
