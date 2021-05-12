@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const path = rqeuire('path');
 
 require('./db.js');
 
@@ -21,8 +22,11 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-
-server.use('/', routes); 
+server.use(express.static(path.join(__dirname, '../client/build')))
+server.use('/', routes);
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
