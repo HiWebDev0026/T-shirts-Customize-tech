@@ -42,7 +42,7 @@ const {fillDB} = require('./src/fill_db.js');
 
 conn.sync({ force: true }).then(() => {
     fillDB();
-    server.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, '0.0.0.0', () => {
     console.log('%s listening at 3001\nDATABASE UP'); // eslint-disable-line no-console
   });
  });
