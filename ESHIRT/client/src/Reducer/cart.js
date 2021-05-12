@@ -1,6 +1,5 @@
 const initialState={
-    items: [],
-    amount: {}
+    items: []
 }
 
 const cartReducer = (state=initialState, action) => {
@@ -8,28 +7,19 @@ const cartReducer = (state=initialState, action) => {
         
         case 'PUSH_ITEM':
             let flag= false
-            let alreadyIn= action.payload.id
             state.items.forEach(item => {
-                if (item.id === alreadyIn){
+                if (item.id === action.payload.id){
                     flag= true
-                    let value= state.amount[item.id]
-                    console.log(value)
-                    let auxItems= state.items
-                    let auxAmount= state.amount
-                    auxAmount[alreadyIn]+=1 
-                    return {auxItems, auxAmount}
                 }
             })
-            if (!flag){
+            if (flag){
+                return state
+            } else {
                 return {
                     ...state,
-                    items: [...state.items, action.payload],
-                    amount: {
-                        [alreadyIn]: 1
-                    }
+                    items: [...state.items, action.payload]
                 }
             }
-            
 
         case 'DELETE_ITEM':
             let deleted= state.items.filter(i => i.id !== action.payload)
@@ -38,6 +28,23 @@ const cartReducer = (state=initialState, action) => {
                 ...state,
                 items: deleted,
             }
+
+        case 'ADD_ONE':
+            let modified= state.items
+            modified.forEach(item => {
+                if (item.id === action.payload){
+                    item.amount += 1
+                }
+            })
+            console.log(modified)
+            return {
+                ...state,
+                items: modified
+            }
+            
+        case 'OUT_ONE':
+
+        case 'CHANGE_SIZE':
 
         default: return state
     }
