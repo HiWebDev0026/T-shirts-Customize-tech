@@ -46,6 +46,31 @@ const shirtReducer = (state=initialState, action) => {
                 confirmation: action.payload
             }
 
+        case 'FILTER_BY_CATEGORY':
+        
+            if(!action.payload){
+                return {
+                    ...state,
+                    filteredByCategory:[]
+                }
+            }
+            
+            let filter=[]    
+            action.payload.forEach(category => {
+                let render= []
+                state.shirtsByName.length>0 ? render= state.shirtsByName : render= state.allShirts
+                render.forEach(shirt => {
+                    let check= shirt.categories.filter(i => i.name === category)
+                    if (check.length !== 0){filter.push(shirt)}
+                })
+            })
+            
+            return {
+                ...state,
+                filteredByCategory: filter
+            }
+            
+
         default:
             return state;
     }
