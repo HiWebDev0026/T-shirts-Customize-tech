@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Style from './User.module.css';
 
-import { getUsers } from '../../../Actions/index.js';
+import { deleteUser, getUsers } from '../../../Actions/index.js';
 
 export default function Users (){
 
@@ -14,9 +14,14 @@ const users= useSelector((state)=>state.userReducer.allUsers);
 const [filtered, setFiltered] = useState([]);
 const [order, setOrder] = useState([]);
 const [page, setPage] = useState(0);
-  const [max, setMax] = useState(0);
+const [max, setMax] = useState(0);
 const dispatch= useDispatch();
 
+function handleDelete (e) {
+    alert('User deleted')
+    dispatch(deleteUser(e.target.value));
+    
+};
 
 //Order By names
 const AZ = (a, b) => {return (a.name > b.name ?  1 : -1)};
@@ -27,7 +32,6 @@ function handleOrder(e){
   }
 
 let users1 = filtered.length > 0 ? filtered : users ;
-
 useEffect(() => {
   switch(order){
     case 'AZ': return setFiltered([...users1].sort(AZ))
@@ -40,8 +44,8 @@ useEffect(() => {
     setMax(users1.length-5)
     setPage(0)
 },[users1])
-const nextPage = ()=> {page < max && setPage(page + 6)};
-const prevPage= () =>{page >0 && setPage(page - 6)};
+const nextPage = ()=> {page < max && setPage(page + 5)};
+const prevPage= () =>{page >0 && setPage(page - 5)};
 
 
 
@@ -63,11 +67,12 @@ const prevPage= () =>{page >0 && setPage(page - 6)};
 </div>
             {
                         users1.length>0?
-                        users1.slice(page, page + 6).map((user)=>{
+                        users1.slice(page, page + 5).map((user)=>{
                         return <div className={Style.Tarjet} key={user.id} >
                                     <p className={Style.Titles}>{user.name}</p>
                                     <p className={Style.Titles}>{user.email}</p>
                                     <div className={Style.Contenedores}>
+                                    <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
                         
                                     </div>
                             </div>
