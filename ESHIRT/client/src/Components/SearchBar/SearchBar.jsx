@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom'
-
 import {getShirtsByName} from '../../Actions/index';
-//import {getShirtsByName} from '../../Actions/Actions';
-
 import { useDispatch } from 'react-redux';
 import Style from './SearchBar.module.css';
 
