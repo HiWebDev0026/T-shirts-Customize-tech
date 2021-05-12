@@ -24,13 +24,13 @@ server.use((req, res, next) => {
 });
 
 
-server.use(
+/*server.use(
         '/',
         createProxyMiddleware({
             target: 'http://localhost:3001',
             changeOrigin: true,
         })
-    );
+    );*/
            
 server.use(express.static(path.join(__dirname, '../../client/build')))
 server.use('/', routes);
