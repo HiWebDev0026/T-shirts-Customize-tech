@@ -4,7 +4,7 @@ export function getShirts(){
     
     return async (dispatch) => {
         try {
-            const res= await axios.get('http://localhost:3001/shirt', {responseType: 'json'});
+            const res= await axios.get('/shirt', {responseType: 'json'});
             const shirts = res.data;
             console.log(res);
             dispatch({type: 'GET_SHIRTS', payload: shirts})
