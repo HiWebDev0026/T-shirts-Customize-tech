@@ -4,32 +4,34 @@ import { deleteUser, getUsers } from "../../../Actions/index.js";
 import Style from "./User.module.css";
 
 export default function Users() {
-  useEffect(() => {
-    dispatch(getUsers());
-  }, []);
 
-  const users = useSelector((state) => state.userReducer.allUsers);
   const [filtered, setFiltered] = useState([]);
+  const [remove,setRemove]= useState(true);
   const [order, setOrder] = useState([]);
   const [page, setPage] = useState(0);
   const [max, setMax] = useState(0);
+
+  const users = useSelector((state) => state.userReducer.allUsers);
   const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [remove]);
+
   function handleDelete(e) {
-    alert("User deleted");
+    alert("User " + e.target.value + " deleted");
     dispatch(deleteUser(e.target.value));
+    setRemove(!remove)
   }
 
   //Order By names
-  const AZ = (a, b) => {
-    return a.name > b.name ? 1 : -1;
-  };
-  const ZA = (a, b) => {
-    return b.name > a.name ? 1 : -1;
-  };
+  const AZ = (a, b) => {return a.name > b.name ? 1 : -1;};
+  const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
   function handleOrder(e) {
     setOrder(e.target.value);
+    
   }
 
   let users1 = filtered.length > 0 ? filtered : users;
@@ -45,16 +47,9 @@ export default function Users() {
   }, [order]);
 
   //PAGINATION
-  useEffect(() => {
-    setMax(users1.length - 5);
-    setPage(0);
-  }, [users1]);
-  const nextPage = () => {
-    page < max && setPage(page + 5);
-  };
-  const prevPage = () => {
-    page > 0 && setPage(page - 5);
-  };
+  useEffect(() => {setMax(users1.length - 5); setPage(0);}, [users1]);
+  const nextPage = () => { page < max && setPage(page + 5); };
+  const prevPage = () => { page > 0 && setPage(page - 5); };
 
   return (
     <div className={Style.general}>
