@@ -1,26 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import FinalCSS from './FinalShirt.module.css';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
 import { postShirt } from '../../Actions/index.js';
+import {useHistory} from 'react-router-dom';
+
 export default function FinalShirt(props) {
 
     const {phase} = props;
     const dispatch= useDispatch();
+    const [input, setInput] = useState({
+        name: '',
+    });
+    const [input2, setInput2] = useState({
+        name: '',
+    });
 
+    function handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name
+        setInput({
+            [name]: value
+        });
+    }
+    function handlePublic(e) {
+        const value = e.target.value;
+        const name = e.target.name
+        setInput2({
+            [name]: value
+        });
+    }
+        
+    const history = useHistory()
     function handleSubmit (e, phase) {
+        alert('Shirt Created')
         e.preventDefault();
         dispatch(postShirt( 
             {
             userId: 1,
-            name: 'kjnjhgffhjkiyz',
+            name: input.name,
             print: phase.designSelected.data,
             size: phase.sizeSelected.data,
             color: phase.colorSelected.data,
-            public: true,
+            public: Boolean(input2.name),
             model: phase.modelSelected.data,
-    }));}
+    }));
+    history.push('/catalogue')
+}
 
     return (
         <div className={FinalCSS.container}>
@@ -34,6 +61,8 @@ export default function FinalShirt(props) {
                 </div>
                 <div className={FinalCSS.uploadForm}>
                     <form onSubmit={(e)=> handleSubmit(e, phase)}>
+                    <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
+                    <input name = 'name'  type = 'text' placeholder= 'Public: true or false:' onChange= {handlePublic} required/> 
                         <input type="submit" />
                     </form>
                 </div>

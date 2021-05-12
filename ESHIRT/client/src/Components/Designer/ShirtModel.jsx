@@ -28,6 +28,7 @@ function ShirtModel(props) {
                 <select onChange={(e)=> {
                     setData(e.target.value);
                 }}>
+                    <option value="">Select</option>
                     <option value="Cuello V">V-neck</option>
                     <option value="Manga corta">T-shirt</option>
                     <option value="Sin manga">Long sleeves</option>
