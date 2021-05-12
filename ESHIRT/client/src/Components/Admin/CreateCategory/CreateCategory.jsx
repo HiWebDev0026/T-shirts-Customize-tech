@@ -23,6 +23,7 @@ export default function CreateCategory (){
     },[remove,edit,sent]);
 
     function handleSubmit (e) {
+        alert('Category added')
         e.preventDefault();
         dispatch(postCategory({'name':category}));
         setSent(!sent);
@@ -30,6 +31,7 @@ export default function CreateCategory (){
     };
 
     function handleEdit (e) {
+        alert('Category modified')
         dispatch(putCategory({'name':change},editButtonTarget));
         setEdit(!edit);
         // setEditButtonTarget(false);
@@ -37,7 +39,7 @@ export default function CreateCategory (){
     }
 
     function handleDelete (e) {
-        console.log('ID',e.target.value);
+        alert('Category deleted')
         dispatch(deleteCategory(e.target.value));
         setRemove(!remove);
     };

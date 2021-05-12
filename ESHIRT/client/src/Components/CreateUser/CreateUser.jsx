@@ -25,7 +25,7 @@ function CreateUser() {
     }
 
     async function handleSubmit(e){
-        alert('User Created')
+        alert('User '+ input.name + ' Created')
         let user={};
           await axios({
               method:'post',

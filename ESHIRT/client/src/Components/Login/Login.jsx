@@ -33,7 +33,7 @@ function Login(){
         <button className={Style.Btn1}>Not now</button>
         </NavLink>
         <NavLink to='/create_user'>
-        <button className={Style.Btn2}>Sign Up</button>
+        <button className={Style.Btn2}>Sign in</button>
         </NavLink>
         </div>
         </div>
