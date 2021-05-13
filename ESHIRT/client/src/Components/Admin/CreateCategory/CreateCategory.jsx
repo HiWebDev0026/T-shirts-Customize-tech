@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getCategories,postCategory,deleteCategory,putCategory} from '../../../Actions/index.js'
+import {getCategories,postCategory,deleteCategory,putCategory, resetErrors} from '../../../Actions/index.js'
 import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
 
@@ -10,10 +10,10 @@ export default function CreateCategory (){
     const [category,setCategory]= useState('');
     const [editButtonTarget, setEditButtonTarget] = useState(0)
     const [change, setChange]=useState('');
- 
+    
 
     const categories= useSelector((state)=>state.categoryReducer.allCategories)
-    const errors = useSelector((state) => state.errors)
+    const errors = useSelector((state) => state.globalReducer.errors)
     
     const dispatch= useDispatch();
 
@@ -21,6 +21,14 @@ export default function CreateCategory (){
     useEffect(()=>{
         dispatch(getCategories());
     }, []);
+
+    useEffect(() => {
+        console.log(errors)
+        if (errors) {
+            alert(`${errors.message}`)
+            dispatch(resetErrors()) 
+        }
+    })
 
     function handleSubmit (e) {
         e.preventDefault();
