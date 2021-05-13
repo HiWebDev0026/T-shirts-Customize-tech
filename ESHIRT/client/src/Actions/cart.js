@@ -24,8 +24,8 @@ export function outOne(id){
     }
 }
 
-export function changeSize(id){
+export function changeSize(item){
     return (dispatch) => {
-        dispatch({type: 'CHANGE_SIZE', payload: id})
+        dispatch({type: 'CHANGE_SIZE', payload: item})
     }
 }

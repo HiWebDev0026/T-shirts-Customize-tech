@@ -2,7 +2,7 @@ import React from 'react'
 import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import { addOne, deleteItem, outOne, pushItem } from '../../Actions/cart'
+import { addOne, changeSize, deleteItem, outOne, pushItem } from '../../Actions/cart'
 
 
 export function SideCart(){
@@ -36,11 +36,24 @@ export function SideCart(){
     }
 
     function handleAddOneEma(){
-        dispatch(addOne(2))
+        dispatch(changeSize({
+            name: 'Ema',
+            id: 2,
+            price: 100,
+            size: 'M',
+            amount: 3
+        }))
     }
 
     function handleAddOneGer(){
-        dispatch(addOne(3))
+        dispatch(changeSize({
+            name: 'Ger',
+            id: 3,
+            price: 200,
+            size: 'S',
+            amount: 1
+            
+        }))
     }
 
     function handleDeleteEma(){
@@ -82,9 +95,9 @@ export function SideCart(){
             
             <div>
                 <button onClick={handleAdd}>ADD</button>
-                <button onClick={handleAddOneEma}>ADDoneEma</button>
+                <button onClick={handleAddOneEma}>changeSizeEma</button>
                 <button onClick={handleAdd2}>ADD2</button>
-                <button onClick={handleAddOneGer}>ADDoneGer</button>
+                <button onClick={handleAddOneGer}>changeSizeGer</button>
                 <button onClick={handleDeleteEma}>DELETEema</button>
                 <button onClick={handleDeleteGer}>DELETE2ger</button>
             </div>
