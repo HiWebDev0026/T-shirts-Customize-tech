@@ -5,7 +5,7 @@ import Style from "./ShirtsAdmin.module.css";
 export default function ShirtsAdmin() {
 
     return(
-        <div>
+        <div className={Style.Shirts}>
 <button>
     Aca van las remeras
 </button>
