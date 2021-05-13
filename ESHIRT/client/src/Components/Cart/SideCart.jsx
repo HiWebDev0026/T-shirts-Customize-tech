@@ -35,19 +35,19 @@ export function SideCart(){
         }))
     }
 
-    function handleAddOne1(){
+    function handleAddOneEma(){
         dispatch(addOne(2))
     }
 
-    function handleAddOne2(){
+    function handleAddOneGer(){
         dispatch(addOne(3))
     }
 
-    function handleDelete(){
+    function handleDeleteEma(){
         dispatch(outOne(2))
     }
 
-    function handleDelete2(){
+    function handleDeleteGer(){
         dispatch(outOne(3))
     }
 ////////////////////////////////////////////////
@@ -82,11 +82,11 @@ export function SideCart(){
             
             <div>
                 <button onClick={handleAdd}>ADD</button>
-                <button onClick={handleAddOne1}>ADDone(to1)</button>
+                <button onClick={handleAddOneEma}>ADDoneEma</button>
                 <button onClick={handleAdd2}>ADD2</button>
-                <button onClick={handleAddOne2}>ADDone(to2)</button>
-                <button onClick={handleDelete}>DELETE</button>
-                <button onClick={handleDelete2}>DELETE2</button>
+                <button onClick={handleAddOneGer}>ADDoneGer</button>
+                <button onClick={handleDeleteEma}>DELETEema</button>
+                <button onClick={handleDeleteGer}>DELETE2ger</button>
             </div>
         </div>
     )
