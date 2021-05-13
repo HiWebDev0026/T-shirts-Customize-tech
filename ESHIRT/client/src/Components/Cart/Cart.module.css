@@ -26,7 +26,6 @@
 .cartCard{
     border: solid 2px white;
     display: flex;
-    margin-left: 5%;
     margin-bottom: 5px;
 }
 
@@ -57,6 +56,10 @@
 
 .btns{
     border: solid 2px rgb(21, 77, 112);
+}
+
+.btns button {
+    margin:1px;
 }
 
 .column2{
@@ -90,3 +93,36 @@
 .q{
     width: 40%;
 }
+
+.pages{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+  }
+  
+  .pagination {
+      display: flex;
+      padding: 0;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      height: 10vh;
+      width: 80%;
+    }
+      
+    .pagination__link {
+      font-weight: bold;
+    }
+    
+    .pagination__link__active a {
+      color: black;
+      background: coral;
+    }
+    
+    .pagination__link__disabled a {
+      color:black;
+      
+    }
