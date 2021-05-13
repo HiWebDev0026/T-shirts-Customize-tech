@@ -240,20 +240,19 @@ font-family: "Montserrat", sans-serif;
   height: 50vh;
   justify-content: left;
 }
-.popup__text {
-  display: flex;
-  flex-direction: column;
-  justify-content:  right;
-  width: 60%;
-  height: 100%;
-  padding: 4rem;
+.popup__text h1 { 
+  /* width: 60%;
+  height: 100%; */
+  /* padding: 4rem; */
+  font-family: "Montserrat", sans-serif;
 }
-.popup__text h1 {
+.popup__text h2  {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
   text-transform: uppercase;
   color: #0A0A0A;
+  font-family: "Montserrat", sans-serif;
   
 }
 .popup__text p {
@@ -286,4 +285,28 @@ font-family: "Montserrat", sans-serif;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+}
+
+.buttonCart{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+  width: 90px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: rgba(255, 127, 80, 0.397);
+  transition-duration: 0.4s;
+  border-radius: 10px;
+}
+
+.buttonCart:hover{
+  background-color:#24252A;
+  color: rgba(255, 127, 80, 0.397);
+  border-radius: 10px;
+}
+
+.buttonCart{
+ 
+ 
 }
