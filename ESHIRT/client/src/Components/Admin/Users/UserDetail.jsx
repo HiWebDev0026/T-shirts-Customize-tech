@@ -19,7 +19,14 @@ console.log(user)
             <h2>User detail</h2>
 
               <p className={Style.Titles}>{user.name}</p>
+              <p className={Style.Titles}>{user.lastname}</p>
               <p className={Style.Titles}>{user.email}</p>
+              <p className={Style.Titles}>{user.country}</p>
+              <p className={Style.Titles}>{user.city}</p>
+              <p className={Style.Titles}>{user.adress}</p>
+              <p className={Style.Titles}>{user.phone}</p>
+
+
         </div>
     )
 }

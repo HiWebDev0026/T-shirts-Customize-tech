@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
 import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom'
 import Style from "./User.module.css";
 
 export default function Users() {
-   
+
+  const history = useHistory()
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
   const [page, setPage] = useState(0);
@@ -23,10 +25,13 @@ export default function Users() {
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
     dispatch(deleteUser(parseInt(e.target.value)));
+    
   }
 
   function getUserId(e) { 
     dispatch(getUserById(parseInt(e.target.value)));
+    console.log("soy el value", e.target.value)
+    history.push('/user_detail')
   }
 
   //Order By names
@@ -74,11 +79,11 @@ export default function Users() {
       ? ( users1.slice(page, page + 5).map((user) => {
           return (
               <div className={Style.Tarjet}>
-                  <Link to={`/user_detail`}> 
-            <h5  value= {user.id} onClick={() => getUserId}>
+                  
+            <button value={user.id} onClick={getUserId}>
             {" "} {user.name}  {" "}
-            </h5>
-            </Link>
+            </button>
+           
               <p className={Style.Titles}>{user.name}</p>
               <p className={Style.Titles}>{user.email}</p>
               <div className={Style.Contenedores}>
