@@ -6,7 +6,7 @@ import { addOne, changeSize, deleteItem, outOne, pushItem } from '../../Actions/
 
 
 export function SideCart(){
-    const [total, setTotal]= useState(0)
+    let total= 0
     const dispatch= useDispatch()
     const items= useSelector(state => state.cartReducer.items)
     
@@ -15,7 +15,7 @@ export function SideCart(){
 
     /////////////////// ESTO ES PARA TESTEO //////////
 
-    function handleAdd(){
+    /* function handleAdd(){
         dispatch(pushItem({
             name: 'Ema',
             id: 2,
@@ -62,15 +62,16 @@ export function SideCart(){
 
     function handleDeleteGer(){
         dispatch(outOne(3))
-    }
+    } */
 ////////////////////////////////////////////////
     return (
         <div>
             <div className={style.items}>
                 <h2>You have {items.length} items in your cart</h2>
-                {items => items.map(item => {
+                
+                {items?.map(item => {
                     console.log(item.price)
-                    setTotal(total + item.price)
+                    total += item.price
                     return(
                         
                         <div className={style.item}>
@@ -93,14 +94,14 @@ export function SideCart(){
             
             {/* ////////// ESTO ES PARA TESTEO /////////// */}
             
-            <div>
+            {/* <div>
                 <button onClick={handleAdd}>ADD</button>
                 <button onClick={handleAddOneEma}>changeSizeEma</button>
                 <button onClick={handleAdd2}>ADD2</button>
                 <button onClick={handleAddOneGer}>changeSizeGer</button>
                 <button onClick={handleDeleteEma}>DELETEema</button>
                 <button onClick={handleDeleteGer}>DELETE2ger</button>
-            </div>
+            </div> */}
         </div>
     )
 }

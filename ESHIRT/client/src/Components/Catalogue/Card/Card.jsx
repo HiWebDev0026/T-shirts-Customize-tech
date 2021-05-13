@@ -8,11 +8,11 @@ import {pushItem, deleteItem, addOne, outOne, changeSize} from '../../../Actions
 
 
 
-function Card({ title, score, size, model, color, image, id }) {
+function Card({ title, score, price, size, model, color, image, id }) {
 const red = useSelector(state => state.cartReducer.items) 
 const dispatch = useDispatch()
 const [item, setItem] = useState({
-  title, score, size, model, color, image, id, amount: 1
+  title, score, price, size, model, color, image, id, amount: 1
 })
 
 function handleAdd () {
@@ -24,8 +24,8 @@ function handleDelete () {
 }
 
 function handleSizeChange (e) {
- setItem({...item, size: e.target.value})
-dispatch(changeSize(item))
+  /* setItem({...item, size: e.target.value}) */
+  dispatch(changeSize({...item, size: e.target.value}))
 }
 
 function handleAddOne () {
@@ -71,11 +71,11 @@ console.log(red)
             <button onClick={handleOutOne}>- 1</button>
             <select onChange={handleSizeChange} >
               <option>Change size</option>
-              <option value="xl">XL</option>
-              <option value="l">L</option>
-              <option value="m">M</option>
-              <option value="s">S</option>
-              </select >
+              <option value="XL">XL</option>
+              <option value="L">L</option>
+              <option value="M">M</option>
+              <option value="S">S</option>
+            </select >
             <button onClick={handleAdd}>Add to Cart<FaCartPlus /></button>
             <button onClick={handleDelete}>Delete</button> 
           <div className={style.popup__text}>
