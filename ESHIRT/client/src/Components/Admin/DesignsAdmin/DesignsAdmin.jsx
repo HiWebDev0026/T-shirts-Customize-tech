@@ -5,7 +5,7 @@ import Style from "./DesignsAdmin.module.css";
 export default function DesignsAdmin() {
 
     return(
-        <div>
+        <div className={Style.Designs}>
 <button>
     Aca van los diseños 
 </button>

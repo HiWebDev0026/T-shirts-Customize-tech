@@ -5,7 +5,7 @@ import Style from "./Sales.module.css";
 export default function Sales() {
 
     return(
-        <div>
+        <div className={Style.Sales}>
 <button>
     Aca van las ventas
 </button>
