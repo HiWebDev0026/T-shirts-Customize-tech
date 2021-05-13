@@ -6,12 +6,7 @@ import categoryReducer from './category';
 import cartReducer from './cart'
 
 const initialState = {
-    errors: {
-        '400': false,
-        '404': false,
-        '409': false,
-        '500': false
-    }
+    errors: null
 }
 
 const globalReducer = (state = initialState, action) => {
@@ -19,18 +14,16 @@ const globalReducer = (state = initialState, action) => {
         case 'HANDLE_REQUEST_ERROR':
             return {
                 ...state,
-                errors: {[action.payload]: true}
+                errors: {
+                    code: action.payload.status,
+                    message: action.payload.message
+                }
             }
     
         case 'RESET_ERRORS':
             return {
                 ...state,
-                errors: {
-                    '400': false,
-                    '404': false,
-                    '409': false,
-                    '500': false
-                }
+                errors: null
             }
 
         default:

@@ -24,7 +24,7 @@ export function getShirtsByName(shirtName){
             dispatch({type: 'GET_SHIRTS_NAME', payload: shirts})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
         }
     }
 }
@@ -38,7 +38,7 @@ export function getShirtById(shirtId){
             dispatch({type: 'GET_SHIRT', payload: shirt})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
         }
     }
 }
@@ -52,7 +52,7 @@ export function postShirt(shirt){
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -67,7 +67,7 @@ export function putShirt(dataToModify, shirtId){
             dispatch({type: 'PUT_SHIRT', payload: {...dataToModify, shirtId: modifiedShirt.id}})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -82,7 +82,7 @@ export function deleteShirt(shirtId){
             dispatch({type: 'DELETE_SHIRT', payload: shirtId})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }        
     }

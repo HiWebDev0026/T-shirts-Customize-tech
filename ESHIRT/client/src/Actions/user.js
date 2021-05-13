@@ -10,7 +10,7 @@ export function getUsers(){
             dispatch({type: 'GET_USERS', payload: users})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -25,7 +25,7 @@ export function getUsersByName(userName){
             dispatch({type: 'GET_USERS_NAME', payload: users})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -40,7 +40,7 @@ export function getUserById(userId){
             dispatch({type: 'GET_USER', payload: user})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -55,7 +55,7 @@ export function postUser(user){
             dispatch({type: 'POST_USER', payload: {...user, userId:newUser.id}})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -70,7 +70,7 @@ export function putUser(dataToModify, userId){
         dispatch({type: 'PUT_USER', payload: {...dataToModify, userId:modifiedUser.id}})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }
     }
@@ -86,7 +86,7 @@ export function deleteUser(userId){
             dispatch({type: 'DELETE_USER', payload: userId})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
 
         }        
     }
