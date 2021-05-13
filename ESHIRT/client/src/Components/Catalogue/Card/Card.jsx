@@ -1,40 +1,39 @@
 import style from "./Card.module.css";
 import React from "react";
-
+import IconButton from "@material-ui/core/IconButton";
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 import { FaCartPlus } from "react-icons/fa";
 
-function Card({ title, score, size, model, color, image, id }) {
+function Card({title, score, size, model, color, image, id}){
+  
+
+
+
+
   return (
+   <div>
     <div className={style.wrapper}>
+       
       <div className={style.container}>
         <div className={style.top}>
-          <img className={style.image} src={image} />
+          <img className={style.image} src= {image}/>
         </div>
         <div className={style.bottom}>
           <div className={style.left}>
-            <div className={style.details}>
-              <a href="#popup1">{title}</a>
+            <div className={style.details}> 
+            <a >{title}</a>                     
             </div>
-            <div id="popup1" className={style.overlay}>
-              <div className={style.popup}>
-                <a className={style.close} href="#">
-                  &times;
-                </a>
-                <div className={style.content}>
-                  <p>{model}</p>
-                  <p>{color}</p>
-                </div>
-              </div>
-            </div>
-            <div className={style.buy}>
-              <buton>
-                <FaCartPlus />{" "}
-              </buton>
-            </div>
+           
+         
           </div>
         </div>
+
       </div>
+    
+  
+  
+      
       {/* <div className={style.inside}>
         <div className={style.icon}>
       
@@ -61,6 +60,22 @@ function Card({ title, score, size, model, color, image, id }) {
         </div>
       </div> */}
     </div>
+        <a className={style.button} href="#popup">More info</a>
+        <div className={style.popup} id="popup">
+          <div className={style.popup_inner}>
+            <div className={style.popup__photo}>
+              
+          
+            <div className={style.popup__text}>
+              <h1>Details</h1>
+              <p>{size}</p>
+              <p>{title}</p>
+            </div>
+            <a className={style.popup__close} href="#">X</a>
+          </div>
+        </div>
+      </div>
+      </div>
   );
 }
 
