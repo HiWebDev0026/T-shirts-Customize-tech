@@ -16,16 +16,19 @@ useEffect(() => {
 console.log(user)
     return (
         <div className={Style.Title}>
-            <h2>User detail</h2>
+            <div className={Style.Tarjet}>
+            <div className={Style.Titles1}>
+            <h2 className={Style.Detail}>User detail</h2>
+              <p>{user.name}</p>
+              <p>{user.lastname}</p>
+              <p>{user.email}</p>
+              <p>{user.country}</p>
+              <p>{user.city}</p>
+              <p>{user.adress}</p>
+              <p>{user.phone}</p>
 
-              <p className={Style.Titles}>{user.name}</p>
-              <p className={Style.Titles}>{user.lastname}</p>
-              <p className={Style.Titles}>{user.email}</p>
-              <p className={Style.Titles}>{user.country}</p>
-              <p className={Style.Titles}>{user.city}</p>
-              <p className={Style.Titles}>{user.adress}</p>
-              <p className={Style.Titles}>{user.phone}</p>
-
+              </div>
+              </div>
 
         </div>
     )
