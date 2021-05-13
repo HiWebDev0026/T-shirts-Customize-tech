@@ -1,19 +1,32 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import FinalCSS from './FinalShirt.module.css';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
-import { postShirt } from '../../Actions/index.js';
+import { postShirt, resetErrors } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
 
 export default function FinalShirt(props) {
 
     const {phase} = props;
+    const errors = useSelector((state) => state.globalReducer.errors);
+    const postOk = useSelector((state) => state.shirtReducer.shirtPostOk)
     const dispatch= useDispatch();
-    const [input, setInput] = useState({
-        name: '',
-    });
+    const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
+    const history = useHistory()
+
+
+    useEffect(() => {
+        console.log(errors)
+        if (errors) {
+            alert(`${errors.message}`)
+            dispatch(resetErrors()) 
+        } else if (postOk) {
+            alert('Shirt created!')
+            history.push('/catalogue')
+        }
+    })
 
     function handleChange(e) {
         const value = e.target.value;
@@ -30,22 +43,21 @@ export default function FinalShirt(props) {
         );
     }
         
-    const history = useHistory()
     function handleSubmit (e, phase) {
-        alert('Shirt Created')
         e.preventDefault();
         dispatch(postShirt( 
             {
-            userId: 1,
-            name: input.name,
-            print: phase.designSelected.data,
-            size: phase.sizeSelected.data,
-            color: phase.colorSelected.data,
-            public: input2 === 'true ' ? true : false,
-            model: phase.modelSelected.data,
-    }));
-    history.push('/catalogue')
-}
+                userId: 1,
+                name: input.name,
+                print: phase.designSelected.data,
+                size: phase.sizeSelected.data,
+                color: phase.colorSelected.data,
+                public: input2 === 'true ' ? true : false,
+                model: phase.modelSelected.data,
+            }
+        ));
+        //history.push('/catalogue')
+    }
 
     return (
         <div className={FinalCSS.container}>
