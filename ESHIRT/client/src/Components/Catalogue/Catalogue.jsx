@@ -2,8 +2,8 @@ import style from "./Catalogue.module.css";
 import React, {useState, useEffect} from "react";
 import Card from './Card/Card.jsx'
 import ReactPaginate from "react-paginate";
-import Button from '@material-ui/core/Button'
 import {useDispatch, useSelector} from 'react-redux'
+
 
 //import {getShirts} from '../../Actions/Actions'
 import {getShirts} from '../../Actions/index'
@@ -14,7 +14,7 @@ import { SideCart } from "../Cart/SideCart";
 
 // {title, price, width, height, model, color}
 
-const INITIAL_PAGE= 6;
+const INITIAL_PAGE= 10;
 
 function Catalogue(){
     
@@ -44,14 +44,19 @@ function handlePageClick({ selected: selectedPage }) {
   const currentPageData = data
   .slice(offset, offset + INITIAL_PAGE)
   .map(e => {
-        return <Card
+        return (        
+     
+        <Card
             title= {e.name}
             size= {e.size}
             model= {e.model}
             color= {e.color}
             image= {e.print}
-            score= {e.score}
+            score= {e.score}   
+            id={e.id}         
         />
+      
+     )
     })
     
 
