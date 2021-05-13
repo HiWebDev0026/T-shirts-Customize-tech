@@ -70,8 +70,21 @@ const cartReducer = (state=initialState, action) => {
         }
 
         case 'CHANGE_SIZE':
+            let modified= []
             if (state.items.length < 2){
-                
+                if (state.items[0].id === action.payload.id){
+                    modified.push(action.payload)
+                    return {
+                        ...state,
+                        items: modified
+                    }
+                } else {return state}
+            }
+            modified= state.items.filter(item => item.id !== action.payload.id)
+            modified.push(action.payload)
+            return {
+                ...state,
+                items: modified
             }
 
         default: return state
