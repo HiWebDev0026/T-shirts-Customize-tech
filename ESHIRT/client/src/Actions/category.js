@@ -10,6 +10,8 @@ export function getCategories(){
             dispatch({type: 'GET_CATEGORIES', payload: categories})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+
         }
     }
 }
@@ -23,6 +25,8 @@ export function getCategoriesByName(categoryName){
             dispatch({type: 'GET_CATEGORIES_NAME', payload: categories})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+
         }
     }
 }
@@ -37,6 +41,8 @@ export function postCategory(category){
             dispatch({type: 'POST_CATEGORY', payload: {...category, categoryId: newCategory.id}})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+
         }
     }
 }
@@ -50,6 +56,8 @@ export function putCategory(dataToModify, categoryId){
             dispatch({type: 'PUT_CATEGORY', payload: {...dataToModify, categoryId: modifiedCategory.id}})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+
         }
     }
 }
@@ -61,6 +69,8 @@ export function deleteCategory(categoryId){
             dispatch({type: 'DELETE_CATEGORY', payload: res.status})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {'500': 'Server problem'}})
+
         }        
     }   
 }
