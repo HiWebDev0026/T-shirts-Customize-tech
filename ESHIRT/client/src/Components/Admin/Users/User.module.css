@@ -9,6 +9,12 @@
     border: 2px solid coral;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
-
-    
+}
+.ContBtn3{
+    display: flex;
+    justify-content: center;
+}
+.Btn3{
+    display: flex;
+    justify-content: center;
 }

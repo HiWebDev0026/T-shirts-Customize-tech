@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Style from "./User.module.css";
 
 export default function Users() {
-
+   
   const [filtered, setFiltered] = useState([]);
-//   const [remove, setRemove]= useState(true);
   const [order, setOrder] = useState([]);
   const [page, setPage] = useState(0);
   const [max, setMax] = useState(0);
@@ -20,14 +19,14 @@ export default function Users() {
     dispatch(getUsers());
   }, []);
 
-  useEffect(() => {
-    dispatch(getUserById());
-  }, []);
 
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
     dispatch(deleteUser(parseInt(e.target.value)));
-    
+  }
+
+  function getUserId(e) { 
+    dispatch(getUserById(parseInt(e.target.value)));
   }
 
   //Order By names
@@ -57,6 +56,7 @@ export default function Users() {
   const prevPage = () => { page > 0 && setPage(page - 5); };
 
   return (
+      <div>
     <div className={Style.general}>
       <h1 className={Style.TitleCategory}>Users</h1>
       <div className="orders">
@@ -73,23 +73,29 @@ export default function Users() {
       {users1.length > 0 
       ? ( users1.slice(page, page + 5).map((user) => {
           return (
-              <div>
-                  <NavLink to={`/user_detail`}> 
-            <h5 className={Style.Tarjet} onClick={() => getUserById(user.id)}>
+              <div className={Style.Tarjet}>
+                  <Link to={`/user_detail`}> 
+            <h5  value= {user.id} onClick={() => getUserId}>
             {" "} {user.name}  {" "}
             </h5>
-            </NavLink>
+            </Link>
               <p className={Style.Titles}>{user.name}</p>
               <p className={Style.Titles}>{user.email}</p>
               <div className={Style.Contenedores}>
                 <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
               </div>
-           
             </div>
+            
           );
         })
       ) 
       : (<p>Users not found</p>)}
     </div>
+    <div className={Style.ContBtn3}>
+    <Link to='add_category'>
+        <button className={Style.Btn3}>Categories</button>
+    </Link>
+</div>
+</div>
   );
 }
