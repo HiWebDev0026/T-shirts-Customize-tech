@@ -25,7 +25,13 @@ import {
     filterByCategory
 } from './category.js';
 
+const resetErrors = () => {
+    return {type: 'RESET_ERRORS'}
+}
+
 export {
+    resetErrors,
+
     getUsers,
     getUsersByName,
     getUserById,
