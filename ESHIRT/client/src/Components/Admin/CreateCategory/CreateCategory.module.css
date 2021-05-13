@@ -80,3 +80,11 @@ justify-content: space-around;
     background-color: yellowgreen;
     border-radius: 5px;
 }
+.ContBtn3{
+    display: flex;
+    justify-content: center;
+}
+.Btn3{
+    display: flex;
+    justify-content: center;
+}

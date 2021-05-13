@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getCategories,postCategory,deleteCategory,putCategory} from '../../../Actions/index.js'
+import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
+
 
 export default function CreateCategory (){
 
@@ -55,6 +57,7 @@ export default function CreateCategory (){
     };
 
     return(
+        <div>
         <div className={Style.general}>
             <div>
                 <h1 className= {Style.TitleCategory}>Categories</h1>
@@ -87,5 +90,11 @@ export default function CreateCategory (){
             </form>
             </div>
         </div>
+        <div className={Style.ContBtn3}>
+        <NavLink to='users'>
+            <h4 className={Style.Btn3}>Users</h4>
+        </NavLink>
+    </div>
+    </div>
     );
 };
