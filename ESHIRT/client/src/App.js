@@ -14,6 +14,9 @@ import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
+import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
+import Sales from './Components/Admin/Sales/Sales';
+import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin';
 
 
 function App() {
@@ -30,6 +33,9 @@ function App() {
       <Route exact path= '/add_category' component={CreateCategory}/> 
       <Route exact path= '/users' component={Users}/>
       <Route exact path= '/user_detail' component={UserDetail}/>
+      <Route exact path= '/shirts_admin' component={ShirtsAdmin}/>
+      <Route exact path= '/sales' component={Sales}/>
+      <Route exact path= '/desings_admin' component={DesignsAdmin}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <Route path= '/' component={Footer}/>
     </div>
