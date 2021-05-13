@@ -82,8 +82,8 @@ export default function CreateCategory (){
             </div>
         </div>
         <div className={Style.ContBtn3}>
-        <NavLink to='users'>
-            <h4 className={Style.Btn3}>Users</h4>
+        <NavLink to='home_admin'>
+            <h3 className={Style.Btn3}>CONTROL PANEL</h3>
         </NavLink>
     </div>
     </div>

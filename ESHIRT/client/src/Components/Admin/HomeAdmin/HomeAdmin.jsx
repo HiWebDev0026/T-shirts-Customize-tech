@@ -8,7 +8,27 @@ export default function HomeAdmin() {
     return(
         <div className={Style.Title}>
 
-            Welcome
+            <h1>Welcome</h1>
+
+            <h3>Please choose what you want to see on the control panel</h3>
+            
+            <NavLink to= '/users'>
+                <h2>USERS</h2>
+            </NavLink>
+            <NavLink to= '/add_category'>
+                <h2>CATEGORIES</h2>
+            </NavLink>
+            <NavLink to= '/categories'>
+                <h2>SHIRTS</h2>
+            </NavLink>
+            <NavLink to= '/categories'>
+                <h2>SALES</h2>
+            </NavLink>
+            <NavLink to= '/categories'>
+                <h2>DESIGNS</h2>
+            </NavLink>
+
+
 
         </div>
     )

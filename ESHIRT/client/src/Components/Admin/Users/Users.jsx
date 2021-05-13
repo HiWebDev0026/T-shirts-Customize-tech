@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import Style from "./User.module.css";
 
@@ -97,9 +97,9 @@ export default function Users() {
       : (<p>Users not found</p>)}
     </div>
     <div className={Style.ContBtn3}>
-    <Link to='add_category'>
-        <button className={Style.Btn3}>Categories</button>
-    </Link>
+    <NavLink to='home_admin'>
+        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+    </NavLink>
 </div>
 </div>
   );

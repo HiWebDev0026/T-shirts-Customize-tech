@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { putUser, getUserById } from "../../../Actions/index.js";
+import {NavLink} from 'react-router-dom';
 import Style from "./UserDetail.module.css";
 
 export default function UserDetail (){
@@ -34,6 +35,7 @@ function showEditbutton (){
 
     return (
         <div className={Style.Title}>
+            
             <div className={Style.Tarjet}>
             <div className={Style.Titles1}>
             <h2 className={Style.Detail}>User detail</h2>
@@ -52,7 +54,10 @@ function showEditbutton (){
 
               </div>
               </div>
-        
+              <NavLink to='home_admin'>
+        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+    </NavLink>
+             
         </div>
     )
 }
