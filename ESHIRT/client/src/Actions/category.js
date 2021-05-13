@@ -38,7 +38,7 @@ export function postCategory(category){
         try {
             const res = await axios.post(`/category`, category, {responseType: 'json'})
             const newCategory = res.data
-            dispatch({type: 'POST_CATEGORY', payload: {...category, categoryId: newCategory.id}})
+            dispatch({type: 'POST_CATEGORY', payload: {...category, id: newCategory.id}})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
@@ -53,7 +53,8 @@ export function putCategory(dataToModify, categoryId){
         try {
             const res = await axios.put(`/category/${categoryId}`, dataToModify, {responseType: 'json'})
             const modifiedCategory = res.data
-            dispatch({type: 'PUT_CATEGORY', payload: {...dataToModify, categoryId: modifiedCategory.id}})
+            console.log(modifiedCategory)
+            dispatch({type: 'PUT_CATEGORY', payload: {...dataToModify, id: modifiedCategory.id}})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
