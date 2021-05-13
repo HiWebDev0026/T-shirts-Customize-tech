@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { putUser, getUserById } from "../../../Actions/index.js";
 import {NavLink} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Style from "./UserDetail.module.css";
 
 export default function UserDetail (){
@@ -9,6 +10,7 @@ export default function UserDetail (){
     const [edit,setEdit] = useState(false);
     const [change, setChange]=useState('');
     const [editButtonTarget, setEditButtonTarget] = useState(0);
+    const history = useHistory();
 
 const user = useSelector((state) => state.userReducer.userId);
 const dispatch = useDispatch();
@@ -22,7 +24,9 @@ useEffect(() => {
     dispatch(putUser({'name':change},editButtonTarget));
     setEdit(!edit);
     setChange('');
+    history.push('/users');
 }
+
 function showEditbutton (){
     return (
     <div>
@@ -47,17 +51,14 @@ function showEditbutton (){
               <p>{user.adress}</p>
               <p>{user.phone}</p>
               <div>
-            
             <button className={Style.Btn2} value={user.id} onClick={(e)=>setEditButtonTarget(e.target.value)}>Edit</button>
                                     {editButtonTarget == user.id && showEditbutton()}
-        </div>
-
+              </div>
               </div>
               </div>
               <NavLink to='home_admin'>
         <h3 className={Style.Btn3}>CONTROL PANEL</h3>
-    </NavLink>
-             
+    </NavLink>  
         </div>
-    )
-}
+    );
+};

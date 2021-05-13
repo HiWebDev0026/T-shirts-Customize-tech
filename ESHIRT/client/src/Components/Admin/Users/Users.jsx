@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
 import {NavLink} from 'react-router-dom';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 import Style from "./User.module.css";
 
 export default function Users() {
 
-  const history = useHistory()
+  
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
   const [page, setPage] = useState(0);
   const [max, setMax] = useState(0);
+  const history = useHistory();
 
   const users = useSelector((state) => state.userReducer.allUsers);
   const dispatch = useDispatch();
@@ -24,15 +25,13 @@ export default function Users() {
 
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
-    dispatch(deleteUser(parseInt(e.target.value)));
-    
-  }
+    dispatch(deleteUser(parseInt(e.target.value))); 
+  };
 
   function getUserId(e) { 
     dispatch(getUserById(parseInt(e.target.value)));
-    console.log("soy el value", e.target.value)
-    history.push('/user_detail')
-  }
+    history.push('/user_detail');
+  };
 
   //Order By names
   const AZ = (a, b) => {return a.name > b.name ? 1 : -1;};
@@ -40,8 +39,7 @@ export default function Users() {
 
   function handleOrder(e) {
     setOrder(e.target.value);
-    
-  }
+  };
 
   let users1 = filtered.length > 0 ? filtered : users;
   useEffect(() => {
@@ -83,14 +81,12 @@ export default function Users() {
             <button value={user.id} onClick={getUserId}>
             {" "} {user.name}  {" "}
             </button>
-           
               <p className={Style.Titles}>{user.name}</p>
               <p className={Style.Titles}>{user.email}</p>
               <div className={Style.Contenedores}>
                 <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
               </div>
             </div>
-            
           );
         })
       ) 
@@ -103,4 +99,4 @@ export default function Users() {
 </div>
 </div>
   );
-}
+};
