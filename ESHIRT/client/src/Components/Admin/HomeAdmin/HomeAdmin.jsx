@@ -18,13 +18,13 @@ export default function HomeAdmin() {
             <NavLink to= '/add_category'>
                 <h2>CATEGORIES</h2>
             </NavLink>
-            <NavLink to= '/categories'>
+            <NavLink to= '/shirts_admin'>
                 <h2>SHIRTS</h2>
             </NavLink>
-            <NavLink to= '/categories'>
+            <NavLink to= '/sales'>
                 <h2>SALES</h2>
             </NavLink>
-            <NavLink to= '/categories'>
+            <NavLink to= '/desings_admin'>
                 <h2>DESIGNS</h2>
             </NavLink>
 
