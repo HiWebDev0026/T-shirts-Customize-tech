@@ -1,3 +1,8 @@
+import {
+    putHelper,
+    deleteHelper
+} from './helpers'
+
 const initialState = {
     allShirts: [],
     shirtsByName: [],
@@ -35,15 +40,13 @@ const shirtReducer = (state=initialState, action) => {
         case 'PUT_SHIRT':
             return {
                 ...state, 
-                allShirts: [...state.allShirts].forEach(
-                    (el, ix) => el.id == action.payload.id && (state.allShirts[ix] = action.payload)
-                )
+                allShirts: putHelper(state.allShirts, action.payload)
             }
 
         case 'DELETE_SHIRT':
             return {
                 ...state,
-                confirmation: action.payload
+                allShirts: deleteHelper(state.allShirts, action.payload)
             }
 
         case 'FILTER_BY_CATEGORY':

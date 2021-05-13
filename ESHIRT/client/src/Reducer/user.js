@@ -1,3 +1,8 @@
+import {
+    putHelper,
+    deleteHelper
+} from './helpers'
+
 const initialState = {
     allUsers:[],
     usersByName: [],
@@ -26,13 +31,17 @@ const userReducer = (state = initialState, action) => {
             return
         
         case 'PUT_USER':
-            return
+            return {
+                ...state,
+                allUsers: putHelper(state.allUsers, action.payload)
+            }
             
         case 'DELETE_USER':
             return {
                 ...state,
-                allUsers: state.allUsers.filter(user=> user.id !== action.payload)
+                allUsers: deleteHelper(state.allUsers, action.payload)
             }
+            
         default:
             return state
     }

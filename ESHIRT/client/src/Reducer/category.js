@@ -1,3 +1,8 @@
+import {
+    putHelper,
+    deleteHelper
+} from './helpers'
+
 const initialState = {
     allCategories: [],
     categoriesByName: [],
@@ -25,18 +30,17 @@ const categoryReducer = (state=initialState, action) => {
             }
 
         case 'PUT_CATEGORY':
-            let index=  state.allCategories.finiIndex(category=>category.id === action.payload.id);
-            state.allCategories[index] = action.payload;
-            
+            // let index=  state.allCategories.finiIndex(category=>category.id === action.payload.id);
+            // state.allCategories[index] = action.payload;
             return{
                 ...state,
-                allCategories: state.allCategories
+                allCategories: putHelper(state.allCategories, action.payload) 
             }
 
         case 'DELETE_CATEGORY':
             return {
                 ...state,
-                confirmation: action.payload
+                allCategories: deleteHelper(state.allCategories, action.payload)
             }
 
         default: 
