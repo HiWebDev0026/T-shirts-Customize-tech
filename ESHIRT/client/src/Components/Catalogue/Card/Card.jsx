@@ -11,29 +11,9 @@ import {
   changeSize,
 } from "../../../Actions/cart.js";
 
-function Card({ title, score, size, model, color, image, id, amount }) {
-  const red = useSelector((state) => state.cartReducer.items);
-  const dispatch = useDispatch();
-  const [item, setItem] = useState({
-    title,
-    score,
-    size,
-    model,
-    color,
-    image,
-    id,
-    amount: 1,
-  });
 
-  function handleAdd() {
-    dispatch(pushItem(item));
-  }
 
-  function handleDelete() {
-    dispatch(deleteItem(item.id));
-  }
-
-function Card({ title, score, price, size, model, color, image, id }) {
+function Card({ title, score, price, size, model, color, image, id, amount }) {
 const red = useSelector(state => state.cartReducer.items) 
 const dispatch = useDispatch()
 const [item, setItem] = useState({
@@ -96,17 +76,8 @@ dispatch(outOne(item.id))
               X
             </a>
           </div>
-            <button onClick={handleAddOne}>+ 1</button>
-            <button onClick={handleOutOne}>- 1</button>
-            <select onChange={handleSizeChange} >
-              <option>Change size</option>
-              <option value="XL">XL</option>
-              <option value="L">L</option>
-              <option value="M">M</option>
-              <option value="S">S</option>
-            </select >
-            <button onClick={handleAdd}>Add to Cart<FaCartPlus /></button>
-            <button onClick={handleDelete}>Delete</button> 
+          
+            
           <div className={style.popup__text}>
             <h1>Details</h1>
             <h2>{title}</h2>
