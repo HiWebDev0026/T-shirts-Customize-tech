@@ -30,11 +30,11 @@ const cartReducer = (state=initialState, action) => {
             }
 
         case 'ADD_ONE':
-            let modified= state.items
-            modified.forEach(item => {
+            let modified= state.items.map(item => {
                 if (item.id === action.payload){
                     item.amount += 1
                 }
+                return item
             })
             console.log(modified)
             return {
