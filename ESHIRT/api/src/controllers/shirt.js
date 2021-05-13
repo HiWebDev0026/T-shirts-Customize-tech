@@ -15,7 +15,7 @@ const setToLower = (body) => {
 const validatePost = (body) => {
     const {name, color, model, size, print, public, score, categories} = body;
     
-    if (!(name && color && model && size && print && public)) { console.log("importante files"); return false; }
+    if (!(name && color && model && size && print && (typeof public !== 'undefined'))) { console.log("important fields"); return false; }
     if (isNaN(print) && print.length < 50) {console.log("print"); return false;}
     if (score && isNaN(score)) { console.log("score"); return false; }
     if (categories && !Array.isArray(categories)) {console.log("categories"); return false; }

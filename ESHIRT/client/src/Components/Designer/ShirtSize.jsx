@@ -31,7 +31,7 @@ function ShirtSize(props) {
                                                                     <select type="datalist" 
                                                                             onChange={(e)=> setData(e.target.value)} 
                                                                             value={data}>
-                                                                        <option value="Select"></option>
+                                                                        <option value="">Size</option>
                                                                         <option value="L">L</option>
                                                                         <option value="XL">XL</option>
                                                                         <option value="M">M</option>

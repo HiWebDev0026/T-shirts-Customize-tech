@@ -31,7 +31,7 @@ const userReducer = (state = initialState, action) => {
         case 'DELETE_USER':
             return {
                 ...state,
-                confirmation: action.payload
+                allUsers: state.allUsers.filter(user=> user.id !== action.payload)
             }
         default:
             return state
