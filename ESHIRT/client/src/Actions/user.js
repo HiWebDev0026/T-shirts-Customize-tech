@@ -70,8 +70,10 @@ export function deleteUser(userId){
     // Hacer un get antes de usar esta action porque se necesita el id
     return async (dispatch) => {
         try {
+            console.log(typeof userId, "soy id de delete")
             const res= await axios.delete(`/user/${userId}`, {responseType: 'json'})
-            dispatch({type: 'DELETE_USER', payload: res.status})
+            console.log(res.status, "soy el status")
+            dispatch({type: 'DELETE_USER', payload: userId})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
         }        

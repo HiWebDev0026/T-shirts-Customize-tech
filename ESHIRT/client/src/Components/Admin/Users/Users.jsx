@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUser, getUsers } from "../../../Actions/index.js";
+import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
+import {NavLink} from 'react-router-dom';
 import Style from "./User.module.css";
 
 export default function Users() {
 
   const [filtered, setFiltered] = useState([]);
-  const [remove,setRemove]= useState(true);
+//   const [remove, setRemove]= useState(true);
   const [order, setOrder] = useState([]);
   const [page, setPage] = useState(0);
   const [max, setMax] = useState(0);
@@ -17,12 +18,16 @@ export default function Users() {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [remove]);
+  }, []);
+
+  useEffect(() => {
+    dispatch(getUserById());
+  }, []);
 
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
-    dispatch(deleteUser(e.target.value));
-    setRemove(!remove)
+    dispatch(deleteUser(parseInt(e.target.value)));
+    
   }
 
   //Order By names
@@ -68,12 +73,18 @@ export default function Users() {
       {users1.length > 0 
       ? ( users1.slice(page, page + 5).map((user) => {
           return (
-            <div className={Style.Tarjet} key={user.id}>
+              <div>
+                  <NavLink to={`/user_detail`}> 
+            <h5 className={Style.Tarjet} onClick={() => getUserById(user.id)}>
+            {" "} {user.name}  {" "}
+            </h5>
+            </NavLink>
               <p className={Style.Titles}>{user.name}</p>
               <p className={Style.Titles}>{user.email}</p>
               <div className={Style.Contenedores}>
                 <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
               </div>
+           
             </div>
           );
         })
