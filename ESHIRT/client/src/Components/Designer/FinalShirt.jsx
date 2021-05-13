@@ -13,9 +13,7 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({
         name: '',
     });
-    const [input2, setInput2] = useState({
-        name: '',
-    });
+    const [input2, setInput2] = useState('');
 
     function handleChange(e) {
         const value = e.target.value;
@@ -27,9 +25,9 @@ export default function FinalShirt(props) {
     function handlePublic(e) {
         const value = e.target.value;
         const name = e.target.name
-        setInput2({
-            [name]: value
-        });
+        setInput2(
+            value
+        );
     }
         
     const history = useHistory()
@@ -43,7 +41,7 @@ export default function FinalShirt(props) {
             print: phase.designSelected.data,
             size: phase.sizeSelected.data,
             color: phase.colorSelected.data,
-            public: Boolean(input2.name),
+            public: input2 === 'true ' ? true : false,
             model: phase.modelSelected.data,
     }));
     history.push('/catalogue')
@@ -62,7 +60,14 @@ export default function FinalShirt(props) {
                 <div className={FinalCSS.uploadForm}>
                     <form onSubmit={(e)=> handleSubmit(e, phase)}>
                     <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
-                    <input name = 'name'  type = 'text' placeholder= 'Public: true or false:' onChange= {handlePublic} required/> 
+                    <div className={FinalCSS.Desing}> Do you want to share yoor design?</div>
+                    <label className={FinalCSS.Desing1}>Yes</label>
+                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+                    <label className={FinalCSS.Desing2}>No</label>
+                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+                   
+                    
+
                         <input type="submit" />
                     </form>
                 </div>
