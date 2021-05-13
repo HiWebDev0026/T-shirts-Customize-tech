@@ -1,0 +1,16 @@
+.loginBtn{
+    background: coral;
+    border: 2px solid black;
+    color: #24252A;
+    height: 40px;
+    width:  80px;
+    margin-left: 30px;
+}
+.logoutBtn{
+    background: black;
+    border: 2px solid #24252A;
+    color: coral;
+    height: 40px;
+    width:  80px;
+    margin-left: 30px;
+}

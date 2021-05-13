@@ -13,7 +13,8 @@ import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
-
+import ProtectedRoute from './auth/ProtectedRoute';
+import {Profile} from './auth/Profile';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route exact path= '/users' component={Users}/>
       <Route exact path= '/user_detail' component={UserDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
+      <ProtectedRoute path='/profile' component={Profile} />
       <Route path= '/' component={Footer}/>
     </div>
   )

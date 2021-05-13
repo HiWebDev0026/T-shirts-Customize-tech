@@ -25,6 +25,13 @@
     text-align: center;
 }
 
+.loginBtn{
+    background: coral;
+    border: 2px solid black;
+    color: blanchedalmond;
+
+}
+
 .navLinks{
     list-style: none;
 }
