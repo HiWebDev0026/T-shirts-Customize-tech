@@ -2,7 +2,7 @@ import React from 'react'
 import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import { addOne, deleteItem, pushItem } from '../../Actions/cart'
+import { addOne, deleteItem, outOne, pushItem } from '../../Actions/cart'
 
 
 export function SideCart(){
@@ -44,11 +44,11 @@ export function SideCart(){
     }
 
     function handleDelete(){
-        dispatch(deleteItem(2))
+        dispatch(outOne(2))
     }
 
     function handleDelete2(){
-        dispatch(deleteItem(3))
+        dispatch(outOne(3))
     }
 ////////////////////////////////////////////////
     return (

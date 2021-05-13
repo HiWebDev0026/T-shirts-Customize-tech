@@ -23,26 +23,46 @@ const cartReducer = (state=initialState, action) => {
 
         case 'DELETE_ITEM':
             let deleted= state.items.filter(i => i.id !== action.payload)
-            delete state.amount[action.payload]
             return {
                 ...state,
                 items: deleted,
             }
 
         case 'ADD_ONE':
-            let modified= state.items.map(item => {
+            let added= state.items.map(item => {
                 if (item.id === action.payload){
                     item.amount += 1
                 }
                 return item
             })
-            console.log(modified)
+            console.log(added)
             return {
                 ...state,
-                items: modified
+                items: added
             }
             
         case 'OUT_ONE':
+        let aux= []    
+        let erased= state.items.map(item => {
+                if (item.id === action.payload){
+                    item.amount -= 1
+                    if (item.amount < 1){
+                        aux= state.items.filter(i => i.id === action.payload)
+                    }
+                    return item
+                }
+            })
+        if (aux.length === 0){
+            return {
+                ...state,
+                items: erased
+            }
+        } else {
+            return {
+                ...state,
+                items: aux
+            }
+        }
 
         case 'CHANGE_SIZE':
 
