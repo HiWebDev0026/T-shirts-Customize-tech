@@ -33,10 +33,33 @@ function Card({ title, score, size, model, color, image, id, amount }) {
     dispatch(deleteItem(item.id));
   }
 
-  function handleSizeChange(e) {
-    setItem([...item, { size: e.target.value }]);
-    dispatch(changeSize(item));
-  }
+function Card({ title, score, price, size, model, color, image, id }) {
+const red = useSelector(state => state.cartReducer.items) 
+const dispatch = useDispatch()
+const [item, setItem] = useState({
+  title, score, price, size, model, color, image, id, amount: 1
+})
+
+function handleAdd () {
+  dispatch(pushItem(item))
+}
+
+function handleDelete () {
+  dispatch(deleteItem(item.id))
+}
+
+function handleSizeChange (e) {
+  /* setItem({...item, size: e.target.value}) */
+  dispatch(changeSize({...item, size: e.target.value}))
+}
+
+function handleAddOne () {
+  
+dispatch(addOne(item.id))
+}
+function handleOutOne () {
+dispatch(outOne(item.id))
+}
 
   function handleAddOne() {
     dispatch(addOne(item.id));
@@ -73,7 +96,17 @@ function Card({ title, score, size, model, color, image, id, amount }) {
               X
             </a>
           </div>
-
+            <button onClick={handleAddOne}>+ 1</button>
+            <button onClick={handleOutOne}>- 1</button>
+            <select onChange={handleSizeChange} >
+              <option>Change size</option>
+              <option value="XL">XL</option>
+              <option value="L">L</option>
+              <option value="M">M</option>
+              <option value="S">S</option>
+            </select >
+            <button onClick={handleAdd}>Add to Cart<FaCartPlus /></button>
+            <button onClick={handleDelete}>Delete</button> 
           <div className={style.popup__text}>
             <h1>Details</h1>
             <h2>{title}</h2>
