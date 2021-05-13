@@ -2,7 +2,7 @@ import React from 'react'
 import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import { addOne, deleteItem, pushItem } from '../../Actions/cart'
+import { addOne, changeSize, deleteItem, outOne, pushItem } from '../../Actions/cart'
 
 
 export function SideCart(){
@@ -35,20 +35,33 @@ export function SideCart(){
         }))
     }
 
-    function handleAddOne1(){
-        dispatch(addOne(2))
+    function handleAddOneEma(){
+        dispatch(changeSize({
+            name: 'Ema',
+            id: 2,
+            price: 100,
+            size: 'M',
+            amount: 3
+        }))
     }
 
-    function handleAddOne2(){
-        dispatch(addOne(3))
+    function handleAddOneGer(){
+        dispatch(changeSize({
+            name: 'Ger',
+            id: 3,
+            price: 200,
+            size: 'S',
+            amount: 1
+            
+        }))
     }
 
-    function handleDelete(){
-        dispatch(deleteItem(2))
+    function handleDeleteEma(){
+        dispatch(outOne(2))
     }
 
-    function handleDelete2(){
-        dispatch(deleteItem(3))
+    function handleDeleteGer(){
+        dispatch(outOne(3))
     }
 ////////////////////////////////////////////////
     return (
@@ -82,11 +95,11 @@ export function SideCart(){
             
             <div>
                 <button onClick={handleAdd}>ADD</button>
-                <button onClick={handleAddOne1}>ADDone(to1)</button>
+                <button onClick={handleAddOneEma}>changeSizeEma</button>
                 <button onClick={handleAdd2}>ADD2</button>
-                <button onClick={handleAddOne2}>ADDone(to2)</button>
-                <button onClick={handleDelete}>DELETE</button>
-                <button onClick={handleDelete2}>DELETE2</button>
+                <button onClick={handleAddOneGer}>changeSizeGer</button>
+                <button onClick={handleDeleteEma}>DELETEema</button>
+                <button onClick={handleDeleteGer}>DELETE2ger</button>
             </div>
         </div>
     )
