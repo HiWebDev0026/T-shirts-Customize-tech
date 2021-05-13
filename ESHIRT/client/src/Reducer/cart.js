@@ -70,6 +70,9 @@ const cartReducer = (state=initialState, action) => {
         }
 
         case 'CHANGE_SIZE':
+            if (state.items.length < 2){
+                
+            }
 
         default: return state
     }
