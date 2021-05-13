@@ -2,6 +2,7 @@
     color:white;
 }
 
+
 .container{
     border: solid 2px red;
     width: 100%;
@@ -27,53 +28,6 @@
     border: solid 2px white;
     display: flex;
     margin-bottom: 5px;
-}
-
-.picture{
-    border: solid 2px purple;
-    width: 25%;
-}
-
-.column1{
-    border: solid 2px orange;
-    width: 45%;
-    margin:auto;
-}
-
-.detail{
-    border: solid 2px grey;
-    margin-bottom: 10px;
-    
-}
-
-.name{
-    font-size:20px;
-}
-
-.sku{
-    font-size:10px;
-}
-
-.btns{
-    border: solid 2px rgb(21, 77, 112);
-}
-
-.btns button {
-    margin:1px;
-}
-
-.column2{
-    border: solid 2px orangered;
-    width: 10%;
-    display:flex;
-    align-items: center;
-}
-.column3{
-    border: solid 2px greenyellow;
-    width: 20%;  
-}
-.image{
-    width:100%;
 }
 
 .rigth{
