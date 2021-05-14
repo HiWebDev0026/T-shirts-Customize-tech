@@ -32,7 +32,7 @@ function App() {
       <Route exact path= '/home_admin' component={HomeAdmin}/> 
       <Route exact path= '/add_category' component={CreateCategory}/> 
       <Route exact path= '/users' component={Users}/>
-      <Route exact path= '/user_detail' component={UserDetail}/>
+      <Route exact path= '/user_detail/:id' component={UserDetail}/>
       <Route exact path= '/shirts_admin' component={ShirtsAdmin}/>
       <Route exact path= '/sales' component={Sales}/>
       <Route exact path= '/desings_admin' component={DesignsAdmin}/>
