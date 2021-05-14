@@ -13,10 +13,13 @@ import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
+import ProtectedRoute from './auth/ProtectedRoute';
+import {Profile} from './auth/Profile';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
 import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin';
+
 
 
 function App() {
@@ -37,6 +40,7 @@ function App() {
       <Route exact path= '/sales' component={Sales}/>
       <Route exact path= '/desings_admin' component={DesignsAdmin}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
+      <ProtectedRoute path='/profile' component={Profile} />
       <Route path= '/' component={Footer}/>
     </div>
   )
