@@ -9,19 +9,6 @@ import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 
 export default function Cart (){
-    //1re parte:
-        //cart vendría siendo el array del carrito
-        // const [cart,setCart]=useState([]);
-        //  useEffect(()=>{
-        //     LocalStorage.setItem('cart',JSON.stringify(cart));
-        // },[cart])
-        //ver en la consola Application y en key vería cart como un default empty array
-        //cuando añada algo a cart lo voy a ver en el value en Application
-    //2da parte:
-    //const cartFromLocalStorage= JSON.parse(localStorage.getItem('cart')|| []);
-    //el default value es porque si es un usuario puede no estar seteado esto, entonces seria el default el empty array;
-    //  cambiamos const [cart,setCart]=useState([]); por const [cart,setCart]=useState(cartFromLocalStorage);
-    //Hay un meaximo a almacenar en el local storage (2mb to 10mb) para mas puede usarse cookies
 
     let items= [
         {
@@ -83,7 +70,19 @@ export default function Cart (){
         }
     ]
     
-    const [products,setProducts]=useState([]);
+    const cartFromLocalStorage=JSON.parse(localStorage.getItem('items') || '[]'); 
+    // console.log('LOCASTORAGE',cartFromLocalStorage);
+
+    // let cartFromLocalStorage2 =cartFromLocalStorage.map(c=> 
+    //     {return {
+    //         id: c.id,
+    //         size: c.size,
+    //         amount: c.amount,
+    //         price: c.price
+    //     }})
+    //     console.log('LOCASTORAGE2',cartFromLocalStorage2);
+
+    const [products,setProducts]=useState(cartFromLocalStorage);
     const [currentPage, setCurrentPage] = useState(0);
 
     const  dispatch= useDispatch();
@@ -92,6 +91,10 @@ export default function Cart (){
     const INITIAL_PAGE= 4;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(products.length / INITIAL_PAGE);
+
+    useEffect(()=>{
+        localStorage.setItem('items',JSON.stringify(items));
+    },[items]);
 
     useEffect(()=>{
         let copy= items.slice();
