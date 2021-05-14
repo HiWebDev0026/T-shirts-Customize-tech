@@ -47,7 +47,9 @@ export function postShirt(shirt){
 
     return async (dispatch) => {
         try {console.log(shirt)
-            const res = await axios.post(`/shirt`, shirt, {responseType: 'json'})
+            const res = await axios.post(`/shirt`, shirt, {headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             const newShirt = res.data
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
         } catch (err) {

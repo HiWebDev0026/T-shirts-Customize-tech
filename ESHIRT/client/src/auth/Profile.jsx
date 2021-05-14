@@ -5,8 +5,33 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading  from './Loading';
 
 export const Profile = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const { name, picture, email } = user;
+
+
+  useEffect(() => {
+
+    if(!isAuthenticated) {
+          (async () => {
+            try {
+              const token = await getAccessTokenSilently({
+                audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+                
+              });
+              /* const response = await fetch('https://api.example.com/posts', {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }); */
+              localStorage.setItem('currentToken', token)
+              return console.log(localStorage);
+            } catch (e) {
+              console.error(e);
+            }
+          })();
+
+  }
+  }, [isAuthenticated]);
 
   return (
     <div>
