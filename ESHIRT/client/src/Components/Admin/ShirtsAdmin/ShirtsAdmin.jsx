@@ -25,6 +25,7 @@ const [max, setMax] = useState(0);
       const nextPage = () => { page < max && setPage(page + 11); };
       const prevPage = () => { page > 0 && setPage(page - 11); };
     
+      
     return(
       <div>
         <div className={Style.General} >
