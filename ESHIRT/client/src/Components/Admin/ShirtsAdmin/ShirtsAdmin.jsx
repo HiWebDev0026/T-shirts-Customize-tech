@@ -20,14 +20,25 @@ export default function ShirtsAdmin() {
 
     console.log("soy las shirts", shirts)
 
-
+    
     return(
+        <div className={Style.General}>
         <div className={Style.Shirts}>
+            <h3 className={Style.Title1}> Id---</h3>
+              <h3 className={Style.Title2}> -------Name------</h3>
+              <h3 className={Style.Title3}> ------Color------</h3>
+              <h3 className={Style.Title4}> -------Model-----</h3>
+              <h3 className={Style.Title5}>------Size------ </h3>
+              <h3 className={Style.Title6}> -----Score----- </h3>
+              <h3 className={Style.Title7}> -----Public-----</h3>
+              <h3 className={Style.Title8}> -----Created------</h3>
+              <h3 className={Style.Btn}>-Delete-</h3>
+              </div>
+              
             {shirts.length > 0 
       ? ( shirts.map((shirt) => {
           return (
               <div className={Style.Tarjet}>
-                  
               <p className={Style.Titles1}> {shirt.id}</p>
               <p className={Style.Titles2}> {shirt.name}</p>
               <p className={Style.Titles3}> {shirt.color}</p>
@@ -37,8 +48,7 @@ export default function ShirtsAdmin() {
               <p className={Style.Titles7}> {shirt.public}</p>
               <p className={Style.Titles8}> {shirt.created_by_user}</p>
               <button className={Style.Btn1}>X</button>
-              
-            </div>
+              </div>
           );
         })
       ) 
