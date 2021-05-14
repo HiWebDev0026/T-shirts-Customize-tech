@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const {User, Shirt} = require('../db.js');
+const {User, Shirt, Order} = require('../db.js');
 
 
 const setToLowerCase = (body) => {
@@ -53,7 +53,7 @@ async function postUser(req, res, next) {
 async function getUser(req, res, next) {     
     const userId = req.params.id
     try { 
-        const user = await User.findOne({where: {id: userId}, include: [Shirt]})
+        const user = await User.findOne({where: {id: userId}, include: [Shirt, Order]})
         if (user) {
             return res.status(200).json(user)
         } else {

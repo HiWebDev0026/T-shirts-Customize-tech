@@ -48,6 +48,7 @@ function handlePageClick({ selected: selectedPage }) {
      
         <Card
             title= {e.name}
+            price= {50}
             size= {e.size}
             model= {e.model}
             color= {e.color}

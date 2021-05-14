@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.Title{
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    justify-content: space-evenly;
+    text-align: center;
+}

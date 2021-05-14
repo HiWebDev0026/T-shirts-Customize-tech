@@ -7,7 +7,8 @@ const initialState = {
     allShirts: [],
     shirtsByName: [],
     shirtId: {},
-    random6:[]
+    random6:[],
+    shirtPostOk: null
 }
 
 const shirtReducer = (state=initialState, action) => {
@@ -34,7 +35,8 @@ const shirtReducer = (state=initialState, action) => {
         case 'POST_SHIRT':
             return {
                 ...state,
-                allShirts: [...state.allShirts, action.payload]
+                allShirts: [...state.allShirts, action.payload],
+                shirtPostOk: true
             }
 
         case 'PUT_SHIRT':

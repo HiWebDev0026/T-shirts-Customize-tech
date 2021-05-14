@@ -210,6 +210,7 @@ font-family: "Montserrat", sans-serif;
   opacity: 0;
   overflow: hiden;
   transition: 0.64s ease-in-out;
+  
 }
 .popup_inner {
   position: relative;
@@ -226,40 +227,51 @@ font-family: "Montserrat", sans-serif;
   transform: rotate(32deg);
   transition: 0.64s ease-in-out;
   padding:0;
+  
+
 }
 .popup__photo {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   width: 40%;
-  height: 100%;
+  height: 70%;
   overflow: hidden;
+  border-right: thick solid #0c0c0c;
 }
 .popup__photo img {
   width: 50vh;
   height: 50vh;
   justify-content: left;
+  
 }
-.popup__text {
-  display: flex;
-  flex-direction: column;
-  justify-content:  right;
-  width: 60%;
-  height: 100%;
-  padding: 4rem;
+.popup__text h1 { 
+  /* width: 60%;
+  height: 100%; */
+  /* padding: 4rem; */
+  display:flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  
 }
-.popup__text h1 {
+.popup__text h2  {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
   text-transform: uppercase;
   color: #0A0A0A;
+  font-family: "Montserrat", sans-serif;
+  
   
 }
 .popup__text p {
+
   font-size: 0.875rem;
   color: #686868;
   line-height: 1.5;
+  display:flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
 }
 .popup:target {
   visibility: visible;
@@ -286,4 +298,27 @@ font-family: "Montserrat", sans-serif;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+}
+
+.buttonCart{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+  width: 90px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: rgba(255, 127, 80, 0.397);
+  transition-duration: 0.4s;
+  border-radius: 10px;
+}
+
+.buttonCart:hover{
+  background-color:#24252A;
+  color: rgba(255, 127, 80, 0.397);
+  border-radius: 10px;
+}
+
+.verticalLine {
+  border-left: thick solid #ff0000;
 }

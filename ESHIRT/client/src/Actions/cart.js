@@ -13,6 +13,7 @@ export function deleteItem(id){
 }
 
 export function addOne(id){
+    
     return (dispatch) => {
         dispatch({type: 'ADD_ONE', payload: id})
     }
@@ -27,5 +28,11 @@ export function outOne(id){
 export function changeSize(item){
     return (dispatch) => {
         dispatch({type: 'CHANGE_SIZE', payload: item})
+    }
+}
+
+export function clear(){
+    return (dispatch) => {
+        dispatch({type: 'CLEAR'})
     }
 }

@@ -43,10 +43,10 @@ const cartReducer = (state=initialState, action) => {
             
         case 'OUT_ONE':
         let erased= []    
-        if (state.items.length < 2){
+        if (state.items.length === 1){
             if (state.items[0].id === action.payload && state.items[0].amount === 1){
                 return {...state, items:[]}
-            }
+            } 
         }
         let droppedOne= state.items?.map(item => {
                 if (item.id === action.payload){
@@ -74,6 +74,7 @@ const cartReducer = (state=initialState, action) => {
             if (state.items.length < 2){
                 if (state.items[0].id === action.payload.id){
                     modified.push(action.payload)
+                    console.log(modified)
                     return {
                         ...state,
                         items: modified
@@ -81,11 +82,16 @@ const cartReducer = (state=initialState, action) => {
                 } else {return state}
             }
             modified= state.items.filter(item => item.id !== action.payload.id)
-            modified.push(action.payload)
             return {
                 ...state,
-                items: modified
+                items: modified.concat(action.payload)
             }
+
+        case 'CLEAR':
+            return {
+                ...state,
+                items: []
+            }    
 
         default: return state
     }

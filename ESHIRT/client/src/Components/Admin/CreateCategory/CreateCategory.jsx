@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getCategories,postCategory,deleteCategory,putCategory} from '../../../Actions/index.js'
+import {getCategories,postCategory,deleteCategory,putCategory, resetErrors} from '../../../Actions/index.js'
 import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
 
@@ -8,42 +8,41 @@ import Style from './CreateCategory.module.css';
 export default function CreateCategory (){
 
     const [category,setCategory]= useState('');
-    const [remove,setRemove]= useState(true);
     const [editButtonTarget, setEditButtonTarget] = useState(0)
-    const [edit,setEdit] = useState(false);
-    const [sent, setSent] = useState(false);
     const [change, setChange]=useState('');
- 
+    
 
     const categories= useSelector((state)=>state.categoryReducer.allCategories)
+    const errors = useSelector((state) => state.globalReducer.errors)
     
     const dispatch= useDispatch();
 
 
     useEffect(()=>{
         dispatch(getCategories());
-    },[remove,edit,sent]);
+    }, []);
+
+    useEffect(() => {
+        console.log(errors)
+        if (errors) {
+            alert(`${errors.message}`)
+            dispatch(resetErrors()) 
+        }
+    })
 
     function handleSubmit (e) {
-        alert('Category added')
         e.preventDefault();
-        dispatch(postCategory({'name':category}));
-        setSent(!sent);
-        // setCategory('');   
+        dispatch(postCategory({'name':category})); 
     };
 
     function handleEdit (e) {
-        alert('Category modified')
-        dispatch(putCategory({'name':change},editButtonTarget));
-        setEdit(!edit);
-        // setEditButtonTarget(false);
+        e.preventDefault();
+        dispatch(putCategory({'name':change}, editButtonTarget));
         setChange('');
     }
 
     function handleDelete (e) {
-        alert('Category deleted')
-        dispatch(deleteCategory(e.target.value));
-        setRemove(!remove);
+        dispatch(deleteCategory(parseInt(e.target.value)));
     };
 
     function showEditbutton (){
@@ -69,8 +68,8 @@ export default function CreateCategory (){
                                     <p className={Style.Titles}>{category.name}</p>
                                     <div className={Style.Contenedores}>
                                     <button className={Style.Btn1} value={category.id} onClick={handleDelete}>X</button>
-                                    <button className={Style.Btn2} value={category.id} onClick={(e)=>setEditButtonTarget(e.target.value)}>Edit</button>
-                                    {editButtonTarget == category.id && showEditbutton()}
+                                    <button className={Style.Btn2} value={category.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>Edit</button>
+                                    {editButtonTarget === category.id && showEditbutton()}
                                     </div>
                             </div>
                             
@@ -91,8 +90,8 @@ export default function CreateCategory (){
             </div>
         </div>
         <div className={Style.ContBtn3}>
-        <NavLink to='users'>
-            <h4 className={Style.Btn3}>Users</h4>
+        <NavLink to='home_admin'>
+            <h3 className={Style.Btn3}>CONTROL PANEL</h3>
         </NavLink>
     </div>
     </div>

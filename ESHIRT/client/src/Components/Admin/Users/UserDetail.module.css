@@ -1,7 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .Title{
-    color: white;
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    justify-content: space-evenly;
+}
+
+.Tarjet{
+    
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 10px 1fr 2fr 2fr 10px;
+        color: white;
+        width: 40vw;
+        height: 80vh;
+        gap: 1vh;
+        margin: 2vw;
+        border-radius: 10px;
+        position: relative;
+        top: 0;
+        transition: all 0.1s ease-in;
+        border: 2px solid coral;
+      
+}
+.Tarjet:hover{
+    top: -1vh;
+    box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
+  }
+  .Detail{
+      color: coral;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 150%;
+  }
+  
+
+.Titles1{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column: 2;
+    grid-row: 1;
+    object-fit: contain;
+    font-size: 220%;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
+
+
+
+

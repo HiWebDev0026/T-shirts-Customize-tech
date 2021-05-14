@@ -32,7 +32,6 @@ async function postCategory(req, res, next) {
         const name = validateBody(req.body)
 
         if (!name) { return next({status: 400, message: 'Bad body request'})};
-
         const newCategory= {...req.body, name: name.toLowerCase()}
         const postedCategory = await Category.create(newCategory);
         return res.status(200).json(postedCategory)
@@ -101,8 +100,11 @@ async function putCategory(req, res, next) {
             for (const header of HEADERS) {  //tomamos cada columna 
                 category[header] = body[header] //usamos bracket notation porque cada header es un STRING!
             }
+            
             category.save()
-            return res.status(200).json(category)
+                .then(() => res.status(200).json(category))
+                .catch(err => next({status: 409, message: 'This name already'}))
+            
         } else {
             return next({status: 404, message: 'Category not found'})
         }

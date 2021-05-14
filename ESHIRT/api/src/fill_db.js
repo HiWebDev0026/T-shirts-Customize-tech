@@ -26,6 +26,7 @@ utils.promisifiedReadFile = function (filename) {
 
 const user1 = {
     "name": "USER1",
+    "lastname": "L_USER1",
     "email": "USER1@gmail.com",
     "password": "ASDWTDY",
     "country": "argentine",
@@ -36,6 +37,7 @@ const user1 = {
 
 const user2 = {
     "name": "USER2",
+    "lastname": "L_USER2",
     "email": "USER2@gmail.com",
     "password": "ASDWTDY2",
     "country": "argentine",
@@ -46,6 +48,7 @@ const user2 = {
 
 const user3 = {
     "name": "USER3",
+    "lastname": "L_USER3",
     "email": "USER3@gmail.com",
     "password": "ASDWTDY3",
     "country": "colombia",
@@ -56,6 +59,7 @@ const user3 = {
 
 const user4 = {
     "name": "USER4",
+    "lastname": "L_USER4",
     "email": "USER4@gmail.com",
     "password": "ASDWTDY4",
     "country": "colombia",
@@ -66,6 +70,7 @@ const user4 = {
 
 const user5 = {
     "name": "USER5",
+    "lastname": "L_USER5",
     "email": "USER5@gmail.com",
     "password": "ASDWTDY5",
     "country": "colombia",
@@ -76,6 +81,7 @@ const user5 = {
 
 const user6 = {
     "name": "USER6",
+    "lastname": "L_USER6",
     "email": "USER6@gmail.com",
     "password": "ASDWTDY6",
     "country": "colombia",
