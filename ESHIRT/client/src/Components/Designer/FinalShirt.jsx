@@ -30,6 +30,22 @@ export default function FinalShirt(props) {
         );
     }
         
+    // const history = useHistory()
+    // function handleSubmit (e, phase) {
+    //     alert('Shirt Created')
+    //     e.preventDefault();
+    //     dispatch(postShirt( 
+    //         {
+    //         userId: 1,
+    //         name: input.name,
+    //         print: phase.designSelected.data,
+    //         size: phase.sizeSelected.data,
+    //         color: phase.colorSelected.data,
+    //         public: input2 === 'true ' ? true : false,
+    //         model: phase.modelSelected.data,
+    // }));
+    // history.push('/catalogue')
+
     const history = useHistory()
     function handleSubmit (e, phase) {
         alert('Shirt Created')

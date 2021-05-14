@@ -13,12 +13,12 @@ const checkJwt = jwt({
       cache: true,
       rateLimit: true,
       jwksRequestsPerMinute: 5,
-      jwksUri: `https://eshirts-henry.us.auth0.com/.well-known/jwks.json`
+      jwksUri: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/.well-known/jwks.json`
     }),
   
     // Validate the audience and the issuer.
-    audience: 'eshirts-api',
-    issuer: [`https://eshirts-henry.us.auth0.com/`],
+    audience:  `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+    issuer: [`${process.env.REACT_APP_AUTH0_DOMAIN}`],
     algorithms: ['RS256']
   });
 
