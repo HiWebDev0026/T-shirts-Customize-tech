@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
         allowNull: false
     },
     status: {
-        type: DataTypes.STRING
+        type: DataTypes.ENUM('CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED')
     }
   });
 };
