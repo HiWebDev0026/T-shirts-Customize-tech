@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {NavLink} from 'react-router-dom';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./Sales.module.css";
 
 export default function Sales() {
@@ -7,7 +8,7 @@ export default function Sales() {
     return(
         <div className={Style.Sales}>
              <table id="table-to-xls">
-        <div className={Style.Shirts} id='tableShirts'>
+        <div className={Style.Shirts} id='tableSales'>
             <br/>
             <tr>
              <th className={Style.Title1}> Id---------------</th>
@@ -20,6 +21,20 @@ export default function Sales() {
               </tr>
               </div>
                </table>
+               <br />
+               
+      <div>
+      <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="salesxls"
+                    sheet="shirtsxls"
+                    buttonText="Download as XLS"/>
+      </div>
+
+
+
 
 
 <NavLink to='home_admin'>
