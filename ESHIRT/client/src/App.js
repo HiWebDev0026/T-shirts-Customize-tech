@@ -1,5 +1,6 @@
 import './App.css';
 import {Route} from 'react-router-dom';
+import {useEffect} from 'react';
 
 import Home from './Components/Home/Home.jsx'
 import NavBar from './Components/NavBar/NavBar.jsx';
@@ -18,11 +19,35 @@ import {Profile} from './auth/Profile';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
 import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
-import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin';
+import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
+import { useAuth0} from "@auth0/auth0-react";
 
 
 
 function App() {
+
+  const {isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    
+    (async () => {
+      try {
+        const token = await getAccessTokenSilently({
+          audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+          
+        });
+        localStorage.setItem('currentToken', token)
+        return console.log(localStorage);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+
+
+}, [isAuthenticated]);
+
+
+
   return (
     <div className= 'App'>
       <Route path= '/' component={NavBar}/>    
