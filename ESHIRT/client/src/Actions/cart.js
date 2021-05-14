@@ -30,3 +30,9 @@ export function changeSize(item){
         dispatch({type: 'CHANGE_SIZE', payload: item})
     }
 }
+
+export function clear(){
+    return (dispatch) => {
+        dispatch({type: 'CLEAR'})
+    }
+}
