@@ -11,42 +11,43 @@ import {
   changeSize,
 } from "../../../Actions/cart.js";
 
-
-
 function Card({ title, score, price, size, model, color, image, id, amount }) {
-const red = useSelector(state => state.cartReducer.items) 
-const dispatch = useDispatch()
-const [item, setItem] = useState({
-  title, score, price, size, model, color, image, id, amount: 1
-})
+  const red = useSelector((state) => state.cartReducer.items);
+  const dispatch = useDispatch();
+  const [item, setItem] = useState({
+    title,
+    score,
+    price,
+    size,
+    model,
+    color,
+    image,
+    id,
+    amount: 1,
+  });
 
-function handleAdd () {
-  dispatch(pushItem(item))
-}
+  function handleAdd() {
+    dispatch(pushItem(item));
+  }
 
-function handleDelete () {
-  dispatch(deleteItem(item.id))
-}
+  function handleDelete() {
+    dispatch(deleteItem(item.id));
+  }
 
-function handleSizeChange (e) {
-  /* setItem({...item, size: e.target.value}) */
-  dispatch(changeSize({...item, size: e.target.value}))
-}
-
-function handleAddOne () {
-  
-dispatch(addOne(item.id))
-}
-function handleOutOne () {
-dispatch(outOne(item.id))
-}
+  function handleSizeChange(e) {
+    /* setItem({...item, size: e.target.value}) */
+    dispatch(changeSize({ ...item, size: e.target.value }));
+  }
 
   function handleAddOne() {
+    
     dispatch(addOne(item.id));
   }
   function handleOutOne() {
     dispatch(outOne(item.id));
   }
+
+
 
   return (
     <div>
@@ -76,12 +77,10 @@ dispatch(outOne(item.id))
               X
             </a>
           </div>
-          
-            
           <div className={style.popup__text}>
             <h1>Details</h1>
             <h2>{title}</h2>
-            <p>Size: {size}</p>            
+            <p>Size: {size}</p>
             <p>Color: {color}</p>
             <p>Model: {model}</p>
             <p>Score: {score}</p>

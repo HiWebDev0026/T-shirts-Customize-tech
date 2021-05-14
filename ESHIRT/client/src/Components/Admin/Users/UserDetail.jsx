@@ -101,7 +101,6 @@ export default function UserDetail ({match}){
                 <h3 className={Style.Btn3}>CONTROL PANEL</h3>
             </NavLink>
             
-             
         </div>
-    )
-}
+    );
+};
