@@ -13,6 +13,7 @@ export function deleteItem(id){
 }
 
 export function addOne(id){
+    
     return (dispatch) => {
         dispatch({type: 'ADD_ONE', payload: id})
     }

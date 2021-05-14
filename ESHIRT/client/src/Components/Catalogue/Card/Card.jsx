@@ -3,16 +3,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
+import {MdDeleteForever} from "react-icons/md";
 import {
   pushItem,
   deleteItem,
-  addOne,
-  outOne,
-  changeSize,
 } from "../../../Actions/cart.js";
 
-function Card({ title, score, price, size, model, color, image, id, amount }) {
-  const red = useSelector((state) => state.cartReducer.items);
+function Card({ title, score, price, size, model, color, image, id }) {
+  const [flag, setFlag]= useState(false)
   const dispatch = useDispatch();
   const [item, setItem] = useState({
     title,
@@ -27,24 +25,26 @@ function Card({ title, score, price, size, model, color, image, id, amount }) {
   });
 
   function handleAdd() {
+    setFlag(true)
     dispatch(pushItem(item));
   }
 
   function handleDelete() {
+    setFlag(false)
     dispatch(deleteItem(item.id));
   }
 
   function handleSizeChange(e) {
-    /* setItem({...item, size: e.target.value}) */
-    dispatch(changeSize({ ...item, size: e.target.value }));
+    setItem({...item, size: e.target.value})
   }
 
   function handleAddOne() {
-    
-    dispatch(addOne(item.id));
+    setItem({...item, amount: item.amount +1})
   }
   function handleOutOne() {
-    dispatch(outOne(item.id));
+    if (item.amount > 1){
+      setItem({...item, amount: item.amount -1})
+    }
   }
 
 
@@ -79,32 +79,43 @@ function Card({ title, score, price, size, model, color, image, id, amount }) {
           </div>
           <div className={style.popup__text}>
             <h1>Details</h1>
-            <h2>{title}</h2>
-            <p>Size: {size}</p>
-            <p>Color: {color}</p>
-            <p>Model: {model}</p>
-            <p>Score: {score}</p>
-            <p>Amount: {amount}</p>
-            <div className={style.cartBox}>
-              <button className={style.buttonCart} onClick={handleAddOne}>
-                + 1
-              </button>
-              <button className={style.buttonCart} onClick={handleOutOne}>
-                - 1
-              </button>
-              <select className={style.buttonCart} onChange={handleSizeChange}>
-                <option>Change size</option>
-                <option value="xl">XL</option>
-                <option value="l">L</option>
-                <option value="m">M</option>
-                <option value="s">S</option>
-              </select>
+            <div>
+              <h2>{title}</h2>
               <button className={style.buttonCart} onClick={handleAdd}>
                 <FaCartPlus />
               </button>
               <button className={style.buttonCart} onClick={handleDelete}>
-                Delete
+                <MdDeleteForever/>
               </button>
+            </div>
+            
+            
+            <p>Size: {item.size}</p>
+            <p>Color: {color}</p>
+            <p>Model: {model}</p>
+            <p>Score: {score}</p>
+            <p>Amount: {item.amount}</p>
+            <div className={style.cartBox}>
+              {
+                flag ? <dv className={style.buttonCart}>You selected {item.amount} items {item.size}</dv>
+                : 
+                      <div>
+                        <button className={style.buttonCart} onClick={handleAddOne}>
+                        + 1
+                        </button>
+                        <button className={style.buttonCart} onClick={handleOutOne}>
+                        - 1
+                        </button>
+                        <select className={style.buttonCart} onChange={handleSizeChange}>
+                          <option>Change size</option>
+                          <option value="XL">XL</option>
+                          <option value="L">L</option>
+                          <option value="M">M</option>
+                          <option value="S">S</option>
+                        </select>
+                      </div>
+              }
+              
             </div>
           </div>
         </div>

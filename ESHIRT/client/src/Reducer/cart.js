@@ -43,10 +43,10 @@ const cartReducer = (state=initialState, action) => {
             
         case 'OUT_ONE':
         let erased= []    
-        if (state.items.length < 2){
+        if (state.items.length === 1){
             if (state.items[0].id === action.payload && state.items[0].amount === 1){
                 return {...state, items:[]}
-            }
+            } 
         }
         let droppedOne= state.items?.map(item => {
                 if (item.id === action.payload){
