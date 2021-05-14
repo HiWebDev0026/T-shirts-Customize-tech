@@ -7,3 +7,27 @@
     display: grid;
     justify-content: space-evenly;
 }
+.Title1{
+    grid-column: 1;
+}
+.Title2{
+    grid-column: 2;
+}
+.Title3{
+    grid-column: 3;
+}
+.Title4{
+    grid-column: 4;
+}
+.Title5{
+    grid-column: 5;
+}
+.Title6{
+    grid-column: 6;
+}
+.Title7{
+    grid-column: 7;
+}
+.Title8{
+    grid-column: 8;
+}
