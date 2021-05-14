@@ -21,9 +21,9 @@ const [max, setMax] = useState(0);
         dispatch(deleteShirt(parseInt(e.target.value))); 
       };
       
-      useEffect(() => {setMax(shirts.length - 11); setPage(0);}, [shirts]);
-      const nextPage = () => { page < max && setPage(page + 11); };
-      const prevPage = () => { page > 0 && setPage(page - 11); };
+      useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [shirts]);
+      const nextPage = () => { page < max && setPage(page + 10); };
+      const prevPage = () => { page > 0 && setPage(page - 10); };
     
     return(
       <div>
@@ -43,7 +43,7 @@ const [max, setMax] = useState(0);
               </tr>
               </div>
             {shirts.length > 0 
-      ? ( shirts.slice(page, page + 11).map((shirt) => {
+      ? ( shirts.slice(page, page + 10).map((shirt) => {
           return (
             <tr>
               <div className={Style.Tarjet} >
