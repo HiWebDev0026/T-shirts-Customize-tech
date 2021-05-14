@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers } from "../../../Actions/index.js";
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import Style from "./User.module.css";
 
@@ -75,20 +75,19 @@ export default function Users() {
           <button onClick={nextPage} className="buttonNext">{" "}NEXT{" "}</button>
         </div>
       </div>
-      {users1.length > 0 
-      ? ( users1.slice(page, page + 5).map((user) => {
+      {users1.length > 0 ? ( users1.slice(page, page + 5).map((user) => {
           return (
               <div className={Style.Tarjet}>
-                  
-            <button value={user.id} onClick={getUserId}>
-            {" "} {user.name}  {" "}
-            </button>
-           
-              <p className={Style.Titles}>{user.name}</p>
-              <p className={Style.Titles}>{user.email}</p>
-              <div className={Style.Contenedores}>
-                <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
-              </div>
+                <Link to={`/user_detail/${user.id}`}>
+                  <button value={user.id} onClick={getUserId}>
+                    {user.name}
+                  </button>
+                </Link>
+                <p className={Style.Titles}>{user.name}</p>
+                <p className={Style.Titles}>{user.email}</p>
+                <div className={Style.Contenedores}>
+                  <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
+                </div>
             </div>
             
           );

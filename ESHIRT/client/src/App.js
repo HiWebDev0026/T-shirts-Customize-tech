@@ -29,7 +29,7 @@ function App() {
       <Route exact path= '/home_admin' component={HomeAdmin}/> 
       <Route exact path= '/add_category' component={CreateCategory}/> 
       <Route exact path= '/users' component={Users}/>
-      <Route exact path= '/user_detail' component={UserDetail}/>
+      <Route exact path= '/user_detail/:id' component={UserDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <Route path= '/' component={Footer}/>
     </div>
