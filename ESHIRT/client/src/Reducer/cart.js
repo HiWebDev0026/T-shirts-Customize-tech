@@ -87,6 +87,12 @@ const cartReducer = (state=initialState, action) => {
                 items: modified.concat(action.payload)
             }
 
+        case 'CLEAR':
+            return {
+                ...state,
+                items: []
+            }    
+
         default: return state
     }
 }
