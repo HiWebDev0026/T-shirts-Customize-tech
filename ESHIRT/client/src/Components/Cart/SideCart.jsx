@@ -3,7 +3,7 @@ import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
 import { addOne, changeSize, deleteItem, outOne, pushItem } from '../../Actions/cart'
-
+import {NavLink} from 'react-router-dom'
 
 export function SideCart(){
     let total= 0
@@ -71,15 +71,15 @@ export function SideCart(){
                 
                 {items?.map(item => {
                     console.log(item.price)
-                    total += item.price
+                    total += (item.price * item.amount)
                     return(
                         
                         <div className={style.item}>
                             <div className={style.data}>
-                                <h4>{item.name}</h4>
+                                <h4>{item.title}</h4>
                                 <h4>{item.size}</h4>
 
-                                ${item.price}x{item.amount}
+                                U$S{item.price}x{item.amount}
 
                             </div>
                             <img src={item.print}/>
@@ -89,8 +89,11 @@ export function SideCart(){
                 } 
             </div>
             <div className={style.total}>
-                TOTAL: {total}
+                TOTAL: U$S{total}
             </div>
+            <NavLink to='/cart'>
+                <button>Proceed</button>
+            </NavLink>
             
             {/* ////////// ESTO ES PARA TESTEO /////////// */}
             
