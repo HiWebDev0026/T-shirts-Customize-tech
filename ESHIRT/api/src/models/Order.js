@@ -7,10 +7,6 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    delivery_adress: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     status: {
         type: DataTypes.STRING
     }

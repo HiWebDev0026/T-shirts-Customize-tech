@@ -68,8 +68,8 @@ Shirt.belongsTo(User)
 Order.hasMany(Detail)
 Detail.belongsTo(Order)
 
-Shirt.hasOne(Detail)
 Detail.belongsTo(Shirt)
+Shirt.hasMany(Detail)
 
 Category.belongsToMany(Shirt, {through: 'shirt_category'})
 Shirt.belongsToMany(Category, {through: 'shirt_category'})
