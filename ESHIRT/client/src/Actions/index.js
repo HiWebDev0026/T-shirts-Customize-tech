@@ -25,6 +25,11 @@ import {
     filterByCategory
 } from './category.js';
 
+import {
+    addOne,
+    outOne
+} from './cart.js'
+
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
 }
@@ -51,5 +56,8 @@ export {
     postCategory,
     putCategory,
     deleteCategory,
-    filterByCategory        
+    filterByCategory,  
+    
+    addOne,
+    outOne
 }
