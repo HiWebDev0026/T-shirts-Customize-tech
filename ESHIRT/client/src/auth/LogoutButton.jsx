@@ -6,10 +6,13 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
   return (
     <button className={Style.logoutBtn}
-      onClick={() =>
+      onClick={() =>{
+        
+         localStorage.setItem('currentToken', '')
         logout({
           returnTo: window.location.origin,
-        })}>
+        })}
+      }>
       Log Out
     </button>
   );
