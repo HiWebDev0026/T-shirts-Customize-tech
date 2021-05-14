@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Style from './Profile.module.css';
 
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading  from './Loading';
 
 export const Profile = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { name, picture, email } = user;
 
 
   useEffect(() => {
 
-    if(!isAuthenticated) {
+    
           (async () => {
             try {
               const token = await getAccessTokenSilently({
@@ -30,7 +30,7 @@ export const Profile = () => {
             }
           })();
 
-  }
+
   }, [isAuthenticated]);
 
   return (
