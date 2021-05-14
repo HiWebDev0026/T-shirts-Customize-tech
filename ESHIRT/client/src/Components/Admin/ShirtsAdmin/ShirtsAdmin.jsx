@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {NavLink} from 'react-router-dom';
-import { getShirts } from "../../../Actions";
-
+import { getShirts, deleteShirt } from "../../../Actions";
 import Style from "./ShirtsAdmin.module.css";
 
 export default function ShirtsAdmin() {
 
-    
-    
-  
-    const shirts = useSelector((state) => state.shirtReducer.allShirts);
-    const dispatch = useDispatch();
-  
+const shirts = useSelector((state) => state.shirtReducer.allShirts);
+const dispatch = useDispatch();
   
     useEffect(() => {
       dispatch(getShirts());
     }, []);
 
-    console.log("soy las shirts", shirts)
-
+    function handleDelete(e) {
+        alert("Shirt " + e.target.value + " deleted");
+        dispatch(deleteShirt(parseInt(e.target.value))); 
+      };
     
     return(
         <div className={Style.General}>
@@ -32,9 +29,8 @@ export default function ShirtsAdmin() {
               <h3 className={Style.Title6}> -----Score----- </h3>
               <h3 className={Style.Title7}> -----Public-----</h3>
               <h3 className={Style.Title8}> -----Created------</h3>
-              <h3 className={Style.Btn}>-Delete-</h3>
+              <h3 className={Style.Btn}>Delete</h3>
               </div>
-              
             {shirts.length > 0 
       ? ( shirts.map((shirt) => {
           return (
@@ -47,19 +43,17 @@ export default function ShirtsAdmin() {
               <p className={Style.Titles6}> {shirt.score}</p>
               <p className={Style.Titles7}> {shirt.public}</p>
               <p className={Style.Titles8}> {shirt.created_by_user}</p>
-              <button className={Style.Btn1}>X</button>
+              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button>
               </div>
           );
         })
       ) 
       : (<p>Shirts not found</p>)}
 
-
-
 <NavLink to='home_admin'>
         <h3 className={Style.Btn3}>CONTROL PANEL</h3>
     </NavLink>  
         
         </div>
-    )
-}
+    );
+};
