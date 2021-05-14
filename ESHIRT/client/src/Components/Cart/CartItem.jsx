@@ -21,25 +21,29 @@ export default function CartItem ({it}){
     function changeHandler (e){
        let id=e.target.id;
        console.log('IDDD', id);
-        // setInput(e.target.value);
-        // if (input>it.amount){
-        //     dispatch(addOne(id));
-        // }else if(input<it.amount){
-        //     dispatch(outOne(id));
-        // }
+        setInput(e.target.value);
+        console.log('VAL', input);
+        if (input>it.amount){
+            dispatch(addOne(id));
+        }else if(input<it.amount){
+            dispatch(outOne(id));
+        }
         
     }
 
     function deleteHandler (e){
         let id=e.currentTarget.id;
         console.log('IDDELETE', id);
-        // dispatch(deleteItem(it.id));   
+        dispatch(deleteItem(it.id));   
     }
 
     function sizeChangeHandler(e){
+        let id=e.target.id;
+        console.log('IDSIZE', id);
         let newSize=e.target.value;
         console.log('CAMBIO',newSize);
         setSize(newSize);
+        // changeSize()
     }
     console.log('NEWSIZE',size);
 
@@ -66,7 +70,7 @@ export default function CartItem ({it}){
             </div>
             <div className={Style.column3}>
                 <div className={Style.size}>
-                    <select name='size' id='size' onChange={sizeChangeHandler}required>
+                    <select name='size' id={it} onChange={sizeChangeHandler}required>
                             {
                                 sizes.map((s)=>{
                                     return size === s?
