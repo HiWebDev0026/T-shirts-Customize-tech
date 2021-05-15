@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers , getUsersByName} from "../../../Actions/index.js";
 import {NavLink, Link} from 'react-router-dom';
-import {useHistory} from 'react-router-dom'
-
+import {useHistory} from 'react-router-dom';
 import Style from "./User.module.css";
 
 export default function Users() {
@@ -73,9 +72,9 @@ export default function Users() {
       <div>
     <div className={Style.general}>
       <h1 className={Style.TitleCategory}>Users</h1>
-      <div className="orders">
+      <div className={Style.Order}>
         <select onChange={handleOrder} className="options">
-          <option value="">ORDER</option>
+          <option  value="">ORDER</option>
           <option value="AZ">AZ</option>
           <option value="ZA">ZA</option>
         </select>
@@ -83,10 +82,6 @@ export default function Users() {
                 <input className={Style.inputBox} type='text' placeholder= 'Find the user' value ={state} onChange={(e)=>handleChange(e)}/>
              <input className={Style.inputBtn} type='submit' value= 'Search'/>
             </form>
-        <div className="buttons">
-          <button onClick={prevPage} className="buttonPrev">{" "}PREV{" "}</button>
-          <button onClick={nextPage} className="buttonNext">{" "}NEXT{" "}</button>
-        </div>
       </div>
       {users1.length > 0 ? ( users1.slice(page, page + 5).map((user) => {
           return (
@@ -100,13 +95,16 @@ export default function Users() {
                 <div className={Style.Contenedores}>
                   <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
                 </div>
-
             </div>
           );
         })
       ) 
       : (<p>Users not found</p>)}
     </div>
+    <div className={Style.Buttons}>
+          <button onClick={prevPage} className={Style.Prev}>{" "}PREV{" "}</button>
+          <button onClick={nextPage} className={Style.Next}>{" "}NEXT{" "}</button>
+        </div>
     <div className={Style.ContBtn3}>
     <NavLink to='home_admin'>
         <h3 className={Style.Btn3}>CONTROL PANEL</h3>
