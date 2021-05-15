@@ -75,9 +75,9 @@ export default function FinalShirt(props) {
                     <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
                     <div className={FinalCSS.Desing}> Do you want to share yoor design?</div>
                     <label className={FinalCSS.Desing1}>Yes</label>
-                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
-                    <label className={FinalCSS.Desing2}>No</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+                    <label className={FinalCSS.Desing2}>No</label>
+                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
                    
                     
 
