@@ -96,7 +96,8 @@ async function putOrder (req, res, next) {
             throw {status: 400, message: 'This order status is ' + oldOrder.status + '. It can not be modified'}
         }
 
-        // oldOrder.details es un array, cada uno tiene id
+        validateOrder(newOrder)
+
         const details = await Detail.findAll({where: {orderId: orderId}})
         for (const detail of details) {
             await detail.destroy()
