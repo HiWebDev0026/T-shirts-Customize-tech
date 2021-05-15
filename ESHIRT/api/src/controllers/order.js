@@ -85,6 +85,18 @@ async function getOrder (req, res, next) {
     }
 }
 
+async function getOrdersByUserId (req, res, next) {
+    const userId = req.params.userId.toString();
+    try {
+        const user = await User.findOne({where: {id: userId}});
+        if (!user) {throw {status: 404, message: 'User not found'}};
+        const orders = await Order.findAll({where: {userId: userId}})
+        return res.status(200).json(orders)
+    } catch (err) {
+        return next(err)
+    }
+}
+
 
 async function putOrder (req, res, next) {
     const orderId = req.params.id
@@ -144,5 +156,6 @@ module.exports = {
     getOrders,
     getOrder,
     putOrder,
-    modifyStatus
+    modifyStatus,
+    getOrdersByUserId
 }

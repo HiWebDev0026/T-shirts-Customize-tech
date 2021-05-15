@@ -35,7 +35,10 @@ import {
     postOrder,
     putOrder,
     modifyOrderStatus,
-    resetPutOrderOk
+    resetPutOrderOk,
+    getOrders,
+    getOrderById,
+    getOrdersByUserId
 } from './cart.js'
 
 const resetErrors = () => {
@@ -75,5 +78,8 @@ export {
     postOrder,
     putOrder,
     modifyOrderStatus,
-    resetPutOrderOk
+    resetPutOrderOk,
+    getOrders,
+    getOrderById,
+    getOrdersByUserId
 }
