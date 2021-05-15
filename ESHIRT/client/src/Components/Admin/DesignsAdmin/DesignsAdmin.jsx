@@ -7,12 +7,11 @@ import Style from "./DesignsAdmin.module.css";
 
 export default function DesignsAdmin() {
 
+const [editButtonTarget, setEditButtonTarget] = useState(0)
+const [change, setChange]=useState('');
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 
-// for(let i = 0; i<shirts.length; i ++){
-//     console.log(shirts.name[i])
-// }
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
@@ -23,13 +22,12 @@ shirts.map((shirt) => {
     })
 }
 })
-
     useEffect(() => {
       dispatch(getShirts());
     }, []);
 
     function handleDelete(e) {
-        alert("Shirt " + e.target.value + " deleted");
+        alert("Design " + e.target.value + " deleted");
         dispatch(deleteShirt(parseInt(e.target.value))); 
       };
 
@@ -39,6 +37,11 @@ shirts.map((shirt) => {
     //   };
       }
 
+      function handleEdit (e) {
+       
+        dispatch(putShirt({'public':true}));
+        
+    }
 
     return(
         <div className={Style.Designs}>
@@ -47,13 +50,15 @@ shirts.map((shirt) => {
 {designs.length > 0 
       ? ( designs.map((shirt) => {
           return (
-            <tr>
-              <div className={Style.Tarjet} >
-              <th className={Style.Titles1}> {shirt.id}</th>
-              <th className={Style.Titles2}> {shirt.name}</th>
-              <th><button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button></th>
+            <div>
+              <div className={Style.Tarjet}>
+                  <NavLink to ='/design_detail'>
+              <h2 className={Style.Titles2}> {shirt.name}</h2>
+              </NavLink>
+              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button>
+              <button className={Style.Btn2} value={shirt.id} onClick={handleEdit}>APPROVAL </button>
               </div>
-               </tr>
+               </div>
           );
         })
       ) 

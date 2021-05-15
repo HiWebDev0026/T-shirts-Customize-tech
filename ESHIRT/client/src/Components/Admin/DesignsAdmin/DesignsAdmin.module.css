@@ -2,13 +2,14 @@
 
 
 .Designs{
-    display:flex;
+    display: grid;
     color:white;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    justify-content: center;
 }
 .Title{
-    display: flex;
+    display: grid;
     justify-content: center;
 
 }

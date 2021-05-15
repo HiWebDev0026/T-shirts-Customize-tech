@@ -19,7 +19,7 @@ const dispatch = useDispatch();
     return(
         <div>
 
-   <button>hola</button>
+   <button>IMAGEN Y DETALLE DE REMER</button>
 
    <NavLink to='/desings_admin'>
         <h3 className={Style.Btn3}>DESINGS</h3>
