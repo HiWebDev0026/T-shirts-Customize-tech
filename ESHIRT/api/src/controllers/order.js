@@ -6,7 +6,7 @@ const {Shirt, User, Detail, Category, Order} = require('../db.js');
 function setTotalPrice (body) {
     let total_price = 0;
     for (const detail of body) {
-        total_price += parseInt(detail.price);
+        total_price += (parseInt(detail.price) * parseInt(detail.amount));
     }
     return total_price;
 }
@@ -23,20 +23,20 @@ function validateOrder (body) {
 }
 
 async function postOrder (req, res, next) {
-    const userId = req.params.id
+    const userId = req.params.id.toString()
     const body = req.body
     try {
-        if (userId !== 'unlogged') {
-            const user = await User.findOne({where: {id: userId}})
-            if (!user) { throw {status: 404, message: 'User not found'}}
-        }
+        // if (userId !== 'unlogged') {
+        //     const user = await User.findOne({where: {id: userId}})
+        //     if (!user) { throw {status: 404, message: 'User not found'}}
+        // }
         
         validateOrder(body)
 
         const total_price = setTotalPrice(body)
         if (total_price < 0) {throw {status: 400, message: 'Price should be greater than 0'}}
 
-        const postedOrder = await Order.create({status: 'CART', total_price, userId: ((userId !== 'unlogged' && userId) || null)})
+        const postedOrder = await Order.create({status: 'CART', total_price, userId})
         
         try {
             for (const detail of body) {
