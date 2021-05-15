@@ -23,7 +23,7 @@ function validateOrder (body) {
 }
 
 async function postOrder (req, res, next) {
-    const userId = req.params.id.toString()
+    const userId = req.params.userId.toString()
     const body = req.body
     try {
         // if (userId !== 'unlogged') {
@@ -113,9 +113,28 @@ async function putOrder (req, res, next) {
     }
 }
 
+
+async function modifyStatus (req, res, next) {
+    const orderId = req.params.id;
+    try {
+        const order = await Order.findOne({where: {id: orderId}})
+        if (!order) {throw {status: 404, message: 'Order not found'}}
+        
+        order.status = req.body.status.toUpperCase()
+        await order.save()
+        
+        const updatedOrder = await Order.findOne({where: {id: orderId}})
+        return res.status(200).json(updatedOrder)
+
+    } catch (err) {
+        return next(err)
+    }
+}
+
 module.exports = {
     postOrder,
     getOrders,
     getOrder,
-    putOrder
+    putOrder,
+    modifyStatus
 }
