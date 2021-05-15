@@ -27,73 +27,37 @@ utils.promisifiedReadFile = function (filename) {
 const user1 = {
     "id": "105677628845670307410",
     "name": "USER1",
-    "lastname": "L_USER1",
     "email": "USER1@gmail.com",
-    "password": "ASDWTDY",
-    "country": "argentine",
-    "city": "BARILOCHE",
-    "adress": "CABILDO 1234",
-    "phone": "111111111" 
 }
 
 const user2 = {
     "id": "105677628845670307411",
     "name": "USER2",
-    "lastname": "L_USER2",
     "email": "USER2@gmail.com",
-    "password": "ASDWTDY2",
-    "country": "argentine",
-    "city": "BARILOCHE",
-    "adress": "CABILDO 1234",
-    "phone": "222222222" 
 }
 
 const user3 = {
     "id": "105677628845670307412",
     "name": "USER3",
-    "lastname": "L_USER3",
     "email": "USER3@gmail.com",
-    "password": "ASDWTDY3",
-    "country": "colombia",
-    "city": "BOGOTA",
-    "adress": "CALLE 94A32",
-    "phone": "333333333" 
 }
 
 const user4 = {
     "id": "105677628845670307413",
     "name": "USER4",
-    "lastname": "L_USER4",
     "email": "USER4@gmail.com",
-    "password": "ASDWTDY4",
-    "country": "colombia",
-    "city": "CALI",
-    "adress": "CALLE 94A32",
-    "phone": "444444444" 
 }
 
 const user5 = {
     "id": "105677628845670307414",
     "name": "USER5",
-    "lastname": "L_USER5",
     "email": "USER5@gmail.com",
-    "password": "ASDWTDY5",
-    "country": "colombia",
-    "city": "MEDELLIN",
-    "adress": "CALLE 94A32",
-    "phone": "555555555" 
 }
 
 const user6 = {
     "id": "105677628845670307415",
     "name": "USER6",
-    "lastname": "L_USER6",
     "email": "USER6@gmail.com",
-    "password": "ASDWTDY6",
-    "country": "colombia",
-    "city": "BARRANQUILLA",
-    "adress": "CALLE 94A32",
-    "phone": "666666666" 
 }
 
 const category1 = {

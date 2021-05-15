@@ -92,7 +92,12 @@ async function putOrder (req, res, next) {
     try {
         const oldOrder = await Order.findOne({where: {id: orderId}})
         if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
-        // oldOrder.details es un array, cada uno tiene id
+        if (oldOrder.status === 'CANCELED' || oldOrder.status === 'DONE') {
+            throw {status: 400, message: 'This order status is ' + oldOrder.status + '. It can not be modified'}
+        }
+
+        validateOrder(newOrder)
+
         const details = await Detail.findAll({where: {orderId: orderId}})
         for (const detail of details) {
             await detail.destroy()
@@ -119,8 +124,11 @@ async function modifyStatus (req, res, next) {
     try {
         const order = await Order.findOne({where: {id: orderId}})
         if (!order) {throw {status: 404, message: 'Order not found'}}
-        
+
+        if (order.status === 'CANCELED' || order.status === 'DONE') {throw {status: 400, message: 'This order status is already ' + order.status}}
         order.status = req.body.status.toUpperCase()
+
+        
         await order.save()
         
         const updatedOrder = await Order.findOne({where: {id: orderId}})
