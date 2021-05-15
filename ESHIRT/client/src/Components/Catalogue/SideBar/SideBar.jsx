@@ -8,7 +8,7 @@ function SideBar(){
     return (
         <div className={style.container}>
             <Filter/>
-            <Order/>
+            {/* <Order/> */}
         </div>
     )
 }
