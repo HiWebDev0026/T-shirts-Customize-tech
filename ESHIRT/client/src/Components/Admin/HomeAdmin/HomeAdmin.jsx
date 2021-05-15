@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import {NavLink} from 'react-router-dom';
 import Style from "./HomeAdmin.module.css";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function HomeAdmin() {
 
+    const {isAuthenticated} = useAuth0();
+    const isAdmin = useTokenDecode(localStorage.currentToken)
+  
+    console.log(isAdmin, 'hook test')
 
     return(
-        <div>
+        !isAdmin ? (<ErrorNoAdminPage />) : <div>
               <div className={Style.General}>
             <h1>Welcome</h1>
             <h3>Please choose what you want to see on the control panel</h3>

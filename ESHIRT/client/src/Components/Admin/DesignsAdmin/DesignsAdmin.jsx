@@ -5,6 +5,8 @@ import { getShirts, deleteShirt, getShirtById, putShirt} from "../../../Actions/
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import {useHistory} from 'react-router-dom';
 import Style from "./DesignsAdmin.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function DesignsAdmin() {
 
@@ -13,6 +15,7 @@ const [change, setChange]=useState('');
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 const history = useHistory()
+const isAdmin = useTokenDecode(localStorage.currentToken);
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
@@ -29,11 +32,11 @@ shirts.map((shirt) => {
 
     function handleDelete(e) {
         alert("Design " + e.target.value + " deleted");
-        dispatch(deleteShirt(parseInt(e.target.value))); 
+        dispatch(deleteShirt(e.target.value)); 
       };
 
       function getShirtId(e) { 
-        dispatch(getShirtById(parseInt(e.target.value)));
+        dispatch(getShirtById(e.target.value));
         history.push('/design_detail');
     
       }
@@ -44,7 +47,7 @@ shirts.map((shirt) => {
     }
 
     return(
-        <div className={Style.Designs}>
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
 <h2 className={Style.Title}>Designs waiting for approval</h2>
 
 {designs.length > 0 

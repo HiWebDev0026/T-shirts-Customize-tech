@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import {NavLink} from 'react-router-dom';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./Sales.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 const sales= [{id: 2, total_price: 250, status: "pending", createdAt: "525", updateAt: 521, userId: 1, details: []}];
 export default function Sales() {
 
+  const isAdmin = useTokenDecode(localStorage.currentToken);
+
     return(
-        <div className={Style.Sales}>
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
              <table id="table-to-xls">
         <div className={Style.Shirts} id='tableSales'>
             <br/>
