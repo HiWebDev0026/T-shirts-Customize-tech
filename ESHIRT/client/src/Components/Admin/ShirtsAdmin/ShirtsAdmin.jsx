@@ -15,7 +15,7 @@ const [max, setMax] = useState(0);
     useEffect(() => {
       dispatch(getShirts());
     }, []);
-
+  
     function handleDelete(e) {
         alert("Shirt " + e.target.value + " deleted");
         dispatch(deleteShirt(parseInt(e.target.value))); 
