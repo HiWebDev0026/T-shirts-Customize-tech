@@ -3,6 +3,7 @@ import Logo from '../../Images/E-Shirt.png'
 import SearchBar from '../SearchBar/SearchBar';
 import {NavLink} from 'react-router-dom';
 import Style from './NavBar.module.css';
+import Login from '../../auth/AuthenticationButton';
 
 function Navbar() {
   return (
@@ -15,8 +16,9 @@ function Navbar() {
                 <li><NavLink className={Style.eachLink} exact to='/home'>Home</NavLink></li>
                 <li><NavLink className={Style.eachLink} to='/catalogue'>Catalog</NavLink></li>
                 <li><NavLink className={Style.eachLink} to='/design'>Design</NavLink></li>
-                <li><NavLink className={Style.eachLink} to="/Login">Login</NavLink></li>
                 <li><NavLink className={Style.eachLink} to="/">Cart</NavLink></li>
+                <li><NavLink className={Style.eachLink} to='/profile'>Profile</NavLink></li>
+                <li><Login className={Style.eachLink}/></li>
             </ul>
         </nav>
 

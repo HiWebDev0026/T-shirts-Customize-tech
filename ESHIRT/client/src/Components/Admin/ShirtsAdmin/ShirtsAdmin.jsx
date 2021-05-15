@@ -21,9 +21,9 @@ const [max, setMax] = useState(0);
         dispatch(deleteShirt(parseInt(e.target.value))); 
       };
       
-      useEffect(() => {setMax(shirts.length - 11); setPage(0);}, [shirts]);
-      const nextPage = () => { page < max && setPage(page + 11); };
-      const prevPage = () => { page > 0 && setPage(page - 11); };
+      useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [shirts]);
+      const nextPage = () => { page < max && setPage(page + 10); };
+      const prevPage = () => { page > 0 && setPage(page - 10); };
     
     return(
       <div>
@@ -42,13 +42,11 @@ const [max, setMax] = useState(0);
               <th className={Style.Title8}> -------------Created-------------</th>
               </tr>
               </div>
-              
             {shirts.length > 0 
-      ? ( shirts.slice(page, page + 11).map((shirt) => {
+      ? ( shirts.slice(page, page + 10).map((shirt) => {
           return (
             <tr>
               <div className={Style.Tarjet} >
-                
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>
               <th className={Style.Titles3}> {shirt.color}</th>
@@ -58,7 +56,6 @@ const [max, setMax] = useState(0);
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <th><button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button></th>
-             
               </div>
                </tr>
           );

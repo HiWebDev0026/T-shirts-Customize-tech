@@ -5,36 +5,31 @@
 }
 
 .picture{
-    border: solid 2px purple;
-    width: 25%;
+    margin-top:1%;
+    margin-left:1%;
+    margin-bottom:1%;
+    width: 15%;
 }
 
 .column1{
-    border: solid 2px orange;
-    width: 45%;
+    width: 40%;
     margin:auto;
 }
 
 .detail{
-    border: solid 2px grey;
-    margin-bottom: 10px;
-    
-}
-
-.btns{
-    border: solid 2px rgb(21, 77, 112);
+    margin-bottom: 10px;  
 }
 
 .column2{
-    border: solid 2px orangered;
     width: 10%;
     display:flex;
+    justify-content: center;
     align-items: center;
 }
 
 .column3{
-    border: solid 2px greenyellow;
-    width: 20%;  
+    margin-top:4%;
+    width: 30%;  
 }
 
 .name{
@@ -45,10 +40,40 @@
     font-size:10px;
 }
 
-.size{
-    width:25%;
+.amount{
+    display: flex;
+    justify-content: center;
+    margin:auto;
+}
+.amount button{
+    width:15%;
+    background-color: transparent;
+    color: coral;
+    border: solid 2px coral;
+    display: flex;
+    justify-content: center;
 }
 
+.qty{
+    display: flex;
+    justify-content: center;
+    width:15%; 
+}
+.size{
+    width:25%;
+    margin:auto;
+    margin-bottom: 10px;
+    padding-left: 35%;
+    padding-right: 35%;
+}
+
+.size select {
+    background-color: transparent;
+    color: coral;
+    border: solid 2px coral;
+    display: flex;
+    justify-content: center;
+}
 
 .btns button {
     margin:1px;

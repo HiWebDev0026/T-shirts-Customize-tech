@@ -7,9 +7,13 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    quantity: {
+    amount: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    size: {
+      type: DataTypes.STRING,
+      allowNull: false
     }     
   });
 };

@@ -7,4 +7,4 @@ router.post('/', postCategory)
 router.put('/:id', putCategory )
 router.delete('/:id', deleteCategory )
 
-module.exports = router;
+module.exports = router; 

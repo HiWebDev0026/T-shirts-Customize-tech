@@ -28,3 +28,4 @@ conn.sync({ force: true }).then(() => {
     console.log('%s listening at', process.env.PORT, '\nDATABASE UP'); // eslint-disable-line no-console
   });
  });
+ 
