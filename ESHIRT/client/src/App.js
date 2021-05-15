@@ -21,6 +21,7 @@ import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
+import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 
 
 
@@ -64,6 +65,7 @@ function App() {
       <Route exact path= '/shirts_admin' component={ShirtsAdmin}/>
       <Route exact path= '/sales' component={Sales}/>
       <Route exact path= '/desings_admin' component={DesignsAdmin}/>
+      <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/profile' component={Profile} />
       <Route path= '/' component={Footer}/>
