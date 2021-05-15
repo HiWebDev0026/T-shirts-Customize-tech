@@ -17,6 +17,8 @@ const cartReducer = (state=initialState, action) => {
                 }
             })
             if (flag){
+                
+
                 return state
             } else {
                 action.payload= {
