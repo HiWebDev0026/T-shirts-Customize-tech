@@ -81,7 +81,10 @@ export function deleteUser(userId){
     return async (dispatch) => {
         try {
             console.log(typeof userId, "soy id de delete")
-            const res= await axios.delete(`/user/${userId}`, {responseType: 'json'})
+            const res= await axios.delete(`/user/${userId}`, {
+                headers:{
+                    Authorization: `Bearer ${localStorage.currentToken}`
+                }})
             console.log(res.status, "soy el status")
             dispatch({type: 'DELETE_USER', payload: userId})
         } catch (err) {

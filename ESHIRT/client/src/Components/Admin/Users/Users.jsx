@@ -23,11 +23,11 @@ export default function Users() {
 
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
-    dispatch(deleteUser(parseInt(e.target.value))); 
+    dispatch(deleteUser(e.target.value)); 
   };
 
   function getUserId(e) { 
-    dispatch(getUserById(parseInt(e.target.value)));
+    dispatch(getUserById(e.target.value));
     history.push('/user_detail');
   };
   //Order By names
