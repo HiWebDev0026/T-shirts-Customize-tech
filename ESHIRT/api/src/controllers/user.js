@@ -15,10 +15,8 @@ const setToLowerCase = (body) => {
 }
 
 const validatePost = (body) => {
-    const {name, lastname, email, password, country, city, adress, phone} = body
-    return (
-        name && lastname && /\S+@\S+.\S+/.test(email) && password && country && city && adress && !isNaN(phone)
-    )
+    const {name, email} = body
+    return (name && /\S+@\S+.\S+/.test(email) )
 }
 
 const validatePut = (body) => {
@@ -41,10 +39,11 @@ async function postUser(req, res, next) {
     try {
         if (!validatePost(req.body)){ return next({status: 400, message: 'Bad body request'})};
         
-        const newUser = setToLowerCase(req.body)
-        const postedUser = await User.create(newUser);
+        //const newUser = setToLowerCase(req.body)
+        const postedUser = await User.create({...req.body, id: req.body.id.toString()});
         return res.status(200).json(postedUser)
     } catch (error) {
+        console.log(error)
         next({status: 409, message: 'User already exists'});
     }
 }
@@ -96,7 +95,7 @@ async function putUser(req, res, next) {
     try {
         const user = await User.findOne({where: {id: userId}, include: [Shirt]})
         if (!user) { return next({status: 404, message: 'User not found'}) } 
-        if (!validatePut(body)) { return next({status: 400, message: 'Bad body request'})}
+        //if (!validatePut(body)) { return next({status: 400, message: 'Bad body request'})}
         
         for (const field in body) {
             if (field !== "phone" && field !== "email") {
@@ -114,7 +113,7 @@ async function putUser(req, res, next) {
 }
 
 async function deleteUser(req, res, next) {     
-    const userId = req.params.id
+    const userId = req.params.id.toString()
     try { 
         const user = await User.findOne({where: {id: userId}, include: [Shirt]})
         if (user) {
