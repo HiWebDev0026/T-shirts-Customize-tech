@@ -22,7 +22,7 @@ import Sales from './Components/Admin/Sales/Sales';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
-
+import TokenDecode from './hooks/tokenDecoding';
 
 
 function App() {
@@ -35,7 +35,6 @@ function App() {
       try {
         const token = await getAccessTokenSilently({
           audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
-          
         });
         localStorage.setItem('currentToken', token)
         return console.log(localStorage);
@@ -57,14 +56,14 @@ function App() {
       <Route exact path= '/design' component={Design}/>
       <Route exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
-      <Route exact path= '/create_user' component={CreateUser}/>
-      <Route exact path= '/home_admin' component={HomeAdmin}/> 
-      <Route exact path= '/add_category' component={CreateCategory}/> 
-      <Route exact path= '/users' component={Users}/>
-      <Route exact path= '/user_detail/:id' component={UserDetail}/>
-      <Route exact path= '/shirts_admin' component={ShirtsAdmin}/>
-      <Route exact path= '/sales' component={Sales}/>
-      <Route exact path= '/desings_admin' component={DesignsAdmin}/>
+      <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
+      <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
+      <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
+      <ProtectedRoute path= '/users'  component={Users}/>
+      <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
+      <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
+      <ProtectedRoute exact path= '/sales'  component={Sales}/>
+      <ProtectedRoute exact path= '/designs_admin'  component={DesignsAdmin}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/profile' component={Profile} />

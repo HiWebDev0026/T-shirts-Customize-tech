@@ -4,7 +4,9 @@ export function getUsers(){
     
     return async (dispatch) => {
         try {
-            const res= await axios.get('/user', {responseType: 'json'})
+            const res= await axios.get('/user', {responseType: 'json', headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             const users= res.data
             console.log(res)
             dispatch({type: 'GET_USERS', payload: users})
