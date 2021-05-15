@@ -7,15 +7,19 @@
     display: grid;
     justify-content: space-evenly;
 }
-
+.field{
+    justify-content: center;
+    display: grid;
+    text-transform: uppercase;
+    font-size: 90%;
+} 
+.field:first-letter {
+    text-transform: uppercase;
+    } 
 .Tarjet{
-    
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        grid-template-rows: 10px 1fr 2fr 2fr 10px;
         color: white;
-        width: 40vw;
-        height: 80vh;
+        width: 20vw;
+        height: 50vh;
         gap: 1vh;
         margin: 2vw;
         border-radius: 10px;
@@ -23,7 +27,6 @@
         top: 0;
         transition: all 0.1s ease-in;
         border: 2px solid coral;
-      
 }
 .Tarjet:hover{
     top: -1vh;
@@ -33,20 +36,17 @@
       color: coral;
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
-      font-size: 150%;
+      font-size: 200%;
+      justify-content: center;
+      display: grid;
   }
-  
+  .Submit:hover{
+      background-color: coral;
+  }
+  .Centers{
+      justify-content: center;
+  }
 
-.Titles1{
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column: 2;
-    grid-row: 1;
-    object-fit: contain;
-    font-size: 220%;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-}
 
 
 
