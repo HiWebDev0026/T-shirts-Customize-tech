@@ -12,39 +12,29 @@ import {
 function Card({ title, score, price, size, model, color, image, id }) {
   
   const dispatch = useDispatch();
-  const [item, setItem] = useState({
-    title,
-    score,
-    price,
-    size,
-    model,
-    color,
-    image,
-    id,
-    amount: 1,
-  });
+  const [amount, setAmount] = useState(1);
+  const [newSize, setNewSize]= useState(size)
 
   function handleAdd() {
-    dispatch(pushItem(item));
+    dispatch(pushItem({ title, score, price, size: newSize, model, color, image, id, amount }));
   }
 
   function handleDelete() {
-    dispatch(deleteItem(item.id));
+    dispatch(deleteItem(id));
   }
 
   function handleSizeChange(e) {
-    setItem({...item, size: e.target.value})
+    setNewSize(newSize => newSize= e.target.value)
   }
 
   function handleAddOne() {
-    setItem({...item, amount: item.amount +1})
+    setAmount(amount => amount + 1)
   }
   function handleOutOne() {
-    if (item.amount > 1){
-      setItem({...item, amount: item.amount -1})
+    if (amount > 1){
+      setAmount(amount => amount - 1)
     }
   }
-
 
 
   return (
@@ -87,12 +77,12 @@ function Card({ title, score, price, size, model, color, image, id }) {
               </button>
             </div>
             
-            
-            <p>Size: {item.size}</p>
+            <p>Size: {newSize}</p>
             <p>Color: {color}</p>
             <p>Model: {model}</p>
             <p>Score: {score}</p>
-            <p>Amount: {item.amount}</p>
+            <p>Amount: {amount}</p>
+
             <div className={style.cartBox}>
               
                 <div>

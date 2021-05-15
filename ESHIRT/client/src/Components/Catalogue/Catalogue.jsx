@@ -34,31 +34,15 @@ function Catalogue(){
 
     useEffect(() => {
         filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
-    })
+    }, [filteredByCategory, shirtsByName])
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
   }
   
   const offset = currentPage * INITIAL_PAGE;
-  const currentPageData = data
-  .slice(offset, offset + INITIAL_PAGE)
-  .map(e => {
-        return (        
-     
-        <Card
-            title= {e.name}
-            price= {50}
-            size= {e.size}
-            model= {e.model}
-            color= {e.color}
-            image= {e.print}
-            score= {e.score}   
-            id={e.id}         
-        />
-      
-     )
-    })
+  data.slice(offset, offset + INITIAL_PAGE)
+  
     
 
   const pageCount = Math.ceil(data.length / INITIAL_PAGE);
@@ -73,7 +57,26 @@ function handlePageClick({ selected: selectedPage }) {
                 <SideBar/>
             </div>
         <div className={style.box}>
-            <div className={style.shirts}>{currentPageData}</div>
+            <div className={style.shirts}>
+            {
+                data.map(e => {
+                    return (        
+     
+                        <Card
+                            title= {e.name}
+                            price= {50}
+                            size= {e.size}
+                            model= {e.model}
+                            color= {e.color}
+                            image= {e.print}
+                            score= {e.score}   
+                            id={e.id}         
+                        />
+      
+                    )
+                })
+            }
+        </div>
             <div className={style.pages}>
                 <ReactPaginate
                     previousLabel={'← Previous'}
