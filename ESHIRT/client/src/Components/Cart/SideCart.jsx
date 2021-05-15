@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect} from 'react'
 import { addOne, outOne } from '../../Actions/index'
 import {NavLink} from 'react-router-dom'
 
@@ -9,15 +9,13 @@ export function SideCart(){
     let total= 0
     const dispatch= useDispatch()
     const items= useSelector(state => state.cartReducer.items)
-    const plus= useRef(null)
-    const minus= useRef(null)
 
-    function handlePlus(){
-        dispatch(addOne(parseInt(plus.current.value)))
+    function handlePlus(e){
+        dispatch(addOne(e.target.id))
     }
 
-    function handleMinus(){
-        dispatch(outOne(parseInt(minus.current.value)))
+    function handleMinus(e){
+        dispatch(outOne(e.target.id))
     }
     
     console.log(items, 'leido desde el reducer')
@@ -38,10 +36,10 @@ export function SideCart(){
                                 U$S{item.price}x{item.amount}
 
                             </div>
-                            <img src={item.print}/>
+                            <img src={item.image}/>
                             <div>
-                                <button value= {item.id} onClick={handlePlus} ref={plus}>+1</button>
-                                <button value= {item.id} onClick={handleMinus} ref={minus}>-1</button>
+                                <button id= {item.index} onClick={handlePlus}>+1</button>
+                                <button id= {item.index} onClick={handleMinus}>-1</button>
                             </div>
                         </div>
                     )

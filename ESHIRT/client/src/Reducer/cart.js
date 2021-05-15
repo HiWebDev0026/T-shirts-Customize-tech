@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const initialState={
-    items: []
+    items: [localStorage.getItem()]
 }
 
 const cartReducer = (state=initialState, action) => {
@@ -9,12 +11,21 @@ const cartReducer = (state=initialState, action) => {
             let flag= false
             state.items.forEach(item => {
                 if (item.id === action.payload.id){
-                    flag= true
+                    if (item.size === action.payload.size){
+                        flag= true
+                    } 
                 }
             })
             if (flag){
+                
+
                 return state
             } else {
+                action.payload= {
+                    ...action.payload,
+                    index: uuidv4()
+                }
+                localStorage.setItem()
                 return {
                     ...state,
                     items: [...state.items, action.payload]
@@ -22,7 +33,7 @@ const cartReducer = (state=initialState, action) => {
             }
 
         case 'DELETE_ITEM':
-            let deleted= state.items.filter(i => i.id !== action.payload)
+            let deleted= state.items.filter(i => i.index !== action.payload)
             return {
                 ...state,
                 items: deleted,
@@ -30,7 +41,7 @@ const cartReducer = (state=initialState, action) => {
 
         case 'ADD_ONE':
             let added= state.items.map(item => {
-                if (item.id === action.payload){
+                if (item.index === action.payload){
                     item.amount += 1
                 }
                 return item
@@ -44,14 +55,14 @@ const cartReducer = (state=initialState, action) => {
         case 'OUT_ONE':
         let erased= []    
         if (state.items.length === 1){
-            if (state.items[0].id === action.payload && state.items[0].amount === 1){
+            if (state.items[0].index === action.payload && state.items[0].amount === 1){
                 return {...state, items:[]}
             } 
         }
         let droppedOne= state.items?.map(item => {
-                if (item.id === action.payload){
+                if (item.index === action.payload){
                     if (item.amount === 1){
-                        erased= state.items.filter(i => i.id !== action.payload)
+                        erased= state.items.filter(i => i.index !== action.payload)
                     }
                     item.amount -= 1
                 }
