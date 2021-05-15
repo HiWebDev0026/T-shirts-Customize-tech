@@ -41,7 +41,24 @@ function handlePageClick({ selected: selectedPage }) {
   }
   
   const offset = currentPage * INITIAL_PAGE;
-  data.slice(offset, offset + INITIAL_PAGE)
+  const currentPageData= data
+  .slice(offset, offset + INITIAL_PAGE)
+  .map(e => {
+    return (        
+
+        <Card
+            title= {e.name}
+            price= {50}
+            size= {e.size}
+            model= {e.model}
+            color= {e.color}
+            image= {e.print}
+            score= {e.score}   
+            id={e.id}         
+        />
+
+    )
+})
   
     
 
@@ -59,22 +76,7 @@ function handlePageClick({ selected: selectedPage }) {
         <div className={style.box}>
             <div className={style.shirts}>
             {
-                data.map(e => {
-                    return (        
-     
-                        <Card
-                            title= {e.name}
-                            price= {50}
-                            size= {e.size}
-                            model= {e.model}
-                            color= {e.color}
-                            image= {e.print}
-                            score= {e.score}   
-                            id={e.id}         
-                        />
-      
-                    )
-                })
+                currentPageData
             }
         </div>
             <div className={style.pages}>
