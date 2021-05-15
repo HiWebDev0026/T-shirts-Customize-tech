@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import {MdDeleteForever} from "react-icons/md";
+import {GrAdd, GrFormSubtract} from "react-icons/gr";
+import { IconContext } from "react-icons";
 import {
   pushItem,
   deleteItem,
@@ -38,6 +40,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
   return (
+    <IconContext.Provider value={{ color: "coral", size: "3vh"}}>
     <div>
       <div className={style.wrapper}>
         <div className={style.container}>
@@ -70,10 +73,11 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <div>
               <h2>{title}</h2>
               <button className={style.buttonCart} onClick={handleAdd}>
+               
                 <FaCartPlus />
               </button>
               <button className={style.buttonCart} onClick={handleDelete}>
-                <MdDeleteForever/>
+                <MdDeleteForever value={{className: style.addToC}}/>
               </button>
             </div>
             
@@ -86,13 +90,13 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <div className={style.cartBox}>
               
                 <div>
-                        <button className={style.buttonCart} onClick={handleAddOne}>
-                        + 1
+                        <button className={style.buttonAM} onClick={handleAddOne}>
+                        <GrAdd />
                         </button>
-                        <button className={style.buttonCart} onClick={handleOutOne}>
-                        - 1
+                        <button className={style.buttonAM} onClick={handleOutOne}>
+                        <GrFormSubtract />
                         </button>
-                        <select className={style.buttonCart} onChange={handleSizeChange}>
+                        <select className={style.changeSize} onChange={handleSizeChange}>
                           <option>Change size</option>
                           <option value="XL">XL</option>
                           <option value="L">L</option>
@@ -107,6 +111,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
         </div>
       </div>
     </div>
+    </IconContext.Provider>
   );
 }
 
