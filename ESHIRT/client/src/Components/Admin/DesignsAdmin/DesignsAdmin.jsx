@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {NavLink} from 'react-router-dom';
 import { getShirts, deleteShirt, getShirtById, putShirt} from "../../../Actions/index";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import {useHistory} from 'react-router-dom';
 import Style from "./DesignsAdmin.module.css";
 
 export default function DesignsAdmin() {
@@ -11,7 +12,7 @@ const [editButtonTarget, setEditButtonTarget] = useState(0)
 const [change, setChange]=useState('');
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
-
+const history = useHistory()
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
@@ -31,16 +32,15 @@ shirts.map((shirt) => {
         dispatch(deleteShirt(parseInt(e.target.value))); 
       };
 
-      function getShirtById(e) { 
+      function getShirtId(e) { 
         dispatch(getShirtById(parseInt(e.target.value)));
-    //     history.push('/design_detail');
-    //   };
+        history.push('/design_detail');
+    
       }
 
       function handleEdit (e) {
        
         dispatch(putShirt({'public':true}));
-        
     }
 
     return(
@@ -52,9 +52,8 @@ shirts.map((shirt) => {
           return (
             <div>
               <div className={Style.Tarjet}>
-                  <NavLink to ='/design_detail'>
-              <h2 className={Style.Titles2}> {shirt.name}</h2>
-              </NavLink>
+                
+              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name}</button>
               <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button>
               <button className={Style.Btn2} value={shirt.id} onClick={handleEdit}>APPROVAL </button>
               </div>
