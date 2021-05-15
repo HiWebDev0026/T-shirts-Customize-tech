@@ -9,33 +9,26 @@ export default function DesignDetail (){
 
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
-console.log(designs)
 
 
-    useEffect(() => {
-      dispatch(getShirtById());
-    }, []);
+
+  
 
    
 return(
         <div className={Style.Designs}>
 <h2 className={Style.Title}>Designs waiting for approval</h2>
+{
+        <div> 
+         <p>{designs.name}</p>
+         <p>{designs.color}</p>
+         <img src={designs.print} />
 
-{designs.length >= 0 
-      ? ( designs.map((shirt) => {
-          return (
-            <div>
-              <div className={Style.Tarjet}>
-                
-              <h2 className={Style.Titles2}> {shirt.name}</h2>
-             
-            
-              </div>
-               </div>
-          );
-        })
-      ) 
-      : (<p>Desings not found</p>)}
+
+
+        </div>
+   
+}
 
    
 

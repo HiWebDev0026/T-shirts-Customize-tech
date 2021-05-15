@@ -16,7 +16,7 @@ const history = useHistory()
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
-    if (shirt.public !== true){
+    if (shirt.public === true){
     return designs.push({
         name: shirt.name,
         id: shirt.id
