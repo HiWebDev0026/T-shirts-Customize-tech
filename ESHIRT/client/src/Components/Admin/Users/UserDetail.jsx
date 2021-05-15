@@ -12,8 +12,6 @@ export default function UserDetail ({match}){
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(user)
-        console.log(match.params.id)
         if (parseInt(user.id) !== parseInt(match.params.id)) {
             dispatch(getUserById(match.params.id))
         }
@@ -32,7 +30,6 @@ export default function UserDetail ({match}){
         return result;
     }
     
-
     function handleChange (e) {
         e.preventDefault();
         setDataToModify(
@@ -45,7 +42,6 @@ export default function UserDetail ({match}){
 
     function handleSubmit (e) {
         e.preventDefault();
-        console.log(dataToModify)
         dispatch(putUser(validateDataToModify(dataToModify), user.id))
     }
 
@@ -54,26 +50,23 @@ export default function UserDetail ({match}){
         setEdit(!edit)
     }
 
-
     function showEditInput (fieldToEdit){
         return (
         <div>
-            <input type= "text" name={fieldToEdit} onChange={(e) => handleChange(e)}></input>
+            <input  type= "text" name={fieldToEdit} onChange={(e) => handleChange(e)}></input>
         </div>
         )
     }
 
     function setDataToDisplay () {
-        const fields = ['name', 'lastname', 'email', 'country', 'city', 'adress', 'phone']
-        console.log(user, 'set to display')
+        const fields = ['name', 'lastname', 'email', 'country', 'city', 'adress', 'phone'];
+    
         return (
-            <div>
+            <div className={Style.Tarjet}>
                 {fields.map(field => {
                     return (
-                        <div key={user[field]}>
-                            <p>{field}</p>
-                            <p>{user[field]}</p>
-                            {edit && showEditInput(field)}
+                        <div className={Style.field} key={user[field]}>
+                            <p className={Style.Centers}>{field}: {user[field]} {edit && showEditInput(field)}</p>
                         </div>
                     )
                 })}
@@ -83,24 +76,20 @@ export default function UserDetail ({match}){
 
 
     return (
-        <div style={{color: 'white'}}>
+        <div className={Style.Title}>
             <form onSubmit={handleSubmit}>
-                <div >
-                    <h2 >User detail</h2>
+                <div>
+                    <h2 className={Style.Detail}>User detail</h2>
                     {setDataToDisplay()}
-
                     <div>                    
                         <button  onClick={handleClick}> Edit </button>
                     </div>
-
                 </div>
-                
-                {edit && <input type='submit' ></input>}
+                {edit && <input className={Style.Submit} type='submit' ></input>}
             </form>
-            <NavLink to='home_admin'>
+            <NavLink to='/home_admin'>
                 <h3 className={Style.Btn3}>CONTROL PANEL</h3>
             </NavLink>
-            
         </div>
     );
 };
