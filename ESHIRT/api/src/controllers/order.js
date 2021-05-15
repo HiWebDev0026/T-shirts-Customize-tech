@@ -85,8 +85,37 @@ async function getOrder (req, res, next) {
     }
 }
 
+
+async function putOrder (req, res, next) {
+    const orderId = req.params.id
+    const newOrder = req.body
+    try {
+        const oldOrder = await Order.findOne({where: {id: orderId}})
+        if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
+        // oldOrder.details es un array, cada uno tiene id
+        const details = await Detail.findAll({where: {orderId: orderId}})
+        for (const detail of details) {
+            await detail.destroy()
+        }
+        for (const detail of newOrder) {
+            detail.orderId = orderId
+            await Detail.create(detail)
+        }
+        oldOrder.total_price = setTotalPrice(newOrder);
+        await oldOrder.save()
+
+        const updatedOrder = await Order.findOne({where: {id: orderId}, include: [Detail]})
+        return res.status(200).json(updatedOrder)
+
+    } catch (err) {
+        console.log(err)
+        return next(err)
+    }
+}
+
 module.exports = {
     postOrder,
     getOrders,
-    getOrder
+    getOrder,
+    putOrder
 }
