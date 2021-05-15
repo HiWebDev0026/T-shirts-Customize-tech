@@ -1,6 +1,6 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteItem, addOne, outOne} from '../../Actions/cart.js'
+import {deleteItem, addOne, outOne,changeSize} from '../../Actions/cart.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
 import { FaEdit } from "react-icons/fa";
@@ -11,58 +11,47 @@ import Style from './CartItem.module.css'
 
 export default function CartItem ({it}){
 
-    const[input,setInput] =useState(it.amount);
-    const[size,setSize] =useState(it.size);
-
     const dispatch = useDispatch();
-    
-    let sizes=['S','M','L','XL'];
+    const plus= useRef(null)
+    const minus= useRef(null)
 
-    function changeHandler (e){
-       let id=e.target.id;
-       console.log('IDDD', id);
-        setInput(e.target.value);
-        console.log('VAL', input);
-        if (input>it.amount){
-            dispatch(addOne(id));
-        }else if(input<it.amount){
-            dispatch(outOne(id));
-        }
-        
+    let sizes=['S','M','L','XL'];
+    
+    function handlePlus(){
+        dispatch(addOne(parseInt(plus.current.value)))
+    }
+
+    function handleMinus(){
+        dispatch(outOne(parseInt(minus.current.value)))
     }
 
     function deleteHandler (e){
-        let id=e.currentTarget.id;
-        console.log('IDDELETE', id);
         dispatch(deleteItem(it.id));   
     }
 
     function sizeChangeHandler(e){
-        let id=e.target.id;
-        console.log('IDSIZE', id);
+        console.log('ID', it.id)
         let newSize=e.target.value;
-        console.log('CAMBIO',newSize);
-        setSize(newSize);
-        // changeSize()
+        console.log('NEWSIZE', newSize)
+        it.size=newSize;
+        console.log('NEWITEM', it.size)
+        console.log('ITEM', it)
+        dispatch(changeSize(it));
     }
-    console.log('NEWSIZE',size);
 
     return(
         <li className={Style.cartCard}> 
             <div className={Style.picture}>
-                <img src={it.print} alt={'product'+ it.id} className={Style.image}/>
+                <img src={it.image} alt={it.title} className={Style.image}/>
             </div>
             <div className={Style.column1}>
                 <div className={Style.detail}>
-                    <div className={Style.name}>{it.name}</div>
+                    <div className={Style.name}>{it.title}</div>
                         <div className={Style.sku}>SKU:{it.id}</div>
                     </div>
                     <div className={Style.btns}>
                         <button id={it.id} onClick={deleteHandler}><BsFillTrashFill/></button>
-                        <button><BsFillHeartFill/></button>
-                                {/* <Link to='/design'> */}
-                                    <button><FaEdit/></button>
-                                {/* </Link> */}                     
+                        <button><BsFillHeartFill/></button>                     
                     </div>
                 </div>
             <div className={Style.column2}>
@@ -70,18 +59,20 @@ export default function CartItem ({it}){
             </div>
             <div className={Style.column3}>
                 <div className={Style.size}>
-                    <select name='size' id={it} onChange={sizeChangeHandler}required>
+                    <select name='size' onChange={sizeChangeHandler}required>
                             {
                                 sizes.map((s)=>{
-                                    return size === s?
-                                        <option value={size} selected>{s}</option>
+                                    return it.size === s?
+                                        <option value={it.size} selected>{s}</option>
                                         : <option value={s}>{s}</option>
                                 })  
                             }
                     </select>
                 </div>
-                <div>
-                    <input min='1' type='number' id={it.id} name='amount' value={input} onChange={changeHandler} className={Style.size}></input>
+                <div className={Style.amount}>
+                    <button value= {it.id} onClick={handlePlus} ref={plus}>+</button>
+                    <div className={Style.qty}>{it.amount}</div>
+                    <button value= {it.id} onClick={handleMinus} ref={minus}>-</button>
                 </div>
             </div>
         </li>

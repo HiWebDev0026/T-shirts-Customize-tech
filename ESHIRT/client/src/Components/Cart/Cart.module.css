@@ -4,35 +4,26 @@
 
 
 .container{
-    border: solid 2px red;
     width: 100%;
     display:flex;
     
 }
 
 .title{
-    border: solid 2px pink;
     display: flex;
     justify-content: center;
 }
 
 .left{
-    border: solid 2px blue;
-    width: 70%;
+    width: 60%;
     height: 0%;
     position: relative;
 
 }
 
-.cartCard{
-    border: solid 2px white;
-    display: flex;
-    margin-bottom: 5px;
-}
-
 .rigth{
     border: solid 2px yellow;
-    width: 30%;
+    width: 40%;
     position: relative;
     top:0%;
     left:0%;
