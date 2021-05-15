@@ -2,7 +2,7 @@ import React from 'react'
 import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import { addOne, outOne } from '../../Actions/index'
+import { addOne, clear, outOne } from '../../Actions/index'
 import {NavLink} from 'react-router-dom'
 
 export function SideCart(){
@@ -17,13 +17,17 @@ export function SideCart(){
     function handleMinus(e){
         dispatch(outOne(e.target.id))
     }
+
+    function handleClear(){
+        dispatch(clear())
+    }
     
     console.log(items, 'leido desde el reducer')
     return (
         <div>
             <div className={style.items}>
                 <h2>You have {items.length} items in your cart</h2>
-                
+                <button onClick={handleClear} >Clear cart</button>
                 {items?.map(item => {
                     total += (item.price * item.amount)
                     return(
