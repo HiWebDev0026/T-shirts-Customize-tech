@@ -1,7 +1,6 @@
-const { NUMBER } = require('sequelize');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const {Shirt, User, Detail, Category} = require('../db.js');
+const {Shirt, User, Detail, Category, Review} = require('../db.js');
 
 const setToLower = (body) => {
     for (const field in body) {
@@ -169,8 +168,6 @@ async function getShirts(req, res, next) {
         next({status: 404, message: 'Shirt not found'});
     }
 }
-
-
 
 module.exports = {
     postShirt,
