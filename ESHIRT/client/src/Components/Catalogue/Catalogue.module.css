@@ -1,7 +1,7 @@
 .box{
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: max-content;
   width: 60%;
 }
 
@@ -23,11 +23,10 @@
 
 .container1{
     display: flex;
-    height: 80vh;
+    height: max-content;
     box-sizing: border-box;
     flex-wrap: wrap;
     background-color: black;
-    flex-direction: column;
     justify-content: space-between;
 }
 

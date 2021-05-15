@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState={
-    items: [localStorage.getItem()]
+    items:  JSON.parse(localStorage.getItem('items')) || []
 }
 
 const cartReducer = (state=initialState, action) => {
@@ -17,15 +17,13 @@ const cartReducer = (state=initialState, action) => {
                 }
             })
             if (flag){
-                
-
                 return state
             } else {
                 action.payload= {
                     ...action.payload,
                     index: uuidv4()
                 }
-                localStorage.setItem()
+                localStorage.setItem('items', JSON.stringify([...state.items, action.payload]))
                 return {
                     ...state,
                     items: [...state.items, action.payload]
@@ -34,6 +32,7 @@ const cartReducer = (state=initialState, action) => {
 
         case 'DELETE_ITEM':
             let deleted= state.items.filter(i => i.index !== action.payload)
+            localStorage.setItem('items', JSON.stringify(deleted))
             return {
                 ...state,
                 items: deleted,
@@ -46,7 +45,7 @@ const cartReducer = (state=initialState, action) => {
                 }
                 return item
             })
-            console.log(added)
+            localStorage.setItem('items', JSON.stringify(added))
             return {
                 ...state,
                 items: added
@@ -69,11 +68,13 @@ const cartReducer = (state=initialState, action) => {
                 return item
             })
         if (erased.length < 1){
+            localStorage.setItem('items', JSON.stringify(droppedOne))
             return {
                 ...state,
                 items: droppedOne
             }
         } else {
+            localStorage.setItem('items', JSON.stringify(erased))
             return {
                 ...state,
                 items: erased
@@ -99,6 +100,7 @@ const cartReducer = (state=initialState, action) => {
             }
 
         case 'CLEAR':
+            localStorage.clear()
             return {
                 ...state,
                 items: []

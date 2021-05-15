@@ -27,7 +27,11 @@ import {
 
 import {
     addOne,
-    outOne
+    outOne,
+    pushItem,
+    deleteItem,
+    changeSize,
+    clear
 } from './cart.js'
 
 const resetErrors = () => {
@@ -59,5 +63,9 @@ export {
     filterByCategory,  
     
     addOne,
-    outOne
+    outOne,
+    pushItem,
+    deleteItem,
+    changeSize,
+    clear
 }
