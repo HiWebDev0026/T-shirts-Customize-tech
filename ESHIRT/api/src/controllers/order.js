@@ -6,7 +6,7 @@ const {Shirt, User, Detail, Category, Order} = require('../db.js');
 function setTotalPrice (body) {
     let total_price = 0;
     for (const detail of body) {
-        total_price += parseInt(detail.price);
+        total_price += (parseInt(detail.price) * parseInt(detail.amount));
     }
     return total_price;
 }
@@ -23,20 +23,20 @@ function validateOrder (body) {
 }
 
 async function postOrder (req, res, next) {
-    const userId = req.params.id
+    const userId = req.params.userId.toString()
     const body = req.body
     try {
-        if (userId !== 'unlogged') {
-            const user = await User.findOne({where: {id: userId}})
-            if (!user) { throw {status: 404, message: 'User not found'}}
-        }
+        // if (userId !== 'unlogged') {
+        //     const user = await User.findOne({where: {id: userId}})
+        //     if (!user) { throw {status: 404, message: 'User not found'}}
+        // }
         
         validateOrder(body)
 
         const total_price = setTotalPrice(body)
         if (total_price < 0) {throw {status: 400, message: 'Price should be greater than 0'}}
 
-        const postedOrder = await Order.create({status: 'CART', total_price, userId: ((userId !== 'unlogged' && userId) || null)})
+        const postedOrder = await Order.create({status: 'CART', total_price, userId})
         
         try {
             for (const detail of body) {
@@ -85,8 +85,64 @@ async function getOrder (req, res, next) {
     }
 }
 
+
+async function putOrder (req, res, next) {
+    const orderId = req.params.id
+    const newOrder = req.body
+    try {
+        const oldOrder = await Order.findOne({where: {id: orderId}})
+        if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
+        if (oldOrder.status === 'CANCELED' || oldOrder.status === 'DONE') {
+            throw {status: 400, message: 'This order status is ' + oldOrder.status + '. It can not be modified'}
+        }
+
+        validateOrder(newOrder)
+
+        const details = await Detail.findAll({where: {orderId: orderId}})
+        for (const detail of details) {
+            await detail.destroy()
+        }
+        for (const detail of newOrder) {
+            detail.orderId = orderId
+            await Detail.create(detail)
+        }
+        oldOrder.total_price = setTotalPrice(newOrder);
+        await oldOrder.save()
+
+        const updatedOrder = await Order.findOne({where: {id: orderId}, include: [Detail]})
+        return res.status(200).json(updatedOrder)
+
+    } catch (err) {
+        console.log(err)
+        return next(err)
+    }
+}
+
+
+async function modifyStatus (req, res, next) {
+    const orderId = req.params.id;
+    try {
+        const order = await Order.findOne({where: {id: orderId}})
+        if (!order) {throw {status: 404, message: 'Order not found'}}
+
+        if (order.status === 'CANCELED' || order.status === 'DONE') {throw {status: 400, message: 'This order status is already ' + order.status}}
+        order.status = req.body.status.toUpperCase()
+
+        
+        await order.save()
+        
+        const updatedOrder = await Order.findOne({where: {id: orderId}})
+        return res.status(200).json(updatedOrder)
+
+    } catch (err) {
+        return next(err)
+    }
+}
+
 module.exports = {
     postOrder,
     getOrders,
-    getOrder
+    getOrder,
+    putOrder,
+    modifyStatus
 }

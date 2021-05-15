@@ -1,6 +1,6 @@
 var fs = require('fs');
     
-const {User, Category, Shirt} = require('./db.js')
+const {User, Category, Shirt, Order, Detail} = require('./db.js')
 
 var utils = {};
 
@@ -25,69 +25,39 @@ utils.promisifiedReadFile = function (filename) {
 };
 
 const user1 = {
+    "id": "105677628845670307410",
     "name": "USER1",
-    "lastname": "L_USER1",
     "email": "USER1@gmail.com",
-    "password": "ASDWTDY",
-    "country": "argentine",
-    "city": "BARILOCHE",
-    "adress": "CABILDO 1234",
-    "phone": "111111111" 
 }
 
 const user2 = {
+    "id": "105677628845670307411",
     "name": "USER2",
-    "lastname": "L_USER2",
     "email": "USER2@gmail.com",
-    "password": "ASDWTDY2",
-    "country": "argentine",
-    "city": "BARILOCHE",
-    "adress": "CABILDO 1234",
-    "phone": "222222222" 
 }
 
 const user3 = {
+    "id": "105677628845670307412",
     "name": "USER3",
-    "lastname": "L_USER3",
     "email": "USER3@gmail.com",
-    "password": "ASDWTDY3",
-    "country": "colombia",
-    "city": "BOGOTA",
-    "adress": "CALLE 94A32",
-    "phone": "333333333" 
 }
 
 const user4 = {
+    "id": "105677628845670307413",
     "name": "USER4",
-    "lastname": "L_USER4",
     "email": "USER4@gmail.com",
-    "password": "ASDWTDY4",
-    "country": "colombia",
-    "city": "CALI",
-    "adress": "CALLE 94A32",
-    "phone": "444444444" 
 }
 
 const user5 = {
+    "id": "105677628845670307414",
     "name": "USER5",
-    "lastname": "L_USER5",
     "email": "USER5@gmail.com",
-    "password": "ASDWTDY5",
-    "country": "colombia",
-    "city": "MEDELLIN",
-    "adress": "CALLE 94A32",
-    "phone": "555555555" 
 }
 
 const user6 = {
+    "id": "105677628845670307415",
     "name": "USER6",
-    "lastname": "L_USER6",
     "email": "USER6@gmail.com",
-    "password": "ASDWTDY6",
-    "country": "colombia",
-    "city": "BARRANQUILLA",
-    "adress": "CALLE 94A32",
-    "phone": "666666666" 
 }
 
 const category1 = {
@@ -131,7 +101,7 @@ const category10 = {
 }
 
 const shirt1 = {
-    "userId": "1",
+    "userId": "105677628845670307410",
     "categoryId": "4",
     "name": "About Us!",
     "color": "red",
@@ -143,7 +113,7 @@ const shirt1 = {
 }
 
 const shirt2 = {
-    "userId": "1",
+    "userId": "105677628845670307410",
     "categoryId": "7",
     "name": "Pikachu",
     "color": "yellow",
@@ -155,7 +125,7 @@ const shirt2 = {
 }
 
 const shirt3 = {
-    "userId": "2",
+    "userId": "105677628845670307411",
     "categoryId": "8",
     "name": "Footprint",
     "color": "orange",
@@ -167,7 +137,7 @@ const shirt3 = {
 }
 
 const shirt4 = {
-    "userId": "3",
+    "userId": "105677628845670307410",
     "categoryId": "4",
     "name": "Henry",
     "color": "grey",
@@ -179,7 +149,7 @@ const shirt4 = {
 }
 
 const shirt5 = {
-    "userId": "4",
+    "userId": "105677628845670307412",
     "categoryId": "9",
     "name": "Chow Mien",
     "color": "violet",
@@ -191,7 +161,7 @@ const shirt5 = {
 }
 
 const shirt6 = {
-    "userId": "5",
+    "userId": "105677628845670307413",
     "categoryId": "10",
     "name": "Tsunami",
     "color": "cyan",
@@ -203,7 +173,7 @@ const shirt6 = {
 }
 
 const shirt7 = {
-    "userId": "6",
+    "userId": "105677628845670307413",
     "categoryId": "4",
     "name": "SHIRT7",
     "color": "blue",
@@ -215,7 +185,7 @@ const shirt7 = {
 }
 
 const shirt8 = {
-    "userId": "1",
+    "userId": "105677628845670307413",
     "categoryId": "4",
     "name": "SHIRT8",
     "color": "black",
@@ -227,7 +197,7 @@ const shirt8 = {
 }
 
 const shirt9 = {
-    "userId": "2",
+    "userId": "105677628845670307412",
     "categoryId": "4",
     "name": "SHIRT9",
     "color": "black",
@@ -239,7 +209,7 @@ const shirt9 = {
 }
 
 const shirt10 = {
-    "userId": "3",
+    "userId": "105677628845670307411",
     "categoryId": "5",
     "name": "SHIRT10",
     "color": "grey",
@@ -251,7 +221,7 @@ const shirt10 = {
 }
 
 const shirt11 = {
-    "userId": "4",
+    "userId": "105677628845670307411",
     "categoryId": "6",
     "name": "SHIRT11",
     "color": "black",
@@ -263,7 +233,7 @@ const shirt11 = {
 }
 
 const shirt12 = {
-    "userId": "5",
+    "userId": "105677628845670307410",
     "categoryId": "5",
     "name": "SHIRT12",
     "color": "grey",
@@ -275,7 +245,7 @@ const shirt12 = {
 }
 
 const shirt13 = {
-    "userId": "6",
+    "userId": "105677628845670307414",
     "categoryId": "6",
     "name": "SHIRT13",
     "color": "blue",
@@ -287,7 +257,7 @@ const shirt13 = {
 }
 
 const shirt14 = {
-    "userId": "1",
+    "userId": "105677628845670307410",
     "categoryId": "5",
     "name": "SHIRT14",
     "color": "white",
@@ -299,7 +269,7 @@ const shirt14 = {
 }
 
 const shirt15 = {
-    "userId": "2",
+    "userId": "105677628845670307410",
     "categoryId": "4",
     "name": "SHIRT15",
     "color": "white",
@@ -309,6 +279,42 @@ const shirt15 = {
     "score": "3",
     "public": "true"
 }
+
+const order1 = [
+    {
+        "shirtId": "2",
+        "size": "M",
+        "amount": "3",
+        "price": "50"
+    },
+    {
+        "shirtId": "1",
+        "size": "S",
+        "amount": "3",
+        "price": "50"
+    }
+]
+
+const order2 = [
+    {
+        "shirtId": "4",
+        "size": "XL",
+        "amount": "1",
+        "price": "50"
+    },
+    {
+        "shirtId": "4",
+        "size": "S",
+        "amount": "3",
+        "price": "50"
+    },
+    {
+        "shirtId": "5",
+        "size": "S",
+        "amount": "2",
+        "price": "50"
+    }
+]
 
     
 const setToLower = (array) => {
@@ -386,6 +392,16 @@ async function fillDB () {
     await shirtPosted14.addCategory(categoryPosted5.id);
     const shirtPosted15 = await Shirt.create({...shirt15, created_by_user: true});
     await shirtPosted15.addCategory(categoryPosted4.id);
+    const orderPosted1 = await Order.create({status: 'CART', total_price: 300, userId: "105677628845670307410"})
+    for (const detail of order1) {
+        detail.orderId = orderPosted1.id
+        await Detail.create(detail)
+    }
+    const orderPosted2 = await Order.create({status: 'CART', total_price: 300, userId: "105677628845670307411"})
+    for (const detail of order2) {
+        detail.orderId = orderPosted2.id
+        await Detail.create(detail)
+    }
     
     } catch (err) {
         console.log(err)
