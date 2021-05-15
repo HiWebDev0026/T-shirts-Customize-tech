@@ -6,22 +6,22 @@ export function pushItem(item){
     }
 }
 
-export function deleteItem(id){
+export function deleteItem(index){
     return (dispatch) => {
-        dispatch({type: 'DELETE_ITEM', payload: id})
+        dispatch({type: 'DELETE_ITEM', payload: index})
     }
 }
 
-export function addOne(id){
+export function addOne(index){
     
     return (dispatch) => {
-        dispatch({type: 'ADD_ONE', payload: id})
+        dispatch({type: 'ADD_ONE', payload: index})
     }
 }
 
-export function outOne(id){
+export function outOne(index){
     return (dispatch) => {
-        dispatch({type: 'OUT_ONE', payload: id})
+        dispatch({type: 'OUT_ONE', payload: index})
     }
 }
 

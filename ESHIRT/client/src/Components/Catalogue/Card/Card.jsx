@@ -10,7 +10,7 @@ import {
 } from "../../../Actions/cart.js";
 
 function Card({ title, score, price, size, model, color, image, id }) {
-  const [flag, setFlag]= useState(false)
+  
   const dispatch = useDispatch();
   const [item, setItem] = useState({
     title,
@@ -25,12 +25,10 @@ function Card({ title, score, price, size, model, color, image, id }) {
   });
 
   function handleAdd() {
-    setFlag(true)
     dispatch(pushItem(item));
   }
 
   function handleDelete() {
-    setFlag(false)
     dispatch(deleteItem(item.id));
   }
 
@@ -96,10 +94,8 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <p>Score: {score}</p>
             <p>Amount: {item.amount}</p>
             <div className={style.cartBox}>
-              {
-                flag ? <dv className={style.buttonCart}>You selected {item.amount} items {item.size}</dv>
-                : 
-                      <div>
+              
+                <div>
                         <button className={style.buttonCart} onClick={handleAddOne}>
                         + 1
                         </button>
@@ -114,7 +110,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
                           <option value="S">S</option>
                         </select>
                       </div>
-              }
+              
               
             </div>
           </div>
