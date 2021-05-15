@@ -4,8 +4,8 @@ const checkAdminScopes = require('../middlewares/authz/checkScopes');
 const checkJwt = require('../middlewares/authz/checkJwt');
 const router= Router()
 
-router.get('/', getUsers)
-router.get('/:id', getUser)
+router.get('/', checkJwt, checkAdminScopes, getUsers)
+router.get('/:id', checkJwt, checkAdminScopes, getUser)
 router.post('/', postUser)
 router.put('/:id', putUser )
 router.delete('/:id', checkJwt, checkAdminScopes, deleteUser)
