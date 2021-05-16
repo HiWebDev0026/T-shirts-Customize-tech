@@ -5,7 +5,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {Link} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
-import {clear} from '../../Actions/cart.js'
+import {clear,getUserById} from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 
@@ -30,18 +30,27 @@ export default function Cart (){
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
 
-    // const {user,isAuthenticated}=useAuth0();
+    const {user,isAuthenticated}=useAuth0();
+    // const userId= user.sub.split('|').pop();
+    // console.log('USER',userId, typeof userId)
    
     useEffect(()=>{
             localStorage.setItem('items',JSON.stringify(items));
         },[items])
-        
-    // },[items]);
+    
+        console.log('PRODUCT', items)
+
     // useEffect(()=>{
     //     if(!isAuthenticated){
     //         localStorage.setItem('items',JSON.stringify(items));
     //     }else if(isAuthenticated){
-    //         axios.get('')
+    //         let userData = dispatch(getUserById(userId));
+    //         console.log('USERDATA', userData)
+    //         let filtered=userData.orders.filter(order => order.status === 'CART');
+    //         console.log('FILTERED', filtered)
+    //         let sorted = filtered.sort((a,b)=>new Date(a.updatedAt)-new Date(b.updatedAt)).shift()
+    //         let orderId= sorted.id
+    //         //hacer un dispatch get orderById(id).
     //     }
         
     // },[items]);
@@ -65,7 +74,7 @@ export default function Cart (){
                         {
                             items.length>0?
                             items.slice(offset, offset + INITIAL_PAGE).map(it=>{
-                                return <CartItem  it={it} key={it.id}  className={Style.cartCard}/>      
+                                return <CartItem  it={it} key={it.index}  className={Style.cartCard}/>      
                             })
                         :<p>No selected items</p>
                         }
@@ -78,7 +87,7 @@ export default function Cart (){
                     <div>{
                         items.length === 0? 
                         <div>Your cart is empty</div>
-                        :<div>You have {items.length} items in your shopping cart</div>
+                        :<div>You have {items.reduce((a,c)=>a+c.amount,0)} items in your shopping cart</div>
                     }</div>
                     <div>${items.reduce((a,c)=>a+c.price*c.amount,0)}</div>
                     <Link to='/catalogue'>
