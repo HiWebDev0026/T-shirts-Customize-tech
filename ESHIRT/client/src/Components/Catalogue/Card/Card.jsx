@@ -38,7 +38,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
   return (
-    <div>
+    <a href={`#popup${id}`}>
       <div className={style.wrapper}>
         <div className={style.container}>
           <div className={style.top}>
@@ -53,9 +53,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
           </div>
         </div>
       </div>
-      <a className={style.button} href={`#popup${id}`}>
-        More info
-      </a>
+     
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
           <div className={style.popup__photo}>
@@ -69,14 +67,23 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <h1>Details</h1>
             <div>
               <h2>{title}</h2>
-              <button className={style.buttonCart} onClick={handleAdd}>
-                <FaCartPlus />
-              </button>
-              <button className={style.buttonCart} onClick={handleDelete}>
-                <MdDeleteForever/>
-              </button>
             </div>
             
+                <div>
+                        <button className={style.buttonCart} onClick={handleAddOne}>
+                        + 1
+                        </button>
+                        <button className={style.buttonCart} onClick={handleOutOne}>
+                        - 1
+                        </button>
+                        <select className={style.size} onChange={handleSizeChange}>
+                          <option>Size</option>
+                          <option value="XL">XL</option>
+                          <option value="L">L</option>
+                          <option value="M">M</option>
+                          <option value="S">S</option>
+                        </select>
+                      </div>
             <p>Size: {newSize}</p>
             <p>Color: {color}</p>
             <p>Model: {model}</p>
@@ -85,28 +92,19 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
             <div className={style.cartBox}>
               
-                <div>
-                        <button className={style.buttonCart} onClick={handleAddOne}>
-                        + 1
-                        </button>
-                        <button className={style.buttonCart} onClick={handleOutOne}>
-                        - 1
-                        </button>
-                        <select className={style.buttonCart} onChange={handleSizeChange}>
-                          <option>Change size</option>
-                          <option value="XL">XL</option>
-                          <option value="L">L</option>
-                          <option value="M">M</option>
-                          <option value="S">S</option>
-                        </select>
-                      </div>
+              <button className={style.buttonCart} onClick={handleAdd}>
+                <FaCartPlus />
+              </button>
+              <button className={style.buttonCart} onClick={handleDelete}>
+                <MdDeleteForever/>
+              </button>
               
               
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 

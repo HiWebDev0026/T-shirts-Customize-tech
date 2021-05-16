@@ -1,6 +1,6 @@
 import React,{useEffect,useState,useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteItem, addOne, outOne,changeSize} from '../../Actions/cart.js'
+import {deleteItem, addOne, outOne,changeSize} from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
 import { FaEdit } from "react-icons/fa";

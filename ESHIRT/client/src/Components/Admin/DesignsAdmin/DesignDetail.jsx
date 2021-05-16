@@ -11,36 +11,21 @@ export default function DesignDetail (){
 
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
+
+
 const isAdmin = useTokenDecode(localStorage.currentToken);
-console.log(designs)
 
-
-    useEffect(() => {
-      dispatch(getShirtById());
-    }, []);
-
-   
 return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
 <h2 className={Style.Title}>Designs waiting for approval</h2>
-
-{designs.length >= 0 
-      ? ( designs.map((shirt) => {
-          return (
-            <div>
-              <div className={Style.Tarjet}>
-                
-              <h2 className={Style.Titles2}> {shirt.name}</h2>
-             
-            
-              </div>
-               </div>
-          );
-        })
-      ) 
-      : (<p>Desings not found</p>)}
-
+{
+        <div className={Style.Container}> 
+         <p className={Style.Name}>{designs.name}</p>
+         <p className={Style.Color}>{designs.color}</p>
+         <img src={designs.print} className={Style.Image}/>
+        </div>
    
+}
 
    <NavLink to='/desings_admin'>
         <h3 className={Style.Btn3}>DESINGS</h3>

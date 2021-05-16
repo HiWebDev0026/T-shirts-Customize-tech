@@ -1,6 +1,8 @@
 import './App.css';
 import {Route} from 'react-router-dom';
 import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {postUser} from './Actions/index.js';
 
 import Home from './Components/Home/Home.jsx'
 import NavBar from './Components/NavBar/NavBar.jsx';
@@ -15,20 +17,20 @@ import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
 import ProtectedRoute from './auth/ProtectedRoute';
-import {Profile} from './auth/Profile';
+import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
 import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
-import TokenDecode from './hooks/tokenDecoding';
 
 
 function App() {
 
-  const {isAuthenticated, getAccessTokenSilently } = useAuth0();
-
+  const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     
     (async () => {
@@ -37,6 +39,17 @@ function App() {
           audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
         });
         localStorage.setItem('currentToken', token)
+
+        if(isAuthenticated){
+          const { name, sub, email } = user;
+          const userToPost ={
+            id: sub.split('|')[1],
+            name,
+            email
+          } 
+          dispatch(postUser(userToPost));
+        }
+
         return console.log(localStorage);
       } catch (e) {
         console.error(e);
@@ -44,8 +57,7 @@ function App() {
     })();
 
 
-}, [isAuthenticated]);
-
+  }, [isAuthenticated]);
 
 
   return (
@@ -66,7 +78,7 @@ function App() {
       <ProtectedRoute exact path= '/designs_admin'  component={DesignsAdmin}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
-      <ProtectedRoute path='/profile' component={Profile} />
+      <ProtectedRoute path='/account' component={Account} />
       <Route path= '/' component={Footer}/>
     </div>
   )

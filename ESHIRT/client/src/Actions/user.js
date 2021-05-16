@@ -54,7 +54,7 @@ export function postUser(user){
         try {
             const res= await axios.post(`/user`, user, {responseType: 'json'})
             const newUser= res.data
-            dispatch({type: 'POST_USER', payload: {...user, userId:newUser.id}})
+            dispatch({type: 'POST_USER', payload: {...user}})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})

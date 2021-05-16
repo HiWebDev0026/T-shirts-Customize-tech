@@ -48,7 +48,7 @@ export default function FinalShirt(props) {
         e.preventDefault();
         dispatch(postShirt( 
             {
-                userId: 1,
+                userId: '43876876433',
                 name: input.name,
                 print: phase.designSelected.data,
                 size: phase.sizeSelected.data,
