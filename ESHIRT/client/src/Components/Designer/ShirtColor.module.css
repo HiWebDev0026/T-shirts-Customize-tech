@@ -18,3 +18,9 @@
         color: coral;
         height: 3vh;
     }
+
+.shirtInputContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+}

@@ -14,6 +14,17 @@ function ShirtModel(props) {
     /* let imgBlob = new Image(340, 420);
         imgBlob.src = img; */
     
+    const handleInput = (e) => {
+        e.preventDefault();
+        if(data !== null) {
+            props.setPhase({
+                    colorSelected: {status: true, data},
+                    designSelected: {...props.phase.designSelected, status: false}
+                })
+        }
+
+    }
+
     useEffect(()=>{
 
         let imgBlob = new Image(340, 420);
@@ -63,29 +74,45 @@ function ShirtModel(props) {
 
     return (
         <div className={ColorCSS.container}>
-            
+            <div className={ColorCSS.shirtInputContainer}>
             <canvas ref={shirtRef} id="canvas"/>
+            <input 
+                onClick={handleInput}
+                type="submit" 
+                disabled={data===null}
+                value="Choose color"
+                style={{
+                    borderRadius: '5px', 
+                    padding: '10px 40px 10px 40px', 
+                    fontSize: '18px', 
+                    backgroundColor: data !== null && 'forestgreen',
+                    margin: '30px',
+                    color: data !== null && 'white',
+                    borderColor: data !== null && 'mediumseagreen'
+                }} 
+            />
+            </div>
             <div className={ColorCSS.side}>
-            <ColorBattery props={{
-                                setData: (arg)=> setData(arg), 
-                                setPhase: (arg)=> props.setPhase(arg)}} />
-                    <form onSubmit={(e)=> {
-                        e.preventDefault();
-                        if(data !== null) {
-                                props.setPhase({
-                                        colorSelected: {status: true, data},
-                                        designSelected: {...props.phase.designSelected, status: false}
-                                    })
-                    }}}>
-                    <input 
-                            type="submit" 
-                            disabled={data===null} />
-                        Elegí el color
+                <ColorBattery props={{
+                    setData: (arg)=> setData(arg), 
+                    setPhase: (arg)=> props.setPhase(arg)}} 
+                />
+                <form 
                     
-                    </form>
+                >                    
+                </form>
             </div>        
         </div>
     )
 }
+
+// onSubmit={(e)=> {
+//     e.preventDefault();
+//     if(data !== null) {
+//         props.setPhase({
+//                 colorSelected: {status: true, data},
+//                 designSelected: {...props.phase.designSelected, status: false}
+//             })
+//     }}}
 
 export default ShirtModel;
