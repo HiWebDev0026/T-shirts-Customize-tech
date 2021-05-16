@@ -14,30 +14,18 @@ const dispatch = useDispatch();
 
 
 const isAdmin = useTokenDecode(localStorage.currentToken);
-console.log(designs)
 
-
-
-
-  
-
-   
 return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
 <h2 className={Style.Title}>Designs waiting for approval</h2>
 {
-        <div> 
-         <p>{designs.name}</p>
-         <p>{designs.color}</p>
-         <img src={designs.print} />
-
-
-
+        <div className={Style.Container}> 
+         <p className={Style.Name}>{designs.name}</p>
+         <p className={Style.Color}>{designs.color}</p>
+         <img src={designs.print} className={Style.Image}/>
         </div>
    
 }
-
-   
 
    <NavLink to='/desings_admin'>
         <h3 className={Style.Btn3}>DESINGS</h3>

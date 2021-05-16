@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-    
-
 .Designs{
-    display:flex;
+    display:grid;
     color:white;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
 .Title{
-    display: flex;
+    display: grid;
     justify-content: center;
-
+}
+.Container{
+    display: grid;
+    justify-content: center;
+    grid-row: 1;
+}
+.Name{
+    display: grid;
+    justify-content: center;
+    grid-row: 2;
+}
+.Color{
+    display: grid;
+    justify-content: center;
+    grid-row: 3;
+}
+.Image{
+    display: grid;
+    justify-content: center;
+    grid-row: 4;
 }
