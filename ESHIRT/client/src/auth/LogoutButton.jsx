@@ -10,7 +10,7 @@ const LogoutButton = () => {
                         '/users', 
                         '/create_user', 
                         '/designs_admin', 
-                        '/profile', 
+                        '/account', 
                         '/sales', 
                         '/shirts_admin', 
                         '/user_detail/', 
@@ -23,7 +23,7 @@ const LogoutButton = () => {
         
          localStorage.removeItem('currentToken')
         logout({
-          returnTo: unauthRedirections.includes(window.location.pathname) ? window.location.origin : window.location.href,
+          returnTo: unauthRedirections.includes(window.location.pathname) ? window.location.origin + '/home' : window.location.href,
         })}
       }>
       Log Out
