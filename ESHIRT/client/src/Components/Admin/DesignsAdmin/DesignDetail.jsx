@@ -13,6 +13,7 @@ export default function DesignDetail (){
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 const history = useHistory();
+const [editButtonTarget, setEditButtonTarget] = useState(0);
 const [input2, setInput2] = useState('');
 
 function handleDelete(e) {
@@ -23,7 +24,6 @@ function handleDelete(e) {
 
   function handlePublic(e) {
     const value = e.target.value;
-    const name = e.target.name
     setInput2(
         value
     );
@@ -31,9 +31,9 @@ function handleDelete(e) {
   function handleEdit (e) {
     alert("Design " + e.target.value + " aprroved");
     e.preventDefault();
-    dispatch(putShirt({public: input2 === 'true' ? true : false}));
+    dispatch(putShirt({public: input2 === 'true' ? true : false}, editButtonTarget));
     history.push('/desings_admin');
-    console.log({public: input2 === 'true' ? true : false})
+    
 }
 
     
@@ -48,13 +48,15 @@ return(
          <p className={Style.Color}>{designs.color}</p>
          <img src={designs.print} className={Style.Image}/>
          <div className={Style.Btns}>
-         <button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button>
-         <button className={Style.Btn2} value={designs.id} onClick={handleEdit}>APPROVAL </button>
+        
          <label >Yes</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic}/>
                     <label >No</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+         <button className={Style.Btn2} value={designs.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>APPROVAL </button>
+         <button className={Style.Btn2} value={designs.id} onClick={handleEdit}>CONFIRM </button>
          </div>
+         <div><button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
         </div>
    
 }
