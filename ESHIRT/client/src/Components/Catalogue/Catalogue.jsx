@@ -78,15 +78,15 @@ function handlePageClick({ selected: selectedPage }) {
             {
                 currentPageData
             }
-        </div>
+            </div>
             <div className={style.pages}>
                 <ReactPaginate
                     previousLabel={'← Previous'}
                     nextLabel={'Next →'}
                     pageCount={pageCount}
                     onPageChange={handlePageClick}        
-                    previousLinkClassName={"pagination__link"}
-                    nextLinkClassName={"pagination__link"}
+                    previousLinkClassName={style.pagination__link}
+                    nextLinkClassName={style.pagination__link}
                     disabledClassName={style.pagination__link__disabled}
                     activeClassName={style.pagination__link__active}
                     containerClassName={style.pagination}

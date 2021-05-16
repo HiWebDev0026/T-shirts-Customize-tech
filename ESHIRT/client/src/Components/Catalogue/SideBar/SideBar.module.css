@@ -2,5 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: black;
+    background-color: transparent;
+    margin-bottom: 1vh;
 }

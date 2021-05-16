@@ -14,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 30px, 10%;
-    background: coral;
+    background: rgba(255, 255, 255, 0.411);
     height: 10vh;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .loginBtn{
-    background: coral;
+    
     border: 2px solid black;
     color: blanchedalmond;
 
@@ -45,11 +45,11 @@
     text-decoration: none;
     transition: all 0.3s ease 0s;
     padding-left: 30px;
-    color: #24252A;
+    color: #2a2524;
 }
 
 .eachLink:hover{
-    color: white;  /* Cambiar acá el color de efecto de los botones*/
+    color: #fd6702;  /* Cambiar acá el color de efecto de los botones*/
 }
 
 
@@ -57,6 +57,6 @@ li, .searchBar{
         font-family: "Montserrat", sans-serif;
         font-weight: 500;
         font-size: 16px;
-    color: #edf0f1; /* Cambiar acá el color de las letras*/
+    color: #fd6702; /* Cambiar acá el color de las letras*/
     text-decoration: none;
 }
