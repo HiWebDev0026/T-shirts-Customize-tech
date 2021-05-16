@@ -64,7 +64,7 @@ export function putShirt(dataToModify, shirtId){
 
     return async (dispatch) => {
         try {
-            const res= await axios.put(`/user/${shirtId}`, dataToModify, {responseType: 'json'}, {headers: {
+            const res= await axios.put(`/shirt/${shirtId}`, dataToModify, {responseType: 'json', headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             const modifiedShirt = res.data
