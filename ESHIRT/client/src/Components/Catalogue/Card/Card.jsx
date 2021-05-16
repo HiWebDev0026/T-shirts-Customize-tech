@@ -40,6 +40,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
   return (
+    <IconContext.Provider value={{ color: "coral", size:"3vh" }}>
     <a href={`#popup${id}`}>
 
       <div className={style.wrapper}>
@@ -112,7 +113,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
         </div>
       </div>
     </a>
-
+</IconContext.Provider>
   );
 }
 

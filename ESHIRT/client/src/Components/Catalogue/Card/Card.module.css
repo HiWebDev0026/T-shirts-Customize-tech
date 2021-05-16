@@ -236,7 +236,7 @@
 
   background-color: rgb(255, 255, 255);
   backdrop-filter: blur (15px);
-  transform: rotate(32deg);
+  transform: rotate(0.5turn);
   transition: 0.64s ease-in-out;
   padding:0;
 
@@ -291,7 +291,7 @@
 .popup__text p {
   font-size: 0.875rem;
   color: #686868;
-  line-height: 1.5;
+  line-height: 1;
   display:flex;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
@@ -343,7 +343,7 @@
   font-weight: 500;
   font-size: 12px;
   height: 38px;
-  width: 7vh;
+  width: 10vh;
   margin-left: 5px;
 
   margin-right: 5px;
