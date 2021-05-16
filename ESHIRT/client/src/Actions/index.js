@@ -31,15 +31,18 @@ import {
     pushItem,
     deleteItem,
     changeSize,
-    clear,
+    clear
+} from './cart.js'
+
+import {
+    getOrders,
     postOrder,
     putOrder,
     modifyOrderStatus,
     resetPutOrderOk,
-    getOrders,
     getOrderById,
     getOrdersByUserId
-} from './cart.js'
+} from './orders.js'
 
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
@@ -75,11 +78,12 @@ export {
     deleteItem,
     changeSize,
     clear,
+
+    getOrders,
     postOrder,
     putOrder,
     modifyOrderStatus,
     resetPutOrderOk,
-    getOrders,
     getOrderById,
     getOrdersByUserId
 }
