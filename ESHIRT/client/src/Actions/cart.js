@@ -118,3 +118,42 @@ export function modifyOrderStatus (status, orderId) {
 export function resetPutOrderOk () {
     return {type: 'RESET_PUT_ORDER_OK'}
 }
+
+export function getOrderById (orderId) {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/order/${orderId}`, {responseType: 'json'})
+            const order = res.data
+            dispatch({type: 'GET_ORDER', payload: order})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }   
+}
+
+export function getOrdersByUserId (userId) {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
+            const orders = res.data
+            dispatch({type: 'GET_ORDERS_BY_USER', payload: orders})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }
+}
+
+export function getOrders () {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/order`, {responseType: 'json'})
+            const orders = res.data
+            dispatch({type: 'GET_ORDERS', payload: orders})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }
+}

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { putUser, getUserById } from "../../../Actions/index.js";
 import {NavLink} from 'react-router-dom';
 import Style from "./UserDetail.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function UserDetail ({match}){
 
@@ -10,6 +12,7 @@ export default function UserDetail ({match}){
     const [dataToModify, setDataToModify] = useState({});
     const user = useSelector((state) => state.userReducer.userId);
     const dispatch = useDispatch();
+    const isAdmin = useTokenDecode(localStorage.currentToken);
 
     useEffect(() => {
         if (parseInt(user.id) !== parseInt(match.params.id)) {

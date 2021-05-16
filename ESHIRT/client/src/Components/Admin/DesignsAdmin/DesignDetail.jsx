@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getShirtById } from "../../../Actions/index";
 import {NavLink} from 'react-router-dom';
-
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import Style from "./DesignDetail.module.css";
+
 
 export default function DesignDetail (){
 
@@ -11,12 +13,17 @@ const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 
 
+const isAdmin = useTokenDecode(localStorage.currentToken);
+console.log(designs)
+
+
+
 
   
 
    
 return(
-        <div className={Style.Designs}>
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
 <h2 className={Style.Title}>Designs waiting for approval</h2>
 {
         <div> 

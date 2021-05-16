@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, getUserById, getUsers , getUsersByName} from "../../../Actions/index.js";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {NavLink, Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 import Style from "./User.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function Users() {
 
@@ -12,22 +15,30 @@ export default function Users() {
   const [page, setPage] = useState(0);
   const [max, setMax] = useState(0);
   const history = useHistory();
+  const {isAuthenticated, getAccesTokenSilently} = useAuth0();
+  const isAdmin = useTokenDecode(localStorage.currentToken);
 
   const users = useSelector((state) => state.userReducer.allUsers);
   const user = useSelector((state) => state.userReducer.usersByName);
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers());
-  }, []);
+
+    console.log(isAuthenticated, 'logueado')
+    if(isAuthenticated) {
+        dispatch(getUsers());
+    }
+
+  }, [isAuthenticated]);
 
   function handleDelete(e) {
     alert("User " + e.target.value + " deleted");
-    dispatch(deleteUser(parseInt(e.target.value))); 
+    dispatch(deleteUser(e.target.value)); 
   };
 
   function getUserId(e) { 
-    dispatch(getUserById(parseInt(e.target.value)));
+    dispatch(getUserById(e.target.value));
     history.push('/user_detail');
   };
   //Order By names
@@ -69,7 +80,7 @@ export default function Users() {
   }
 
   return (
-      <div>
+      !isAdmin ? (<ErrorNoAdminPage />) : <div>
     <div className={Style.general}>
       <h1 className={Style.TitleCategory}>Users</h1>
       <div className={Style.Order}>
