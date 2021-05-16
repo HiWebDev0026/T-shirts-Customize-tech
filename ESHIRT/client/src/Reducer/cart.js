@@ -95,10 +95,16 @@ const cartReducer = (state=initialState, action) => {
                     }
                 } else {return state}
             }
-            modified= state.items.filter(item => item.index !== action.payload.index)
+            modified= state.items
+            modified.forEach(item => {
+                if(item.index === action.payload.index){
+                    item= action.payload
+                }
+            })
+            console.log(modified)
             return {
                 ...state,
-                items: modified.concat(action.payload)
+                items: modified
             }
 
         case 'CLEAR':

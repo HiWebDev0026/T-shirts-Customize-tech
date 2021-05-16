@@ -24,10 +24,10 @@ export function SideCart(){
     
     console.log(items, 'leido desde el reducer')
     return (
-        <div>
+        <div className={style.container}>
             <div className={style.items}>
-                <h2>You have {items.length} items in your cart</h2>
-                <button onClick={handleClear} >Clear cart</button>
+                <h2>You have {items.reduce((a,c)=>a+c.amount,0)} items in your cart</h2>
+                <button className={style.cartBtnC}  onClick={handleClear} >Clear cart</button>
                 {items?.map(item => {
                     total += (item.price * item.amount)
                     return(
@@ -40,11 +40,14 @@ export function SideCart(){
                                 U$S{item.price}x{item.amount}
 
                             </div>
+                            <div className={style.ctrls}>
                             <img src={item.image}/>
-                            <div>
+                            <div className={style.amount}>
                                 <button id= {item.index} onClick={handlePlus}>+1</button>
                                 <button id= {item.index} onClick={handleMinus}>-1</button>
                             </div>
+                            </div>
+
                         </div>
                     )
                     })
@@ -54,7 +57,7 @@ export function SideCart(){
                 TOTAL: U$S{total}
             </div>
             <NavLink to='/cart'>
-                <button>Proceed</button>
+                <button className={style.cartBtnP}>Proceed</button>
             </NavLink>
         </div>
     )
