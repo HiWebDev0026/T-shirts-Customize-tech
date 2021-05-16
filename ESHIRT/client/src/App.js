@@ -21,6 +21,7 @@ import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
 import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
+import OrderDetail from './Components/Admin/Sales/OrderDetail';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
@@ -81,6 +82,7 @@ function App() {
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
+      <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>

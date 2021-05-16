@@ -22,7 +22,7 @@ const [order, setOrder] = useState([]);
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
-    if (shirt.public === true){
+    if (shirt.public === 'pending'){
     return designs.push({
         name: shirt.name,
         id: shirt.id
@@ -73,7 +73,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 {Total.length > 0  
       ? ( Total.map((shirt) => {
           return (
-            <div>
+            <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
               <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name} </button>
              
@@ -84,11 +84,13 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
       ) 
       : (<p>Desings not found</p>)}
       
-<NavLink to='home_admin'>
-        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
-    </NavLink>  
+
+
     
         </div>
+        <NavLink to='home_admin'>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+    </NavLink>  
         </div>
     )
 }
