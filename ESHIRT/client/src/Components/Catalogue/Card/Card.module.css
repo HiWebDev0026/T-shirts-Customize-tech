@@ -359,25 +359,13 @@
   border-radius: 10px;
 }
 
-.changeSize{
-  
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  height: 38px;
-  width: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-color: rgba(255, 127, 80, 0.397);
-  transition-duration: 0.4s;
-  border-radius: 10px;
-}
 
-.changeSize:hover{
+
+/* .size:hover{
   background-color:#24252A;
   color: rgba(255, 127, 80, 0.397);
   border-radius: 10px;
-}
+} */
 .buttonAM{
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
