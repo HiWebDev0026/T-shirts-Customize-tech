@@ -30,19 +30,12 @@ shirts.map((shirt) => {
       dispatch(getShirts());
     }, []);
 
-    function handleDelete(e) {
-        alert("Design " + e.target.value + " deleted");
-        dispatch(deleteShirt(e.target.value)); 
-      };
+   
 
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
         history.push('/design_detail');
       }
-
-      function handleEdit (e) {
-        dispatch(putShirt({'public':true}));
-    }
 
     return(
       
@@ -51,15 +44,13 @@ shirts.map((shirt) => {
         <div className={Style.Designs}>
 
 
-{designs.length > 0 
+{designs.length > 0  
       ? ( designs.map((shirt) => {
           return (
             <div>
               <div className={Style.Tarjet}>
-                
-              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name}</button>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button>
-              <button className={Style.Btn2} value={shirt.id} onClick={handleEdit}>APPROVAL </button>
+              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name} </button>
+             
               </div>
                </div>
           );
