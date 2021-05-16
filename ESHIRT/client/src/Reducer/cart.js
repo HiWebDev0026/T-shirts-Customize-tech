@@ -138,6 +138,19 @@ const cartReducer = (state=initialState, action) => {
                 ...state,
                 putOrderOk: null
             }
+        // case 'GET_ORDERS_BY_USER':
+        //     let cart=action.payload.filter(item => item.status === 'CART')
+        //     return {
+        //         ...state,
+        //         orderId: cart[0].id
+        //     }
+
+        // case 'GET_ORDER':{
+        //     return{
+        //         ...state,
+        //         items: action.payload.details
+        //     }
+        // }
 
         default: return state
     }
