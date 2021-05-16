@@ -82,7 +82,7 @@ export function deleteShirt(shirtId){
     // Hacer un get antes de usar esta action porque se necesita el id
     return async (dispatch) => {
         try {
-            const res = await axios.delete(`/shirt/${shirtId}`, {responseType: 'json'}, {headers: {
+            const res = await axios.delete(`/shirt/${shirtId}`, {responseType: 'json', headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             dispatch({type: 'DELETE_SHIRT', payload: shirtId})
