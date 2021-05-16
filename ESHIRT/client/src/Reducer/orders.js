@@ -1,5 +1,6 @@
 const initialState={
-    orders: []
+    orders: [],
+    orderDetail:[]
 }
 
 const ordersReducer = (state=initialState, action) => {
@@ -40,7 +41,7 @@ const ordersReducer = (state=initialState, action) => {
             case 'GET_ORDER':{
                 return{
                     ...state,
-                    items: action.payload.details
+                    orderDetail: action.payload.details
                 }
             }
             case 'GET_ORDERS':{
