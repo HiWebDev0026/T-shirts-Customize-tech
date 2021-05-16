@@ -4,6 +4,7 @@ import userReducer from './user';
 import shirtReducer from './shirt';
 import categoryReducer from './category';
 import cartReducer from './cart'
+import ordersReducer from './orders'
 
 const initialState = {
     errors: null
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
     userReducer,
     shirtReducer,
     categoryReducer,
-    cartReducer
+    cartReducer,
+    ordersReducer
 })
 
 export default rootReducer
