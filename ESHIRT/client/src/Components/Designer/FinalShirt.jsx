@@ -16,7 +16,7 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
     const history = useHistory()
-    const {user} = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     
     const setColorName = (color) => {
         switch(color) {
@@ -49,33 +49,43 @@ export default function FinalShirt(props) {
     function handleChange(e) {
         const value = e.target.value;
         const name = e.target.name
-        setInput({
+        
+        setInput(prevState => {
+            return {
+            ...prevState,
             [name]: value
-        });
+        }});
+
+        return;
     }
-    function handlePublic(e) {
+    /* function handlePublic(e) {
         const value = e.target.value;
         const name = e.target.name
+
         setInput2(
             value
         );
-    }
+
+        return;
+    } */
         
 
     function handleSubmit (e, phase) {
         
         e.preventDefault();
-        dispatch(postShirt( 
-            {
-                userId: user.sub.split('|')[1],
-                name: input.name,
-                print: phase.designSelected.data,
-                size: phase.sizeSelected.data,
-                color: setColorName(phase.colorSelected.data),
-                public: input2 === 'true ' ? true : false,
-                model: phase.modelSelected.data,
-            }
-        ));
+        if(isAuthenticated) {
+                dispatch(postShirt( 
+                    {
+                        userId: user.sub.split('|')[1],
+                        name: input.name,
+                        print: phase.designSelected.data,
+                        size: phase.sizeSelected.data,
+                        color: setColorName(phase.colorSelected.data),
+                        public: input.public,
+                        model: phase.modelSelected.data,
+                    }
+                ));
+        }
         //history.push('/catalogue')
     }
 
@@ -94,9 +104,9 @@ export default function FinalShirt(props) {
                     <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
                     <div className={FinalCSS.Desing}> Do you want to share yoor design?</div>
                     <label className={FinalCSS.Desing1}>Yes</label>
-                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+                    <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
-                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+                    <input type="radio" name="public" value="false" onChange= {handleChange}/>
                    
                     
 
