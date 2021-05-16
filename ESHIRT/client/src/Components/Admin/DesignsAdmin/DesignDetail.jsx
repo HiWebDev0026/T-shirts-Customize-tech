@@ -13,6 +13,7 @@ export default function DesignDetail (){
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 const history = useHistory();
+const [input2, setInput2] = useState('');
 
 function handleDelete(e) {
     alert("Design " + e.target.value + " deleted");
@@ -20,11 +21,22 @@ function handleDelete(e) {
     history.push('/desings_admin')
   };
 
+  function handlePublic(e) {
+    const value = e.target.value;
+    const name = e.target.name
+    setInput2(
+        value
+    );
+}
   function handleEdit (e) {
     alert("Design " + e.target.value + " aprroved");
-    dispatch(putShirt({'public':true}));
+    e.preventDefault();
+    dispatch(putShirt({public: input2 === 'true' ? true : false}));
     history.push('/desings_admin');
+    console.log({public: input2 === 'true' ? true : false})
 }
+
+    
 
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
@@ -38,6 +50,10 @@ return(
          <div className={Style.Btns}>
          <button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button>
          <button className={Style.Btn2} value={designs.id} onClick={handleEdit}>APPROVAL </button>
+         <label >Yes</label>
+                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+                    <label >No</label>
+                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
          </div>
         </div>
    
