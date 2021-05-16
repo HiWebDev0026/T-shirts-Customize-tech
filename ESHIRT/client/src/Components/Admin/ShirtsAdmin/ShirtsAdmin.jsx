@@ -82,7 +82,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
         </div>
 
 <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+<h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>
         </div>

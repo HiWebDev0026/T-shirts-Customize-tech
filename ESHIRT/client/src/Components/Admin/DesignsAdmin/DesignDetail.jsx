@@ -17,7 +17,6 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
 
 return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
-<h2 className={Style.Title}>Designs waiting for approval</h2>
 {
         <div className={Style.Container}> 
          <p className={Style.Name}>{designs.name}</p>
@@ -27,12 +26,12 @@ return(
    
 }
 
-   <NavLink to='/desings_admin'>
-        <h3 className={Style.Btn3}>DESINGS</h3>
+   <NavLink to='/desings_admin' >
+        <h5 className={Style.Btn3}>DESINGS</h5>
     </NavLink> 
 
    <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink> 
 
         </div>

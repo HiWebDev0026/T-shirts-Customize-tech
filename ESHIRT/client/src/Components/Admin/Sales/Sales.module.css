@@ -61,3 +61,8 @@
 .Titles8{
     grid-column: 8;
 }
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}

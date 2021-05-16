@@ -46,7 +46,11 @@
   .Centers{
       justify-content: center;
   }
-
+  .Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
 
 
 

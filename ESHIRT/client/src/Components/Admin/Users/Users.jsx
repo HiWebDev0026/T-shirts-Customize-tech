@@ -121,7 +121,7 @@ export default function Users() {
         </div>
     <div className={Style.ContBtn3}>
     <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+    <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
 </div>
 </div>
