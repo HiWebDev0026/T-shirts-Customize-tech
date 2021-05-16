@@ -7,7 +7,7 @@ const router= Router()
 router.get('/', checkJwt, checkAdminScopes, getUsers)
 router.get('/:id', checkJwt, checkAdminScopes, getUser)
 router.post('/', postUser)
-router.put('/:id', putUser )
+router.put('/:id', putUser)
 router.delete('/:id', checkJwt, checkAdminScopes, deleteUser)
 
 

@@ -22,12 +22,11 @@ const validatePost = (body) => {
 const validatePut = (body) => {
     if (Object.keys(body).length === 0) { return false; } // body is an empty object
 
-    const modelFileds = ["name", "lastname", "email", "country", "city", "adress", "phone"]
+    const modelFileds = ["name", "email"]
 
     for (const field of modelFileds) {
         if (body.hasOwnProperty(field) && !body[field]) { return false; } // body.name = "" returns false
         if (body[field] && field === "email" && !/\S+@\S+.\S+/.test(body[field])) { return false; } // bad email format 
-        if (body[field] && field === "phone" && isNaN(phone)) {return false;} // phone is not a number
     }
 
     return true;
@@ -50,7 +49,7 @@ async function postUser(req, res, next) {
 
 
 async function getUser(req, res, next) {     
-    const userId = req.params.id
+    const userId = req.params.id.toString()
     try { 
         const user = await User.findOne({where: {id: userId}, include: [Shirt, Order]})
         if (user) {
@@ -90,7 +89,7 @@ async function getUsers(req, res, next) {
 }
 
 async function putUser(req, res, next) {
-    const userId = req.params.id
+    const userId = req.params.id.toString()
     const body = req.body     
     try {
         const user = await User.findOne({where: {id: userId}, include: [Shirt]})
