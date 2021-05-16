@@ -19,6 +19,8 @@
     display: grid;
     justify-content: center;
     grid-row: 2;
+    text-transform: uppercase;
+    
 }
 .Color{
     display: grid;
@@ -29,4 +31,9 @@
     display: grid;
     justify-content: center;
     grid-row: 4;
+}
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
 }

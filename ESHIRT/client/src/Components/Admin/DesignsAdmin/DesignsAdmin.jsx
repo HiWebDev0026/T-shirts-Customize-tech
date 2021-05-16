@@ -38,17 +38,18 @@ shirts.map((shirt) => {
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
         history.push('/design_detail');
-    
       }
 
       function handleEdit (e) {
-       
         dispatch(putShirt({'public':true}));
     }
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
-<h2 className={Style.Title}>Designs waiting for approval</h2>
+      
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+        <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
+        <div className={Style.Designs}>
+
 
 {designs.length > 0 
       ? ( designs.map((shirt) => {
@@ -65,10 +66,12 @@ shirts.map((shirt) => {
         })
       ) 
       : (<p>Desings not found</p>)}
+      
 <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
-        
+    
+        </div>
         </div>
     )
 }

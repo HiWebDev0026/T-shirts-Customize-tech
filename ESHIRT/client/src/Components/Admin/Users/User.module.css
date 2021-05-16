@@ -17,6 +17,7 @@
 .Btn3{
     display: flex;
     justify-content: center;
+    color: white;
 }
 .Order{
     display: grid;
