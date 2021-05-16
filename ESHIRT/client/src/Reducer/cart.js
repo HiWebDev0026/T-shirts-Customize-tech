@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState={
     items:  JSON.parse(localStorage.getItem('items')) || [],
-    orderId: null,
-    putOrderOk: null
 }
 
 const cartReducer = (state=initialState, action) => {

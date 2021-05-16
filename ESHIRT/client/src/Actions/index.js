@@ -41,7 +41,9 @@ import {
     modifyOrderStatus,
     resetPutOrderOk,
     getOrderById,
-    getOrdersByUserId
+    getOrdersByUserId,
+    checkLastOrder,
+    setPostStarted
 } from './orders.js'
 
 const resetErrors = () => {
@@ -85,5 +87,7 @@ export {
     modifyOrderStatus,
     resetPutOrderOk,
     getOrderById,
-    getOrdersByUserId
+    getOrdersByUserId,
+    checkLastOrder,
+    setPostStarted
 }
