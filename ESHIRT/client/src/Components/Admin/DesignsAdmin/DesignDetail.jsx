@@ -7,13 +7,11 @@ import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import Style from "./DesignDetail.module.css";
 
-
 export default function DesignDetail (){
 
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 const history = useHistory();
-const [editButtonTarget, setEditButtonTarget] = useState(0);
 const [input2, setInput2] = useState('');
 
 function handleDelete(e) {
@@ -29,14 +27,13 @@ function handleDelete(e) {
     );
 }
   function handleEdit (e) {
-    alert("Design " + e.target.value + " aprroved");
+    if(input2.length >0){  
+    alert("Design " + e.target.value + "modified");
     e.preventDefault();
-    dispatch(putShirt({public: input2 === 'true' ? true : false}, editButtonTarget));
+    dispatch(putShirt({public: input2 === 'true' ? true : false}, designs.id));
     history.push('/desings_admin');
-    
+    }    
 }
-
-    
 
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
@@ -48,13 +45,13 @@ return(
          <p className={Style.Color}>{designs.color}</p>
          <img src={designs.print} className={Style.Image}/>
          <div className={Style.Btns}>
-        
-         <label >Yes</label>
-                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+        <form>
+         <label>Yes</label>
+                    <input type="radio" name="public" value="true" onChange= {handlePublic} />
                     <label >No</label>
-                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
-         <button className={Style.Btn2} value={designs.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>APPROVAL </button>
-         <button className={Style.Btn2} value={designs.id} onClick={handleEdit}>CONFIRM </button>
+                    <input type="radio" name="public" value="false" onChange= {handlePublic}  />
+                    </form>
+         <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >APPROVAL</button>
          </div>
          <div><button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
         </div>
