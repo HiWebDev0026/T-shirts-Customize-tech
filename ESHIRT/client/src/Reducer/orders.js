@@ -1,5 +1,9 @@
 const initialState={
     orders: [],
+    orderId: null,
+    putOrderOk: null,
+    postStarted: false,
+    lastOrderChecked: false,
     orderDetail:[]
 }
 
@@ -14,7 +18,8 @@ const ordersReducer = (state=initialState, action) => {
             case 'POST_ORDER':
             return {
                 ...state,
-                orderId: action.payload.orderId
+                orderId: action.payload.orderId,
+                postStarted: false
             }
             case 'PUT_ORDER':
                 return {
@@ -48,6 +53,19 @@ const ordersReducer = (state=initialState, action) => {
                 return{
                     ...state,
                     orders:action.payload
+                }
+            }
+            case 'CHECK_LAST_ORDER': {
+                return {
+                    ...state,
+                    orderId: action.payload,
+                    lastOrderChecked: true
+                }
+            }
+            case 'SET_POST_STARTED': {
+                return {
+                    ...state,
+                    postStarted: true
                 }
             }
         default: return state

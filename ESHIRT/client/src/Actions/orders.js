@@ -27,7 +27,16 @@ export function postOrder(cart, userId) {
     // EL USER ID VA A LA URL COMO PARAMS (ya lo dejé seteado)
     return async (dispatch) => {
         try {
-            const res = await axios.post(`/order/${userId}`, cart, {headers: {
+            const cloned = [...cart]
+            const order = cloned.map(detail => {
+                return {
+                    shirtId: detail.id,
+                    price: detail.price,
+                    size: detail.size,
+                    amount: detail.amount
+                }
+            })
+            const res = await axios.post(`/order/${userId}`, order, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             const newOrder = res.data
@@ -38,7 +47,7 @@ export function postOrder(cart, userId) {
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
-
+            dispatch({type: 'SET_POST_STARTED'})
         }
     }
 
@@ -51,7 +60,15 @@ export function putOrder (cart, orderId) {
     // EL CARRITO SE INICIA CON STATUS: CART (PRODUCTOS EN EL CARRITO...)
     return async (dispatch) => {
         try {
-            const res = await axios.put(`/order/${orderId}`, cart, {headers: {
+            const order = cart.map(detail => {
+                return {
+                    shirtId: detail.id,
+                    price: detail.price,
+                    size: detail.size,
+                    amount: detail.amount
+                }
+            })
+            const res = await axios.put(`/order/${orderId}`, order, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             dispatch({type: 'PUT_ORDER'})
@@ -89,7 +106,9 @@ export function modifyOrderStatus (status, orderId) {
 }
 
 export function resetPutOrderOk () {
-    return {type: 'RESET_PUT_ORDER_OK'}
+    return function (dispatch) {
+        return dispatch({type: 'RESET_PUT_ORDER_OK'})
+    }
 }
 
 export function getOrderById (orderId) {
@@ -116,4 +135,35 @@ export function getOrdersByUserId (userId) {
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
         }
     }
+}
+
+export function checkLastOrder (userId) {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
+            const orders = res.data
+            if (orders.length === 0) {
+                dispatch({type: 'CHECK_LAST_ORDER', payload: 0})    
+            } else {
+                const oldOrders = orders.map(order => {
+                    if (order.status.toUpperCase() === 'CART') {
+                        return Number(order.id)
+                    }
+                })
+                const oldOrder = Math.max(...oldOrders)
+                dispatch({type: 'CHECK_LAST_ORDER', payload: (oldOrder && oldOrder) || 0})
+            }
+
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }    
+}
+
+export function setPostStarted () {
+    return function(dispatch) {
+        return dispatch({type: 'SET_POST_STARTED'}) 
+    }
+    
 }
