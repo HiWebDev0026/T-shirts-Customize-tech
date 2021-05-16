@@ -32,23 +32,29 @@ function App() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    
+    let token;
     (async () => {
       try {
-        const token = await getAccessTokenSilently({
-          audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
-        });
-        localStorage.setItem('currentToken', token)
 
-        if(isAuthenticated){
+      
+
+        if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
+          token = await getAccessTokenSilently({
+            audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+          })
           const { name, sub, email } = user;
+          
           const userToPost ={
             id: sub.split('|')[1],
             name,
             email
           } 
           dispatch(postUser(userToPost));
+          localStorage.setItem('currentToken', token)
         }
+
+        
+        
 
         return console.log(localStorage);
       } catch (e) {
@@ -57,7 +63,7 @@ function App() {
     })();
 
 
-  }, [isAuthenticated]);
+  }, [isAuthenticated, localStorage.currentToken]);
 
 
   return (
@@ -75,7 +81,7 @@ function App() {
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
-      <ProtectedRoute exact path= '/designs_admin'  component={DesignsAdmin}/>
+      <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />

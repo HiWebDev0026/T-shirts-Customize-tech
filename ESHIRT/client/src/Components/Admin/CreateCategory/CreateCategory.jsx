@@ -21,16 +21,20 @@ export default function CreateCategory (){
 
 
     useEffect(()=>{
-        dispatch(getCategories());
-    }, []);
 
-    useEffect(() => {
-        console.log(errors)
+        dispatch(getCategories());
+
         if (errors) {
             alert(`${errors.message}`)
-            dispatch(resetErrors()) 
+            dispatch(resetErrors())
         }
-    })
+
+    }, [errors, categories.length]);
+
+  /*   useEffect(() => {
+        console.log(errors)
+        
+    }) */
 
     function handleSubmit (e) {
         e.preventDefault();

@@ -25,7 +25,7 @@ export default function Users() {
 
   useEffect(() => {
 
-    console.log(isAuthenticated, 'logueado')
+    
     if(isAuthenticated) {
         dispatch(getUsers());
     }
@@ -73,6 +73,9 @@ export default function Users() {
   function handleChange(e) {
       setState(e.target.value)
   }
+
+  // UPDATED by @aagenesds22: 
+  // Token added in getUsersByName action. Validation working 
   function handleSubmit(e){
       e.preventDefault();
       dispatch(getUsersByName(state))
