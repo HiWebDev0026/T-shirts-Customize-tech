@@ -31,3 +31,13 @@
 .Titles2:hover{
     background-color: lightblue;
 }
+.General{
+    display: grid;
+    justify-content: center;
+}
+.Options{
+    display: grid;
+    justify-content: center;
+    margin-left: 43%;
+    margin-right: 43%;
+}
