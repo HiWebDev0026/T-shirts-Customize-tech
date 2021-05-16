@@ -40,10 +40,12 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
   return (
-    <IconContext.Provider value={{ color: "coral", size:"3vh" }}>
-    <a href={`#popup${id}`}>
 
+  
+  <div>
+ 
       <div className={style.wrapper}>
+      <a href={`#popup${id}`}>
         <div className={style.container}>
           <div className={style.top}>
             <img className={style.image} src={image} />
@@ -51,13 +53,14 @@ function Card({ title, score, price, size, model, color, image, id }) {
           <div className={style.bottom}>
             <div className={style.left}>
               <div className={style.details}>
-                <a>{title}</a>
+                <a >{title}</a>
               </div>
             </div>
           </div>
         </div>
+        </a>
       </div>
-     
+      
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
           <div className={style.popup__photo}>
@@ -74,7 +77,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
             </div>
-            
+         
                 <div>
                         <button className={style.buttonAM} onClick={handleAddOne}>
                         <GrAdd />
@@ -82,16 +85,17 @@ function Card({ title, score, price, size, model, color, image, id }) {
                         <button className={style.buttonAM} onClick={handleOutOne}>
                         <GrFormSubtract />
                         </button>
-
+                        <label>
                         <select className={style.size} onChange={handleSizeChange}>
-                          <option>Size</option>
-
+                          <option selected="true" disabled="disabled">size</option>
                           <option value="XL">XL</option>
                           <option value="L">L</option>
                           <option value="M">M</option>
                           <option value="S">S</option>
                         </select>
+                        </label>
                       </div>
+                    
             <p>Size: {newSize}</p>
             <p>Color: {color}</p>
             <p>Model: {model}</p>
@@ -112,8 +116,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
           </div>
         </div>
       </div>
-    </a>
-</IconContext.Provider>
+      </div>
+     
+
   );
 }
 
