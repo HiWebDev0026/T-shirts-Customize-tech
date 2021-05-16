@@ -16,7 +16,7 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
     const history = useHistory()
-    const {user} = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
     
     const setColorName = (color) => {
         switch(color) {
@@ -65,17 +65,19 @@ export default function FinalShirt(props) {
     function handleSubmit (e, phase) {
         
         e.preventDefault();
-        dispatch(postShirt( 
-            {
-                userId: user.sub.split('|')[1],
-                name: input.name,
-                print: phase.designSelected.data,
-                size: phase.sizeSelected.data,
-                color: setColorName(phase.colorSelected.data),
-                public: input2 === 'true ' ? true : false,
-                model: phase.modelSelected.data,
-            }
-        ));
+        if(isAuthenticated) {
+                dispatch(postShirt( 
+                    {
+                        userId: user.sub.split('|')[1],
+                        name: input.name,
+                        print: phase.designSelected.data,
+                        size: phase.sizeSelected.data,
+                        color: setColorName(phase.colorSelected.data),
+                        public: input2 === 'true ' ? true : false,
+                        model: phase.modelSelected.data,
+                    }
+                ));
+        }
         //history.push('/catalogue')
     }
 
