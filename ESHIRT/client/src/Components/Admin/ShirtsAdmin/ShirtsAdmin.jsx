@@ -28,27 +28,30 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
       const nextPage = () => { page < max && setPage(page + 10); };
       const prevPage = () => { page > 0 && setPage(page - 10); };
     
+      
     return(
       !isAdmin ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.General} >
         <table id="table-to-xls">
-        <div className={Style.Shirts} id='tableShirts'>
+        <div id='tableShirts'>
             <br/>
             <tr>
-             <th className={Style.Title1}> Id---------------</th>
-              <th className={Style.Title2}> -------------Name-------------</th>
-              <th className={Style.Title3}> -------------Color-------------</th>
-              <th className={Style.Title4}> -------------Model--------------</th>
-              <th className={Style.Title5}>-------------Size-------------</th>
-              <th className={Style.Title6}> -------------Score-------------</th>
-              <th className={Style.Title7}> -------------Public-------------</th>
-              <th className={Style.Title8}> -------------Created-------------</th>
+            <div className={Style.Shirts} >
+             <th className={Style.Title1}> Id</th>
+              <th className={Style.Title2}> Name</th>
+              <th className={Style.Title3}> Color</th>
+              <th className={Style.Title4}> Model</th>
+              <th className={Style.Title5}>Size</th>
+              <th className={Style.Title6}> Score</th>
+              <th className={Style.Title7}> public</th>
+              <th className={Style.Title8}> Created</th>
+              </div>
               </tr>
               </div>
             {shirts.length > 0 
       ? ( shirts.slice(page, page + 10).map((shirt) => {
           return (
-            <tr>
+            <tr className={Style.Container}>
               <div className={Style.Tarjet} >
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>
