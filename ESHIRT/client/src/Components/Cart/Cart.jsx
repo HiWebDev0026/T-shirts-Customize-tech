@@ -5,7 +5,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {Link} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
-import {clear,getUserById} from '../../Actions/index.js'
+import {clear,getOrdersByUserId,getOrderById} from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 
@@ -24,6 +24,10 @@ export default function Cart (){
     const [currentPage, setCurrentPage] = useState(0);
 
     const items = useSelector((state)=>state.cartReducer.items);
+    console.log('ITTEEMS',items)
+    const orderId = useSelector((state)=>state.cartReducer.orderId);
+    console.log('ORDERID',orderId)
+
     const  dispatch= useDispatch();
    
     const INITIAL_PAGE= 4;
@@ -34,26 +38,19 @@ export default function Cart (){
     // const userId= user.sub.split('|').pop();
     // console.log('USER',userId, typeof userId)
    
-    useEffect(()=>{
-            localStorage.setItem('items',JSON.stringify(items));
-        },[items])
-    
-        console.log('PRODUCT', items)
+    // useEffect(()=>{
+    //         dispatch(getOrdersByUserId('105677628845670307410'));
+    // },[])
 
     // useEffect(()=>{
-    //     if(!isAuthenticated){
-    //         localStorage.setItem('items',JSON.stringify(items));
-    //     }else if(isAuthenticated){
-    //         let userData = dispatch(getUserById(userId));
-    //         console.log('USERDATA', userData)
-    //         let filtered=userData.orders.filter(order => order.status === 'CART');
-    //         console.log('FILTERED', filtered)
-    //         let sorted = filtered.sort((a,b)=>new Date(a.updatedAt)-new Date(b.updatedAt)).shift()
-    //         let orderId= sorted.id
-    //         //hacer un dispatch get orderById(id).
-    //     }
-        
-    // },[items]);
+    //         dispatch(getOrderById(orderId));
+    // },[orderId])
+
+    useEffect(()=>{
+        localStorage.setItem('items',JSON.stringify(items));
+    },[items])
+    
+    console.log('PRODUCT', items)
 
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
@@ -84,18 +81,23 @@ export default function Cart (){
                     <div className={Style.total}>
                         <h2>Total</h2>
                     </div>
-                    <div>{
-                        items.length === 0? 
-                        <div>Your cart is empty</div>
-                        :<div>You have {items.reduce((a,c)=>a+c.amount,0)} items in your shopping cart</div>
-                    }</div>
-                    <div>${items.reduce((a,c)=>a+c.price*c.amount,0)}</div>
-                    <Link to='/catalogue'>
-                        <button>Go back shopping</button>
-                    </Link>
-                    {items.length >0&&<button>Purchase</button>}
-                    {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
-                    
+                    <div className={Style.total}>
+                        <div className={Style.message}>{
+                            items.length === 0? 
+                            <div>Your cart is empty</div>
+                            :<div>You have {items.reduce((a,c)=>a+c.amount,0)} items in your shopping cart</div>
+                        }</div>
+                    </div>
+                    <div className={Style.totalPay}>
+                        <div>${items.reduce((a,c)=>a+c.price*c.amount,0)}</div>
+                    </div>
+                        <div className={Style.buttons}>
+                            <Link to='/catalogue'>
+                                <button>Go back shopping</button>
+                            </Link>
+                            {items.length >0&&<button>Purchase</button>}
+                            {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
+                        </div>
                 </div>
             </div>
                 <div className={Style.pages}>

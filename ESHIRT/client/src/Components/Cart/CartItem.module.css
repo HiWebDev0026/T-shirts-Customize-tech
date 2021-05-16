@@ -1,7 +1,9 @@
+
 .cartCard{
     border: solid 2px white;
     display: flex;
     margin-bottom: 5px;
+    color:white;
 }
 
 .picture{
@@ -48,8 +50,8 @@
 .amount button{
     width:15%;
     background-color: transparent;
-    color: coral;
-    border: solid 2px coral;
+    color: white;
+    border: solid 2px white;
     display: flex;
     justify-content: center;
 }
@@ -69,8 +71,8 @@
 
 .size select {
     background-color: transparent;
-    color: coral;
-    border: solid 2px coral;
+    color: white;
+    border: solid 2px white;
     display: flex;
     justify-content: center;
 }
