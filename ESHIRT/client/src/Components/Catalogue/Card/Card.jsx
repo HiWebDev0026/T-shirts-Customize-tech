@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import {MdDeleteForever} from "react-icons/md";
+import {GrAdd, GrFormSubtract} from "react-icons/gr";
+import { IconContext } from "react-icons";
 import {
   pushItem,
   deleteItem,
@@ -38,7 +40,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
   return (
+    <IconContext.Provider value={{ color: "coral", size:"3vh" }}>
     <a href={`#popup${id}`}>
+
       <div className={style.wrapper}>
         <div className={style.container}>
           <div className={style.top}>
@@ -67,17 +71,21 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <h1>Details</h1>
             <div>
               <h2>{title}</h2>
+
+
             </div>
             
                 <div>
-                        <button className={style.buttonCart} onClick={handleAddOne}>
-                        + 1
+                        <button className={style.buttonAM} onClick={handleAddOne}>
+                        <GrAdd />
                         </button>
-                        <button className={style.buttonCart} onClick={handleOutOne}>
-                        - 1
+                        <button className={style.buttonAM} onClick={handleOutOne}>
+                        <GrFormSubtract />
                         </button>
+
                         <select className={style.size} onChange={handleSizeChange}>
                           <option>Size</option>
+
                           <option value="XL">XL</option>
                           <option value="L">L</option>
                           <option value="M">M</option>
@@ -105,6 +113,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
         </div>
       </div>
     </a>
+</IconContext.Provider>
   );
 }
 
