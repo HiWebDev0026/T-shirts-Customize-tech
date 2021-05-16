@@ -14,12 +14,10 @@ const setToLower = (body) => {
 const validatePost = (body) => {
     const {name, color, model, size, print, public, score, categories} = body;
     
-    if (!(name && color && model && size && print && (typeof public !== 'undefined'))) { console.log("important fields"); return false; }
+    if (!(name && color && model && print && (typeof public !== 'undefined'))) { console.log("important fields"); return false; }
     if (isNaN(print) && print.length < 50) {console.log("print"); return false;}
     if (score && isNaN(score)) { console.log("score"); return false; }
     if (categories && !Array.isArray(categories)) {console.log("categories"); return false; }
-    if (typeof public !== "boolean") { console.log("public"); return false; }
-    if (size && size !== ['S', 'M', 'L', 'XL', 'XXL'].find(s => s === size)) { console.log("size"); return false; }
 
     return true;
 }
@@ -27,15 +25,13 @@ const validatePost = (body) => {
 const validatePut = (body) => {
     if (Object.keys(body).length === 0) { return false; } // body is an empty object
 
-    const modelFileds = ["name", "color", "model", "size", "print", "score", "public"]
+    const modelFileds = ["name", "color", "model", "size", "print", "score"]
 
     for (const field of modelFileds) {
         if (body.hasOwnProperty(field)) {
             if (!body[field]) { return false; } // body.name = "" returns false
-            if (field === "size" && body[field] !== ['S', 'M', 'L', 'XL', 'XXL'].find(size => size === body[field])) { return false; }  
             if (field === "print" && body[field].length < 50) {return false;}
             if (field === "score" && isNaN(body[field])) {return false;}
-            if (field === "public" && body[field] !== "true" && body[field] !== "false") {return false}
             if (field === "categories" && !Array.isArray(body[field])) {return false;} 
         }
     }
@@ -46,12 +42,11 @@ const validatePut = (body) => {
 
 
 async function postShirt(req, res, next) {        
-    // this will have a validation before post
     try {
         
         if (!validatePost(req.body)) {return next({status: 400, message: 'Bad body request'})}
 
-        const newShirt = {...req.body, name: req.body.name.toLowerCase(), created_by_user: true} 
+        const newShirt = {...req.body, name: req.body.name.toLowerCase(), created_by_user: true, userId: req.body.userId.toString()} 
         const postedShirt = await Shirt.create(newShirt);
         
         if (newShirt.categories) {

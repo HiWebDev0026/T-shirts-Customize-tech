@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .wrapper {
   width: 8vw;
   height: 30vh;
@@ -44,11 +46,14 @@
 .wrapper .container .bottom p {
   margin: 0;
   padding: 0;
+  
 }
 .wrapper .container .bottom .left {
   height: 100%;
   width: 50%;
-  background: rgba(255, 127, 80, 0.719);
+  background: rgba(131, 131, 131, 0.657);
+  border: 1px solid black;
+  border-color: black;
   position: relative;
   float: left;
 }
@@ -57,7 +62,8 @@
   float: left;
   width: calc(70% - 40px);
   font-size: 2vh;
-font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  
 }
 .wrapper .container .bottom .left .buy {
   display: flex;
@@ -86,7 +92,8 @@ font-family: "Montserrat", sans-serif;
 .wrapper .container .bottom .right {
   width: 50%;
   background: #a6cdde;
-  color: white;
+  color: rgb(148, 148, 148);
+  border-color: black;
   float: right;
   height: 200%;
   overflow: hidden;
@@ -193,7 +200,7 @@ font-family: "Montserrat", sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   display: inline-block; 
-  color: coral;
+  color: rgb(255, 179, 80);
   padding: 0.5rem 1rem;
   font-family: "Montserrat", sans-serif;
 }
@@ -217,7 +224,7 @@ font-family: "Montserrat", sans-serif;
 }
 .popup_inner {
   position: relative;
-  justify-content:center;
+  justify-content: space-around;
   bottom: -100vw;
   right: -100vh;
   display: flex;
@@ -226,10 +233,13 @@ font-family: "Montserrat", sans-serif;
   max-height: 600px; */
   width: 60%;
   height: 80%;
-  background-color: #fff;
-  transform: rotate3d(1, 2.0, 3.0, 10deg);
-  /* transition: 0.5s ease-in-out;
-  padding:0; */
+
+  background-color: rgb(255, 255, 255);
+  backdrop-filter: blur (15px);
+  transform: rotate(32deg);
+  transition: 0.64s ease-in-out;
+  padding:0;
+
   
 
 }
@@ -248,7 +258,15 @@ font-family: "Montserrat", sans-serif;
   justify-content: left;
   
 }
-.popup__text h1{ 
+
+
+.popup__text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popup__text h1 { 
+
   /* width: 60%;
   height: 100%; */
   /* padding: 4rem; */
@@ -310,8 +328,24 @@ font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 12px;
   height: 38px;
-  width: 50px;
-  margin-left: 50px;
+
+
+  width: 6vh;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: rgba(255, 127, 80, 0.397);
+  transition-duration: 0.4s;
+  border-radius: 10px;
+}
+
+.size{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+  width: 7vh;
+  margin-left: 5px;
+
   margin-right: 5px;
   border-color: rgba(255, 127, 80, 0.397);
   transition-duration: 0.4s;

@@ -127,8 +127,8 @@ const shirt2 = {
 const shirt3 = {
     "userId": "105677628845670307411",
     "categoryId": "8",
-    "name": "Footprint",
-    "color": "orange",
+    "name": "joker",
+    "color": "black",
     "model": "cuello-u",
     "size": "M",
     "print": "https://cdn.shopify.com/s/files/1/0443/3113/9234/products/t-shirt-femme-jpeux-pas-jai-pole-dance-noir-494817.jpg?v=1604670113",
@@ -337,7 +337,7 @@ async function fillDB () {
     try {
     shirt1.print = await utils.promisifiedReadFile('./src/images/img11.txt')
     shirt2.print = await utils.promisifiedReadFile('./src/images/img2.txt')
-    shirt3.print = await utils.promisifiedReadFile('./src/images/img3.txt')
+    shirt3.print = await utils.promisifiedReadFile('./src/images/img12.txt')
     shirt4.print = await utils.promisifiedReadFile('./src/images/img9.txt')
     shirt5.print = await utils.promisifiedReadFile('./src/images/img5.txt')
     shirt6.print = await utils.promisifiedReadFile('./src/images/img6.txt')
@@ -346,6 +346,7 @@ async function fillDB () {
     shirt9.print = await utils.promisifiedReadFile('./src/images/img4.txt')
     shirt10.print = await utils.promisifiedReadFile('./src/images/img10.txt')
     shirt11.print = await utils.promisifiedReadFile('./src/images/img1.txt')
+    shirt12.print = await utils.promisifiedReadFile('./src/images/img3.txt')
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);
     const postedUser3 = await User.create(user3);
@@ -367,7 +368,7 @@ async function fillDB () {
     const shirtPosted2 = await Shirt.create({...shirt2, created_by_user: true});
     await shirtPosted2.addCategory(categoryPosted7.id);
     const shirtPosted3 = await Shirt.create({...shirt3, created_by_user: true});
-    await shirtPosted3.addCategory(categoryPosted8.id);
+    await shirtPosted3.addCategory(categoryPosted6.id);
     const shirtPosted4 = await Shirt.create({...shirt4, created_by_user: true});
     await shirtPosted4.addCategory(categoryPosted4.id);
     const shirtPosted5 = await Shirt.create({...shirt5, created_by_user: true});
@@ -383,9 +384,9 @@ async function fillDB () {
     const shirtPosted10 = await Shirt.create({...shirt10, created_by_user: true});
     await shirtPosted10.addCategory(categoryPosted5.id);
     const shirtPosted11 = await Shirt.create({...shirt11, created_by_user: true});
-    await shirtPosted11.addCategory(categoryPosted6.id);
+    await shirtPosted11.addCategory(categoryPosted8.id);
     const shirtPosted12 = await Shirt.create({...shirt12, created_by_user: true});
-    await shirtPosted12.addCategory(categoryPosted5.id);
+    await shirtPosted12.addCategory(categoryPosted8.id);
     const shirtPosted13 = await Shirt.create({...shirt13, created_by_user: true});
     await shirtPosted13.addCategory(categoryPosted6.id);
     const shirtPosted14 = await Shirt.create({...shirt14, created_by_user: true});

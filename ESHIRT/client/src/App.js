@@ -1,6 +1,8 @@
 import './App.css';
 import {Route} from 'react-router-dom';
 import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {postUser} from './Actions/index.js';
 
 import Home from './Components/Home/Home.jsx'
 import NavBar from './Components/NavBar/NavBar.jsx';
@@ -15,7 +17,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
 import ProtectedRoute from './auth/ProtectedRoute';
-import {Profile} from './auth/Profile';
+import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
 import ShirtsAdmin from './Components/Admin/ShirtsAdmin/ShirtsAdmin';
 import Sales from './Components/Admin/Sales/Sales';
@@ -24,20 +26,36 @@ import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 
 
-
 function App() {
 
-  const {isAuthenticated, getAccessTokenSilently } = useAuth0();
-
+  const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    
+    let token;
     (async () => {
       try {
-        const token = await getAccessTokenSilently({
-          audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+
+      
+
+        if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
+          token = await getAccessTokenSilently({
+            audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+          })
+          const { name, sub, email } = user;
           
-        });
-        localStorage.setItem('currentToken', token)
+          const userToPost ={
+            id: sub.split('|')[1],
+            name,
+            email
+          } 
+          dispatch(postUser(userToPost));
+          localStorage.setItem('currentToken', token)
+        }
+
+        
+        
+
         return console.log(localStorage);
       } catch (e) {
         console.error(e);
@@ -45,8 +63,7 @@ function App() {
     })();
 
 
-}, [isAuthenticated]);
-
+  }, [isAuthenticated, localStorage.currentToken]);
 
 
   return (
@@ -57,17 +74,17 @@ function App() {
       <Route exact path= '/design' component={Design}/>
       <Route exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
-      <Route exact path= '/create_user' component={CreateUser}/>
-      <Route exact path= '/home_admin' component={HomeAdmin}/> 
-      <Route exact path= '/add_category' component={CreateCategory}/> 
-      <Route exact path= '/users' component={Users}/>
-      <Route exact path= '/user_detail/:id' component={UserDetail}/>
-      <Route exact path= '/shirts_admin' component={ShirtsAdmin}/>
-      <Route exact path= '/sales' component={Sales}/>
-      <Route exact path= '/desings_admin' component={DesignsAdmin}/>
+      <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
+      <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
+      <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
+      <ProtectedRoute path= '/users'  component={Users}/>
+      <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
+      <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
+      <ProtectedRoute exact path= '/sales'  component={Sales}/>
+      <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
-      <ProtectedRoute path='/profile' component={Profile} />
+      <ProtectedRoute path='/account' component={Account} />
       <Route path= '/' component={Footer}/>
     </div>
   )

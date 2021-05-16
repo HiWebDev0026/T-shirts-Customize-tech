@@ -97,10 +97,16 @@ const cartReducer = (state=initialState, action) => {
                     }
                 } else {return state}
             }
-            modified= state.items.filter(item => item.index !== action.payload.index)
+            modified= state.items
+            modified.forEach(item => {
+                if(item.index === action.payload.index){
+                    item= action.payload
+                }
+            })
+            console.log(modified)
             return {
                 ...state,
-                items: modified.concat(action.payload)
+                items: modified
             }
 
         case 'CLEAR':
@@ -132,6 +138,19 @@ const cartReducer = (state=initialState, action) => {
                 ...state,
                 putOrderOk: null
             }
+        // case 'GET_ORDERS_BY_USER':
+        //     let cart=action.payload.filter(item => item.status === 'CART')
+        //     return {
+        //         ...state,
+        //         orderId: cart[0].id
+        //     }
+
+        // case 'GET_ORDER':{
+        //     return{
+        //         ...state,
+        //         items: action.payload.details
+        //     }
+        // }
 
         default: return state
     }

@@ -1,50 +1,72 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getShirtById } from "../../../Actions/index";
+import { getShirtById, deleteShirt , putShirt } from "../../../Actions/index";
 import {NavLink} from 'react-router-dom';
-
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import {useHistory} from 'react-router-dom';
 import Style from "./DesignDetail.module.css";
+
 
 export default function DesignDetail (){
 
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
-console.log(designs)
+const history = useHistory();
+const [editButtonTarget, setEditButtonTarget] = useState(0);
+const [input2, setInput2] = useState('');
 
+function handleDelete(e) {
+    alert("Design " + e.target.value + " deleted");
+    dispatch(deleteShirt(parseInt(e.target.value))); 
+    history.push('/desings_admin')
+  };
 
-    useEffect(() => {
-      dispatch(getShirtById());
-    }, []);
+  function handlePublic(e) {
+    const value = e.target.value;
+    setInput2(
+        value
+    );
+}
+  function handleEdit (e) {
+    alert("Design " + e.target.value + " aprroved");
+    e.preventDefault();
+    dispatch(putShirt({public: input2 === 'true' ? true : false}, editButtonTarget));
+    history.push('/desings_admin');
+    
+}
 
-   
+    
+
+const isAdmin = useTokenDecode(localStorage.currentToken);
+
 return(
-        <div className={Style.Designs}>
-<h2 className={Style.Title}>Designs waiting for approval</h2>
-
-{designs.length >= 0 
-      ? ( designs.map((shirt) => {
-          return (
-            <div>
-              <div className={Style.Tarjet}>
-                
-              <h2 className={Style.Titles2}> {shirt.name}</h2>
-             
-            
-              </div>
-               </div>
-          );
-        })
-      ) 
-      : (<p>Desings not found</p>)}
-
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
+{
+        <div className={Style.Container}> 
+         <p className={Style.Name}>{designs.name}</p>
+         <p className={Style.Color}>{designs.color}</p>
+         <img src={designs.print} className={Style.Image}/>
+         <div className={Style.Btns}>
+        
+         <label >Yes</label>
+                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+                    <label >No</label>
+                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+         <button className={Style.Btn2} value={designs.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>APPROVAL </button>
+         <button className={Style.Btn2} value={designs.id} onClick={handleEdit}>CONFIRM </button>
+         </div>
+         <div><button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
+        </div>
    
+}
 
-   <NavLink to='/desings_admin'>
-        <h3 className={Style.Btn3}>DESINGS</h3>
+   <NavLink to='/desings_admin' >
+        <h5 className={Style.Btn3}>DESINGS</h5>
     </NavLink> 
 
    <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink> 
 
         </div>

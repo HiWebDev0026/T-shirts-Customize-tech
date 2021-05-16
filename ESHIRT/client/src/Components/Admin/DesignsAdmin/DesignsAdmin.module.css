@@ -11,5 +11,23 @@
 .Title{
     display: grid;
     justify-content: center;
-
+    color:tomato;
+}
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+.Tarjet{
+    border: 2px solid coral;
+    background-color: rgba(255, 127, 80, 0.151);
+    border-radius: 5px ;
+    display: grid;
+}
+.Titles2{
+    display: grid;
+    justify-content: center;
+}
+.Titles2:hover{
+    background-color: lightblue;
 }

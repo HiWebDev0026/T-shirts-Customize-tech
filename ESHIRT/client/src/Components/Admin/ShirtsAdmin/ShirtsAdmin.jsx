@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 import { getShirts, deleteShirt } from "../../../Actions";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./ShirtsAdmin.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function ShirtsAdmin() {
 
@@ -11,6 +13,7 @@ const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 const [page, setPage] = useState(0);
 const [max, setMax] = useState(0);
+const isAdmin = useTokenDecode(localStorage.currentToken);
   
     useEffect(() => {
       dispatch(getShirts());
@@ -26,7 +29,7 @@ const [max, setMax] = useState(0);
       const prevPage = () => { page > 0 && setPage(page - 10); };
     
     return(
-      <div>
+      !isAdmin ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.General} >
         <table id="table-to-xls">
         <div className={Style.Shirts} id='tableShirts'>
@@ -79,7 +82,7 @@ const [max, setMax] = useState(0);
         </div>
 
 <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+<h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>
         </div>

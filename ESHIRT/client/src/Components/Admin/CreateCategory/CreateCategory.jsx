@@ -3,6 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {getCategories,postCategory,deleteCategory,putCategory, resetErrors} from '../../../Actions/index.js'
 import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 
 export default function CreateCategory (){
@@ -10,7 +12,7 @@ export default function CreateCategory (){
     const [category,setCategory]= useState('');
     const [editButtonTarget, setEditButtonTarget] = useState(0)
     const [change, setChange]=useState('');
-    
+    const isAdmin = useTokenDecode(localStorage.currentToken);
 
     const categories= useSelector((state)=>state.categoryReducer.allCategories)
     const errors = useSelector((state) => state.globalReducer.errors)
@@ -19,16 +21,20 @@ export default function CreateCategory (){
 
 
     useEffect(()=>{
-        dispatch(getCategories());
-    }, []);
 
-    useEffect(() => {
-        console.log(errors)
+        dispatch(getCategories());
+
         if (errors) {
             alert(`${errors.message}`)
-            dispatch(resetErrors()) 
+            dispatch(resetErrors())
         }
-    })
+
+    }, [errors, categories.length]);
+
+  /*   useEffect(() => {
+        console.log(errors)
+        
+    }) */
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -56,7 +62,7 @@ export default function CreateCategory (){
     };
 
     return(
-        <div>
+        !isAdmin ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.general}>
             <div>
                 <h1 className= {Style.TitleCategory}>Categories</h1>
@@ -91,7 +97,7 @@ export default function CreateCategory (){
         </div>
         <div className={Style.ContBtn3}>
         <NavLink to='home_admin'>
-            <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
         </NavLink>
     </div>
     </div>

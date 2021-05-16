@@ -87,4 +87,5 @@ justify-content: space-around;
 .Btn3{
     display: flex;
     justify-content: center;
+    color: white;
 }

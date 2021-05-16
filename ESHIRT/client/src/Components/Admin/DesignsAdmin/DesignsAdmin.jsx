@@ -5,6 +5,8 @@ import { getShirts, deleteShirt, getShirtById, putShirt} from "../../../Actions/
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import {useHistory} from 'react-router-dom';
 import Style from "./DesignsAdmin.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function DesignsAdmin() {
 
@@ -13,10 +15,11 @@ const [change, setChange]=useState('');
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 const history = useHistory()
+const isAdmin = useTokenDecode(localStorage.currentToken);
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
-    if (shirt.public !== true){
+    if (shirt.public === true){
     return designs.push({
         name: shirt.name,
         id: shirt.id
@@ -27,45 +30,39 @@ shirts.map((shirt) => {
       dispatch(getShirts());
     }, []);
 
-    function handleDelete(e) {
-        alert("Design " + e.target.value + " deleted");
-        dispatch(deleteShirt(parseInt(e.target.value))); 
-      };
+   
 
       function getShirtId(e) { 
-        dispatch(getShirtById(parseInt(e.target.value)));
+        dispatch(getShirtById(e.target.value));
         history.push('/design_detail');
-    
       }
 
-      function handleEdit (e) {
-       
-        dispatch(putShirt({'public':true}));
-    }
-
     return(
+      
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+        <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
         <div className={Style.Designs}>
-<h2 className={Style.Title}>Designs waiting for approval</h2>
 
-{designs.length > 0 
+
+{designs.length > 0  
       ? ( designs.map((shirt) => {
           return (
             <div>
               <div className={Style.Tarjet}>
-                
-              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name}</button>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button>
-              <button className={Style.Btn2} value={shirt.id} onClick={handleEdit}>APPROVAL </button>
+              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name} </button>
+             
               </div>
                </div>
           );
         })
       ) 
       : (<p>Desings not found</p>)}
+      
 <NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
-        
+    
+        </div>
         </div>
     )
 }

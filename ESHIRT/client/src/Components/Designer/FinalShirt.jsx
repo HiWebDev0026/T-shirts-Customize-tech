@@ -5,6 +5,7 @@ import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
 import { postShirt, resetErrors } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 export default function FinalShirt(props) {
 
@@ -15,7 +16,24 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
     const history = useHistory()
-
+    const {user} = useAuth0();
+    
+    const setColorName = (color) => {
+        switch(color) {
+            case 'rgb(12, 155, 255, 0.6)':
+                return 'lightblue';
+            case 'rgb(10, 10, 255, 0.6)':
+                return 'blue';
+            case 'darkorchid':
+                return 'purple';
+            case 'rgb(20, 20, 20)':
+                return 'black';
+            case 'rgb(255, 255, 255)':
+                return 'white';
+            default:
+                return color
+        }
+    }
 
     useEffect(() => {
         console.log(errors)
@@ -45,14 +63,15 @@ export default function FinalShirt(props) {
         
 
     function handleSubmit (e, phase) {
+        
         e.preventDefault();
         dispatch(postShirt( 
             {
-                userId: 1,
+                userId: user.sub.split('|')[1],
                 name: input.name,
                 print: phase.designSelected.data,
                 size: phase.sizeSelected.data,
-                color: phase.colorSelected.data,
+                color: setColorName(phase.colorSelected.data),
                 public: input2 === 'true ' ? true : false,
                 model: phase.modelSelected.data,
             }

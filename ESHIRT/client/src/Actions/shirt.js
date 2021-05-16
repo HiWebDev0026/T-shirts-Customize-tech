@@ -64,7 +64,9 @@ export function putShirt(dataToModify, shirtId){
 
     return async (dispatch) => {
         try {
-            const res= await axios.put(`/user/${shirtId}`, dataToModify, {responseType: 'json'})
+            const res= await axios.put(`/shirt/${shirtId}`, dataToModify, {responseType: 'json', headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             const modifiedShirt = res.data
             dispatch({type: 'PUT_SHIRT', payload: {...dataToModify, shirtId: modifiedShirt.id}})
         } catch (err){
@@ -80,7 +82,9 @@ export function deleteShirt(shirtId){
     // Hacer un get antes de usar esta action porque se necesita el id
     return async (dispatch) => {
         try {
-            const res = await axios.delete(`/shirt/${shirtId}`, {responseType: 'json'})
+            const res = await axios.delete(`/shirt/${shirtId}`, {responseType: 'json', headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             dispatch({type: 'DELETE_SHIRT', payload: shirtId})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');

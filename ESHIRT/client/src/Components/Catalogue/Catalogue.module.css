@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 .box{
   display: flex;
   flex-direction: column;
-  height: max-content;
+  align-items: center;
+  height: 80vh;
   width: 60%;
+  
 }
 
 .sideBar{
   display: flex;
-  height: inherit;
+  height: 80vh;
   width: 20%;
-  background-color: white;
+  background-color: inherit;
 }
 
 .shirts{
@@ -26,16 +30,20 @@
     height: max-content;
     box-sizing: border-box;
     flex-wrap: wrap;
-    background-color: black;
+    background-color: transparent;
     justify-content: space-between;
 }
 
 .pages{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: inherit;
   height: 10vh;
   justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .pagination {
@@ -52,22 +60,23 @@
   .pagination a {
     padding: 10px;
     outline: none;
-    border: 1px solid coral;
-    color: coral;
+    border: 1px solid white;
+    color: white;
   }
   
   .pagination__link {
     font-weight: bold;
+    width: 15vh;
   }
   
   .pagination__link__active a {
     color: black;
-    background: coral;
+    background: white;
   }
   
   .pagination__link__disabled a {
-    color:black;
-    
+    color: transparent;
+    border-color: transparent;
   }
   
 .cart{
