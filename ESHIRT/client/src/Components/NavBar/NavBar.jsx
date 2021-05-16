@@ -17,7 +17,7 @@ function Navbar() {
                 <li><NavLink className={Style.eachLink} to='/catalogue'>Catalog</NavLink></li>
                 <li><NavLink className={Style.eachLink} to='/design'>Design</NavLink></li>
                 <li><NavLink className={Style.eachLink} to="/">Cart</NavLink></li>
-                <li><NavLink className={Style.eachLink} to='/profile'>Profile</NavLink></li>
+                <li><NavLink className={Style.eachLink} to='/account'>Account</NavLink></li>
                 <li><Login className={Style.eachLink}/></li>
             </ul>
         </nav>
