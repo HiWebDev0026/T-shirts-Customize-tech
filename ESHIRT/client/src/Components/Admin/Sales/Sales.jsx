@@ -4,9 +4,14 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./Sales.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import { useSelector, useDispatch } from "react-redux";
 
 const sales= [{id: 2, total_price: 250, status: "pending", createdAt: "525", updateAt: 521, userId: 1, details: []}];
 export default function Sales() {
+
+  const sales1 = useSelector((state) => state.cartReducer.items);
+  console.log("aca", sales1)
+
 
   const isAdmin = useTokenDecode(localStorage.currentToken);
 
@@ -16,13 +21,13 @@ export default function Sales() {
         <div className={Style.Shirts} id='tableSales'>
             <br/>
             <tr>
-             <th className={Style.Title1}> -------------Id-----------</th>
-              <th className={Style.Title2}> ------------Total Price------------</th>
-              <th className={Style.Title4}> -------------Status-------------</th>
-              <th className={Style.Title6}> ------------CreateAt-----------</th>
-              <th className={Style.Title7}> -------------UpdateAt-----------</th>
-              <th className={Style.Title8}> ----------UserId-----------</th>
-              <th className={Style.Title9}> --------------Details--------------------</th>
+             <th className={Style.Title1}> ---------------Id---------</th>
+              <th className={Style.Title2}> ------------------Total Price---------</th>
+              <th className={Style.Title4}> --------------------Status-----------</th>
+              <th className={Style.Title6}> -------------------CreateAt----------</th>
+              <th className={Style.Title7}> --------------UpdateAt-----------</th>
+              <th className={Style.Title8}> ------------UserId-------------</th>
+              <th className={Style.Title9}> -----------Details-----------</th>
               </tr>
               </div>
              
@@ -61,7 +66,6 @@ export default function Sales() {
 <NavLink to='home_admin'>
         <h3 className={Style.Btn3}>CONTROL PANEL</h3>
     </NavLink>  
-        
         </div>
     );
 };
