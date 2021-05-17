@@ -27,6 +27,8 @@ function Filter(){
         else {
             setFiltered(filtered?.filter(i => i!==e.target.value))
         }  
+
+        console.log('Filter.jsx', filtered);
     }
 
     function handleClick(){
@@ -42,8 +44,8 @@ function Filter(){
             {allCategories.map((e, i) => {
                 return ( 
                     <div className={style.box}>
-                        <select  className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
-                        <option  className={style.label} for={i}>{e.name}</option >
+                        <input  className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
+                        <label  className={style.label} for={i}>{e.name}</label >
                         
                     </div>
                 )

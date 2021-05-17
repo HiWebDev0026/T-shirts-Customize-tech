@@ -34,7 +34,7 @@ function Catalogue(){
 
     useEffect(() => {
         filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
-    }, [filteredByCategory, shirtsByName])
+    }, [filteredByCategory, shirtsByName, allShirts])
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
