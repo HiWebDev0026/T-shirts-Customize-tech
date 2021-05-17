@@ -14,8 +14,10 @@ export default function Sales() {
 
   const [refresh, setRefresh]=useState(false);
   const dispatch = useDispatch();
-  const sales = useSelector((state) => state.ordersReducer.orders);
-  console.log('SALES')
+  const sale = useSelector((state) => state.ordersReducer.orders);
+  const [filtered, setFiltered] = useState([]);
+  const [order, setOrder] = useState([]);
+  console.log("aca sales", sale)
   
   useEffect(()=>{
     dispatch(getOrders());
@@ -29,11 +31,29 @@ export default function Sales() {
     console.log('REFRESH')
     setRefresh(!refresh)
   }
+  const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
+const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
+  let sales = filtered.length > 0 ? filtered : sale
+  useEffect(() => {
+    switch(order){
+      case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
+      case 'STRENGTHDN': return setFiltered([...sales].sort(STRENGTHDN))
+      default: return sales
+    }}, [order])
+    function handleOrder(e){
+      setOrder(e.target.value)
+    }
+    
 
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
         <div>
           <h2>Orders</h2>
+          <select onChange={handleOrder} className= 'options'>
+  <option value =''>ORIGINAL</option>
+  <option value ='STRENGTHUP'>PRICE+</option>
+  <option value ='STRENGTHDN'>PRICE-</option>
+</select>
           <table id="table-to-xls">
               <tr>
               <th >Id</th>
