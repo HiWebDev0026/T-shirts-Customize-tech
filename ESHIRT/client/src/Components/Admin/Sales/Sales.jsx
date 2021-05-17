@@ -6,7 +6,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
 
-import {getOrders, getO} from '../../../Actions/index.js'
+import {getOrders} from '../../../Actions/index.js'
 
 export default function Sales() {
   
