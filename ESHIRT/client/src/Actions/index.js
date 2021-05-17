@@ -13,7 +13,8 @@ import {
     getShirtById,
     postShirt,
     putShirt,
-    deleteShirt
+    deleteShirt,
+    resetShirtSearch
 } from './shirt.js';
 
 import {
@@ -64,6 +65,7 @@ export {
     postShirt,
     putShirt,
     deleteShirt,
+    resetShirtSearch,
 
     getCategories,
     getCategoriesByName,

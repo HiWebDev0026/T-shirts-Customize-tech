@@ -28,7 +28,7 @@ function Catalogue(){
 
     useEffect(()=>{
         if (shirtsByName.length === 0){
-            dispatch(getShirts())
+            dispatch(getShirts("true"))
         }
     }, [])
 
@@ -40,6 +40,8 @@ function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
   }
   
+ /*  <button onClick={()=>dispatch(getShirts())}></button>
+  '/status?=pending' */
   const offset = currentPage * INITIAL_PAGE;
   const currentPageData= data
   .slice(offset, offset + INITIAL_PAGE)
@@ -64,7 +66,7 @@ function handlePageClick({ selected: selectedPage }) {
 
   const pageCount = Math.ceil(data.length / INITIAL_PAGE);
 
-    console.log(allShirts, shirtsByName, filteredByCategory)
+    /* console.log(allShirts, shirtsByName, filteredByCategory) */
 
     return (
         <div className={style.container1}>
@@ -83,7 +85,7 @@ function handlePageClick({ selected: selectedPage }) {
                 <ReactPaginate
                     previousLabel={'← Previous'}
                     nextLabel={'Next →'}
-                    pageCount={pageCount}
+                    pageCount={data < INITIAL_PAGE ? 1 : pageCount}
                     onPageChange={handlePageClick}        
                     previousLinkClassName={style.pagination__link}
                     nextLinkClassName={style.pagination__link}

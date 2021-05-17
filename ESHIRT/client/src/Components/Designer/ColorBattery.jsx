@@ -50,8 +50,8 @@ export default function ColorBattery(props) {
         </button>
 
         <button 
-            style={{backgroundColor: 'rgb(12, 155, 255, 0.6)', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
-            onClick={() => colorModifier('rgb(12, 155, 255, 0.6)', props.props, setData)}
+            style={{backgroundColor: 'rgb(12, 155, 255)', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('rgb(12, 155, 255)', props.props, setData)}
         >
             L-BLUE
         </button>

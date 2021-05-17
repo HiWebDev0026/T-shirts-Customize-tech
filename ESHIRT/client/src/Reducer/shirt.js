@@ -74,6 +74,12 @@ const shirtReducer = (state=initialState, action) => {
                 ...state,
                 filteredByCategory: filter
             }
+        
+            case 'RESET_SHIRT_SEARCH':
+                return {
+                    ...state,
+                    shirtsByName: [],
+                }
             
 
         default:
