@@ -24,6 +24,8 @@ import Sales from './Components/Admin/Sales/Sales';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
+import AdminDashboard from './Components/Dashboard/AdminDashboard';
+import AboutUs from './Components/AboutUs/AboutUs';
 
 
 function App() {
@@ -68,6 +70,8 @@ function App() {
       <Route exact path= '/design' component={Design}/>
       <Route exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
+      <Route exact path= '/adminDash' component={AdminDashboard}/>
+      <Route exact path= '/aboutUs' component={AboutUs}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 

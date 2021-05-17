@@ -13,11 +13,12 @@ export default function HomeAdmin() {
     console.log(isAdmin, 'hook test')
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div>
-              <div className={Style.General}>
+        !isAdmin ? (<ErrorNoAdminPage />) : 
+        <div>
+            {/* <div className={Style.General}>
             <h1>Welcome</h1>
             <h3>Please choose what you want to see on the control panel</h3>
-            </div>
+            </div> */}
             <div className={Style.Title}>
             <NavLink to= '/users'className={Style.Title1}>
                 <h2 >USERS</h2>
