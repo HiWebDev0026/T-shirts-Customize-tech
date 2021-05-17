@@ -32,6 +32,7 @@ export default function Sales() {
   }
   const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
+
   let sales = filtered.length > 0 ? filtered : sale
   useEffect(() => {
     switch(order){
@@ -39,6 +40,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
       case 'STRENGTHDN': return setFiltered([...sales].sort(STRENGTHDN))
       default: return sales
     }}, [order])
+    
     function handleOrder(e){
       setOrder(e.target.value)
     }
