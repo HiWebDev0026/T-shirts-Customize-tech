@@ -6,13 +6,13 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
 
-import {getOrders} from '../../../Actions/index.js'
+import {getOrders, getO} from '../../../Actions/index.js'
 
 export default function Sales() {
   
   const isAdmin = useTokenDecode(localStorage.currentToken);
 
-  const [refresh, setRefresh]=useState(false);
+  // const [refresh, setRefresh]=useState(false);
   const dispatch = useDispatch();
   const sale = useSelector((state) => state.ordersReducer.orders);
   const [filtered, setFiltered] = useState([]);
@@ -21,15 +21,14 @@ export default function Sales() {
   
   useEffect(()=>{
     dispatch(getOrders());
-  },[refresh])
+  },[])
 
   function handleClick (e) {
     console.log(e.target.id)
   }
 
   function handleRefresh () {
-    console.log('REFRESH')
-    setRefresh(!refresh)
+    setFiltered([])
   }
   const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
