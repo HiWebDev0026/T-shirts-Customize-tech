@@ -144,8 +144,10 @@ async function getShirts(req, res, next) {
     // NEEDS REFACTORING
     try { 
         if (!name) {
+            
             const shirts = await Shirt.findAll({include: [Category]})
             return res.status(200).json(shirts)
+
         } else {
             name = name.toLowerCase()
             const shirts = await Shirt.findAll({
