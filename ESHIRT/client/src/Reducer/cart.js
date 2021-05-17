@@ -108,7 +108,7 @@ const cartReducer = (state=initialState, action) => {
             }
 
             case 'CLEAR':
-                localStorage.clear()
+                localStorage.removeItem('items');
                 return {
                     ...state,
                     items: []

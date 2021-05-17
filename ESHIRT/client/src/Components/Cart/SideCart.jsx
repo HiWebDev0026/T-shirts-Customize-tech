@@ -1,14 +1,46 @@
 import React from 'react'
-import style from './SideCart.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-import { addOne, clear, outOne } from '../../Actions/index'
-import {NavLink} from 'react-router-dom'
+import { useAuth0} from "@auth0/auth0-react";
+import {NavLink} from 'react-router-dom';
 
-export function SideCart(){
+import { 
+    addOne, 
+    clear, 
+    outOne, 
+    postOrder,
+    putOrder,
+    checkLastOrder 
+} from '../../Actions/index';
+import style from './SideCart.module.css'
+
+
+
+
+export function SideCart(){ 
     let total= 0
     const dispatch= useDispatch()
+    
     const items= useSelector(state => state.cartReducer.items)
+    const cart = useSelector(state => state.cartReducer.items)
+    const orderId = useSelector(state => state.ordersReducer.orderId)
+    const isPosting = useSelector(state => state.ordersReducer.postStarted)
+    const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
+    const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  
+    useEffect(() => {
+        if (isAuthenticated && !orderIdChecked && !isPosting) {
+            dispatch(checkLastOrder(user.sub.split('|')[1]))
+        }
+
+        if (isAuthenticated && orderId === 0 && !isPosting) {
+            dispatch(postOrder(cart, user.sub.split('|')[1]))
+        } else if (isAuthenticated && orderId) {
+            console.log(localStorage)
+            dispatch(putOrder(cart, orderId))
+        }
+    }, [cart, isPosting])
+
 
     function handlePlus(e){
         dispatch(addOne(e.target.id))
