@@ -5,7 +5,14 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {Link} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
-import {clear,getOrdersByUserId,getOrderById} from '../../Actions/index.js'
+import {
+    clear,
+    getOrdersByUserId,
+    getOrderById,
+    postOrder,
+    putOrder,
+    checkLastOrder
+} from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 
@@ -28,7 +35,23 @@ export default function Cart (){
     const orderId = useSelector((state)=>state.cartReducer.orderId);
     console.log('ORDERID',orderId)
 
+    const cart = useSelector(state => state.cartReducer.items)
+    const isPosting = useSelector(state => state.ordersReducer.postStarted)
+    const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
     const  dispatch= useDispatch();
+
+    useEffect(() => {
+        if (isAuthenticated && !orderIdChecked && !isPosting) {
+            dispatch(checkLastOrder(user.sub.split('|')[1]))
+        }
+
+        if (isAuthenticated && orderId === 0 && !isPosting) {
+            dispatch(postOrder(cart, user.sub.split('|')[1]))
+        } else if (isAuthenticated && orderId) {
+            dispatch(putOrder(cart, orderId))
+        }
+    }, [cart, isPosting])
+
    
     const INITIAL_PAGE= 4;
     const offset = currentPage * INITIAL_PAGE;
