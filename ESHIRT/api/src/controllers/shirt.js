@@ -141,20 +141,37 @@ async function putShirt(req, res, next) {
 
 async function getShirts(req, res, next) {  
     let name = req.query.name
+    let status = req.query.status
+    console.log(status)
+    console.log(typeof status);
     // NEEDS REFACTORING
     try { 
-        if (!name) {
+        if (!name && !status) {
             
             const shirts = await Shirt.findAll({include: [Category]})
             return res.status(200).json(shirts)
 
-        } else {
+        } else if(name && status) {
             name = name.toLowerCase()
+            console.log(typeof status);
             const shirts = await Shirt.findAll({
                 where: {
                     name: {
                         [Op.like]: `%${name}%`
-                    }
+                    },
+                    public: status
+                    
+                }, 
+                include: [Category]
+            })
+            return res.status(200).json(shirts)
+
+        } else if(!name && status) {
+            const shirts = await Shirt.findAll({
+                where: {
+  
+                    public: status
+                    
                 }, 
                 include: [Category]
             })

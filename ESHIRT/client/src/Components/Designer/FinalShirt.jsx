@@ -16,13 +16,13 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
     const history = useHistory()
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated, loginWithPopup } = useAuth0();
     
     const setColorName = (color) => {
         switch(color) {
-            case 'rgb(12, 155, 255, 0.6)':
+            case 'rgb(12, 155, 255)':
                 return 'lightblue';
-            case 'rgb(10, 10, 255, 0.6)':
+            case 'rgb(10, 10, 255)':
                 return 'blue';
             case 'darkorchid':
                 return 'purple';
@@ -47,6 +47,7 @@ export default function FinalShirt(props) {
     })
 
     function handleChange(e) {
+        console.log('\n\n\n', 'BEFORE SENDING:', input);
         const value = e.target.value;
         const name = e.target.name
         
@@ -73,6 +74,7 @@ export default function FinalShirt(props) {
     function handleSubmit (e, phase) {
         
         e.preventDefault();
+        console.log('\n\n\n', 'BEFORE SENDING:', input);
         if(isAuthenticated) {
                 dispatch(postShirt( 
                     {
@@ -85,7 +87,13 @@ export default function FinalShirt(props) {
                         model: phase.modelSelected.data,
                     }
                 ));
+
+                return;
+        } else {
+            return loginWithPopup();
         }
+
+
         //history.push('/catalogue')
     }
 

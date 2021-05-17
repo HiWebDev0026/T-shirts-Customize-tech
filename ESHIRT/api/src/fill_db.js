@@ -289,7 +289,7 @@ const order1 = [
         "shirtId": "2",
         "size": "M",
         "amount": "3",
-        "price": "50"
+        "price": "250"
     },
     {
         "shirtId": "1",
@@ -304,13 +304,13 @@ const order2 = [
         "shirtId": "4",
         "size": "XL",
         "amount": "1",
-        "price": "50"
+        "price": "150"
     },
     {
         "shirtId": "4",
         "size": "S",
         "amount": "3",
-        "price": "50"
+        "price": "200"
     },
     {
         "shirtId": "5",
@@ -403,7 +403,7 @@ async function fillDB () {
         detail.orderId = orderPosted1.id
         await Detail.create(detail)
     }
-    const orderPosted2 = await Order.create({status: 'CART', total_price: 300, userId: "105677628845670307411"})
+    const orderPosted2 = await Order.create({status: 'CART', total_price: 400, userId: "105677628845670307411"})
     for (const detail of order2) {
         detail.orderId = orderPosted2.id
         await Detail.create(detail)

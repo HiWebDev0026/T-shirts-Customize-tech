@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export function getShirts(){
+export function getShirts(status){
     
     return async (dispatch) => {
         try {
-            const res= await axios.get('/shirt', {responseType: 'json'});
+            const res= await axios.get(!status ? `/shirt` : `/shirt?status=${status}`, {responseType: 'json'});
             const shirts = res.data;
             console.log(res);
             dispatch({type: 'GET_SHIRTS', payload: shirts})
@@ -15,11 +15,11 @@ export function getShirts(){
     }
 }
 
-export function getShirtsByName(shirtName){
+export function getShirtsByName(shirtName, status){
     console.log("Estoy en la action", shirtName);
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/shirt?name=${shirtName}`, {responseType: 'json'})
+            const res = await axios.get(`/shirt/?name=${shirtName}&status=${status}`, {responseType: 'json'})
             const shirts = res.data
             dispatch({type: 'GET_SHIRTS_NAME', payload: shirts})
         } catch (err) {
@@ -93,4 +93,11 @@ export function deleteShirt(shirtId){
         }        
     }
     
+}
+
+export function resetShirtSearch() {
+
+    return {
+        type: 'RESET_SHIRT_SEARCH'
+    }
 }

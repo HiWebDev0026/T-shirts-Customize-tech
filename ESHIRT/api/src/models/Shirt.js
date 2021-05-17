@@ -36,8 +36,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     public: {
-      type: DataTypes.ENUM('pending', 'true', 'false'),
-      allowNull: true,
+      type: DataTypes.ENUM("pending", "true", "false"),
+      allowNull: false,
       
     },
     created_by_user: {
