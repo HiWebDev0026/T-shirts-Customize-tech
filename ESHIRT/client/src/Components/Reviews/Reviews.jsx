@@ -12,11 +12,14 @@ function Reviews() {
 
 
 
-useEffect(() => {
-    dispatch(getShirtReview())
-})
 
-console.log()
+// useEffect(() => {
+//     dispatch(getShirtReview())
+// }, [])
+
+
+
+
 
 
   return (
