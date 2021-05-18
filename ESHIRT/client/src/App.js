@@ -80,7 +80,7 @@ function App() {
       <Route exact path= '/login' component={Login}/>
       <Route exact path= '/adminDash' component={AdminDashboard}/>
       <Route exact path= '/aboutUs' component={AboutUs}/>
-      <Route exact path= '/recycleBin' component={RecycleBin}/>
+      <ProtectedRoute exact path= '/recycleBin' component={RecycleBin}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
