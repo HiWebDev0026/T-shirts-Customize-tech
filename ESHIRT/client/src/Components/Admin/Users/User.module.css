@@ -3,19 +3,32 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     display: grid;
-    justify-content: space-evenly;
+    justify-content: center;
+    
 }
+.TitleCategory{
+display: grid;
+justify-content: center;
+text-align: center;
+}
+
 .Tarjet{
     border: 2px solid coral;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
+    display: grid;
+}
+.Users{
+    display: grid;
+    grid-template-columns: repeat(6, 3fr);
+    grid-gap: 5px;
 }
 .ContBtn3{
-    display: flex;
+    display: grid;
     justify-content: center;
 }
 .Btn3{
-    display: flex;
+    display: grid;
     justify-content: center;
     color: white;
 }
@@ -23,20 +36,6 @@
     display: grid;
     justify-content: center;
 }
-.Buttons{
-    display: flex;
-    justify-content: center;    
-}
-.Prev{
-justify-content: center;
-}
-.Prev:hover{
-    background-color: coral;
-}
-.Next{
-    justify-content: center;
-}
-.Next:hover{
-    background-color: cornflowerblue;
-}
+
+
 
