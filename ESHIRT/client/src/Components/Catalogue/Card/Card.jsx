@@ -6,7 +6,8 @@ import {MdDeleteForever} from "react-icons/md";
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0} from "@auth0/auth0-react";
-
+import Reviews from '../../Reviews/Reviews.jsx';
+import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
 import {
   pushItem,
@@ -82,6 +83,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
                 <a >{title}</a>
               </div>
             </div>
+           
           </div>
         </div>
         </a>
@@ -91,17 +93,21 @@ function Card({ title, score, price, size, model, color, image, id }) {
         <div className={style.popup_inner}>
           <div className={style.popup__photo}>
             <img src={image} />
-
+            
             <a className={style.popup__close} href="#">
               X
             </a>
+           
           </div>
+          <NavLink to={`/details/${id}/review`}>
+                <button className="boton">Reviews</button>
+              </NavLink>
           <div className={style.popup__text}>
             <h1>Details</h1>
             <div>
               <h2>{title}</h2>
 
-
+              
             </div>
          
                 <div>
@@ -139,7 +145,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
               
               
             </div>
+            
           </div>
+         
         </div>
       </div>
       </div>
