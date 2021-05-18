@@ -12,9 +12,12 @@ function Reviews() {
 
 
 
+
 // useEffect(() => {
 //     dispatch(getShirtReview())
 // }, [])
+
+
 
 
 

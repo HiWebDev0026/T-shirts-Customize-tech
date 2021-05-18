@@ -96,7 +96,7 @@ function App() {
       <ProtectedRoute path='/account' component={Account} />
 
       <Route path= '/' component={Footer}/>
-      
+
     </div>
   )
 }
