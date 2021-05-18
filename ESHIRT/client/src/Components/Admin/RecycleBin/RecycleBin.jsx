@@ -25,9 +25,7 @@ function RecycleBin() {
     }
     })
     useEffect(() => {
-    
         dispatch(getUsers());
-    
   }, [users]);
 
     function handleDelete(e) {
@@ -60,8 +58,12 @@ function RecycleBin() {
       ) 
       : (<p>Users not found</p>)}
     </div>
+    
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+    </NavLink>
+    <NavLink to='recycleBinShirt'>
+    <h4 className={Style.Btn3}>SHIRTS</h4>
     </NavLink>
 
 

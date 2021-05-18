@@ -29,6 +29,7 @@ import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 import Reviews from './Components/Reviews/Reviews.jsx'
+import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 
 function App() {
 
@@ -81,6 +82,7 @@ function App() {
       <Route exact path= '/adminDash' component={AdminDashboard}/>
       <Route exact path= '/aboutUs' component={AboutUs}/>
       <ProtectedRoute exact path= '/recycleBin' component={RecycleBin}/>
+      <ProtectedRoute exact path= '/recycleBinShirt' component={RecycleBinShirt}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
