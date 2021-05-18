@@ -85,6 +85,7 @@ function App() {
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
+      <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
@@ -93,8 +94,9 @@ function App() {
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
+
       <Route path= '/' component={Footer}/>
-      <Route path= '/shirt/:id/review' component={Reviews}/>
+      
     </div>
   )
 }

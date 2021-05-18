@@ -80,7 +80,7 @@ const shirtReducer = (state=initialState, action) => {
                     ...state,
                     shirtsByName: [],
                 }
-            
+           
 
         default:
             return state;
