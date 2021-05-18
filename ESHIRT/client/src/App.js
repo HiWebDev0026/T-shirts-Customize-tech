@@ -28,7 +28,7 @@ import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
-
+import Reviews from './Components/Reviews/Reviews.jsx'
 
 function App() {
 
@@ -94,6 +94,7 @@ function App() {
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
       <Route path= '/' component={Footer}/>
+      <Route path= '/shirt/:id/review' component={Reviews}/>
     </div>
   )
 }

@@ -229,25 +229,27 @@
   right: -100vh;
   display: flex;
   align-items: center;
-  /* max-width: 800px;
-  max-height: 600px; */
-  width: 60%;
-  height: 80%;
-
+  width: 70%;
+  height: 90%;
   background-color: rgb(255, 255, 255);
+  -webkit-backdrop-filter: blur (15px);
   backdrop-filter: blur (15px);
-  transform: rotate(0.5turn);
+  transform: rotate(
+0.5turn
+);
   transition: 0.64s ease-in-out;
-  padding:0;
+  padding: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
 
   
 
 }
 .popup__photo {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width:35%;
+  justify-content: top;  
+
+  width:30%;
   height: 70%;
   overflow: hidden;
   /* border-right: thick solid #0c0c0c; */
