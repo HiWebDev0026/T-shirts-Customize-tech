@@ -4,6 +4,7 @@ import Style from "./HomeAdmin.module.css";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import RecicleBin from '../../../Images/recycle_bin.png';
 
 export default function HomeAdmin() {
 
@@ -34,6 +35,9 @@ export default function HomeAdmin() {
             </NavLink>
             <NavLink to= '/desings_admin' className={Style.Title1}>
                 <h2>DESIGNS</h2>
+            </NavLink>
+            <NavLink to= '/recycleBin' className={Style.Title1}>
+                <img src={RecicleBin} className={Style.img} />
             </NavLink>
             </div>
         </div>
