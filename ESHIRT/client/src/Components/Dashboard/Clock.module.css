@@ -1,0 +1,10 @@
+.container{
+    height: 60px;
+    width:  300px;
+    text-align: center;
+    font-size: 40px;
+    background-color: grey;
+    color: coral;
+    border: 5px solid coral;
+    border-radius: 5px;
+}
