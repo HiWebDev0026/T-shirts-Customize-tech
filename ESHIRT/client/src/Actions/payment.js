@@ -15,10 +15,11 @@ export function createPayment(order){
         try {
             let response= await axios({
                     method: 'post',
-                    url: 'http://localhost:3001/payment',                 
+                    url: '/payment',                 
                     data: order
             })
-            console.log(response)
+            console.log(response.data)
+            dispatch({type: 'CREATE_PAYMENT', payload: response.data})
         }
         catch (error){
             console.log(error)
