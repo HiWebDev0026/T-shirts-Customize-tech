@@ -14,6 +14,7 @@ function RecycleBinShirt() {
     const shirtsTotal = useSelector((state) => state.shirtReducer.allShirts);
     const isAdmin = useTokenDecode(localStorage.currentToken)
     const dispatch = useDispatch();
+    
     let shirts= [];
   shirtsTotal.map((shirt) => {
       if ( shirt.status == 'deleted'){
@@ -71,14 +72,13 @@ function RecycleBinShirt() {
         })
       ) 
       : (<p>Shirts not found</p>)}
-      
-
     
+    <NavLink to='recycleBin'>
+    <h4 className={Style.Btn3}>RECYCLE BIN</h4>
+    </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-
-
         
         </div>
     )

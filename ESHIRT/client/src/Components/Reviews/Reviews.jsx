@@ -14,10 +14,14 @@ function Reviews(props) {
 
 console.log(review[0].id)
 
+
 useEffect(() => {
     dispatch(getShirtReview(id));
     
   },[]);
+
+
+
 
 
 

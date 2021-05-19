@@ -99,7 +99,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </a>
            
           </div>
+
           <NavLink to={`/shirt/${id}/review`}>
+
                 <button className="boton">Reviews</button>
               </NavLink>
           <div className={style.popup__text}>

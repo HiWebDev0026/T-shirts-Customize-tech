@@ -48,6 +48,12 @@ import {
     setPostStarted
 } from './orders.js'
 
+import {
+    getFavorites,
+    postFavorite,
+    deleteFavorite
+} from './favorites.js'
+
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
 }
@@ -93,5 +99,9 @@ export {
     getOrderById,
     getOrdersByUserId,
     checkLastOrder,
-    setPostStarted
+    setPostStarted,
+
+    getFavorites,
+    postFavorite,
+    deleteFavorite
 }
