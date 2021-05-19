@@ -6,9 +6,9 @@ const { getMaxListeners } = require('../app');
 
 async function createPayment(req, res){
     
-    /* 
-                    HARDCODE FOR TESTING
-    let obj= {
+    
+                    //HARDCODE FOR TESTING
+    /* let order= {
         items: [
             {
                 title: 'Agus',
@@ -27,7 +27,7 @@ async function createPayment(req, res){
         },
 		auto_return: 'approved',
     } */
-
+    console.log('llegue al back', req.body)
     let order= req.body
     console.log(order)
     let response= await mercadopago.preferences.create(order)
