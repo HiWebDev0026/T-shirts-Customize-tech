@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import Style from './RecycleBin.module.css';
+import Style from './RecycleBinUser.module.css';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { deleteUser, getUsers, putUser } from '../../../Actions';
 import {NavLink} from 'react-router-dom';
-
-
 
 function RecycleBinUser() {
 
