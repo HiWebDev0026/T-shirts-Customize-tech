@@ -30,6 +30,7 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
+import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 
 function App() {
 
@@ -83,6 +84,7 @@ function App() {
       <Route exact path= '/aboutUs' component={AboutUs}/>
       <ProtectedRoute exact path= '/recycleBin' component={RecycleBin}/>
       <ProtectedRoute exact path= '/recycleBinShirt' component={RecycleBinShirt}/>
+      <ProtectedRoute exact path= '/recycleBinUser' component={RecycleBinUser}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
