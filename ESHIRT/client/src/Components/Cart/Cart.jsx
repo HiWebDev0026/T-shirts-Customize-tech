@@ -141,7 +141,7 @@ export default function Cart (){
                             </Link>
                             {
                                 flag ? 
-                            <a href={paymentData?.response.init_point} rel='nofollow'>Mercadopago</a>    
+                            <a target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>Mercadopago</a>    
                                 : 
                             items.length >0&&<button onClick={handlePayment}>Go to pay</button>
                             }
