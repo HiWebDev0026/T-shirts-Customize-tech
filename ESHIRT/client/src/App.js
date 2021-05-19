@@ -103,7 +103,7 @@ function App() {
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
       <Route exact path= '/favorites' component={Favorites}/>
-      <Route exact path= '/design_detail' component={DesignDetail}/>
+      <ProtectedRoute exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
       <ProtectedRoute path='/payment' component={Payment} />
