@@ -1,0 +1,26 @@
+.container {
+    
+        display: flex; 
+        justify-content: space-around; 
+        padding-top: 6%;
+        width: 80%;
+        margin: 0 auto;
+}
+
+.side{
+        display: flex;
+        flex-direction: column;
+}
+
+.side > input {
+        border: 2px solid coral;
+        background-color: black;
+        color: coral;
+        height: 3vh;
+    }
+
+.shirtInputContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+}

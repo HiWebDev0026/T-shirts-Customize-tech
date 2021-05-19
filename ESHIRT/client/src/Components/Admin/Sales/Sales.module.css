@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.Sales{
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+
+}
+
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
+  th {
+    color: white;
+  }
+

@@ -1,0 +1,11 @@
+.container{
+    display: flex; 
+    flex-direction: column; 
+    min-width: 30vh;
+    
+}
+
+.container > button {
+    margin: 1vh;
+    border-radius: 0.5vh;
+}

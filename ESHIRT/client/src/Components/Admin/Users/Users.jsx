@@ -1,0 +1,127 @@
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { putUser, getUserById, getUsers , getUsersByName} from "../../../Actions/index.js";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import {NavLink, Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import Style from "./User.module.css";
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+
+export default function Users() {
+
+  const [filtered, setFiltered] = useState([]);
+  const [order, setOrder] = useState([]);
+  const history = useHistory();
+  const {isAuthenticated, getAccesTokenSilently} = useAuth0();
+  const isAdmin = useTokenDecode(localStorage.currentToken);
+
+  const userTotal = useSelector((state) => state.userReducer.allUsers);
+  const user = useSelector((state) => state.userReducer.usersByName);
+  const dispatch = useDispatch();
+  
+  let users= [];
+  userTotal.map((user) => {
+      if ( user.status !== 'deleted'){
+      return users.push({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          status: user.status 
+      })
+  }
+  })
+  useEffect(() => {
+    
+        dispatch(getUsers());
+    
+  }, [users]);
+
+  function handleEdit(e) {
+    alert("User " + e.target.value + " moved to trash");
+    dispatch(putUser({status: 'deleted'}, e.target.value)); 
+  };
+
+  function getUserId(e) { 
+    dispatch(getUserById(e.target.value));
+    history.push('/user_detail');
+  };
+  //Order By names
+  const AZ = (a, b) => {return a.name > b.name ? 1 : -1;};
+  const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
+
+  function handleOrder(e) {
+    setOrder(e.target.value);
+  };
+
+  let us = filtered.length > 0 ? filtered : users;
+  let users1= user.length > 0 ? user : us;
+
+  useEffect(() => {
+    switch (order) {
+      case "AZ":
+        return setFiltered([...users1].sort(AZ));
+      case "ZA":
+        return setFiltered([...users1].sort(ZA));
+      default:
+        return users1;
+    }
+  }, [order]);
+
+  // SEARCHBAR USERS
+  const [state, setState]= useState('')
+  function handleChange(e) {
+      setState(e.target.value)
+  }
+
+  // UPDATED by @aagenesds22: 
+  // Token added in getUsersByName action. Validation working 
+  function handleSubmit(e){
+      e.preventDefault();
+      dispatch(getUsersByName(state))
+      setState('');
+  }
+
+  return (
+      !isAdmin ? (<ErrorNoAdminPage />) : <div>
+    <div className={Style.general}>
+      <h1 className={Style.TitleCategory}>Users</h1>
+      <div className={Style.Order}>
+        <select onChange={handleOrder} className="options">
+          <option  value="">ORDER</option>
+          <option value="AZ">AZ</option>
+          <option value="ZA">ZA</option>
+        </select>
+        <form onSubmit = {(e)=> handleSubmit(e)}>
+                <input className={Style.inputBox} type='text' placeholder= 'Find the user' value ={state} onChange={(e)=>handleChange(e)}/>
+             <input className={Style.inputBtn} type='submit' value= 'Search'/>
+            </form>
+      </div>
+      <div className={Style.Users}>
+      {users1.length > 0 ? ( users1.map((user) => {
+          return (
+              <div className={Style.Tarjet}>
+                <Link to={`/user_detail/${user.id}`}>
+                  <button value={user.id} onClick={getUserId}>
+                    {user.name}
+                  </button>
+                </Link>
+                <p className={Style.Titles}>{user.email}</p>
+                <div className={Style.Contenedores}>
+                  <button className={Style.Btn1} value={user.id} onClick={handleEdit}>X</button>
+                </div>
+            </div>
+          );
+        })
+      ) 
+      : (<p>Users not found</p>)}
+      </div>
+    </div>
+    <div className={Style.ContBtn3}>
+    <NavLink to='home_admin'>
+    <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+    </NavLink>
+</div>
+</div>
+  );
+};

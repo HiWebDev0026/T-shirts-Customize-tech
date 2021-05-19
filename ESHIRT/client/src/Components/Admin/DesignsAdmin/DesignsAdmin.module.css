@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.Designs{
+    display: grid;
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    justify-content: center;
+}
+.Title{
+    display: grid;
+    justify-content: center;
+    color:tomato;
+}
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+.Tarjet{
+    border: 2px solid coral;
+    background-color: rgba(255, 127, 80, 0.151);
+    border-radius: 5px ;
+    display: grid;
+    
+}
+.Designs{
+    display: grid;
+    grid-template-columns: repeat(6, 3fr);
+    grid-gap: 5px;
+}
+.Titles2{
+    display: grid;
+    justify-content: center;
+}
+.Titles2:hover{
+    background-color: lightblue;
+}
+.General{
+    display: grid;
+    justify-content: center;
+}
+.Options{
+    display: grid;
+    justify-content: center;
+    margin-left: 43%;
+    margin-right: 43%;
+}

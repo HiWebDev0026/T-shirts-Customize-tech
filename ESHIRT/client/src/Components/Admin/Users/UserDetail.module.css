@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.Title{
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    justify-content: space-evenly;
+}
+.field{
+    justify-content: center;
+    display: grid;
+    text-transform: uppercase;
+    font-size: 90%;
+} 
+.field:first-letter {
+    text-transform: uppercase;
+    } 
+.Tarjet{
+        color: white;
+        width: 20vw;
+        height: 50vh;
+        gap: 1vh;
+        margin: 2vw;
+        border-radius: 10px;
+        position: relative;
+        top: 0;
+        transition: all 0.1s ease-in;
+        border: 2px solid coral;
+}
+.Tarjet:hover{
+    top: -1vh;
+    box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
+  }
+  .Detail{
+      color: coral;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 200%;
+      justify-content: center;
+      display: grid;
+  }
+  .Submit:hover{
+      background-color: coral;
+  }
+  .Centers{
+      justify-content: center;
+  }
+  .Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+
+
+
+

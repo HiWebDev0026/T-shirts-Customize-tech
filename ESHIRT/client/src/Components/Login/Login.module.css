@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.Contain{
+    display: grid;
+    grid-template-columns: none;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(45px, 10px);
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+.TitleLogin{
+    grid-row: 1;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+   
+}
+.email{
+    grid-row: 2;
+    justify-content: center;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+    display: grid;
+    justify-content: center;
+}
+.password{
+    grid-row:3;
+    justify-content: center;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    border-radius:10px;
+    display: grid;
+    justify-content: center;
+}
+
+.Forget{
+    grid-row:4;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    border-radius:10px;
+    display: grid;
+    justify-content: center;
+    
+}
+.Google{
+    grid-row:5;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    display: grid;
+    justify-content: center;
+}
+.User{
+    grid-row:6;
+    font-family: "Montserrat", sans-serif;
+    display: grid;
+    justify-content: center;
+}
+.User1{
+ 
+    font-family: "Montserrat", sans-serif;
+  
+    margin-left: 58%;
+}
+.Btn1{
+    border-radius: 10px;
+}
+.Btn2{
+    border-radius: 10px;
+}
+.Btn1:hover{
+    background-color: rgb(216, 210, 191);
+    border-radius: 10px;
+}
+.Btn2:hover{
+    background-color: rgb(183, 216, 200);
+    border-radius: 10px;
+}

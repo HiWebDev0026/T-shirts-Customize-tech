@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.General{
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.Title{
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.Title1{
+    color: white;
+}
+.Title1:hover{
+    color: coral;
+    top: -1vh;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.582);
+}
+.img{
+    width: 40px;
+    height: 40px;
+}

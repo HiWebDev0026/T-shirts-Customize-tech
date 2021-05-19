@@ -1,0 +1,12 @@
+.container{
+  color: white;
+}
+
+.select{
+  display: flex;
+  transition: 0.5s ease;
+}
+
+.option{
+  display: flex;
+}

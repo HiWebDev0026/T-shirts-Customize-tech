@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  width: 60%;
+  
+}
+
+.sideBar{
+  display: flex;
+  height: 80vh;
+  width: 20%;
+  background-color: inherit;
+}
+
+.shirts{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: inherit;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.container1{
+    display: flex;
+    height: max-content;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    background-color: transparent;
+    justify-content: space-between;
+}
+
+.pages{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: inherit;
+  height: 10vh;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 80%;
+  }
+  
+  .pagination a {
+    padding: 10px;
+    outline: none;
+    border: 1px solid white;
+    color: white;
+  }
+  
+  .pagination__link {
+    font-weight: bold;
+    width: 15vh;
+  }
+  
+  .pagination__link__active a {
+    color: black;
+    background: white;
+  }
+  
+  .pagination__link__disabled a {
+    color: transparent;
+    border-color: transparent;
+  }
+  
+.cart{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}

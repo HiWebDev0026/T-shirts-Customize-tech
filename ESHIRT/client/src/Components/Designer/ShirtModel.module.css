@@ -1,0 +1,48 @@
+.container {
+    display: flex; 
+    position: relative;
+    right: 20vh;
+    flex-direction: column; 
+    width: 80%; 
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid coral;
+    text-align: center;
+    margin: 1vh;
+    height: 15vh;
+    
+}
+
+.title > h3 {
+    width: 'max-content';
+    display:'flex';
+    margin: 0 auto;
+    color: white;
+}
+
+.title > form > select {
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+    outline: none;
+    margin: 1vh;
+}
+
+.title > form > select > option {
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+}
+
+.title > form > input {
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+    height: 3vh;
+}

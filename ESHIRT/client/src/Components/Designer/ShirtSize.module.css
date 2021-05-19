@@ -1,0 +1,67 @@
+.container {
+    display: flex; 
+    flex-direction: column; 
+    width: 80%; 
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.title {
+    position: relative;
+    right: 20vh;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid coral;
+    text-align: center;
+    margin: 1vh;
+    height: 15vh;
+    
+}
+
+.title > h3 {
+
+    width: max-content;
+    display:'flex';
+    margin: 0 auto;
+    color: white;
+}
+
+.formContainer {
+    margin: 0 auto; 
+    width: 70%;
+}
+
+.form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.form > select {
+    display: flex;
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+    outline: none;
+    margin: 1vh;
+}
+
+.form > select > option {
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+}
+
+/* .form > select > option:hover {
+    background: coral;
+} */
+
+.form > input {
+    
+    border: 2px solid coral;
+    background-color: black;
+    color: coral;
+    height: 3vh;
+}

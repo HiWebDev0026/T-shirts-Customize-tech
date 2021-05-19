@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.Designs{
+    display:grid;
+    color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+.Btns{
+    display: flex;
+    justify-content: center;
+}
+.Title{
+    display: grid;
+    justify-content: center;
+}
+.Container{
+    display: grid;
+    justify-content: center;
+    grid-row: 1;
+}
+.Name{
+    display: grid;
+    justify-content: center;
+    grid-row: 2;
+    text-transform: uppercase;
+    
+}
+.Color{
+    display: grid;
+    justify-content: center;
+    grid-row: 3;
+}
+.Image{
+    display: grid;
+    justify-content: center;
+    grid-row: 4;
+}
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+.Btn1:hover{
+    background-color:coral;
+}
+.Btn2:hover{
+    background-color: lightblue;
+}
+
