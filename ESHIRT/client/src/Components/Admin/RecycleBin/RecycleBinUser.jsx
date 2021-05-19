@@ -8,7 +8,7 @@ import {NavLink} from 'react-router-dom';
 
 
 
-function RecycleBin() {
+function RecycleBinUser() {
 
     const userTotal = useSelector((state) => state.userReducer.allUsers);
     const isAdmin = useTokenDecode(localStorage.currentToken)
@@ -41,24 +41,31 @@ function RecycleBin() {
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
         <div>
-            <h1 className={Style.Title}>RECYCLE BIN </h1>
-
-    <NavLink to='recycleBinUser'>
-    <h2 className={Style.Btn3}>USERS DELETED</h2>
-    </NavLink>
-    <NavLink to='recycleBinShirt'>
-    <h2 className={Style.Btn3}>SHIRTS DELETED</h2>
+            <h2 className={Style.Title}>Users deleted</h2>
+        <div className={Style.container}>
+             <div className={Style.Users}>
+      {users.length > 0 ? ( users.map((user) => {
+          return (
+              <div className={Style.Tarjet}>
+                <p className={Style.Titles}>{user.email}</p>
+                <div className={Style.Contenedores}>
+                  <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
+                  <button className={Style.Btn1} value={user.id} onClick={handleEdit}>Restore</button>
+                </div>
+            </div>
+          );
+        })
+      ) 
+      : (<p>Users not found</p>)}
+    </div>
+    <NavLink to='recycleBin'>
+    <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-    
-
-
+           </div>
         </div>
-        
     )
 }
-
-
-export default RecycleBin;
+export default RecycleBinUser;

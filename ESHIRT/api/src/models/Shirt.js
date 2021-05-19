@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
     created_by_user: {
       type: DataTypes.BOOLEAN,
       allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 };
