@@ -19,11 +19,29 @@ const INITIAL_PAGE= 10;
 function Catalogue(){
     
     const dispatch= useDispatch()
-    const allShirts= useSelector(state => state.shirtReducer.allShirts)
+    const shirtsTotal= useSelector(state => state.shirtReducer.allShirts)
     const shirtsByName= useSelector(state => state.shirtReducer.shirtsByName)
     const filteredByCategory= useSelector(state => state.shirtReducer.filteredByCategory)
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
+
+    let allShirts= [];
+    shirtsTotal.map((shirt) => {
+        if ( shirt.status !== 'deleted'){
+        return allShirts.push({
+            id: shirt.id,
+            name: shirt.name,
+            color: shirt.color,
+            model: shirt.model,
+            size: shirt.size,
+            score: shirt.score,
+            print: shirt.print,
+            public: shirt.public,
+            created: shirt.created,
+            status: shirt.status
+        })
+    }
+    })
 
 
     useEffect(()=>{

@@ -14,6 +14,7 @@ function RecycleBinShirt() {
     const shirtsTotal = useSelector((state) => state.shirtReducer.allShirts);
     const isAdmin = useTokenDecode(localStorage.currentToken)
     const dispatch = useDispatch();
+    
     let shirts= [];
   shirtsTotal.map((shirt) => {
       if ( shirt.status == 'deleted'){
