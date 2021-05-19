@@ -54,6 +54,10 @@ import {
     deleteFavorite
 } from './favorites.js'
 
+import {
+    createPayment
+} from './payment'
+
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
 }
@@ -103,5 +107,7 @@ export {
 
     getFavorites,
     postFavorite,
-    deleteFavorite
+    deleteFavorite,
+
+    createPayment
 }
