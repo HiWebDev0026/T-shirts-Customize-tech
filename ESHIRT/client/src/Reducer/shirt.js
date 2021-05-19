@@ -17,7 +17,7 @@ const shirtReducer = (state=initialState, action) => {
     switch(action.type) {
         case 'GET_SHIRTS':
             let random= action.payload.slice(0,6)
-            console.log(state)           
+                     
             return {
                 ...state,
                 allShirts: action.payload,
@@ -94,7 +94,13 @@ const shirtReducer = (state=initialState, action) => {
                     ...state,
                     shirtsByName: [],
                 }
-           
+            case 'GET_SHIRT_REVIEW':
+         
+            return {
+                ...state,
+                shirtId: action.payload
+            }
+                
 
         default:
             return state;

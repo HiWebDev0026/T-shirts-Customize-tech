@@ -9,9 +9,10 @@ async function postReview (req, res, next) {
         const shirt = await Shirt.findOne({where: {id: shirtId}})
         if (!shirt) throw {status: 404, message: 'Shirt not found'};
 
-        const newReview = {content: req.body.review, shirtId}
+        const newReview = {content: req.body.content, shirtId}        
         const postedReview = await Review.create(newReview)
-        return res.status(200).json(postReview)
+        return res.status(200).json(postedReview)
+      
     } catch (err) {
         return next(err)
     }
