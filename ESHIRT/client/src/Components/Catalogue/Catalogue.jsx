@@ -45,14 +45,18 @@ function Catalogue(){
 
 
     useEffect(()=>{
-        if (shirtsByName.length === 0){
+        /* if (shirtsByName.length === 0){
             dispatch(getShirts("true"))
-        }
-    }, [])
+            return;
+        } */
 
-    useEffect(() => {
         filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
+
     }, [filteredByCategory, shirtsByName, allShirts])
+
+   /*  useEffect(() => {
+        filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
+    }, [filteredByCategory, shirtsByName, allShirts]) */
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
