@@ -71,14 +71,13 @@ function RecycleBinShirt() {
         })
       ) 
       : (<p>Shirts not found</p>)}
-      
-
     
+    <NavLink to='recycleBin'>
+    <h4 className={Style.Btn3}>RECYCLE BIN</h4>
+    </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-
-
         
         </div>
     )
