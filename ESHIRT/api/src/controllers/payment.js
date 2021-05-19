@@ -4,8 +4,10 @@ const axios= require('axios');
 const { getReviews } = require('./review');
 const { getMaxListeners } = require('../app');
 
-async function createItem(req, res){
+async function createPayment(req, res){
     
+    /* 
+                    HARDCODE FOR TESTING
     let obj= {
         items: [
             {
@@ -24,8 +26,11 @@ async function createItem(req, res){
             email: 'aagenesds1740@gmail.com'
         },
 		auto_return: 'approved',
-    }
-    let response= await mercadopago.preferences.create(obj)
+    } */
+
+    let order= req.body
+    console.log(order)
+    let response= await mercadopago.preferences.create(order)
     res.send(response)
     
 }
@@ -48,7 +53,7 @@ async function postTest(req, res){
 }
 
 module.exports={
-    createItem,
+    createPayment,
     postTest,
     getPayment
 }

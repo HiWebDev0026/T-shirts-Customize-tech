@@ -14,7 +14,8 @@ import {
     postShirt,
     putShirt,
     deleteShirt,
-    resetShirtSearch
+    resetShirtSearch,
+    getShirtReview
 } from './shirt.js';
 
 import {
@@ -47,6 +48,12 @@ import {
     setPostStarted
 } from './orders.js'
 
+import {
+    getFavorites,
+    postFavorite,
+    deleteFavorite
+} from './favorites.js'
+
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
 }
@@ -68,6 +75,7 @@ export {
     putShirt,
     deleteShirt,
     resetShirtSearch,
+    getShirtReview,
 
     getCategories,
     getCategoriesByName,
@@ -91,5 +99,9 @@ export {
     getOrderById,
     getOrdersByUserId,
     checkLastOrder,
-    setPostStarted
+    setPostStarted,
+
+    getFavorites,
+    postFavorite,
+    deleteFavorite
 }

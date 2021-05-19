@@ -24,9 +24,11 @@ const shirtReducer = (state=initialState, action) => {
                 random6: random
             }
         case 'GET_SHIRTS_NAME':
+
+        
             return {
                 ...state,
-                shirtsByName: action.payload
+                shirtsByName: action.payload.filter(i => i.status !== 'deleted')
             }
         case 'GET_SHIRT':
             return {
@@ -68,8 +70,9 @@ const shirtReducer = (state=initialState, action) => {
                 let render= []
                 state.shirtsByName.length>0 ? render= state.shirtsByName : render= state.allShirts
                 render.forEach(shirt => {
+                    
                     let check= shirt.categories.filter(i => i.name === category)
-                    if (check.length !== 0){filter.push(shirt)}
+                    if (check.length !== 0 && shirt.status !== 'deleted'){filter.push(shirt)}
                 })
             }) */
             console.log("cat62", action.payload);
@@ -91,7 +94,7 @@ const shirtReducer = (state=initialState, action) => {
                     ...state,
                     shirtsByName: [],
                 }
-            
+           
 
         default:
             return state;

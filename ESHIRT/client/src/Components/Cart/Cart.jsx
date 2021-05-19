@@ -1,9 +1,9 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-
+import Payment from './Payment/Payment'
 import {Link} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import {useHistory} from 'react-router-dom'
 
 import {
     clear,
@@ -15,10 +15,12 @@ import {
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 export default function Cart (){
     
     const cartFromLocalStorage=JSON.parse(localStorage.getItem('items') || '[]'); 
+    const history= useHistory()
 
     // let cartFromLocalStorage2 =cartFromLocalStorage.map(c=> 
     //     {return {
@@ -57,7 +59,7 @@ export default function Cart (){
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
 
-    const {user,isAuthenticated}=useAuth0();
+    const {user,isAuthenticated, loginWithPopup}=useAuth0();
     // const userId= user.sub.split('|').pop();
     // console.log('USER',userId, typeof userId)
    
@@ -81,6 +83,12 @@ export default function Cart (){
     
     function handleClear(){
         dispatch(clear())
+    }
+
+    function handlePayment(){
+        if (isAuthenticated) {
+            history.push('/payment')
+        } else loginWithPopup()
     }
    
     return(
@@ -118,7 +126,9 @@ export default function Cart (){
                             <Link to='/catalogue'>
                                 <button>Go back shopping</button>
                             </Link>
-                            {items.length >0&&<button>Purchase</button>}
+                            {
+                            items.length >0&&<button onClick={handlePayment}>Purchase</button>
+                            }
                             {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
                         </div>
                 </div>
