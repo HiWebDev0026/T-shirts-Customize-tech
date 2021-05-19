@@ -6,22 +6,25 @@ import {useState, useEffect} from 'react'
 
 
 
-function Reviews() {
+function Reviews(props) {
   const dispatch = useDispatch();
-  
+  const review = useSelector(state => state.shirtReducer.shirtId)
 
+  let id = props.match.params.id;
 
+console.log(review[0].id)
 
-// useEffect(() => {
-//     dispatch(getShirtReview())
-// }, [])
-
+useEffect(() => {
+    dispatch(getShirtReview(id));
+    
+  },[]);
 
 
 
   return (
       <div>
-      <p>Holaaaa</p>
+      
+     
    </div>
   );
 }

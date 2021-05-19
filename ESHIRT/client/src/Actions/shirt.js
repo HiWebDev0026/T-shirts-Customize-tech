@@ -96,12 +96,12 @@ export function deleteShirt(shirtId){
 }
 
 export function getShirtReview(shirtId){
-    
+   
     return async (dispatch) => {
         try {
             const res = await axios.get(`/shirt/${shirtId}/review`, {responseType: 'json'})
             const shirt = res.data
-            console.log(shirt)
+         
             dispatch({type: 'GET_SHIRT_REVIEW', payload: shirt})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
