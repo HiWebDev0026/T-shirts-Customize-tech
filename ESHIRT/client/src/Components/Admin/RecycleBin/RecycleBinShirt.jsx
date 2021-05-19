@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import Style from './RecycleBin.module.css';
+import Style from './RecycleBinShirt.module.css';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
@@ -22,11 +22,7 @@ function RecycleBinShirt() {
           id: shirt.id,
           name: shirt.name,
           color: shirt.color,
-          model: shirt.model,
-          size: shirt.size,
-          score: shirt.score,
           public: shirt.public,
-          created: shirt.created,
           status: shirt.status
       })
   }
@@ -48,26 +44,21 @@ function RecycleBinShirt() {
 
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
-        <div>
+        <div className={Style.General}>
             <h2 className={Style.Title}>Shirts deleted</h2>
 
             {shirts.length > 0 
       ? ( shirts.map((shirt) => {
           return (
-            <tr className={Style.Container}>
+            <div className={Style.Container}>
               <div className={Style.Tarjet} >
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>
               <th className={Style.Titles3}> {shirt.color}</th>
-              <th className={Style.Titles4}> {shirt.model}</th>
-              <th className={Style.Titles5}> {shirt.size}</th>
-              <th className={Style.Titles6}> {shirt.score}</th>
-              <th className={Style.Titles7}> {shirt.public}</th>
-              <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button>
               <button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Restore</button>
               </div>
-               </tr>
+               </div>
           );
         })
       ) 
