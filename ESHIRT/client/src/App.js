@@ -25,12 +25,15 @@ import OrderDetail from './Components/Admin/Sales/OrderDetail';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
+
+import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
+
 
 function App() {
 
@@ -95,6 +98,7 @@ function App() {
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
+      <Route exact path= '/favorites' component={Favorites}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
