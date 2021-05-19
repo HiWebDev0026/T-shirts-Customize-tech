@@ -7,12 +7,14 @@ import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import Style from "./DesignDetail.module.css";
 
+
 export default function DesignDetail (){
 
 const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 const history = useHistory();
 const [input2, setInput2] = useState('');
+
 
 function handleDelete(e) {
     alert("Design " + e.target.value + " deleted");
