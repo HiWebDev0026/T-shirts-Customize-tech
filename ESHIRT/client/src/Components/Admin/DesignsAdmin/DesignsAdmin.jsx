@@ -31,7 +31,7 @@ shirts.map((shirt) => {
 })
     useEffect(() => {
       dispatch(getShirts());
-    }, []);
+    }, [designs]);
 
    function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));

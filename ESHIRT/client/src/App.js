@@ -25,9 +25,14 @@ import OrderDetail from './Components/Admin/Sales/OrderDetail';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
+
+import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
+import Reviews from './Components/Reviews/Reviews.jsx'
+import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
+import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 
 
 function App() {
@@ -81,19 +86,25 @@ function App() {
       <Route exact path= '/adminDash' component={AdminDashboard}/>
       <Route exact path= '/aboutUs' component={AboutUs}/>
       <ProtectedRoute exact path= '/recycleBin' component={RecycleBin}/>
+      <ProtectedRoute exact path= '/recycleBinShirt' component={RecycleBinShirt}/>
+      <ProtectedRoute exact path= '/recycleBinUser' component={RecycleBinUser}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
+      <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
+      <Route exact path= '/favorites' component={Favorites}/>
       <Route exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
+
       <Route path= '/' component={Footer}/>
+
     </div>
   )
 }

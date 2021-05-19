@@ -38,6 +38,7 @@ export default function HomeAdmin() {
             </NavLink>
             <NavLink to= '/recycleBin' className={Style.Title1}>
                 <img src={RecicleBin} className={Style.img} />
+    
             </NavLink>
             </div>
         </div>
