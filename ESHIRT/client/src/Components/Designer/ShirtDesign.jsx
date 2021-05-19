@@ -112,16 +112,52 @@ function ShirtDesign(props) {
     return (
                 <div className={PrintCSS.container}>
                         <canvas id="canvas" ref={finalCanvas}/>
-                                        <form onSubmit={(e)=> {
+                                        <form className={PrintCSS.columnAux} onSubmit={(e)=> {
                                                 e.preventDefault();
                                                 
                                                 
                                                 const finalImage = finalCanvas.current.toDataURL();
 
-                                                props.setPhase({...props.phase, designSelected: {status: true, data: finalImage}, allGoodForSubmit: true,})
+                                                props.setPhase({
+                                                        ...props.phase, 
+                                                        designSelected: {
+                                                                status: true, 
+                                                                data: finalImage
+                                                        }, 
+                                                        allGoodForSubmit: true,
+                                                })
                                         }}>
-                                                <input type="file" onChange={setPhotoHandler}/>
-                                                <input type="submit" disabled={data == null} value={"Añadir foto"} />
+
+                                                
+                                                        <label style={{                                        
+                                                                border: '3px solid coral', 
+                                                                padding: '8px 40px 8px 40px', 
+                                                                fontSize: '18px', 
+                                                                backgroundColor: 'coral',
+                                                                color: 'black',
+                                                                borderColor: 'salmon',
+                                                                margin: '20px 0px 0px 0px'
+                                                        }}>
+                                                                Upload Image
+                                                        
+                                                                <input type="file" style={{display: 'none'}} onChange={setPhotoHandler}/>
+                                                        </label>
+
+                                                        <input 
+                                                                type="submit" 
+                                                                disabled={data === null} 
+                                                                value={"Create Shirt"}
+                                                                style={{
+                                                                        borderRadius: '5px', 
+                                                                        padding: '10px 40px 10px 40px', 
+                                                                        fontSize: '18px', 
+                                                                        backgroundColor: data !== null && 'forestgreen',
+                                                                        margin: '130px 0px 0px 0px',
+                                                                        color: data !== null && 'white',
+                                                                        borderColor: data !== null && 'mediumseagreen'
+                                                                }} 
+                                                        />
+                                                
                                         </form>
                 </div>)
 }

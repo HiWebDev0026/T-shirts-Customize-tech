@@ -3,7 +3,9 @@ import {combineReducers} from 'redux'
 import userReducer from './user';
 import shirtReducer from './shirt';
 import categoryReducer from './category';
-import cartReducer from './cart'
+import cartReducer from './cart';
+import ordersReducer from './orders';
+import favoritesReducer from './favorites';
 
 const initialState = {
     errors: null
@@ -37,7 +39,9 @@ const rootReducer = combineReducers({
     userReducer,
     shirtReducer,
     categoryReducer,
-    cartReducer
+    cartReducer,
+    ordersReducer,
+    favoritesReducer
 })
 
 export default rootReducer

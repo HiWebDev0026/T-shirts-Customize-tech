@@ -5,6 +5,7 @@ import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
 import { postShirt, resetErrors } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 export default function FinalShirt(props) {
 
@@ -15,7 +16,24 @@ export default function FinalShirt(props) {
     const [input, setInput] = useState({name: ''});
     const [input2, setInput2] = useState('');
     const history = useHistory()
-
+    const { user, isAuthenticated, loginWithPopup } = useAuth0();
+    
+    const setColorName = (color) => {
+        switch(color) {
+            case 'rgb(12, 155, 255)':
+                return 'lightblue';
+            case 'rgb(10, 10, 255)':
+                return 'blue';
+            case 'darkorchid':
+                return 'purple';
+            case 'rgb(20, 20, 20)':
+                return 'black';
+            case 'rgb(255, 255, 255)':
+                return 'white';
+            default:
+                return color
+        }
+    }
 
     useEffect(() => {
         console.log(errors)
@@ -29,34 +47,53 @@ export default function FinalShirt(props) {
     })
 
     function handleChange(e) {
+        console.log('\n\n\n', 'BEFORE SENDING:', input);
         const value = e.target.value;
         const name = e.target.name
-        setInput({
+        
+        setInput(prevState => {
+            return {
+            ...prevState,
             [name]: value
-        });
+        }});
+
+        return;
     }
-    function handlePublic(e) {
+    /* function handlePublic(e) {
         const value = e.target.value;
         const name = e.target.name
+
         setInput2(
             value
         );
-    }
+
+        return;
+    } */
         
 
     function handleSubmit (e, phase) {
+        
         e.preventDefault();
-        dispatch(postShirt( 
-            {
-                userId: 1,
-                name: input.name,
-                print: phase.designSelected.data,
-                size: phase.sizeSelected.data,
-                color: phase.colorSelected.data,
-                public: input2 === 'true ' ? true : false,
-                model: phase.modelSelected.data,
-            }
-        ));
+        console.log('\n\n\n', 'BEFORE SENDING:', input);
+        if(isAuthenticated) {
+                dispatch(postShirt( 
+                    {
+                        userId: user.sub.split('|')[1],
+                        name: input.name,
+                        print: phase.designSelected.data,
+                        size: phase.sizeSelected.data,
+                        color: setColorName(phase.colorSelected.data),
+                        public: input.public,
+                        model: phase.modelSelected.data,
+                    }
+                ));
+
+                return;
+        } else {
+            return loginWithPopup();
+        }
+
+
         //history.push('/catalogue')
     }
 
@@ -75,9 +112,9 @@ export default function FinalShirt(props) {
                     <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
                     <div className={FinalCSS.Desing}> Do you want to share yoor design?</div>
                     <label className={FinalCSS.Desing1}>Yes</label>
-                    <input type="radio" name="public" value="false" onChange= {handlePublic}/>
+                    <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
-                    <input type="radio" name="public" value="true" onChange= {handlePublic}/>
+                    <input type="radio" name="public" value="false" onChange= {handleChange}/>
                    
                     
 

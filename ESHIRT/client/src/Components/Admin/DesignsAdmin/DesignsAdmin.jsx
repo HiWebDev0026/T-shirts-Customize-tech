@@ -10,16 +10,19 @@ import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function DesignsAdmin() {
 
-const [editButtonTarget, setEditButtonTarget] = useState(0)
+const [editButtonTarget, setEditButtonTarget] = useState(0);
 const [change, setChange]=useState('');
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
-const history = useHistory()
+const history = useHistory();
 const isAdmin = useTokenDecode(localStorage.currentToken);
+const [filtered, setFiltered] = useState([]);
+const [order, setOrder] = useState([]);
+
 // Desings in true for approval
 let designs= [];
 shirts.map((shirt) => {
-    if (shirt.public === true){
+    if (shirt.public === 'pending'){
     return designs.push({
         name: shirt.name,
         id: shirt.id
@@ -28,47 +31,66 @@ shirts.map((shirt) => {
 })
     useEffect(() => {
       dispatch(getShirts());
-    }, []);
+    }, [designs]);
 
-    function handleDelete(e) {
-        alert("Design " + e.target.value + " deleted");
-        dispatch(deleteShirt(e.target.value)); 
-      };
-
-      function getShirtId(e) { 
+   function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
         history.push('/design_detail');
-    
       }
 
-      function handleEdit (e) {
-       
-        dispatch(putShirt({'public':true}));
-    }
+      //Order By names
+ function handleOrder(e) {
+  setOrder(e.target.value);
+};
+const AZ = (a, b) => {return a.name > b.name ? 1 : -1;};
+const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
+
+      useEffect(() => {
+        switch (order) {
+          case "AZ":
+            return setFiltered([...designs].sort(AZ));
+          case "ZA":
+            return setFiltered([...designs].sort(ZA));
+          default:
+            return designs;
+        }
+      }, [order]);
+
+      let Total = filtered.length > 0 ? filtered : designs;
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
-<h2 className={Style.Title}>Designs waiting for approval</h2>
+      
+        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+        <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
+        <select onChange={handleOrder} className={Style.Options}>
+          <option  value="">ORDER</option>
+          <option value="AZ">AZ</option>
+          <option value="ZA">ZA</option>
+        </select>
+        <div className={Style.Designs}>
 
-{designs.length > 0 
-      ? ( designs.map((shirt) => {
+
+{Total.length > 0  
+      ? ( Total.map((shirt) => {
           return (
-            <div>
+            <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
-                
-              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name}</button>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button>
-              <button className={Style.Btn2} value={shirt.id} onClick={handleEdit}>APPROVAL </button>
+              <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name} </button>
+             
               </div>
                </div>
           );
         })
       ) 
       : (<p>Desings not found</p>)}
-<NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+      
+
+
+    
+        </div>
+        <NavLink to='home_admin'>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
-        
         </div>
     )
 }

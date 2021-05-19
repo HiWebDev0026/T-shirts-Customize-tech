@@ -22,7 +22,9 @@ export function getUsersByName(userName){
     
     return async (dispatch) => {
         try {
-            const res= await axios.get(`/user?name=${userName}`, {responseType: 'json'})
+            const res= await axios.get(`/user?name=${userName}`, {responseType: 'json', headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             const users= res.data
             dispatch({type: 'GET_USERS_NAME', payload: users})
         } catch (err) {
@@ -37,7 +39,9 @@ export function getUserById(userId){
     
     return async (dispatch) => {
         try {
-            const res= await axios.get(`/user/${userId}`, {responseType: 'json'})
+            const res= await axios.get(`/user/${userId}`, {responseType: 'json', headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
             const user= res.data
             dispatch({type: 'GET_USER', payload: user})
         } catch (err) {
@@ -52,7 +56,11 @@ export function postUser(user){
 
     return async (dispatch) => {
         try {
-            const res= await axios.post(`/user`, user, {responseType: 'json'})
+            const res= await axios.post(`/user`, user, {responseType: 'json', 
+                headers: {
+                    Authorization: `Bearer ${localStorage.currentToken}`
+                }
+                })
             const newUser= res.data
             dispatch({type: 'POST_USER', payload: {...user}})
         } catch (err) {
@@ -67,7 +75,10 @@ export function putUser(dataToModify, userId){
 
     return async (dispatch) => {
         try {
-        const res= await axios.put(`/user/${userId}`, dataToModify, {responseType: 'json'})
+        const res= await axios.put(`/user/${userId}`, dataToModify, {responseType: 'json', 
+            headers:{
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
         const modifiedUser= res.data
         dispatch({type: 'PUT_USER', payload: {...dataToModify, userId:modifiedUser.id}})
         } catch (err){

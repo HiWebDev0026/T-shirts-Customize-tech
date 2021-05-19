@@ -21,16 +21,20 @@ export default function CreateCategory (){
 
 
     useEffect(()=>{
-        dispatch(getCategories());
-    }, []);
 
-    useEffect(() => {
-        console.log(errors)
+        dispatch(getCategories());
+
         if (errors) {
             alert(`${errors.message}`)
-            dispatch(resetErrors()) 
+            dispatch(resetErrors())
         }
-    })
+
+    }, [errors, categories.length]);
+
+  /*   useEffect(() => {
+        console.log(errors)
+        
+    }) */
 
     function handleSubmit (e) {
         e.preventDefault();
@@ -93,7 +97,7 @@ export default function CreateCategory (){
         </div>
         <div className={Style.ContBtn3}>
         <NavLink to='home_admin'>
-            <h3 className={Style.Btn3}>CONTROL PANEL</h3>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
         </NavLink>
     </div>
     </div>

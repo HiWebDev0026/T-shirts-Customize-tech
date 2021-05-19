@@ -19,27 +19,52 @@ const INITIAL_PAGE= 10;
 function Catalogue(){
     
     const dispatch= useDispatch()
-    const allShirts= useSelector(state => state.shirtReducer.allShirts)
+    const shirtsTotal= useSelector(state => state.shirtReducer.allShirts)
     const shirtsByName= useSelector(state => state.shirtReducer.shirtsByName)
     const filteredByCategory= useSelector(state => state.shirtReducer.filteredByCategory)
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
 
+    let allShirts= [];
+    shirtsTotal.map((shirt) => {
+        if ( shirt.status !== 'deleted'){
+        return allShirts.push({
+            id: shirt.id,
+            name: shirt.name,
+            color: shirt.color,
+            model: shirt.model,
+            size: shirt.size,
+            score: shirt.score,
+            print: shirt.print,
+            public: shirt.public,
+            created: shirt.created,
+            status: shirt.status
+        })
+    }
+    })
+    console.log(shirtsByName)
+
 
     useEffect(()=>{
-        if (shirtsByName.length === 0){
-            dispatch(getShirts())
-        }
-    }, [])
+        /* if (shirtsByName.length === 0){
+            dispatch(getShirts("true"))
+            return;
+        } */
 
-    useEffect(() => {
         filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
-    }, [filteredByCategory, shirtsByName])
+
+    }, [filteredByCategory, shirtsByName, allShirts])
+
+   /*  useEffect(() => {
+        filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
+    }, [filteredByCategory, shirtsByName, allShirts]) */
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
   }
   
+ /*  <button onClick={()=>dispatch(getShirts())}></button>
+  '/status?=pending' */
   const offset = currentPage * INITIAL_PAGE;
   const currentPageData= data
   .slice(offset, offset + INITIAL_PAGE)
@@ -64,7 +89,7 @@ function handlePageClick({ selected: selectedPage }) {
 
   const pageCount = Math.ceil(data.length / INITIAL_PAGE);
 
-    console.log(allShirts, shirtsByName, filteredByCategory)
+    /* console.log(allShirts, shirtsByName, filteredByCategory) */
 
     return (
         <div className={style.container1}>
@@ -83,7 +108,7 @@ function handlePageClick({ selected: selectedPage }) {
                 <ReactPaginate
                     previousLabel={'← Previous'}
                     nextLabel={'Next →'}
-                    pageCount={pageCount}
+                    pageCount={data < INITIAL_PAGE ? 1 : pageCount}
                     onPageChange={handlePageClick}        
                     previousLinkClassName={style.pagination__link}
                     nextLinkClassName={style.pagination__link}

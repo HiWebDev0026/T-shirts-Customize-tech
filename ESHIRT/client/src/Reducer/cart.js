@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState={
     items:  JSON.parse(localStorage.getItem('items')) || [],
-    orderId: null,
-    putOrderOk: null,
 }
 
 const cartReducer = (state=initialState, action) => {
@@ -109,36 +107,12 @@ const cartReducer = (state=initialState, action) => {
                 items: modified
             }
 
-        case 'CLEAR':
-            localStorage.clear()
-            return {
-                ...state,
-                items: []
+            case 'CLEAR':
+                localStorage.removeItem('items');
+                return {
+                    ...state,
+                    items: []
             }    
-
-        case 'POST_ORDER':
-            return {
-                ...state,
-                orderId: action.payload.orderId
-            }
-
-        case 'PUT_ORDER':
-            return {
-                ...state,
-                putOrderOk: true
-            }
-        case 'PUT_ORDER_STATUS':
-            return {
-                ...state,
-                putOrderOk: true
-            }
-        
-        case 'RESET_PUT_ORDER_OK':
-            return {
-                ...state,
-                putOrderOk: null
-            }
-
         default: return state
     }
 }

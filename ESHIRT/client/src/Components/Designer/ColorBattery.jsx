@@ -6,47 +6,88 @@ export default function ColorBattery(props) {
 
     const {setData, setPhase} = props.props;
 
-
-
     return (<div className={ColorBatteryCSS.container}>
-                <button style={{backgroundColor: 'yellow', 
-                            width: '30%'}} 
 
-                    onClick={()=> colorModifier('yellow', props.props, setData)}>AM</button>
+        <button style={{backgroundColor: 'red', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('red', props.props, setData)}
+        >
+            RED
+        </button>
 
-            <button style={{backgroundColor: 'red', width: '30%'}} onClick={() => colorModifier('red', props.props, setData)}>
-                R
-            </button>
-            <button 
-                style={{backgroundColor: 'rgb(12, 155, 255, 0.6)',width: '30%'}} 
-                onClick={() => colorModifier('lightblue', props.props, setData)}>
-                CC
-            </button>
-            <button style={{backgroundColor: 'green', 
-                            width: '30%'}} 
+        <button 
+            style={{backgroundColor: 'coral', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={()=> colorModifier('coral', props.props, setData)}
+        >
+            CORAL
+        </button>
 
-                    onClick={()=> colorModifier('green', props.props, setData)}>GR</button>
+        <button 
+            style={{backgroundColor: 'orange', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('orange', props.props, setData)}
+        >
+            ORANGE
+        </button>
 
-            <button style={{backgroundColor: 'violet', width: '30%'}} onClick={() => colorModifier('violet', props.props, setData)}>
-                VI
-            </button>
-            <button 
-                style={{backgroundColor: 'orange',width: '30%'}} 
-                onClick={() => colorModifier('orange', props.props, setData)}>
-                OR
-            </button>
-            <button style={{backgroundColor: 'coral', 
-                            width: '30%'}} 
+        <button 
+            style={{backgroundColor: 'yellow', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={()=> colorModifier('yellow', props.props, setData)}
+        >
+            YELLOW
+        </button>
 
-                    onClick={()=> colorModifier('coral', props.props, setData)}>CO</button>
+        <button 
+            style={{backgroundColor: 'green', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={()=> colorModifier('green', props.props, setData)}
+        >
+            GREEN
+        </button>
 
-            <button style={{backgroundColor: 'gray', width: '30%'}} onClick={() => colorModifier('gray', props.props, setData)}>
-                GRAY
-            </button>
-            <button 
-                style={{backgroundColor: 'cyan',width: '30%'}} 
-                onClick={() => colorModifier('cyan', props.props, setData)}>
-                CY
-            </button>
+        <button 
+            style={{backgroundColor: 'cyan',borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('cyan', props.props, setData)}
+        >
+            CYAN
+        </button>
+
+        <button 
+            style={{backgroundColor: 'rgb(12, 155, 255)', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('rgb(12, 155, 255)', props.props, setData)}
+        >
+            L-BLUE
+        </button>
+
+        <button 
+            style={{backgroundColor: 'rgb(10, 10, 255, 0.6)', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('rgb(10, 10, 255, 0.6)', props.props, setData)}
+        >
+            BLUE
+        </button>
+
+        <button style={{backgroundColor: 'darkorchid', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('darkorchid', props.props, setData)}
+        >
+            PURPLE
+        </button>
+
+
+        <button 
+            style={{backgroundColor: 'rgb(20, 20, 20)', borderRadius: '8px', fontSize: '18px', borderColor: 'black', color: 'white'}} 
+            onClick={() => colorModifier('rgb(20, 20, 20)', props.props, setData)}
+        >
+            BLACK
+        </button>
+
+        <button style={{backgroundColor: 'gray', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('gray', props.props, setData)}>
+            GRAY
+        </button>
+
+
+        <button 
+            style={{backgroundColor: 'rgb(255, 255, 255)', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
+            onClick={() => colorModifier('rgb(255, 255, 255)', props.props, setData)}>
+            WHITE
+        </button>
+
     </div>)
 }

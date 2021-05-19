@@ -97,7 +97,11 @@ const category9 = {
 }
 
 const category10 = {
-    "name": "effects"
+    "name": "hippie"
+}
+
+const category11 = {
+    "name": "video games"
 }
 
 const shirt1 = {
@@ -126,9 +130,9 @@ const shirt2 = {
 
 const shirt3 = {
     "userId": "105677628845670307411",
-    "categoryId": "8",
-    "name": "Footprint",
-    "color": "orange",
+    "categoryId": "3",
+    "name": "joker",
+    "color": "black",
     "model": "cuello-u",
     "size": "M",
     "print": "https://cdn.shopify.com/s/files/1/0443/3113/9234/products/t-shirt-femme-jpeux-pas-jai-pole-dance-noir-494817.jpg?v=1604670113",
@@ -139,7 +143,7 @@ const shirt3 = {
 const shirt4 = {
     "userId": "105677628845670307410",
     "categoryId": "4",
-    "name": "Henry",
+    "name": "Henry-grey",
     "color": "grey",
     "model": "cuello-u",
     "size": "L",
@@ -174,9 +178,9 @@ const shirt6 = {
 
 const shirt7 = {
     "userId": "105677628845670307413",
-    "categoryId": "4",
-    "name": "SHIRT7",
-    "color": "blue",
+    "categoryId": "11",
+    "name": "Pac-man",
+    "color": "grey",
     "model": "cuello-u",
     "size": "S",
     "print": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTADiSQf5x6Jp-1RBYXJNVspzABU6d8pC9a7Cyhs1c5UDHFjmtEITpS1wvifwJkeF4rdv8&usqp=CAU",
@@ -187,8 +191,8 @@ const shirt7 = {
 const shirt8 = {
     "userId": "105677628845670307413",
     "categoryId": "4",
-    "name": "SHIRT8",
-    "color": "black",
+    "name": "Henry-yellow",
+    "color": "yellow",
     "model": "cuello-u",
     "size": "L",
     "print": "https://image.spreadshirtmedia.com/image-server/v1/mp/products/T1130A2MPA3365PT17X37Y36D1016892376FS5093/views/1,width=378,height=378,appearanceId=2,backgroundColor=F2F2F2,modelId=1567,crop=list/life-of-a-coder-unisex-poly-cotton-t-shirt.jpg",
@@ -198,9 +202,9 @@ const shirt8 = {
 
 const shirt9 = {
     "userId": "105677628845670307412",
-    "categoryId": "4",
-    "name": "SHIRT9",
-    "color": "black",
+    "categoryId": "11",
+    "name": "Supergirl",
+    "color": "grey",
     "model": "cuello-u",
     "size": "M",
     "print": "https://ae01.alicdn.com/kf/H3c52791bd1924c4c842e68faa8f0aa38h/While-Alive-Programmer-T-shirt-Live-Eat-Code-Eat-Sleep-Simple-Letter-Design-Geek-Coder-Tshirt.jpg",
@@ -210,8 +214,8 @@ const shirt9 = {
 
 const shirt10 = {
     "userId": "105677628845670307411",
-    "categoryId": "5",
-    "name": "SHIRT10",
+    "categoryId": "4",
+    "name": "ES6",
     "color": "grey",
     "model": "cuello-u",
     "size": "M",
@@ -222,9 +226,9 @@ const shirt10 = {
 
 const shirt11 = {
     "userId": "105677628845670307411",
-    "categoryId": "6",
-    "name": "SHIRT11",
-    "color": "black",
+    "categoryId": "8",
+    "name": "Dog",
+    "color": "red",
     "model": "cuello-u",
     "size": "S",
     "print": "http://i.ebayimg.com/images/g/8lkAAOSwPW9a11Vn/s-l500.jpg",
@@ -234,9 +238,9 @@ const shirt11 = {
 
 const shirt12 = {
     "userId": "105677628845670307410",
-    "categoryId": "5",
-    "name": "SHIRT12",
-    "color": "grey",
+    "categoryId": "8",
+    "name": "Footprint",
+    "color": "yellow",
     "model": "cuello-u",
     "size": "S",
     "print": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2m0RU6jww4i6PMly3spXAJzkIKPdsV-cBKWZDlOdTwf0PSYV9i1M5hGkVzMBiOnM7rVo_5k&usqp=CAc2",
@@ -247,9 +251,9 @@ const shirt12 = {
 const shirt13 = {
     "userId": "105677628845670307414",
     "categoryId": "6",
-    "name": "SHIRT13",
+    "name": "Superman",
     "color": "blue",
-    "model": "cuello-v2",
+    "model": "cuello-u",
     "size": "M",
     "print": "https://i.pinimg.com/originals/dd/3d/ea/dd3dea922eb5b832305d23775af66843.jpg",
     "score": "3",
@@ -259,7 +263,7 @@ const shirt13 = {
 const shirt14 = {
     "userId": "105677628845670307410",
     "categoryId": "5",
-    "name": "SHIRT14",
+    "name": "Captain America",
     "color": "white",
     "model": "cuello-v2",
     "size": "M",
@@ -271,9 +275,9 @@ const shirt14 = {
 const shirt15 = {
     "userId": "105677628845670307410",
     "categoryId": "4",
-    "name": "SHIRT15",
+    "name": "JS",
     "color": "white",
-    "model": "cuello-v2",
+    "model": "cuello-u",
     "size": "M",
     "print": "https://http2.mlstatic.com/D_NQ_NP_634948-MLA32874228192_112019-W.jpg",
     "score": "3",
@@ -285,7 +289,7 @@ const order1 = [
         "shirtId": "2",
         "size": "M",
         "amount": "3",
-        "price": "50"
+        "price": "250"
     },
     {
         "shirtId": "1",
@@ -300,13 +304,13 @@ const order2 = [
         "shirtId": "4",
         "size": "XL",
         "amount": "1",
-        "price": "50"
+        "price": "150"
     },
     {
         "shirtId": "4",
         "size": "S",
         "amount": "3",
-        "price": "50"
+        "price": "200"
     },
     {
         "shirtId": "5",
@@ -337,7 +341,7 @@ async function fillDB () {
     try {
     shirt1.print = await utils.promisifiedReadFile('./src/images/img11.txt')
     shirt2.print = await utils.promisifiedReadFile('./src/images/img2.txt')
-    shirt3.print = await utils.promisifiedReadFile('./src/images/img3.txt')
+    shirt3.print = await utils.promisifiedReadFile('./src/images/img12.txt')
     shirt4.print = await utils.promisifiedReadFile('./src/images/img9.txt')
     shirt5.print = await utils.promisifiedReadFile('./src/images/img5.txt')
     shirt6.print = await utils.promisifiedReadFile('./src/images/img6.txt')
@@ -346,6 +350,7 @@ async function fillDB () {
     shirt9.print = await utils.promisifiedReadFile('./src/images/img4.txt')
     shirt10.print = await utils.promisifiedReadFile('./src/images/img10.txt')
     shirt11.print = await utils.promisifiedReadFile('./src/images/img1.txt')
+    shirt12.print = await utils.promisifiedReadFile('./src/images/img3.txt')
     const postedUser1 = await User.create(user1);
     const postedUser2 = await User.create(user2);
     const postedUser3 = await User.create(user3);
@@ -362,12 +367,13 @@ async function fillDB () {
     const categoryPosted8 = await Category.create(category8);
     const categoryPosted9 = await Category.create(category9);
     const categoryPosted10 = await Category.create(category10);
+    const categoryPosted11 = await Category.create(category11);
     const shirtPosted1 = await Shirt.create({...shirt1, created_by_user: true});
     await shirtPosted1.addCategory(categoryPosted4.id);
     const shirtPosted2 = await Shirt.create({...shirt2, created_by_user: true});
     await shirtPosted2.addCategory(categoryPosted7.id);
     const shirtPosted3 = await Shirt.create({...shirt3, created_by_user: true});
-    await shirtPosted3.addCategory(categoryPosted8.id);
+    await shirtPosted3.addCategory(categoryPosted6.id);
     const shirtPosted4 = await Shirt.create({...shirt4, created_by_user: true});
     await shirtPosted4.addCategory(categoryPosted4.id);
     const shirtPosted5 = await Shirt.create({...shirt5, created_by_user: true});
@@ -375,17 +381,17 @@ async function fillDB () {
     const shirtPosted6 = await Shirt.create({...shirt6, created_by_user: true});
     await shirtPosted6.addCategory(categoryPosted10.id);
     const shirtPosted7 = await Shirt.create({...shirt7, created_by_user: true});
-    await shirtPosted7.addCategory(categoryPosted4.id);
+    await shirtPosted7.addCategory(categoryPosted11.id);
     const shirtPosted8 = await Shirt.create({...shirt8, created_by_user: true});
     await shirtPosted8.addCategory(categoryPosted4.id);
     const shirtPosted9 = await Shirt.create({...shirt9, created_by_user: true});
-    await shirtPosted9.addCategory(categoryPosted4.id);
+    await shirtPosted9.addCategory(categoryPosted11.id);
     const shirtPosted10 = await Shirt.create({...shirt10, created_by_user: true});
-    await shirtPosted10.addCategory(categoryPosted5.id);
+    await shirtPosted10.addCategory(categoryPosted4.id);
     const shirtPosted11 = await Shirt.create({...shirt11, created_by_user: true});
-    await shirtPosted11.addCategory(categoryPosted6.id);
+    await shirtPosted11.addCategory(categoryPosted8.id);
     const shirtPosted12 = await Shirt.create({...shirt12, created_by_user: true});
-    await shirtPosted12.addCategory(categoryPosted5.id);
+    await shirtPosted12.addCategory(categoryPosted8.id);
     const shirtPosted13 = await Shirt.create({...shirt13, created_by_user: true});
     await shirtPosted13.addCategory(categoryPosted6.id);
     const shirtPosted14 = await Shirt.create({...shirt14, created_by_user: true});
@@ -397,7 +403,7 @@ async function fillDB () {
         detail.orderId = orderPosted1.id
         await Detail.create(detail)
     }
-    const orderPosted2 = await Order.create({status: 'CART', total_price: 300, userId: "105677628845670307411"})
+    const orderPosted2 = await Order.create({status: 'CART', total_price: 400, userId: "105677628845670307411"})
     for (const detail of order2) {
         detail.orderId = orderPosted2.id
         await Detail.create(detail)

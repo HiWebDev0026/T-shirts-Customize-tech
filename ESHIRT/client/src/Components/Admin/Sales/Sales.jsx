@@ -6,66 +6,103 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
 
-const sales= [{id: 2, total_price: 250, status: "pending", createdAt: "525", updateAt: 521, userId: 1, details: []}];
+import {getOrders} from '../../../Actions/index.js'
+
 export default function Sales() {
-
-  const sales1 = useSelector((state) => state.cartReducer.items);
-  console.log("aca", sales1)
-
-
+  
   const isAdmin = useTokenDecode(localStorage.currentToken);
+
+  // const [refresh, setRefresh]=useState(false);
+  const dispatch = useDispatch();
+  const sale = useSelector((state) => state.ordersReducer.orders);
+  const [filtered, setFiltered] = useState([]);
+  const [order, setOrder] = useState([]);
+  console.log("aca sales", sale)
+  
+  useEffect(()=>{
+    dispatch(getOrders());
+  },[])
+
+  function handleClick (e) {
+    console.log(e.target.id)
+  }
+
+  function handleRefresh () {
+    setFiltered([])
+  }
+  const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
+const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
+
+  let sales = filtered.length > 0 ? filtered : sale
+  useEffect(() => {
+    switch(order){
+      case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
+      case 'STRENGTHDN': return setFiltered([...sales].sort(STRENGTHDN))
+      default: return sales
+    }}, [order])
+    
+    function handleOrder(e){
+      setOrder(e.target.value)
+    }
+    
 
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
-             <table id="table-to-xls">
-        <div className={Style.Shirts} id='tableSales'>
-            <br/>
-            <tr>
-             <th className={Style.Title1}> ---------------Id---------</th>
-              <th className={Style.Title2}> ------------------Total Price---------</th>
-              <th className={Style.Title4}> --------------------Status-----------</th>
-              <th className={Style.Title6}> -------------------CreateAt----------</th>
-              <th className={Style.Title7}> --------------UpdateAt-----------</th>
-              <th className={Style.Title8}> ------------UserId-------------</th>
-              <th className={Style.Title9}> -----------Details-----------</th>
+        <div>
+          <h2>Orders</h2>
+          <select onChange={handleOrder} className= 'options'>
+  <option value =''>ORIGINAL</option>
+  <option value ='STRENGTHUP'>PRICE+</option>
+  <option value ='STRENGTHDN'>PRICE-</option>
+</select>
+          <table id="table-to-xls">
+              <tr>
+              <th >Id</th>
+                <th>Total Price</th>
+                <th >Status</th>
+                <th >CreateAt</th>
+                <th>UpdateAt</th>
+                <th >UserId</th>
+                <th >Details</th>
               </tr>
-              </div>
-             
-              {sales.length > 0 
-      ? ( sales.map((sales) => {
-          return (
-            <tr>
-              <div className={Style.Tarjet} >
-              <th className={Style.Titles1}> {sales.id}</th>
-              <th className={Style.Titles2}> {sales.total_price}</th>
-              <th className={Style.Titles3}> {sales.status}</th>
-              <th className={Style.Titles4}> {sales.createdAt}</th>
-              <th className={Style.Titles5}> {sales.updateAt}</th>
-              <th className={Style.Titles6}> {sales.userId}</th>
-              <th className={Style.Titles7}> {sales.details}</th>
-              </div>
-               </tr>
-          );
-        })
-      ) 
-      : (<p>Sales not found</p>)}
-              
-               </table>
-               <br/>
-
-      <div>
-      <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
-                    className="download-table-xls-button"
-                    table="table-to-xls"
-                    filename="salesxls"
-                    sheet="shirtsxls"
-                    buttonText="Download as XLS"/>
-      </div>
-
-<NavLink to='home_admin'>
-        <h3 className={Style.Btn3}>CONTROL PANEL</h3>
-    </NavLink>  
+              {
+                sales.length > 0? 
+                sales.map((s) => {
+                    return <tr>
+                                  <th> {s.id}</th>
+                                  <th> {s.total_price}</th>
+                                  <th> {s.status}</th>
+                                  <th> {s.createdAt.slice(0,10)}</th>
+                                  <th> {s.updateAt?.slice(0,10)}</th>
+                                  <th> {s.userId}</th>
+                                  <th>
+                                    <NavLink to={`order_detail/${s.id}`}>
+                                      <button id={s.id} onClick={handleClick}>Details</button>
+                                    </NavLink>
+                                  </th>
+                            </tr>
+                })
+                : <p>Sales not found</p>
+              }
+          </table>
+          <div>
+          <h4>Total sales: ${sales.reduce((a,c)=>a+c.total_price,0)}</h4>
+          <div>
+            <button onClick={handleRefresh}>Refresh</button>
+          </div>
+            <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button"
+                table="table-to-xls"
+                filename="salesxls"
+                sheet="shirtsxls"
+                buttonText="Download as XLS"
+            />
+          </div>
+          <NavLink to='home_admin'>
+            <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+          </NavLink>  
+          </div>
         </div>
     );
 };

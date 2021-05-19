@@ -36,12 +36,17 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     public: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true
+      type: DataTypes.ENUM("pending", "true", "false"),
+      allowNull: false,
+      
     },
     created_by_user: {
       type: DataTypes.BOOLEAN,
       allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 };

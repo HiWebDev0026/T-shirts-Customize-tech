@@ -6,6 +6,10 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
+.Btns{
+    display: flex;
+    justify-content: center;
+}
 .Title{
     display: grid;
     justify-content: center;
@@ -19,6 +23,8 @@
     display: grid;
     justify-content: center;
     grid-row: 2;
+    text-transform: uppercase;
+    
 }
 .Color{
     display: grid;
@@ -30,3 +36,15 @@
     justify-content: center;
     grid-row: 4;
 }
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
+.Btn1:hover{
+    background-color:coral;
+}
+.Btn2:hover{
+    background-color: lightblue;
+}
+

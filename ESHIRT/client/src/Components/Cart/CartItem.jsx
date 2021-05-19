@@ -1,10 +1,18 @@
 import React,{useEffect,useState,useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteItem, addOne, outOne,changeSize} from '../../Actions/index.js'
+import {
+    deleteItem, 
+    addOne, 
+    outOne,
+    changeSize,
+    postOrder,
+    putOrder,
+    checkLastOrder
+} from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
 import { FaEdit } from "react-icons/fa";
-
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 
 import Style from './CartItem.module.css'
@@ -12,21 +20,41 @@ import Style from './CartItem.module.css'
 export default function CartItem ({it}){
 
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cartReducer.items)
+    const orderId = useSelector(state => state.ordersReducer.orderId)
+    const isPosting = useSelector(state => state.ordersReducer.postStarted)
+    const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
+    const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+    
     const plus= useRef(null)
     const minus= useRef(null)
 
     let sizes=['S','M','L','XL'];
+  
+    useEffect(() => {
+        if (isAuthenticated && !orderIdChecked && !isPosting) {
+        dispatch(checkLastOrder(user.sub.split('|')[1]))
+        }
+
+    if (isAuthenticated && orderId === 0 && !isPosting) {
+      dispatch(postOrder(cart, user.sub.split('|')[1]))
+    } else if (isAuthenticated && orderId) {
+      dispatch(putOrder(cart, orderId))
+    }
+  
+  }, [cart, isPosting])
+
     
-    function handlePlus(){
-        dispatch(addOne(parseInt(plus.current.value)))
+    function handlePlus(e){
+        dispatch(addOne(e.target.id))
     }
 
-    function handleMinus(){
-        dispatch(outOne(parseInt(minus.current.value)))
+    function handleMinus(e){
+        dispatch(outOne(e.target.id))
     }
 
     function deleteHandler (e){
-        dispatch(deleteItem(it.id));   
+        dispatch(deleteItem(it.index));   
     }
 
     function sizeChangeHandler(e){
@@ -50,7 +78,7 @@ export default function CartItem ({it}){
                         <div className={Style.sku}>SKU:{it.id}</div>
                     </div>
                     <div className={Style.btns}>
-                        <button id={it.id} onClick={deleteHandler}><BsFillTrashFill/></button>
+                        <button onClick={deleteHandler}><BsFillTrashFill/></button>
                         <button><BsFillHeartFill/></button>                     
                     </div>
                 </div>
@@ -70,9 +98,9 @@ export default function CartItem ({it}){
                     </select>
                 </div>
                 <div className={Style.amount}>
-                    <button value= {it.id} onClick={handlePlus} ref={plus}>+</button>
+                    <button id= {it.index} onClick={handlePlus}>+</button>
                     <div className={Style.qty}>{it.amount}</div>
-                    <button value= {it.id} onClick={handleMinus} ref={minus}>-</button>
+                    <button id= {it.index} onClick={handleMinus}>-</button>
                 </div>
             </div>
         </li>
