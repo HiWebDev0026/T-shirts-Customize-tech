@@ -45,8 +45,10 @@ function RecycleBinShirt() {
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
         <div className={Style.General}>
+          <div className={Style.TitleContainer}>
             <h2 className={Style.Title}>Shirts deleted</h2>
-
+            </div>
+            <div className={Style.Container2}>
             {shirts.length > 0 
       ? ( shirts.map((shirt) => {
           return (
@@ -63,7 +65,7 @@ function RecycleBinShirt() {
         })
       ) 
       : (<p>Shirts not found</p>)}
-    
+    </div>
     <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
