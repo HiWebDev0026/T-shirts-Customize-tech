@@ -8,7 +8,8 @@ const initialState = {
     shirtsByName: [],
     shirtId: {},
     random6:[],
-    shirtPostOk: null
+    shirtPostOk: null,
+    filteredByCategory: []
 }
 
 const shirtReducer = (state=initialState, action) => {
@@ -52,7 +53,9 @@ const shirtReducer = (state=initialState, action) => {
             }
 
         case 'FILTER_BY_CATEGORY':
-        
+            let filter=[]   
+            let render= []
+
             if(!action.payload){
                 return {
                     ...state,
@@ -60,15 +63,23 @@ const shirtReducer = (state=initialState, action) => {
                 }
             }
             
-            let filter=[]    
-            action.payload.forEach(category => {
+            state.shirtsByName.length > 0 ? render= state.shirtsByName : render= state.allShirts
+            /* action.payload.forEach(category => {
                 let render= []
                 state.shirtsByName.length>0 ? render= state.shirtsByName : render= state.allShirts
                 render.forEach(shirt => {
                     let check= shirt.categories.filter(i => i.name === category)
                     if (check.length !== 0){filter.push(shirt)}
                 })
-            })
+            }) */
+            console.log("cat62", action.payload);
+            
+                filter = render.filter(shirt => {
+                    let currentCategories = shirt.categories?.map(elem => elem.name);
+                    
+                    return currentCategories.toString() === action.payload.toString();
+                    
+                })
             
             return {
                 ...state,

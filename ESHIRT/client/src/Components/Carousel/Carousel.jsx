@@ -25,7 +25,7 @@ const tShirts = useSelector((state)=>state.shirtReducer.random6);
 const dispatch = useDispatch();
 
 useEffect(()=>{
-    dispatch(getShirts())
+    dispatch(getShirts("true"))
 },[]);
 
     return(
