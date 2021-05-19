@@ -11,7 +11,8 @@ import {
     getOrderById,
     postOrder,
     putOrder,
-    checkLastOrder
+    checkLastOrder,
+    createPayment
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
@@ -36,11 +37,13 @@ export default function Cart (){
     console.log('ITTEEMS',items)
     const orderId = useSelector((state)=>state.cartReducer.orderId);
     console.log('ORDERID',orderId)
+    const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
     const cart = useSelector(state => state.cartReducer.items)
     const isPosting = useSelector(state => state.ordersReducer.postStarted)
     const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
     const  dispatch= useDispatch();
+    const [flag, setFlag]= useState(false)
 
     useEffect(() => {
         if (isAuthenticated && !orderIdChecked && !isPosting) {
@@ -87,10 +90,20 @@ export default function Cart (){
 
     function handlePayment(){
         if (isAuthenticated) {
-            history.push('/payment')
+            let order= items?.map(item => {
+                return {
+                    title: item.title,
+                    quantity: item.amount,
+                    size: item.size,
+                    unit_price: item.price
+                }
+            })
+            dispatch(createPayment(order))
+            console.log(paymentData)
+            setFlag(true)
         } else loginWithPopup()
     }
-   
+
     return(
         <div className={Style.general}>
             <div className={Style.container}>
@@ -127,7 +140,10 @@ export default function Cart (){
                                 <button>Go back shopping</button>
                             </Link>
                             {
-                            items.length >0&&<button onClick={handlePayment}>Purchase</button>
+                                flag ? 
+                            <a href={paymentData?.response.init_point} rel='nofollow'>Mercadopago</a>    
+                                : 
+                            items.length >0&&<button onClick={handlePayment}>Go to pay</button>
                             }
                             {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
                         </div>
