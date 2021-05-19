@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const path = require('path');
 const {createProxyMiddleware} = require('http-proxy-middleware')
+const mercadopago= require('mercadopago')
+const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
 
 require('./db.js');
 
@@ -15,9 +17,17 @@ const corsOptions = {
   credentials: true,
 }
 
+
 server.name = 'api_eshirts_server';
 
 server.options('*', cors(corsOptions));
+
+/////////////////////////MERCADOPAGO/////////////////////
+mercadopago.configure({
+  access_token: ACCESS_TOKEN
+});
+/////////////////////////////////////////////////////////
+
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
