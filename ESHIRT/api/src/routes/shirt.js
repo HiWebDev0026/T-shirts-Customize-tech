@@ -10,7 +10,7 @@ router.get('/:id', getShirt)
 router.post('/', checkJwt, postShirt)
 router.put('/:id', checkJwt, putShirt)
 router.delete('/:id', checkJwt, deleteShirt)
-router.post('/:id/review', checkJwt, postReview)
+router.post('/:id/review', postReview)
 router.get('/:id/review', getReviews)
 
 
