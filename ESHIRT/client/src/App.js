@@ -25,6 +25,7 @@ import OrderDetail from './Components/Admin/Sales/OrderDetail';
 import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin'; 
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
+import Landing from './Components/Landing/Landing';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/AdminDashboard';
@@ -82,6 +83,7 @@ function App() {
   return (
     <div className= 'App'>
       <Route path= '/' component={NavBar}/>    
+      <Route exact path= '/' component={Landing}/>  
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
