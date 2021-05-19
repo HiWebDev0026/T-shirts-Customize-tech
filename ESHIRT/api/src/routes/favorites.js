@@ -5,7 +5,7 @@ const router= Router();
 
 router.get('/:userId', getFavorites);
 router.post('/:userId', postFavorites);
-// router.delete('/:userId', checkJwt, deleteFavorites);
+router.delete('/:userId', deleteFavorites);
 
 module.exports = router
 

@@ -25,6 +25,7 @@ async function postFavorites (req, res, next) {
         if(!user || !shirt) throw {status: 400, message: 'User or shirtId no provided'}
         if (user&&shirt){
             await user.addShirt(shirt.id);
+            //la idea sería poder recibir la camiseta completa y ser lo que le devuelva a la action
             return res.status(200).json(shirt.id) ;
         }else{
             throw {status: 400, message: 'User or shirtId no provided'}
@@ -33,10 +34,28 @@ async function postFavorites (req, res, next) {
         return next(err);
     }
 };
-// function deleteFavorites () {};
+
+async function deleteFavorites () {
+    const userId = req.params.userId.toString();
+    const {shirtId} = req.body;
+    try { 
+        const toRemove = await favorites.findOne({where:{[Op.and]:[{userId: userId}, {shirtId:shirtId}]}});
+        if (toRemove) {
+            toRemove.destroy()
+            //revisar que sea lo que tengo que devolver
+            return res.status(200).json(shirtId)
+        } else {
+            return next({status: 404, message: 'Shirt not found'})
+        }
+        
+    } catch (error) {
+        next({status: 400, message: 'Bad body request'});
+    }
+
+};
 
 module.exports = {
     getFavorites,
     postFavorites,
-    // deleteFavorites
+    deleteFavorites
 }
