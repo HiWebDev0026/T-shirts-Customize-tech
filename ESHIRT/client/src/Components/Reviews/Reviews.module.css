@@ -35,15 +35,16 @@
 }
 
 /* CAROUSEL STARTS */
-.customer_feedback .owl_item img {
-	width: 85px;
-	height: 85px;
+img {
+	width: 50px;
+	height: 50px;
+
 }
 
 .feedback_slider_item {
 	position: relative;
 	padding: 60px;
-	margin-top: -40px;
+	margin-top: -30px;
 }
 
 .customer_name {
@@ -111,6 +112,19 @@
 
 
 
+
+.input{
+    background-color: #fbfbfb; 
+	width: 408px; 
+	height: 40px; 
+	border-radius: 5px;  
+	border-style: solid; 
+	border-width: 1px; 
+	border-color: coral; 
+	margin-top: 10px;  
+	padding-left: 10px;
+  margin-bottom: 20px; 
+}
 
 
 

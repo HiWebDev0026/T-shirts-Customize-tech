@@ -94,12 +94,7 @@ const shirtReducer = (state=initialState, action) => {
                     ...state,
                     shirtsByName: [],
                 }
-            case 'GET_SHIRT_REVIEW':
-         
-            return {
-                ...state,
-                shirtId: action.payload
-            }
+            
                 
 
         default:

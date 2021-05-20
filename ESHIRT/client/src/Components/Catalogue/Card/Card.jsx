@@ -33,7 +33,6 @@ function Card({ title, score, price, size, model, color, image, id }) {
     if (isAuthenticated && !orderIdChecked && !isPosting) {
       dispatch(checkLastOrder(user.sub.split('|')[1]))
     }
-
     if (isAuthenticated && orderId === 0 && !isPosting) {
       dispatch(postOrder(cart, user.sub.split('|')[1]))
     } else if (isAuthenticated && orderId) {
