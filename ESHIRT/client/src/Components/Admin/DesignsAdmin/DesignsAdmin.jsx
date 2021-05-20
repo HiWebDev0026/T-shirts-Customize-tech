@@ -31,7 +31,7 @@ shirts.map((shirt) => {
 })
     useEffect(() => {
       dispatch(getShirts());
-    }, [designs]);
+    }, []);
 
    function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
@@ -87,7 +87,10 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
 
     
-        </div>
+        </div> 
+        <NavLink to='recycleBinDesigns'>
+        <h5 className={Style.Btn2}>UNAPPROVED DESIGNS</h5>
+    </NavLink>  
         <NavLink to='home_admin'>
         <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  

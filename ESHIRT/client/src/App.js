@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
 
 import Home from './Components/Home/Home.jsx'
-import NavBar from './Components/NavBar/NavBar.jsx';
+import MainNavBar from './Components/NavBar/MainNavBar.jsx';
 import Catalogue from './Components/Catalogue/Catalogue.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import Design from './Components/Designer/Design.jsx';
@@ -37,6 +37,7 @@ import Payment from './Components/Cart/Payment/Payment'
 import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
+import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
 
 
 
@@ -82,7 +83,7 @@ function App() {
 
   return (
     <div className= 'App'>
-      <Route path= '/' component={NavBar}/>    
+      <Route path= '/' component={MainNavBar}/>  
       <Route exact path= '/' component={Landing}/>  
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
@@ -94,6 +95,7 @@ function App() {
       <ProtectedRoute exact path= '/recycleBin' component={RecycleBin}/>
       <ProtectedRoute exact path= '/recycleBinShirt' component={RecycleBinShirt}/>
       <ProtectedRoute exact path= '/recycleBinUser' component={RecycleBinUser}/>
+      <ProtectedRoute exact path= '/recycleBinDesigns' component={RecycleBinDesigns}/>
       <ProtectedRoute exact path= '/create_user'  component={CreateUser}/>
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 

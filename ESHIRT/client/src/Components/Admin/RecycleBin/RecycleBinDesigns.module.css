@@ -1,49 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-.Designs{
+
+.General{
     display: grid;
     color:white;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     justify-content: center;
-    grid-template-columns: repeat(6, 3fr);
-    grid-gap: 5px;
 }
 .Title{
     display: grid;
     justify-content: center;
     color:tomato;
 }
-.Btn2{
-    color: red;
-}
-.Btn3{
+.Designs1{
+    grid-template-columns: repeat(6, 3fr);
+    grid-gap: 5px;
     display: grid;
-    justify-content: center;
-    color: white;
 }
 .Tarjet{
     border: 2px solid coral;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
     display: grid;
-    
 }
-.Titles2{
+.Btn3{
     display: grid;
     justify-content: center;
-}
-.Titles2:hover{
-    background-color: lightblue;
-}
-.General{
-    display: grid;
-    justify-content: center;
-}
-.Options{
-    display: grid;
-    justify-content: center;
-    margin-left: 43%;
-    margin-right: 43%;
+    color: white;
 }
