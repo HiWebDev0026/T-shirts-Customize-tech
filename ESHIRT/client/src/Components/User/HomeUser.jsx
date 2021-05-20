@@ -6,7 +6,9 @@ function HomeUser(){
 
   return (
 
-      <h1 className={Style.container}>Acá va estar el home del usuario</h1>
+    <div className={Style.container}>   
+    <h1>asdasdsad</h1>
+  </div>
   )
 };
 
