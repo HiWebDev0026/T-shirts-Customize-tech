@@ -15,31 +15,22 @@ export default function Users() {
   const history = useHistory();
   const {isAuthenticated, getAccesTokenSilently} = useAuth0();
   const isAdmin = useTokenDecode(localStorage.currentToken);
+  const [count, setCount] = useState([]);
 
-  const userTotal = useSelector((state) => state.userReducer.allUsers);
+  const users = useSelector((state) => state.userReducer.allUsers);
   const user = useSelector((state) => state.userReducer.usersByName);
   const dispatch = useDispatch();
   
-  let users= [];
-  userTotal.map((user) => {
-      if ( user.status !== 'deleted'){
-      return users.push({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          status: user.status 
-      })
-  }
-  })
+
   useEffect(() => {
-    
         dispatch(getUsers());
-    
-  }, [users]);
+  }, [count]);
 
   function handleEdit(e) {
+    setCount(prevState => prevState + 1)
     alert("User " + e.target.value + " moved to trash");
     dispatch(putUser({status: 'deleted'}, e.target.value)); 
+    
   };
 
   function getUserId(e) { 
@@ -53,10 +44,6 @@ export default function Users() {
   function handleOrder(e) {
     setOrder(e.target.value);
   };
-
-  let us = filtered.length > 0 ? filtered : users;
-  let users1= user.length > 0 ? user : us;
-
   useEffect(() => {
     switch (order) {
       case "AZ":
@@ -67,6 +54,8 @@ export default function Users() {
         return users1;
     }
   }, [order]);
+  let us = filtered.length > 0 ? filtered : users;
+  let users1= user.length > 0 ? user : us;
 
   // SEARCHBAR USERS
   const [state, setState]= useState('')
@@ -99,6 +88,7 @@ export default function Users() {
       </div>
       <div className={Style.Users}>
       {users1.length > 0 ? ( users1.map((user) => {
+      if ( user.status !== 'deleted'){
           return (
               <div className={Style.Tarjet}>
                 <Link to={`/user_detail/${user.id}`}>
@@ -112,6 +102,7 @@ export default function Users() {
                 </div>
             </div>
           );
+      }
         })
       ) 
       : (<p>Users not found</p>)}
