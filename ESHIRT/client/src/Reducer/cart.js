@@ -6,6 +6,10 @@ const initialState={
 
 
 const setCartItems = (cart, item, operation) => {
+    if (operation === 'clear') {
+        return []
+    }
+
     if (cart.length === 0) {
         return (operation === '+' && [...cart, item]) || cart
     }
