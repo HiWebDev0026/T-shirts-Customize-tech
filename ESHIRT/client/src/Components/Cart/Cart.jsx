@@ -1,9 +1,9 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-
+import Payment from './Payment/Payment'
 import {Link} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import {useHistory} from 'react-router-dom'
 
 import {
     clear,
@@ -11,14 +11,17 @@ import {
     getOrderById,
     postOrder,
     putOrder,
-    checkLastOrder
+    checkLastOrder,
+    createPayment
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 export default function Cart (){
     
     const cartFromLocalStorage=JSON.parse(localStorage.getItem('items') || '[]'); 
+    const history= useHistory()
 
     // let cartFromLocalStorage2 =cartFromLocalStorage.map(c=> 
     //     {return {
@@ -34,11 +37,13 @@ export default function Cart (){
     console.log('ITTEEMS',items)
     const orderId = useSelector((state)=>state.cartReducer.orderId);
     console.log('ORDERID',orderId)
+    const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
     const cart = useSelector(state => state.cartReducer.items)
     const isPosting = useSelector(state => state.ordersReducer.postStarted)
     const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
     const  dispatch= useDispatch();
+    const [flag, setFlag]= useState(false)
 
     useEffect(() => {
         if (isAuthenticated && !orderIdChecked && !isPosting) {
@@ -57,7 +62,7 @@ export default function Cart (){
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
 
-    const {user,isAuthenticated}=useAuth0();
+    const {user,isAuthenticated, loginWithPopup}=useAuth0();
     // const userId= user.sub.split('|').pop();
     // console.log('USER',userId, typeof userId)
    
@@ -82,7 +87,23 @@ export default function Cart (){
     function handleClear(){
         dispatch(clear())
     }
-   
+
+    function handlePayment(){
+        if (isAuthenticated) {
+            let order= items?.map(item => {
+                return {
+                    title: item.title,
+                    quantity: item.amount,
+                    size: item.size,
+                    unit_price: item.price
+                }
+            })
+            dispatch(createPayment(order))
+            console.log(paymentData)
+            setFlag(true)
+        } else loginWithPopup()
+    }
+
     return(
         <div className={Style.general}>
             <div className={Style.container}>
@@ -118,7 +139,12 @@ export default function Cart (){
                             <Link to='/catalogue'>
                                 <button>Go back shopping</button>
                             </Link>
-                            {items.length >0&&<button>Purchase</button>}
+                            {
+                                flag ? 
+                            <a target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>Mercadopago</a>    
+                                : 
+                            items.length >0&&<button onClick={handlePayment}>Go to pay</button>
+                            }
                             {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
                         </div>
                 </div>

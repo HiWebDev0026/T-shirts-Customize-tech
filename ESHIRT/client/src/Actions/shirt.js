@@ -95,24 +95,7 @@ export function deleteShirt(shirtId){
     
 }
 
-export function getShirtReview(shirtId){
-    
-    return async (dispatch) => {
-        try {
-            const res = await axios.get(`/shirt/${shirtId}/review`, {responseType: 'json'})
-            const shirt = res.data
 
-            console.log(shirt)
-            dispatch({type: 'GET_SHIRT_REVIEW', payload: shirt})
-
-           
-
-        } catch (err) {
-            console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
-        }
-    }
-}
 
 
 export function resetShirtSearch() {
