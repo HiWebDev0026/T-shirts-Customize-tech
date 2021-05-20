@@ -1,12 +1,10 @@
+
 import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
 import { createPayment } from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
-
-//import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-//const {PUBLIC_KEY} = process.env
 
 function Payment() {
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
@@ -67,9 +65,7 @@ function Payment() {
         } 
     }
 
-    
-
-    /* Lo de adentro del return va en shipments.receiver_address */
+//     /* Lo de adentro del return va en shipments.receiver_address */
 
     return (
         <form onSubmit={handleSubmit} className={style.form}>
@@ -89,4 +85,4 @@ function Payment() {
     )
 }
 
-export default Payment
+// export default Payment

@@ -60,3 +60,16 @@ li, .searchBar{
     color: #fd6702; /* Cambiar acá el color de las letras*/
     text-decoration: none;
 }
+
+.search{
+    display: flex;
+    align-items: center;
+}
+
+.fav, .cart{
+    padding-right: 40px;
+}
+
+.fav{
+    padding-left: 40px;
+}
