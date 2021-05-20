@@ -8,49 +8,64 @@ import { createPayment } from '../../../Actions';
 //const {PUBLIC_KEY} = process.env
 
 function Payment() {
-    //const { user, isAuthenticated, loginWithPopup } = useAuth0()
-    const items = useSelector((state)=>state.cartReducer.items)
-    const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
-    const dispatch= useDispatch()
     
+    const [deliveryData, setDeliveryData]= useState({
+        zip_code: '',
+        street_name: '',
+        street_number: '',
+        floor: '',
+        apartment: '',
+        city_name: '',
+        state_name: '',
+        country_name: ''
+    })
 
-    /*
-        Aca se trae el id de la orden. Para eso, 
-        primero hay que hacer un dispatch con los datos
-        del carrito al back y la respuesta de mercadopago.create
-        nos va a dar entre otras cosas, el id de la orden
-    */
-
-    function handlePayment(){
-        let order= items?.map(item => {
-            return {
-                title: item.title,
-                quantity: item.amount,
-                size: item.size,
-                unit_price: item.price
-            }
+    function handleChange(e){
+        setDeliveryData({
+            ...deliveryData,
+            [e.target.id]: e.target.value
         })
-        dispatch(createPayment(order))
+    }
+    
+    function handleSubmit(){
+
     }
 
-    /////////////////////////////////////////////////////////////
+    function handlePayment(){
+        if (isAuthenticated) {
+            let order= items?.map(item => {
+                return {
+                    title: item.title,
+                    quantity: item.amount,
+                    size: item.size,
+                    unit_price: item.price
+                }
+            })
+            dispatch(createPayment(order))
+            console.log(paymentData)
+            setFlag(true)
+        } else loginWithPopup()
+    }
 
-    /* 
-    apartment: ""
-    city_name: null
-    country_name: null
-    floor: ""
-    state_name: null
-    street_name: ""
-    street_number: null
-    zip_code: "" 
-    */
-    console.log(paymentData)
+    flag ? 
+    <a target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>Mercadopago</a>    
+        : 
+    items.length >0&&<button onClick={handlePayment}>Go to pay</button>
+
+    /* Lo de adentro del return va en shipments.receiver_address */
+
     return (
-        <div>
-            <button onClick={handlePayment}>Pay</button>
-            {<div>{paymentData.body.operation_type || 'No data yet'}</div>}
-        </div>
+        <form onSubmit={handleSubmit}>
+            <input placeholder= 'Zip code' id='zip_code' onChange={handleChange}/>
+            <input placeholder= 'Street name' id='street_name' onChange={handleChange}/>
+            <input placeholder= 'Street number' id='street_number' onChange={handleChange}/>
+            <input placeholder= 'Floor' id='floor' onChange={handleChange}/>
+            <input placeholder= 'Apartment' id='apartment' onChange={handleChange}/>
+            <input placeholder= 'City' id='city_name' onChange={handleChange}/>
+            <input placeholder= 'State' id='state_name' onChange={handleChange}/>
+            <input placeholder= 'Country' id='country_name' onChange={handleChange}/>
+            <button type='submit'/>
+        </form>
     )
 }
 
