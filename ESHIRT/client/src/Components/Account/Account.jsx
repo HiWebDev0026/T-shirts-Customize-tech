@@ -1,6 +1,6 @@
 import React from "react";
 
-import HomeUser from '../HomeUser/HomeUser';
+import HomeUser from '../User/HomeUser';
 import AdminDashboard from '../Dashboard/AdminDashboard';
 import {useTokenDecode} from '../../hooks/tokenDecoding';
 

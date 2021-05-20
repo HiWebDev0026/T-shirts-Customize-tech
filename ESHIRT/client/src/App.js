@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
 
 import Home from './Components/Home/Home.jsx'
-import NavBar from './Components/NavBar/NavBar.jsx';
+import MainNavBar from './Components/NavBar/MainNavBar.jsx';
 import Catalogue from './Components/Catalogue/Catalogue.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import Design from './Components/Designer/Design.jsx';
@@ -82,7 +82,7 @@ function App() {
 
   return (
     <div className= 'App'>
-      <Route path= '/' component={NavBar}/>    
+      <Route path= '/' component={MainNavBar}/>  
       <Route exact path= '/' component={Landing}/>  
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
