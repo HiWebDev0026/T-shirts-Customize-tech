@@ -11,20 +11,11 @@ function RecycleBinUser() {
     const userTotal = useSelector((state) => state.userReducer.allUsers);
     const isAdmin = useTokenDecode(localStorage.currentToken)
     const dispatch = useDispatch();
-    let users= [];
-    userTotal.map((user) => {
-        if (user.status == 'deleted'){
-        return users.push({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            status: user.status
-        })
-    }
-    })
+    const [count, setCount] = useState([]);
+
     useEffect(() => {
         dispatch(getUsers());
-  }, [users]);
+  }, [count]);
 
     function handleDelete(e) {
         alert("User " + e.target.value + "deleted");
@@ -32,6 +23,7 @@ function RecycleBinUser() {
       };
 
       function handleEdit(e) {
+        setCount(prevState => prevState + 1)
         alert("User " + e.target.value + "restored");
         dispatch(putUser({status: 'restored'}, e.target.value)); 
       };
@@ -42,7 +34,8 @@ function RecycleBinUser() {
             <h2 className={Style.Title}>Users deleted</h2>
         <div className={Style.container}>
              <div className={Style.Users}>
-      {users.length > 0 ? ( users.map((user) => {
+             {userTotal.length > 0 ? ( userTotal.map((user) => {
+      if (user.status == 'deleted'){
           return (
               <div className={Style.Tarjet}>
                 <p className={Style.Titles}>{user.email}</p>
@@ -52,6 +45,7 @@ function RecycleBinUser() {
                 </div>
             </div>
           );
+      }
         })
       ) 
       : (<p>Users not found</p>)}
