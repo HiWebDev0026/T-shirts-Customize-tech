@@ -1,46 +1,75 @@
 import React from "react";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import {MdDeleteForever} from "react-icons/md";
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
-//import { useAuth0} from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 import Reviews from '../../Reviews/Reviews.jsx';
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
 import {
-  pushItem,
-  deleteItem,
   setCartItems,
-
+  checkLastOrder,
+  postOrder,
+  putOrder
 } from "../../../Actions/index.js";
 
 function Card({ title, score, price, size, model, color, image, id }) {
   
-  //const cart = useSelector(state => state.cartReducer.items)
-  //const orderId = useSelector(state => state.ordersReducer.orderId)
-  //const isPosting = useSelector(state => state.ordersReducer.postStarted)
-  //const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
+  const cart = useSelector(state => state.cartReducer.items)
+  const orderId = useSelector(state => state.ordersReducer.orderId)
+  const isPosting = useSelector(state => state.ordersReducer.postStarted)
+  const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
-  //const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const {isAuthenticated, user } = useAuth0();
 
-  
+  const handleCartChange = (e, operation) => {
+    e.preventDefault();
+    const item = { 
+      title, 
+      score, 
+      price, 
+      size: newSize, 
+      model, 
+      color, 
+      image, 
+      id, 
+      amount: ((operation === '-' && 500) || amount)
+    }
+    dispatch(setCartItems(item, operation));
+    // if (isAuthenticated && !orderIdChecked) {
+    //   dispatch(checkLastOrder(user.sub.split('|')[1]))
+    // }
+    console.log('el order id es: ', orderId)
+    if (isAuthenticated && orderId === 0) {
+      dispatch(postOrder([...cart, item], user.sub.split('|')[1]))
+    } else if (isAuthenticated && orderId) {
+      dispatch(putOrder([...cart, item], orderId, ((operation === '+' && 'add') || 'remove')))
+    }
+  }
+
+  useEffect(() => {
+    if (isAuthenticated && orderId === null) {
+      console.log('entre al use efetc jfkdsfjlksd')
+      dispatch(checkLastOrder(user.sub.split('|')[1]))
+    }
+  }, [isAuthenticated])
+
   // useEffect(() => {
-
-  // VOLVER A IMPORTAR EL USE EFFECT!
-  //   if (isAuthenticated && !orderIdChecked && !isPosting) {
+  //   if (isAuthenticated && !orderIdChecked) {
   //     dispatch(checkLastOrder(user.sub.split('|')[1]))
   //   }
-  //   if (isAuthenticated && orderId === 0 && !isPosting) {
+  //   if (isAuthenticated && orderId === 0) {
   //     dispatch(postOrder(cart, user.sub.split('|')[1]))
   //   } else if (isAuthenticated && orderId) {
   //     dispatch(putOrder(cart, orderId))
   //   }
   
-  // }, [cart, isPosting])
+  // }, [localStorage])
 
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)
@@ -53,21 +82,6 @@ function Card({ title, score, price, size, model, color, image, id }) {
     if (amount > 1){
       setAmount(amount => amount - 1)
     }
-  }
-
-  const handleCartChange = (e, operation) => {
-    e.preventDefault();
-    dispatch(setCartItems({ 
-      title, 
-      score, 
-      price, 
-      size: newSize, 
-      model, 
-      color, 
-      image, 
-      id, 
-      amount: ((operation === '-' && 500) || amount)
-    }, operation))
   }
 
   return (
