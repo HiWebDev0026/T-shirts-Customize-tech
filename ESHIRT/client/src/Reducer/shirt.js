@@ -9,11 +9,11 @@ const initialState = {
     shirtId: {},
     random6:[],
     shirtPostOk: null,
-    filteredByCategory: []
+    filteredByCategory: [],
+    shirtsToFavorites:[]
 }
 
 const shirtReducer = (state=initialState, action) => {
-    console.log('entre al reducer')
     switch(action.type) {
         case 'GET_SHIRTS':
             let random= action.payload.slice(0,6)
@@ -94,8 +94,41 @@ const shirtReducer = (state=initialState, action) => {
                     ...state,
                     shirtsByName: [],
                 }
-            
-                
+        
+            case 'GET_FAVORITES':
+                let shirtsFavorite=[];
+                if(action.payload.length>0&&state.allShirts.length>0){
+                    for (let i=0; i<action.payload.length;i++){
+                        for (let j=0; j<state.allShirts.length;j++){
+                            if(action.payload[i] == state.allShirts[j].id){
+                                shirtsFavorite.push(state.allShirts[j])
+                            }
+                        }
+                    }
+                    return {
+                        ...state,
+                        shirtsToFavorites: shirtsFavorite
+                    }
+                }else{
+                    return state
+                }
+            case 'POST_FAVORITE':
+                let filtered= state.shirtsToFavorites.filter(fav=>{return fav.id == action.payload.id})
+                if(filtered.length<1){
+                    return {
+                        ...state,
+                        shirtsToFavorites: [...state.shirtsToFavorites, action.payload],
+                        }
+                }else{
+                    return state;
+                }
+
+            case 'DELETE_FAVORITE':
+                console.log('SHIRTIDDDD', action.payload, typeof action.payload )
+                return {
+                    ...state,
+                    shirtsToFavorites: deleteHelper(state.shirtsToFavorites,Number(action.payload))
+                }
 
         default:
             return state;

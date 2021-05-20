@@ -1,4 +1,5 @@
 import axios from 'axios';
+const bodyParser = require('body-parser');
 
 export function getFavorites(userId){
     
@@ -17,12 +18,9 @@ export function getFavorites(userId){
 export function postFavorite(userId,shirtId){
 
     return async (dispatch) => {
-        try {console.log(shirtId)
-            const res = await axios.post(`/favorites/${userId}`, shirtId, {headers: {
-                Authorization: `Bearer ${localStorage.currentToken}`
-            }})
+        try {
+            const res = await axios.post(`/favorites/${userId}`, shirtId);
             const newFavorite = res.data
-            //tengo que modificar le back
             dispatch({type: 'POST_FAVORITE', payload:newFavorite})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
@@ -35,10 +33,9 @@ export function postFavorite(userId,shirtId){
 export function deleteFavorite(userId,shirtId){
     return async (dispatch) => {
         try {
-            const res = await axios.delete(`/favorites/${userId}`, {responseType: 'json', headers: {
-                Authorization: `Bearer ${localStorage.currentToken}`
-            }})
-            dispatch({type: 'DELETE_FAVORITE', payload: shirtId})
+            const res = await axios.delete(`/favorites/${userId}`, {data:shirtId});
+            const idShirt = res.data
+            dispatch({type: 'DELETE_FAVORITE', payload: idShirt})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})

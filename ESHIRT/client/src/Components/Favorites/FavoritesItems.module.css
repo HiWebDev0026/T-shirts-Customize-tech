@@ -1,0 +1,28 @@
+.card{
+    border: solid 2px orange;
+    width: 200px;
+    height: 320px;
+    margin:2px;
+}
+
+.name{
+    border: solid 2px blue;
+    color:white;
+    font-size: 20px;
+    margin:0;
+    padding:0;
+    display: flex;
+    justify-content: center;
+}
+
+.card img{
+    border: solid 2px blueviolet;
+    width: 100%;
+}
+
+.btns button{
+    border: solid 2px red;
+    font-size: 7px;;
+    width: 70px;
+    margin:0;
+}
