@@ -1,12 +1,13 @@
 .container {
     display: flex; 
     position: relative;
-    right: 20vh;
+    width: 80%;
     flex-direction: column; 
-    width: 80%; 
+    width: max-content;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    height: max-content;
 }
 
 .title{
@@ -14,8 +15,7 @@
     flex-direction: column;
     border: 2px solid coral;
     text-align: center;
-    margin: 1vh;
-    height: 15vh;
+    height: 125px;
     
 }
 
@@ -31,7 +31,7 @@
     background-color: black;
     color: coral;
     outline: none;
-    margin: 1vh;
+    height: 33px;
 }
 
 .title > form > select > option {
@@ -44,5 +44,11 @@
     border: 2px solid coral;
     background-color: black;
     color: coral;
-    height: 3vh;
+    height: 33px;
+}
+
+@media (max-width: 610px) {
+    .container {
+        right: 0;
+    }
 }

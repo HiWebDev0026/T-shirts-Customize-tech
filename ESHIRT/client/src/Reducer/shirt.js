@@ -80,7 +80,7 @@ const shirtReducer = (state=initialState, action) => {
                 filter = render.filter(shirt => {
                     let currentCategories = shirt.categories?.map(elem => elem.name);
                     
-                    return currentCategories.toString() === action.payload.toString();
+                    return currentCategories.toString().includes(action.payload.toString()) && currentCategories.length === action.payload.length;
                     
                 })
             
