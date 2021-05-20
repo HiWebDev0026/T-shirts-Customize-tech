@@ -9,43 +9,25 @@ import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 
 export default function ShirtsAdmin() {
 
-const shirtsTotal = useSelector((state) => state.shirtReducer.allShirts);
+const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 const [page, setPage] = useState(0);
 const [max, setMax] = useState(0);
+const [count, setCount] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
   
-let shirts= [];
-  shirtsTotal.map((shirt) => {
-      if ( shirt.status !== 'deleted'){
-      return shirts.push({
-          id: shirt.id,
-          name: shirt.name,
-          color: shirt.color,
-          model: shirt.model,
-          size: shirt.size,
-          score: shirt.score,
-          public: shirt.public,
-          created: shirt.created,
-          status: shirt.status
-      })
-  }
-  })
-
     useEffect(() => {
       dispatch(getShirts());
-    }, [shirts]);
+    },[count]);
   
-    // function handleDelete(e) {
-    //     alert("Shirt " + e.target.value + " deleted");
-    //     dispatch(deleteShirt(parseInt(e.target.value))); 
-    //   };
       function handleEdit(e) {
+        setCount(prevState => prevState + 1)
         alert("Shirt " + e.target.value + " moved to trash");
         dispatch(putShirt({status: 'deleted'}, e.target.value)); 
+        window.location.replace('')
       };
       
-      useEffect(() => {setMax(shirts.length - 10); setPage(0);}, []);
+      useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
       const nextPage = () => { page < max && setPage(page + 10); };
       const prevPage = () => { page > 0 && setPage(page - 10); };
     
@@ -69,8 +51,8 @@ let shirts= [];
               </div>
               </tr>
               </div>
-            {shirts.length > 0 
-      ? ( shirts.slice(page, page + 10).map((shirt) => {
+            {shirts.length > 0  ? ( shirts.slice(page, page + 10).map((shirt) => {
+              if ( shirt.status !== 'deleted'){
           return (
             <tr className={Style.Container}>
               <div className={Style.Tarjet} >
@@ -86,6 +68,7 @@ let shirts= [];
               </div>
                </tr>
           );
+        }
         })
       ) 
       : (<p>Shirts not found</p>)}

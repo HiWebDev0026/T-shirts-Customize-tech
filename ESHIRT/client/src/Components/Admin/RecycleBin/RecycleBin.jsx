@@ -48,6 +48,9 @@ function RecycleBin() {
     </NavLink>
     <NavLink to='recycleBinShirt'>
     <h2 className={Style.Btn3}>SHIRTS DELETED</h2>
+    <NavLink to='recycleBinDesigns'>
+        <h2 className={Style.Btn3}>UNAPPROVED DESIGNS</h2>
+    </NavLink> 
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
