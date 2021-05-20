@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {NavLink} from 'react-router-dom';
-import { getShirts, deleteShirt, putShirt } from "../../../Actions";
+import { getShirts, deleteShirt, putShirt, getShirtById } from "../../../Actions";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./ShirtsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import {useHistory} from 'react-router-dom';
 
 export default function ShirtsAdmin() {
 
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
+const history = useHistory();
 const dispatch = useDispatch();
 const [page, setPage] = useState(0);
 const [max, setMax] = useState(0);
@@ -25,6 +27,11 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
         alert("Shirt " + e.target.value + " moved to trash");
         dispatch(putShirt({status: 'deleted'}, e.target.value)); 
         window.location.replace('')
+      };
+
+      function getShirtId(e) { 
+        dispatch(getShirtById(e.target.value));
+        history.push('/shirt_detail');
       };
       
       useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
@@ -65,6 +72,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>X</button></th>
+              <button value={shirt.id} onClick={getShirtId}>Detail</button>
               </div>
                </tr>
           );
