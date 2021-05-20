@@ -4,6 +4,30 @@ const initialState={
     items:  JSON.parse(localStorage.getItem('items')) || [],
 }
 
+
+const setCartItems = (cart, item, operation) => {
+    if (operation === 'clear') {
+        return []
+    }
+
+    if (cart.length === 0) {
+        return (operation === '+' && [...cart, item]) || cart
+    }
+    
+    const foundItem = cart.find(i => (i.id === item.id && i.size === item.size));
+    if (!foundItem) { 
+        return (operation === '+' && [...cart, item]) || cart
+    } else {
+        operation === '+' ? foundItem.amount += item.amount : foundItem.amount -= item.amount;
+        return cart.filter(i => i.amount > 0)
+    }
+}
+
+const changeItemSize = (cart, item, index) => {
+    cart[index] = item
+}
+
+
 const cartReducer = (state=initialState, action) => {
     switch (action.type){
         
@@ -112,7 +136,17 @@ const cartReducer = (state=initialState, action) => {
                 return {
                     ...state,
                     items: []
-            }    
+                }
+
+            case 'SET_CART_ITEMS':
+                const updatedCart = setCartItems(state.items, action.payload.item, action.payload.operation)
+                localStorage.setItem('items', JSON.stringify(updatedCart))
+                console.log(updatedCart, 'soy updated cart')
+                return {
+                    ...state,
+                    items: updatedCart
+                }
+                
         default: return state
     }
 }
