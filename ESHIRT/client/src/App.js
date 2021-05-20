@@ -50,9 +50,6 @@ function App() {
     let token;
     (async () => {
       try {
-
-      
-
         if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
@@ -73,6 +70,7 @@ function App() {
 
         return console.log(localStorage);
       } catch (e) {
+        
         console.error(e);
       }
     })();

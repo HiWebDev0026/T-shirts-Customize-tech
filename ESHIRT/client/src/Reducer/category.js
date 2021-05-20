@@ -6,7 +6,6 @@ import {
 const initialState = {
     allCategories: [],
     categoriesByName: [],
-    filteredByCategory: []
 }
 
 const categoryReducer = (state=initialState, action) => {
