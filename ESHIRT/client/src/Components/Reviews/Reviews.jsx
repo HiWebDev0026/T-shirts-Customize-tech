@@ -11,10 +11,10 @@ function Reviews(props) {
   const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user
- console.log(userData)
+
   const [input, setInput] = useState({
     content: "",
- 
+    
   });
 
 
@@ -27,8 +27,9 @@ function Reviews(props) {
   function handleSubmit() {
 
     if (isAuthenticated) {
-      
-       dispatch(postShirtReview(input, id, user.sub.split('|')[1]));
+      let userId = userData.sub.split('|')[1]
+      console.log(userId)
+       dispatch(postShirtReview(input, id, userId ));
     }else{
       alert('you must be signed up to post a review')
     }
@@ -70,11 +71,11 @@ function Reviews(props) {
               <div className={style.owl_carousel}>
                 <div className={style.feedback_slider_item}>
                   <img
-                    src={userData.picture}
+            
                     className="center-block img-circle"
                     alt="Customer Feedback"
                   />
-                  <h3 className={style.customer_name}>{userData.name}</h3>
+                  <h3 className={style.customer_name}>User</h3>
                   <p>{review[0].content}</p>
                 </div>
               </div>
