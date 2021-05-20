@@ -37,5 +37,10 @@ export function clear(){
     }
 }
 
+export function setCartItems (item, operation) {
+    console.log(item, operation, 'soy item y operation')
+    return {type: 'SET_CART_ITEMS', payload: {item, operation}}
+}
+
 /*************************** API - ACTIONS *****************************/
 

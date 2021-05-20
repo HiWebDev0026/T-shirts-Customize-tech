@@ -1,0 +1,13 @@
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form > input{
+    width: 30vh;
+}
+
+.form > button{
+    width: 10vh;
+    height: 15vh;
+}

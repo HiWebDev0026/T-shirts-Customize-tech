@@ -27,7 +27,7 @@ async function createPayment(req, res){
         },
 		auto_return: 'approved',
     } */
-    console.log('llegue al back', req.body)
+    
     let order= req.body
     console.log(order)
     let response= await mercadopago.preferences.create(order)
