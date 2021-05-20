@@ -32,6 +32,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
+    "sequelize-to-json": "^0.10.4",
     "utils": "^0.3.1"
   },
   "devDependencies": {

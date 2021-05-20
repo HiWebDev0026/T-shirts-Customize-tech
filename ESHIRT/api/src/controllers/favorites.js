@@ -5,7 +5,7 @@ const {Shirt, User, favorites} = require('../db.js');
 async function getFavorites (req, res, next) {
     const userId = req.params.userId.toString();
     try {
-        const shirts = await favorites.findAll({where: {userId: userId}});
+        const shirts = await favorites.findAll({where: {userId: userId}})
         if (!shirts) {throw {status: 404, message: 'User not found'}}
         else{    
             return res.json(shirts.map(shirt=>shirt.shirtId))
@@ -25,8 +25,7 @@ async function postFavorites (req, res, next) {
         if(!user || !shirt) throw {status: 400, message: 'User or shirtId no provided'}
         if (user&&shirt){
             await user.addShirt(shirt.id);
-            //la idea sería poder recibir la camiseta completa y ser lo que le devuelva a la action
-            return res.status(200).json(shirt.id) ;
+            return res.json(shirt) ;
         }else{
             throw {status: 400, message: 'User or shirtId no provided'}
         }
@@ -35,15 +34,15 @@ async function postFavorites (req, res, next) {
     }
 };
 
-async function deleteFavorites () {
+async function deleteFavorites (req, res, next) {
     const userId = req.params.userId.toString();
     const {shirtId} = req.body;
     try { 
         const toRemove = await favorites.findOne({where:{[Op.and]:[{userId: userId}, {shirtId:shirtId}]}});
+        console.log('REMOVE',toRemove)
         if (toRemove) {
             toRemove.destroy()
-            //revisar que sea lo que tengo que devolver
-            return res.status(200).json(shirtId)
+            return res.json(shirtId);
         } else {
             return next({status: 404, message: 'Shirt not found'})
         }

@@ -54,7 +54,6 @@ export function SideCart(){
         dispatch(clear())
     }
     
-    console.log(items, 'leido desde el reducer')
     return (
         <div className={style.container}>
             <div className={style.items}>

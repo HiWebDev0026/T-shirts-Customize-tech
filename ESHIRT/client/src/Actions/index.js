@@ -14,8 +14,8 @@ import {
     postShirt,
     putShirt,
     deleteShirt,
-    resetShirtSearch,
-    getShirtReview
+    resetShirtSearch
+   
 } from './shirt.js';
 
 import {
@@ -54,6 +54,15 @@ import {
     deleteFavorite
 } from './favorites.js'
 
+import {
+    createPayment
+} from './payment'
+
+import{
+    getShirtReview,
+    postShirtReview
+} from './review.js'
+
 const resetErrors = () => {
     return {type: 'RESET_ERRORS'}
 }
@@ -75,7 +84,7 @@ export {
     putShirt,
     deleteShirt,
     resetShirtSearch,
-    getShirtReview,
+    
 
     getCategories,
     getCategoriesByName,
@@ -103,5 +112,10 @@ export {
 
     getFavorites,
     postFavorite,
-    deleteFavorite
+    deleteFavorite,
+
+    createPayment,
+
+    getShirtReview,
+    postShirtReview
 }

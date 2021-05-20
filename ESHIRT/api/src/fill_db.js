@@ -408,7 +408,7 @@ async function fillDB () {
         detail.orderId = orderPosted2.id
         await Detail.create(detail)
     }
-    
+
     } catch (err) {
         console.log(err)
     }

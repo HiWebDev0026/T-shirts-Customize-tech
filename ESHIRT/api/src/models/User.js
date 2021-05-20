@@ -18,7 +18,14 @@ module.exports = (sequelize) => {
     },
     status: {
       type: DataTypes.STRING,
+      defaultValue: "active",
       allowNull: true
+    },
+    isAdmin:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: true
+    
     }
   });
 };

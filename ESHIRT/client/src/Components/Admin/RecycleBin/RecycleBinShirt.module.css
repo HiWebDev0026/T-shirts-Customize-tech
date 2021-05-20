@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.General{color:white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    display: grid;
+    
+}
+.TitleContainer{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+.Title{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    color:coral;
+    font-family: "Montserrat", sans-serif;;
+    }
+.Container2{
+    display: grid;
+    grid-template-columns: repeat(6, 3fr);
+    grid-gap: 5px;
+    justify-content: center;
+    position: relative;
+}
+.Container{
+display: grid;
+justify-content: space-around;
+}
+.Tarjet{
+    border: 2px solid coral;
+    background-color: rgba(255, 127, 80, 0.151);
+    border-radius: 5px ;
+    display: grid;
+   
+}
+.ContBtn3{
+    display: grid;
+    justify-content: center;
+}
+.Btn3{
+    display: grid;
+    justify-content: center;
+    color: white;
+}
