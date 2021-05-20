@@ -2,13 +2,15 @@ import './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
-import {createPayment} from '../../../Actions/payment.js'
+import { createPayment } from '../../../Actions';
+
 //import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 //const {PUBLIC_KEY} = process.env
 
 function Payment() {
     //const { user, isAuthenticated, loginWithPopup } = useAuth0()
     const items = useSelector((state)=>state.cartReducer.items)
+    const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
     const dispatch= useDispatch()
     
 
@@ -33,24 +35,21 @@ function Payment() {
 
     /////////////////////////////////////////////////////////////
 
+    /* 
+    apartment: ""
+    city_name: null
+    country_name: null
+    floor: ""
+    state_name: null
+    street_name: ""
+    street_number: null
+    zip_code: "" 
+    */
+    console.log(paymentData)
     return (
         <div>
-            {
-            items?.map(item => {
-                return (
-                    <div>
-                        <button onClick={handlePayment}>Pay</button>
-                        <div>
-                            Item: {item.title}
-                            Size: {item.size}
-                            Amout: {item.size}
-                            Price: {item.price}
-                        </div>
-                    </div>
-
-                )
-            })
-            }
+            <button onClick={handlePayment}>Pay</button>
+            {<div>{paymentData.body.operation_type || 'No data yet'}</div>}
         </div>
     )
 }

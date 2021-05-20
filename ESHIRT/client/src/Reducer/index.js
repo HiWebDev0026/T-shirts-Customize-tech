@@ -6,7 +6,11 @@ import categoryReducer from './category';
 import cartReducer from './cart';
 import ordersReducer from './orders';
 import favoritesReducer from './favorites';
+
 import reviewsReducer from './review'
+
+import paymentReducer from './payment'
+
 
 const initialState = {
     errors: null
@@ -43,7 +47,9 @@ const rootReducer = combineReducers({
     cartReducer,
     ordersReducer,
     favoritesReducer,
-    reviewsReducer
+    reviewsReducer,
+    paymentReducer
+
 })
 
 export default rootReducer

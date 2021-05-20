@@ -42,7 +42,7 @@ function Catalogue(){
         })
     }
     })
-    console.log(shirtsByName)
+    
 
 
     useEffect(()=>{
