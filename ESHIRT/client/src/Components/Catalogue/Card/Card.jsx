@@ -1,55 +1,46 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
 import {MdDeleteForever} from "react-icons/md";
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
-import { useAuth0} from "@auth0/auth0-react";
+//import { useAuth0} from "@auth0/auth0-react";
 import Reviews from '../../Reviews/Reviews.jsx';
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
 import {
   pushItem,
   deleteItem,
-  postOrder,
-  putOrder,
-  checkLastOrder,
+  setCartItems,
+
 } from "../../../Actions/index.js";
 
 function Card({ title, score, price, size, model, color, image, id }) {
   
-  const cart = useSelector(state => state.cartReducer.items)
-  const orderId = useSelector(state => state.ordersReducer.orderId)
-  const isPosting = useSelector(state => state.ordersReducer.postStarted)
-  const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
+  //const cart = useSelector(state => state.cartReducer.items)
+  //const orderId = useSelector(state => state.ordersReducer.orderId)
+  //const isPosting = useSelector(state => state.ordersReducer.postStarted)
+  //const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
-  const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  //const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
   
-  useEffect(() => {
-    if (isAuthenticated && !orderIdChecked && !isPosting) {
-      dispatch(checkLastOrder(user.sub.split('|')[1]))
-    }
-    if (isAuthenticated && orderId === 0 && !isPosting) {
-      dispatch(postOrder(cart, user.sub.split('|')[1]))
-    } else if (isAuthenticated && orderId) {
-      dispatch(putOrder(cart, orderId))
-    }
+  // useEffect(() => {
+
+  // VOLVER A IMPORTAR EL USE EFFECT!
+  //   if (isAuthenticated && !orderIdChecked && !isPosting) {
+  //     dispatch(checkLastOrder(user.sub.split('|')[1]))
+  //   }
+  //   if (isAuthenticated && orderId === 0 && !isPosting) {
+  //     dispatch(postOrder(cart, user.sub.split('|')[1]))
+  //   } else if (isAuthenticated && orderId) {
+  //     dispatch(putOrder(cart, orderId))
+  //   }
   
-  }, [cart, isPosting])
-
-
-  
-  function handleAdd() {
-    dispatch(pushItem({ title, score, price, size: newSize, model, color, image, id, amount }));
-  }
-
-  function handleDelete() {
-    dispatch(deleteItem(id));
-  }
+  // }, [cart, isPosting])
 
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)
@@ -64,12 +55,23 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   }
 
+  const handleCartChange = (e, operation) => {
+    e.preventDefault();
+    dispatch(setCartItems({ 
+      title, 
+      score, 
+      price, 
+      size: newSize, 
+      model, 
+      color, 
+      image, 
+      id, 
+      amount: ((operation === '-' && 500) || amount)
+    }, operation))
+  }
 
   return (
-
-  
   <div>
- 
       <div className={style.wrapper}>
       <a href={`#popup${id}`}>
         <div className={style.container}>
@@ -137,10 +139,10 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
             <div className={style.cartBox}>
               
-              <button className={style.buttonCart} onClick={handleAdd}>
+              <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '+')}>
                 <FaCartPlus />
               </button>
-              <button className={style.buttonCart} onClick={handleDelete}>
+              <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '-')}>
                 <MdDeleteForever/>
               </button>
               
