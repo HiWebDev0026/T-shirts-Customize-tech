@@ -88,21 +88,7 @@ export default function Cart (){
         dispatch(clear())
     }
 
-    function handlePayment(){
-        if (isAuthenticated) {
-            let order= items?.map(item => {
-                return {
-                    title: item.title,
-                    quantity: item.amount,
-                    size: item.size,
-                    unit_price: item.price
-                }
-            })
-            dispatch(createPayment(order))
-            console.log(paymentData)
-            setFlag(true)
-        } else loginWithPopup()
-    }
+    
 
     return(
         <div className={Style.general}>
@@ -139,12 +125,9 @@ export default function Cart (){
                             <Link to='/catalogue'>
                                 <button>Go back shopping</button>
                             </Link>
-                            {
-                                flag ? 
-                            <a target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>Mercadopago</a>    
-                                : 
-                            items.length >0&&<button onClick={handlePayment}>Go to pay</button>
-                            }
+                            <Link to='/payment'>
+                                <button>Go to pay</button>
+                            </Link>
                             {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
                         </div>
                 </div>
