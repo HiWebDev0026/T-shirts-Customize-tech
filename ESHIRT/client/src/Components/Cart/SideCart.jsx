@@ -5,17 +5,12 @@ import {useState, useEffect} from 'react'
 import {NavLink} from 'react-router-dom';
 
 import { 
-    addOne, 
-    clear, 
-    outOne, 
     postOrder,
     putOrder,
     checkLastOrder,
     setCartItems 
 } from '../../Actions/index';
 import style from './SideCart.module.css'
-
-
 
 
 export function SideCart(){ 
@@ -51,7 +46,6 @@ export function SideCart(){
         }, operation))
     }
     
-    console.log(items, 'soy el cart antes del html')
     return (
         <div className={style.container}>
             <div className={style.items}>
