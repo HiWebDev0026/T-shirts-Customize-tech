@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
-
+import axios from 'axios';
 import Home from './Components/Home/Home.jsx'
 import MainNavBar from './Components/NavBar/MainNavBar.jsx';
 import Catalogue from './Components/Catalogue/Catalogue.jsx';
@@ -50,24 +50,49 @@ function App() {
   
   useEffect(() => {
     let token;
+    let alreadyExists = false;
     (async () => {
-      try {
 
       
+      try {
+
+        
 
         if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
           })
-          const { name, sub, email } = user;
           
+          const { name, sub, email } = user;
           const userToPost ={
             id: sub.split('|')[1],
             name,
             email
           } 
+
+          try {
+
+          const checkDB = await axios({
+              method: 'GET',
+              url: `/user/${userToPost.id}`,
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+          })
+
+          alreadyExists = true;
+          localStorage.setItem('currentToken', token)
+
+        }catch(err) {
+
+          
+          
           dispatch(postUser(userToPost));
           localStorage.setItem('currentToken', token)
+        }
+          
+        
+          
         }
 
         
@@ -75,6 +100,7 @@ function App() {
 
         return console.log(localStorage);
       } catch (e) {
+        
         console.error(e);
       }
     })();

@@ -3,8 +3,16 @@
     min-height: 90vh;
     height: auto;
     display: flex;
+    align-items: center;
     
     
-    
+}
+
+@media (max-width: 610px) {
+    .mainContainer {
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    }
 }
 
