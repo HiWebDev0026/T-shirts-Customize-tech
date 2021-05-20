@@ -106,7 +106,7 @@ function App() {
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
-      <Route exact path= '/favorites' component={Favorites}/>
+      <ProtectedRoute exact path= '/favorites' component={Favorites}/>
       <ProtectedRoute exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
