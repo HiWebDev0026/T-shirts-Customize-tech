@@ -9,10 +9,10 @@ import {useTokenDecode} from '../../hooks/tokenDecoding';
 
 
 const Account = () => {
-    const {isAuthenticated} = useAuth0();
-    const isAdmin = useTokenDecode(localStorage.currentToken);
+    // const {isAuthenticated} = useAuth0();
+    // const isAdmin = useTokenDecode(localStorage.currentToken);
 
-  return isAuthenticated ? (isAdmin ? <AdminNavBar /> : <UserNavBar /> ) : <NavBar />;
+  return  <NavBar />;
 };
 
 export default Account;
