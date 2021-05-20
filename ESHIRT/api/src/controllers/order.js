@@ -22,6 +22,25 @@ function validateOrder (body) {
     })
 }
 
+function setOrderItems(cart, item, operation) {
+    if (operation === 'clear') {
+        return []
+    }
+
+    if (cart.length === 0) {
+        return (operation === 'add' && [...cart, item]) || cart
+    }
+    
+    const foundItem = cart.find(i => (i.shirtId === item.shirtId && i.size === item.size));
+    if (!foundItem) { 
+        return (operation === 'add' && [...cart, item]) || cart
+    } else {
+        operation === 'add' ? foundItem.amount += item.amount : foundItem.amount -= item.amount;
+        return cart.filter(i => i.amount > 0)
+    }
+}
+
+
 async function postOrder (req, res, next) {
     const userId = req.params.userId.toString()
     const body = req.body
@@ -101,6 +120,8 @@ async function getOrdersByUserId (req, res, next) {
 async function putOrder (req, res, next) {
     const orderId = req.params.id
     const newOrder = req.body
+    const item = newOrder.splice(newOrder.length - 1, 1)
+    const operation = req.query.operation
     try {
         const oldOrder = await Order.findOne({where: {id: orderId}})
         if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
@@ -108,15 +129,19 @@ async function putOrder (req, res, next) {
             throw {status: 400, message: 'This order status is ' + oldOrder.status + '. It can not be modified'}
         }
 
-        validateOrder(newOrder)
+        //validateOrder(newOrder)
 
         const details = await Detail.findAll({where: {orderId: orderId}})
-        for (const detail of details) {
-            await detail.destroy()
-        }
-        for (const detail of newOrder) {
+        // const modifiedOrder = setOrderItems(details, newOrder[newOrder.length - 1], operation)
+        // console.log(modifiedOrder, 'modified order')
+        for (const detail of setOrderItems(newOrder, item[0], operation)) {
+            console.log('detail', detail)
             detail.orderId = orderId
             await Detail.create(detail)
+        }
+        
+        for (const detail of details) {
+            await detail.destroy()
         }
         oldOrder.total_price = setTotalPrice(newOrder);
         await oldOrder.save()

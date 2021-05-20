@@ -44,12 +44,20 @@ function Card({ title, score, price, size, model, color, image, id }) {
     // if (isAuthenticated && !orderIdChecked) {
     //   dispatch(checkLastOrder(user.sub.split('|')[1]))
     // }
-    if (isAuthenticated && orderId === null) {
-      dispatch(postOrder(cart, user.sub.split('|')[1]))
+    console.log('el order id es: ', orderId)
+    if (isAuthenticated && orderId === 0) {
+      dispatch(postOrder([...cart, item], user.sub.split('|')[1]))
     } else if (isAuthenticated && orderId) {
-      dispatch(putOrder(cart, orderId))
+      dispatch(putOrder([...cart, item], orderId, ((operation === '+' && 'add') || 'remove')))
     }
   }
+
+  useEffect(() => {
+    if (isAuthenticated && orderId === null) {
+      console.log('entre al use efetc jfkdsfjlksd')
+      dispatch(checkLastOrder(user.sub.split('|')[1]))
+    }
+  }, [isAuthenticated])
 
   // useEffect(() => {
   //   if (isAuthenticated && !orderIdChecked) {

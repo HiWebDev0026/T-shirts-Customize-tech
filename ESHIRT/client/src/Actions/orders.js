@@ -53,7 +53,7 @@ export function postOrder(cart, userId) {
 
 }
 
-export function putOrder (cart, orderId) {
+export function putOrder (cart, orderId, operation) {
     // ESTE METODO RENUEVA EL CARRITO EN LA BASE DE DATOS
     // SE ENVIA EL CARRITO ENTERO IGUAL Q EN EL POST
     // HAY QUE PASARLE EL orderId EN LA URL (O SEA ID DE LA ORDEN QUE NOS HABIA LLEGADO EN EL POST)
@@ -68,7 +68,7 @@ export function putOrder (cart, orderId) {
                     amount: detail.amount
                 }
             })
-            const res = await axios.put(`/order/${orderId}`, order, {headers: {
+            const res = await axios.put(`/order/${orderId}?operation=${operation}`, order, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             dispatch({type: 'PUT_ORDER'})
