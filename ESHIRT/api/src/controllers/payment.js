@@ -29,6 +29,7 @@ async function createPayment(req, res){
     } */
     
     let order= req.body
+    console.log(order)
     let response= await mercadopago.preferences.create(order)
     res.send(response)
     

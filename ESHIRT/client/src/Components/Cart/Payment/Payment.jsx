@@ -53,6 +53,7 @@ function Payment() {
                         size: item.size,
                         unit_price: item.price,
                         id: item.id
+
                     }
                 })
             let shipments= {
@@ -62,6 +63,7 @@ function Payment() {
             dispatch(createPayment(order, shipments))
             setFlag(true)
             window.open(paymentData?.response?.init_point)
+
         } 
     }
 
