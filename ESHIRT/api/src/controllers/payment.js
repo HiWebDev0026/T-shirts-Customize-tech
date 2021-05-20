@@ -8,7 +8,7 @@ async function createPayment(req, res){
     
     
                     //HARDCODE FOR TESTING
-    let order= {
+    /* let order= {
         items: [
             {
                 title: 'Agus',
@@ -26,9 +26,9 @@ async function createPayment(req, res){
             email: 'aagenesds1740@gmail.com'
         },
 		auto_return: 'approved',
-    }
+    } */
     
-    //let order= req.body
+    let order= req.body
     console.log(order)
     let response= await mercadopago.preferences.create(order)
     res.send(response)
