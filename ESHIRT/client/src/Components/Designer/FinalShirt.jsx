@@ -130,7 +130,8 @@ export default function FinalShirt(props) {
                     <div>
                         <label for="categories"> The category of your shirt: </label>
                         <select onChange={handleChange} name="categories">
-                            {categories.map((elem, index) => (<option value={elem.id} key={index}>{elem.name}</option>))}
+                            {categories.map((elem, index) => 
+                            (<option value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
                     </div>
                     <div className={FinalCSS.Desing}> Do you want to share your design?</div>
