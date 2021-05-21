@@ -43,12 +43,17 @@ function handleChange(e) {
 
 let array= []
 function handleChange1(e) {
-     array.push([parseInt(e.target.value)])
-}
+    let index= parseInt(e.target.value);
+    if(array.indexOf(index) === -1){
+     array.push(index)
+}}
+
 
 function handleEdit(e) {
-    alert('Shirt modified')
+    
+    if(!input.color || !input.name || !array.length>0 || !input.size || !input.model){return alert("complete all the items") }
 dispatch(putShirt({...input, categories: array}, e.target.value)); 
+alert('Shirt modified')
 history.push('/shirts_admin')
 }
 
@@ -70,7 +75,15 @@ return(
                  <input name = 'name' className= 'name' type = 'text' placeholder= 'Name:' onChange= {handleChange} required/>
                  <input name = 'color' className= 'color' type = 'text' placeholder= 'Color:' onChange= {handleChange} required/>
                  <input name = 'model' className= 'model' type = 'text' placeholder= 'Model:' onChange= {handleChange} required/>
-                 <input name = 'size' className= 'size' type = 'text' placeholder= 'Size:' onChange= {handleChange} required/>
+                 
+                 <select name = 'size' className='size' onChange= {handleChange} >
+                 <option  value="">size</option>
+                 <option value='S'>S</option>
+                 <option value='M'>M</option>
+                 <option value='L'>L</option>
+                 <option value='XL'>XL</option>
+                 <option value='XXL'>XXL</option>
+                 </select>
                  <div className={Style.Categories}>
                         <label className={Style.ChangesTitle} for="categories">Chose the categories of the shirt: </label>
                         <select className={Style.Categories1} onChange={handleChange1} name="categories">
