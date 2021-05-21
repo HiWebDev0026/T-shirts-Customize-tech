@@ -1,4 +1,3 @@
-
 import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
@@ -63,6 +62,11 @@ function Payment() {
         } 
     }
 
+
+    /* Lo de adentro del return va en shipments.receiver_address */
+
+
+
     return (
         <div className={style.container}>
         <form onSubmit={handleSubmit} className={style.form}>
@@ -88,5 +92,8 @@ function Payment() {
         </div>
     )
 }
+
+
+
 
 export default Payment
