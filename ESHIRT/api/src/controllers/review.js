@@ -5,7 +5,9 @@ const {Shirt, User, Detail, Category, Review} = require('../db.js');
 
 async function postReview (req, res, next) {
     const shirtId = req.params.id;
+    console.log(req.params)
     try {
+
         const shirt = await Shirt.findOne({where: {id: shirtId}})
         if (!shirt) throw {status: 404, message: 'Shirt not found'};
 

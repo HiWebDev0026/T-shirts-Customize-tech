@@ -7,10 +7,12 @@
 }
 
 .picture{
-    margin-top:1%;
-    margin-left:1%;
-    margin-bottom:1%;
-    width: 15%;
+    width: 10%;
+    height: auto;
+}
+
+.picture img{
+    height: 100%;
 }
 
 .column1{
