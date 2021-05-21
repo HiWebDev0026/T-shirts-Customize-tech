@@ -6,7 +6,7 @@
 
  - [ ] a) conexión con el carrito;
         
- - [ ] b) asignación de categorías disponibles;
+ - [x] ~~b) asignación de categorías disponibles;~~
 
           
  - [ ] c) centrar las imágenes en la remera (ancho  120px);
