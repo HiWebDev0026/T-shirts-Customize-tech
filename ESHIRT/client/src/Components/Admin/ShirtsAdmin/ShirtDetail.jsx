@@ -65,9 +65,6 @@ return(
               <th className={Style.Titles3}> {shirt.color}</th>
               <th className={Style.Titles4}> {shirt.model}</th>
               <th className={Style.Titles5}> {shirt.size}</th>
-              <th className={Style.Titles6}> {shirt.score}</th>
-              <th className={Style.Titles7}> {shirt.public}</th>
-              <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <img src={shirt.print} className={Style.Image}/>
               </div>
               <div className={Style.Changes}>
