@@ -1,8 +1,9 @@
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
+
 
 import Home from './Components/Home/Home.jsx'
 import MainNavBar from './Components/NavBar/MainNavBar.jsx';
@@ -16,6 +17,7 @@ import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
+import UserEdit from './Components/Dashboard/User/UserEdit';
 import ProtectedRoute from './auth/ProtectedRoute';
 import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
@@ -28,7 +30,9 @@ import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
-import AdminDashboard from './Components/Dashboard/AdminDashboard';
+import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
+import UserDashboard from './Components/Dashboard/User/UserDashboard';
+import UserData from './Components/Dashboard/User/UserData';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 
@@ -41,7 +45,7 @@ import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
 
 
 
-function App() {
+function App({location}) {
 
   const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   const dispatch = useDispatch();
@@ -82,9 +86,16 @@ function App() {
 
 
   return (
-    <div className= 'App'>
-      <Route path= '/' component={MainNavBar}/>  
-      <Route exact path= '/' component={Landing}/>  
+    <div className= 'App' >
+      <Switch >
+
+      <Route exact path= '/' component={Landing}/>
+      <div className= 'App'>
+      <MainNavBar />  
+      {/* <Route path= '/' component={MainNavBar}/>   */}
+      <ProtectedRoute path= '/userDash' component={UserDashboard}/> 
+      <ProtectedRoute path= '/userData' component={UserData}/> 
+      <ProtectedRoute path= '/userEdit' component={UserEdit}/> 
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
@@ -111,8 +122,10 @@ function App() {
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
       <ProtectedRoute path='/payment' component={Payment} />
-      <Route path= '/' component={Footer}/>
+      <Footer/>
+      </div>  
 
+      </Switch>
     </div>
   )
 }
