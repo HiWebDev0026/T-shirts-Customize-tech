@@ -140,7 +140,7 @@ function App() {
       <ProtectedRoute exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
-      <ProtectedRoute path='/payment' component={Payment} />
+      {/* <ProtectedRoute path='/payment' component={Payment} /> */}
       <Route path= '/' component={Footer}/>
 
     </div>

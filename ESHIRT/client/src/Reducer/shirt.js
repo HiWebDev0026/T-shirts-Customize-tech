@@ -75,12 +75,21 @@ const shirtReducer = (state=initialState, action) => {
                     if (check.length !== 0 && shirt.status !== 'deleted'){filter.push(shirt)}
                 })
             }) */
-            console.log("cat62", action.payload);
+
+
+            
+
+            function catChecker(arr1, arr2, indexS=0, indexC=0, matches = 0) {
+                
+                return indexS ===arr1.length && matches === arr2.length ? true : arr2.length === 0 || arr2.length > arr1.length || indexS === arr1.length && matches < arr2.length  ? false : indexC === arr2.length && indexS < arr1.length? catChecker(arr1, arr2, indexS+1, indexC=0, matches) : arr1[indexS] === arr2[indexC] ? catChecker(arr1, arr2, indexS+1, indexC = 0, matches+1) : catChecker(arr1, arr2, indexS, indexC+1, matches)
+            }
             
                 filter = render.filter(shirt => {
                     let currentCategories = shirt.categories?.map(elem => elem.name);
                     
-                    return currentCategories.toString().includes(action.payload.toString()) && currentCategories.length === action.payload.length;
+                    return catChecker(currentCategories, action.payload);
+                    
+                    /* currentCategories.toString().includes(action.payload.toString()) && currentCategories.length === action.payload.length; */
                     
                 })
             
