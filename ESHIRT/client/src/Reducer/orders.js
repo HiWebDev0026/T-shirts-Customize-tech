@@ -37,10 +37,20 @@ const ordersReducer = (state=initialState, action) => {
                     putOrderOk: null
             }
             case 'GET_ORDERS_BY_USER':
-                let cart=action.payload.filter(item => item.status === 'CART')
-                return {
+                // let cart=action.payload.filter(item => item.status === 'CART')
+                /* return {
                     ...state,
                     orderId: cart[0].id
+                } */
+            const oldOrders = action.payload.map(order => {
+                if (order.status.toUpperCase() === 'CART') {
+                    return Number(order.id)
+                }
+            })
+            const oldOrder = Math.max(...oldOrders)
+            return {
+                ...state,
+                orderId: oldOrder
             }
 
             case 'GET_ORDER':{

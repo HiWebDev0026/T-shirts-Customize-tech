@@ -3,14 +3,18 @@ import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
-import { createPayment } from '../../../Actions';
+import { createPayment, getOrdersByUserId } from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function Payment() {
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
     const items = useSelector((state)=>state.cartReducer.items);
+    const orderId = useSelector(state => state.ordersReducer.orderId)
     const dispatch= useDispatch()
     const {isAuthenticated, user}= useAuth0()
+    
+    let userId= user.sub.split('|')[1]
+    dispatch(getOrdersByUserId(userId))
     
     const [deliveryData, setDeliveryData]= useState({
         zip_code: '',
@@ -44,6 +48,7 @@ function Payment() {
             return alert('Mandatory fields not completed')
         }
         if (isAuthenticated) {
+            
             let order= items?.map(item => {
                     return {
                         title: item.title,
@@ -56,8 +61,8 @@ function Payment() {
             let shipments= {
                     receiver_address: deliveryData
             }  
-            console.log(order, shipments)
-            dispatch(createPayment(order, shipments))
+            let payer= orderId
+            dispatch(createPayment(order, shipments, payer))
             setFlag(true)
         } 
     }

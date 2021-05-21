@@ -2,7 +2,7 @@ const mercadopago= require('mercadopago')
 const {ACCESS_TOKEN, PUBLIC_KEY}= process.env
 const axios= require('axios');
 const { getReviews } = require('./review');
-const { getMaxListeners } = require('../app');
+const { getMaxListeners, put } = require('../app');
 
 async function createPayment(req, res){
     
@@ -27,24 +27,48 @@ async function createPayment(req, res){
         },
 		auto_return: 'approved',
     } */
-    
+    try {
     let order= req.body
     console.log(order)
     let response= await mercadopago.preferences.create(order)
     console.log(response)
-    res.send(response)
     
+    res.send(response)
+    }
+    catch(error){}
 }
 
 async function getPayment(req, res){
-    res.send({
-		data: req.query
-	})
+    let {payment_id, status, payment_type}= req.query
+    let data= {
+        payment_id,
+        status,
+        payment_type
+    }
+    return res.status(200)
 }
+
+async function postPayment(req, res){
+    let {payment_id, status, payment_type}= req.query
+    let userId= req.params.id
+    let response= await axios({
+        method: 'put',
+        url: `http://localhost:3001/order/status/${userId}`,
+        data: {
+            status,
+            payment_type,
+            payment_id
+        }
+        
+    })
+    res.send(response)
+}
+
 
 
 
 module.exports={
     createPayment,
-    getPayment
+    getPayment,
+    postPayment
 }
