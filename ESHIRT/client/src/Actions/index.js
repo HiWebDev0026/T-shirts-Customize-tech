@@ -34,7 +34,8 @@ import {
     deleteItem,
     changeSize,
     clear,
-    setCartItems
+    setCartItems,
+    setSizeChanged
 } from './cart.js'
 
 import {
@@ -101,6 +102,7 @@ export {
     changeSize,
     clear,
     setCartItems,
+    setSizeChanged,
 
     getOrders,
     postOrder,

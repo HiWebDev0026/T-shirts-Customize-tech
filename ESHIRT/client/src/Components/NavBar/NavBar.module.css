@@ -11,16 +11,17 @@
 
 .header{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding: 30px, 10%;
     background: rgba(255, 255, 255, 0.411);
-    height: 10vh;
+    height: 100px;
+    /* width: max-content; */
 }
 
 .logo{
-    width: 60px;
-    height: 20px;
+    max-width: 134px;
+    height: 88px;
     margin-left: 10px;
     text-align: center;
 }
@@ -59,4 +60,17 @@ li, .searchBar{
         font-size: 16px;
     color: #fd6702; /* Cambiar acá el color de las letras*/
     text-decoration: none;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+}
+
+.fav, .cart{
+    padding-right: 40px;
+}
+
+.fav{
+    padding-left: 40px;
 }

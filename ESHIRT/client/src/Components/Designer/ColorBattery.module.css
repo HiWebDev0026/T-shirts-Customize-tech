@@ -1,7 +1,9 @@
 .container{
     display: flex; 
     flex-direction: column; 
-    min-width: 30vh;
+    max-width: 30vh;
+    border: 1px solid coral;
+    border-radius: 6px;
     
 }
 
