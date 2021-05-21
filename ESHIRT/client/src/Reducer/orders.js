@@ -4,7 +4,7 @@ const initialState={
     putOrderOk: null,
     postStarted: false,
     lastOrderChecked: false,
-    orderDetail:[]
+    orderDetail: [],
 }
 
 const ordersReducer = (state=initialState, action) => {

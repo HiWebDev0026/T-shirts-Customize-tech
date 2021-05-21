@@ -33,53 +33,21 @@ export default function Cart (){
     //     }})
 
     const [currentPage, setCurrentPage] = useState(0);
-
     const items = useSelector((state)=>state.cartReducer.items);
-    console.log('ITTEEMS',items)
     const orderId = useSelector((state)=>state.cartReducer.orderId);
-    console.log('ORDERID',orderId)
+    
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
-    const cart = useSelector(state => state.cartReducer.items)
-    const isPosting = useSelector(state => state.ordersReducer.postStarted)
-    const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
     const  dispatch= useDispatch();
-    const [flag, setFlag]= useState(false)
-
-    useEffect(() => {
-        if (isAuthenticated && !orderIdChecked && !isPosting) {
-            dispatch(checkLastOrder(user.sub.split('|')[1]))
-        }
-
-        if (isAuthenticated && orderId === 0 && !isPosting) {
-            dispatch(postOrder(cart, user.sub.split('|')[1]))
-        } else if (isAuthenticated && orderId) {
-            dispatch(putOrder(cart, orderId))
-        }
-    }, [cart, isPosting])
-
-   
     const INITIAL_PAGE= 4;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
 
-    const {user,isAuthenticated, loginWithPopup}=useAuth0();
-    // const userId= user.sub.split('|').pop();
-    // console.log('USER',userId, typeof userId)
-   
-    // useEffect(()=>{
-    //         dispatch(getOrdersByUserId('105677628845670307410'));
-    // },[])
-
-    // useEffect(()=>{
-    //         dispatch(getOrderById(orderId));
-    // },[orderId])
+    const {isAuthenticated}=useAuth0();
 
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
     },[items])
-    
-    console.log('PRODUCT', items)
 
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
@@ -89,8 +57,6 @@ export default function Cart (){
         e.preventDefault();
         dispatch(setCartItems({}, operation))
     }
-
-    
 
     return(
         <div className={Style.general}>
