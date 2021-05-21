@@ -130,7 +130,8 @@ export default function FinalShirt(props) {
                     <div>
                         <label for="categories"> The category of your shirt: </label>
                         <select onChange={handleChange} name="categories">
-                            {categories.map((elem, index) => (<option value={elem.id} key={index}>{elem.name}</option>))}
+                            {categories.map((elem, index) => 
+                            (<option value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
                     </div>
                     <div className={FinalCSS.Desing}> Do you want to share your design?</div>
@@ -138,9 +139,6 @@ export default function FinalShirt(props) {
                     <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
                     <input type="radio" name="public" value="false" onChange= {handleChange}/>
-                   
-                    
-
                         <input type="submit" />
                     </form>
                 </div>

@@ -51,6 +51,7 @@ function App({location}) {
   
   useEffect(() => {
     let token;
+
     (async () => {
       try {
 
@@ -67,16 +68,39 @@ function App({location}) {
             name,
             email
           } 
-          dispatch(postUser(userToPost));
-          localStorage.setItem('currentToken', token)
+
+
+                try {
+
+                    const checkDB = await axios({
+                        method: 'GET',
+                        url: `/user/${userToPost.id}`,
+                        headers: {
+                          Authorization: `Bearer ${token}`
+                        }
+                    })
+
+                    alert(`Welcome Back ${name}`);
+                  
+
+              }catch(err) {
+                
+                  dispatch(postUser(userToPost));
+                  alert(`Welcome to our website ${name}`)
+                  
+
+              }
+              localStorage.setItem('currentToken', token)
+          
+
         }
 
-        
-        
 
-        return console.log(localStorage);
+        return;
       } catch (e) {
         console.error(e);
+        alert('Error on login:', e)
+
       }
     })();
 
