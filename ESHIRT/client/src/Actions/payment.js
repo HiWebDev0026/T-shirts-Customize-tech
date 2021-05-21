@@ -6,9 +6,9 @@ export function createPayment(order, shipments){
             items:order,
             shipments,
             back_urls: {
-                "success": "http://localhost:3001/home",
-                "failure": "http://localhost:3001/cart",
-                "pending": "http://localhost:3001/home"
+                "success": "http://localhost:3001/payment/feedback",
+                "failure": "http://localhost:3001/payment/feedback",
+                "pending": "http://localhost:3001/payment/feedback"
             },
             auto_return: 'approved'
         }

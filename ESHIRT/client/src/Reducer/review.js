@@ -18,14 +18,14 @@ const reviewsReducer = (state=initialState, action) => {
 
         case 'POST_SHIRT_REVIEW':
 
-        
+
         
             return {
                 ...state,
                 reviews: [...state, action.payload],
             }
         // case 'GET_ORDERS_BY_USER':
-        //         let cart=action.payload.filter(item => item.status === 'CART')
+        //         let cart=action.payload.filter(item => item.status === '')
         //         return {
         //             ...state,
         //             orderId: cart[0].id

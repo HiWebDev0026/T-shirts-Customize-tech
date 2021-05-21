@@ -7,7 +7,8 @@ import Login from '../../auth/AuthenticationButton';
 
 
 function GenericNavbar() {
-  return (
+
+    return (
     <header className={Style.header}>
         <span className={Style.logo}>E-Shirt</span>
 
@@ -26,7 +27,7 @@ function GenericNavbar() {
             <NavLink className={Style.fav} to='/favorites'>< GrFavorite /></NavLink>
             <NavLink className={Style.cart} to='/cart'><GrCart /></NavLink>
         </div>
-  </header>
+    </header>
   );
 };
 

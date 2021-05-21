@@ -47,4 +47,6 @@
 .Btn2:hover{
     background-color: lightblue;
 }
-
+.Img{
+    width: 350px; height: 350px;
+  }
