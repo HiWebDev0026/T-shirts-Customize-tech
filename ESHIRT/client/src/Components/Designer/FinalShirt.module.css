@@ -1,23 +1,29 @@
 .container {
-    width: 65%;
+    width: max-content;
     display: flex;
-    justify-content: space-around;
-    margin: 75px auto 25px auto;
+    height: 100vh;
+    margin: 55px auto 25px auto;
     
 }
 
 .finalShirt {
-width: 100%;
+    width: max-content;
+    height: max-content;
+    padding: 15px;
+    border: 2px solid coral;
+    border-radius: 11px;
 }
 
 .finalShirt img {
    width: auto;
+   height: auto;
     
     
 }
 .submitContainer {
     display: flex;
     flex-direction: column;
+    
     
 }
 
@@ -44,4 +50,16 @@ width: 100%;
 }
 .Desing2{
     color:white;
+}
+
+@media (max-width: 990px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 610px) {
+    .submitContainer {
+        width: 100vh;
+    }
 }

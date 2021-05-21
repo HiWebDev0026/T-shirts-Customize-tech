@@ -6,14 +6,16 @@ import {fabric} from 'fabric';
 import { postShirt, resetErrors } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import {getCategories} from '../../Actions/index';
 
 export default function FinalShirt(props) {
 
     const {phase} = props;
     const errors = useSelector((state) => state.globalReducer.errors);
     const postOk = useSelector((state) => state.shirtReducer.shirtPostOk)
+    const categories = useSelector((state)=> state.categoryReducer.allCategories)
     const dispatch= useDispatch();
-    const [input, setInput] = useState({name: ''});
+    const [input, setInput] = useState({name: '', public: "false", categories: []});
     const [input2, setInput2] = useState('');
     const history = useHistory()
     const { user, isAuthenticated, loginWithPopup } = useAuth0();
@@ -36,7 +38,12 @@ export default function FinalShirt(props) {
     }
 
     useEffect(() => {
-        console.log(errors)
+      /*   console.log(errors)
+ */
+        if(categories.length < 1) {
+            dispatch(getCategories());
+        }
+
         if (errors) {
             alert(`${errors.message}`)
             dispatch(resetErrors()) 
@@ -50,7 +57,15 @@ export default function FinalShirt(props) {
         console.log('\n\n\n', 'BEFORE SENDING:', input);
         const value = e.target.value;
         const name = e.target.name
-        
+        if(name === 'categories') {
+            setInput(prevState => {
+                return {
+                    ...prevState,
+                    [name]: prevState[name].includes(parseInt(e.target.value)) ? prevState[name] : [...prevState[name], parseInt(e.target.value)]
+                }
+            })
+            return;
+        }
         setInput(prevState => {
             return {
             ...prevState,
@@ -85,6 +100,7 @@ export default function FinalShirt(props) {
                         color: setColorName(phase.colorSelected.data),
                         public: input.public,
                         model: phase.modelSelected.data,
+                        categories: input.categories,
                     }
                 ));
 
@@ -109,8 +125,15 @@ export default function FinalShirt(props) {
                 </div>
                 <div className={FinalCSS.uploadForm}>
                     <form onSubmit={(e)=> handleSubmit(e, phase)}>
-                    <input name = 'name'  type = 'text' placeholder= 'Name of your shirt:' onChange= {handleChange} required/>
-                    <div className={FinalCSS.Desing}> Do you want to share yoor design?</div>
+                    <label for="name">Choose a name for your shirt</label>
+                    <input name = 'name'  type='text' placeholder= 'Name of your shirt' onChange= {handleChange} required/>
+                    <div>
+                        <label for="categories"> The category of your shirt: </label>
+                        <select onChange={handleChange} name="categories">
+                            {categories.map((elem, index) => (<option value={elem.id} key={index}>{elem.name}</option>))}
+                        </select>
+                    </div>
+                    <div className={FinalCSS.Desing}> Do you want to share your design?</div>
                     <label className={FinalCSS.Desing1}>Yes</label>
                     <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
