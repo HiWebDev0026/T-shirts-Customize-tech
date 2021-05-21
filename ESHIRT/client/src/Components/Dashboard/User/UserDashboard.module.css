@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.411);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.411);
+    margin-right: 50px;
+    width: 25%;
+}
+
+.left{
+    display: flex;
+    background-image: url('../../../Images/people.jpg');
+    background-size: cover;
+    margin-left: 50px;
+    width: 70%;
+}
+
+.left h1{
+    padding: 10px;
+}

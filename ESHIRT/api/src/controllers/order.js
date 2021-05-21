@@ -50,28 +50,28 @@ async function postOrder (req, res, next) {
         //     if (!user) { throw {status: 404, message: 'User not found'}}
         // }
         
-        validateOrder(body)
+        //validateOrder(body)
 
-        const total_price = setTotalPrice(body)
-        if (total_price < 0) {throw {status: 400, message: 'Price should be greater than 0'}}
+        let total_price = setTotalPrice(body)
+        total_price = (total_price > 0 && total_price) || 0 
 
         const postedOrder = await Order.create({status: 'CART', total_price, userId})
         
-        try {
-            for (const detail of body) {
-                if (detail.id) {
-                    detail.shirtId = detail.id
-                    delete detail.id
-                }
-                detail.orderId = postedOrder.id
-                
-                await Detail.create(detail)
-            }    
-        } catch (err){
-            throw {status: 400, message: 'Error posting detail table. Make sure that shirtId exists'}
+        if (body.length > 0) {
+            try {
+                for (const detail of body) {
+                    if (detail.id) {
+                        detail.shirtId = detail.id
+                        delete detail.id
+                    }
+                    detail.orderId = postedOrder.id
+                    
+                    await Detail.create(detail)
+                }    
+            } catch (err){
+                throw {status: 400, message: 'Error posting detail table. Make sure that shirtId exists'}
+            }
         }
-
-        
         return res.status(200).json(postedOrder)
         
     } catch (err) {
@@ -109,8 +109,9 @@ async function getOrdersByUserId (req, res, next) {
     try {
         const user = await User.findOne({where: {id: userId}});
         const orders= await Order.findAll()
-        if (!user) {throw {status: 404, message: 'User not found'}};
-        //const orders = await Order.findAll({where: {userId: userId}})
+        if (!user) {throw {status: 404, message: 'User not found'}}
+      // Si rompe, chequea la linea de abajo
+        const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})
         return res.status(200).json(orders)
     } catch (err) {
         return next(err)
@@ -133,18 +134,20 @@ async function putOrder (req, res, next) {
         //validateOrder(newOrder)
 
         const details = await Detail.findAll({where: {orderId: orderId}})
-        // const modifiedOrder = setOrderItems(details, newOrder[newOrder.length - 1], operation)
-        // console.log(modifiedOrder, 'modified order')
-        for (const detail of setOrderItems(newOrder, item[0], operation)) {
-            console.log('detail', detail)
-            detail.orderId = orderId
-            await Detail.create(detail)
-        }
+        const modifiedOrder = setOrderItems(newOrder, item[0], operation)
         
+        if (modifiedOrder.length > 0) {
+            for (const detail of modifiedOrder) {
+                console.log('detail', detail)
+                detail.orderId = orderId
+                await Detail.create(detail)
+            }
+        }
+
         for (const detail of details) {
             await detail.destroy()
         }
-        oldOrder.total_price = setTotalPrice(newOrder);
+        oldOrder.total_price = (modifiedOrder.length > 0 && setTotalPrice(newOrder)) || 0
         await oldOrder.save()
 
         const updatedOrder = await Order.findOne({where: {id: orderId}, include: [Detail]})

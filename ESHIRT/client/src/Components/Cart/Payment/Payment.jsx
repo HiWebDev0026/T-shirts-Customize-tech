@@ -6,6 +6,7 @@ import {useState, useEffect} from 'react'
 import { createPayment, getOrdersByUserId } from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 function Payment() {
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
     const items = useSelector((state)=>state.cartReducer.items);

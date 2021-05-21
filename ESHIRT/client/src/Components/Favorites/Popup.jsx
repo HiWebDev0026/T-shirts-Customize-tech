@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
+import swal from 'sweetalert';
 
 import Style from './Popup.module.css';
 import {pushItem} from '../../Actions/index.js';
 
 export default function Popup (props){
 
+    const[amount,setAmount]=useState(1);
+    const[size, setSize]=useState('');
+
     const dispatch=useDispatch();
 
     function handleAdd (e){
         console.log('ITEM', props.favorite)
-        dispatch(pushItem({...props.favorite, image:props.favorite.print, price:50, amount:1}))
+        dispatch(pushItem({...props.favorite, image:props.favorite.print, price:50, amount:amount, size:size}))
+        props.setTrigger(false)
+        swal({title:'added to cart', icon:'success', timer:3000})
     }
     
     return (props.trigger)?(
@@ -23,7 +29,7 @@ export default function Popup (props){
                 </div>
                 <p>{props.favorite.name}</p>
                 <label>
-                        <select className={Style.size}>
+                        <select className={Style.size} onChange={(e)=>setSize(e.target.value)}>
                           <option selected="true" disabled="disabled">size</option>
                           <option value="XL">XL</option>
                           <option value="L">L</option>
@@ -32,11 +38,11 @@ export default function Popup (props){
                         </select>
                         </label>
                         <div>
-                            <button className={Style.buttonAM}>
+                            <button className={Style.buttonAM} onClick={()=>setAmount(amount+1)}>
                             <GrAdd />
                             </button>
-                            <div>1</div>
-                            <button className={Style.buttonAM}>
+                            <div>{amount}</div>
+                            <button className={Style.buttonAM} onClick={()=>amount>1&&setAmount(amount-1)}>
                             <GrFormSubtract />
                             </button>
                         </div>

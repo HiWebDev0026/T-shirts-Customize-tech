@@ -20,8 +20,9 @@ export function postShirtReview(dataReview, shirtId, userId){
 
     return async (dispatch) => {
         try {
-            
-            dataReview['userId']  = userId
+           
+             dataReview.userId = userId
+           
             const res= await axios.post(`/shirt/${shirtId}/review`, dataReview, {responseType: 'json'})
             const shirtReview = res.data
             
