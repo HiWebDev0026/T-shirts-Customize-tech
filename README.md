@@ -9,7 +9,7 @@
  - [x] ~~b) asignación de categorías disponibles;~~
 
           
- - [ ] c) centrar las imágenes en la remera (ancho  120px);
+ - [x] ~~c) centrar las imágenes en la remera (ancho  120px);~~
 
    
 

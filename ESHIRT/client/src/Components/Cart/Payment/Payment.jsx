@@ -1,3 +1,4 @@
+
 import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,7 +12,7 @@ function Payment() {
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
     const items = useSelector((state)=>state.cartReducer.items);
     const dispatch= useDispatch()
-    const {isAuthenticated}= useAuth0()
+    const {isAuthenticated, user}= useAuth0()
     
     const [deliveryData, setDeliveryData]= useState({
         zip_code: '',
@@ -52,7 +53,6 @@ function Payment() {
                         size: item.size,
                         unit_price: item.price,
                         id: item.id
-
                     }
                 })
             let shipments= {
@@ -63,11 +63,6 @@ function Payment() {
             setFlag(true)
         } 
     }
-
-
-    /* Lo de adentro del return va en shipments.receiver_address */
-
-
 
     return (
         <div className={style.container}>
@@ -94,8 +89,5 @@ function Payment() {
         </div>
     )
 }
-
-
-
 
 export default Payment

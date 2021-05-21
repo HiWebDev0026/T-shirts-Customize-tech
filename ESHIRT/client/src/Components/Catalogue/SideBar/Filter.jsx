@@ -68,7 +68,7 @@ function Filter(){
                 return ( 
                     <div className={style.box} key={i*3.25}>
                         <input  className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
-                        <label  className={style.label} for={i}>{e.name}</label >
+                        <label  className={style.label} htmlFor={i}>{e.name}</label >
                         
                     </div>
                 )
