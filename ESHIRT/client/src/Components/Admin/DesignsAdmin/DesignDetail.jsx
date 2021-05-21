@@ -45,7 +45,7 @@ return(
         <div className={Style.Container}> 
          <p className={Style.Name}>{designs.name}</p>
          <p className={Style.Color}>{designs.color}</p>
-         <img src={designs.print} className={Style.Image}/>
+         <img src={designs.print} className={Style.Img}/>
          <div className={Style.Btns}>
         <form>
          <label>Yes</label>
@@ -57,6 +57,7 @@ return(
          </div>
          <div><button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
         </div>
+
    
 }
 
