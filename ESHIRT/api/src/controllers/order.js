@@ -108,7 +108,9 @@ async function getOrdersByUserId (req, res, next) {
     const userId = req.params.userId.toString();
     try {
         const user = await User.findOne({where: {id: userId}});
-        if (!user) {throw {status: 404, message: 'User not found'}};
+        const orders= await Order.findAll()
+        if (!user) {throw {status: 404, message: 'User not found'}}
+      // Si rompe, chequea la linea de abajo
         const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})
         return res.status(200).json(orders)
     } catch (err) {
