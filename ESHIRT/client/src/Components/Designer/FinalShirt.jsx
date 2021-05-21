@@ -138,9 +138,6 @@ export default function FinalShirt(props) {
                     <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
                     <input type="radio" name="public" value="false" onChange= {handleChange}/>
-                   
-                    
-
                         <input type="submit" />
                     </form>
                 </div>

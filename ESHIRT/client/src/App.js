@@ -80,16 +80,17 @@ function App() {
                         }
                     })
 
-                
-                  localStorage.setItem('currentToken', token)
+                    alert(`Welcome Back ${name}`);
+                  
 
               }catch(err) {
                 
                   dispatch(postUser(userToPost));
-                  localStorage.setItem('currentToken', token)
+                  alert(`Welcome to our website ${name}`)
+                  
 
               }
-        
+              localStorage.setItem('currentToken', token)
           
         }
 
@@ -98,6 +99,8 @@ function App() {
       } catch (e) {
         
         console.error(e);
+        alert('Error on login:', e)
+
       }
     })();
 
