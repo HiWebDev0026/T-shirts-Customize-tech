@@ -50,7 +50,7 @@ function App() {
   
   useEffect(() => {
     let token;
-    let alreadyExists = false;
+    
     (async () => {
 
       
@@ -70,35 +70,31 @@ function App() {
             email
           } 
 
-          try {
+                try {
 
-          const checkDB = await axios({
-              method: 'GET',
-              url: `/user/${userToPost.id}`,
-              headers: {
-                Authorization: `Bearer ${token}`
+                    const checkDB = await axios({
+                        method: 'GET',
+                        url: `/user/${userToPost.id}`,
+                        headers: {
+                          Authorization: `Bearer ${token}`
+                        }
+                    })
+
+                
+                  localStorage.setItem('currentToken', token)
+
+              }catch(err) {
+                
+                  dispatch(postUser(userToPost));
+                  localStorage.setItem('currentToken', token)
+
               }
-          })
-
-          alreadyExists = true;
-          localStorage.setItem('currentToken', token)
-
-        }catch(err) {
-
-          
-          
-          dispatch(postUser(userToPost));
-          localStorage.setItem('currentToken', token)
-        }
-          
         
           
         }
 
-        
-        
 
-        return console.log(localStorage);
+        return;
       } catch (e) {
         
         console.error(e);

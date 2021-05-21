@@ -24,7 +24,7 @@ async function getReviews (req, res, next) {
         const shirt = await Shirt.findOne({where: {id: shirtId}})
         if (!shirt) throw {status: 404, message: 'Shirt not found'}
         const shirts = await Review.findAll({where: {shirtId: shirtId}})
-      console.log(shirts)
+      /* console.log(shirts) */
         return res.status(200).json(shirts)
     } catch (err) {
         return next(err)
