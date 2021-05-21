@@ -4,7 +4,9 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
 import { createPayment } from '../../../Actions';
+
 import { useAuth0 } from '@auth0/auth0-react';
+
 
 function Payment() {
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
