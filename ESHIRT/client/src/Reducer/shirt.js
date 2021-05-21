@@ -77,7 +77,7 @@ const shirtReducer = (state=initialState, action) => {
             }) */
 
 
-            /* console.log("cat62", action.payload); */
+            
 
             function catChecker(arr1, arr2, indexS=0, indexC=0, matches = 0) {
                 
@@ -86,7 +86,7 @@ const shirtReducer = (state=initialState, action) => {
             
                 filter = render.filter(shirt => {
                     let currentCategories = shirt.categories?.map(elem => elem.name);
-                    /* console.log(currentCategories); */
+                    
                     return catChecker(currentCategories, action.payload);
                     
                     /* currentCategories.toString().includes(action.payload.toString()) && currentCategories.length === action.payload.length; */
