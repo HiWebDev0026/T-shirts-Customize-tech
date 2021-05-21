@@ -14,11 +14,13 @@ function Reviews(props) {
 
   const [input, setInput] = useState({
     content: "",
-   
+    name: "",
+    image: ""
     
+       
   });
 
-console.log(review)
+console.log(input)
 
   useEffect(() => {
 
@@ -28,9 +30,9 @@ console.log(review)
   function handleSubmit() {
 
     if (isAuthenticated) {
-      let userId = userData.sub.split('|')[1]
+
      
-       dispatch(postShirtReview(input, id, userId ));
+       dispatch(postShirtReview(input, id, userData.sub.split('|')[1]));
     }else{
       alert('you must be signed up to post a review')
     }
@@ -41,9 +43,10 @@ console.log(review)
 
   function handleChange(e) {  
     setInput({
-
       ...input,
-      content: e.target.value
+      content: e.target.value,
+      name: userData.name,
+      image: userData.picture
   })}
 
   return (
@@ -76,11 +79,11 @@ console.log(review)
               <div className={style.owl_carousel}>
                 <div className={style.feedback_slider_item}>
                   <img
-            
+                    src={e.image}
                     className="center-block img-circle"
                     alt="Customer Feedback"
                   />
-                  <h3 className={style.customer_name}>User</h3>{
+                  <h3 className={style.customer_name}>{e.name}</h3>{
 
                   }
                   <p>{e.content}</p>
