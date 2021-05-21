@@ -12,7 +12,8 @@ import {
     postOrder,
     putOrder,
     checkLastOrder,
-    createPayment
+    createPayment,
+    setCartItems
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
@@ -82,10 +83,11 @@ export default function Cart (){
 
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
-      }
+    }
     
-    function handleClear(){
-        dispatch(clear())
+    const handleCartChange = (e, operation) => {
+        e.preventDefault();
+        dispatch(setCartItems({}, operation))
     }
 
     
@@ -100,8 +102,8 @@ export default function Cart (){
                     <ul>
                         {
                             items.length>0?
-                            items.slice(offset, offset + INITIAL_PAGE).map(it=>{
-                                return <CartItem  it={it} key={it.index}  className={Style.cartCard}/>      
+                            items.slice(offset, offset + INITIAL_PAGE).map((item, index)=>{
+                                return <CartItem  item={item} key={index} index={index} className={Style.cartCard}/>      
                             })
                         :<p>No selected items</p>
                         }
@@ -128,7 +130,7 @@ export default function Cart (){
                             <Link to='/payment'>
                                 <button>Go to pay</button>
                             </Link>
-                            {items.length >0&&<button onClick={handleClear}>Clear cart</button>}
+                            {items.length >0&&<button onClick={(e) => handleCartChange(e, 'clear')}>Clear cart</button>}
                         </div>
                 </div>
             </div>

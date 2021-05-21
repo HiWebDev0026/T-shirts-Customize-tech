@@ -16,6 +16,7 @@ const LogoutButton = () => {
                         '/user_detail/', 
                         '/add_category', 
                         '/home_admin',
+                        '/favorites',
                       ]
   return (
     <button className={Style.logoutBtn}

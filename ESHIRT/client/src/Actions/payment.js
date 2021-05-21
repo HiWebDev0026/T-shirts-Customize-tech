@@ -1,17 +1,17 @@
 import axios from "axios"
 
-export function createPayment(order){
+export function createPayment(order, shipments){
     return async (dispatch) => {
         order= {
             items:order,
+            shipments,
             back_urls: {
-                "success": "http://localhost:3001/payment/feedback",
-                "failure": "http://localhost:3001/payment/feedback",
-                "pending": "http://localhost:3001/payment/feedback"
+                "success": "http://localhost:3001/home",
+                "failure": "http://localhost:3001/cart",
+                "pending": "http://localhost:3001/home"
             },
             auto_return: 'approved'
         }
-        console.log('entre a la action', order)
         try {
             let response= await axios({
                     method: 'post',
