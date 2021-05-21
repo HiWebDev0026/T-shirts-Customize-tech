@@ -1,0 +1,95 @@
+.container{
+    display: flex;
+    
+    justify-content: center;
+    
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 3vh;
+    border: 2px solid coral;
+}
+
+.form > div{
+    display: flex;
+    color: white;
+    font-size: 3vh;
+    margin: 1vh;
+}
+
+.form > input{
+    display: flex;
+    width: 30vh;
+    height: 5vh;
+    margin: 0.5vh;
+    text-align: center;
+    background: transparent;
+    color: coral;
+    border: 2px solid coral;
+    outline: none;
+}
+
+.form > input:active{
+    display: flex;
+    width: 30vh;
+    height: 5vh;
+    margin: 0.5vh;
+    text-align: center;
+    background: transparent;
+    color: coral;
+    border: 2px solid coral;
+    outline: none;
+}
+
+.form > button{
+    width: 10vh;
+    height: 5vh;
+    background: transparent;
+    transition: ease 0.5s;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid lightgreen;
+    color: lightgreen;
+}
+
+.form > button:hover{
+    background: lightgreen;
+    color: black;
+    border: 2px solid black;
+}
+
+.form > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form > a > img {
+    width: 80%;
+    height: 100%;
+}
+
+.mercadopago{
+    color:white;
+    width: 12vh;
+    height: 6vh;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://http2.mlstatic.com/resources/frontend/landings-mp/images/mercadopago-og.jpg);
+    background-size: cover; 
+    border-radius: 2vh;
+    margin: 1vh;
+}
+
+.inactive{
+    width: 10vh;
+    height: 7vh;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+}

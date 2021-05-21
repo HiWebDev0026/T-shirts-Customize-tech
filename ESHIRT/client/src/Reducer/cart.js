@@ -6,6 +6,10 @@ const initialState={
 
 
 const setCartItems = (cart, item, operation) => {
+    if (operation === 'clear') {
+        return []
+    }
+
     if (cart.length === 0) {
         return (operation === '+' && [...cart, item]) || cart
     }
@@ -20,7 +24,9 @@ const setCartItems = (cart, item, operation) => {
 }
 
 const changeItemSize = (cart, item, index) => {
-    cart[index] = item
+    const newCart = [...cart];
+    newCart[index] = item
+    return newCart
 }
 
 
@@ -136,11 +142,17 @@ const cartReducer = (state=initialState, action) => {
 
             case 'SET_CART_ITEMS':
                 const updatedCart = setCartItems(state.items, action.payload.item, action.payload.operation)
-                localStorage.setItem('items', JSON.stringify(updatedCart))
-                console.log(updatedCart, 'soy updated cart')
+                updatedCart && localStorage.setItem('items', JSON.stringify(updatedCart))
                 return {
                     ...state,
                     items: updatedCart
+                }
+            case 'CHANGE_ITEM_SIZE': 
+                const updatedSize = changeItemSize(state.items, action.payload.item, action.payload.index);
+                updatedSize && localStorage.setItem('items', JSON.stringify(updatedSize))
+                return {
+                    ...state,
+                    items: updatedSize
                 }
                 
         default: return state

@@ -38,8 +38,11 @@ export function clear(){
 }
 
 export function setCartItems (item, operation) {
-    console.log(item, operation, 'soy item y operation')
     return {type: 'SET_CART_ITEMS', payload: {item, operation}}
+}
+
+export function setSizeChanged(item, index) {
+    return {type: 'CHANGE_ITEM_SIZE', payload: {item, index}}
 }
 
 /*************************** API - ACTIONS *****************************/

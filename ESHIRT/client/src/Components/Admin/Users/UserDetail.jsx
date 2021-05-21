@@ -91,6 +91,12 @@ export default function UserDetail ({match}){
                 </div>
                 {edit && <input className={Style.Submit} type='submit' ></input>}
             </form>
+            <NavLink to='/users'>
+            <h5 className={Style.Btn3}>USERS</h5>
+            </NavLink>
+            <NavLink to='/admins'>
+            <h5 className={Style.Btn3}>ADMINISTRATORS</h5>
+            </NavLink>
             <NavLink to='/home_admin'>
             <h4 className={Style.Btn3}>CONTROL PANEL</h4>
             </NavLink>

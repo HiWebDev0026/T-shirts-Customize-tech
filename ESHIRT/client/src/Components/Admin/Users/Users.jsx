@@ -30,7 +30,13 @@ export default function Users() {
     setCount(prevState => prevState + 1)
     alert("User " + e.target.value + " moved to trash");
     dispatch(putUser({status: 'deleted'}, e.target.value)); 
-    
+  };
+
+  function handleAdmin(e) {
+    setCount(prevState => prevState + 1)
+    alert("User " + e.target.value + "is admin now");
+    dispatch(putUser({isAdmin: 'true'}, e.target.value));
+    history.push('/admins')
   };
 
   function getUserId(e) { 
@@ -88,7 +94,7 @@ export default function Users() {
       </div>
       <div className={Style.Users}>
       {users1.length > 0 ? ( users1.map((user) => {
-      if ( user.status !== 'deleted'){
+      if ( user.status !== 'deleted' && user.isAdmin == false){
           return (
               <div className={Style.Tarjet}>
                 <Link to={`/user_detail/${user.id}`}>
@@ -99,6 +105,7 @@ export default function Users() {
                 <p className={Style.Titles}>{user.email}</p>
                 <div className={Style.Contenedores}>
                   <button className={Style.Btn1} value={user.id} onClick={handleEdit}>X</button>
+                  <button className={Style.Btn1} value={user.id} onClick={handleAdmin}>Admin</button>
                 </div>
             </div>
           );
@@ -109,6 +116,9 @@ export default function Users() {
       </div>
     </div>
     <div className={Style.ContBtn3}>
+    <NavLink to='admins'>
+    <h5 className={Style.Btn3}>ADMINISTRATORS</h5>
+    </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>

@@ -30,7 +30,7 @@ export default function Favorites (){
                 <div className={Style.info}>
                 {favorites.length>0?
                 favorites.map(favorite => 
-                    {return<FavoritesItems key={favorite.id} favorite={favorite}/>})
+                    {return<FavoritesItems key={favorite.id} favorite={{...favorite, price:50}}/>})
                 :<p>No items in favorites</p>}
             </div>
             <button id='1' onClick={handleClick}>1</button>

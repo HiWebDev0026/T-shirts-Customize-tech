@@ -3,8 +3,12 @@ import {Route, Switch} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
+<<<<<<< HEAD
 
 
+=======
+import axios from 'axios';
+>>>>>>> c6772b0a796a98e1927a01d314bc029c35117c31
 import Home from './Components/Home/Home.jsx'
 import MainNavBar from './Components/NavBar/MainNavBar.jsx';
 import Catalogue from './Components/Catalogue/Catalogue.jsx';
@@ -42,6 +46,8 @@ import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
+import Admins from './Components/Admin/Users/Admins';
+import ShirtDetail from './Components/Admin/ShirtsAdmin/ShirtDetail';
 
 
 
@@ -52,24 +58,49 @@ function App({location}) {
   
   useEffect(() => {
     let token;
+    let alreadyExists = false;
     (async () => {
-      try {
 
       
+      try {
+
+        
 
         if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
           })
-          const { name, sub, email } = user;
           
+          const { name, sub, email } = user;
           const userToPost ={
             id: sub.split('|')[1],
             name,
             email
           } 
+
+          try {
+
+          const checkDB = await axios({
+              method: 'GET',
+              url: `/user/${userToPost.id}`,
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+          })
+
+          alreadyExists = true;
+          localStorage.setItem('currentToken', token)
+
+        }catch(err) {
+
+          
+          
           dispatch(postUser(userToPost));
           localStorage.setItem('currentToken', token)
+        }
+          
+        
+          
         }
 
         
@@ -77,6 +108,7 @@ function App({location}) {
 
         return console.log(localStorage);
       } catch (e) {
+        
         console.error(e);
       }
     })();
@@ -111,9 +143,11 @@ function App({location}) {
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
+      <ProtectedRoute path= '/admins'  component={Admins}/>
       <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
+      <ProtectedRoute exact path= '/shirt_detail'  component={ShirtDetail}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>

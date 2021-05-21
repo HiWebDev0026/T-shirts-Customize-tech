@@ -9,13 +9,11 @@
 
 .title {
     position: relative;
-    right: 20vh;
     display: flex;
     flex-direction: column;
     border: 2px solid coral;
     text-align: center;
-    margin: 1vh;
-    height: 15vh;
+    height: 125px;
     
 }
 
@@ -30,6 +28,7 @@
 .formContainer {
     margin: 0 auto; 
     width: 70%;
+    height: auto;
 }
 
 .form {
@@ -46,6 +45,9 @@
     color: coral;
     outline: none;
     margin: 1vh;
+    height: 33px;
+    
+    
 }
 
 .form > select > option {
@@ -63,5 +65,5 @@
     border: 2px solid coral;
     background-color: black;
     color: coral;
-    height: 3vh;
+    height: 33px;
 }

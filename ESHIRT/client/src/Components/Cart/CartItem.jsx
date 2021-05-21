@@ -1,13 +1,11 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-    deleteItem, 
-    addOne, 
-    outOne,
-    changeSize,
     postOrder,
     putOrder,
-    checkLastOrder
+    checkLastOrder,
+    setCartItems,
+    setSizeChanged
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
@@ -17,90 +15,79 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import Style from './CartItem.module.css'
 
-export default function CartItem ({it}){
+export default function CartItem ({item, index}){
 
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.cartReducer.items)
-    const orderId = useSelector(state => state.ordersReducer.orderId)
-    const isPosting = useSelector(state => state.ordersReducer.postStarted)
-    const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
-    const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
-    
-    const plus= useRef(null)
-    const minus= useRef(null)
+    const items = useSelector(state => state.cartReducer.items)
+    // const orderId = useSelector(state => state.ordersReducer.orderId)
+    // const isPosting = useSelector(state => state.ordersReducer.postStarted)
+    // const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
+    // const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
-    let sizes=['S','M','L','XL'];
+    const sizes=['S','M','L','XL'];
   
-    useEffect(() => {
-        if (isAuthenticated && !orderIdChecked && !isPosting) {
-        dispatch(checkLastOrder(user.sub.split('|')[1]))
-        }
+//     useEffect(() => {
+//         if (isAuthenticated && !orderIdChecked && !isPosting) {
+//         dispatch(checkLastOrder(user.sub.split('|')[1]))
+//         }
 
-    if (isAuthenticated && orderId === 0 && !isPosting) {
-      dispatch(postOrder(cart, user.sub.split('|')[1]))
-    } else if (isAuthenticated && orderId) {
-      dispatch(putOrder(cart, orderId))
-    }
+//     if (isAuthenticated && orderId === 0 && !isPosting) {
+//       dispatch(postOrder(cart, user.sub.split('|')[1]))
+//     } else if (isAuthenticated && orderId) {
+//       dispatch(putOrder(cart, orderId))
+//     }
   
-  }, [cart, isPosting])
+//   }, [cart, isPosting])
 
-    
-    function handlePlus(e){
-        dispatch(addOne(e.target.id))
+    const handleCartChange = (e, operation) => {
+        e.preventDefault();
+        const item = (e.target.id && items[parseInt(e.target.id)]) || {}
+        dispatch(setCartItems({ 
+            ...item, 
+            amount: 1
+        }, operation))
     }
 
-    function handleMinus(e){
-        dispatch(outOne(e.target.id))
-    }
-
-    function deleteHandler (e){
-        dispatch(deleteItem(it.index));   
-    }
-
-    function sizeChangeHandler(e){
-        console.log('ID', it.id)
-        let newSize=e.target.value;
-        console.log('NEWSIZE', newSize)
-        it.size=newSize;
-        console.log('NEWITEM', it.size)
-        console.log('ITEM', it)
-        dispatch(changeSize(it));
+    const handleSizeChange = (e)  => {
+        e.preventDefault();
+        item.size = e.target.value;
+        dispatch(setSizeChanged(item, e.target.id))
     }
 
     return(
         <li className={Style.cartCard}> 
             <div className={Style.picture}>
-                <img src={it.image} alt={it.title} className={Style.image}/>
+                <img src={item.image} alt={item.title} className={Style.image}/>
             </div>
             <div className={Style.column1}>
                 <div className={Style.detail}>
-                    <div className={Style.name}>{it.title}</div>
-                        <div className={Style.sku}>SKU:{it.id}</div>
+                    <div className={Style.name}>{item.title}</div>
+                        <div className={Style.sku}>SKU:{item.id}</div>
                     </div>
                     <div className={Style.btns}>
-                        <button onClick={deleteHandler}><BsFillTrashFill/></button>
+                        <button onClick={(e) => handleCartChange(e, 'clear')}><BsFillTrashFill/></button>
                         <button><BsFillHeartFill/></button>                     
                     </div>
                 </div>
             <div className={Style.column2}>
-                <div className={Style.price}>${it.price}</div>
+                <div className={Style.price}>${item.price}</div>
             </div>
             <div className={Style.column3}>
                 <div className={Style.size}>
-                    <select name='size' onChange={sizeChangeHandler}required>
+                    <select name='size' onChange={(e) => handleSizeChange(e)}required>
                             {
                                 sizes.map((s)=>{
-                                    return it.size === s?
-                                        <option value={it.size} selected>{s}</option>
+                                    return item.size === s?
+                                        <option value={item.size} selected>{s}</option>
                                         : <option value={s}>{s}</option>
                                 })  
                             }
                     </select>
                 </div>
                 <div className={Style.amount}>
-                    <button id= {it.index} onClick={handlePlus}>+</button>
-                    <div className={Style.qty}>{it.amount}</div>
-                    <button id= {it.index} onClick={handleMinus}>-</button>
+                    <button id= {index} onClick={(e) => handleCartChange(e, '+')}>+</button>
+                    <div className={Style.qty}>{item.amount}</div>
+                    <button id= {index} onClick={(e) => handleCartChange(e, '-')}>-</button>
                 </div>
             </div>
         </li>

@@ -11,13 +11,16 @@ function Reviews(props) {
   const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user
- console.log(userData)
+
   const [input, setInput] = useState({
     content: "",
- 
+    name: "",
+    image: ""
+    
+       
   });
 
-
+console.log(input)
 
   useEffect(() => {
 
@@ -27,17 +30,23 @@ function Reviews(props) {
   function handleSubmit() {
 
     if (isAuthenticated) {
-      
-       dispatch(postShirtReview(input, id, user.sub.split('|')[1]));
+
+     
+       dispatch(postShirtReview(input, id, userData.sub.split('|')[1]));
     }else{
       alert('you must be signed up to post a review')
     }
     
   }
+
+
+
   function handleChange(e) {  
     setInput({
       ...input,
-      content: e.target.value
+      content: e.target.value,
+      name: userData.name,
+      image: userData.picture
   })}
 
   return (
@@ -59,7 +68,7 @@ function Reviews(props) {
             
 
         </div>
-        {review.length>0?
+        {review?.length>0?
         review.map(e =>{
 
         return (
@@ -70,19 +79,21 @@ function Reviews(props) {
               <div className={style.owl_carousel}>
                 <div className={style.feedback_slider_item}>
                   <img
-                    src={userData.picture}
+                    src={e.image}
                     className="center-block img-circle"
                     alt="Customer Feedback"
                   />
-                  <h3 className={style.customer_name}>{userData.name}</h3>
-                  <p>{review[0].content}</p>
+                  <h3 className={style.customer_name}>{e.name}</h3>{
+
+                  }
+                  <p>{e.content}</p>
                 </div>
               </div>
             </div>
           </div>
         )}) :<p className={style.section_title}>No items in review</p>
         }
-        <div></div>
+        
       </div>
     </div>
   );
