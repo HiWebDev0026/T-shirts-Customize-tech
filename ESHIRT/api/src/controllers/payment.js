@@ -38,23 +38,13 @@ async function createPayment(req, res){
 
 async function getPayment(req, res){
     res.send({
-		data: req.body
+		data: req.query
 	})
 }
 
-async function postTest(req, res){
-    let response= await axios.post("https://api.mercadopago.com/users/test_user", { 
-            headers: {
-                'Authorization': 'Bearer TEST-2227013032753070-051817-2feef739fe7c323a328a34884afd3072-214410275',
-                'Content-Type': 'application/json'
-            },
-            data: {site_id:"MLA"}
-    })
-    res.send(response.response)
-}
+
 
 module.exports={
     createPayment,
-    postTest,
     getPayment
 }
