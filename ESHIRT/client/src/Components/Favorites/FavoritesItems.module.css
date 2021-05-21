@@ -1,7 +1,7 @@
 .card{
     border: solid 2px orange;
     width: 200px;
-    height: 320px;
+    height: 350px;
     margin:2px;
 }
 
@@ -18,11 +18,19 @@
 .card img{
     border: solid 2px blueviolet;
     width: 100%;
+    height:auto;
 }
+
+.card h5{
+    color: white;
+} 
 
 .btns button{
     border: solid 2px red;
     font-size: 7px;;
-    width: 70px;
+    width: 40px;
+    height: 15px;;
     margin:0;
 }
+
+
