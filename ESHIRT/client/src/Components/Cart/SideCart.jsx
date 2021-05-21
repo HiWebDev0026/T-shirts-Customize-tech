@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect} from 'react'
-//import { useAuth0} from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
 
 import { 
@@ -18,24 +18,9 @@ export function SideCart(){
     const dispatch= useDispatch()
     
     const items= useSelector(state => state.cartReducer.items)
-    // const cart = useSelector(state => state.cartReducer.items)
-    // const orderId = useSelector(state => state.ordersReducer.orderId)
-    // const isPosting = useSelector(state => state.ordersReducer.postStarted)
-    // const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
-    // const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
-  
-    // useEffect(() => {
-    //     if (isAuthenticated && !orderIdChecked && !isPosting) {
-    //         dispatch(checkLastOrder(user.sub.split('|')[1]))
-    //     }
-
-    //     if (isAuthenticated && orderId === 0 && !isPosting) {
-    //         dispatch(postOrder(cart, user.sub.split('|')[1]))
-    //     } else if (isAuthenticated && orderId) {
-    //         console.log(localStorage)
-    //         dispatch(putOrder(cart, orderId))
-    //     }
-    // }, [cart, isPosting])
+    const cart = useSelector(state => state.cartReducer.items)
+    const orderId = useSelector(state => state.ordersReducer.orderId)
+    const {isAuthenticated} = useAuth0();
 
     const handleCartChange = (e, operation) => {
         e.preventDefault();
@@ -43,7 +28,15 @@ export function SideCart(){
         dispatch(setCartItems({ 
             ...item, 
             amount: 1
-        }, operation))
+        }, operation));
+        if (isAuthenticated) {
+            if (operation === '+') {
+                operation = 'add'
+            } else if (operation === '-') {
+                operation = 'remove'
+            }
+            dispatch(putOrder([...cart, item], orderId, operation))
+        } 
     }
     
     return (
