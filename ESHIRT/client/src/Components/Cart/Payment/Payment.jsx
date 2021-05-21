@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
 import { createPayment } from '../../../Actions';
 
-//import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-//const {PUBLIC_KEY} = process.env
+// import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+// const {PUBLIC_KEY} = process.env
 
 function Payment() {
     
