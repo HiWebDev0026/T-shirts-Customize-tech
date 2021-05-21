@@ -17,12 +17,19 @@ const reviewsReducer = (state=initialState, action) => {
             }
 
         case 'POST_SHIRT_REVIEW':
-           
+
+        
+        
             return {
                 ...state,
-                reviews: [...state.reviews, action.payload],
+                reviews: [...state, action.payload],
             }
-
+        // case 'GET_ORDERS_BY_USER':
+        //         let cart=action.payload.filter(item => item.status === 'CART')
+        //         return {
+        //             ...state,
+        //             orderId: cart[0].id
+        //         }
         case 'DELETE_':
             return {
                 ...state,
