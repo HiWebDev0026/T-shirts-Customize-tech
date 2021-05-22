@@ -109,7 +109,18 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </a>
 
           </div>
-        
+          <p class={style.clasificacion}>
+                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star}/>
+                  <label for="radio1">★</label>
+                  <input id="radio2" type="radio" name="star" value="4" className={style.star}/>
+                  <label for="radio2">★</label>
+                  <input id="radio3" type="radio" name="star" value="3"className={style.star}/>
+                  <label for="radio3">★</label>
+                  <input id="radio4" type="radio" name="star" value="2"className={style.star}/>
+                  <label for="radio4">★</label>
+                  <input id="radio5" type="radio" name="star" value="1" className={style.star}/>
+                  <label for="radio5">★</label>
+                </p>
           <NavLink to={`/shirt/${id}/review`}>
 
                 <button className="boton">Reviews</button>

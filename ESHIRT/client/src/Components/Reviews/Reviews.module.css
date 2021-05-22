@@ -94,6 +94,46 @@ img {
 	font-size: 12px;
 }
 
+/*star ranquing */ 
+#form {
+	width: 250px;
+	margin: 0 auto;
+	height: 50px;
+  }
+  
+  #form p {
+	text-align: center;
+  }
+  
+  #form label {
+	font-size: 20px;
+  }
+  
+  input[type="radio"] {
+	display: none;
+  }
+  
+  label {
+	color: rgb(128, 128, 128);
+  }
+  
+  .clasificacion {
+    display:flex;
+    justify-content:flex-end;
+	direction: rtl;
+	unicode-bidi: bidi-override;
+	font-size: 50px;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+	color: coral;
+  }
+  
+  input[type="radio"]:checked ~ label {
+	color: coral;
+  }
+
 /* GREY BACKGROUND COLOR OF THE ACTIVE SLIDER */
 .feedback_slider_item:after {
 	content: "";
