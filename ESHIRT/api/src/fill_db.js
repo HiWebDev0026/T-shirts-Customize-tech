@@ -288,13 +288,13 @@ const order1 = [
     {
         "shirtId": "2",
         "size": "M",
-        "amount": "3",
-        "price": "250"
+        "amount": "1",
+        "price": "50"
     },
     {
         "shirtId": "1",
         "size": "S",
-        "amount": "3",
+        "amount": "2",
         "price": "50"
     }
 ]
@@ -304,13 +304,55 @@ const order2 = [
         "shirtId": "4",
         "size": "XL",
         "amount": "1",
-        "price": "150"
+        "price": "50"
     },
     {
         "shirtId": "4",
         "size": "S",
         "amount": "3",
-        "price": "200"
+        "price": "50"
+    },
+    {
+        "shirtId": "5",
+        "size": "S",
+        "amount": "2",
+        "price": "50"
+    }
+]
+
+const order3 = [
+    {
+        "shirtId": "4",
+        "size": "XL",
+        "amount": "1",
+        "price": "50"
+    },
+    {
+        "shirtId": "4",
+        "size": "S",
+        "amount": "4",
+        "price": "50"
+    },
+    {
+        "shirtId": "5",
+        "size": "S",
+        "amount": "2",
+        "price": "50"
+    }
+]
+
+const order4 = [
+    {
+        "shirtId": "4",
+        "size": "XL",
+        "amount": "3",
+        "price": "50"
+    },
+    {
+        "shirtId": "4",
+        "size": "S",
+        "amount": "4",
+        "price": "50"
     },
     {
         "shirtId": "5",
@@ -398,17 +440,27 @@ async function fillDB () {
     await shirtPosted14.addCategory(categoryPosted5.id);
     const shirtPosted15 = await Shirt.create({...shirt15, created_by_user: true});
     await shirtPosted15.addCategory(categoryPosted4.id);
-    const orderPosted1 = await Order.create({status: 'CART', total_price: 300, userId: "105677628845670307410"})
+
+    const orderPosted1 = await Order.create({status: 'APPROVED', total_price: 150, userId: "105677628845670307410"})
     for (const detail of order1) {
         detail.orderId = orderPosted1.id
         await Detail.create(detail)
     }
-    const orderPosted2 = await Order.create({status: 'CART', total_price: 400, userId: "105677628845670307411"})
+    const orderPosted2 = await Order.create({status: 'DISPATCHED', total_price: 300, userId: "105677628845670307411"})
     for (const detail of order2) {
         detail.orderId = orderPosted2.id
         await Detail.create(detail)
     }
-
+    const orderPosted3 = await Order.create({status: 'PENDING', total_price: 350, userId: "105677628845670307411"})
+    for (const detail of order3) {
+        detail.orderId = orderPosted3.id
+        await Detail.create(detail)
+    }
+    const orderPosted4 = await Order.create({status: 'CANCELED', total_price: 450, userId: "105677628845670307411"})
+    for (const detail of order4) {
+        detail.orderId = orderPosted4.id
+        await Detail.create(detail)
+    }
     } catch (err) {
         console.log(err)
     }

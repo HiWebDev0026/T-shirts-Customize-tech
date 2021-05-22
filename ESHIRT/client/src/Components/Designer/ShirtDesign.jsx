@@ -14,8 +14,9 @@ function ShirtDesign(props) {
         useEffect(()=> {
                         let imgBlob = new Image();
                         imgBlob.src = img;
+                     
 
-                        console.log(imgBlob);
+                       
 
                 
         let canvas = new fabric.StaticCanvas('canvas', {
@@ -40,16 +41,42 @@ function ShirtDesign(props) {
 
                     if(data!==null) {
                         /* return convertToHTMLElement(data, canvas) */
-                        const inputImage = new fabric.Image(data, {
-
+                        let MAX_WIDTH = 170;
+                        let MAX_HEIGHT = 268;
+                        const inputImage = new fabric.Image(data, data.width > data.height && data.width > MAX_WIDTH ? {
                                 
+                                scaleX: MAX_WIDTH/data.width,
+                                scaleY: MAX_HEIGHT/data.height - MAX_WIDTH/data.width,
+                             /*    width: MAX_WIDTH,
+                                height: data.height*MAX_WIDTH/data.width, */
+                                objectCaching: true,
+                                visible: true,
+                                left: 86,
+                                top: 115,
+                                    
+                        } : data.height > MAX_HEIGHT ? {
+
+                                scaleX: MAX_WIDTH/data.width,
+                                scaleY: MAX_HEIGHT/data.height - (MAX_WIDTH/data.width*(MAX_HEIGHT/data.height)),
+                                objectCaching: true,
+                                visible: true,
+                                left: 86,
+                                top: 115,
+                        } : {
+                                width: 140,
+                                height: 120,
+                                objectCaching: true,
+                                visible: true,
                                 left: 86,
                                 top: 120,
-                                    
-                        }).scale(1);
+
+                        })
+                        
+
+                
                         
                         
-                        inputImage.scaleToWidth(data.width/data.height > 1.5 ? 100 : data.width/data.height <= 1.15 ? 170 : 121, true).scaleToHeight(data.width/data.height > 1.5 ? 100: data.width/data.height <= 1.15 ? 170 : 121, true)
+                        
                         console.log(data.width, data.height);
                         canvas.add(inputImage);
 
@@ -72,13 +99,15 @@ function ShirtDesign(props) {
         }, [data]) */
 
         const convertToHTMLElement = async (file)=> {
-                
+
                 const reader = new FileReader();
 
                 reader.onload = function(e)  {
-
+                        
                         const imgUploaded = new Image();
                         imgUploaded.src = e.target.result;
+                        
+                      
                         setData(imgUploaded);
                 }
 
