@@ -4,16 +4,22 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import FavoritesItems from './FavoritesItems.jsx';
 import {getShirts,postFavorite,getFavorites} from '../../Actions/index.js';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import Style from './Favorites.module.css'
 
 export default function Favorites (){
 
+    const {user}=useAuth0();
+
+    const userId = user.sub.split('|')[1]
+    console.log('USER',userId)
+
     const dispatch=useDispatch();
 
     useEffect(async ()=>{
         await dispatch(getShirts());
-        dispatch(getFavorites('105677628845670307414'));
+        dispatch(getFavorites(userId));
     },[]);
 
  
@@ -21,7 +27,7 @@ export default function Favorites (){
     
     function handleClick (e){
         console.log('ID',e.target.id)
-        dispatch(postFavorite('105677628845670307414',{shirtId:e.target.id}));
+        dispatch(postFavorite(userId,{shirtId:e.target.id}));
     }
     
     return(

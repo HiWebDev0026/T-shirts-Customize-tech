@@ -6,7 +6,7 @@ export function getShirts(status){
         try {
             const res= await axios.get(!status ? `/shirt` : `/shirt?status=${status}`, {responseType: 'json'});
             const shirts = res.data;
-            console.log(res);
+            /* console.log(res); */
             dispatch({type: 'GET_SHIRTS', payload: shirts})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
@@ -46,12 +46,14 @@ export function getShirtById(shirtId){
 export function postShirt(shirt){
 
     return async (dispatch) => {
-        try {console.log(shirt)
+        try {/* console.log(shirt) */
             const res = await axios.post(`/shirt`, shirt, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             const newShirt = res.data
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
+            const postFavorite = await axios.post(`/favorites/${shirt.userId}`, {shirtId: newShirt.id});
+            dispatch({type: 'POST_FAVORITE', payload: postFavorite.data})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})

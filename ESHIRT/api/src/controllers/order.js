@@ -107,9 +107,13 @@ async function getOrder (req, res, next) {
 async function getOrdersByUserId (req, res, next) {
     const userId = req.params.userId.toString();
     try {
-        const user = await User.findOne({where: {id: userId}});
-        if (!user) {throw {status: 404, message: 'User not found'}};
+        const user = await User.findOne({where: {id: userId}, include:[Order]});
+        
         const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})
+        console.log(user);
+        if (!user) {throw {status: 404, message: 'User not found'}}
+      // Si rompe, chequea la linea de abajo
+        // const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})
         return res.status(200).json(orders)
     } catch (err) {
         return next(err)
@@ -123,6 +127,7 @@ async function putOrder (req, res, next) {
     const item = newOrder.splice(newOrder.length - 1, 1)
     const operation = req.query.operation
     try {
+        console.log(newOrder, orderId, operation)
         const oldOrder = await Order.findOne({where: {id: orderId}})
         if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
         if (oldOrder.status === 'CANCELED' || oldOrder.status === 'DONE') {
@@ -130,7 +135,7 @@ async function putOrder (req, res, next) {
         }
 
         //validateOrder(newOrder)
-
+        
         const details = await Detail.findAll({where: {orderId: orderId}})
         const modifiedOrder = setOrderItems(newOrder, item[0], operation)
         

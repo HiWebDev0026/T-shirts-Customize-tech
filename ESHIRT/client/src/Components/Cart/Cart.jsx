@@ -6,18 +6,15 @@ import ReactPaginate from 'react-paginate';
 import {useHistory} from 'react-router-dom'
 
 import {
-    clear,
     getOrdersByUserId,
     getOrderById,
-    postOrder,
     putOrder,
-    checkLastOrder,
     createPayment,
     setCartItems
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Cart (){
     
@@ -43,12 +40,20 @@ export default function Cart (){
     const INITIAL_PAGE= 4;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
-
-    const {isAuthenticated}=useAuth0();
+    
+    const {isAuthenticated, user}=useAuth0();
 
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
-    },[items])
+       
+         /*    if (isAuthenticated) {
+              dispatch(checkLastOrder(user.sub.split('|')[1]))
+              setHasChecked(true);
+            }
+        
+            return ()=> setHasChecked(false);
+          */
+    },[items, isAuthenticated])
 
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
@@ -57,6 +62,9 @@ export default function Cart (){
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         dispatch(setCartItems({}, operation))
+        if (isAuthenticated) {
+            dispatch(putOrder([], orderId, 'clear'))
+        }
     }
                                 
     //para cada item dentro de items, si !items.image

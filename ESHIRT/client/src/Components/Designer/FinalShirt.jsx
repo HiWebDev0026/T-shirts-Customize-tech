@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import FinalCSS from './FinalShirt.module.css';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
-import { postShirt, resetErrors } from '../../Actions/index.js';
+import { postShirt, resetErrors, postFavorite } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {getCategories} from '../../Actions/index';
@@ -86,7 +86,7 @@ export default function FinalShirt(props) {
     } */
         
 
-    function handleSubmit (e, phase) {
+    async function handleSubmit (e, phase) {
         
         e.preventDefault();
         console.log('\n\n\n', 'BEFORE SENDING:', input);
@@ -102,7 +102,8 @@ export default function FinalShirt(props) {
                         model: phase.modelSelected.data,
                         categories: input.categories,
                     }
-                ));
+                ))
+               
 
                 return;
         } else {
@@ -130,7 +131,8 @@ export default function FinalShirt(props) {
                     <div>
                         <label for="categories"> The category of your shirt: </label>
                         <select onChange={handleChange} name="categories">
-                            {categories.map((elem, index) => (<option value={elem.id} key={index}>{elem.name}</option>))}
+                            {categories.map((elem, index) => 
+                            (<option value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
                     </div>
                     <div className={FinalCSS.Desing}> Do you want to share your design?</div>
@@ -138,9 +140,6 @@ export default function FinalShirt(props) {
                     <input type="radio" name="public" value="pending" onChange= {handleChange}/>
                     <label className={FinalCSS.Desing2}>No</label>
                     <input type="radio" name="public" value="false" onChange= {handleChange}/>
-                   
-                    
-
                         <input type="submit" />
                     </form>
                 </div>

@@ -42,6 +42,8 @@ import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
+import ShirtDetail from './Components/Admin/ShirtsAdmin/ShirtDetail';
+import Admins from './Components/Admin/Users/Admins';
 
 
 
@@ -57,7 +59,7 @@ function App({location}) {
 
       
 
-        if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
+        if(isAuthenticated){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
           })
@@ -68,19 +70,42 @@ function App({location}) {
             name,
             email
           } 
-          dispatch(postUser(userToPost));
-          localStorage.setItem('currentToken', token)
+
+                try {
+
+                    const checkDB = await axios({
+                        method: 'GET',
+                        url: `/user/${userToPost.id}`,
+                        headers: {
+                          Authorization: `Bearer ${token}`
+                        }
+                    })
+
+                    alert(`Welcome Back ${name}`);
+                  
+
+              }catch(err) {
+                
+                  dispatch(postUser(userToPost));
+                  alert(`Welcome to our website ${name}`)
+                  
+
+              }
+              localStorage.setItem('currentToken', token)
+          
         }
 
-        
-        
 
-        return console.log(localStorage);
+        return;
       } catch (e) {
         console.error(e);
+        alert('Error on login:', e)
+
       }
     })();
 
+    return ()=> localStorage.removeItem('currentToken')
+    
 
   }, [isAuthenticated, localStorage.currentToken]);
 
@@ -112,9 +137,11 @@ function App({location}) {
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
+      <ProtectedRoute path= '/admins'  component={Admins}/>
       <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
+      <ProtectedRoute exact path= '/shirt_detail'  component={ShirtDetail}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>

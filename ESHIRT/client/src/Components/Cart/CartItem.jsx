@@ -1,16 +1,14 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-    postOrder,
     putOrder,
-    checkLastOrder,
     setCartItems,
     setSizeChanged
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
-import { FaEdit } from "react-icons/fa";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+//import { FaEdit } from "react-icons/fa";
+import { useAuth0} from "@auth0/auth0-react";
 
 
 import Style from './CartItem.module.css'
@@ -19,35 +17,29 @@ export default function CartItem ({item, index}){
 
     const dispatch = useDispatch();
     const items = useSelector(state => state.cartReducer.items)
-    // const orderId = useSelector(state => state.ordersReducer.orderId)
-    // const isPosting = useSelector(state => state.ordersReducer.postStarted)
-    // const orderIdChecked = useSelector(state => state.ordersReducer.lastOrderChecked)
-    // const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+    const orderId = useSelector(state => state.ordersReducer.orderId)
+    const {isAuthenticated} = useAuth0();
 
     const sizes=['S','M','L','XL'];
   
-//     useEffect(() => {
-//         if (isAuthenticated && !orderIdChecked && !isPosting) {
-//         dispatch(checkLastOrder(user.sub.split('|')[1]))
-//         }
-
-//     if (isAuthenticated && orderId === 0 && !isPosting) {
-//       dispatch(postOrder(cart, user.sub.split('|')[1]))
-//     } else if (isAuthenticated && orderId) {
-//       dispatch(putOrder(cart, orderId))
-//     }
-  
-//   }, [cart, isPosting])
-
-
-
-    const handleCartChange = (e, operation) => {
+    const handleCartChange = (e, operation, trash) => {
+        console.log(trash)
         e.preventDefault();
-        const item = (e.target.id && items[parseInt(e.target.id)]) || {}
+        let auxOperation = null
+        if (isAuthenticated) {
+            if (operation === '+') {
+                auxOperation = 'add'
+            } else if (operation === '-') {
+                auxOperation = 'remove'
+            }
+            const actualAmount = item.amount
+            console.log(actualAmount)
+            dispatch(putOrder([...items.map(i => { return {...i}}), {...item, amount: (trash && actualAmount) || 1}], orderId, auxOperation))
+        } 
         dispatch(setCartItems({ 
             ...item, 
-            amount: 1
-        }, operation))
+            amount: (trash && item.amount) || 1
+        }, operation));
     }
 
     const handleSizeChange = (e)  => {
@@ -67,7 +59,7 @@ export default function CartItem ({item, index}){
                         <div className={Style.sku}>SKU:{item.id}</div>
                     </div>
                     <div className={Style.btns}>
-                        <button onClick={(e) => handleCartChange(e, 'clear')}><BsFillTrashFill/></button>
+                        <button onClick={(e) => handleCartChange(e, '-', 'trash')}><BsFillTrashFill/></button>
                         <button><BsFillHeartFill/></button>                     
                     </div>
                 </div>

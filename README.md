@@ -9,9 +9,10 @@
  - [x] ~~b) asignación de categorías disponibles;~~
 
           
- - [ ] c) centrar las imágenes en la remera (ancho  120px);
+ - [x] ~~c) centrar las imágenes en la remera (ancho  120px);~~
+ 
 
-   
+ - [x] ~~d) al crear la remera, agregarla inmediatamente a favoritos~~  
 
 ### 2) Filtro de categorías => 
 

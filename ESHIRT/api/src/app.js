@@ -6,7 +6,8 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const path = require('path');
 const {createProxyMiddleware} = require('http-proxy-middleware')
-const mercadopago= require('mercadopago')
+const mercadopago= require('mercadopago');
+const { default: axios } = require('axios');
 const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
 
 require('./db.js');
@@ -26,6 +27,24 @@ server.options('*', cors(corsOptions));
 mercadopago.configure({
   access_token: ACCESS_TOKEN
 });
+/////////////////////////////////////////////////////////
+
+//////////////////////// PAYMENT UPDATE /////////////////
+async function paymentUpdate(){
+  let response= await axios('http://localhost:3001/orders')
+
+  /* 
+    Aca tenemos que iterar todas las ordenes y por cada
+    una, hacer un getPayment para consultar el estado
+    del pago. Con ese status que nos traemos, hay que 
+    hacer un modifyOrder para modificar el status de esa
+    orden.
+    Esto lo vamos a hacer cada 15 min para ir actualizanado
+    el status de todas las ordenes, ya que no tenemos forma
+    de que mercadopago nos avise cuando hay un cambio en el
+    estado del pago
+  */
+}
 /////////////////////////////////////////////////////////
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
