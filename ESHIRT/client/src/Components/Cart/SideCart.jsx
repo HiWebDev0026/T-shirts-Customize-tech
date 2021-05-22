@@ -1,13 +1,10 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {useState, useEffect} from 'react'
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
 
 import { 
-    postOrder,
     putOrder,
-    checkLastOrder,
     setCartItems 
 } from '../../Actions/index';
 import style from './SideCart.module.css'
@@ -25,18 +22,21 @@ export function SideCart(){
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
+        let auxOperation = null
+        if (isAuthenticated) {
+            if (operation === '+') {
+                auxOperation = 'add'
+            } else if (operation === '-') {
+                auxOperation = 'remove'
+            } else {
+                auxOperation = 'clear'
+            }
+            dispatch(putOrder([...cart.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
+        } 
         dispatch(setCartItems({ 
             ...item, 
             amount: 1
         }, operation));
-        if (isAuthenticated) {
-            if (operation === '+') {
-                operation = 'add'
-            } else if (operation === '-') {
-                operation = 'remove'
-            }
-            dispatch(putOrder([...cart, item], orderId, operation))
-        } 
     }
     
     return (

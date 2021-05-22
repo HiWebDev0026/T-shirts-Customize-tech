@@ -6,18 +6,15 @@ import ReactPaginate from 'react-paginate';
 import {useHistory} from 'react-router-dom'
 
 import {
-    clear,
     getOrdersByUserId,
     getOrderById,
-    postOrder,
     putOrder,
-    checkLastOrder,
     createPayment,
     setCartItems
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Cart (){
     
@@ -34,7 +31,7 @@ export default function Cart (){
 
     const [currentPage, setCurrentPage] = useState(0);
     const items = useSelector((state)=>state.cartReducer.items);
-    const orderId = useSelector((state)=>state.cartReducer.orderId);
+    const orderId = useSelector(state => state.ordersReducer.orderId)
     
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
@@ -56,6 +53,9 @@ export default function Cart (){
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         dispatch(setCartItems({}, operation))
+        if (isAuthenticated) {
+            dispatch(putOrder([], orderId, 'clear'))
+        }
     }
 
     return(

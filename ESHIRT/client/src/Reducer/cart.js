@@ -1,6 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
-
 const initialState={
     items:  JSON.parse(localStorage.getItem('items')) || [],
     hasChecked: false
@@ -83,7 +80,6 @@ const cartReducer = (state=initialState, action) => {
                 if (!state.hasChecked) {
                     const modifiedCart = loadCartFromBack(state.items, action.payload)
                     modifiedCart && localStorage.setItem('items', JSON.stringify(modifiedCart))
-                    console.log(modifiedCart, 'soy modified cart!')
                     return {
                         ...state,
                         items: modifiedCart,
