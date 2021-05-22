@@ -39,7 +39,10 @@ export default function Sales() {
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 
   let sales = filtered.length > 0 ? filtered : sale
-  let statusSales= ['CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
+  let statusSales= ['', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
+  let statusSales2= ['',  'DISPATCHED', 'DONE', 'CANCELED']
+  
+  
   useEffect(() => {
     switch(order){
       case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
@@ -61,7 +64,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
 <div className="searchs">
-
+<h2>FILTER BY STATUS</h2>
         <select onChange={handleFilter}className="type1">
           {statusSales.map((temp) => {
             return <option value={temp}>{temp} </option>; //Template
@@ -85,7 +88,11 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
                     return <tr>
                                   <th> {s.id}</th>
                                   <th> {s.total_price}</th>
-                                  <th> {s.status}</th>
+                                  <select onChange={handleFilter}className="type1">
+          {statusSales2.map((temp) => {
+            return <option value={temp}> --- {s.status} --- {temp} </option>; //Template
+          })}
+        </select>
                                   <th> {s.createdAt.slice(0,10)}</th>
                                   <th> {s.updateAt?.slice(0,10)}</th>
                                   <th> {s.userId}</th>
