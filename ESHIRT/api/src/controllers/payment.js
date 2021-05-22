@@ -3,6 +3,7 @@ const {ACCESS_TOKEN, PUBLIC_KEY}= process.env
 const axios= require('axios');
 const { getReviews } = require('./review');
 const { getMaxListeners, put } = require('../app');
+const { Order }= require('../db')
 
 async function createPayment(req, res){
     
@@ -31,8 +32,14 @@ async function createPayment(req, res){
     let order= req.body
     console.log(order)
     let response= await mercadopago.preferences.create(order)
-    console.log(response)
-    
+    /* console.log(order.payer.identification.number)
+    let modify= await Order.findOne({
+        where: {
+            id: parseInt(order.payer.identification.number) // Esto es el orderID
+        }
+    })
+    modify.paymentId= response.data.response.id // Esto es el id del payment
+    console.log(modify) */
     res.send(response)
     }
     catch(error){}
@@ -41,8 +48,7 @@ async function createPayment(req, res){
 async function getPayment(req, res){
     try {
         let id= req.params.id
-        let status= req.query.status
-        let response= await mercadopago.get(`/v1/payments/search`, {'status': status}, {"external_reference":id})
+        let response= await mercadopago.get(`/v1/payments/search`, {"external_reference":id})
         res.json(response)
     }
     catch(error){}
