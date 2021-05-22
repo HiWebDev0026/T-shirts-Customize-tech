@@ -48,8 +48,8 @@ img {
 }
 
 .customer_name {
-	margin-top: 15px;
-	margin-bottom: 25px;
+	margin-top: -15px;
+	margin-bottom: -15px;
 	font-size: 20px;
 	font-weight: 500;
 }

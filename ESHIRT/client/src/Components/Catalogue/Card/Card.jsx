@@ -15,9 +15,11 @@ import {
   postOrder,
   putOrder
 } from "../../../Actions/index.js";
+import { getShirtReview } from '../../../Actions/index.js'
+
 
 function Card({ title, score, price, size, model, color, image, id }) {
-  
+  const review = useSelector((state) => state.reviewsReducer.reviews);
   const cart = useSelector(state => state.cartReducer.items)
   const orderId = useSelector(state => state.ordersReducer.orderId)
   const isPosting = useSelector(state => state.ordersReducer.postStarted)
@@ -70,6 +72,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
   //   }
   
   // }, [localStorage])
+  useEffect(() => {
+    dispatch(getShirtReview(id))
+  }, [])
 
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)
@@ -114,7 +119,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </a>
            
           </div>
-
+        
           <NavLink to={`/shirt/${id}/review`}>
 
                 <button className="boton">Reviews</button>
@@ -162,7 +167,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
               
               
             </div>
-            
+           
           </div>
          
         </div>

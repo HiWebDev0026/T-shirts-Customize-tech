@@ -4,6 +4,8 @@ import { getShirtReview, postShirtReview } from "../../Actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useAuth0} from "@auth0/auth0-react";
+import axios from 'axios';
+
 
 function Reviews(props) {
   const dispatch = useDispatch();
@@ -20,19 +22,20 @@ function Reviews(props) {
        
   });
 
-console.log(input)
+
 
   useEffect(() => {
 
     dispatch(getShirtReview(id));
   }, []);
 
-  function handleSubmit() {
-
+  function handleSubmit(e) {
+    e.preventDefault()
     if (isAuthenticated) {
-
+     
      
        dispatch(postShirtReview(input, id, userData.sub.split('|')[1]));
+       
     }else{
       alert('you must be signed up to post a review')
     }
@@ -41,14 +44,24 @@ console.log(input)
 
 
 
-  function handleChange(e) {  
-    setInput({
-      ...input,
-      content: e.target.value,
-      name: userData.name,
-      image: userData.picture
-  })}
 
+  
+
+
+
+function handleChange(e) {
+  const content = e.target.value;
+  const name = userData.name
+  const image = userData.picture
+  setInput({
+      ...input,
+         content,
+         name,
+         image
+  });
+}
+console.log(input)
+//
   return (
     <div className={style.customer_feedback}>
       <div className={style.container - style.text_center}>
@@ -62,20 +75,18 @@ console.log(input)
           <p> 
           <textarea className="b3" name="steps" rows="10" cols="50"onChange={handleChange} required></textarea>
           </p>
-          <input type="submit" value="SUBMIT" className="boton1"/>
+          <input type="submit" value='SUBMIT' className="boton1"/>
           </form>
            
             
 
         </div>
-        {review?.length>0?
-        review.map(e =>{
+        {review.length !== 0  ?
+        review?.map(e =>{
 
         return (
-          <div className={style.row}>
-            <div
-              className={
-                style.col_md_offset_3}>
+          <div className={style.row} key={review.id}>
+            <div className={style.col_md_offset_3}>
               <div className={style.owl_carousel}>
                 <div className={style.feedback_slider_item}>
                   <img
@@ -83,16 +94,14 @@ console.log(input)
                     className="center-block img-circle"
                     alt="Customer Feedback"
                   />
-                  <h3 className={style.customer_name}>{e.name}</h3>{
-
-                  }
+                  <h3 className={style.customer_name}>{e.name}</h3>
                   <p>{e.content}</p>
                 </div>
               </div>
             </div>
           </div>
-        )}) :<p className={style.section_title}>No items in review</p>
-        }
+        )}) 
+         : <p>no hay nada</p>}
         
       </div>
     </div>
