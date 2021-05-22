@@ -51,13 +51,12 @@ function App({location}) {
   
   useEffect(() => {
     let token;
-
     (async () => {
       try {
 
       
 
-        if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
+        if(isAuthenticated){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
           })
@@ -68,7 +67,6 @@ function App({location}) {
             name,
             email
           } 
-
 
                 try {
 
@@ -92,7 +90,6 @@ function App({location}) {
               }
               localStorage.setItem('currentToken', token)
           
-
         }
 
 
@@ -104,6 +101,8 @@ function App({location}) {
       }
     })();
 
+    return ()=> localStorage.removeItem('currentToken')
+    
 
   }, [isAuthenticated, localStorage.currentToken]);
 
