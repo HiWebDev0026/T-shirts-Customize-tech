@@ -97,7 +97,7 @@ console.log(review)
           </form>
        
         </div>
-        { review.id?.length > 0 &&
+        { review.length > 2 ?
           review.map((e) => {
             return (
               <div className={style.row} key={review.id}>              
@@ -116,7 +116,7 @@ console.log(review)
                 </div>
               </div>
             );
-          })
+          }) : <p>no hay nada</p>
          }
       </div>
     </div>

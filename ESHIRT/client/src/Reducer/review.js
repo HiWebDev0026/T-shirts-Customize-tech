@@ -3,7 +3,8 @@ import {
 } from './helpers'
 
 const initialState = {
-    reviews: []
+    reviews: [],
+    star: []
 }
 
 const reviewsReducer = (state=initialState, action) => {
@@ -22,12 +23,12 @@ const reviewsReducer = (state=initialState, action) => {
                 ...state,
                 reviews: [...state, action.payload],
             }
-        // case 'GET_ORDERS_BY_USER':
-        //         let cart=action.payload.filter(item => item.status === '')
-        //         return {
-        //             ...state,
-        //             orderId: cart[0].id
-        //         }
+        case 'GET_SHIRT_BY_SCORE':
+                
+                return {
+                    ...state,
+                    star: action.payload
+                }
         case 'DELETE_':
             return {
                 ...state,
