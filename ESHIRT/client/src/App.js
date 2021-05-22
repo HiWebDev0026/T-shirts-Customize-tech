@@ -1,5 +1,5 @@
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
@@ -16,6 +16,7 @@ import RecoveryAccount from './Components/RecoveryAccount/RecoveryAccount';
 import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
+import UserEdit from './Components/Dashboard/User/UserEdit';
 import ProtectedRoute from './auth/ProtectedRoute';
 import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
@@ -28,7 +29,9 @@ import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
-import AdminDashboard from './Components/Dashboard/AdminDashboard';
+import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
+import UserDashboard from './Components/Dashboard/User/UserDashboard';
+import UserData from './Components/Dashboard/User/UserData';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 
@@ -38,32 +41,27 @@ import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
-import Admins from './Components/Admin/Users/Admins';
-import ShirtDetail from './Components/Admin/ShirtsAdmin/ShirtDetail';
 
 
 
-function App() {
+function App({location}) {
 
   const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   const dispatch = useDispatch();
   
   useEffect(() => {
     let token;
-    
     (async () => {
-
-      
       try {
 
-        
+      
 
-        if(isAuthenticated && !localStorage.hasOwnProperty('currentToken') || localStorage.currentToken === "undefined"){
+        if(isAuthenticated){
           token = await getAccessTokenSilently({
             audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
           })
-          
           const { name, sub, email } = user;
+          
           const userToPost ={
             id: sub.split('|')[1],
             name,
@@ -97,21 +95,29 @@ function App() {
 
         return;
       } catch (e) {
-        
         console.error(e);
         alert('Error on login:', e)
 
       }
     })();
 
+    return ()=> localStorage.removeItem('currentToken')
+    
 
   }, [isAuthenticated, localStorage.currentToken]);
 
 
   return (
-    <div className= 'App'>
-      <Route path= '/' component={MainNavBar}/>  
-      <Route exact path= '/' component={Landing}/>  
+    <div>
+      <Switch >
+
+      <Route exact path= '/' component={Landing}/>
+      <div className= 'App' >
+      <MainNavBar />  
+      {/* <Route path= '/' component={MainNavBar}/>   */}
+      <ProtectedRoute path= '/userDash' component={UserDashboard}/> 
+      <ProtectedRoute path= '/userData' component={UserData}/> 
+      <ProtectedRoute path= '/userEdit' component={UserEdit}/> 
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
@@ -127,11 +133,9 @@ function App() {
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
-      <ProtectedRoute path= '/admins'  component={Admins}/>
       <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
-      <ProtectedRoute exact path= '/shirt_detail'  component={ShirtDetail}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
@@ -139,9 +143,11 @@ function App() {
       <ProtectedRoute exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
-      {/* <ProtectedRoute path='/payment' component={Payment} /> */}
-      <Route path= '/' component={Footer}/>
+      <ProtectedRoute path='/payment' component={Payment} />
+      <Footer/>
+      </div>  
 
+      </Switch>
     </div>
   )
 }

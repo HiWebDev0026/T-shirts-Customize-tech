@@ -90,7 +90,8 @@ async function getUsers(req, res, next) {
 
 async function putUser(req, res, next) {
     const userId = req.params.id.toString()
-    const body = req.body     
+    const body = req.body  
+    console.log("body",body)   
     try {
         const user = await User.findOne({where: {id: userId}, include: [Shirt]})
         if (!user) { return next({status: 404, message: 'User not found'}) } 
@@ -103,6 +104,7 @@ async function putUser(req, res, next) {
                 user[field] = body[field]
             }   
         }
+        console.log("user", user);
         user.save()
             return res.status(200).json(user)
         

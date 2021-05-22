@@ -15,15 +15,16 @@
     align-items: center;
     padding: 30px, 10%;
     background: rgba(255, 255, 255, 0.411);
-    height: 100px;
+    height: 70px;
     /* width: max-content; */
 }
 
 .logo{
     max-width: 134px;
-    height: 88px;
+    height: 40px;
     margin-left: 10px;
     text-align: center;
+    font-size: 26px;
 }
 
 .loginBtn{

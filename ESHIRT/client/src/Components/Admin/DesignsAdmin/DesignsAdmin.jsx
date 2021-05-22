@@ -12,23 +12,13 @@ export default function DesignsAdmin() {
 
 const [editButtonTarget, setEditButtonTarget] = useState(0);
 const [change, setChange]=useState('');
-const shirts = useSelector((state) => state.shirtReducer.allShirts);
+const designs = useSelector((state) => state.shirtReducer.allShirts);
 const dispatch = useDispatch();
 const history = useHistory();
 const isAdmin = useTokenDecode(localStorage.currentToken);
 const [filtered, setFiltered] = useState([]);
 const [order, setOrder] = useState([]);
 
-// Desings in true for approval
-let designs= [];
-shirts.map((shirt) => {
-    if (shirt.public === 'pending'){
-    return designs.push({
-        name: shirt.name,
-        id: shirt.id
-    })
-}
-})
     useEffect(() => {
       dispatch(getShirts());
     }, []);
@@ -56,7 +46,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
         }
       }, [order]);
 
-      let Total = filtered.length > 0 ? filtered : designs;
+      let Total = filtered.length > 0 ? filtered : designs ;
 
     return(
       
@@ -72,6 +62,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
 {Total.length > 0  
       ? ( Total.map((shirt) => {
+        if (shirt.public === 'pending'){
           return (
             <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
@@ -80,6 +71,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
               </div>
                </div>
           );
+        }
         })
       ) 
       : (<p>Desings not found</p>)}
