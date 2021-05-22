@@ -25,7 +25,6 @@ function Card({ title, score, price, size, model, color, image, id }) {
   const [newSize, setNewSize]= useState(size)
   const {isAuthenticated, user } = useAuth0();
 
-
   const handleCartChange = (e, operation) => {
     e.preventDefault();
     const item = {

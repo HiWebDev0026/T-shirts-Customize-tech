@@ -122,7 +122,6 @@ export function checkLastOrder (userId) {
         try {
             const res = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
             const orders = res.data
-            console.log(orders)
             if (orders.length === 0) {
                 dispatch({type: 'CHECK_LAST_ORDER', payload: 0})    
             } else {
@@ -137,7 +136,6 @@ export function checkLastOrder (userId) {
                 
                 if (oldOrder > 0) {
                     const addToCart = orders.find(order => (parseInt(order.id) === oldOrder))
-                    console.log(addToCart, 'soy add to cart')
                     dispatch({type: 'LOAD_CART_FROM_BACK', payload: addToCart.details})
                 }
             }
