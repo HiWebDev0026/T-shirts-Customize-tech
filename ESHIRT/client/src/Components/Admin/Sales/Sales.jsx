@@ -17,17 +17,13 @@ export default function Sales() {
   const sale = useSelector((state) => state.ordersReducer.orders);
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
-  console.log("aca sales", sale)
+  
   
   useEffect(()=>{
     dispatch(getOrders());
   },[])
 
-  function handleClick (e) {
-    console.log(e.target.id)
-  }
-
-  function handleRefresh () {
+    function handleRefresh () {
     setFiltered([])
   }
   /////////////////////FILTER BY STATUS///////////////////////////////
@@ -36,14 +32,14 @@ export default function Sales() {
     for (let i = 0; i < sale.length; i++) {
       if (sale[i].status === e.target.value) {reloaded.push(sale[i]);}
     }
-
+    if(reloaded.length === 0){alert("Not match")}
     setFiltered(reloaded);}
   
   const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 
   let sales = filtered.length > 0 ? filtered : sale
-  let statusSales= ['STATUS','CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
+  let statusSales= ['CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
   useEffect(() => {
     switch(order){
       case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
@@ -96,7 +92,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
                                   <th> {s.userId}</th>
                                   <th>
                                     <NavLink to={`order_detail/${s.id}`}>
-                                      <button id={s.id} onClick={handleClick}>Details</button>
+                                      <button id={s.id}>Details</button>
                                     </NavLink>
                                   </th>
                             </tr>
