@@ -7,28 +7,27 @@ import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0} from "@auth0/auth0-react";
 
+import { BsFillHeartFill } from 'react-icons/bs';
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
+import {postFavorite} from '../../../Actions/index.js';
 import {
   setCartItems,
   checkLastOrder,
   postOrder,
   putOrder
 } from "../../../Actions/index.js";
-import { getShirtReview } from '../../../Actions/index.js'
+
 
 
 function Card({ title, score, price, size, model, color, image, id }) {
-
-
-
   const cart = useSelector(state => state.cartReducer.items)
   const orderId = useSelector(state => state.ordersReducer.orderId)
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
   const {isAuthenticated, user } = useAuth0();
-
+  
   const handleCartChange = (e, operation) => {
     e.preventDefault();
     const item = {
@@ -52,6 +51,8 @@ function Card({ title, score, price, size, model, color, image, id }) {
   }
 
 
+    
+
 
 
   // useEffect(() => {
@@ -69,7 +70,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)
   }
-
+  
   function handleAddOne() {
     setAmount(amount => amount + 1)
   }
@@ -78,7 +79,12 @@ function Card({ title, score, price, size, model, color, image, id }) {
       setAmount(amount => amount - 1)
     }
   }
-
+  function handleFavorite(e) {
+   
+    const userId = user.sub.split('|')[1]
+    
+    dispatch(postFavorite(userId, {shirtId: id }))
+  }
   return (
   <div>
       <div className={style.wrapper}>
@@ -104,7 +110,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
           <div className={style.popup__photo}>
             <img src={image} />
 
-            <a className={style.popup__close} href="#">
+            <a className={style.popup__close} href="#" >
               X
             </a>
 
@@ -121,6 +127,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
                   <input id="radio5" type="radio" name="star" value="1" className={style.star}/>
                   <label for="radio5">★</label>
                 </p>
+               
           <NavLink to={`/shirt/${id}/review`}>
 
                 <button className="boton">Reviews</button>
@@ -134,6 +141,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </div>
 
                 <div>
+                       
                         <button className={style.buttonAM} onClick={handleAddOne}>
                         <GrAdd />
                         </button>
@@ -158,7 +166,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <p>Amount: {amount}</p>
 
             <div className={style.cartBox}>
-
+              <button className={style.buttonAM} id={id} onClick={handleFavorite} ><BsFillHeartFill/></button> 
               <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '+')}>
                 <FaCartPlus />
               </button>
