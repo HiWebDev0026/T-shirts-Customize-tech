@@ -31,7 +31,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
 
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
-        history.push('/shirt_detail');
+        /* setTimeout(()=> history.push('/shirt_detail'), 0); */
       };
       
       useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
@@ -40,7 +40,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
     
       
     return(
-      !isAdmin ? (<ErrorNoAdminPage />) : <div>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.General} >
         <table id="table-to-xls">
         <div id='tableShirts'>
@@ -72,7 +72,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>X</button></th>
-              <button value={shirt.id} onClick={getShirtId}>Detail</button>
+              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId}>Detail</NavLink>
               </div>
                </tr>
           );

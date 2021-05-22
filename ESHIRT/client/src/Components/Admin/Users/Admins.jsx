@@ -40,7 +40,7 @@ function handleEdit(e) {
   };
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.general}>
+        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.general}>
             <h1 className={Style.TitleCategory}>Administrators</h1>
             {users.length > 0 ? ( users.map((user) => {
       if ( user.status !== 'deleted' && user.isAdmin == true){

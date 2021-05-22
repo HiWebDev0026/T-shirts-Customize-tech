@@ -58,6 +58,7 @@ export default function UserDetail ({match}){
 
     function showEditInput (fieldToEdit){
         return (
+            isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
         <div>
             <input  type= "text" name={fieldToEdit} onChange={(e) => handleChange(e)}></input>
         </div>

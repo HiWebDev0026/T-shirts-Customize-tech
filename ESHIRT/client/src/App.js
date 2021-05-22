@@ -139,7 +139,7 @@ function App({location}) {
       <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
-      <ProtectedRoute exact path= '/shirt_detail'  component={ShirtDetail}/>
+      <ProtectedRoute exact path= '/shirt_detail/:id'  component={ShirtDetail}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
