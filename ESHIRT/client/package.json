@@ -42,7 +42,8 @@
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "webpack-dashboard -- webpack serve --config ./webpack.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -61,5 +62,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.7.0",
+    "webpack-dashboard": "^3.3.3",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
