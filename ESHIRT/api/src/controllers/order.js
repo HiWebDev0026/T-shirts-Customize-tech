@@ -123,6 +123,7 @@ async function putOrder (req, res, next) {
     const item = newOrder.splice(newOrder.length - 1, 1)
     const operation = req.query.operation
     try {
+        console.log(newOrder, orderId, operation)
         const oldOrder = await Order.findOne({where: {id: orderId}})
         if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
         if (oldOrder.status === 'CANCELED' || oldOrder.status === 'DONE') {
@@ -130,7 +131,7 @@ async function putOrder (req, res, next) {
         }
 
         //validateOrder(newOrder)
-
+        
         const details = await Detail.findAll({where: {orderId: orderId}})
         const modifiedOrder = setOrderItems(newOrder, item[0], operation)
         
