@@ -17,9 +17,7 @@ const reviewsReducer = (state=initialState, action) => {
             }
 
         case 'POST_SHIRT_REVIEW':
-
-
-        
+       
             return {
                 ...state,
                 reviews: [...state, action.payload],

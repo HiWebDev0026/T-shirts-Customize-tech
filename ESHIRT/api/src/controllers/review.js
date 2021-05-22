@@ -6,13 +6,14 @@ const {Shirt, User, Detail, Category, Review} = require('../db.js');
 async function postReview (req, res, next) {
     const shirtId = req.params.id;
     const userId = req.body.userId
+    const scoreReview = req.body.scoreReview
    
     try {
 
         const shirt = await Shirt.findOne({where: {id: shirtId}})
         if (!shirt) throw {status: 404, message: 'Shirt not found'};
 
-        const newReview = {content: req.body.content, shirtId, userId, name: req.body.name, image: req.body.image}        
+        const newReview = {content: req.body.content, shirtId, userId, name: req.body.name, image: req.body.image, scoreReview}        
         const postedReview = await Review.create(newReview)
         return res.status(200).json(postedReview)
       

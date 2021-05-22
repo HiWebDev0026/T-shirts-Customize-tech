@@ -6,7 +6,7 @@ import {MdDeleteForever} from "react-icons/md";
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0} from "@auth0/auth0-react";
-import Reviews from '../../Reviews/Reviews.jsx';
+
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
 import {
@@ -15,8 +15,12 @@ import {
   postOrder,
   putOrder
 } from "../../../Actions/index.js";
+import { getShirtReview } from '../../../Actions/index.js'
+
 
 function Card({ title, score, price, size, model, color, image, id }) {
+
+
 
   const cart = useSelector(state => state.cartReducer.items)
   const orderId = useSelector(state => state.ordersReducer.orderId)
@@ -49,6 +53,19 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
 
+
+  // useEffect(() => {
+  //   if (isAuthenticated && !orderIdChecked) {
+  //     dispatch(checkLastOrder(user.sub.split('|')[1]))
+  //   }
+  //   if (isAuthenticated && orderId === 0) {
+  //     dispatch(postOrder(cart, user.sub.split('|')[1]))
+  //   } else if (isAuthenticated && orderId) {
+  //     dispatch(putOrder(cart, orderId))
+  //   }
+  
+  // }, [localStorage])
+ 
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)
   }
@@ -92,7 +109,18 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </a>
 
           </div>
-
+          <p class={style.clasificacion}>
+                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star}/>
+                  <label for="radio1">★</label>
+                  <input id="radio2" type="radio" name="star" value="4" className={style.star}/>
+                  <label for="radio2">★</label>
+                  <input id="radio3" type="radio" name="star" value="3"className={style.star}/>
+                  <label for="radio3">★</label>
+                  <input id="radio4" type="radio" name="star" value="2"className={style.star}/>
+                  <label for="radio4">★</label>
+                  <input id="radio5" type="radio" name="star" value="1" className={style.star}/>
+                  <label for="radio5">★</label>
+                </p>
           <NavLink to={`/shirt/${id}/review`}>
 
                 <button className="boton">Reviews</button>
@@ -140,8 +168,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
 
             </div>
-
-          </div>
+            </div>
 
         </div>
       </div>
