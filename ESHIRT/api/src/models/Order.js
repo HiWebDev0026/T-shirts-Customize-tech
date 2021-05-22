@@ -9,6 +9,9 @@ module.exports = (sequelize) => {
     },
     status: {
         type: DataTypes.ENUM('CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED')
+    },
+    paymentId: {
+        type: DataTypes.STRING
     }
   });
 };
