@@ -81,8 +81,7 @@ function Payment() {
             let shipments= {
                     receiver_address: deliveryData
             }  
-            let payer= orderId
-            dispatch(createPayment(order, shipments, payer))
+            dispatch(createPayment(order, shipments, orderId))
             setFlag(true)
         } 
     }
