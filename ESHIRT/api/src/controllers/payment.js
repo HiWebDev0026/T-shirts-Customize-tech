@@ -39,29 +39,32 @@ async function createPayment(req, res){
 }
 
 async function getPayment(req, res){
-    let {payment_id, status, payment_type}= req.query
-    let data= {
-        payment_id,
-        status,
-        payment_type
+    try {
+        let id= req.params.id
+        let status= req.query.status
+        let response= await mercadopago.get(`/v1/payments/search`, {'status': status}, {"external_reference":id})
+        res.json(response)
     }
-    return res.status(200)
+    catch(error){}
+
 }
 
 async function postPayment(req, res){
-    let {payment_id, status, payment_type}= req.query
-    let userId= req.params.id
-    let response= await axios({
-        method: 'put',
-        url: `http://localhost:3001/order/status/${userId}`,
-        data: {
-            status,
-            payment_type,
-            payment_id
-        }
-        
-    })
-    res.send(response)
+    try {
+        let {payment_id, status, payment_type}= req.query
+        let userId= req.params.id
+        let response= await axios({
+            method: 'put',
+            url: `http://localhost:3001/order/status/${userId}`,
+            data: {
+                status,
+                payment_type,
+                payment_id
+            }    
+        })
+        res.send(response)
+    }
+    catch(error){}
 }
 
 

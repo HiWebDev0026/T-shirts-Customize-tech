@@ -51,11 +51,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(checkLastOrder(user.sub.split('|')[1]))
-    }
-  }, [isAuthenticated])
+
 
 
   // useEffect(() => {
