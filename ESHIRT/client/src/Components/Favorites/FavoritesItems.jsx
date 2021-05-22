@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import {HiShoppingCart} from "react-icons/hi";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 
 import {deleteFavorite,pushItem} from '../../Actions/index.js';
@@ -10,13 +11,16 @@ import Style from './FavoritesItems.module.css'
 
 export default function FavoritesItems ({favorite}) {
 
+    const {user, isAuthenticated}=useAuth0();
+
+    const userId = user.sub.split('|')[1]
+    
     const [buttonPopup, setButtonPopup]=useState(false);
 
     const dispatch=useDispatch();
 
     function handleDelete(e){
-        console.log('ID',e.target.id)
-        dispatch(deleteFavorite('105677628845670307414',{shirtId:e.target.id}));
+        dispatch(deleteFavorite(userId,{shirtId:e.target.id}));
     }
 
     return(

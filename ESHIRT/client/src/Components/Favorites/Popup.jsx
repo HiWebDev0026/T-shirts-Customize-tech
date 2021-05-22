@@ -1,22 +1,48 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
 import swal from 'sweetalert';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import Style from './Popup.module.css';
-import {pushItem} from '../../Actions/index.js';
+import {setCartItems,postOrder,putOrder } from '../../Actions/index.js';
+// import state from 'sweetalert/typings/modules/state';
 
 export default function Popup (props){
 
-    const[amount,setAmount]=useState(1);
+    const {user, isAuthenticated}=useAuth0();
+    const userId = user.sub.split('|')[1]
+
+    const[quantity,setQuantity]=useState(1);
     const[size, setSize]=useState('');
+
+    const cart =useSelector(state =>state.cartReducer.items);
+    const orderId=useSelector(state =>state.ordersReducer.orderId);
 
     const dispatch=useDispatch();
 
-    function handleAdd (e){
-        console.log('ITEM', props.favorite)
-        dispatch(pushItem({...props.favorite, image:props.favorite.print, price:50, amount:amount, size:size}))
+    // function handleAdd (e){
+    //     dispatch(pushItem({...props.favorite,image:props.favorite.print, image:props.favorite.print, price:50, amount:amount, size:size}))
+    // }
+
+    const handleCartChange = (e) => {
+        e.preventDefault();
+        const item = {
+        title:props.favorite.name,
+        price:50,
+        size: size,
+        image:props.favorite.print,
+        id: props.favorite.id,
+        amount: quantity
+        }
+        dispatch(setCartItems(item, '+'));
+
+        if (isAuthenticated && !orderId) {
+        dispatch(postOrder([...cart, item], userId))
+        } else if (isAuthenticated && orderId) {
+        dispatch(putOrder([...cart, item], orderId, 'add'));
+        }
         props.setTrigger(false)
         swal({title:'added to cart', icon:'success', timer:3000})
     }
@@ -38,15 +64,15 @@ export default function Popup (props){
                         </select>
                         </label>
                         <div>
-                            <button className={Style.buttonAM} onClick={()=>setAmount(amount+1)}>
+                            <button className={Style.buttonAM} onClick={()=>setQuantity(quantity+1)}>
                             <GrAdd />
                             </button>
-                            <div>{amount}</div>
-                            <button className={Style.buttonAM} onClick={()=>amount>1&&setAmount(amount-1)}>
+                            <div>{quantity}</div>
+                            <button className={Style.buttonAM} onClick={()=>quantity>1&&setQuantity(quantity-1)}>
                             <GrFormSubtract />
                             </button>
                         </div>
-                        <button id={props.id} onClick={handleAdd} ><HiShoppingCart/></button>
+                        <button id={props.id} onClick={(e) => handleCartChange(e)}><HiShoppingCart/></button>
                         <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}>close</button>
             </div>
         </div>
