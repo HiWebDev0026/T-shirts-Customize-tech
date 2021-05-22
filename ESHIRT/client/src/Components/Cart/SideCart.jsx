@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
 
 import { 
     putOrder,
-    setCartItems 
+    setCartItems,
+    checkLastOrder 
 } from '../../Actions/index';
 import style from './SideCart.module.css'
 
@@ -13,12 +15,14 @@ import style from './SideCart.module.css'
 export function SideCart(){ 
     let total= 0
     const dispatch= useDispatch()
-    
+
     const items= useSelector(state => state.cartReducer.items)
     const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, user} = useAuth0();
 
+
+    
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
@@ -38,7 +42,17 @@ export function SideCart(){
             amount: 1
         }, operation));
     }
-    
+
+useEffect(()=> {
+    if (isAuthenticated) {
+        dispatch(checkLastOrder(user.sub.split('|')[1]))
+        
+      }
+  
+      
+}, [isAuthenticated])
+
+
     return (
         <div className={style.container}>
             <div className={style.items}>

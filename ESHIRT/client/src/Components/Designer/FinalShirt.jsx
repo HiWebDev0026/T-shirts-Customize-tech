@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import FinalCSS from './FinalShirt.module.css';
 import img from '../../assets/img/random_remera_front.png';
 import {fabric} from 'fabric';
-import { postShirt, resetErrors } from '../../Actions/index.js';
+import { postShirt, resetErrors, postFavorite } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {getCategories} from '../../Actions/index';
@@ -86,7 +86,7 @@ export default function FinalShirt(props) {
     } */
         
 
-    function handleSubmit (e, phase) {
+    async function handleSubmit (e, phase) {
         
         e.preventDefault();
         console.log('\n\n\n', 'BEFORE SENDING:', input);
@@ -102,7 +102,8 @@ export default function FinalShirt(props) {
                         model: phase.modelSelected.data,
                         categories: input.categories,
                     }
-                ));
+                ))
+               
 
                 return;
         } else {
