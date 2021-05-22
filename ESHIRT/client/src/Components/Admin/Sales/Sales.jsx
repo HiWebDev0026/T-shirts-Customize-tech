@@ -6,7 +6,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
 
-import {getOrders} from '../../../Actions/index.js'
+import {getOrders, modifyOrderStatus} from '../../../Actions/index.js'
 
 export default function Sales() {
   
@@ -17,6 +17,7 @@ export default function Sales() {
   const sale = useSelector((state) => state.ordersReducer.orders);
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
+  const [count, setCount] = useState([]);
   
   
   useEffect(()=>{
@@ -53,6 +54,11 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
     function handleOrder(e){
       setOrder(e.target.value)
     }
+    function handleEdit(e, orderID) {
+      setCount(prevState => prevState + 1)
+      alert("User " + e.target.value + " moved to trash");
+      dispatch(modifyOrderStatus({status: e.target.value}, 1)); 
+    };
     
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
@@ -88,7 +94,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
                     return <tr>
                                   <th> {s.id}</th>
                                   <th> {s.total_price}</th>
-                                  <select onChange={handleFilter}className="type1">
+                                  <select onChange={handleEdit}className="type1">
           {statusSales2.map((temp) => {
             return <option value={temp}> --- {s.status} --- {temp} </option>; //Template
           })}
