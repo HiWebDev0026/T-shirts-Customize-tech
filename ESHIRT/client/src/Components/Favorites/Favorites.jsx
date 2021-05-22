@@ -19,7 +19,7 @@ export default function Favorites (){
 
     useEffect(async ()=>{
         await dispatch(getShirts());
-        dispatch(getFavorites('105677628845670307414'));
+        dispatch(getFavorites(userId));
     },[]);
 
  
@@ -27,7 +27,7 @@ export default function Favorites (){
     
     function handleClick (e){
         console.log('ID',e.target.id)
-        dispatch(postFavorite('105677628845670307414',{shirtId:e.target.id}));
+        dispatch(postFavorite(userId,{shirtId:e.target.id}));
     }
     
     return(
