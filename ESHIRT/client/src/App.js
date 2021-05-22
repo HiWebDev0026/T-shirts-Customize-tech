@@ -41,6 +41,8 @@ import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
+import ShirtDetail from './Components/Admin/ShirtsAdmin/ShirtDetail';
+import Admins from './Components/Admin/Users/Admins';
 
 
 
@@ -133,9 +135,11 @@ function App({location}) {
       <ProtectedRoute exact path= '/home_admin'  component={HomeAdmin}/> 
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
+      <ProtectedRoute path= '/admins'  component={Admins}/>
       <Route path= '/shirt/:id/review' component={Reviews}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
+      <ProtectedRoute exact path= '/shirt_detail'  component={ShirtDetail}/>
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
