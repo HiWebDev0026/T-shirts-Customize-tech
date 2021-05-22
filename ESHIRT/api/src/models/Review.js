@@ -14,5 +14,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
+    scoreReview: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
   });
 };

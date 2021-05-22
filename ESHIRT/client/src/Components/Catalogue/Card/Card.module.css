@@ -386,3 +386,17 @@
   color: rgba(255, 127, 80, 0.397);
   border-radius: 10px;
 }
+.clasificacion {
+  display:flex;
+  justify-content:flex-end;
+direction: rtl;
+unicode-bidi: bidi-override;
+font-size: 5vh;
+}
+input[type="radio"]:checked ~ label {
+	color: coral;
+  }
+  label:hover,
+  label:hover ~ label {
+	color: coral;
+  }
