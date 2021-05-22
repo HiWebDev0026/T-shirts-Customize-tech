@@ -50,7 +50,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
     return(
       
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
         <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
         <select onChange={handleOrder} className={Style.Options}>
           <option  value="">ORDER</option>

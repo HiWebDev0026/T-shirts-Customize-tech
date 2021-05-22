@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
-
+import {useAdminCheck} from './adminCheck';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 function useTokenDecode(catchedToken) {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const [isAdmin, setIsAdmin] = useState(null);
+    const DBAdmin = useAdminCheck();
 
     useEffect(()=> {
 
@@ -24,10 +25,10 @@ function useTokenDecode(catchedToken) {
             const token = catchedToken.split('.');
             const parsedToken = JSON.parse(atob(token[1]));
             console.log(parsedToken, 'token concat');
-            parsedToken.permissions[0] === 'admin:auth' ? setIsAdmin(true) : setIsAdmin(false);
+            parsedToken.permissions[0] === 'admin:auth' || DBAdmin ? setIsAdmin(true) : setIsAdmin(false);
         
 
-    }, [])
+    }, [isAuthenticated, DBAdmin])
 
     return isAdmin;
 }

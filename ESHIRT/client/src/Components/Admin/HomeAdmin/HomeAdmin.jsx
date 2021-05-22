@@ -3,18 +3,19 @@ import {NavLink} from 'react-router-dom';
 import Style from "./HomeAdmin.module.css";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
+/* import {useAdminCheck} from '../../../hooks/adminCheck' */
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import RecicleBin from '../../../Images/recycle_bin.png';
 
 export default function HomeAdmin() {
 
     const {isAuthenticated} = useAuth0();
-    const isAdmin = useTokenDecode(localStorage.currentToken)
+    const isAdmin = useTokenDecode(localStorage.currentToken);
   
     console.log(isAdmin, 'hook test')
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : 
+        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
         <div>
             {/* <div className={Style.General}>
             <h1>Welcome</h1>

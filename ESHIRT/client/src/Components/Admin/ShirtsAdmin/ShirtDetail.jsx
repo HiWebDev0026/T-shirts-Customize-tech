@@ -9,7 +9,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 
-export default function ShirtDetail() {
+export default function ShirtDetail(props) {
 const categories = useSelector((state)=> state.categoryReducer.allCategories)
 const shirt = useSelector((state) => state.shirtReducer.shirtId);
 const history = useHistory();
@@ -17,7 +17,8 @@ const dispatch = useDispatch();
 const [count, setCount] = useState([]);
 const [temp, SetTemp] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
-
+console.log(props)
+console.log(props.match.params.id)
 const [input, setInput] = useState({
     name: '',
     color: '',
@@ -27,8 +28,13 @@ const [input, setInput] = useState({
 });
 
 useEffect(() => {
-    dispatch(getShirtById());
+    dispatch(getShirtById(props.match.params.id));
     dispatch(getCategories());
+
+    if(shirt.hasOwnProperty('categories')) {
+        console.log(shirt.categories[0].name, `\n shirt-detail \n \n`)
+    }
+    
 }, []);
 
 function handleChange(e) {
@@ -52,13 +58,13 @@ function handleChange1(e) {
 function handleEdit(e) {
     
     if(!input.color || !input.name || !array.length>0 || !input.size || !input.model){return alert("complete all the items") }
-dispatch(putShirt({...input, categories: array}, e.target.value)); 
-alert('Shirt modified')
-history.push('/shirts_admin')
+        dispatch(putShirt({...input, categories: array}, e.target.value)); 
+        alert('Shirt modified')
+        history.push('/shirts_admin')
 }
 
 return(
-    !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+    isAdmin === null ? 'LOADING' : isAdmin === false ?  (<ErrorNoAdminPage />) : <div className={Style.General}>
 <div className={Style.Tarjet} >
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>

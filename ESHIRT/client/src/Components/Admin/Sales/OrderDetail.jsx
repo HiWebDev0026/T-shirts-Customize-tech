@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {NavLink} from 'react-router-dom';
-
+import {useTokenDecode} from '../../../hooks/tokenDecoding';
+import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {getOrderById} from '../../../Actions/index.js';
 import Style from './OrderDetail.module.css';
 
 export default function OrderDetail(props) {
 
     const dispatch=useDispatch();
-
+    const isAdmin = useTokenDecode(localStorage.currentToken);
     const orderId = props.match.params.id;
     const [refresh, setRefresh]=useState(false);
     const orderDetail = useSelector((state) => state.ordersReducer.orderDetail);
@@ -23,6 +24,8 @@ export default function OrderDetail(props) {
       }
 
     return(
+        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+        
         <div className={Style.Order}>
             <h2>Order {orderId} Detail</h2>
             <table>
