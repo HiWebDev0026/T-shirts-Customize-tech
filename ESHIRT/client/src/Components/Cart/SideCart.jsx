@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
 
 import { 
     putOrder,
-    setCartItems 
+    setCartItems,
+    checkLastOrder 
 } from '../../Actions/index';
 import style from './SideCart.module.css'
 
