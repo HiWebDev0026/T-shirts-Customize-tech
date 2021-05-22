@@ -24,7 +24,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
   const {isAuthenticated, user } = useAuth0();
-  const [hasChecked, setHasChecked] = useState(false)
+
 
   const handleCartChange = (e, operation) => {
     e.preventDefault();
@@ -48,11 +48,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(checkLastOrder(user.sub.split('|')[1]))
-    }
-  }, [isAuthenticated])
+
 
   function handleSizeChange(e) {
     setNewSize(newSize => newSize= e.target.value)

@@ -107,8 +107,10 @@ async function getOrder (req, res, next) {
 async function getOrdersByUserId (req, res, next) {
     const userId = req.params.userId.toString();
     try {
-        const user = await User.findOne({where: {id: userId}});
-        const orders= await Order.findAll()
+        const user = await User.findOne({where: {id: userId}, include:[Order]});
+        
+        const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})
+        console.log(user);
         if (!user) {throw {status: 404, message: 'User not found'}}
       // Si rompe, chequea la linea de abajo
         // const orders = await Order.findAll({where: {userId: userId}, include: [Detail]})

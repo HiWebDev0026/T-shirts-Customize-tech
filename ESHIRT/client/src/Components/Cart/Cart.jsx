@@ -42,12 +42,20 @@ export default function Cart (){
     const INITIAL_PAGE= 4;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
-
-    const {isAuthenticated}=useAuth0();
+    
+    const {isAuthenticated, user}=useAuth0();
 
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
-    },[items])
+       
+         /*    if (isAuthenticated) {
+              dispatch(checkLastOrder(user.sub.split('|')[1]))
+              setHasChecked(true);
+            }
+        
+            return ()=> setHasChecked(false);
+          */
+    },[items, isAuthenticated])
 
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);

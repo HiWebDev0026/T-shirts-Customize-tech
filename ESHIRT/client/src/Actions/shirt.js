@@ -52,6 +52,8 @@ export function postShirt(shirt){
             }})
             const newShirt = res.data
             dispatch({type: 'POST_SHIRT', payload: {...shirt, shirtId: newShirt.id}})
+            const postFavorite = await axios.post(`/favorites/${shirt.userId}`, {shirtId: newShirt.id});
+            dispatch({type: 'POST_FAVORITE', payload: postFavorite.data})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})

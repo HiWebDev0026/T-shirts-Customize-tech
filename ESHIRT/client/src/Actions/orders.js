@@ -18,7 +18,8 @@ export function postOrder(cart, userId) {
         try {
             const resGet = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
             if (resGet.data.length > 0) {
-                dispatch({type: 'CHECK_LAST_ORDER', payload: 0})
+                console.log(resGet.data);
+                dispatch({type: 'CHECK_LAST_ORDER', payload: resGet.data.id})
             } else {
                 const cloned = [...cart]
                 const order = cloned.map(detail => {
@@ -132,7 +133,7 @@ export function checkLastOrder (userId) {
                 })
                 const oldOrder = Math.max(...oldOrders)
 
-                dispatch({type: 'CHECK_LAST_ORDER', payload: (oldOrder && oldOrder) || 0})
+                dispatch({type: 'CHECK_LAST_ORDER', payload: oldOrder || 0})
                 
                 if (oldOrder > 0) {
                     const addToCart = orders.find(order => (parseInt(order.id) === oldOrder))

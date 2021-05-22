@@ -16,12 +16,14 @@ import style from './SideCart.module.css'
 export function SideCart(){ 
     let total= 0
     const dispatch= useDispatch()
-    
+
     const items= useSelector(state => state.cartReducer.items)
     const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, user} = useAuth0();
 
+
+    
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
@@ -38,7 +40,17 @@ export function SideCart(){
             dispatch(putOrder([...cart, item], orderId, operation))
         } 
     }
-    
+
+useEffect(()=> {
+    if (isAuthenticated) {
+        dispatch(checkLastOrder(user.sub.split('|')[1]))
+        
+      }
+  
+      
+}, [isAuthenticated])
+
+
     return (
         <div className={style.container}>
             <div className={style.items}>
