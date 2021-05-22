@@ -35,6 +35,7 @@ export default function Cart (){
     const [currentPage, setCurrentPage] = useState(0);
     const items = useSelector((state)=>state.cartReducer.items);
     const orderId = useSelector((state)=>state.cartReducer.orderId);
+    const shirts = useSelector((state)=>state.shirtReducer.allShirts);
     
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
@@ -57,6 +58,25 @@ export default function Cart (){
         e.preventDefault();
         dispatch(setCartItems({}, operation))
     }
+                                
+    //para cada item dentro de items, si !items.image
+    // busco la imagen con el id en allShirts
+    //agrego la imagen al item
+    // let shirt ={}
+    // console.log(shirts);
+    // let prueba = items.map(item => {
+    //     console.log("id", item.id);
+    //     if(!item.hasOwnProperty('image')){
+    //         shirt = shirts.find(shirt=> shirt.id === item.id)
+    //         console.log(shirt);
+    //         item.image = shirt.print;
+    //     }
+    //     console.log(shirt)
+    //     return item;
+    // })
+    // console.log("prueba", prueba);
+
+
 
     return(
         <div className={Style.general}>
@@ -69,6 +89,13 @@ export default function Cart (){
                         {
                             items.length>0?
                             items.slice(offset, offset + INITIAL_PAGE).map((item, index)=>{
+                            
+                                // let shirt ={}
+                                // if(!item.hasOwnProperty('image')){
+                                //     shirt = shirts.find(shirt=> shirt.id === item.shirtId)
+                                //     item.image = shirt.print;
+                                // }
+                                
                                 return <CartItem  item={item} key={index} index={index} className={Style.cartCard}/>      
                             })
                         :<p>No selected items</p>

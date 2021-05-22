@@ -38,6 +38,8 @@ export function SideCart(){
             dispatch(putOrder([...cart, item], orderId, operation))
         } 
     }
+
+    console.log("items",items)
     
     return (
         <div className={style.container}>

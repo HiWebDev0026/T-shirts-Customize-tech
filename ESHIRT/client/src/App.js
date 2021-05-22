@@ -17,6 +17,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
 import UserEdit from './Components/Dashboard/User/UserEdit';
+import UserOrders from './Components/Dashboard/User/UserOders';
 import ProtectedRoute from './auth/ProtectedRoute';
 import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
@@ -95,10 +96,11 @@ function App({location}) {
       <ProtectedRoute path= '/userDash' component={UserDashboard}/> 
       <ProtectedRoute path= '/userData' component={UserData}/> 
       <ProtectedRoute path= '/userEdit' component={UserEdit}/> 
+      <ProtectedRoute path= '/userOrders' component={UserOrders}/> 
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
       <Route exact path= '/design' component={Design}/>
-      <Route exact path= '/cart' component={Cart}/> 
+      <ProtectedRoute exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
       <Route exact path= '/adminDash' component={AdminDashboard}/>
       <Route exact path= '/aboutUs' component={AboutUs}/>

@@ -39,6 +39,8 @@ export default function CartItem ({item, index}){
   
 //   }, [cart, isPosting])
 
+
+
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
