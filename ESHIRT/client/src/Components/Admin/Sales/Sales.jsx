@@ -30,10 +30,20 @@ export default function Sales() {
   function handleRefresh () {
     setFiltered([])
   }
+  /////////////////////FILTER BY STATUS///////////////////////////////
+  let reloaded = [];
+  function handleFilter(e) {
+    for (let i = 0; i < sale.length; i++) {
+      if (sale[i].status === e.target.value) {reloaded.push(sale[i]);}
+    }
+
+    setFiltered(reloaded);}
+  
   const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 
   let sales = filtered.length > 0 ? filtered : sale
+  let statusSales= ['STATUS','CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
   useEffect(() => {
     switch(order){
       case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
@@ -55,6 +65,15 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
   <option value ='STRENGTHUP'>PRICE+</option>
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
+<div className="searchs">
+
+        <select onChange={handleFilter}className="type1">
+          {statusSales.map((temp) => {
+            return <option value={temp}>{temp} </option>; //Template
+          })}
+        </select>
+ </div>
+
           <table id="table-to-xls">
               <tr>
               <th >Id</th>
