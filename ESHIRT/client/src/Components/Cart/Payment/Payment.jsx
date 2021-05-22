@@ -26,6 +26,7 @@ function Payment() {
         state_name: '',
         country_name: ''
     })
+    const [email, setEmail]= useState('')
     const [flag, setFlag]= useState(false)
 
     function handleChange(e){
@@ -42,11 +43,29 @@ function Payment() {
         })
     }
 
+    /* function sendEmail() {
+        Email.send({
+            Host : "smtp.mailtrap.io",
+            Username : "79f82e60df3dc1",
+            Password : "5159d22690b6bf",
+            To : email,
+            From : "454f0289f0-bc66c1@inbox.mailtrap.io",
+            Subject : "Payment status from E-Shirts!",
+            Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
+        }).then(
+          message => alert(message)
+        );
+        } */
+
     function handleSubmit(e){
         e.preventDefault()
         if (!deliveryData.zip_code || !deliveryData.street_name || !deliveryData.street_number || !deliveryData.city_name || !deliveryData.state_name || !deliveryData.country_name){
             return alert('Mandatory fields not completed')
         }
+        let mail= document.getElementById('email').value.toLowerCase()
+        if (mail.includes('@') && mail.includes('.com')){
+            setEmail(mail)
+        } else return alert('The e-mail format does not comply')
         if (isAuthenticated) {
             
             let order= items?.map(item => {
@@ -79,6 +98,7 @@ function Payment() {
             <input placeholder= 'City' id='city_name' onChange={handleChange} />
             <input placeholder= 'State' id='state_name' onChange={handleChange} />
             <input placeholder= 'Country' id='country_name' onChange={handleChange} />
+            <input placeholder= 'Email' id='email'/>
             {
                 flag ? 
             <a className={(paymentData?.response?.init_point && style.mercadopago) || style.inactive} target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>
