@@ -1,7 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const initialState={
     items:  JSON.parse(localStorage.getItem('items')) || [],
+    hasChecked: false
 }
 
 
@@ -29,117 +28,40 @@ const changeItemSize = (cart, item, index) => {
     return newCart
 }
 
+const loadCartFromBack = (cart, items) => {
+    if (cart.length === 0) {
+        return items.map(item => {
+            item.amount = parseInt(item.amount);
+            return item
+        })
+    }
+    const filtered = {};
+    
+    for (const backItem of items) {
+        let key = backItem.size + '_' + backItem.shirtId;
+        const importantFields = {}
+        importantFields.id = backItem.shirtId 
+        importantFields.amount = parseInt(backItem.amount)
+        importantFields.size = backItem.size
+        importantFields.price = backItem.price
+        filtered[key] = importantFields
+    }
+    for (const cartItem of cart) {
+        let key = cartItem.size + '_' + cartItem.id
+        filtered[key] = cartItem
+    }
+
+    const result = [];
+
+    for (const key in filtered) {
+        result.push(filtered[key])
+    }
+
+    return result    
+}
 
 const cartReducer = (state=initialState, action) => {
     switch (action.type){
-        
-        case 'PUSH_ITEM':
-            let flag= false
-            state.items.forEach(item => {
-                if (item.id === action.payload.id){
-                    if (item.size === action.payload.size){
-                        flag= true
-                    } 
-                }
-            })
-            if (flag){
-                
-
-                return state
-            } else {
-                action.payload= {
-                    ...action.payload,
-                    index: uuidv4()
-                }
-                localStorage.setItem('items', JSON.stringify([...state.items, action.payload]))
-                return {
-                    ...state,
-                    items: [...state.items, action.payload]
-                }
-            }
-
-        case 'DELETE_ITEM':
-            let deleted= state.items.filter(i => i.index !== action.payload)
-            localStorage.setItem('items', JSON.stringify(deleted))
-            return {
-                ...state,
-                items: deleted,
-            }
-
-        case 'ADD_ONE':
-            let added= state.items.map(item => {
-                if (item.index === action.payload){
-                    item.amount += 1
-                }
-                return item
-            })
-            localStorage.setItem('items', JSON.stringify(added))
-            return {
-                ...state,
-                items: added
-            }
-            
-        case 'OUT_ONE':
-        let erased= []    
-        if (state.items.length === 1){
-            if (state.items[0].index === action.payload && state.items[0].amount === 1){
-                return {...state, items:[]}
-            } 
-        }
-        let droppedOne= state.items?.map(item => {
-                if (item.index === action.payload){
-                    if (item.amount === 1){
-                        erased= state.items.filter(i => i.index !== action.payload)
-                    }
-                    item.amount -= 1
-                }
-                return item
-            })
-        if (erased.length < 1){
-            localStorage.setItem('items', JSON.stringify(droppedOne))
-            return {
-                ...state,
-                items: droppedOne
-            }
-        } else {
-            localStorage.setItem('items', JSON.stringify(erased))
-            return {
-                ...state,
-                items: erased
-            }
-        }
-
-        case 'CHANGE_SIZE':
-            let modified= []
-            if (state.items.length < 2){
-                if (state.items[0].index === action.payload.index){
-                    modified.push(action.payload)
-                    console.log(modified)
-                    return {
-                        ...state,
-                        items: modified
-                    }
-                } else {return state}
-            }
-            modified= state.items
-            modified.forEach(item => {
-                if(item.index === action.payload.index){
-                    item= action.payload
-                }
-            })
-            console.log(modified)
-            return {
-                ...state,
-                items: modified
-            }
-
-            case 'CLEAR':
-                localStorage.removeItem('items');
-                return {
-                    ...state,
-                    items: []
-                }
-
             case 'SET_CART_ITEMS':
                 const updatedCart = setCartItems(state.items, action.payload.item, action.payload.operation)
                 updatedCart && localStorage.setItem('items', JSON.stringify(updatedCart))
@@ -154,7 +76,19 @@ const cartReducer = (state=initialState, action) => {
                     ...state,
                     items: updatedSize
                 }
-                
+            case 'LOAD_CART_FROM_BACK': 
+                if (!state.hasChecked) {
+                    const modifiedCart = loadCartFromBack(state.items, action.payload)
+                    modifiedCart && localStorage.setItem('items', JSON.stringify(modifiedCart))
+                    return {
+                        ...state,
+                        items: modifiedCart,
+                        hasChecked: true
+                    }
+                } else {
+                    return state
+                }   
+            
         default: return state
     }
 }

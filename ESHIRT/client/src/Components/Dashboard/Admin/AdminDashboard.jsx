@@ -1,9 +1,9 @@
 import React from 'react';
 import Style from './AdminDashboard.module.css';
-import Clock from './Clock';
-import HomeAdmin from '../Admin/HomeAdmin/HomeAdmin';
+import Clock from '../Clock';
+import HomeAdmin from '../../Admin/HomeAdmin/HomeAdmin';
 import AdminData from './AdminData';
-import Calendar from './Calendar';
+import Calendar from '../Calendar';
 
 function AdminDashboard(){
     return(

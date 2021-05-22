@@ -1,9 +1,14 @@
 const {Router}= require('express')
-const { postTest, createItem, getPayment, createPayment}= require('../controllers/payment')
+const { postPayment, getPayment, createPayment}= require('../controllers/payment')
 const checkJwt = require('../middlewares/authz/checkJwt');
 const router= Router();
 
-router.get('/feedback', getPayment)
+function checkSatus(req, res, next){
+    let {payment_id, status, payment_type}= req.query
+
+}
+
+router.get('/feedback/:id', postPayment)
 router.post('/', createPayment)
 
 module.exports = router
