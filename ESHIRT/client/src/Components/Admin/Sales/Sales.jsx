@@ -51,7 +51,6 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
       setOrder(e.target.value)
     }
     
-
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
         <div>
