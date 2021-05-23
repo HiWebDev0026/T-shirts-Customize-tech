@@ -137,11 +137,12 @@ export default function Cart (){
                             items.length>0?
                             items.slice(offset, offset + INITIAL_PAGE).map((item, index)=>{
                             
-                                // let shirt ={}
-                                // if(!item.hasOwnProperty('image')){
-                                //     shirt = shirts.find(shirt=> shirt.id === item.shirtId)
-                                //     item.image = shirt.print;
-                                // }
+                                let shirt ={}
+                                if(!item.hasOwnProperty('image')){
+                                    console.log(Object.keys(item), 'soy keys')
+                                    shirt = shirts.find(shirt=> shirt.id === item.id)
+                                    item.image = shirt.print;
+                                }
                                 
                                 return <CartItem  item={item} key={index} index={index} className={Style.cartCard}/>      
                             })
