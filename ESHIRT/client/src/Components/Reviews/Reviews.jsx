@@ -1,18 +1,20 @@
 import React from "react";
 import style from "./Reviews.module.css";
-import { getShirtReview, postShirtReview } from "../../Actions/index.js";
+import { getShirtReview, postShirtReview, getShirtScore } from "../../Actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {useHistory} from 'react-router-dom'
 
 function Reviews(props) {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsReducer.reviews);
+  // const star = useSelector((state) => state.reviewsReducer.star);
+  const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user;
-  const history = useHistory();
+  const [counter, setCounter] = useState(0)
   const [input, setInput] = useState({
     content: "",
     name: "",
@@ -20,22 +22,38 @@ function Reviews(props) {
     scoreReview: 0
   });
 
-console.log(review)
 
 
-  useEffect(() => {
+
+
+console.log(review.id, 'estoestoy')
+
+
+useEffect(() => {
+  
     dispatch(getShirtReview(id));
+    
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(getShirtScore(id));
+  // }, []);
   function handleSubmit(e) {
    e.preventDefault();
     
     if (isAuthenticated) {
       dispatch(postShirtReview(input, id, userData.sub.split("|")[1]));
+      setCounter(prevState => prevState+1)
+      setInput({
+        content: "",
+        name: "",
+        image: "",
+        scoreReview: 0
+      })
     } else {
       alert("you must be signed up to post a review");
     }
-    history.push('/catalogue')
+   history.push('/catalogue')
   }
 
   function handleChange(e) {
@@ -50,14 +68,16 @@ console.log(review)
     });
   }
   function handleChangeStart(e) {
-    const scoreReview = e.target.value;
+    const scoreReview = parseInt(e.target.value);
     setInput({
       ...input,
       scoreReview
     })
   }
 
-  //
+ 
+
+  
   return (
     <div className={style.customer_feedback}>
       <div className={style.container - style.text_center}>
@@ -80,15 +100,15 @@ console.log(review)
             </p>
             <div>
             <p class={style.clasificacion}  onChange={handleChangeStart} >
-                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star}/>
+                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star} style={{display:'none'}}/>
                   <label for="radio1">★</label>
-                  <input id="radio2" type="radio" name="star" value="4" className={style.star}/>
+                  <input id="radio2" type="radio" name="star" value="4" className={style.star}style={{display:'none'}}/>
                   <label for="radio2">★</label>
-                  <input id="radio3" type="radio" name="star" value="3"className={style.star}/>
+                  <input id="radio3" type="radio" name="star" value="3"className={style.star}style={{display:'none'}}/>
                   <label for="radio3">★</label>
-                  <input id="radio4" type="radio" name="star" value="2"className={style.star}/>
+                  <input id="radio4" type="radio" name="star" value="2"className={style.star}style={{display:'none'}}/>
                   <label for="radio4">★</label>
-                  <input id="radio5" type="radio" name="star" value="1" className={style.star}/>
+                  <input id="radio5" type="radio" name="star" value="1" className={style.star}style={{display:'none'}}/>
                   <label for="radio5">★</label>
                 </p>
                 </div>
@@ -97,10 +117,10 @@ console.log(review)
           </form>
        
         </div>
-        { review.length > 2 ?
-          review.map((e) => {
+        {review.length > 0 ?
+          review?.map((e) => {
             return (
-              <div className={style.row} key={review.id}>              
+              <div className={style.row} >              
                 <div className={style.col_md_offset_3}>
                   <div className={style.owl_carousel}>
                     <div className={style.feedback_slider_item}>

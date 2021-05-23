@@ -44,7 +44,7 @@ img {
 .feedback_slider_item {
 	position: relative;
 	padding: 60px;
-	margin-top: -30px;
+	margin-top: 2px;
 }
 
 .customer_name {
@@ -95,7 +95,7 @@ img {
 }
 
 /*star ranquing */ 
-#form {
+/* #form {
 	width: 250px;
 	margin: 0 auto;
 	height: 50px;
@@ -107,15 +107,15 @@ img {
   
   #form label {
 	font-size: 20px;
-  }
+  } */
   
-  input[type="radio"] {
+  /* input[type="radio"] {
 	display: none;
   }
   
   label {
 	color: rgb(128, 128, 128);
-  }
+  } */
   
   .clasificacion {
     display:flex;
@@ -125,14 +125,14 @@ img {
 	font-size: 50px;
   }
   
-  label:hover,
+  /* label:hover,
   label:hover ~ label {
 	color: coral;
   }
   
   input[type="radio"]:checked ~ label {
 	color: coral;
-  }
+  } */
 
 /* GREY BACKGROUND COLOR OF THE ACTIVE SLIDER */
 .feedback_slider_item:after {
