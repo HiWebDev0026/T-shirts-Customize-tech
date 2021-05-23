@@ -16,26 +16,21 @@ export function getOrders () {
 export function postOrder(cart, userId) {
     return async (dispatch) => {
         try {
-            const resGet = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
-            if (resGet.data.length > 0) {
-                console.log(resGet.data);
-                dispatch({type: 'CHECK_LAST_ORDER', payload: resGet.data.id})
-            } else {
-                const cloned = [...cart]
-                const order = cloned.map(detail => {
-                    return {
-                        shirtId: detail.id,
-                        price: detail.price,
-                        size: detail.size,
-                        amount: detail.amount
-                    }
-                })
-                const res = await axios.post(`/order/${userId}`, order, {headers: {
-                    Authorization: `Bearer ${localStorage.currentToken}`
-                }})
-                const newOrder = res.data
-                dispatch({type: 'POST_ORDER', payload: {orderId: newOrder.id}})
-            }
+            const cloned = [...cart]
+            const order = cloned.map(detail => {
+                return {
+                    shirtId: detail.id,
+                    price: detail.price,
+                    size: detail.size,
+                    amount: detail.amount
+                }
+            })
+            const res = await axios.post(`/order/${userId}`, order, {headers: {
+                Authorization: `Bearer ${localStorage.currentToken}`
+            }})
+            const newOrder = res.data
+            dispatch({type: 'POST_ORDER', payload: {orderId: newOrder.id}})
+            
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
@@ -131,8 +126,8 @@ export function checkLastOrder (userId) {
                     }
                 })
                 const oldOrder = Math.max(...oldOrders)
-                const orderId = (oldOrder || 0)
-                dispatch({type: 'CHECK_LAST_ORDER', payload: oldOrder || orderId})
+                
+                dispatch({type: 'CHECK_LAST_ORDER', payload: oldOrder})
                 
                 if (oldOrder > 0) {
                     const addToCart = orders.find(order => (parseInt(order.id) === oldOrder))
