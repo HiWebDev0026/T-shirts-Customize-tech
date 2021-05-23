@@ -18,14 +18,17 @@ function RecycleBinUser() {
   }, [count]);
 
     function handleDelete(e) {
-        alert("User " + e.target.value + "deleted");
+        setCount(count+ 1)
         dispatch(deleteUser(e.target.value)); 
+        alert("User " + e.target.value + "deleted");
+        dispatch(getUsers())
       };
 
       function handleEdit(e) {
-        setCount(prevState => prevState + 1)
-        alert("User " + e.target.value + "restored");
+        setCount(count+ 1)
         dispatch(putUser({status: 'restored'}, e.target.value)); 
+        alert("User " + e.target.value + "restored");
+        dispatch(getUsers())
       };
 
     return (

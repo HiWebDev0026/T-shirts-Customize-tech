@@ -67,9 +67,7 @@ export default function RecycleBinDesigns(){
           );
         }
         })
-      ) 
-      : (<p>Desings not found</p>)}
-
+      ) : (<p>Desings not found</p>)}
 
 <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
