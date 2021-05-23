@@ -12,7 +12,7 @@ function UserData(){
     const userDB = useSelector((state) => state.userReducer.userId);
     const dispatch = useDispatch();
     const {user} = useAuth0();
-    const { name, sub, email } = user;
+    const {sub} = user;
     let id = sub.split("|")[1];
     
 

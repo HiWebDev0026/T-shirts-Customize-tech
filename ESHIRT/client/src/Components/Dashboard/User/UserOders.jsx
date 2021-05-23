@@ -34,14 +34,12 @@ function UserOrders(){
     let status= ['SELECT STATUS', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
     
     function handleChange(e){
-        console.log(e.target.value);
         setStatus(e.target.value);
     }
     function filter(e){
         e.preventDefault();
-        console.log(statusToFilter)
         setFiltered( orders.filter((item)=> item.status === statusToFilter ))
-        console.log(filtered);
+
     }
 
     let ordersToMap = filtered.length > 0 ? filtered : orders;
@@ -59,8 +57,6 @@ function UserOrders(){
 
             <div className={Style.box}>
             {
-                // userDB.length>0?
-                // userDB.forEach(order => {
                 ordersToMap.length> 0 ?
                 ordersToMap.map(order => {
                     return <ul className={Style.ul}>

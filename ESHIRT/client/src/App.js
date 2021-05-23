@@ -28,6 +28,7 @@ import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin';
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
+import NewDashboard from './Components/Dashboard/User/NewDashboard';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
@@ -117,6 +118,7 @@ function App({location}) {
       <Route exact path= '/' component={Landing}/>
       <div className= 'App' >
       <MainNavBar />  
+      <Route exact path= '/newDashBoard' component={NewDashboard}/> 
       {/* <Route path= '/' component={MainNavBar}/>   */}
       <ProtectedRoute path= '/userDash' component={UserDashboard}/> 
       <ProtectedRoute path= '/userData' component={UserData}/> 
