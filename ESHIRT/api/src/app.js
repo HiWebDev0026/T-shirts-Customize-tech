@@ -9,6 +9,8 @@ const {createProxyMiddleware} = require('http-proxy-middleware')
 const mercadopago= require('mercadopago');
 const { default: axios } = require('axios');
 const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
+const {Order}= require('./db')
+const {getPayment}= require('./controllers/payment')
 
 require('./db.js');
 
@@ -31,7 +33,8 @@ mercadopago.configure({
 
 //////////////////////// PAYMENT UPDATE /////////////////
 async function paymentUpdate(){
-  let response= await axios('http://localhost:3001/orders')
+  try {
+    let orders= await Order.findAll()
 
   /* 
     Aca tenemos que iterar todas las ordenes y por cada
@@ -44,6 +47,16 @@ async function paymentUpdate(){
     de que mercadopago nos avise cuando hay un cambio en el
     estado del pago
   */
+
+    for(let order of orders){
+      let payment= await mercadopago.get(`/v1/payments/search`, {"external_reference": order.paymentId})
+      order.status = payment.body.results.status_detail
+      await order.save()
+    }
+    return 
+  }
+  catch(error){return error}
+    
 }
 /////////////////////////////////////////////////////////
 
@@ -75,6 +88,8 @@ server.use((req, res, next) => {
            
 
 server.use('/', routes);
+
+// setInterval(paymentUpdate, 6000)
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
