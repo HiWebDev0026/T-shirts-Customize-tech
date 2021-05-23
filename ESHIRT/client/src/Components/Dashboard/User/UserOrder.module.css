@@ -8,6 +8,10 @@
 
 .container h1{
     text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+    
 }
 
 .box{
@@ -24,24 +28,49 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 200px;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
+    text-decoration: none;
+    list-style: none;
+    border: 2px solid black;
 }
 
 .li{
     height: 30px;
     margin-bottom: 10px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+    padding-top: 10px;
 }
 
-.submitBtn{
+.submitBtn, .filterBtn{
     width: 120px;
     height: 50px;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
 }
-.submitBtn:hover{
+.submitBtn:hover, .filterBtn:hover{
     background: black;
     color: coral;
+}
+
+.select{
+    width: 152px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+.option{
+    width: 120px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    background: coral;
 }
