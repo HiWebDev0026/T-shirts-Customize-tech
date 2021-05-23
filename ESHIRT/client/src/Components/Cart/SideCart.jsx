@@ -19,7 +19,7 @@ export function SideCart(){
     const items= useSelector(state => state.cartReducer.items)
     const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated, user} = useAuth0();
+    const {isAuthenticated, user, loginWithPopup} = useAuth0();
     const shirts = useSelector((state)=>state.shirtReducer.allShirts);
 
 
@@ -42,6 +42,23 @@ export function SideCart(){
             ...item, 
             amount: 1
         }, operation));
+    }
+
+    const showProceed = () => {
+        return (
+            <NavLink to={'cart/'}>
+                <button className={style.cartBtnP}>Proceed</button>
+            </NavLink>
+        )
+    }
+
+    const showLogAndProceed = (loginWithPopup) => {
+
+        return (
+            <div>
+                <button className={style.cartBtnP} onClick={loginWithPopup}>Login and Proceed</button>
+            </div>
+        )
     }
 
     useEffect(()=> {
@@ -91,9 +108,7 @@ export function SideCart(){
             <div className={style.total}>
                 TOTAL: U$S{total}
             </div>
-            <NavLink to='/cart'>
-                <button className={style.cartBtnP}>Proceed</button>
-            </NavLink>
+            {isAuthenticated ? showProceed() : showLogAndProceed(loginWithPopup)}
         </div>
     )
 }
