@@ -8,7 +8,8 @@ const LogoutButton = () => {
  /*  const history = useHistory(); */
   const unauthRedirections = [
                         '/users', 
-                        '/create_user', 
+                        '/create_user',
+                        '/cart', 
                         '/designs_admin', 
                         '/account', 
                         '/sales', 
@@ -16,7 +17,8 @@ const LogoutButton = () => {
                         '/user_detail/',
                         '/userDash',
                         '/userData',
-                        '/userEdit', 
+                        '/userEdit',
+                        '/userOrders', 
                         '/add_category', 
                         '/home_admin',
                         '/favorites',

@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect} from "react";
 import Style from './UserDashboard.module.css';
 import Clock from '../Clock';
 import HomeUser from './HomeUser';
-import { useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserById} from '../../../Actions/index.js';
+import { useAuth0} from "@auth0/auth0-react";
 
 
 function UserDashboard(){
 
+  const dispatch = useDispatch();
   const userDB = useSelector((state) => state.userReducer.userId);
+  const {user} = useAuth0();
+  const {sub} = user;
+  let id = sub.split("|")[1];
+  useEffect(() => {
+    dispatch(getUserById(id));
+}, []);
 
   return (
 
