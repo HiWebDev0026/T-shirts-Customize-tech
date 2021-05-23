@@ -49,7 +49,7 @@ export default function RecycleBinDesigns(){
           return (
             <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
-              <img src={shirt.print} className={Style.Image}/>
+              <img src={shirt.print} className={Style.Img}/>
          <div className={Style.Btns}>
         <form>
          <label>Yes</label>

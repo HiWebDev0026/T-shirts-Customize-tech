@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {NavLink} from 'react-router-dom';
-import { getShirts, deleteShirt, putShirt, getShirtById } from "../../../Actions";
+import { getShirts, deleteShirt, putShirt, getShirtById} from "../../../Actions";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import Style from "./ShirtsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
@@ -15,18 +15,21 @@ const history = useHistory();
 const dispatch = useDispatch();
 const [page, setPage] = useState(0);
 const [max, setMax] = useState(0);
-const [count, setCount] = useState([]);
+const [count, setCount] = useState(0);
 const isAdmin = useTokenDecode(localStorage.currentToken);
+
   
     useEffect(() => {
       dispatch(getShirts());
+      
     },[count]);
   
       function handleEdit(e) {
-        setCount(prevState => prevState + 1)
-        alert("Shirt " + e.target.value + " moved to trash");
-        dispatch(putShirt({status: 'deleted'}, e.target.value)); 
-        window.location.replace('')
+        e.preventDefault();
+        setCount(count + 1)
+        dispatch(putShirt({status: 'deleted'}, e.target.value));
+        alert("Shirt " + e.target.value + " moved to trash");  
+        history.push('/home_admin')     
       };
 
       function getShirtId(e) { 

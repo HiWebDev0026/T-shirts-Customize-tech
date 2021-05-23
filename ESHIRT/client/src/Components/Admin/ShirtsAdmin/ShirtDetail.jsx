@@ -17,8 +17,7 @@ const dispatch = useDispatch();
 const [count, setCount] = useState([]);
 const [temp, SetTemp] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
-console.log(props)
-console.log(props.match.params.id)
+
 const [input, setInput] = useState({
     name: '',
     color: '',
@@ -30,12 +29,8 @@ const [input, setInput] = useState({
 useEffect(() => {
     dispatch(getShirtById(props.match.params.id));
     dispatch(getCategories());
-
-    if(shirt.hasOwnProperty('categories')) {
-        console.log(shirt.categories[0].name, `\n shirt-detail \n \n`)
-    }
-    
 }, []);
+
 
 function handleChange(e) {
     const value = e.target.value;
@@ -97,10 +92,10 @@ return(
                  <button className={Style.BtnChange} value={shirt.id} type='submit' onClick={handleEdit}>Change</button>      
                            
                     </div>
-<NavLink to='shirts_admin'>
+<NavLink to='/shirts_admin'>
     <h4 className={Style.Btn3}>SHIRTS</h4>
     </NavLink>  
-<NavLink to='home_admin'>
+<NavLink to='/home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>
