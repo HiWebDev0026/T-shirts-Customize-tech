@@ -8,7 +8,7 @@ import {useTokenDecode} from '../../hooks/tokenDecoding';
 const Account = () => {
   const isAdmin = useTokenDecode(localStorage.currentToken);
 
-  return isAdmin ? <AdminDashboard /> : <UserDashboard />;
+  return isAdmin === null ? 'LOADING' : isAdmin ? <AdminDashboard /> : <UserDashboard />;
 };
 
 export default Account;

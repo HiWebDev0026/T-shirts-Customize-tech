@@ -10,7 +10,9 @@ import {
     getOrderById,
     putOrder,
     createPayment,
-    setCartItems
+    setCartItems,
+    checkLastOrder,
+    postOrder
 } from '../../Actions/index.js'
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
@@ -31,7 +33,8 @@ export default function Cart (){
 
     const [currentPage, setCurrentPage] = useState(0);
     const items = useSelector((state)=>state.cartReducer.items);
-    const orderId = useSelector(state => state.ordersReducer.orderId)
+    const orderId = useSelector((state)=>state.cartReducer.orderId);
+    const shirts = useSelector((state)=>state.shirtReducer.allShirts);
     
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
@@ -40,7 +43,7 @@ export default function Cart (){
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(items.length / INITIAL_PAGE);
     
-    const {isAuthenticated, user}=useAuth0();
+    const {isAuthenticated, user, loginWithPopup}=useAuth0();
 
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
@@ -54,6 +57,43 @@ export default function Cart (){
           */
     },[items, isAuthenticated])
 
+    function proceed(click){
+        return (
+            <div onClick={click}>
+                <Link to='/payment'>
+                    <button>Go to pay</button>
+                </Link>
+            </div>
+        )
+    }
+
+    function notProceed(){
+        return (
+            <div>
+                Login to proceed
+            </div>
+        )
+    }
+
+    function click(e){
+        e.preventDefault()
+        if (isAuthenticated && orderId === 0) {
+            dispatch(postOrder([...items], user.sub.split('|')[1]))
+          } else if (isAuthenticated && orderId) {
+            dispatch(putOrder([...items], orderId, 'add'))
+          } 
+    }
+
+    useEffect(()=> {
+        if (isAuthenticated && orderId === 0) {
+            dispatch(postOrder([...items], user.sub.split('|')[1]))
+          } else if (isAuthenticated && orderId) {
+            dispatch(putOrder([...items], orderId, 'add'))
+          } else if (isAuthenticated){
+              dispatch(checkLastOrder(user.sub.split('|')[1]))
+          }
+    }, [isAuthenticated])
+
     function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
     }
@@ -65,6 +105,25 @@ export default function Cart (){
             dispatch(putOrder([], orderId, 'clear'))
         }
     }
+                                
+    //para cada item dentro de items, si !items.image
+    // busco la imagen con el id en allShirts
+    //agrego la imagen al item
+    // let shirt ={}
+    // console.log(shirts);
+    // let prueba = items.map(item => {
+    //     console.log("id", item.id);
+    //     if(!item.hasOwnProperty('image')){
+    //         shirt = shirts.find(shirt=> shirt.id === item.id)
+    //         console.log(shirt);
+    //         item.image = shirt.print;
+    //     }
+    //     console.log(shirt)
+    //     return item;
+    // })
+    // console.log("prueba", prueba);
+
+
 
     return(
         <div className={Style.general}>
@@ -77,6 +136,14 @@ export default function Cart (){
                         {
                             items.length>0?
                             items.slice(offset, offset + INITIAL_PAGE).map((item, index)=>{
+                            
+                                let shirt ={}
+                                if(!item.hasOwnProperty('image')){
+                                    console.log(Object.keys(item), 'soy keys')
+                                    shirt = shirts.find(shirt=> shirt.id === item.id)
+                                    item.image = shirt.print;
+                                }
+                                
                                 return <CartItem  item={item} key={index} index={index} className={Style.cartCard}/>      
                             })
                         :<p>No selected items</p>
@@ -101,9 +168,11 @@ export default function Cart (){
                             <Link to='/catalogue'>
                                 <button>Go back shopping</button>
                             </Link>
-                            <Link to='/payment'>
-                                <button>Go to pay</button>
-                            </Link>
+                            
+                            {
+                                isAuthenticated ? proceed(click) : notProceed()
+                            }
+                            
                             {items.length >0&&<button onClick={(e) => handleCartChange(e, 'clear')}>Clear cart</button>}
                         </div>
                 </div>

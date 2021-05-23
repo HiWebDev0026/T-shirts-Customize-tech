@@ -5,44 +5,23 @@ const { getReviews } = require('./review');
 const { getMaxListeners, put } = require('../app');
 const { Order }= require('../db')
 
-async function createPayment(req, res){
-    
-    
-                    //HARDCODE FOR TESTING
-    /* let order= {
-        items: [
-            {
-                title: 'Agus',
-                quantity: 3,
-                size: 'L',
-                unit_price: 100
-            }
-        ],
-        back_urls: {
-			"success": "http://localhost:3001/payment/feedback",
-			"failure": "http://localhost:3001/payment/feedback",
-			"pending": "http://localhost:3001/payment/feedback"
-		},
-        payer: {
-            email: 'aagenesds1740@gmail.com'
-        },
-		auto_return: 'approved',
-    } */
+async function createPayment(req, res, next){
     try {
     let order= req.body
     console.log(order)
-    let response= await mercadopago.preferences.create(order)
-    /* console.log(order.payer.identification.number)
+    let mpResponse= await mercadopago.preferences.create(order)
+    console.log(order.payer.identification.number)
     let modify= await Order.findOne({
         where: {
             id: parseInt(order.payer.identification.number) // Esto es el orderID
         }
     })
-    modify.paymentId= response.data.response.id // Esto es el id del payment
-    console.log(modify) */
-    res.send(response)
+    console.log(mpResponse)
+    modify.paymentId= mpResponse.response.id // Esto es el id del payment
+    await modify.save()
+    res.status(200).json(mpResponse)
     }
-    catch(error){}
+    catch(error){next({status: 500, message: error})}
 }
 
 async function getPayment(req, res){

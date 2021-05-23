@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1{
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+    
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: coral;
+    width: 35%;
+    padding-bottom: 30px;
+    margin-top: 30px;
+}
+
+.ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    list-style: none;
+    border: 2px solid black;
+}
+
+.li{
+    height: 30px;
+    margin-bottom: 10px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+    padding-top: 10px;
+}
+
+.submitBtn, .filterBtn{
+    width: 120px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+.submitBtn:hover, .filterBtn:hover{
+    background: black;
+    color: coral;
+}
+
+.select{
+    width: 152px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+.option{
+    width: 120px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    background: coral;
+}

@@ -13,7 +13,7 @@ function HomeUser(){
       <NavLink to= '/cart'className={Style.title}>
         <h2 >CART</h2>
       </NavLink>
-      <NavLink to= '/'className={Style.title}>
+      <NavLink to= '/userOrders'className={Style.title}>
         <h2 >ORDERS</h2>
       </NavLink>
       <NavLink to= '/userData'className={Style.title}>
