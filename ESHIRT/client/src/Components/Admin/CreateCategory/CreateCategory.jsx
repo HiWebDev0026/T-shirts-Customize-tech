@@ -62,7 +62,7 @@ export default function CreateCategory (){
     };
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div>
+        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.general}>
             <div>
                 <h1 className= {Style.TitleCategory}>Categories</h1>

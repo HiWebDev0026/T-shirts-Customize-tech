@@ -40,7 +40,7 @@ function handleDelete(e) {
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
 return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
+    isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
 {
         <div className={Style.Container}> 
          <p className={Style.Name}>{designs.name}</p>

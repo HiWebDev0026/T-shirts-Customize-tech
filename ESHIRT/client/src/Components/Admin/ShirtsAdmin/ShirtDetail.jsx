@@ -9,7 +9,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 
-export default function ShirtDetail() {
+export default function ShirtDetail(props) {
 const categories = useSelector((state)=> state.categoryReducer.allCategories)
 const shirt = useSelector((state) => state.shirtReducer.shirtId);
 const history = useHistory();
@@ -27,9 +27,10 @@ const [input, setInput] = useState({
 });
 
 useEffect(() => {
-    dispatch(getShirtById());
+    dispatch(getShirtById(props.match.params.id));
     dispatch(getCategories());
 }, []);
+
 
 function handleChange(e) {
     const value = e.target.value;
@@ -52,13 +53,13 @@ function handleChange1(e) {
 function handleEdit(e) {
     
     if(!input.color || !input.name || !array.length>0 || !input.size || !input.model){return alert("complete all the items") }
-dispatch(putShirt({...input, categories: array}, e.target.value)); 
-alert('Shirt modified')
-history.push('/shirts_admin')
+        dispatch(putShirt({...input, categories: array}, e.target.value)); 
+        alert('Shirt modified')
+        history.push('/shirts_admin')
 }
 
 return(
-    !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+    isAdmin === null ? 'LOADING' : isAdmin === false ?  (<ErrorNoAdminPage />) : <div className={Style.General}>
 <div className={Style.Tarjet} >
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>
@@ -91,10 +92,10 @@ return(
                  <button className={Style.BtnChange} value={shirt.id} type='submit' onClick={handleEdit}>Change</button>      
                            
                     </div>
-<NavLink to='shirts_admin'>
+<NavLink to='/shirts_admin'>
     <h4 className={Style.Btn3}>SHIRTS</h4>
     </NavLink>  
-<NavLink to='home_admin'>
+<NavLink to='/home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>

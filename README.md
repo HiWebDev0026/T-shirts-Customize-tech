@@ -22,7 +22,7 @@
 
 ### 3) Asignación de admins desde el dashboard
 
- - [ ] a) sin pasar por Auth0
+ - [x] ~~a) sin pasar por Auth0~~
 
 ### 4) CSS Responsive 
 

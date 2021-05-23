@@ -13,12 +13,12 @@ export default function Users() {
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
   const history = useHistory();
-  const {isAuthenticated, getAccesTokenSilently} = useAuth0();
+  const {isAuthenticated, getAccesTokenSilently, user} = useAuth0();
   const isAdmin = useTokenDecode(localStorage.currentToken);
   const [count, setCount] = useState([]);
 
   const users = useSelector((state) => state.userReducer.allUsers);
-  const user = useSelector((state) => state.userReducer.usersByName);
+  const usersByName = useSelector((state) => state.userReducer.usersByName);
   const dispatch = useDispatch();
   
 
@@ -61,7 +61,7 @@ export default function Users() {
     }
   }, [order]);
   let us = filtered.length > 0 ? filtered : users;
-  let users1= user.length > 0 ? user : us;
+  let users1= usersByName.length > 0 ? usersByName : us;
 
   // SEARCHBAR USERS
   const [state, setState]= useState('')
@@ -78,7 +78,7 @@ export default function Users() {
   }
 
   return (
-      !isAdmin ? (<ErrorNoAdminPage />) : <div>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
     <div className={Style.general}>
       <h1 className={Style.TitleCategory}>Users</h1>
       <div className={Style.Order}>
@@ -93,19 +93,19 @@ export default function Users() {
             </form>
       </div>
       <div className={Style.Users}>
-      {users1.length > 0 ? ( users1.map((user) => {
-      if ( user.status !== 'deleted' && user.isAdmin == false){
+      {users1.length > 0 ? ( users1.map((userToMap) => {
+      if ( userToMap.status !== 'deleted' && userToMap.isAdmin == false){
           return (
               <div className={Style.Tarjet}>
-                <Link to={`/user_detail/${user.id}`}>
-                  <button value={user.id} onClick={getUserId}>
-                    {user.name}
+                <Link to={`/user_detail/${userToMap.id}`}>
+                  <button value={userToMap.id} onClick={getUserId}>
+                    {userToMap.name}
                   </button>
                 </Link>
-                <p className={Style.Titles}>{user.email}</p>
+                <p className={Style.Titles}>{userToMap.email}</p>
                 <div className={Style.Contenedores}>
-                  <button className={Style.Btn1} value={user.id} onClick={handleEdit}>X</button>
-                  <button className={Style.Btn1} value={user.id} onClick={handleAdmin}>Admin</button>
+                  <button className={Style.Btn1} value={userToMap.id} disabled={user.sub.split('|')[1]===userToMap.id} onClick={handleEdit}>X</button>
+                  <button className={Style.Btn1} value={userToMap.id} disabled={user.sub.split('|')[1]===userToMap.id} onClick={handleAdmin}>Admin</button>
                 </div>
             </div>
           );
