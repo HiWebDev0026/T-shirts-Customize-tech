@@ -7,7 +7,8 @@ import {NavLink} from 'react-router-dom';
 import { 
     putOrder,
     setCartItems,
-    checkLastOrder 
+    checkLastOrder,
+    postOrder 
 } from '../../Actions/index';
 import style from './SideCart.module.css'
 
@@ -17,18 +18,15 @@ export function SideCart(){
     const dispatch= useDispatch()
 
     const items= useSelector(state => state.cartReducer.items)
-    const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
     const {isAuthenticated, user, loginWithPopup} = useAuth0();
     const shirts = useSelector((state)=>state.shirtReducer.allShirts);
-
-
     
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
         let auxOperation = null
-        if (isAuthenticated) {
+        if (orderId > 0) {
             if (operation === '+') {
                 auxOperation = 'add'
             } else if (operation === '-') {
@@ -36,8 +34,11 @@ export function SideCart(){
             } else {
                 auxOperation = 'clear'
             }
-            dispatch(putOrder([...cart.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
-        } 
+            dispatch(putOrder([...items.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
+        } else if (orderId === 0) {
+            alert(orderId)
+            dispatch(postOrder([...items, item], user.sub.split('|')[1]))
+        }
         dispatch(setCartItems({ 
             ...item, 
             amount: 1
@@ -64,10 +65,8 @@ export function SideCart(){
     useEffect(()=> {
         if (isAuthenticated) {
             dispatch(checkLastOrder(user.sub.split('|')[1]))
-        }
-  
-      
-}, [isAuthenticated])
+        }     
+    }, [isAuthenticated])
 
 
     return (

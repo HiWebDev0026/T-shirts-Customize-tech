@@ -1,6 +1,6 @@
 const initialState={
     orders: [],
-    orderId: localStorage.getItem('orderId') || null,
+    orderId: null,
     putOrderOk: null,
     postStarted: false,
     lastOrderChecked: false,
@@ -49,10 +49,18 @@ const ordersReducer = (state=initialState, action) => {
                 }
             })
             const oldOrder = Math.max(...oldOrders)
-
+            let newOrderId = null;
+           
+            if (oldOrder === 0 || oldOrder === "0" || isNaN(oldOrder) || oldOrder === Infinity) {
+                newOrderId = 0
+            } else if (oldOrder === undefined) {
+                newOrderId = null
+            } else if (oldOrder > 0) {
+                newOrderId = parseInt(oldOrder)
+            }
             return {
                 ...state,
-                orderId: oldOrder
+                orderId: newOrderId
             }
 
             case 'GET_ORDER':{
@@ -68,9 +76,18 @@ const ordersReducer = (state=initialState, action) => {
                 }
             }
             case 'CHECK_LAST_ORDER': {
+                let newOrderId = null;
+                if (action.payload === 0 || action.payload === "0" || isNaN(action.payload) || action.payload === Infinity) {
+                    newOrderId = 0
+                } else if (action.payload === undefined) {
+                    newOrderId = null
+                } else if (action.payload > 0) {
+                    newOrderId = parseInt(action.payload)
+                }
+                
                 return {
                     ...state,
-                    orderId: action.payload,
+                    orderId: newOrderId,
                     lastOrderChecked: true
                 }
             }

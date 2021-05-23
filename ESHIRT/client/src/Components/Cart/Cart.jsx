@@ -60,13 +60,11 @@ export default function Cart (props){
 
     function proceed(click, id){
         return (
-            <NavLink to='/payment' onClick={(e)=> click(e, id)}>
-            
-                
+            <div onClick={(e)=> click(e, id)}>
+                <NavLink to='/payment' >
                     <button>Go to pay</button>
-               
-            
-             </NavLink>
+                </NavLink>
+            </div>
         )
     }
 
@@ -80,9 +78,6 @@ export default function Cart (props){
 
     function click(e, id){
         e.preventDefault()
-
-        console.log('click function')
-        console.log('click function', id);
         if (id == 0) {
 
             console.log('click function', 'POST')
@@ -149,7 +144,7 @@ export default function Cart (props){
                             
                                 let shirt ={}
                                 if(!item.hasOwnProperty('image')){
-                                    console.log(Object.keys(item), 'soy keys')
+                                    
                                     shirt = shirts.find(shirt=> shirt.id === item.id)
                                     item.image = shirt.print;
                                 }

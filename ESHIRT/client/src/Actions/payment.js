@@ -1,7 +1,9 @@
 import axios from "axios"
 
-export function createPayment(order, shipments, orderId){
+export function createPayment(order, shipments, userId){
     return async (dispatch) => {
+        const resGetOrder = await axios.get(`/order/user/status/${userId}`, {responseType: 'json'})
+        const orderId = resGetOrder.data
         order= {
             items:order,
             shipments,
@@ -18,13 +20,11 @@ export function createPayment(order, shipments, orderId){
             auto_return: 'approved',
         }
         try {
-            console.log(orderId)
             let response= await axios({
                     method: 'post',
                     url: '/payment',                 
                     data: order
             })
-            console.log(response.data)
             dispatch({type: 'CREATE_PAYMENT', payload: response.data})
         }
         catch (error){
