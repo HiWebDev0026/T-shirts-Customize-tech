@@ -1,6 +1,6 @@
 const initialState={
     orders: [],
-    orderId: null,
+    orderId: localStorage.getItem('orderId') || null,
     putOrderOk: null,
     postStarted: false,
     lastOrderChecked: false,
@@ -16,6 +16,7 @@ const ordersReducer = (state=initialState, action) => {
                 }
             }
             case 'POST_ORDER':
+                localStorage.setItem('orderId', `${action.payload.orderId}`)
             return {
                 ...state,
                 orderId: action.payload.orderId,
@@ -48,6 +49,7 @@ const ordersReducer = (state=initialState, action) => {
                 }
             })
             const oldOrder = Math.max(...oldOrders)
+
             return {
                 ...state,
                 orderId: oldOrder

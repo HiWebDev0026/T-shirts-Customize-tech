@@ -131,8 +131,8 @@ export function checkLastOrder (userId) {
                     }
                 })
                 const oldOrder = Math.max(...oldOrders)
-
-                dispatch({type: 'CHECK_LAST_ORDER', payload: oldOrder || 0})
+                const orderId = (oldOrder || 0)
+                dispatch({type: 'CHECK_LAST_ORDER', payload: oldOrder || orderId})
                 
                 if (oldOrder > 0) {
                     const addToCart = orders.find(order => (parseInt(order.id) === oldOrder))
@@ -142,7 +142,7 @@ export function checkLastOrder (userId) {
 
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
-            dispatch({type: 'CHECK_LAST_ORDER', payload: 0})
+            dispatch({type: 'CHECK_LAST_ORDER', payload: null})
 
             //dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
         }
