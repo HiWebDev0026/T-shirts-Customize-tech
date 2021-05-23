@@ -33,13 +33,13 @@ export function postShirtReview(dataReview, shirtId, userId){
         }
     }
 }
-export function getShirtScore( shirtId){
+export function getShirtScore(shirtId){
    
     return async (dispatch) => {
         try {
             const res = await axios.get(`/shirt/${shirtId}/review`,  {responseType: 'json'})
             const score = res.data      
-           
+           console.log(score)
             dispatch({type: 'GET_SHIRT_BY_SCORE', payload: score})
            
         } catch (err) {
