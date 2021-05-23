@@ -1,19 +1,20 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-
+import ReactPaginate from 'react-paginate';
 
 import FavoritesItems from './FavoritesItems.jsx';
 import {getShirts,postFavorite,getFavorites} from '../../Actions/index.js';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 
 import Style from './Favorites.module.css'
 
 export default function Favorites (){
 
+    const [currentPage, setCurrentPage] = useState(0);
+
     const {user}=useAuth0();
 
-    const userId = user.sub.split('|')[1]
-    console.log('USER',userId)
+    const userId = user.sub.split('|')[1];
 
     const dispatch=useDispatch();
 
@@ -24,30 +25,41 @@ export default function Favorites (){
 
  
     const favorites = useSelector((state)=>state.shirtReducer.shirtsToFavorites);
+
+    const INITIAL_PAGE= 4;
+    const offset = currentPage * INITIAL_PAGE;
+    const pageCount = Math.ceil(favorites.length / INITIAL_PAGE);
     
     function handleClick (e){
-        console.log('ID',e.target.id)
         dispatch(postFavorite(userId,{shirtId:e.target.id}));
+    }
+
+    function handlePageClick({ selected: selectedPage }) {
+        setCurrentPage(selectedPage);
     }
     
     return(
         <div className={Style.container}>
-                <h1>Favorites</h1>
+                <h1>Your favorites!</h1>
                 <div className={Style.info}>
                 {favorites.length>0?
-                favorites.map(favorite => 
+                favorites.slice(offset, offset + INITIAL_PAGE).map(favorite => 
                     {return<FavoritesItems key={favorite.id} favorite={{...favorite, price:50}}/>})
                 :<p>No items in favorites</p>}
-            </div>
-            <button id='1' onClick={handleClick}>1</button>
-            <button id='2' onClick={handleClick}>2</button>
-            <button id='3' onClick={handleClick}>3</button>
-            <button id='4' onClick={handleClick}>4</button>
-            <button id='5' onClick={handleClick}>5</button>
-            <button id='6' onClick={handleClick}>6</button>
-            <button id='7' onClick={handleClick}>7</button>
-            <button id='8' onClick={handleClick}>8</button>
-            <button id='9' onClick={handleClick}>9</button>
+                </div>
+                <div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
         </div>
     )
 }

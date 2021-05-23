@@ -8,3 +8,28 @@
     display:flex;
     justify-content: center;
 }
+
+.pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 80%;
+  }
+    
+  .pagination__link {
+    font-weight: bold;
+  }
+  
+  .pagination__link__active a {
+    color: black;
+    background: coral;
+  }
+  
+  .pagination__link__disabled a {
+    color:black;
+    
+  }
