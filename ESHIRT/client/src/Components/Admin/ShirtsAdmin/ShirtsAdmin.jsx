@@ -18,18 +18,22 @@ const [max, setMax] = useState(0);
 const [count, setCount] = useState(0);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
+
+
   
     useEffect(() => {
       dispatch(getShirts());
       
-    },[count]);
+    },[ count ]);
   
       function handleEdit(e) {
         e.preventDefault();
         setCount(count + 1)
         dispatch(putShirt({status: 'deleted'}, e.target.value));
-        alert("Shirt " + e.target.value + " moved to trash");  
-        history.push('/home_admin')     
+        dispatch(getShirts())
+        alert("Shirt " + e.target.value + " moved to trash"); 
+        dispatch(getShirts()) 
+         
       };
 
       function getShirtId(e) { 

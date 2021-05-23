@@ -14,24 +14,28 @@ function RecycleBinShirt() {
     const isAdmin = useTokenDecode(localStorage.currentToken);
     const [count, setCount] = useState([]);
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
 
     useEffect(() => {
       dispatch(getShirts());
     }, [count]);
 
     function handleDelete(e) {
-        alert("User " + e.target.value + "deleted");
+
         dispatch(deleteShirt(e.target.value)); 
-        setCount(prevState => prevState + 1);
-        history.push('/recycleBin')
+        setCount(count +1);
+        dispatch(getShirts());
+        alert("User " + e.target.value + "deleted");
+        dispatch(getShirts());
+       
       };
 
       function handleEdit(e) {
-        alert("User " + e.target.value + "restored");
         dispatch(putShirt({status: 'restored'}, e.target.value)); 
-        setCount(prevState => prevState + 1);
-        history.push('/recycleBin')
+        setCount(count + 1);
+        dispatch(getShirts());
+        alert("User " + e.target.value + "restored");
+        dispatch(getShirts());
       };
 
     return (
