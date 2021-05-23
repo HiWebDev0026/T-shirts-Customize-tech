@@ -20,6 +20,7 @@ export function SideCart(){
     const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
     const {isAuthenticated, user} = useAuth0();
+    const shirts = useSelector((state)=>state.shirtReducer.allShirts);
 
 
     
@@ -43,11 +44,10 @@ export function SideCart(){
         }, operation));
     }
 
-useEffect(()=> {
-    if (isAuthenticated) {
-        dispatch(checkLastOrder(user.sub.split('|')[1]))
-        
-      }
+    useEffect(()=> {
+        if (isAuthenticated) {
+            dispatch(checkLastOrder(user.sub.split('|')[1]))
+        }
   
       
 }, [isAuthenticated])
@@ -59,6 +59,11 @@ useEffect(()=> {
                 <h2>You have {items.reduce((a,c)=>a+c.amount,0)} items in your cart</h2>
                 <button className={style.cartBtnC}  onClick={(e) => handleCartChange(e, 'clear')} >Clear cart</button>
                 {items?.map((item, index)=> {
+                    let shirt ={}
+                    if(!item.hasOwnProperty('image')){
+                        shirt = shirts.find(shirt=> shirt.id === item.id)
+                        item.image = shirt.print;
+                    }
                     total += (item.price * item.amount)
                     return(
                         
