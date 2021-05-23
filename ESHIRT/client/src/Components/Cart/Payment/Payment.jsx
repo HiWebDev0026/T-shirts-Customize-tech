@@ -3,7 +3,13 @@ import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react'
-import { createPayment, getOrdersByUserId } from '../../../Actions';
+import { 
+    createPayment, 
+    getOrdersByUserId, 
+    checkLastOrder, 
+    postOrder,
+    putOrder
+} from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -43,6 +49,16 @@ function Payment() {
             [e.target.id]: e.target.value
         })
     }
+
+    /* useEffect(()=> {
+        if (isAuthenticated && orderId === 0) {
+            dispatch(postOrder([...items], user.sub.split('|')[1]))
+          } else if (isAuthenticated && orderId) {
+            dispatch(putOrder([...items], orderId, 'add'))
+          } else if (isAuthenticated){
+              dispatch(checkLastOrder(user.sub.split('|')[1]))
+          }
+    }, [isAuthenticated, orderId]) */
 
     /* function sendEmail() {
         Email.send({
