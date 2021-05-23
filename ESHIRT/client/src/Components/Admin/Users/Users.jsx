@@ -27,13 +27,14 @@ export default function Users() {
   }, [count]);
 
   function handleEdit(e) {
-    setCount(prevState => prevState + 1)
-    alert("User " + e.target.value + " moved to trash");
+    setCount(count + 1)
     dispatch(putUser({status: 'deleted'}, e.target.value)); 
+    alert("User " + e.target.value + " moved to trash");
+    dispatch(getUsers())
   };
 
   function handleAdmin(e) {
-    setCount(prevState => prevState + 1)
+    setCount(count +1)
     alert("User " + e.target.value + "is admin now");
     dispatch(putUser({isAdmin: 'true'}, e.target.value));
     history.push('/admins')

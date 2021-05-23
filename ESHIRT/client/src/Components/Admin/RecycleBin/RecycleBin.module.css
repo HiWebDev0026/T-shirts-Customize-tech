@@ -11,7 +11,7 @@
 display: grid;
 justify-content: center;
 text-align: center;
-color:coral;
+color:white;
 font-family: "Montserrat", sans-serif;;
 }
 .ContBtn3{
@@ -19,6 +19,11 @@ font-family: "Montserrat", sans-serif;;
     justify-content: center;
 }
 .Btn3{
+    display: grid;
+    justify-content: center;
+    color: coral;
+}
+.Btn1{
     display: grid;
     justify-content: center;
     color: white;
