@@ -97,7 +97,7 @@ function Payment() {
             let shipments= {
                     receiver_address: deliveryData
             }  
-            dispatch(createPayment(order, shipments, orderId))
+            dispatch(createPayment(order, shipments, user.sub.split('|')[1]))
             setFlag(true)
         } 
     }

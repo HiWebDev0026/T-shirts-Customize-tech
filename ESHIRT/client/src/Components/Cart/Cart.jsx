@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Payment from './Payment/Payment'
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import {useHistory} from 'react-router-dom'
 
@@ -18,10 +18,11 @@ import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function Cart (){
+export default function Cart (props){
     
     const cartFromLocalStorage=JSON.parse(localStorage.getItem('items') || '[]'); 
     const history= useHistory()
+    const {match} = props;
 
     // let cartFromLocalStorage2 =cartFromLocalStorage.map(c=> 
     //     {return {
@@ -33,9 +34,9 @@ export default function Cart (){
 
     const [currentPage, setCurrentPage] = useState(0);
     const items = useSelector((state)=>state.cartReducer.items);
-    const orderId = useSelector((state)=>state.cartReducer.orderId);
+    const orderId = useSelector((state)=>state.ordersReducer.orderId);
     const shirts = useSelector((state)=>state.shirtReducer.allShirts);
-    
+    /* const orderId = parseInt(match.params.orderId) */
     const paymentData = useSelector((state)=>state.paymentReducer.paymentData)
 
     const  dispatch= useDispatch();
@@ -57,12 +58,12 @@ export default function Cart (){
           */
     },[items, isAuthenticated])
 
-    function proceed(click){
+    function proceed(click, id){
         return (
-            <div onClick={click}>
-                <Link to='/payment'>
+            <div onClick={(e)=> click(e, id)}>
+                <NavLink to='/payment' >
                     <button>Go to pay</button>
-                </Link>
+                </NavLink>
             </div>
         )
     }
@@ -75,12 +76,16 @@ export default function Cart (){
         )
     }
 
-    function click(e){
+    function click(e, id){
         e.preventDefault()
-        if (isAuthenticated && orderId === 0) {
+        if (id == 0) {
+
+            console.log('click function', 'POST')
             dispatch(postOrder([...items], user.sub.split('|')[1]))
-          } else if (isAuthenticated && orderId) {
-            dispatch(putOrder([...items], orderId, 'add'))
+
+          } else if (id) {
+            console.log('click function', 'PUT')
+            dispatch(putOrder([...items], id, 'add'))
           } 
     }
 
@@ -139,7 +144,7 @@ export default function Cart (){
                             
                                 let shirt ={}
                                 if(!item.hasOwnProperty('image')){
-                                    console.log(Object.keys(item), 'soy keys')
+                                    
                                     shirt = shirts.find(shirt=> shirt.id === item.id)
                                     item.image = shirt.print;
                                 }
@@ -165,12 +170,14 @@ export default function Cart (){
                         <div>${items.reduce((a,c)=>a+c.price*c.amount,0)}</div>
                     </div>
                         <div className={Style.buttons}>
-                            <Link to='/catalogue'>
+                            <NavLink to='/catalogue'>
+
                                 <button>Go back shopping</button>
-                            </Link>
+                                
+                            </NavLink>
                             
                             {
-                                isAuthenticated ? proceed(click) : notProceed()
+                                isAuthenticated ? proceed(click, orderId) : notProceed()
                             }
                             
                             {items.length >0&&<button onClick={(e) => handleCartChange(e, 'clear')}>Clear cart</button>}
