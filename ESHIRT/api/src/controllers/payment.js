@@ -27,7 +27,7 @@ async function createPayment(req, res, next){
 async function getPayment(req, res){
     try {
         let id= req.params.id
-        let response= await mercadopago.get(`/v1/payments/search`, {"external_reference":id})
+        let response= await mercadopago.get(`/v1/payments/search`, {"payment_id":id})
         res.json(response)
     }
     catch(error){}
