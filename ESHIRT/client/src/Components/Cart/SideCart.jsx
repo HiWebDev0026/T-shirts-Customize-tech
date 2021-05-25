@@ -4,10 +4,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
 
+import { BsFillHeartFill } from 'react-icons/bs';
+
 import { 
     putOrder,
     setCartItems,
-    checkLastOrder 
+    checkLastOrder,
+    postOrder,
+    postFavorite
 } from '../../Actions/index';
 import style from './SideCart.module.css'
 
@@ -17,18 +21,15 @@ export function SideCart(){
     const dispatch= useDispatch()
 
     const items= useSelector(state => state.cartReducer.items)
-    const cart = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated, user} = useAuth0();
+    const {isAuthenticated, user, loginWithPopup} = useAuth0();
     const shirts = useSelector((state)=>state.shirtReducer.allShirts);
-
-
     
     const handleCartChange = (e, operation) => {
         e.preventDefault();
         const item = (e.target.id && items[parseInt(e.target.id)]) || {}
         let auxOperation = null
-        if (isAuthenticated) {
+        if (orderId > 0) {
             if (operation === '+') {
                 auxOperation = 'add'
             } else if (operation === '-') {
@@ -36,21 +37,49 @@ export function SideCart(){
             } else {
                 auxOperation = 'clear'
             }
-            dispatch(putOrder([...cart.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
-        } 
+            dispatch(putOrder([...items.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
+        } else if (orderId === 0) {
+            alert(orderId)
+            dispatch(postOrder([...items, item], user.sub.split('|')[1]))
+        }
         dispatch(setCartItems({ 
             ...item, 
             amount: 1
         }, operation));
     }
 
+    const showProceed = () => {
+        return (
+            <NavLink to={'cart/'}>
+                <button className={style.cartBtnP}>Proceed</button>
+            </NavLink>
+        )
+    }
+
+    const showLogAndProceed = (loginWithPopup) => {
+
+        return (
+            <div>
+                <button className={style.cartBtnP} onClick={loginWithPopup}>Login and Proceed</button>
+            </div>
+        )
+    }
+
+    const handleFavorite =(e) => {
+        console.log('IND', e.target.id)
+        e.preventDefault();
+        // if(isAuthenticated){
+        //     dispatch(postFavorite(user.sub.split('|')[1],{shirtId:e.target.id}));
+        // }else{
+        //     loginWithPopup();
+        // }
+    }
+
     useEffect(()=> {
         if (isAuthenticated) {
             dispatch(checkLastOrder(user.sub.split('|')[1]))
-        }
-  
-      
-}, [isAuthenticated])
+        }     
+    }, [isAuthenticated])
 
 
     return (
@@ -62,7 +91,7 @@ export function SideCart(){
                     let shirt ={}
                     if(!item.hasOwnProperty('image')){
                         shirt = shirts.find(shirt=> shirt.id === item.id)
-                        item.image = shirt.print;
+                        item.image = shirt?.print || 'https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43bf76.png';
                     }
                     total += (item.price * item.amount)
                     return(
@@ -73,6 +102,7 @@ export function SideCart(){
                                 <h4>{item.size}</h4>
 
                                 U$S{item.price}x{item.amount}
+                                {/* <button id={item.id} onClick={handleFavorite} className={isAuthenticated?style.blackHeart:style.greyHeart}><BsFillHeartFill/></button>  */}
 
                             </div>
                             <div className={style.ctrls}>
@@ -91,9 +121,7 @@ export function SideCart(){
             <div className={style.total}>
                 TOTAL: U$S{total}
             </div>
-            <NavLink to='/cart'>
-                <button className={style.cartBtnP}>Proceed</button>
-            </NavLink>
+            {isAuthenticated ? showProceed() : showLogAndProceed(loginWithPopup)}
         </div>
     )
 }

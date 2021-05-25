@@ -373,7 +373,7 @@
   font-weight: 500;
   font-size: 12px;
   height: 35px;
-  width: 40px;
+  width: 6vh;
   margin-left: 5px;
   margin-right: 5px;
   border-color: rgba(255, 127, 80, 0.397);
@@ -400,3 +400,19 @@ input[type="radio"]:checked ~ label {
   label:hover ~ label {
 	color: coral;
   }
+
+.greyHeart{
+  color:grey;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+
+
+  width: 6vh;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: grey;
+  transition-duration: 0.4s;
+  border-radius: 10px;
+}

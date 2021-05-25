@@ -183,11 +183,41 @@ async function modifyStatus (req, res, next) {
     }
 }
 
+async function getOrdersByStatus (req, res, next) {
+    const userId = req.params.userId.toString()
+    try {
+        const orders = await Order.findAll({
+            where: {
+                userId: userId, // Esto es el orderID
+            }
+        })
+
+        const mappedOrders = orders.filter(o => o.dataValues.status === 'CART')
+        x = mappedOrders
+        let max = x[0].dataValues.id;
+        for (let i=0; i< x.length ; i++) {
+            for (let j=i+1; j < x.length; j++) {
+                if(max < x[j].dataValues.id) {
+                    max = x[j].dataValues.id
+                }
+            }
+        }
+    
+        const order = await Order.findOne({where: {id: max}})
+        res.status(200).json(order.id)
+
+    } catch (err) {
+        next({status: 500, message: err})
+    }
+}
+
+
 module.exports = {
     postOrder,
     getOrders,
     getOrder,
     putOrder,
     modifyStatus,
-    getOrdersByUserId
+    getOrdersByUserId,
+    getOrdersByStatus
 }

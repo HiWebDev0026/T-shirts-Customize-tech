@@ -12,52 +12,25 @@ function RecycleBin() {
 
     const userTotal = useSelector((state) => state.userReducer.allUsers);
     const isAdmin = useTokenDecode(localStorage.currentToken)
-    const dispatch = useDispatch();
-    let users= [];
-    userTotal.map((user) => {
-        if (user.status == 'deleted'){
-        return users.push({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            status: user.status
-        })
-    }
-    })
-    useEffect(() => {
-        dispatch(getUsers());
-  }, [users]);
-
-    function handleDelete(e) {
-        alert("User " + e.target.value + "deleted");
-        dispatch(deleteUser(e.target.value)); 
-      };
-
-      function handleEdit(e) {
-        alert("User " + e.target.value + "restored");
-        dispatch(putUser({status: 'restored'}, e.target.value)); 
-      };
 
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
-        <div>
+        <div className={Style.container}>
             <h1 className={Style.Title}>RECYCLE BIN </h1>
 
     <NavLink to='recycleBinUser'>
-    <h2 className={Style.Btn3}>USERS DELETED</h2>
+    <h3 className={Style.Btn3}>USERS DELETED</h3>
     </NavLink>
     <NavLink to='recycleBinShirt'>
-    <h2 className={Style.Btn3}>SHIRTS DELETED</h2>
+    <h3 className={Style.Btn3}>SHIRTS DELETED</h3>
     <NavLink to='recycleBinDesigns'>
-        <h2 className={Style.Btn3}>UNAPPROVED DESIGNS</h2>
+        <h3 className={Style.Btn3}>UNAPPROVED DESIGNS</h3>
     </NavLink> 
     </NavLink>
     <NavLink to='home_admin'>
-    <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+    <h4 className={Style.Btn1}>CONTROL PANEL</h4>
     </NavLink>
     
-
-
         </div>
         
     )

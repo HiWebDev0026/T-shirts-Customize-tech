@@ -8,17 +8,31 @@ const { Order }= require('../db')
 async function createPayment(req, res, next){
     try {
     let order= req.body
-    console.log(order)
+    
+    // let orders= await Order.findAll({
+    //     where: {
+    //         userId: order.payer.identification.number, // Esto es el orderID
+    //     }
+    // })
+
+    // const mappedOrders = orders.filter(o => o.dataValues.status === 'CART')
+    // console.log(mappedOrders, 'FJDSKLFJDSLKFJKLSDFJLKDSJFLKDSJFLSDJFLKSDJFKLJSDLKF')
+    // x = mappedOrders
+    // let max = x[0].dataValues.id;
+    // for (let i=0; i< x.length ; i++) {
+    //     for (let j=i+1; j < x.length; j++) {
+    //         if(max < x[j].dataValues.id) {
+    //             max = x[j].dataValues.id
+    //         }
+    //     }
+    // }
+
+    const orderId = parseInt(order.payer.identification.number)
+    const orderToModify = await Order.findOne({where: {id: orderId}})
     let mpResponse= await mercadopago.preferences.create(order)
-    console.log(order.payer.identification.number)
-    let modify= await Order.findOne({
-        where: {
-            id: parseInt(order.payer.identification.number) // Esto es el orderID
-        }
-    })
     console.log(mpResponse)
-    modify.paymentId= mpResponse.response.id // Esto es el id del payment
-    await modify.save()
+    orderToModify.paymentId= mpResponse.response.id // Esto es el id del payment
+    await orderToModify.save()
     res.status(200).json(mpResponse)
     }
     catch(error){next({status: 500, message: error})}

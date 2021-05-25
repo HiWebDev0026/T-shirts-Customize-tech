@@ -18,23 +18,26 @@ const [max, setMax] = useState(0);
 const [count, setCount] = useState(0);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
+
+
   
     useEffect(() => {
       dispatch(getShirts());
       
-    },[count]);
+    },[ count ]);
   
       function handleEdit(e) {
         e.preventDefault();
         setCount(count + 1)
         dispatch(putShirt({status: 'deleted'}, e.target.value));
-        alert("Shirt " + e.target.value + " moved to trash");  
-        history.push('/home_admin')     
+        dispatch(getShirts())
+        alert("Shirt " + e.target.value + " moved to trash"); 
+        dispatch(getShirts()) 
+         
       };
 
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
-        /* setTimeout(()=> history.push('/shirt_detail'), 0); */
       };
       
       useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
@@ -75,7 +78,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>X</button></th>
-              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId}>Detail</NavLink>
+              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId} className={Style.Detail}>Detail</NavLink>
               </div>
                </tr>
           );

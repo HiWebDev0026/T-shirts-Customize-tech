@@ -1,9 +1,11 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+    postOrder,
     putOrder,
     setCartItems,
-    setSizeChanged
+    setSizeChanged,
+    postFavorite
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
@@ -18,24 +20,24 @@ export default function CartItem ({item, index}){
     const dispatch = useDispatch();
     const items = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, user, loginWithPopup} = useAuth0();
 
     const sizes=['S','M','L','XL'];
   
     const handleCartChange = (e, operation, trash) => {
-        console.log(trash)
         e.preventDefault();
         let auxOperation = null
-        if (isAuthenticated) {
+        if (isAuthenticated && orderId > 0) {
             if (operation === '+') {
                 auxOperation = 'add'
             } else if (operation === '-') {
                 auxOperation = 'remove'
             }
             const actualAmount = item.amount
-            console.log(actualAmount)
             dispatch(putOrder([...items.map(i => { return {...i}}), {...item, amount: (trash && actualAmount) || 1}], orderId, auxOperation))
-        } 
+        } else if (isAuthenticated && orderId === 0) {
+            dispatch(postOrder([...items, item], user.sub.split('|')[1]))
+        }
         dispatch(setCartItems({ 
             ...item, 
             amount: (trash && item.amount) || 1
@@ -46,6 +48,15 @@ export default function CartItem ({item, index}){
         e.preventDefault();
         item.size = e.target.value;
         dispatch(setSizeChanged(item, e.target.id))
+    }
+
+    const handleFavorite =(e) => {
+        e.preventDefault();
+        if(isAuthenticated){
+            dispatch(postFavorite(user.sub.split('|')[1],{shirtId:item.id}));
+        }else{
+            loginWithPopup();
+        }
     }
 
     return(
@@ -60,7 +71,7 @@ export default function CartItem ({item, index}){
                     </div>
                     <div className={Style.btns}>
                         <button onClick={(e) => handleCartChange(e, '-', 'trash')}><BsFillTrashFill/></button>
-                        <button><BsFillHeartFill/></button>                     
+                        <button onClick={handleFavorite} className={isAuthenticated?Style.blackHeart:Style.greyHeart}><BsFillHeartFill/></button>                     
                     </div>
                 </div>
             <div className={Style.column2}>

@@ -18,12 +18,15 @@ export default function Sales() {
   const [filtered, setFiltered] = useState([]);
   const [order, setOrder] = useState([]);
   const [count, setCount] = useState([]);
-  
-  
+
+  let ids= [""];
+  sale.map((temp) => {
+    return ids.push(temp.id)
+  })
   useEffect(()=>{
     dispatch(getOrders());
-  },[])
-
+  },[count])
+console.log(ids, "caaaaa ids")
     function handleRefresh () {
     setFiltered([])
   }
@@ -41,7 +44,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 
   let sales = filtered.length > 0 ? filtered : sale
   let statusSales= ['', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
-  let statusSales2= ['',  'DISPATCHED', 'DONE', 'CANCELED']
+  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED']
   
   
   useEffect(() => {
@@ -54,10 +57,27 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
     function handleOrder(e){
       setOrder(e.target.value)
     }
-    function handleEdit(e, orderID) {
-      setCount(prevState => prevState + 1)
-      alert("User " + e.target.value + " moved to trash");
-      dispatch(modifyOrderStatus({status: e.target.value}, 1)); 
+    const [input, setInput] = useState({
+      name: '' })
+    function handleChange1(e) {
+      const value = parseInt(e.target.value);
+      const name = e.target.name
+  
+      setInput({
+          ...input,
+          [name]: value
+      });
+  }
+
+    function handleEdit(e) {
+     setCount(count +1)
+      let index= input.name
+      dispatch(modifyOrderStatus({status: e.target.value}, index)); 
+      dispatch(getOrders());
+      alert("Order " + e.target.value + " modified");
+      dispatch(getOrders());
+    
+
     };
     
     return(
@@ -70,14 +90,24 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
 <div className="searchs">
-<h2>FILTER BY STATUS</h2>
+<h2>FILTER</h2>
         <select onChange={handleFilter}className="type1">
           {statusSales.map((temp) => {
             return <option value={temp}>{temp} </option>; //Template
           })}
         </select>
  </div>
-
+<h2>MODIFY THE STATUS</h2>
+ <select name = 'name' className= 'name'  onChange={handleChange1}>
+{ids.map((I)=> {
+  return <option  value={I} >{I}</option>
+})}
+ </select>
+ <select onChange={handleEdit}className="type1">
+          {statusSales2.map((temp) => {
+           return <option value={temp}> {temp} </option>; //Template
+          })}
+        </select>
           <table id="table-to-xls">
               <tr>
               <th >Id</th>
@@ -94,11 +124,7 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
                     return <tr>
                                   <th> {s.id}</th>
                                   <th> {s.total_price}</th>
-                                  <select onChange={handleEdit}className="type1">
-          {statusSales2.map((temp) => {
-            return <option value={temp}> --- {s.status} --- {temp} </option>; //Template
-          })}
-        </select>
+                                  <th> {s.status}</th>
                                   <th> {s.createdAt.slice(0,10)}</th>
                                   <th> {s.updateAt?.slice(0,10)}</th>
                                   <th> {s.userId}</th>

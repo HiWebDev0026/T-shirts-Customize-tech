@@ -30,7 +30,7 @@ function handleEdit(e) {
 
   function handleNoAdmin(e) {
     setCount(prevState => prevState + 1)
-    alert("User " + e.target.value + "is admin now");
+    alert(e.target.value + "is a normal user now");
     dispatch(putUser({isAdmin: 'false'}, e.target.value)); 
     history.push('/users')
   };
