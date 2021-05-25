@@ -10,12 +10,12 @@ import { useAuth0} from "@auth0/auth0-react";
 import { BsFillHeartFill } from 'react-icons/bs';
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
-import {postFavorite} from '../../../Actions/index.js';
 import {
   setCartItems,
   checkLastOrder,
   postOrder,
-  putOrder
+  putOrder,
+  postFavorite
 } from "../../../Actions/index.js";
 
 
@@ -26,7 +26,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
-  const {isAuthenticated, user } = useAuth0();
+  const {isAuthenticated, user,loginWithPopup} = useAuth0();
   
   const handleCartChange = (e, operation) => {
     e.preventDefault();
@@ -79,11 +79,15 @@ function Card({ title, score, price, size, model, color, image, id }) {
       setAmount(amount => amount - 1)
     }
   }
+
   function handleFavorite(e) {
-   
-    const userId = user.sub.split('|')[1]
-    
-    dispatch(postFavorite(userId, {shirtId: id }))
+    e.preventDefault();
+    if(isAuthenticated){
+      const userId = user.sub.split('|')[1]
+      dispatch(postFavorite(userId, {shirtId: id }));
+    }else{
+      loginWithPopup();
+    }
   }
   return (
   <div>
@@ -166,7 +170,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <p>Amount: {amount}</p>
 
             <div className={style.cartBox}>
-              <button className={style.buttonAM} id={id} onClick={handleFavorite} ><BsFillHeartFill/></button> 
+              <button id={id} onClick={handleFavorite} className={isAuthenticated?style.buttonAM:style.greyHeart} ><BsFillHeartFill/></button> 
               <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '+')}>
                 <FaCartPlus />
               </button>

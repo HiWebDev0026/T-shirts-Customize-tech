@@ -23,15 +23,6 @@ export default function Cart (props){
     const cartFromLocalStorage=JSON.parse(localStorage.getItem('items') || '[]'); 
     const history= useHistory()
     const {match} = props;
-
-    // let cartFromLocalStorage2 =cartFromLocalStorage.map(c=> 
-    //     {return {
-    //         shirtId: c.id,
-    //         size: c.size,
-    //         amount: c.amount,
-    //         price: c.price
-    //     }})
-
     const [currentPage, setCurrentPage] = useState(0);
     const items = useSelector((state)=>state.cartReducer.items);
     const orderId = useSelector((state)=>state.ordersReducer.orderId);
