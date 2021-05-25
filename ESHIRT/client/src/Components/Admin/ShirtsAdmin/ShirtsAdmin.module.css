@@ -94,3 +94,9 @@
     justify-content: center;
     color: white;
 }
+.Detail{
+    color:blanchedalmond;
+}
+.Detail:hover{
+    color: coral;
+}

@@ -18,6 +18,7 @@ const [count, setCount] = useState([]);
 const [temp, SetTemp] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
+console.log(shirt)
 const [input, setInput] = useState({
     name: '',
     color: '',
@@ -52,8 +53,14 @@ function handleChange1(e) {
 
 function handleEdit(e) {
     
-    if(!input.color || !input.name || !array.length>0 || !input.size || !input.model){return alert("complete all the items") }
-        dispatch(putShirt({...input, categories: array}, e.target.value)); 
+    if(!array){array= shirt.categories[0].id}
+    if(!input.name){input.name= shirt.name}
+    if(!input.color){input.color= shirt.color}
+    if(!input.model){input.model= shirt.model}
+    if(!input.size){input.size = shirt.size}
+ 
+        if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
+        else{dispatch(putShirt({...input}, e.target.value))}
         alert('Shirt modified')
         history.push('/shirts_admin')
 }
