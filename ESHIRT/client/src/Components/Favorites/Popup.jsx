@@ -50,30 +50,34 @@ export default function Popup (props){
     return (props.trigger)?(
         <div className={Style.popup}>
             <div className={Style.popupinner}>
-                <div className={Style.image}>
-                    <img src={props.favorite.print}/>
+                <div className={Style.left}>
+                    <div className={Style.image}>
+                        <img src={props.favorite.print}/>
+                    </div>
+                    <p>{props.favorite.name}</p>
                 </div>
-                <p>{props.favorite.name}</p>
-                <label>
-                        <select className={Style.size} onChange={(e)=>setSize(e.target.value)}>
-                          <option selected="true" disabled="disabled">size</option>
-                          <option value="XL">XL</option>
-                          <option value="L">L</option>
-                          <option value="M">M</option>
-                          <option value="S">S</option>
-                        </select>
-                        </label>
-                        <div>
-                            <button className={Style.buttonAM} onClick={()=>setQuantity(quantity+1)}>
+                <div className={Style.right}>
+                    <label className={Style.size}>
+                            <select className={Style.size} onChange={(e)=>setSize(e.target.value)}>
+                            <option selected="true" disabled="disabled">size</option>
+                            <option value="XL">XL</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="S">S</option>
+                            </select>
+                    </label>
+                    <div className={Style.amount}>
+                        <button className={Style.buttonAM} onClick={()=>setQuantity(quantity+1)}>
                             <GrAdd />
-                            </button>
-                            <div>{quantity}</div>
-                            <button className={Style.buttonAM} onClick={()=>quantity>1&&setQuantity(quantity-1)}>
+                        </button>
+                        <div className={Style.amountqt}>{quantity}</div>
+                        <button className={Style.buttonAM} onClick={()=>quantity>1&&setQuantity(quantity-1)}>
                             <GrFormSubtract />
-                            </button>
+                        </button>
                         </div>
-                        <button id={props.id} onClick={(e) => handleCartChange(e)}><HiShoppingCart/></button>
-                        <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}>close</button>
+                            <button id={props.id} onClick={(e) => handleCartChange(e)}><HiShoppingCart/></button>
+                </div>
+                <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}>X</button>
             </div>
         </div>
     ):'';

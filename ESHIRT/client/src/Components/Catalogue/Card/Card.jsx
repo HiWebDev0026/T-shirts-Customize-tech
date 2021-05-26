@@ -6,6 +6,7 @@ import {MdDeleteForever} from "react-icons/md";
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0} from "@auth0/auth0-react";
+import swal from 'sweetalert';
 
 import { BsFillHeartFill } from 'react-icons/bs';
 import { NavLink } from "react-router-dom";
@@ -85,6 +86,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     if(isAuthenticated){
       const userId = user.sub.split('|')[1]
       dispatch(postFavorite(userId, {shirtId: id }));
+      swal({title:'added to favorites', icon:'success', timer:3000});
     }else{
       loginWithPopup();
     }
