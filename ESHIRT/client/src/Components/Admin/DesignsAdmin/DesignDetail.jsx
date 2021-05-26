@@ -44,18 +44,22 @@ return(
 {
         <div className={Style.Container}> 
          <p className={Style.Name}>{designs.name}</p>
-         <p className={Style.Color}>{designs.color}</p>
          <img src={designs.print} className={Style.Img}/>
          <div className={Style.Btns}>
+         
         <form>
+        <h4>DO YOU WANT TO APPROVAL?</h4>
+            <div className={Style.Formulario}>
          <label>Yes</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic} />
                     <label >No</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}  />
+                    <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >Submit</button>
+                    </div>
                     </form>
-         <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >APPROVAL</button>
+         <br></br> <br></br>
          </div>
-         <div><button className={Style.Btn1} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
+         <div><button className={Style.BtnDelete} value={designs.id} onClick={handleDelete}>REMOVE</button> </div>
         </div>
 
    
