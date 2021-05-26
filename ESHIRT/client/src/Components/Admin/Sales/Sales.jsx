@@ -47,21 +47,31 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 const DATAUP = (a,b) => {return b.createdAt.slice(2,10).split('-') - a.createdAt.slice(2,10).split('-')}
 const DATADN = (a,b) => {return a.createdAt.slice(2,10).split('-') - b.createdAt.slice(2,10).split('-')}
 
+//ORDER BY DATE
+function sortByDate(a, b) {
+  if (a.createdAt < b.createdAt) { return 1;}
+  if (a.createdAt > b.createdAt) {return -1;}
+  return 0;}
+function sortByDate2(a, b) {
+  if (a.createdAt > b.createdAt) {return 1;}
+  if (a.createdAt < b.createdAt) {return -1;}
+  return 0;}
+
   let sales = filtered.length > 0 ? filtered : sale;
   let statusSales= ['By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED'];
   let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED'];
   
   let idsUsuarios= ['By User ID']
   sale.map((id) =>{
-    return idsUsuarios.push(id.userId)
+     if(idsUsuarios.indexOf(id.userId) === - 1){idsUsuarios.push(id.userId)}
   })
   
   useEffect(() => {
     switch(order){
       case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
       case 'STRENGTHDN': return setFiltered([...sales].sort(STRENGTHDN))
-      case 'DATAUP': return setFiltered([...sales].sort(DATAUP))
-      case 'DATADN': return setFiltered([...sales].sort(DATADN))
+      case 'sortByDate': return setFiltered([...sales].sort(sortByDate))
+      case 'sortByDate2': return setFiltered([...sales].sort(sortByDate2))
 
       default: return sales
     }}, [order])
@@ -107,8 +117,8 @@ const DATADN = (a,b) => {return a.createdAt.slice(2,10).split('-') - b.createdAt
 </select>
 <select onChange={handleOrder} className= 'options'>
   <option value =''>ORIGINAL</option>
-  <option value ='DATAUP'>DATA+</option>
-  <option value ='DATADN'>DATA-</option>
+  <option value ='sortByDate'>DATE +</option>
+  <option value ='sortByDate2'>DATE -</option>
 </select>
 <div className="searchs">
 <h2>FILTER</h2>
