@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
 import swal from 'sweetalert';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 
 import Style from './Popup.module.css';
 import {setCartItems,postOrder,putOrder } from '../../Actions/index.js';
-// import state from 'sweetalert/typings/modules/state';
+
 
 export default function Popup (props){
 
@@ -21,10 +21,6 @@ export default function Popup (props){
     const orderId=useSelector(state =>state.ordersReducer.orderId);
 
     const dispatch=useDispatch();
-
-    // function handleAdd (e){
-    //     dispatch(pushItem({...props.favorite,image:props.favorite.print, image:props.favorite.print, price:50, amount:amount, size:size}))
-    // }
 
     const handleCartChange = (e) => {
         e.preventDefault();

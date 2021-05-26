@@ -133,7 +133,6 @@ const shirtReducer = (state=initialState, action) => {
                 }
 
             case 'DELETE_FAVORITE':
-                console.log('SHIRTIDDDD', action.payload, typeof action.payload )
                 return {
                     ...state,
                     shirtsToFavorites: deleteHelper(state.shirtsToFavorites,Number(action.payload))
