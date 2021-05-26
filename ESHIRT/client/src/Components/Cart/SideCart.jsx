@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import swal from 'sweetalert';
 
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
@@ -65,14 +66,14 @@ export function SideCart(){
         )
     }
 
-    const handleFavorite =(e) => {
-        console.log('IND', e.target.id)
+    const handleFavorite =(e, id) => {
         e.preventDefault();
-        // if(isAuthenticated){
-        //     dispatch(postFavorite(user.sub.split('|')[1],{shirtId:e.target.id}));
-        // }else{
-        //     loginWithPopup();
-        // }
+        if(isAuthenticated){
+            dispatch(postFavorite(user.sub.split('|')[1],{shirtId:id}));
+            swal({title:'added to favorites', icon:'success', timer:3000});
+        }else{
+            loginWithPopup();
+        }
     }
 
     useEffect(()=> {
@@ -96,13 +97,13 @@ export function SideCart(){
                     total += (item.price * item.amount)
                     return(
                         
-                        <div className={style.item}>
+                        <div key={index} className={style.item}>
                             <div className={style.data}>
                                 <h4>{item.title}</h4>
                                 <h4>{item.size}</h4>
 
                                 U$S{item.price}x{item.amount}
-                                {/* <button id={item.id} onClick={handleFavorite} className={isAuthenticated?style.blackHeart:style.greyHeart}><BsFillHeartFill/></button>  */}
+                                <button onClick={(e) =>handleFavorite(e, item.id)} className={isAuthenticated?style.blackHeart:style.greyHeart}><BsFillHeartFill/></button> 
 
                             </div>
                             <div className={style.ctrls}>

@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
 import swal from 'sweetalert';
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 
 import Style from './Popup.module.css';
 import {setCartItems,postOrder,putOrder } from '../../Actions/index.js';
-// import state from 'sweetalert/typings/modules/state';
+
 
 export default function Popup (props){
 
@@ -15,16 +15,14 @@ export default function Popup (props){
     const userId = user.sub.split('|')[1]
 
     const[quantity,setQuantity]=useState(1);
-    const[size, setSize]=useState('');
+    const[size, setSize]=useState(props.favorite.size || '');
 
     const cart =useSelector(state =>state.cartReducer.items);
     const orderId=useSelector(state =>state.ordersReducer.orderId);
 
-    const dispatch=useDispatch();
+    const sizes=['S','M','L','XL'];
 
-    // function handleAdd (e){
-    //     dispatch(pushItem({...props.favorite,image:props.favorite.print, image:props.favorite.print, price:50, amount:amount, size:size}))
-    // }
+    const dispatch=useDispatch();
 
     const handleCartChange = (e) => {
         e.preventDefault();
@@ -59,11 +57,13 @@ export default function Popup (props){
                 <div className={Style.right}>
                     <label className={Style.size}>
                             <select className={Style.size} onChange={(e)=>setSize(e.target.value)}>
-                            <option selected="true" disabled="disabled">size</option>
-                            <option value="XL">XL</option>
-                            <option value="L">L</option>
-                            <option value="M">M</option>
-                            <option value="S">S</option>
+                            {
+                                sizes.map((s)=>{
+                                    return props.favorite.size === s?
+                                        <option value={props.favorite.size} selected>{s}</option>
+                                        : <option value={s}>{s}</option>
+                                })  
+                            }
                             </select>
                     </label>
                     <div className={Style.amount}>

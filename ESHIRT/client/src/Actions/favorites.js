@@ -19,7 +19,6 @@ export function postFavorite(userId,shirtId){
 
     return async (dispatch) => {
         try {
-            console.log(shirtId)
             const res = await axios.post(`/favorites/${userId}`, shirtId);
             const newFavorite = res.data
             dispatch({type: 'POST_FAVORITE', payload:newFavorite})

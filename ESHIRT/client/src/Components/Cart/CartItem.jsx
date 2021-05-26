@@ -10,7 +10,6 @@ import {
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
-//import { FaEdit } from "react-icons/fa";
 import { useAuth0} from "@auth0/auth0-react";
 
 
