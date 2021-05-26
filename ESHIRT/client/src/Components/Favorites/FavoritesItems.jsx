@@ -28,9 +28,9 @@ export default function FavoritesItems ({favorite}) {
           <main>
             <img src={favorite.print} alt={favorite.name}/>
             <h5 className={Style.name}>{favorite.name}</h5>
+            <h5 className={Style.price}>${favorite.price}</h5>
             <div className={Style.btns}>
-                <h5>${favorite.price}</h5>
-                <button id={favorite.id} onClick={handleDelete} >delete</button>
+                <button id={favorite.id} onClick={handleDelete} >X</button>
                 <button id={favorite.id} onClick={()=>setButtonPopup(true)} ><HiShoppingCart/></button>
             </div>
           </main>

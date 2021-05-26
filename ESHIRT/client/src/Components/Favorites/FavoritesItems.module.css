@@ -1,12 +1,12 @@
 .card{
-    border: solid 2px orange;
+    border: solid 2px white;
     width: 200px;
-    height: 350px;
+    height: 310px;
     margin:2px;
+    border-radius: 5px;
 }
 
 .name{
-    border: solid 2px blue;
     color:white;
     font-size: 20px;
     margin:0;
@@ -16,7 +16,6 @@
 }
 
 .card img{
-    border: solid 2px blueviolet;
     width: 100%;
     height:auto;
 }
@@ -26,11 +25,33 @@
 } 
 
 .btns button{
-    border: solid 2px red;
     font-size: 7px;;
-    width: 40px;
+    width: 30px;
     height: 15px;;
     margin:0;
+    margin-right: 2px;
+    background-color: black;
+    border: solid 2px white;
+    border-radius: 5px;
+    color:white;
+}
+
+.btns button:hover{
+    color:black;
+    background-color: white;
+}
+
+.price{
+    display:flex;
+    justify-content: center;
+    margin:0;
+    margin-top:4px
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    margin-top:5px;
 }
 
 
