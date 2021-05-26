@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom';
 import Style from "./User.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import swal from 'sweetalert';
 
 export default function Admins() {
 
@@ -23,15 +24,27 @@ export default function Admins() {
 
 function handleEdit(e) {
     setCount(prevState => prevState + 1)
-    alert("User " + e.target.value + " moved to trash");
     dispatch(putUser({status: 'deleted',isAdmin: 'false'}, e.target.value)); 
+    swal({ 
+      title: "DELETE", 
+      text: "User " + e.target.value + " moved to trash",
+      icon: "warning",
+      timer: 2000,
+      padding: "0.75rem"
+      });
     history.push('/recycleBinUser');
   };
 
   function handleNoAdmin(e) {
     setCount(prevState => prevState + 1)
-    alert(e.target.value + "is a normal user now");
     dispatch(putUser({isAdmin: 'false'}, e.target.value)); 
+    swal({ 
+      title: "User " + e.target.value + " is being converted to user", 
+      text: "please wait while the action is executed",
+      icon: "warning",
+      timer: 4000,
+      padding: "0.75rem"
+      });
     history.push('/users')
   };
   function getUserId(e) { 

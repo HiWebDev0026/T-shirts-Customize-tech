@@ -7,6 +7,7 @@ import Style from "./ShirtsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function ShirtsAdmin() {
 
@@ -28,12 +29,17 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
   
       function handleEdit(e) {
         e.preventDefault();
-        setCount(count + 1)
+        setCount(count + 1);
         dispatch(putShirt({status: 'deleted'}, e.target.value));
-        dispatch(getShirts())
-        alert("Shirt " + e.target.value + " moved to trash"); 
-        dispatch(getShirts()) 
-         
+        dispatch(getShirts());
+        dispatch(getShirts()); 
+        swal({ 
+          title: "DELETE", 
+          text: "Shirt " + e.target.value + " moved to trash",
+          icon: "warning",
+          timer: 3000,
+          padding: "0.75rem"
+          });
       };
 
       function getShirtId(e) { 
