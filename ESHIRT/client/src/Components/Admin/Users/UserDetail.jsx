@@ -6,6 +6,7 @@ import Style from "./UserDetail.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import {useHistory} from 'react-router-dom';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import swal from 'sweetalert';
 
 export default function UserDetail ({match}){
 
@@ -48,6 +49,13 @@ export default function UserDetail ({match}){
     function handleSubmit (e) {
         e.preventDefault();
         dispatch(putUser(validateDataToModify(dataToModify), user.id))
+        swal({ 
+            title: "DONE", 
+            text: "User modified",
+            icon: "success",
+            timer: 2000,
+            padding: "0.75rem"
+            });
         history.push('/users')
     };
 

@@ -5,7 +5,8 @@ import { getShirts, deleteShirt, getShirtById, putShirt} from "../../../Actions/
 import {useHistory} from 'react-router-dom';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
-import Style from "./RecycleBinDesigns.module.css"
+import Style from "./RecycleBinDesigns.module.css";
+import swal from 'sweetalert';
 
 
 export default function RecycleBinDesigns(){
@@ -21,10 +22,16 @@ export default function RecycleBinDesigns(){
     }, []);
 
     function handleDelete(e) {
-        alert("Design " + e.target.value + " deleted");
         dispatch(deleteShirt(parseInt(e.target.value))); 
-        history.push('/desings_admin')
+        swal({ 
+          title: "DELETE", 
+          text: "Design " + e.target.value + " deleted",
+          icon: "error",
+          timer: 3500,
+          padding: "0.75rem"
+          });
       };
+
       function handlePublic(e) {
         const value = e.target.value;
         setInput2(
@@ -33,10 +40,15 @@ export default function RecycleBinDesigns(){
     }
       function handleEdit (e) {
         if(input2.length >0){  
-        alert("Design " + e.target.value + "modified");
         e.preventDefault();
         dispatch(putShirt({public: input2 === 'true' ? true : false}, e.target.value));
-        history.push('/desings_admin');
+        swal({ 
+          title: "APPROVAL", 
+          text: "Design " + e.target.value + " moved to catalogue",
+          icon: "success",
+          timer: 3500,
+          padding: "0.75rem"
+          });
         }    
     }
 

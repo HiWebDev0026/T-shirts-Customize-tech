@@ -6,6 +6,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import Style from "./DesignDetail.module.css";
+import swal from 'sweetalert';
 
 
 export default function DesignDetail (){
@@ -17,8 +18,14 @@ const [input2, setInput2] = useState('');
 
 
 function handleDelete(e) {
-    alert("Design " + e.target.value + " deleted");
     dispatch(deleteShirt(parseInt(e.target.value))); 
+    swal({ 
+        title: "DELETE", 
+        text: "Design " + e.target.value + " moved to unapproval desings",
+        icon: "warning",
+        timer: 3500,
+        padding: "0.75rem"
+        });
     history.push('/desings_admin')
   };
 
@@ -30,9 +37,15 @@ function handleDelete(e) {
 }
   function handleEdit (e) {
     if(input2.length >0){  
-    alert("Design " + e.target.value + "modified");
     e.preventDefault();
     dispatch(putShirt({public: input2 === 'true' ? true : false}, designs.id));
+    swal({ 
+        title: "NOTICE", 
+        text: "Design " + e.target.value + " modified",
+        icon: "success",
+        timer: 3500,
+        padding: "0.75rem"
+        });
     history.push('/desings_admin');
     }    
 }

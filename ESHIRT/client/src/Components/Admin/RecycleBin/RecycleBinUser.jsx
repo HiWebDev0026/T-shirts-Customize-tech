@@ -5,6 +5,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { deleteUser, getUsers, putUser } from '../../../Actions';
 import {NavLink} from 'react-router-dom';
+import swal from 'sweetalert';
 
 function RecycleBinUser() {
 
@@ -20,16 +21,30 @@ function RecycleBinUser() {
     function handleDelete(e) {
         setCount(count+ 1)
         dispatch(deleteUser(e.target.value)); 
-        alert("User " + e.target.value + "deleted");
         dispatch(getUsers())
+        swal({ 
+          title: "DELETE", 
+          text: "User " + e.target.value + " deleted",
+          icon: "error",
+          timer: 2000,
+          padding: "0.75rem"
+          });        
       };
 
       function handleEdit(e) {
         setCount(count+ 1)
         dispatch(putUser({status: 'restored'}, e.target.value)); 
-        alert("User " + e.target.value + "restored");
+  
         dispatch(getUsers())
+        swal({ 
+          title: "RESTORED", 
+          text: "User " + e.target.value + " restored",
+          icon: "success",
+          timer: 2000,
+          padding: "0.75rem"
+          });        
       };
+      
 
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :

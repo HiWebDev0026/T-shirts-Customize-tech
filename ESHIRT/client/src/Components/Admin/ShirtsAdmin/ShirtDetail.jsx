@@ -8,6 +8,7 @@ import Style from "./ShirtDetail.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function ShirtDetail(props) {
 const categories = useSelector((state)=> state.categoryReducer.allCategories)
@@ -61,7 +62,13 @@ function handleEdit(e) {
  
         if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
         else{dispatch(putShirt({...input}, e.target.value))}
-        alert('Shirt modified')
+        swal({ 
+            title: "MODIFIED", 
+            text: "Shirt " + e.target.value + " modified , wait for the changes",
+            icon: "success",
+            timer: 3000,
+            padding: "0.75rem"
+            });
         history.push('/shirts_admin')
 }
 

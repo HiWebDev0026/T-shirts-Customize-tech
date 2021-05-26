@@ -5,6 +5,7 @@ import Style from "./Sales.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
+import swal from 'sweetalert';
 
 import {getOrders, modifyOrderStatus} from '../../../Actions/index.js'
 
@@ -26,31 +27,42 @@ export default function Sales() {
   useEffect(()=>{
     dispatch(getOrders());
   },[count])
-console.log(ids, "caaaaa ids")
+
     function handleRefresh () {
     setFiltered([])
   }
+
   /////////////////////FILTER BY STATUS///////////////////////////////
   let reloaded = [];
   function handleFilter(e) {
     for (let i = 0; i < sale.length; i++) {
       if (sale[i].status === e.target.value) {reloaded.push(sale[i]);}
+      if (sale[i].userId === e.target.value) {reloaded.push(sale[i])}
     }
     if(reloaded.length === 0){alert("Not match")}
     setFiltered(reloaded);}
-  
-  const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
+  console.log(sale, "aca salesssss")
+const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
+const DATAUP = (a,b) => {return b.createdAt.slice(2,10).split('-') - a.createdAt.slice(2,10).split('-')}
+const DATADN = (a,b) => {return a.createdAt.slice(2,10).split('-') - b.createdAt.slice(2,10).split('-')}
 
-  let sales = filtered.length > 0 ? filtered : sale
-  let statusSales= ['', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
-  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED']
+  let sales = filtered.length > 0 ? filtered : sale;
+  let statusSales= ['By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED'];
+  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED'];
   
+  let idsUsuarios= ['By User ID']
+  sale.map((id) =>{
+    return idsUsuarios.push(id.userId)
+  })
   
   useEffect(() => {
     switch(order){
       case 'STRENGTHUP': return setFiltered([...sales].sort(STRENGTHUP))
       case 'STRENGTHDN': return setFiltered([...sales].sort(STRENGTHDN))
+      case 'DATAUP': return setFiltered([...sales].sort(DATAUP))
+      case 'DATADN': return setFiltered([...sales].sort(DATADN))
+
       default: return sales
     }}, [order])
     
@@ -74,10 +86,14 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
       let index= input.name
       dispatch(modifyOrderStatus({status: e.target.value}, index)); 
       dispatch(getOrders());
-      alert("Order " + e.target.value + " modified");
       dispatch(getOrders());
-    
-
+      swal({ 
+        title: "MODIFIED", 
+        text: "Order " + e.target.value + " modified",
+        icon: "success",
+        timer: 3000,
+        padding: "0.75rem"
+        });
     };
     
     return(
@@ -89,10 +105,20 @@ const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
   <option value ='STRENGTHUP'>PRICE+</option>
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
+<select onChange={handleOrder} className= 'options'>
+  <option value =''>ORIGINAL</option>
+  <option value ='DATAUP'>DATA+</option>
+  <option value ='DATADN'>DATA-</option>
+</select>
 <div className="searchs">
 <h2>FILTER</h2>
         <select onChange={handleFilter}className="type1">
           {statusSales.map((temp) => {
+            return <option value={temp}>{temp} </option>; //Template
+          })}
+        </select>
+        <select onChange={handleFilter}className="type1">
+          {idsUsuarios.map((temp) => {
             return <option value={temp}>{temp} </option>; //Template
           })}
         </select>
