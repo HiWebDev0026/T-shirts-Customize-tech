@@ -41,23 +41,26 @@ export default function RecycleBinDesigns(){
     }
 
     return(
-        !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.General}>
-            <div className={Style.Designs1}></div>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+     <div className={Style.Title}> <h1 >Deleted and non-public designs</h1></div>
+      <div className={Style.Desings}>      
 {shirts.length > 0  
       ? ( shirts.map((shirt) => {
-        if (shirt.public !== 'true'){
+        if (shirt.public !== 'true'){ // ACAA
+          
           return (
             <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
               <img src={shirt.print} className={Style.Img}/>
          <div className={Style.Btns}>
         <form>
+          <div className={Style.Public}> 
+          <h4>Public?</h4>
          <label>Yes</label>
-                    <input type="radio" name="public" value="true" onChange= {handlePublic} />
-                    <label >No</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}  />
+                    </div>
                     </form>
-         <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >APPROVAL</button>
+         <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
          </div>
          <div><button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button> </div>
         </div>
@@ -68,13 +71,16 @@ export default function RecycleBinDesigns(){
         }
         })
       ) : (<p>Desings not found</p>)}
-
+</div>
+<div>
 <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
+        
+        </div>
         </div>
     )
 }
