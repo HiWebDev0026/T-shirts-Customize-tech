@@ -15,10 +15,12 @@ export default function Popup (props){
     const userId = user.sub.split('|')[1]
 
     const[quantity,setQuantity]=useState(1);
-    const[size, setSize]=useState('');
+    const[size, setSize]=useState(props.favorite.size || '');
 
     const cart =useSelector(state =>state.cartReducer.items);
     const orderId=useSelector(state =>state.ordersReducer.orderId);
+
+    const sizes=['S','M','L','XL'];
 
     const dispatch=useDispatch();
 
@@ -55,11 +57,13 @@ export default function Popup (props){
                 <div className={Style.right}>
                     <label className={Style.size}>
                             <select className={Style.size} onChange={(e)=>setSize(e.target.value)}>
-                            <option selected="true" disabled="disabled">size</option>
-                            <option value="XL">XL</option>
-                            <option value="L">L</option>
-                            <option value="M">M</option>
-                            <option value="S">S</option>
+                            {
+                                sizes.map((s)=>{
+                                    return props.favorite.size === s?
+                                        <option value={props.favorite.size} selected>{s}</option>
+                                        : <option value={s}>{s}</option>
+                                })  
+                            }
                             </select>
                     </label>
                     <div className={Style.amount}>
