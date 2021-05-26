@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Style from './RecycleBinShirt.module.css';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 import {NavLink} from 'react-router-dom';
 import { deleteShirt, putShirt , getShirts} from '../../../Actions';
@@ -25,17 +26,28 @@ function RecycleBinShirt() {
         dispatch(deleteShirt(e.target.value)); 
         setCount(count +1);
         dispatch(getShirts());
-        alert("User " + e.target.value + "deleted");
         dispatch(getShirts());
-       
+        swal({ 
+          title: "DELETE", 
+          text: "Shirt " + e.target.value + " deleted",
+          icon: "error",
+          timer: 2000,
+          padding: "0.75rem"
+          });   
       };
 
       function handleEdit(e) {
         dispatch(putShirt({status: 'restored'}, e.target.value)); 
         setCount(count + 1);
         dispatch(getShirts());
-        alert("User " + e.target.value + "restored");
         dispatch(getShirts());
+        swal({ 
+          title: "RESTORED", 
+          text: "Shirt " + e.target.value + " restored",
+          icon: "success",
+          timer: 2000,
+          padding: "0.75rem"
+          });
       };
 
     return (

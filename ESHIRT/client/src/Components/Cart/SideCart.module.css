@@ -87,3 +87,14 @@
     height: 7vh;
     margin: 1vh;
 }
+
+.blackHeart{
+    color:black;
+    width:30px;
+}
+
+.greyHeart{
+    color:grey;
+    width:30px;
+    height: 18px;
+}

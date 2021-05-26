@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom';
 import Style from "./DesignsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import swal from 'sweetalert';
 
 export default function DesignsAdmin() {
 

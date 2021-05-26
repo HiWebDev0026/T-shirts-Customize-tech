@@ -31,6 +31,11 @@
     justify-content: center;
     grid-row: 3;
 }
+.Formulario{
+    justify-content: center;
+    display: flex;
+    
+}
 .Image{
     display: grid;
     justify-content: center;
@@ -41,11 +46,14 @@
     justify-content: center;
     color: white;
 }
-.Btn1:hover{
-    background-color:coral;
+.BtnDelete:hover{
+    background-color:rgb(243, 68, 4);
+    content: 'Danger';
+    color: white;
 }
 .Btn2:hover{
     background-color: lightblue;
+    
 }
 .Img{
     width: 350px; height: 350px;

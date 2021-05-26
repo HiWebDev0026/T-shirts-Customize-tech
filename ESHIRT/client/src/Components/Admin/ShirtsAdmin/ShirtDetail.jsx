@@ -8,6 +8,7 @@ import Style from "./ShirtDetail.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function ShirtDetail(props) {
 const categories = useSelector((state)=> state.categoryReducer.allCategories)
@@ -18,6 +19,7 @@ const [count, setCount] = useState([]);
 const [temp, SetTemp] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
+console.log(shirt)
 const [input, setInput] = useState({
     name: '',
     color: '',
@@ -52,9 +54,21 @@ function handleChange1(e) {
 
 function handleEdit(e) {
     
-    if(!input.color || !input.name || !array.length>0 || !input.size || !input.model){return alert("complete all the items") }
-        dispatch(putShirt({...input, categories: array}, e.target.value)); 
-        alert('Shirt modified')
+    if(!array){array= shirt.categories[0].id}
+    if(!input.name){input.name= shirt.name}
+    if(!input.color){input.color= shirt.color}
+    if(!input.model){input.model= shirt.model}
+    if(!input.size){input.size = shirt.size}
+ 
+        if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
+        else{dispatch(putShirt({...input}, e.target.value))}
+        swal({ 
+            title: "MODIFIED", 
+            text: "Shirt " + e.target.value + " modified , wait for the changes",
+            icon: "success",
+            timer: 3000,
+            padding: "0.75rem"
+            });
         history.push('/shirts_admin')
 }
 
@@ -70,9 +84,9 @@ return(
               </div>
               <div className={Style.Changes}>
               <h5 className={Style.ChangesTitle}>Do you want to change it?</h5>
-                 <input name = 'name' className= 'name' type = 'text' placeholder= 'Name:' onChange= {handleChange} required/>
-                 <input name = 'color' className= 'color' type = 'text' placeholder= 'Color:' onChange= {handleChange} required/>
-                 <input name = 'model' className= 'model' type = 'text' placeholder= 'Model:' onChange= {handleChange} required/>
+                 <input name = 'name' className= 'name' type = 'text' placeholder= {shirt.name} onChange= {handleChange} required/>
+                 <input name = 'color' className= 'color' type = 'text' placeholder= {shirt.color} onChange= {handleChange} required/>
+                 <input name = 'model' className= 'model' type = 'text' placeholder= {shirt.model} onChange= {handleChange} required/>
                  
                  <select name = 'size' className='size' onChange= {handleChange} >
                  <option  value="">size</option>

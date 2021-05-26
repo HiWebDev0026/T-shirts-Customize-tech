@@ -1,14 +1,18 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import swal from 'sweetalert';
 
 import { useAuth0} from "@auth0/auth0-react";
 import {NavLink} from 'react-router-dom';
+
+import { BsFillHeartFill } from 'react-icons/bs';
 
 import { 
     putOrder,
     setCartItems,
     checkLastOrder,
-    postOrder 
+    postOrder,
+    postFavorite
 } from '../../Actions/index';
 import style from './SideCart.module.css'
 
@@ -62,6 +66,16 @@ export function SideCart(){
         )
     }
 
+    const handleFavorite =(e, id) => {
+        e.preventDefault();
+        if(isAuthenticated){
+            dispatch(postFavorite(user.sub.split('|')[1],{shirtId:id}));
+            swal({title:'added to favorites', icon:'success', timer:3000});
+        }else{
+            loginWithPopup();
+        }
+    }
+
     useEffect(()=> {
         if (isAuthenticated) {
             dispatch(checkLastOrder(user.sub.split('|')[1]))
@@ -78,17 +92,18 @@ export function SideCart(){
                     let shirt ={}
                     if(!item.hasOwnProperty('image')){
                         shirt = shirts.find(shirt=> shirt.id === item.id)
-                        item.image = shirt.print;
+                        item.image = shirt?.print || 'https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43bf76.png';
                     }
                     total += (item.price * item.amount)
                     return(
                         
-                        <div className={style.item}>
+                        <div key={index} className={style.item}>
                             <div className={style.data}>
                                 <h4>{item.title}</h4>
                                 <h4>{item.size}</h4>
 
                                 U$S{item.price}x{item.amount}
+                                <button onClick={(e) =>handleFavorite(e, item.id)} className={isAuthenticated?style.blackHeart:style.greyHeart}><BsFillHeartFill/></button> 
 
                             </div>
                             <div className={style.ctrls}>

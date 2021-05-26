@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
+import swal from 'sweetalert';
 
 
 export default function CreateCategory (){
@@ -39,16 +40,37 @@ export default function CreateCategory (){
     function handleSubmit (e) {
         e.preventDefault();
         dispatch(postCategory({'name':category})); 
+        swal({ 
+            title: "CREATED", 
+            text: "Shirt " + e.target.value + " created , wait for the changes",
+            icon: "success",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     };
 
     function handleEdit (e) {
         e.preventDefault();
         dispatch(putCategory({'name':change}, editButtonTarget));
         setChange('');
+        swal({ 
+            title: "MODIFIED", 
+            text: "Shirt " + e.target.value + " modified , wait for the changes",
+            icon: "success",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     }
 
     function handleDelete (e) {
         dispatch(deleteCategory(parseInt(e.target.value)));
+        swal({ 
+            title: "DELETED", 
+            text: "Shirt " + e.target.value + " deleted",
+            icon: "error",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     };
 
     function showEditbutton (){

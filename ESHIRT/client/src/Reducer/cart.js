@@ -32,6 +32,7 @@ const loadCartFromBack = (cart, items) => {
     if (cart.length === 0) {
         return items.map(item => {
             item.amount = parseInt(item.amount);
+            item.id=item.shirtId;
             return item
         })
     }

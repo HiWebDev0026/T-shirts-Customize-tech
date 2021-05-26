@@ -1,14 +1,15 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import swal from 'sweetalert';
 import {
     postOrder,
     putOrder,
     setCartItems,
-    setSizeChanged
+    setSizeChanged,
+    postFavorite
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
-//import { FaEdit } from "react-icons/fa";
 import { useAuth0} from "@auth0/auth0-react";
 
 
@@ -19,7 +20,7 @@ export default function CartItem ({item, index}){
     const dispatch = useDispatch();
     const items = useSelector(state => state.cartReducer.items)
     const orderId = useSelector(state => state.ordersReducer.orderId)
-    const {isAuthenticated, user} = useAuth0();
+    const {isAuthenticated, user, loginWithPopup} = useAuth0();
 
     const sizes=['S','M','L','XL'];
   
@@ -49,6 +50,16 @@ export default function CartItem ({item, index}){
         dispatch(setSizeChanged(item, e.target.id))
     }
 
+    const handleFavorite =(e) => {
+        e.preventDefault();
+        if(isAuthenticated){
+            dispatch(postFavorite(user.sub.split('|')[1],{shirtId:item.id}));
+            swal({title:'added to favorites', icon:'success', timer:3000});
+        }else{
+            loginWithPopup();
+        }
+    }
+
     return(
         <li className={Style.cartCard}> 
             <div className={Style.picture}>
@@ -61,7 +72,7 @@ export default function CartItem ({item, index}){
                     </div>
                     <div className={Style.btns}>
                         <button onClick={(e) => handleCartChange(e, '-', 'trash')}><BsFillTrashFill/></button>
-                        <button><BsFillHeartFill/></button>                     
+                        <button onClick={handleFavorite} className={isAuthenticated?Style.blackHeart:Style.greyHeart}><BsFillHeartFill/></button>                     
                     </div>
                 </div>
             <div className={Style.column2}>

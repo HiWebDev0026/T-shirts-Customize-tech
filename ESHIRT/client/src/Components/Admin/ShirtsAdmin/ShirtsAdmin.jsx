@@ -7,6 +7,7 @@ import Style from "./ShirtsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function ShirtsAdmin() {
 
@@ -28,17 +29,21 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
   
       function handleEdit(e) {
         e.preventDefault();
-        setCount(count + 1)
+        setCount(count + 1);
         dispatch(putShirt({status: 'deleted'}, e.target.value));
-        dispatch(getShirts())
-        alert("Shirt " + e.target.value + " moved to trash"); 
-        dispatch(getShirts()) 
-         
+        dispatch(getShirts());
+        dispatch(getShirts()); 
+        swal({ 
+          title: "DELETE", 
+          text: "Shirt " + e.target.value + " moved to trash",
+          icon: "warning",
+          timer: 3000,
+          padding: "0.75rem"
+          });
       };
 
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
-        /* setTimeout(()=> history.push('/shirt_detail'), 0); */
       };
       
       useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
@@ -79,7 +84,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
               <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>X</button></th>
-              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId}>Detail</NavLink>
+              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId} className={Style.Detail}>Detail</NavLink>
               </div>
                </tr>
           );

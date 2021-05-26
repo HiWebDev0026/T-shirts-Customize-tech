@@ -83,6 +83,13 @@
     margin:1px;
 }
 
+.blackHeart{
+    color:black;
+}
+.greyHeart{
+    color:grey;
+}
+
 .image{
     width:100%;
 }
