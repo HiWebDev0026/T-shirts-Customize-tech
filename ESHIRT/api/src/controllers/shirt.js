@@ -25,7 +25,7 @@ const validatePost = (body) => {
 const validatePut = (body) => {
     if (Object.keys(body).length === 0) { return false; } // body is an empty object
 
-    const modelFileds = ["name", "color", "model", "size", "print", "score"]
+    const modelFileds = ["name", "color", "model", "price", "size", "print", "score"]
 
     for (const field of modelFileds) {
         if (body.hasOwnProperty(field)) {

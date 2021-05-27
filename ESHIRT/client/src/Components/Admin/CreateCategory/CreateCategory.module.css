@@ -89,3 +89,24 @@ justify-content: space-around;
     justify-content: center;
     color: white;
 }
+.pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 100%;
+  }
+  .pagination__link {
+    font-weight: bold;
+  }
+  .pagination__link__active a {
+    color: white;
+    background: coral;
+  }
+  .pagination__link__disabled a {
+    color:white;
+    
+  }

@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import swal from 'sweetalert';
 import {
     postOrder,
     putOrder,
@@ -9,7 +10,6 @@ import {
 } from '../../Actions/index.js'
 
 import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
-//import { FaEdit } from "react-icons/fa";
 import { useAuth0} from "@auth0/auth0-react";
 
 
@@ -54,6 +54,7 @@ export default function CartItem ({item, index}){
         e.preventDefault();
         if(isAuthenticated){
             dispatch(postFavorite(user.sub.split('|')[1],{shirtId:item.id}));
+            swal({title:'added to favorites', icon:'success', timer:3000});
         }else{
             loginWithPopup();
         }

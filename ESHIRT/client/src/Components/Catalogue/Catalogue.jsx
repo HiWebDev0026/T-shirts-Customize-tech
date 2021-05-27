@@ -1,6 +1,6 @@
 import style from "./Catalogue.module.css";
 import React, {useState, useEffect} from "react";
-import Card from './Card/Card.jsx'
+import Card from './Card/Card.jsx';
 import ReactPaginate from "react-paginate";
 import {useDispatch, useSelector} from 'react-redux'
 

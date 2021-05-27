@@ -5,10 +5,12 @@ import {NavLink} from 'react-router-dom';
 import Style from './CreateCategory.module.css';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
-
+import swal from 'sweetalert';
+import ReactPaginate from 'react-paginate';
 
 export default function CreateCategory (){
 
+    const [currentPage, setCurrentPage] = useState(0);
     const [category,setCategory]= useState('');
     const [editButtonTarget, setEditButtonTarget] = useState(0)
     const [change, setChange]=useState('');
@@ -39,16 +41,37 @@ export default function CreateCategory (){
     function handleSubmit (e) {
         e.preventDefault();
         dispatch(postCategory({'name':category})); 
+        swal({ 
+            title: "CREATED", 
+            text: "Shirt " + e.target.value + " created , wait for the changes",
+            icon: "success",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     };
 
     function handleEdit (e) {
         e.preventDefault();
         dispatch(putCategory({'name':change}, editButtonTarget));
         setChange('');
+        swal({ 
+            title: "MODIFIED", 
+            text: "Shirt " + e.target.value + " modified , wait for the changes",
+            icon: "success",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     }
 
     function handleDelete (e) {
         dispatch(deleteCategory(parseInt(e.target.value)));
+        swal({ 
+            title: "DELETED", 
+            text: "Shirt " + e.target.value + " deleted",
+            icon: "error",
+            timer: 2000,
+            padding: "0.75rem"
+            });
     };
 
     function showEditbutton (){
@@ -61,6 +84,14 @@ export default function CreateCategory (){
         )
     };
 
+///////////PAGINATION///////////////
+    const INITIAL_PAGE= 6;
+    const offset = currentPage * INITIAL_PAGE;
+    const pageCount = Math.ceil(categories.length / INITIAL_PAGE);
+    function handlePageClick({ selected: selectedPage }) {
+      setCurrentPage(selectedPage);
+  }
+
     return(
         isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.general}>
@@ -69,7 +100,7 @@ export default function CreateCategory (){
                 <div className={Style.Categories}>
                     {
                         categories.length>0?
-                        categories.map((category)=>{
+                        categories.slice(offset, offset + INITIAL_PAGE).map((category)=>{
                         return <div className={Style.Tarjet} key={category.id}>
                                     <p className={Style.Titles}>{category.name}</p>
                                     <div className={Style.Contenedores}>
@@ -95,6 +126,19 @@ export default function CreateCategory (){
             </form>
             </div>
         </div>
+        <div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
         <div className={Style.ContBtn3}>
         <NavLink to='home_admin'>
         <h4 className={Style.Btn3}>CONTROL PANEL</h4>

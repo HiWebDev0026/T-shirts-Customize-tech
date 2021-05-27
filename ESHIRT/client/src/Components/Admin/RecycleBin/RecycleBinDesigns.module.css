@@ -1,30 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
-
 .General{
+    display: grid;
+    justify-content: center;
+}
+.Desings{
     display: grid;
     color:white;
     font-family: "Montserrat", sans-serif;
+    grid-template-columns: repeat(6, 3fr);
+    grid-gap: 10px;
     font-weight: 500;
     justify-content: center;
 }
 .Title{
     display: grid;
     justify-content: center;
-    color:tomato;
+    color: white;
+    font-family: "Montserrat", sans-serif;
 }
 .Designs1{
     grid-template-columns: repeat(6, 3fr);
     grid-gap: 5px;
     display: grid;
+    justify-content: space-evenly;
 }
 .Tarjet{
     border: 2px solid coral;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
+   
     display: grid;
+    justify-content: space-evenly;
+}
+.Public{
+    justify-content: center;
 }
 .Btn3{
     display: grid;
@@ -33,4 +43,28 @@
 }
 .Img{
     width: 200px; height: 200px;
+  }
+  .Btn1:hover{
+      background-color: red;
+      color: white;
+  }
+  .pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 100%;
+  }
+  .pagination__link {
+    font-weight: bold;
+  }
+  .pagination__link__active a {
+    color: white;
+    background: coral;
+  }
+  .pagination__link__disabled a {
+    color:white;
   }
