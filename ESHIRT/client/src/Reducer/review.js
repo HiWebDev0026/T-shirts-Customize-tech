@@ -25,8 +25,7 @@ const reviewsReducer = (state=initialState, action) => {
             }
         case 'GET_SCORE_BY_ID':
             
-            let stateCopy = [action.payload];  
-           
+            let stateCopy = [action.payload];         
           
             
             let datasetSum = stateCopy[0].reduce((a,b) => a + parseInt(b.scoreReview),0);

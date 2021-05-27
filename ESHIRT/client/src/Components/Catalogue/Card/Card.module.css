@@ -416,3 +416,36 @@ input[type="radio"]:checked ~ label {
   transition-duration: 0.4s;
   border-radius: 10px;
 }
+
+
+
+
+
+
+.content {
+    width: 10vh;
+    margin-top: 10vh;
+  }
+
+.ratings {
+    background-color: #fff;
+    padding: 54px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 5px #E0E0E0
+}
+
+.product_rating {
+    font-size: 30px
+}
+
+.stars i {
+    font-size: 18px;
+    color: #e26c0b
+}
+
+.rating_text {
+    margin-top: 10px
+}
+
+
+

@@ -1,14 +1,14 @@
 import React from "react";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCartPlus } from "react-icons/fa";
-import {MdDeleteForever} from "react-icons/md";
-import {GrAdd, GrFormSubtract} from "react-icons/gr";
+import { MdDeleteForever } from "react-icons/md";
+import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { IconContext } from "react-icons";
-import { useAuth0} from "@auth0/auth0-react";
-import swal from 'sweetalert';
+import { useAuth0 } from "@auth0/auth0-react";
+import swal from "sweetalert";
 
-import { BsFillHeartFill } from 'react-icons/bs';
+import { BsFillHeartFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
 import {
@@ -18,21 +18,19 @@ import {
   putOrder,
   postFavorite,
   getShirtScore,
-  getShirtReview
+  getShirtReview,
 } from "../../../Actions/index.js";
 
-
-
-function Card({ title, score,  price, size, model, color, image, id }) {
-  const cart = useSelector(state => state.cartReducer.items)
-  const orderId = useSelector(state => state.ordersReducer.orderId)
+function Card({ title, score, price, size, model, color, image, id }) {
+  const cart = useSelector((state) => state.cartReducer.items);
+  const orderId = useSelector((state) => state.ordersReducer.orderId);
   const scoreReview = useSelector((state) => state.reviewsReducer.score);
   const review = useSelector((state) => state.reviewsReducer.reviews);
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
-  const [newSize, setNewSize]= useState(size)
-  const {isAuthenticated, user,loginWithPopup} = useAuth0();
-  
+  const [newSize, setNewSize] = useState(size);
+  const { isAuthenticated, user, loginWithPopup } = useAuth0();
+
   const handleCartChange = (e, operation) => {
     e.preventDefault();
     const item = {
@@ -44,21 +42,24 @@ function Card({ title, score,  price, size, model, color, image, id }) {
       color,
       image,
       id,
-      amount: ((operation === '-' && 500) || amount)
-    }
+      amount: (operation === "-" && 500) || amount,
+    };
     dispatch(setCartItems(item, operation));
 
     if (isAuthenticated && !orderId) {
-      dispatch(postOrder([...cart, item], user.sub.split('|')[1]))
+      dispatch(postOrder([...cart, item], user.sub.split("|")[1]));
     } else if (isAuthenticated && orderId) {
-      dispatch(putOrder([...cart, item], orderId, ((operation === '+' && 'add') || 'remove')))
+      dispatch(
+        putOrder(
+          [...cart, item],
+          orderId,
+          (operation === "+" && "add") || "remove"
+        )
+      );
     }
-  }
+  };
 
-
-  console.log(scoreReview, 'este')
-
-
+  console.log(scoreReview, "este");
 
   // useEffect(() => {
   //   if (isAuthenticated && !orderIdChecked) {
@@ -69,53 +70,67 @@ function Card({ title, score,  price, size, model, color, image, id }) {
   //   } else if (isAuthenticated && orderId) {
   //     dispatch(putOrder(cart, orderId))
   //   }
-  
+
   // }, [localStorage])
- 
+
   function handleSizeChange(e) {
-    setNewSize(newSize => newSize= e.target.value)
+    setNewSize((newSize) => (newSize = e.target.value));
   }
-  
+
   function handleAddOne() {
-    setAmount(amount => amount + 1)
+    setAmount((amount) => amount + 1);
   }
   function handleOutOne() {
-    if (amount > 1){
-      setAmount(amount => amount - 1)
+    if (amount > 1) {
+      setAmount((amount) => amount - 1);
     }
   }
 
-  function handleScore(){
-       dispatch(getShirtReview(id));
-       dispatch(getShirtScore(id));
+  function handleScore() {
+    dispatch(getShirtReview(id));
+    dispatch(getShirtScore(id));
   }
   function handleFavorite(e) {
     e.preventDefault();
-    if(isAuthenticated){
-      const userId = user.sub.split('|')[1]
-      dispatch(postFavorite(userId, {shirtId: id }));
-      swal({title:'added to favorites', icon:'success', timer:3000});
-    }else{
+    if (isAuthenticated) {
+      const userId = user.sub.split("|")[1];
+      dispatch(postFavorite(userId, { shirtId: id }));
+      swal({ title: "added to favorites", icon: "success", timer: 3000 });
+    } else {
       loginWithPopup();
     }
   }
+
+  function setStars (scoreReview){
+      const stars = [];
+      for (let i = 0; i < scoreReview; i++ ){ 
+        stars.push(i)
+      }
+      return (
+        <div>
+          {stars.map(n => {
+            return <i key={n}>★</i> 
+          })}
+        </div>
+      )
+      }
+
   return (
-  <div>
+    <div>
       <div className={style.wrapper}>
-      <a onClick={handleScore} href={`#popup${id}` } >
-        <div className={style.container}>
-          <div className={style.top}>
-            <img className={style.image} src={image} />
-          </div>
-          <div className={style.bottom}>
-            <div className={style.left}>
-              <div className={style.details}>
-                <a >{title}</a>
+        <a onClick={handleScore} href={`#popup${id}`}>
+          <div className={style.container}>
+            <div className={style.top}>
+              <img className={style.image} src={image} />
+            </div>
+            <div className={style.bottom}>
+              <div className={style.left}>
+                <div className={style.details}>
+                  <a>{title}</a>
+                </div>
               </div>
             </div>
-
           </div>
-        </div>
         </a>
       </div>
 
@@ -124,56 +139,48 @@ function Card({ title, score,  price, size, model, color, image, id }) {
           <div className={style.popup__photo}>
             <img src={image} />
 
-            <a className={style.popup__close} href="#" >
+            <a className={style.popup__close} href="#">
               X
             </a>
-
           </div>
-          <p class={style.clasificacion}>
-                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star}style={{display:'none'}}/>
-                  <label for="radio1">★</label>
-                  <input id="radio2" type="radio" name="star" value="4" className={style.star}style={{display:'none'}}/>
-                  <label for="radio2">★</label>
-                  <input id="radio3" type="radio" name="star" value="3"className={style.star}style={{display:'none'}}/>
-                  <label for="radio3">★</label>
-                  <input id="radio4" type="radio" name="star" value="2"className={style.star}style={{display:'none'}}/>
-                  <label for="radio4">★</label>
-                  <input id="radio5" type="radio" name="star" value="1" className={style.star}style={{display:'none'}}/>
-                  <label for="radio5">★</label>
-                  
-                </p>
-                <p>{scoreReview}</p>
-               
-          <NavLink to={`/shirt/${id}/review`}>
+          <div className={style.ratings}>
+            
+            <span class={style.product_rating}>{scoreReview}</span>
+            <span>/5</span>
+            <div className={style.stars}>           
+              {setStars(scoreReview)}
+              
+            </div>
+            <NavLink to={`/shirt/${id}/review`}>
+              <button className={style.size}>Reviews</button>
+            </NavLink>
+          </div>
 
-                <button className="boton">Reviews</button>
-              </NavLink>
-          <div className={style.popup__text}>
+            <div className={style.popup__text}>
             <h1>Details</h1>
             <div>
               <h2>{title}</h2>
-
-
             </div>
 
-                <div>
-                       
-                        <button className={style.buttonAM} onClick={handleAddOne}>
-                        <GrAdd />
-                        </button>
-                        <button className={style.buttonAM} onClick={handleOutOne}>
-                        <GrFormSubtract />
-                        </button>
-                        <label>
-                        <select className={style.size} onChange={handleSizeChange}>
-                          <option selected="true" disabled="disabled">size</option>
-                          <option value="XL">XL</option>
-                          <option value="L">L</option>
-                          <option value="M">M</option>
-                          <option value="S">S</option>
-                        </select>
-                        </label>
-                      </div>
+            <div>
+              <button className={style.buttonAM} onClick={handleAddOne}>
+                <GrAdd />
+              </button>
+              <button className={style.buttonAM} onClick={handleOutOne}>
+                <GrFormSubtract />
+              </button>
+              <label>
+                <select className={style.size} onChange={handleSizeChange}>
+                  <option selected="true" disabled="disabled">
+                    size
+                  </option>
+                  <option value="XL">XL</option>
+                  <option value="L">L</option>
+                  <option value="M">M</option>
+                  <option value="S">S</option>
+                </select>
+              </label>
+            </div>
 
             <p>Size: {newSize}</p>
             <p>Color: {color}</p>
@@ -182,23 +189,30 @@ function Card({ title, score,  price, size, model, color, image, id }) {
             <p>Amount: {amount}</p>
 
             <div className={style.cartBox}>
-              <button id={id} onClick={handleFavorite} className={isAuthenticated?style.buttonAM:style.greyHeart} ><BsFillHeartFill/></button> 
-              <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '+')}>
+              <button
+                id={id}
+                onClick={handleFavorite}
+                className={isAuthenticated ? style.buttonAM : style.greyHeart}
+              >
+                <BsFillHeartFill />
+              </button>
+              <button
+                className={style.buttonCart}
+                onClick={(e) => handleCartChange(e, "+")}
+              >
                 <FaCartPlus />
               </button>
-              <button className={style.buttonCart} onClick={(e) => handleCartChange(e, '-')}>
-                <MdDeleteForever/>
+              <button
+                className={style.buttonCart}
+                onClick={(e) => handleCartChange(e, "-")}
+              >
+                <MdDeleteForever />
               </button>
-
-
             </div>
-            </div>
-
+          </div>
         </div>
       </div>
-      </div>
-
-
+    </div>
   );
 }
 

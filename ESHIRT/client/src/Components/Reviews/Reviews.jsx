@@ -9,14 +9,13 @@ import {useHistory} from 'react-router-dom'
 function Reviews(props) {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsReducer.reviews);
-  const score = useSelector((state) => state.reviewsReducer.score);
+  
   const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user;
   const [counter, setCounter] = useState(0)
-  const [usuarios, setUsuarios] = useState(review);
-  const [promedio, setPromedio] = useState(0);
+
   const [input, setInput] = useState({
     content: "",
     name: "",
