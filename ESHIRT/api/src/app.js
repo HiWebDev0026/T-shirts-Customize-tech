@@ -72,9 +72,9 @@ async function paymentUpdate(){
       // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
       for (let i=0; i< dataToCheck.length; i++){
         for (let j=0; j< data.length; j++){
-          if (parseInt(dataToCheck[i].id) === parseInt(data[j].id) && dataToCheck[i].status !== data[j].status){  
+          if (parseInt(dataToCheck[i].id) === parseInt(data[j]?.id) && dataToCheck[i].status !== data[j].status){  
             console.log(data[j], 'before')
-            data[j].status= dataToCheck[i].status
+            data[j].status= dataToCheck[i]?.status
             console.log(data[j], 'after')
             data[j].save()
           }
