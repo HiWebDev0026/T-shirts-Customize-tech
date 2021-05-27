@@ -8,9 +8,11 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import swal from 'sweetalert';
+import ReactPaginate from 'react-paginate';
 
 export default function ShirtsAdmin() {
 
+const [currentPage, setCurrentPage] = useState(0);
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const history = useHistory();
 const dispatch = useDispatch();
@@ -46,14 +48,21 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
         dispatch(getShirtById(e.target.value));
       };
       
-      useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
-      const nextPage = () => { page < max && setPage(page + 10); };
-      const prevPage = () => { page > 0 && setPage(page - 10); };
+      // useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
+      // const nextPage = () => { page < max && setPage(page + 10); };
+      // const prevPage = () => { page > 0 && setPage(page - 10); };
     
+      const INITIAL_PAGE= 8;
+      const offset = currentPage * INITIAL_PAGE;
+      const pageCount = Math.ceil(shirts.length / INITIAL_PAGE);
+      function handlePageClick({ selected: selectedPage }) {
+        setCurrentPage(selectedPage);
+    }
       
     return(
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.General} >
+          <h1>SHIRTS</h1>
         <table id="table-to-xls">
         <div id='tableShirts'>
             <br/>
@@ -70,7 +79,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               </div>
               </tr>
               </div>
-            {shirts.length > 0  ? ( shirts.slice(page, page + 10).map((shirt) => {
+            {shirts.length > 0  ? ( shirts.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
               if ( shirt.status !== 'deleted'){
           return (
             <tr className={Style.Container}>
@@ -103,10 +112,23 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
                     sheet="shirtsxls"
                     buttonText="Download as XLS"/>
       </div>
-      <div className={Style.Buttons}>
+      <div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
+      {/* <div className={Style.Buttons}>
           <button onClick={prevPage} className="buttonPrev">{" "}PREV{" "}</button>
           <button onClick={nextPage} className="buttonNext">{" "}NEXT{" "}</button>
-        </div>
+        </div> */}
 
 <NavLink to='home_admin'>
 <h4 className={Style.Btn3}>CONTROL PANEL</h4>

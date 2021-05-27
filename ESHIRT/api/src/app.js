@@ -11,6 +11,7 @@ const { default: axios } = require('axios');
 const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
 const {Order}= require('./db')
 const {getPayment}= require('./controllers/payment')
+const {Op}= require('sequelize')
 
 require('./db.js');
 
@@ -34,26 +35,51 @@ mercadopago.configure({
 //////////////////////// PAYMENT UPDATE /////////////////
 async function paymentUpdate(){
   try {
-    let orders= await Order.findAll()
-
-  /* 
-    Aca tenemos que iterar todas las ordenes y por cada
-    una, hacer un getPayment para consultar el estado
-    del pago. Con ese status que nos traemos, hay que 
-    hacer un modifyOrder para modificar el status de esa
-    orden.
-    Esto lo vamos a hacer cada 15 min para ir actualizanado
-    el status de todas las ordenes, ya que no tenemos forma
-    de que mercadopago nos avise cuando hay un cambio en el
-    estado del pago
-  */
-
-    for(let order of orders){
-      let payment= await mercadopago.get(`/v1/payments/search`, {"external_reference": order.paymentId})
-      order.status = payment.body.results.status_detail
-      await order.save()
-    }
-    return 
+    let payments= await axios.get('http://localhost:3001/payment')
+    let dataToCheck= []
+    payments.data.body.results.forEach(result => {
+      if (result.metadata?.id){
+        dataToCheck.push({
+          id: result.metadata.id,
+          status: result.status.toUpperCase() === 'REJECTED' ? 'CANCELED' : result.status.toUpperCase()
+          }
+        )}
+    }) // Aca tenemos un array con ids y status
+    
+    let orderFound= []
+    let ordersToCheck= dataToCheck.map(e => {
+      return new Promise((resolve, reject)=> {
+        try {
+          //if(e.id !== 5 && e.id !== '5'){
+          orderFound = Order.findOne({
+          where: {
+            id: e.id
+          }
+        }) //}
+        }
+        catch(error){console.log('error', error)}
+    
+        if(orderFound.length < 1 || orderFound === undefined || orderFound === null) {
+          return reject(new Error('${orderFound}'));
+        } 
+        
+        return resolve(orderFound);
+      })
+    })
+    Promise.all(ordersToCheck)
+    .then(data => {
+      // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
+      for (let i=0; i< dataToCheck.length; i++){
+        for (let j=0; j< data; j++){
+          if (dataToCheck[i].id === data[j].id){
+            if (dataToCheck[i].status !== data[j].status){
+              data[j].status= dataToCheck[i].status
+            }}
+        }
+      }
+      console.log(data)
+    })
+   
   }
   catch(error){return error}
     
@@ -89,7 +115,7 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 
-// setInterval(paymentUpdate, 6000)
+//setInterval(paymentUpdate, 60000)
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
