@@ -10,42 +10,42 @@ import {getOrders, getOrdersByUserId} from '../../../Actions/index.js';
 function UserOrders(){
     
     const dispatch = useDispatch();
-    // const orders = useSelector((state) => state.ordersReducer.orderId);
-    // const {user} = useAuth0();
-    // const {sub} = user;
-    // let id = sub.split("|")[1];
+    const allOrders = useSelector((state) => state.ordersReducer.orders);
+    const {user} = useAuth0();
+    const {sub} = user;
+    let id = sub.split("|")[1];
     
 
     useEffect(() => {
-        // dispatch(getOrdersByUserId("105677628845670307410"));
+        dispatch(getOrders());
     }, []);
-
-    let orders = [
-        {id:1, status:"PENDING"},
-        {id:2, status:"APROVEDED"},
-        {id:3, status:"DISPATCHED"},
-        {id:4, status:"DONE"},
-        {id:5, status:"CANCELED"},
-    ]
-
+    
+    // let orders = [
+    //     {id:1, status:"PENDING"},
+    //     {id:2, status:"APROVEDED"},
+    //     {id:3, status:"DISPATCHED"},
+    //     {id:4, status:"DONE"},
+    //     {id:5, status:"CANCELED"},
+    // ]
+    //let id = '105677628845670307411';
+    let orders = allOrders.filter(order=>order.userId === id);
+    console.log("allorders", allOrders)
+    console.log("ordersUser", orders);
 
     const [filtered, setFiltered] = useState([]);
     const [statusToFilter, setStatus] = useState('')
     let status= ['SELECT STATUS', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED']
     
     function handleChange(e){
-        console.log(e.target.value);
         setStatus(e.target.value);
     }
     function filter(e){
         e.preventDefault();
-        console.log(statusToFilter)
         setFiltered( orders.filter((item)=> item.status === statusToFilter ))
-        console.log(filtered);
+
     }
 
     let ordersToMap = filtered.length > 0 ? filtered : orders;
-    console.log("map", ordersToMap);
 
     return(
         <div className={Style.container}>   
@@ -59,12 +59,10 @@ function UserOrders(){
 
             <div className={Style.box}>
             {
-                // userDB.length>0?
-                // userDB.forEach(order => {
                 ordersToMap.length> 0 ?
                 ordersToMap.map(order => {
                     return <ul className={Style.ul}>
-                                <li className={Style.li}>Order id: {order.id}</li>
+                                <NavLink to={`/userOrderDetail/${order.id}`}><li className={Style.li}>Order id: {order.id}</li></NavLink>
                                 <li className={Style.li}>Status: {order.status}</li>
                             </ul>
                 })
