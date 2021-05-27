@@ -5,12 +5,14 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import swal from 'sweetalert';
+import ReactPaginate from 'react-paginate';
 
 import {NavLink} from 'react-router-dom';
 import { deleteShirt, putShirt , getShirts} from '../../../Actions';
 
 function RecycleBinShirt() {
 
+    const [currentPage, setCurrentPage] = useState(0);
     const shirts= useSelector((state) => state.shirtReducer.allShirts);
     const isAdmin = useTokenDecode(localStorage.currentToken);
     const [count, setCount] = useState([]);
@@ -50,6 +52,14 @@ function RecycleBinShirt() {
           });
       };
 
+       ///////////PAGINATION//////////////////////////////
+  const INITIAL_PAGE= 5;
+  const offset = currentPage * INITIAL_PAGE;
+  const pageCount = Math.ceil(shirts.length / INITIAL_PAGE);
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+}
+
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
         <div className={Style.General}>
@@ -58,7 +68,7 @@ function RecycleBinShirt() {
             </div>
             <div className={Style.Container2}>
             {shirts.length > 0 
-      ? ( shirts.map((shirt) => {
+      ? (shirts.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
         if ( shirt.status == 'deleted'){
           return (
             <div className={Style.Container}>
@@ -76,6 +86,19 @@ function RecycleBinShirt() {
       ) 
       : (<p>Shirts not found</p>)}
     </div>
+    <div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
     <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
