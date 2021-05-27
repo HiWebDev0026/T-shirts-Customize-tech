@@ -1,32 +1,94 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    background: transparent;
-}
-.container h3{
-    color: white;
-}
-.img{
-    background: transparent;
-    width: 300px;
-    height: 400px;
-    margin-bottom: 30px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+.general{
+    height: 100%;
+    margin:0;
+    font-family: 'Roboto Condensed', sans-serif;
+    line-height: 180%;
+    color:white;
+    text-align: center;
 }
 
-.btn{
-    width: 120px;
-    height: 60px;
-    color: white;
-    background-color: darkslategray;
-    border: 2px solid coral;
-    border-radius: 5px;
-    box-shadow: 5px gray;
-    font-size: 20px;
+.general h3{
+    color:white;
 }
 
-.btn:hover{
-    background-color: coral;
-    border: 2px solid darkslategray;
+.picture1{
+    background-image: url('https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    height: 100vh;
+}
+
+.picture2{
+    background-image: url('https://images.unsplash.com/photo-1503341733017-1901578f9f1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    height: 80vh;
+}
+
+.picture3{
+    background-image: url('https://images.unsplash.com/photo-1564864310852-e1e98eb07010?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80');
+    height: 60vh;
+}
+
+.picture4{
+    background-image: url('https://images.pexels.com/photos/4530790/pexels-photo-4530790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    height: 100vh;
+}
+
+.picture1, .picture2, .picture3, .picture4 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.section1{
+   color:black;
+   font-size: 550%;
+   top:50%;
+   
+}
+
+.section2{
+    color:rgb(167, 53, 72);
+    font-size: 370%;
+    top:60%;
+    line-height: 100%;
+ }
+
+ .section3{
+    color:white;
+    font-size: 250%;
+    top:45%;
+ }
+
+.section1,.section2,.section3{
+    position: absolute;
+    width:100%;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px black;
+}
+
+.sectionOne,.sectionTwo,.sectionThree{
+    padding: 20px 80px;
+    background-color: white;
+    color:black;
+    height: 100%;
+}
+
+.sectionOne{
+    background-color: black;
+    color:white;
+}
+
+@media(max-width: 768px){
+    .section1{
+        font-size: 300%;
+    }
+    .section2{
+        font-size: 250%;
+    }
+    .section3{
+        font-size: 200%;
+    }
 }
