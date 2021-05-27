@@ -25,7 +25,7 @@ function UserData(){
         dispatch(getUsers());
         dispatch(getUserById(id));
     }, []);
-    
+
     const isActive = allUsers.find(user =>{
         console.log("find",user.id);
         return user.id === userDB.id});
@@ -61,7 +61,6 @@ function UserData(){
         dispatch(putUser(userDB.id)); 
         alert("You have succesfully deleted your account");
         history.push('/userDash');
-
     }
      return(
         isActive.status !== "deleted" ?
