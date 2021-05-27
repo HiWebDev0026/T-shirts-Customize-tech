@@ -23,6 +23,21 @@ export default function Users() {
   const users = useSelector((state) => state.userReducer.allUsers);
   const usersByName = useSelector((state) => state.userReducer.usersByName);
   const dispatch = useDispatch();
+
+//   let users1= [];
+// shirts.map((user) => {
+//   if (user.status !== 'deleted')
+//    {shirts1.push({
+//        id: shirt.id,
+//        name: shirt.name,
+//        color: shirt.color,
+//        model: shirt.model,
+//        size: shirt.size,
+//        score: shirt.score,
+//        public: shirt.public,
+//        created: shirt.created
+//      })
+//    }})
   
 
   useEffect(() => {
