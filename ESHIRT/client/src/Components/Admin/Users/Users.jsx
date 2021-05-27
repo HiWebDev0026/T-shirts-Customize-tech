@@ -92,7 +92,8 @@ export default function Users() {
       dispatch(getUsersByName(state))
       setState('');
   }
-
+ 
+  ///////////PAGINATION//////////////////////////////
   const INITIAL_PAGE= 5;
   const offset = currentPage * INITIAL_PAGE;
   const pageCount = Math.ceil(users1.length / INITIAL_PAGE);
