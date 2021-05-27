@@ -68,16 +68,18 @@ async function paymentUpdate(){
     })
     Promise.all(ordersToCheck)
     .then(data => {
+      console.log(data)
       // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
       for (let i=0; i< dataToCheck.length; i++){
-        for (let j=0; j< data; j++){
-          if (dataToCheck[i].id === data[j].id){
-            if (dataToCheck[i].status !== data[j].status){
-              data[j].status= dataToCheck[i].status
-            }}
+        for (let j=0; j< data.length; j++){
+          if (parseInt(dataToCheck[i].id) === parseInt(data[j].id) && dataToCheck[i].status !== data[j].status){  
+            console.log(data[j], 'before')
+            data[j].status= dataToCheck[i].status
+            console.log(data[j], 'after')
+            data[j].save()
+          }
         }
       }
-      console.log(data)
     })
    
   }
@@ -115,7 +117,7 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 
-//setInterval(paymentUpdate, 60000)
+setInterval(paymentUpdate, 60000)
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
