@@ -7,10 +7,11 @@ import {useHistory} from 'react-router-dom';
 import Style from "./DesignsAdmin.module.css";
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
-import swal from 'sweetalert';
+import ReactPaginate from 'react-paginate';
 
 export default function DesignsAdmin() {
 
+const [currentPage, setCurrentPage] = useState(0);
 const [editButtonTarget, setEditButtonTarget] = useState(0);
 const [change, setChange]=useState('');
 const designs = useSelector((state) => state.shirtReducer.allShirts);
@@ -49,6 +50,14 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
       let Total = filtered.length > 0 ? filtered : designs ;
 
+      //////////////PAGINATION/////////////////////
+      const INITIAL_PAGE= 6;
+  const offset = currentPage * INITIAL_PAGE;
+  const pageCount = Math.ceil(Total.length / INITIAL_PAGE);
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+}
+
     return(
       
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
@@ -62,7 +71,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
 
 {Total.length > 0  
-      ? ( Total.map((shirt) => {
+      ? ( Total.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
         if (shirt.public === 'pending'){
           return (
             <div className={Style.Designs1}>
@@ -77,13 +86,23 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
       ) 
       : (<p>Desings not found</p>)}
       
-
-
-    
         </div> 
         <NavLink to='recycleBinDesigns'>
         <h5 className={Style.Btn2}>UNAPPROVED DESIGNS</h5>
     </NavLink>  
+    <div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
         <NavLink to='home_admin'>
         <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
