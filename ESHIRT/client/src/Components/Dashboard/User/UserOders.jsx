@@ -11,9 +11,9 @@ function UserOrders(){
     
     const dispatch = useDispatch();
     const allOrders = useSelector((state) => state.ordersReducer.orders);
-    // const {user} = useAuth0();
-    // const {sub} = user;
-    // let id = sub.split("|")[1];
+    const {user} = useAuth0();
+    const {sub} = user;
+    let id = sub.split("|")[1];
     
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function UserOrders(){
     //     {id:4, status:"DONE"},
     //     {id:5, status:"CANCELED"},
     // ]
-    let id = '105677628845670307411';
+    //let id = '105677628845670307411';
     let orders = allOrders.filter(order=>order.userId === id);
     console.log("allorders", allOrders)
     console.log("ordersUser", orders);
