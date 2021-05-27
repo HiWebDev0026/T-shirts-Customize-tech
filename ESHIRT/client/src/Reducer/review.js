@@ -4,7 +4,7 @@ import {
 
 const initialState = {
     reviews: [],
-    star: []
+    score: 0
 }
 
 const reviewsReducer = (state=initialState, action) => {
@@ -21,12 +21,21 @@ const reviewsReducer = (state=initialState, action) => {
        
             return {
                 ...state,
-                reviews: [...state, action.payload],
+                reviews: [...state, ],
             }
-        case 'GET_SHIRT_BY_SCORE':
+        case 'GET_SCORE_BY_ID':
+            
+            let stateCopy = [action.payload];  
+           
+          
+            
+            let datasetSum = stateCopy[0].reduce((a,b) => a + parseInt(b.scoreReview),0);
+          
+            let p = Math.round(datasetSum/stateCopy[0].length);
+           
             return{
                 ...state,
-                star: state.reviews.scoreReview
+                score: p
             }   
         case 'DELETE_':
             return {

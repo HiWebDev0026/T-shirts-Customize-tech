@@ -16,14 +16,18 @@ import {
   checkLastOrder,
   postOrder,
   putOrder,
-  postFavorite
+  postFavorite,
+  getShirtScore,
+  getShirtReview
 } from "../../../Actions/index.js";
 
 
 
-function Card({ title, score, price, size, model, color, image, id }) {
+function Card({ title, score,  price, size, model, color, image, id }) {
   const cart = useSelector(state => state.cartReducer.items)
   const orderId = useSelector(state => state.ordersReducer.orderId)
+  const scoreReview = useSelector((state) => state.reviewsReducer.score);
+  const review = useSelector((state) => state.reviewsReducer.reviews);
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const [newSize, setNewSize]= useState(size)
@@ -33,7 +37,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     e.preventDefault();
     const item = {
       title,
-      score,
+      score: scoreReview,
       price,
       size: newSize,
       model,
@@ -52,7 +56,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
   }
 
 
-    
+  console.log(scoreReview, 'este')
 
 
 
@@ -81,6 +85,10 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   }
 
+  function handleScore(){
+       dispatch(getShirtReview(id));
+       dispatch(getShirtScore(id));
+  }
   function handleFavorite(e) {
     e.preventDefault();
     if(isAuthenticated){
@@ -94,7 +102,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
   return (
   <div>
       <div className={style.wrapper}>
-      <a href={`#popup${id}`}>
+      <a onClick={handleScore} href={`#popup${id}` } >
         <div className={style.container}>
           <div className={style.top}>
             <img className={style.image} src={image} />
@@ -132,7 +140,9 @@ function Card({ title, score, price, size, model, color, image, id }) {
                   <label for="radio4">★</label>
                   <input id="radio5" type="radio" name="star" value="1" className={style.star}style={{display:'none'}}/>
                   <label for="radio5">★</label>
+                  
                 </p>
+                <p>{scoreReview}</p>
                
           <NavLink to={`/shirt/${id}/review`}>
 

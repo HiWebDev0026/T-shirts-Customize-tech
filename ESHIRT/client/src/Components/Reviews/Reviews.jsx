@@ -9,7 +9,7 @@ import {useHistory} from 'react-router-dom'
 function Reviews(props) {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsReducer.reviews);
-  const score = useSelector((state) => state.reviewsReducer.star);
+  const score = useSelector((state) => state.reviewsReducer.score);
   const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
@@ -33,8 +33,8 @@ function Reviews(props) {
 
 useEffect(() => {
   
-    dispatch(getShirtReview(id), getPromedio());
-    
+    dispatch(getShirtReview(id));
+   
   }, []);
 
 
@@ -75,14 +75,15 @@ useEffect(() => {
     })
   }
 
-  function getPromedio(){
-    let stateCopy = [...usuarios];  
-    let datasetSum = stateCopy.reduce((a,b) => a + parseInt(b.scoreReview),0);
-    let p = Math.round(datasetSum/stateCopy.length);
-    setPromedio(p);
-    }
+  // function getPromedio(){
+  //   let stateCopy = [...usuarios];  
+  //   let datasetSum = stateCopy.reduce((a,b) => a + parseInt(b.scoreReview),0);
+  //   let p = Math.round(datasetSum/stateCopy.length);
+    
+  //   setPromedio(p);
+  //   }
 
-    console.log(promedio, 'este esel promedio')
+    
   return (
     <div className={style.customer_feedback}>
       <div className={style.container - style.text_center}>
