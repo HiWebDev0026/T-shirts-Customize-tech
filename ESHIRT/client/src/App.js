@@ -47,6 +47,8 @@ import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
 import ShirtDetail from './Components/Admin/ShirtsAdmin/ShirtDetail';
 import Admins from './Components/Admin/Users/Admins';
+import Discount from './Components/Admin/Discount/Discounts';
+import Discounts from './Components/Admin/Discount/Discounts';
 
 
 
@@ -151,6 +153,7 @@ function App({location}) {
       <ProtectedRoute exact path= '/sales'  component={Sales}/>
       <ProtectedRoute exact path= '/order_detail/:id'  component={OrderDetail}/>
       <ProtectedRoute exact path= '/desings_admin'  component={DesignsAdmin}/>
+      <ProtectedRoute exact path= '/discounts'  component={Discounts}/> 
       <ProtectedRoute exact path= '/favorites' component={Favorites}/>
       <ProtectedRoute exact path= '/design_detail' component={DesignDetail}/>
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
