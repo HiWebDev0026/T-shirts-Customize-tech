@@ -90,7 +90,7 @@ function sortByDate2(a, b) {
           [name]: value
       });
   }
-
+// ///////// ////////////// //  /////////////////// ///////////////////////////////////////////////////////////
     function handleEdit(e) {
      setCount(count +1)
       let index= input.name
@@ -101,7 +101,7 @@ function sortByDate2(a, b) {
         title: "MODIFIED", 
         text: "Order " + e.target.value + " modified",
         icon: "success",
-        timer: 3000,
+        timer: 2500,
         padding: "0.75rem"
         });
     };
@@ -111,12 +111,12 @@ function sortByDate2(a, b) {
         <div>
           <h2>Orders</h2>
           <select onChange={handleOrder} className= 'options'>
-  <option value =''>ORIGINAL</option>
+  <option value =''>BY PRICE</option>
   <option value ='STRENGTHUP'>PRICE+</option>
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
 <select onChange={handleOrder} className= 'options'>
-  <option value =''>ORIGINAL</option>
+  <option value =''>BY DATE</option>
   <option value ='sortByDate'>DATE +</option>
   <option value ='sortByDate2'>DATE -</option>
 </select>
@@ -134,11 +134,11 @@ function sortByDate2(a, b) {
         </select>
  </div>
 <h2>MODIFY THE STATUS</h2>
- <select name = 'name' className= 'name'  onChange={handleChange1}>
-{ids.map((I)=> {
+ <input name = 'name' className= 'name' placeholder='Write the id number' onChange={handleChange1} />
+{/* {ids.map((I)=> {
   return <option  value={I} >{I}</option>
 })}
- </select>
+ </select> */}
  <select onChange={handleEdit}className="type1">
           {statusSales2.map((temp) => {
            return <option value={temp}> {temp} </option>; //Template
