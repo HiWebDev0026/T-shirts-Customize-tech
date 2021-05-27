@@ -19,6 +19,21 @@ function RecycleBinShirt() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    let shirts1= [];
+shirts.map((shirt) => {
+  if (shirt.status === 'deleted')
+   {shirts1.push({
+       id: shirt.id,
+       name: shirt.name,
+       color: shirt.color,
+       model: shirt.model,
+       size: shirt.size,
+       score: shirt.score,
+       public: shirt.public,
+       created: shirt.created
+     })
+   }})
+
     useEffect(() => {
       dispatch(getShirts());
     }, [count]);
@@ -55,7 +70,7 @@ function RecycleBinShirt() {
        ///////////PAGINATION//////////////////////////////
   const INITIAL_PAGE= 5;
   const offset = currentPage * INITIAL_PAGE;
-  const pageCount = Math.ceil(shirts.length / INITIAL_PAGE);
+  const pageCount = Math.ceil(shirts1.length / INITIAL_PAGE);
   function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
 }
@@ -67,9 +82,9 @@ function RecycleBinShirt() {
             <h2 className={Style.Title}>Shirts deleted</h2>
             </div>
             <div className={Style.Container2}>
-            {shirts.length > 0 
-      ? (shirts.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
-        if ( shirt.status == 'deleted'){
+            {shirts1.length > 0 
+      ? (shirts1.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
+       
           return (
             <div className={Style.Container}>
               <div className={Style.Tarjet} >
@@ -81,7 +96,7 @@ function RecycleBinShirt() {
               </div>
                </div>
           );
-        }
+        
         })
       ) 
       : (<p>Shirts not found</p>)}

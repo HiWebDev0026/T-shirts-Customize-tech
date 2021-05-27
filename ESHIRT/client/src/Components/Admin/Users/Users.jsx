@@ -20,11 +20,21 @@ export default function Users() {
   const isAdmin = useTokenDecode(localStorage.currentToken);
   const [count, setCount] = useState([]);
 
-  const users = useSelector((state) => state.userReducer.allUsers);
+  const userTotal = useSelector((state) => state.userReducer.allUsers);
   const usersByName = useSelector((state) => state.userReducer.usersByName);
   const dispatch = useDispatch();
-  
 
+     let users= [];
+     userTotal.map((user) => {
+    if (user.status !== 'deleted' && user.isAdmin == false)
+     {users.push({
+         id: user.id,
+         name: user.name,
+         email: user.email,
+         status: user.status
+       })
+     }})
+  
   useEffect(() => {
         dispatch(getUsers());
   }, [count]);
@@ -78,6 +88,10 @@ export default function Users() {
   }, [order]);
   let us = filtered.length > 0 ? filtered : users;
   let users1= usersByName.length > 0 ? usersByName : us;
+  
+ 
+
+
 
   // SEARCHBAR USERS
   const [state, setState]= useState('')
@@ -118,7 +132,7 @@ export default function Users() {
       </div>
       <div className={Style.Users}>
       {users1.length > 0 ? ( users1.slice(offset, offset + INITIAL_PAGE).map((userToMap) => {
-      if ( userToMap.status !== 'deleted' && userToMap.isAdmin == false){
+    
           return (
               <div className={Style.Tarjet}>
                 <Link to={`/user_detail/${userToMap.id}`}>
@@ -133,7 +147,7 @@ export default function Users() {
                 </div>
             </div>
           );
-      }
+      
         })
       ) 
       : (<p>Users not found</p>)}

@@ -18,6 +18,8 @@ import Users from './Components/Admin/Users/Users';
 import UserDetail from './Components/Admin/Users/UserDetail';
 import UserEdit from './Components/Dashboard/User/UserEdit';
 import UserOrders from './Components/Dashboard/User/UserOders';
+import UserOrderDetail from './Components/Dashboard/User/UserOrderDetail';
+import Error from './Components/Dashboard/Error';
 import ProtectedRoute from './auth/ProtectedRoute';
 import Account from './Components/Account/Account';
 import HomeAdmin from './Components/Admin/HomeAdmin/HomeAdmin';
@@ -28,6 +30,7 @@ import DesignsAdmin from './Components/Admin/DesignsAdmin/DesignsAdmin';
 import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
+import NewDashboard from './Components/Dashboard/User/NewDashboard';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
@@ -117,13 +120,16 @@ function App({location}) {
       <Route exact path= '/' component={Landing}/>
       <div className= 'App' >
       <MainNavBar />  
+      <Route exact path= '/newDashBoard' component={NewDashboard}/> 
       {/* <Route path= '/' component={MainNavBar}/>   */}
       <ProtectedRoute path= '/userDash' component={UserDashboard}/> 
       <ProtectedRoute path= '/userData' component={UserData}/> 
       <ProtectedRoute path= '/userEdit' component={UserEdit}/> 
       <ProtectedRoute path= '/userOrders' component={UserOrders}/> 
+      <ProtectedRoute path= '/userOrderDetail/:orderId' component={UserOrderDetail}/> 
       <Route exact path= '/catalogue' component={Catalogue}/>  
       <Route exact path= '/home' component={Home}/>
+      <Route exact path= '/error' component={Error}/>
       <Route exact path= '/design' component={Design}/>
       <ProtectedRoute exact path= '/cart' component={Cart}/> 
       <Route exact path= '/login' component={Login}/>
