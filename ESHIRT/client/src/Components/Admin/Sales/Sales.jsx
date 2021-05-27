@@ -104,6 +104,7 @@ function sortByDate2(a, b) {
         timer: 2500,
         padding: "0.75rem"
         });
+        e.target.value= "status"
     };
     
     return(

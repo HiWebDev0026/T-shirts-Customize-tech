@@ -16,12 +16,12 @@ export default function OrderDetail(props) {
     
     useEffect(()=>{
         dispatch(getOrderById(orderId));
-    },[refresh])
+    },[])
 
-    function handleRefresh () {
-        console.log('REFRESH')
-        setRefresh(!refresh)
-      }
+    // function handleRefresh () {
+    //     console.log('REFRESH')
+    //     setRefresh(!refresh)
+    //   }
 
     return(
         isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
@@ -53,7 +53,7 @@ export default function OrderDetail(props) {
                 }
             </table>
             <h3>Total to pay: {orderDetail.reduce((a,c)=>a+c.amount*c.price,0)}</h3>
-            <button onClick={handleRefresh}>Refresh</button>
+            {/* <button onClick={handleRefresh}>Refresh</button> */}
             <NavLink to='/sales'>
                 <button>Go back to orders</button>
             </NavLink>
