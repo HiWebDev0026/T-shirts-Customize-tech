@@ -28,12 +28,13 @@ export default function Popup (props){
         e.preventDefault();
         const item = {
         title:props.favorite.name,
-        price:50,
+        price:props.favorite.price,
         size: size,
         image:props.favorite.print,
         id: props.favorite.id,
         amount: quantity
         }
+        console.log(`Test${JSON.stringify(item)}`);
         dispatch(setCartItems(item, '+'));
 
         if (isAuthenticated && !orderId) {
