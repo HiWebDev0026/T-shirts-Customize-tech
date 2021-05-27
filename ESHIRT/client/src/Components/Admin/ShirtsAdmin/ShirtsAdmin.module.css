@@ -85,10 +85,6 @@
     box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
     top: -1vh;
 }
-.Buttons{
-    display: flex;
-    justify-content: center;
-}
 .Btn3{
     display: flex;
     justify-content: center;
@@ -100,3 +96,28 @@
 .Detail:hover{
     color: coral;
 }
+
+.pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 100%;
+  }
+    
+  .pagination__link {
+    font-weight: bold;
+  }
+  
+  .pagination__link__active a {
+    color: white;
+    background: coral;
+  }
+  
+  .pagination__link__disabled a {
+    color:white;
+    
+  }

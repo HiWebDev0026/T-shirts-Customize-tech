@@ -40,11 +40,18 @@ async function createPayment(req, res, next){
 
 async function getPayment(req, res){
     try {
-        let id= req.params.id
-        let response= await mercadopago.get(`/v1/payments/search`, {"external_reference":id})
+        // Trae los pagos de los ultimos 3 dias, el id de la orden esta 
+        // en >> metadata: {id: id de orden}
+        let response= await mercadopago.payment.search({
+            qs:{
+                range: 'date_created',
+                begin_date: 'NOW-1DAYS',
+                end_date: 'NOW',
+            }
+        })
         res.json(response)
     }
-    catch(error){}
+    catch(error){console.log(error)}
 
 }
 
@@ -66,11 +73,16 @@ async function postPayment(req, res){
     catch(error){}
 }
 
+async function deletePayment(){
+    
+}
+
 
 
 
 module.exports={
     createPayment,
     getPayment,
-    postPayment
+    postPayment,
+    deletePayment
 }
