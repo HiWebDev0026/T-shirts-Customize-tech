@@ -20,7 +20,7 @@ text-align: center;
 }
 .Users{
     display: grid;
-    grid-template-columns: repeat(6, 3fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 5px;
 }
 .ContBtn3{
@@ -36,6 +36,29 @@ text-align: center;
     display: grid;
     justify-content: center;
 }
-
+.pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 100%;
+  }
+    
+  .pagination__link {
+    font-weight: bold;
+  }
+  
+  .pagination__link__active a {
+    color: white;
+    background: coral;
+  }
+  
+  .pagination__link__disabled a {
+    color:white;
+    
+  }
 
 
