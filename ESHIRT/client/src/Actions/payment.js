@@ -18,6 +18,7 @@ export function createPayment(order, shipments, userId){
                 }
             },
             auto_return: 'approved',
+            metadata: {id: JSON.stringify(orderId)}
         }
         try {
             let response= await axios({
@@ -25,6 +26,7 @@ export function createPayment(order, shipments, userId){
                     url: '/payment',                 
                     data: order
             })
+            console.log(response)
             dispatch({type: 'CREATE_PAYMENT', payload: response.data})
         }
         catch (error){
