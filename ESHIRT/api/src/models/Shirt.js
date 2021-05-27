@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true
     },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     // print: {
     //   type: DataTypes.BLOB('long'),
     //   allowNull: true,
