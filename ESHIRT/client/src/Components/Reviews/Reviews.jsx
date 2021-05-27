@@ -9,12 +9,14 @@ import {useHistory} from 'react-router-dom'
 function Reviews(props) {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsReducer.reviews);
-  // const star = useSelector((state) => state.reviewsReducer.star);
+  const score = useSelector((state) => state.reviewsReducer.star);
   const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user;
   const [counter, setCounter] = useState(0)
+  const [usuarios, setUsuarios] = useState(review);
+  const [promedio, setPromedio] = useState(0);
   const [input, setInput] = useState({
     content: "",
     name: "",
@@ -26,18 +28,16 @@ function Reviews(props) {
 
 
 
-console.log(review.id, 'estoestoy')
+
 
 
 useEffect(() => {
   
-    dispatch(getShirtReview(id));
+    dispatch(getShirtReview(id), getPromedio());
     
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getShirtScore(id));
-  // }, []);
+
   function handleSubmit(e) {
    e.preventDefault();
     
@@ -75,9 +75,14 @@ useEffect(() => {
     })
   }
 
- 
+  function getPromedio(){
+    let stateCopy = [...usuarios];  
+    let datasetSum = stateCopy.reduce((a,b) => a + parseInt(b.scoreReview),0);
+    let p = Math.round(datasetSum/stateCopy.length);
+    setPromedio(p);
+    }
 
-  
+    console.log(promedio, 'este esel promedio')
   return (
     <div className={style.customer_feedback}>
       <div className={style.container - style.text_center}>
@@ -130,7 +135,7 @@ useEffect(() => {
                         alt="Customer Feedback"
                       />
                       <h3 className={style.customer_name}>{e.name}</h3>
-                      <p>{e.content}</p>
+                      <p className={style.b3}>{e.content}</p>
                     </div>
                   </div>
                 </div>
