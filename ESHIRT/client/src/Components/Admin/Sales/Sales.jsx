@@ -6,6 +6,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import { useSelector, useDispatch } from "react-redux";
 import swal from 'sweetalert';
+import ReactPaginate from 'react-paginate';
 
 import {getOrders, modifyOrderStatus} from '../../../Actions/index.js'
 
@@ -14,6 +15,7 @@ export default function Sales() {
   const isAdmin = useTokenDecode(localStorage.currentToken);
 
   // const [refresh, setRefresh]=useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useDispatch();
   const sale = useSelector((state) => state.ordersReducer.orders);
   const [filtered, setFiltered] = useState([]);
@@ -90,7 +92,7 @@ function sortByDate2(a, b) {
           [name]: value
       });
   }
-// ///////// ////////////// //  /////////////////// ///////////////////////////////////////////////////////////
+////////////////EDIT STATUS////////////////////////////////
     function handleEdit(e) {
      setCount(count +1)
       let index= input.name
@@ -106,6 +108,13 @@ function sortByDate2(a, b) {
         });
         e.target.value= "status"
     };
+//////////PAGINATION////////////////////////////////////////////////////////////////
+    const INITIAL_PAGE= 8;
+    const offset = currentPage * INITIAL_PAGE;
+    const pageCount = Math.ceil(sales.length / INITIAL_PAGE);
+    function handlePageClick({ selected: selectedPage }) {
+      setCurrentPage(selectedPage);
+    }
     
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
@@ -136,10 +145,6 @@ function sortByDate2(a, b) {
  </div>
 <h2>MODIFY THE STATUS</h2>
  <input name = 'name' className= 'name' placeholder='Write the id number' onChange={handleChange1} />
-{/* {ids.map((I)=> {
-  return <option  value={I} >{I}</option>
-})}
- </select> */}
  <select onChange={handleEdit}className="type1">
           {statusSales2.map((temp) => {
            return <option value={temp}> {temp} </option>; //Template
@@ -157,7 +162,7 @@ function sortByDate2(a, b) {
               </tr>
               {
                 sales.length > 0? 
-                sales.map((s) => {
+                sales.slice(offset, offset + INITIAL_PAGE).map((s) => {
                     return <tr>
                                   <th> {s.id}</th>
                                   <th> {s.total_price}</th>
@@ -188,6 +193,20 @@ function sortByDate2(a, b) {
                 sheet="shirtsxls"
                 buttonText="Download as XLS"
             />
+
+<div className={Style.pages}>
+                    <ReactPaginate
+                        previousLabel={'← Previous'}
+                        nextLabel={'Next →'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={"pagination__link"}
+                        nextLinkClassName={"pagination__link"}
+                        disabledClassName={Style.pagination__link__disabled}
+                        activeClassName={Style.pagination__link__active}
+                        containerClassName={Style.pagination}
+                    />  
+                </div>
           </div>
           <NavLink to='home_admin'>
             <h4 className={Style.Btn3}>CONTROL PANEL</h4>
