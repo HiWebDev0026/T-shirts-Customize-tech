@@ -17,6 +17,17 @@ function RecycleBinUser() {
     const dispatch = useDispatch();
     const [count, setCount] = useState([]);
 
+    let users= [];
+     userTotal.map((user) => {
+    if (user.status === 'deleted')
+     {users.push({
+         id: user.id,
+         name: user.name,
+         status: user.status,
+         email: user.email
+       })
+     }})
+
     useEffect(() => {
         dispatch(getUsers());
   }, [count]);
@@ -51,7 +62,7 @@ function RecycleBinUser() {
        ///////////PAGINATION//////////////////////////////
   const INITIAL_PAGE= 5;
   const offset = currentPage * INITIAL_PAGE;
-  const pageCount = Math.ceil(userTotal.length / INITIAL_PAGE);
+  const pageCount = Math.ceil(users.length / INITIAL_PAGE);
   function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
 }
@@ -62,10 +73,10 @@ function RecycleBinUser() {
             <h2 className={Style.Title}>Users deleted</h2>
         <div className={Style.container}>
              <div className={Style.Users}>
-             {userTotal.length > 0 ? ( userTotal.slice(offset, offset + INITIAL_PAGE).map((user) => {
-      if (user.status == 'deleted'){
+             {users.length > 0 ? ( users.slice(offset, offset + INITIAL_PAGE).map((user) => {
           return (
               <div className={Style.Tarjet}>
+                <p className={Style.Titles}>{user.name}</p>
                 <p className={Style.Titles}>{user.email}</p>
                 <div className={Style.Contenedores}>
                   <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
@@ -73,7 +84,6 @@ function RecycleBinUser() {
                 </div>
             </div>
           );
-      }
         })
       ) 
       : (<p>Users not found</p>)}
