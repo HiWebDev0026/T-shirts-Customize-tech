@@ -64,9 +64,14 @@ export function putOrder (cart, orderId, operation) {
 
 }
 
-export function modifyOrderStatus (status, orderId) {
+export function modifyOrderStatus (status, orderId, userId) {
     return async (dispatch) => {
         try {
+            if (parseInt(orderId) === 0) {
+                const resGet = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
+                const oldOrder = resGet.data.find(order => order.status.toUpperCase() === 'CART') 
+                orderId = oldOrder.id
+            }
             const res = await axios.put(`/order/status/${orderId}`, status, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})

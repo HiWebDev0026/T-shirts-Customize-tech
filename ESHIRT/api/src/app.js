@@ -9,7 +9,7 @@ const {createProxyMiddleware} = require('http-proxy-middleware')
 const mercadopago= require('mercadopago');
 const { default: axios } = require('axios');
 const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
-const {Order}= require('./db')
+const {Order, Shirt}= require('./db')
 const {getPayment}= require('./controllers/payment')
 const {Op}= require('sequelize')
 const nodemailer= require('nodemailer')
@@ -124,6 +124,31 @@ async function paymentUpdate(){
 }
 /////////////////////////////////////////////////////////
 
+//////////////////////// DISCOUNT UPDATE /////////////////
+async function discountUpdate() {
+  
+  try {
+
+    let response = await Shirt.findAll();
+    
+    response.forEach(elem => {
+      elem.setDataValue(elem.price)
+      elem.save();
+      console.log(elem.price);
+    })
+
+    console.log('OK');
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+/////////////////////////////////////////////////////////
+
+
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
@@ -153,7 +178,8 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 
-setInterval(paymentUpdate, 6000)
+setInterval(paymentUpdate, 60000)
+/* setInterval(discountUpdate, 2000) */
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;

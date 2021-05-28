@@ -25,6 +25,7 @@ const [input, setInput] = useState({
     color: '',
     model: '',
     size: '',
+    price: '',
    
 });
 
@@ -35,7 +36,7 @@ useEffect(() => {
 
 
 function handleChange(e) {
-    const value = e.target.value;
+    const value = e.target.name === 'price' ? parseInt(e.target.value) : e.target.value;
     const name = e.target.name
 
     setInput({
@@ -59,6 +60,7 @@ function handleEdit(e) {
     if(!input.color){input.color= shirt.color}
     if(!input.model){input.model= shirt.model}
     if(!input.size){input.size = shirt.size}
+    if(!input.price) {input.price = shirt.price}
  
         if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
         else{dispatch(putShirt({...input}, e.target.value))}
@@ -87,7 +89,7 @@ return(
                  <input name = 'name' className= 'name' type = 'text' placeholder= {shirt.name} onChange= {handleChange} required/>
                  <input name = 'color' className= 'color' type = 'text' placeholder= {shirt.color} onChange= {handleChange} required/>
                  <input name = 'model' className= 'model' type = 'text' placeholder= {shirt.model} onChange= {handleChange} required/>
-                 
+                 <input name = 'price' className='name' type='text' placeholder={shirt.price} onChange={handleChange} />
                  <select name = 'size' className='size' onChange= {handleChange} >
                  <option  value="">size</option>
                  <option value='S'>S</option>

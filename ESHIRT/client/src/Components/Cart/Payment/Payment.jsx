@@ -8,7 +8,9 @@ import {
     getOrdersByUserId, 
     checkLastOrder, 
     postOrder,
-    putOrder
+    putOrder,
+    setCartItems,
+    modifyOrderStatus
 } from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -76,8 +78,12 @@ function Payment() {
             }
             dispatch(createPayment({order, shipments, userId: user.sub.split('|')[1], email: mail}))
             setFlag(true)
+            dispatch(setCartItems({}, 'clear'))
+            localStorage.removeItem('items')
+            dispatch(modifyOrderStatus({status: 'PENDING'}, orderId, user.sub.split('|')[1]));
         } 
     }
+
 
     return (
         <div className={style.container}>
@@ -94,9 +100,14 @@ function Payment() {
             <input placeholder= 'Email' id='email'/>
             {
                 flag ? 
-            <a className={(paymentData?.response?.init_point && style.mercadopago) || style.inactive} target='_blank' href={paymentData?.response?.init_point} rel='nofollow'>
-                
-            </a>  
+            
+            <a
+                className={(paymentData?.response?.init_point && style.mercadopago) || style.inactive} 
+                target='_blank' href={paymentData?.response?.init_point} 
+                rel='nofollow'
+                >
+            </a> 
+             
                 :
             items.length >0 && <button type='submit'>All set!</button>
             }

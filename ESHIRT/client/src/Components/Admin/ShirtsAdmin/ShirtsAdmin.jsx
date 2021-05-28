@@ -16,13 +16,23 @@ const [currentPage, setCurrentPage] = useState(0);
 const shirts = useSelector((state) => state.shirtReducer.allShirts);
 const history = useHistory();
 const dispatch = useDispatch();
-const [page, setPage] = useState(0);
-const [max, setMax] = useState(0);
 const [count, setCount] = useState(0);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
-
-
+let shirts1= [];
+shirts.map((shirt) => {
+  if (shirt.status !== 'deleted')
+   {shirts1.push({
+       id: shirt.id,
+       name: shirt.name,
+       color: shirt.color,
+       model: shirt.model,
+       size: shirt.size,
+       score: shirt.score,
+       public: shirt.public,
+       created: shirt.created
+     })
+   }})
   
     useEffect(() => {
       dispatch(getShirts());
@@ -54,7 +64,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
     
       const INITIAL_PAGE= 8;
       const offset = currentPage * INITIAL_PAGE;
-      const pageCount = Math.ceil(shirts.length / INITIAL_PAGE);
+      const pageCount = Math.ceil(shirts1.length / INITIAL_PAGE);
       function handlePageClick({ selected: selectedPage }) {
         setCurrentPage(selectedPage);
     }
@@ -79,8 +89,8 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               </div>
               </tr>
               </div>
-            {shirts.length > 0  ? ( shirts.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
-              if ( shirt.status !== 'deleted'){
+            {shirts1.length > 0  ? ( shirts1.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
+             
           return (
             <tr className={Style.Container}>
               <div className={Style.Tarjet} >
@@ -97,7 +107,7 @@ const isAdmin = useTokenDecode(localStorage.currentToken);
               </div>
                </tr>
           );
-        }
+        
         })
       ) 
       : (<p>Shirts not found</p>)}
