@@ -12,6 +12,7 @@ const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
 const {Order, Shirt}= require('./db')
 const {getPayment}= require('./controllers/payment')
 const {Op}= require('sequelize')
+const nodemailer= require('nodemailer')
 
 require('./db.js');
 
@@ -20,6 +21,14 @@ const corsOptions = {
   origin: true,
   credentials: true,
 }
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'e.shirt2021@gmail.com',
+    pass: 'eshirt2021grupo8'
+  }
+});
 
 
 server.name = 'api_eshirts_server';
@@ -32,6 +41,30 @@ mercadopago.configure({
 });
 /////////////////////////////////////////////////////////
 
+//////////////////// MAILING ////////////////////////////
+
+async function sendEmail(email, status) {
+  let textColor=''
+  status === 'APPROVED' ? textColor= 'green' : status === 'CANCELED' ? textColor= 'red' : textColor= 'orange' 
+  var mailOptions = {
+    from: 'e.shirt2021@gmail.com',
+    to: email,
+    subject: 'E-Shirt paymet update! (do not resply)',
+    html: `<h1 style="color:blue">We have an update on your order!</h1><p>It is now <span style="color: ${textColor}">${status}</span></p>`
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
+
+
+/////////////////////////////////////////////////////////
+
 //////////////////////// PAYMENT UPDATE /////////////////
 async function paymentUpdate(){
   try {
@@ -41,7 +74,8 @@ async function paymentUpdate(){
       if (result.metadata?.id){
         dataToCheck.push({
           id: result.metadata.id,
-          status: result.status.toUpperCase() === 'REJECTED' ? 'CANCELED' : result.status.toUpperCase()
+          status: result.status.toUpperCase() === 'REJECTED' ? 'CANCELED' : result.status.toUpperCase(),
+          email: result.metadata.email
           }
         )}
     }) // Aca tenemos un array con ids y status
@@ -68,15 +102,13 @@ async function paymentUpdate(){
     })
     Promise.all(ordersToCheck)
     .then(data => {
-      console.log(data)
       // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
       for (let i=0; i< dataToCheck.length; i++){
         for (let j=0; j< data.length; j++){
           if (parseInt(dataToCheck[i].id) === parseInt(data[j]?.id) && dataToCheck[i].status !== data[j].status){  
-            console.log(data[j], 'before')
             data[j].status= dataToCheck[i]?.status
-            console.log(data[j], 'after')
             data[j].save()
+            if (dataToCheck[i].email) sendEmail(dataToCheck[i].email, dataToCheck[i].status)
           }
         }
       }
