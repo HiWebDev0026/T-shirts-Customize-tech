@@ -60,8 +60,8 @@ function sortByDate2(a, b) {
   return 0;}
 
   let sales = filtered.length > 0 ? filtered : sale;
-  let statusSales= ['By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED'];
-  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED'];
+  let statusSales= ['By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED','CANCELED BY ADMIN'];
+  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED BY ADMIN'];
   
   let idsUsuarios= ['By User ID']
   sale.map((id) =>{

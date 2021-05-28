@@ -49,29 +49,6 @@ function Payment() {
         })
     }
 
-    /* useEffect(()=> {
-        if (isAuthenticated && orderId === 0) {
-            dispatch(postOrder([...items], user.sub.split('|')[1]))
-          } else if (isAuthenticated && orderId) {
-            dispatch(putOrder([...items], orderId, 'add'))
-          } else if (isAuthenticated){
-              dispatch(checkLastOrder(user.sub.split('|')[1]))
-          }
-    }, [isAuthenticated, orderId]) */
-
-    /* function sendEmail() {
-        Email.send({
-            Host : "smtp.mailtrap.io",
-            Username : "79f82e60df3dc1",
-            Password : "5159d22690b6bf",
-            To : email,
-            From : "454f0289f0-bc66c1@inbox.mailtrap.io",
-            Subject : "Payment status from E-Shirts!",
-            Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>"
-        }).then(
-          message => alert(message)
-        );
-        } */
 
 
     function handleSubmit(e){

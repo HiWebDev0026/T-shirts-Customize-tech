@@ -22,13 +22,6 @@ const corsOptions = {
   credentials: true,
 }
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'e.shirt2021@gmail.com',
-    pass: 'eshirt2021grupo8'
-  }
-});
 
 
 server.name = 'api_eshirts_server';
@@ -43,13 +36,21 @@ mercadopago.configure({
 
 //////////////////// MAILING ////////////////////////////
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'e.shirt2021@gmail.com',
+    pass: 'eshirt2021grupo8'
+  }
+});
+
 async function sendEmail(email, status) {
   let textColor=''
   status === 'APPROVED' ? textColor= 'green' : status === 'CANCELED' ? textColor= 'red' : textColor= 'orange' 
   var mailOptions = {
     from: 'e.shirt2021@gmail.com',
     to: email,
-    subject: 'E-Shirt paymet update! (do not resply)',
+    subject: 'E-Shirt paymet update! (do not reply)',
     html: `<h1 style="color:blue">We have an update on your order!</h1><p>It is now <span style="color: ${textColor}">${status}</span></p>`
   };
   
@@ -69,19 +70,19 @@ async function sendEmail(email, status) {
 async function paymentUpdate(){
   try {
     let payments= await axios.get('http://localhost:3001/payment')
-    let dataToCheck= []
+    let mpData= []
     payments.data.body.results.forEach(result => {
       if (result.metadata?.id){
-        dataToCheck.push({
+        mpData.push({
           id: result.metadata.id,
           status: result.status.toUpperCase() === 'REJECTED' ? 'CANCELED' : result.status.toUpperCase(),
           email: result.metadata.email
           }
         )}
-    }) // Aca tenemos un array con ids y status
+    }) // Aca tenemos un array con ids, status, email
     
     let orderFound= []
-    let ordersToCheck= dataToCheck.map(e => {
+    let ordersToCheck= mpData.map(e => {
       return new Promise((resolve, reject)=> {
         try {
           //if(e.id !== 5 && e.id !== '5'){
@@ -102,13 +103,16 @@ async function paymentUpdate(){
     })
     Promise.all(ordersToCheck)
     .then(data => {
+      console.log(data[0])
       // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
-      for (let i=0; i< dataToCheck.length; i++){
+      for (let i=0; i< mpData.length; i++){
         for (let j=0; j< data.length; j++){
-          if (parseInt(dataToCheck[i].id) === parseInt(data[j]?.id) && dataToCheck[i].status !== data[j].status){  
-            data[j].status= dataToCheck[i]?.status
-            data[j].save()
-            if (dataToCheck[i].email) sendEmail(dataToCheck[i].email, dataToCheck[i].status)
+          if (parseInt(mpData[i].id) === parseInt(data[j]?.id) && mpData[i].status !== data[j].status){  
+            if(data[j].status !== 'DONE' && data[j].status !== 'DISPATCHED' && data[j].status !== 'CANCELED BY ADMIN'){
+              data[j].status= mpData[i]?.status
+              data[j].save()
+              if (mpData[i].email) sendEmail(mpData[i].email, mpData[i].status)
+            }
           }
         }
       }
@@ -157,4 +161,5 @@ server.use((err, req, res, next) => {
   res.status(status).json(err);
 });
 
-module.exports = server;
+module.exports = server
+
