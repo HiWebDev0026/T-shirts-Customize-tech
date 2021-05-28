@@ -5,12 +5,12 @@ import { getShirts, deleteShirt, getShirtById, putShirt} from "../../../Actions/
 import {useHistory} from 'react-router-dom';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
-import Style from "./RecycleBinDesigns.module.css";
+import Style from "./BuyAuthorizeDesingns.module.css";
 import swal from 'sweetalert';
 import ReactPaginate from 'react-paginate';
 
 
-export default function RecycleBinDesigns(){
+export default function BuyAuthorizeDesigns(){
   
     const [currentPage, setCurrentPage] = useState(0);
     const designsTotal = useSelector((state) => state.shirtReducer.allShirts);
@@ -20,9 +20,10 @@ export default function RecycleBinDesigns(){
     const [count, setCount] = useState([]);
     const [input2, setInput2] = useState('');
 
+    console.log(designsTotal, "acaaaaaaa")
     let designs= [];
     designsTotal.map((desing) => {
-    if (desing.public === 'false')
+    if (desing.public === "buy_authorize")
     {designs.push({
         id: desing.id,
         name: desing.name,
@@ -94,8 +95,6 @@ export default function RecycleBinDesigns(){
           <h4>Public?</h4>
          <label>Yes</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
-                    <label>Buy_authorize</label>
-                    <input type="radio" name="public" value="buy_authorize" onChange= {handlePublic}  />
                     </div>
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
