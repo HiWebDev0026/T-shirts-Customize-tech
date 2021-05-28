@@ -19,13 +19,8 @@
 .Title1{
     color: white;
 }
-.Title1:hover{
-    color: coral;
-    top: -1vh;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.582);
+.Btn3{
+    display: flex;
+    justify-content: center;
+    color: white;
 }
-.img{
-    width: 40px;
-    height: 40px;
-}
-
