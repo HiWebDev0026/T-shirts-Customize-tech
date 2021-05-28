@@ -3,7 +3,7 @@ import Style from './UserDashboard.module.css';
 import Clock from '../Clock';
 import HomeUser from './HomeUser';
 import {useDispatch, useSelector} from "react-redux";
-import {getUserById} from '../../../Actions/index.js';
+import {getUserById, getUsers} from '../../../Actions/index.js';
 import { useAuth0} from "@auth0/auth0-react";
 
 
@@ -16,6 +16,7 @@ function UserDashboard(){
   let id = sub.split("|")[1];
   useEffect(() => {
     dispatch(getUserById(id));
+    dispatch(getUsers());
 }, []);
 
   return (
