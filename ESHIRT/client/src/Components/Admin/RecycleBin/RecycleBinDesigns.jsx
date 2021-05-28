@@ -13,11 +13,21 @@ import ReactPaginate from 'react-paginate';
 export default function RecycleBinDesigns(){
   
     const [currentPage, setCurrentPage] = useState(0);
-    const shirts = useSelector((state) => state.shirtReducer.allShirts);
+    const designsTotal = useSelector((state) => state.shirtReducer.allShirts);
     const dispatch = useDispatch();
     const history = useHistory();
     const isAdmin = useTokenDecode(localStorage.currentToken);
     const [input2, setInput2] = useState('');
+
+    let designs= [];
+    designsTotal.map((desing) => {
+    if (desing.public === 'false')
+    {designs.push({
+        id: desing.id,
+        name: desing.name,
+        print: desing.print
+      })
+    }})
 
     useEffect(() => {
       dispatch(getShirts());
@@ -57,7 +67,7 @@ export default function RecycleBinDesigns(){
      ///////////PAGINATION//////////////////////////////
   const INITIAL_PAGE= 4;
   const offset = currentPage * INITIAL_PAGE;
-  const pageCount = Math.ceil(shirts.length / INITIAL_PAGE);
+  const pageCount = Math.ceil(designs.length / INITIAL_PAGE);
   function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
 }
@@ -66,9 +76,8 @@ export default function RecycleBinDesigns(){
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
      <div className={Style.Title}> <h1 >Deleted and non-public designs</h1></div>
       <div className={Style.Desings}>      
-{shirts.length > 0  
-      ? ( shirts.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
-        if (shirt.public !== 'true'){ // ACAA
+{designs.length > 0  
+      ? ( designs.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
           
           return (
             <div className={Style.Designs1}>
@@ -90,7 +99,7 @@ export default function RecycleBinDesigns(){
               </div>
                
           );
-        }
+      
         })
       ) : (<p>Desings not found</p>)}
 </div>

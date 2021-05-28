@@ -21,9 +21,18 @@
     font-size: 30px;
 }
 
+.boxBtn{
+    display: flex;
+}
+
 .btn{
-    color: white;
+    width: 120px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
 }
 .btn:hover{
+    background: black;
     color: coral;
 }

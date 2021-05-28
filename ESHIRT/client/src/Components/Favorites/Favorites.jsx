@@ -44,7 +44,7 @@ export default function Favorites (){
                 <div className={Style.info}>
                 {favorites.length>0?
                 favorites.slice(offset, offset + INITIAL_PAGE).map(favorite => 
-                    {return<FavoritesItems key={favorite.id} favorite={{...favorite, price:50}}/>})
+                    {return<FavoritesItems key={favorite.id} favorite={{...favorite, price:favorite.price}}/>})
                 :<p>No items in favorites</p>}
                 </div>
                 <div className={Style.pages}>

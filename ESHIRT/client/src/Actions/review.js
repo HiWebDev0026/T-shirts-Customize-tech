@@ -39,8 +39,8 @@ export function getShirtScore(shirtId){
         try {
             const res = await axios.get(`/shirt/${shirtId}/review`,  {responseType: 'json'})
             const score = res.data      
-           console.log(score)
-            dispatch({type: 'GET_SHIRT_BY_SCORE', payload: score})
+          
+            dispatch({type: 'GET_SCORE_BY_ID', payload: score})
            
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');

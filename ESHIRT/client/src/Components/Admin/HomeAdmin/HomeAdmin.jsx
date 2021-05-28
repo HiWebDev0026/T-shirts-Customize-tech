@@ -37,6 +37,9 @@ export default function HomeAdmin() {
             <NavLink to= '/desings_admin' className={Style.Title1}>
                 <h2>DESIGNS</h2>
             </NavLink>
+            <NavLink to= '/discounts' className={Style.Title1}>
+                <h2>DISCOUNTS</h2>
+            </NavLink>
             <NavLink to= '/recycleBin' className={Style.Title1}>
                 <img src={RecicleBin} className={Style.img} />
     
