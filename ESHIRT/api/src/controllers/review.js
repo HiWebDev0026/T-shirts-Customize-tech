@@ -35,7 +35,17 @@ async function getReviews (req, res, next) {
     }
 }
 
+async function getAllReviews (req, res, next) {
+    try {
+        const reviews = await Review.findAll();
+        return res.status(200).json(reviews)
+    } catch (err) {
+        return next({status: 500, message: 'Review model problem'})
+    }
+}
+
 module.exports = {
     postReview,
-    getReviews
+    getReviews,
+    getAllReviews
 }
