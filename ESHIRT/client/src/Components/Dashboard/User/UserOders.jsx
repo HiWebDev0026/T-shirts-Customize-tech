@@ -28,7 +28,7 @@ function UserOrders(){
     //     {id:5, status:"CANCELED"},
     // ]
     //let id = '105677628845670307411';
-    let orders = allOrders.filter(order=>order.userId === id);
+    let orders = allOrders.filter(order=>order.userId === id && order.status !== 'CART' && order.paymentId);
     console.log("allorders", allOrders)
     console.log("ordersUser", orders);
 
