@@ -12,12 +12,12 @@ export default function CreateCategory (){
 
     const [currentPage, setCurrentPage] = useState(0);
     const [category,setCategory]= useState('');
-    const [editButtonTarget, setEditButtonTarget] = useState(0)
+    const [editButtonTarget, setEditButtonTarget] = useState(0);
     const [change, setChange]=useState('');
     const isAdmin = useTokenDecode(localStorage.currentToken);
 
-    const categories= useSelector((state)=>state.categoryReducer.allCategories)
-    const errors = useSelector((state) => state.globalReducer.errors)
+    const categories= useSelector((state)=>state.categoryReducer.allCategories);
+    const errors = useSelector((state) => state.globalReducer.errors);
     
     const dispatch= useDispatch();
 

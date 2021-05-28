@@ -43,13 +43,13 @@ export default function Sales() {
     }
     if(reloaded.length === 0){alert("Not match")}
     setFiltered(reloaded);}
-  console.log(sale, "aca salesssss")
+
 const STRENGTHUP = (a,b) => {return b.total_price - a.total_price}
 const STRENGTHDN = (a,b) => {return a.total_price - b.total_price}
 const DATAUP = (a,b) => {return b.createdAt.slice(2,10).split('-') - a.createdAt.slice(2,10).split('-')}
 const DATADN = (a,b) => {return a.createdAt.slice(2,10).split('-') - b.createdAt.slice(2,10).split('-')}
 
-//ORDER BY DATE
+//////////////////ORDER BY DATE//////////////////////
 function sortByDate(a, b) {
   if (a.createdAt < b.createdAt) { return 1;}
   if (a.createdAt > b.createdAt) {return -1;}
