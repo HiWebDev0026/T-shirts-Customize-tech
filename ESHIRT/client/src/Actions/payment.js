@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export function createPayment(order, shipments, userId){
+export function createPayment({order, shipments, userId, email}){
     return async (dispatch) => {
         const resGetOrder = await axios.get(`/order/user/status/${userId}`, {responseType: 'json'})
         const orderId = resGetOrder.data
@@ -8,9 +8,9 @@ export function createPayment(order, shipments, userId){
             items:order,
             shipments,
             back_urls: {
-                "success": `http://localhost:3001/payment/feedback/${orderId}`,
-                "failure": `http://localhost:3001/payment/feedback/${orderId}`,
-                "pending": `http://localhost:3001/payment/feedback/${orderId}`
+                "success": `http://localhost:3000/home`,
+                "failure": `http://localhost:3000/home`,
+                "pending": `http://localhost:3000/home`
             },
             payer:{
                 identification:{
@@ -18,7 +18,11 @@ export function createPayment(order, shipments, userId){
                 }
             },
             auto_return: 'approved',
-            metadata: {id: JSON.stringify(orderId)}
+            metadata: {
+                id: JSON.stringify(orderId),
+                email: email
+            },
+            
         }
         try {
             let response= await axios({
