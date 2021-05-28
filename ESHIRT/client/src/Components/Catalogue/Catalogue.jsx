@@ -52,7 +52,7 @@ function handlePageClick({ selected: selectedPage }) {
   const currentPageData= data
   .slice(offset, offset + INITIAL_PAGE)
   .map((e) => {
-    if ( e.status !== 'deleted'){
+    if ( e.status !== 'deleted' && e.public === 'true'){
     return (        
 
         <Card
@@ -67,6 +67,7 @@ function handlePageClick({ selected: selectedPage }) {
         />
     )
     }
+
 })
   
     
