@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 
 .general{
     height: 100%;
@@ -7,6 +9,7 @@
     line-height: 180%;
     color:white;
     text-align: center;
+    background-color: white;
 }
 
 .general h3{
@@ -14,26 +17,26 @@
 }
 
 .picture1{
-    background-image: url('https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: url('https://images.unsplash.com/photo-1539506903458-4512befa7f2f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTQ2fHx0c2hpcnRzfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
     height: 100vh;
 }
 
 .picture2{
-    background-image: url('https://images.unsplash.com/photo-1503341733017-1901578f9f1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-image: url('https://images.unsplash.com/photo-1503341733017-1901578f9f1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
     height: 80vh;
 }
 
 .picture3{
-    background-image: url('https://images.unsplash.com/photo-1564864310852-e1e98eb07010?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80');
-    height: 60vh;
-}
-
-.picture4{
-    background-image: url('https://images.pexels.com/photos/4530790/pexels-photo-4530790.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: url('https://images.pexels.com/photos/2471422/pexels-photo-2471422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 100vh;
 }
 
-.picture1, .picture2, .picture3, .picture4 {
+/* 'https://images.pexels.com/photos/2315217/pexels-photo-2315217.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' */
+/* 'https://images.pexels.com/photos/1861907/pexels-photo-1861907.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' */
+/* https://images.unsplash.com/photo-1503341733017-1901578f9f1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80 */
+
+
+.picture1, .picture2, .picture3 {
     position: relative;
     background-position: center;
     background-size: cover;
@@ -42,53 +45,118 @@
 }
 
 .section1{
-   color:black;
-   font-size: 550%;
-   top:50%;
-   
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color:white;
+   font-size: 350%;
+   top:20%;
+   left:3%;
+   font-weight: 800;
+   height: 17%;
+   width: 35%;
+   opacity: 0.9;
+   margin-bottom: 10px;
+   letter-spacing: 8px;
+   font-family: 'Shadows Into Light', cursive;
 }
 
 .section2{
-    color:rgb(167, 53, 72);
-    font-size: 370%;
-    top:60%;
+    color:#a04668;
+    font-size: 100%;
+    font-weight: 900;
+    top:30%;
+    left:3%;
     line-height: 100%;
+    opacity: 0.9;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    height:10%;
+    width: 35%;
+    letter-spacing: 3px;
  }
+
+ .home{
+     top:48%;
+     left:18%;
+     background-color: #a04668;
+     padding: 10px;
+     width: 20px;
+     height: auto;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     color:white;
+}
 
  .section3{
     color:white;
     font-size: 250%;
     top:45%;
+
  }
 
-.section1,.section2,.section3{
+
+.section1,.section2,.section3, .home{
     position: absolute;
-    width:100%;
     text-transform: uppercase;
-    letter-spacing: 8px;
-    text-shadow: 0 0 10px black;
 }
 
-.sectionOne,.sectionTwo,.sectionThree{
-    padding: 20px 80px;
-    background-color: white;
-    color:black;
-    height: 100%;
-}
 
-.sectionOne{
-    background-color: black;
+.sectionOne,.sectionTwo {
+    padding: 5px;
+    background-color:#f1c711;
     color:white;
+    height: 45vh;
+    display: flex;
 }
+
+.sectionOne iframe{
+    border-radius: 5px;
+    height: 90%;
+    width: auto;
+}
+
+.sectionOneLeft{
+    width: 60%;
+    padding:10px;
+}
+
+.sectionOneRight{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 
 @media(max-width: 768px){
     .section1{
-        font-size: 300%;
+        font-size: 180%;
     }
     .section2{
-        font-size: 250%;
+        font-size: 50%;
     }
     .section3{
         font-size: 200%;
     }
+}
+
+.check{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left{
+    width: 50%;
+}
+
+.rigth{
+    width: 40%;
 }
