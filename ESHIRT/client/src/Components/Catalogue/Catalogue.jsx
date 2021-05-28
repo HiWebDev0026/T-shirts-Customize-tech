@@ -48,6 +48,7 @@ function handlePageClick({ selected: selectedPage }) {
  /*  <button onClick={()=>dispatch(getShirts())}></button>
   '/status?=pending' */
   const offset = currentPage * INITIAL_PAGE;
+  console.log(data)
   const currentPageData= data
   .slice(offset, offset + INITIAL_PAGE)
   .map((e) => {

@@ -59,7 +59,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   };
 
-  console.log(scoreReview, "este");
+
 
   // useEffect(() => {
   //   if (isAuthenticated && !orderIdChecked) {
@@ -144,10 +144,13 @@ function Card({ title, score, price, size, model, color, image, id }) {
             </a>
           </div>
           <div className={style.ratings}>
-            
-            <span class={style.product_rating}>{scoreReview}</span>
-            <span>/5</span>
-            <div className={style.stars}>           
+            {isNaN(scoreReview) ?  
+            <p>no hay reviews</p>
+            : <div><span class={style.product_rating}>{scoreReview}</span>
+            <span>/5</span></div>
+            }
+            <div className={style.stars}>
+                       
               {setStars(scoreReview)}
               
             </div>

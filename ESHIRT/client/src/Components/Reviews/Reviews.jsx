@@ -39,8 +39,13 @@ useEffect(() => {
 
   function handleSubmit(e) {
    e.preventDefault();
-    
-    if (isAuthenticated) {
+    if (parseInt(input.scoreReview) < 1){
+      alert('choose at least 1 star')
+    } 
+    if (!isAuthenticated){
+      alert("you must be signed up to post a review");
+    }
+    if (isAuthenticated && parseInt(input.scoreReview ) > 0 ) {
       dispatch(postShirtReview(input, id, userData.sub.split("|")[1]));
       setCounter(prevState => prevState+1)
       setInput({
@@ -49,10 +54,9 @@ useEffect(() => {
         image: "",
         scoreReview: 0
       })
-    } else {
-      alert("you must be signed up to post a review");
-    }
-   history.push('/catalogue')
+      history.push('/catalogue')
+    } 
+   
   }
 
   function handleChange(e) {
@@ -105,7 +109,7 @@ useEffect(() => {
             </p>
             <div>
             <p class={style.clasificacion}  onChange={handleChangeStart} >
-                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star} style={{display:'none'}}/>
+                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star} style={{display:'none'}} />
                   <label for="radio1">★</label>
                   <input id="radio2" type="radio" name="star" value="4" className={style.star}style={{display:'none'}}/>
                   <label for="radio2">★</label>

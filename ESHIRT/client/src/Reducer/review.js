@@ -36,7 +36,7 @@ const reviewsReducer = (state=initialState, action) => {
                 ...state,
                 score: p
             }   
-        case 'DELETE_':
+        case 'DELETE_REVIEW':
             return {
                 ...state,
                 reviews: deleteHelper(state.reviews, action.payload)
