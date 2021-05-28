@@ -136,16 +136,14 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
-          <div className={style.popup__photo}>
-            <img src={image} />
-
-            <a className={style.popup__close} href="#">
-              X
-            </a>
-          </div>
-          <div className={style.ratings}>
+       
+          <div >
+            <img src={image} className={style.popup__photo} />
+            <div className={style.ratings}>
+            
             {isNaN(scoreReview) ?  
-            <p>no hay reviews</p>
+            <p>no reviews, be the first...
+            </p>
             : <div><span class={style.product_rating}>{scoreReview}</span>
             <span>/5</span></div>
             }
@@ -154,17 +152,29 @@ function Card({ title, score, price, size, model, color, image, id }) {
               {setStars(scoreReview)}
               
             </div>
+            </div>
             <NavLink to={`/shirt/${id}/review`}>
               <button className={style.size}>Reviews</button>
             </NavLink>
+            <a className={style.popup__close} href="#">
+              X
+            </a>
           </div>
-
+          
+          { review ?
+                    <div className={style.background_review}>
+                    <h3>{review[review.length - 1]?.name}</h3>
+                    <p >{review[review.length - 1]?.content}</p>
+                  </div>
+                    : 
+                    <p>no reviews yet</p>
+    }    
             <div className={style.popup__text}>
-            <h1>Details</h1>
+           
             <div>
               <h2>{title}</h2>
             </div>
-
+        
             <div>
               <button className={style.buttonAM} onClick={handleAddOne}>
                 <GrAdd />
@@ -187,8 +197,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
             <p>Size: {newSize}</p>
             <p>Color: {color}</p>
-            <p>Model: {model}</p>
-            <p>Score: {score}</p>
+            <p>Model: {model}</p>          
             <p>Amount: {amount}</p>
 
             <div className={style.cartBox}>
@@ -213,10 +222,14 @@ function Card({ title, score, price, size, model, color, image, id }) {
               </button>
             </div>
           </div>
+     
         </div>
+     
       </div>
+    
     </div>
   );
 }
 
 export default Card;
+

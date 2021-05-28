@@ -135,7 +135,7 @@ useEffect(() => {
                     <div className={style.feedback_slider_item}>
                       <img
                         src={e.image}
-                        className="center-block img-circle"
+                        className={style.userimage}
                         alt="Customer Feedback"
                       />
                       <h3 className={style.customer_name}>{e.name}</h3>
