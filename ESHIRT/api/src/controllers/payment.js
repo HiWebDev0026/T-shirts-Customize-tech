@@ -35,7 +35,7 @@ async function createPayment(req, res, next){
     await orderToModify.save()
     res.status(200).json(mpResponse)
     }
-    catch(error){next({status: 500, message: error})}
+    catch(error){console.log(error)/* next({status: 500, message: error}) */}
 }
 
 async function getPayment(req, res){

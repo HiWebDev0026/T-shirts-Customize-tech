@@ -35,7 +35,6 @@ function Payment() {
         state_name: '',
         country_name: ''
     })
-    const [email, setEmail]= useState('')
     const [flag, setFlag]= useState(false)
 
     function handleChange(e){
@@ -76,6 +75,7 @@ function Payment() {
         );
         } */
 
+
     function handleSubmit(e){
         e.preventDefault()
         if (!deliveryData.zip_code || !deliveryData.street_name || !deliveryData.street_number || !deliveryData.city_name || !deliveryData.state_name || !deliveryData.country_name){
@@ -83,7 +83,7 @@ function Payment() {
         }
         let mail= document.getElementById('email').value.toLowerCase()
         if (mail.includes('@') && mail.includes('.com')){
-            setEmail(mail)
+            console.log(mail)
         } else return alert('The e-mail format does not comply')
         if (isAuthenticated) {
             
@@ -98,8 +98,8 @@ function Payment() {
                 })
             let shipments= {
                     receiver_address: deliveryData
-            }  
-            dispatch(createPayment(order, shipments, user.sub.split('|')[1]))
+            }
+            dispatch(createPayment({order, shipments, userId: user.sub.split('|')[1], email: mail}))
             setFlag(true)
             dispatch(setCartItems({}, 'clear'))
             localStorage.removeItem('items')

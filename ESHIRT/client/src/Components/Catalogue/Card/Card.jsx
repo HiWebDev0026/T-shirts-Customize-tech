@@ -232,3 +232,4 @@ function Card({ title, score, price, size, model, color, image, id }) {
 }
 
 export default Card;
+
