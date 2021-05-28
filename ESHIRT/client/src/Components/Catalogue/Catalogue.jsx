@@ -22,10 +22,11 @@ function Catalogue(){
     const allShirts= useSelector(state => state.shirtReducer.allShirts)
     const shirtsByName= useSelector(state => state.shirtReducer.shirtsByName)
     const filteredByCategory= useSelector(state => state.shirtReducer.filteredByCategory)
+    
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
 
-    
+
     useEffect(()=>{
         /* if (shirtsByName.length === 0){
             dispatch(getShirts("true"))
@@ -47,6 +48,7 @@ function handlePageClick({ selected: selectedPage }) {
  /*  <button onClick={()=>dispatch(getShirts())}></button>
   '/status?=pending' */
   const offset = currentPage * INITIAL_PAGE;
+  console.log(data)
   const currentPageData= data
   .slice(offset, offset + INITIAL_PAGE)
   .map((e) => {

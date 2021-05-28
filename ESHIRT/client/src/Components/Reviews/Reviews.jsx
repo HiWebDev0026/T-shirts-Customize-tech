@@ -9,12 +9,13 @@ import {useHistory} from 'react-router-dom'
 function Reviews(props) {
   const dispatch = useDispatch();
   const review = useSelector((state) => state.reviewsReducer.reviews);
-  // const star = useSelector((state) => state.reviewsReducer.star);
+  
   const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user;
   const [counter, setCounter] = useState(0)
+
   const [input, setInput] = useState({
     content: "",
     name: "",
@@ -26,22 +27,25 @@ function Reviews(props) {
 
 
 
-console.log(review.id, 'estoestoy')
+
 
 
 useEffect(() => {
   
     dispatch(getShirtReview(id));
-    
+   
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getShirtScore(id));
-  // }, []);
+
   function handleSubmit(e) {
    e.preventDefault();
-    
-    if (isAuthenticated) {
+    if (parseInt(input.scoreReview) < 1){
+      alert('choose at least 1 star')
+    } 
+    if (!isAuthenticated){
+      alert("you must be signed up to post a review");
+    }
+    if (isAuthenticated && parseInt(input.scoreReview ) > 0 ) {
       dispatch(postShirtReview(input, id, userData.sub.split("|")[1]));
       setCounter(prevState => prevState+1)
       setInput({
@@ -50,10 +54,9 @@ useEffect(() => {
         image: "",
         scoreReview: 0
       })
-    } else {
-      alert("you must be signed up to post a review");
-    }
-   history.push('/catalogue')
+      history.push('/catalogue')
+    } 
+   
   }
 
   function handleChange(e) {
@@ -75,9 +78,15 @@ useEffect(() => {
     })
   }
 
- 
+  // function getPromedio(){
+  //   let stateCopy = [...usuarios];  
+  //   let datasetSum = stateCopy.reduce((a,b) => a + parseInt(b.scoreReview),0);
+  //   let p = Math.round(datasetSum/stateCopy.length);
+    
+  //   setPromedio(p);
+  //   }
 
-  
+    
   return (
     <div className={style.customer_feedback}>
       <div className={style.container - style.text_center}>
@@ -100,7 +109,7 @@ useEffect(() => {
             </p>
             <div>
             <p class={style.clasificacion}  onChange={handleChangeStart} >
-                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star} style={{display:'none'}}/>
+                  <input id="radio1"  type="radio" name="star" value="5"  className={style.star} style={{display:'none'}} />
                   <label for="radio1">★</label>
                   <input id="radio2" type="radio" name="star" value="4" className={style.star}style={{display:'none'}}/>
                   <label for="radio2">★</label>
@@ -130,7 +139,7 @@ useEffect(() => {
                         alt="Customer Feedback"
                       />
                       <h3 className={style.customer_name}>{e.name}</h3>
-                      <p>{e.content}</p>
+                      <p className={style.b3}>{e.content}</p>
                     </div>
                   </div>
                 </div>

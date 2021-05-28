@@ -40,6 +40,11 @@ img {
 	height: 50px;
 
 }
+.b3{
+
+	padding: 0px;
+	margin-top: 2px;
+}
 
 .feedback_slider_item {
 	position: relative;
