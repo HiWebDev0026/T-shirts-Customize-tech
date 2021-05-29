@@ -21,6 +21,7 @@ export default function CreateCategory (){
     
     const dispatch= useDispatch();
 
+    console.log(categories, "acaaaa")
 
     useEffect(()=>{
 
@@ -63,16 +64,35 @@ export default function CreateCategory (){
             });
     }
 
-    function handleDelete (e) {
-        dispatch(deleteCategory(parseInt(e.target.value)));
-        swal({ 
-            title: "DELETED", 
-            text: "Shirt " + e.target.value + " deleted",
+    
+ function handleDelete (e) {
+    //   if(categories.shirts[0].latestPrice){return alert("no se puede ejecutar")}
+    swal({
+        title: "ARE YOU SURE?",
+        text: "The category is going to delete definitely",
+        buttons: ["CANCEL", "DELETE"]
+      }).then(respuesta =>{
+        if(respuesta){
+    for(let i = 0; i < categories.length; i ++){
+        if(categories[i].id == e.target.value && categories[i].shirts[0].latestPrice !== 0){
+          return swal({ 
+            title: "NOT POSIBLE DELETE", 
+            text: "The category " + e.target.value + " have a promotion, please delete the related discount and try again",
             icon: "error",
-            timer: 2000,
+            timer: 4000,
             padding: "0.75rem"
             });
-    };
+        }   
+    }
+    dispatch(deleteCategory(parseInt(e.target.value)));
+    swal({ 
+        title: "DELETED", 
+        text: "Category " + e.target.value + " deleted",
+        icon: "error",
+        timer: 2000,
+        padding: "0.75rem"
+        });
+    };})}
 
     function showEditbutton (){
         return (

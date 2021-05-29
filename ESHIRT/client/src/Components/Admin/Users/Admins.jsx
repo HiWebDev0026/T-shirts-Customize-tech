@@ -23,6 +23,12 @@ export default function Admins() {
 }, [count]);
 
 function handleEdit(e) {
+  swal({
+    title: "ARE YOU SURE?",
+    text: "The administrator is going to move to trash",
+    buttons: ["CANCEL", "DELETE"]
+  }).then(respuesta =>{
+    if(respuesta){
     setCount(prevState => prevState + 1)
     dispatch(putUser({status: 'deleted',isAdmin: 'false'}, e.target.value)); 
     swal({ 
@@ -33,9 +39,15 @@ function handleEdit(e) {
       padding: "0.75rem"
       });
     history.push('/recycleBinUser');
-  };
+  };})}
 
   function handleNoAdmin(e) {
+    swal({
+      title: "ARE YOU SURE?",
+      text: "The administrator is going to bee a user",
+      buttons: ["CANCEL", "CONFIRM"]
+    }).then(respuesta =>{
+      if(respuesta){
     setCount(prevState => prevState + 1)
     dispatch(putUser({isAdmin: 'false'}, e.target.value)); 
     swal({ 
@@ -46,7 +58,8 @@ function handleEdit(e) {
       padding: "0.75rem"
       });
     history.push('/users')
-  };
+  };})}
+
   function getUserId(e) { 
     dispatch(getUserById(e.target.value));
     history.push('/user_detail');
