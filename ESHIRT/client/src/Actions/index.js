@@ -64,7 +64,8 @@ import{
     getShirtReview,
     postShirtReview,
     getShirtScore,
-    getReviews
+    getReviews,
+    deleteReview
 } from './review.js'
 
 const resetErrors = () => {
@@ -125,5 +126,6 @@ export {
     getShirtReview,
     postShirtReview,
     getShirtScore,
-    getReviews
+    getReviews,
+    deleteReview
 }
