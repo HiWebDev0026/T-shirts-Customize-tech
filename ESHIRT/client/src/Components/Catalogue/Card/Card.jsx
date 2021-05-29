@@ -35,7 +35,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
     e.preventDefault();
     const item = {
       title,
-      score: scoreReview,
+      score,
       price,
       size: newSize,
       model,
