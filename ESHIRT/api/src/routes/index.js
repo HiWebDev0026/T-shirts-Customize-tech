@@ -7,7 +7,9 @@ const shirt = require('./shirt')
 const user = require('./user')
 const payment = require('./payment')
 const favorites = require('./favorites')
+
 const email= require('./email')
+const review = require('./review')
 
 
 const router = Router();
@@ -20,6 +22,7 @@ router.use('/user', user)
 router.use('/payment', payment)
 router.use('/favorites', favorites)
 router.use('/email', email)
+router.use('/review', review)
 
 
 module.exports = router;

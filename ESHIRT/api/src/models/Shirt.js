@@ -27,11 +27,13 @@ module.exports = (sequelize) => {
     price: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 0,
       get() {
-        
+        /* console.log('get'); */
         return this.getDataValue('price')
       },
       set (value) {
+        
         if(this.getDataValue('discount') !== null) {
         let weekDay = new Intl.DateTimeFormat('en-US', {weekday: 'long'}).format(new Date());
         let checkDiscountDay = this.getDataValue('discount').slice(0, this.getDataValue('discount').indexOf('-')) === weekDay;
@@ -46,6 +48,9 @@ module.exports = (sequelize) => {
         console.log(newPrice);
         console.log(this.getDataValue('discount'))
         console.log('----------') */
+        /* console.log(newPrice);
+        console.log(checkDiscountDay);
+        console.log(value); */
         return checkDiscountDay ? this.setDataValue('price', newPrice) : this.setDataValue('price', value)
         } else {
           return this.setDataValue('price', value);
@@ -64,7 +69,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     public: {
-      type: DataTypes.ENUM("pending", "true", "false"),
+      type: DataTypes.ENUM("pending", "true", "buy_authorize",  "false"),
       allowNull: false,
       
     },
@@ -76,10 +81,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
+    stock: {
+      type: DataTypes.INTEGER,
+      defaultValue:0,
+      allowNull: false,
+    },
+    latestPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
     discount: { // will be set by user
       type: DataTypes.STRING, /*     Thursday-Categoria/20     */
       allowNull: true,
-      defaultValue: null,
+      defaultValue: 'Friday-ALL/0',
     }
   });
 };

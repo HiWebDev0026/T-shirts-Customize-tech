@@ -48,3 +48,28 @@ export function getShirtScore(shirtId){
         }
     }
 }
+
+export function getReviews () {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/review`,  {responseType: 'json'})
+            const reviews = res.data
+            dispatch({type: 'SET_SHIRTS_BY_SCORE', payload: reviews})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }
+}
+
+export function deleteReview (reviewId) {
+    return async (dispatch) => {
+        try {
+            const res = await axios.delete(`/review/${reviewId}`,  {responseType: 'json'})
+            dispatch({type: 'SET_SHIRTS_BY_SCORE', payload: parseInt(reviewId)})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }
+}

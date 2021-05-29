@@ -99,6 +99,9 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
         <NavLink to='recycleBinDesigns'>
         <h5 className={Style.Btn2}>UNAPPROVED DESIGNS</h5>
     </NavLink>  
+    <NavLink to='buy_authorize'>
+        <h5 className={Style.Btn4}>BUY AUTHORIZE DESIGNS</h5>
+    </NavLink>  
     <div className={Style.pages}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
