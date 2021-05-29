@@ -54,8 +54,10 @@ utils.promisifiedReadFile = function (filename) {
         default:    
             fileName= 'pending.html'
     }
-    var absolutePath = path.resolve(`./src/controllers/emails/${fileName}`);
+    var absolutePath = path.resolve(`./src/controllers/emails/approved.html`);
     let htmlContent = await utils.promisifiedReadFile(absolutePath)
+
+    
 
     status === 'APPROVED' ? textColor= 'green' : status === 'CANCELED' ? textColor= 'red' : textColor= 'orange' 
     var mailOptions = {
