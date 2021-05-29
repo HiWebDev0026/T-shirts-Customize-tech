@@ -18,7 +18,7 @@ export default function Discounts() {
     const dispatch= useDispatch();
     const [discount, setDiscount] = useState({day: '', category: '', percentage:'' });
 
-    let category= ['Category']
+    let category= ['Category', 'ALL']
     categories.map((temp) => {
         return category.push(temp.name)
       })
@@ -50,9 +50,25 @@ export default function Discounts() {
             timer: 2500,
             padding: "0.75rem"
             });
-
+    }
+    function handleReset(e){
+        e.preventDefault()
+        axios({
+            method: 'post',
+            url: '/shirt/_admin_discount',
+            data: {discount: "RESET-ALL/0"}
+        })
+        swal({ 
+            title: "DELETE",
+            text: "Category " + e.target.value + "  not have discount now",
+            icon: "error",
+            timer: 2500,
+            padding: "0.75rem"
+            });
     }
     
+    
+
     let days= ['Day','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     return(
@@ -76,6 +92,7 @@ export default function Discounts() {
         <p>Percentage</p>
         <input name='percentage' type= 'number' min='0' max='75' placeholder='Choose the %' onChange={handleChange1}/>
         <button onClick={handleSubmit}>APLY</button>
+        <button onClick={handleReset}>RESET</button>
 
 
 
