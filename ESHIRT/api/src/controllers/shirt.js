@@ -184,10 +184,102 @@ async function getShirts(req, res, next) {
     }
 }
 
+async function setDiscount(req, res, next) {
+    const {discount} = req.body;
+    const weekDay = discount.slice(0, discount.indexOf('-'));
+    const category = discount.slice(discount.indexOf('-')+1, discount.indexOf('/'));
+    console.log(category, discount);
+    const desc = discount.slice(discount.indexOf('/')+1);
+    try {
+
+        if(weekDay !== 'RESET' && category === 'ALL'){
+
+        let response = await Shirt.findAll();
+        response.forEach(async (elem) => {
+            console.log(elem);
+            if(parseInt(elem.latestPrice) > 0) {
+                console.log('DISCOUNT ON:', elem.name, 'OF:', desc);
+                await elem.setDataValue('discount', discount);
+                elem.price = elem.latestPrice;
+                elem.save();
+            } else {
+
+            await elem.setDataValue('discount', discount);
+            await elem.setDataValue('latestPrice', elem.price);
+            elem.price = elem.price;
+            elem.save();
+            }
+            
+            
+          })
+
+          return res.status(200).send('Changed discount on category' + req.body.discount)
+        } else {
+
+            let response = await Category.findAll({
+                where: {
+                    name: category
+                },
+                include: [Shirt],
+            })
+            if(weekDay !== 'RESET') {
+            response.forEach(cat => {
+                cat.shirts.forEach(async(elem)=> {
+                    /* if(elem.discount?.slice(discount.indexOf('/')+1) > 0) {
+                        res.status(400).send({
+                            message: 'ERROR. Category has already a discount price assigned',
+                        })
+                    } else { */
+                        if(parseInt(elem.latestPrice) > 0) {
+                            await elem.setDataValue('discount', discount);
+                            elem.price = elem.latestPrice;
+                            elem.save();
+                        } else {
+                        
+                        await elem.setDataValue('discount', discount);
+                        await elem.setDataValue('latestPrice', elem.price);
+                        elem.price = elem.price;
+                        elem.save();
+                    }
+                })})
+            
+            return res.status(200).send('Changed discount on category' + req.body.discount)
+        } else {
+            if(category !== 'ALL') {
+                console.log('here');
+                response.forEach(async(cat)=> {
+                    cat.shirts.forEach(async(elem)=> {
+                        await elem.setDataValue('discount', 'Friday-ALL/0');
+                        await elem.setDataValue('price', elem.latestPrice);
+                        elem.save();
+                    })
+                })
+                return res.status(200).send('Category discount reset on' + req.body.discount)
+            } else {
+                let response = await Shirt.findAll();
+                response.forEach(async(elem)=> {
+                    await elem.setDataValue('discount', 'Friday-ALL/0');
+
+                    if(elem.latestPrice > 0) {
+                        await elem.setDataValue('price', elem.latestPrice);
+                        elem.save();
+                    }
+                })
+                return res.status(200).send('All discounts reset to 0');
+            }
+        }
+            
+        }
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 module.exports = {
     postShirt,
     getShirts,
     getShirt,
     putShirt,
-    deleteShirt
+    deleteShirt,
+    setDiscount
 }
