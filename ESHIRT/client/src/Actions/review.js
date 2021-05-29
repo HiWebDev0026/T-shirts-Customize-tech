@@ -61,3 +61,15 @@ export function getReviews () {
         }
     }
 }
+
+export function deleteReview (reviewId) {
+    return async (dispatch) => {
+        try {
+            const res = await axios.delete(`/review/${reviewId}`,  {responseType: 'json'})
+            dispatch({type: 'SET_SHIRTS_BY_SCORE', payload: parseInt(reviewId)})
+        } catch (err) {
+            console.log((err.response && err.response.data) || 'Server not working!');
+            dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
+        }
+    }
+}
