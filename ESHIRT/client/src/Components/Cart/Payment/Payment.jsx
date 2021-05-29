@@ -2,7 +2,8 @@
 import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
+import {useHistory} from 'react-router-dom';
 import { 
     createPayment, 
     getOrdersByUserId, 
@@ -13,6 +14,8 @@ import {
     modifyOrderStatus
 } from '../../../Actions';
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 
 function Payment() {
@@ -21,7 +24,8 @@ function Payment() {
     const orderId = useSelector(state => state.ordersReducer.orderId)
     const dispatch= useDispatch()
     const {isAuthenticated, user}= useAuth0()
-    
+    const loadingSpinner = useRef(null);
+    const history = useHistory();
     let userId= user.sub.split('|')[1]
     dispatch(getOrdersByUserId(userId))
     
@@ -76,8 +80,31 @@ function Payment() {
         } */
 
 
-    function handleSubmit(e){
-        e.preventDefault()
+    async function handleSubmit(e){
+        e.preventDefault();
+        loadingSpinner.current.style.display = 'block';
+        let unavailableStock = [];
+
+        try {
+            let shirtsWithStock = await axios({ //CHECK AND UPDATE STOCK
+                                        method: 'get',
+                                        url: '/order/_checkStock/'+orderId,
+                                    });
+            loadingSpinner.current.style.display = 'none';
+
+        } catch (err) {
+
+            swal({
+                title: 'ERROR',
+                text: 'The shirts: '+ unavailableStock.toString() +'ran out of available stock! You can still add them to your favorites and wait for stock refill.',
+                icon: 'error',
+            }).then(val => {
+                loadingSpinner.current.style.display='none';
+                history.push('/catalogue')
+            })
+            return;
+        }
+
         if (!deliveryData.zip_code || !deliveryData.street_name || !deliveryData.street_number || !deliveryData.city_name || !deliveryData.state_name || !deliveryData.country_name){
             return alert('Mandatory fields not completed')
         }
@@ -136,6 +163,18 @@ function Payment() {
             }
             
         </form>
+        <div style={{
+            position: 'absolute',
+            display: 'none',
+            width: '100vw',
+            height: '100vh',
+            backdropFilter: 'blur(10px)',
+            backgroundColor: 'rgb(0,0,0,0.5)',
+            zIndex: 3,
+            color: 'white',
+        }} ref={loadingSpinner}>
+            'LOADING'
+        </div>
         </div>
     )
 }

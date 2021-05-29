@@ -279,6 +279,12 @@ async function setDiscount(req, res, next) {
 async function setStock(req, res, next){
     const shirtId = req.body.shirtId;
     const newQtty = req.body.quantity;
+    
+    if(newQtty < 0) {
+
+        return next({message: 'Unable to set stock', error: 404});
+
+    }
 
     try {
 
@@ -293,7 +299,7 @@ async function setStock(req, res, next){
 
     }catch(err) {
 
-        next({message: 'Unable to set stock. Shirt not found', error: 404})
+        next({message: 'Unable to set stock', error: 404});
 
     }
 

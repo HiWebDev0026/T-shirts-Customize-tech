@@ -83,8 +83,8 @@ module.exports = (sequelize) => {
     },
     stock: {
       type: DataTypes.INTEGER,
-      defaultValue:0,
-      allowNull: false,
+      defaultValue:12,
+      allowNull: true,
     },
     latestPrice: {
       type: DataTypes.INTEGER,

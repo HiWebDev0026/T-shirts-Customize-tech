@@ -24,6 +24,7 @@ router.put('/_admin/_discount', setDiscount)
 router.put('/_admin/_stock', setStock)
 
 
+
 /* 
 
 1) ADMIN CAN DELETE, EDIT AND POST SHIRTS EVERYWHERE, FROM ANYONE. OK.

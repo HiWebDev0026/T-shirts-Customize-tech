@@ -211,6 +211,44 @@ async function getOrdersByStatus (req, res, next) {
     }
 }
 
+async function checkStock(req, res, next) {
+    const orderId = req.params.orderId;
+    try {
+        let orderFound = await Order.findOne({
+            where: {
+                    id: orderId
+                },
+            include: [{model: Detail, include: [Shirt]}]
+            })
+
+        let availableStock = orderFound.details.filter(detail => {
+                return detail.shirt.stock >= detail.amount;
+            }); 
+        
+            if(availableStock.length !== orderFound.details.length) {
+                return res.status(410).send('UNAVAILABLE STOCK');
+            } else {
+                orderFound.details.forEach(detail => {
+                    console.log(detail.shirt.stock); 
+                    detail.shirt.stock -= detail.amount;
+                    detail.shirt.save();
+                    console.log(detail.shirt.stock);
+                    
+                })
+
+                return res.status(200).send('STOCK OK');
+
+            }
+
+    } catch (err) {
+        next({
+            message: err,
+            error: 404,
+        })
+        console.log(err);
+    }
+}
+
 
 module.exports = {
     postOrder,
@@ -219,5 +257,6 @@ module.exports = {
     putOrder,
     modifyStatus,
     getOrdersByUserId,
-    getOrdersByStatus
+    getOrdersByStatus,
+    checkStock,
 }
