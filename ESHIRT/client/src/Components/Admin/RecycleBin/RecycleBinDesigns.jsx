@@ -37,6 +37,7 @@ export default function RecycleBinDesigns(){
     function handleDelete(e) {
         dispatch(deleteShirt(parseInt(e.target.value))); 
         setCount(count +1);
+        dispatch(getShirts())
         swal({ 
           title: "DELETE", 
           text: "Design " + e.target.value + " deleted",
@@ -58,6 +59,7 @@ export default function RecycleBinDesigns(){
         e.preventDefault();
         dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
         setCount(count +1);
+        dispatch(getShirts())
         swal({ 
           title: "Modified", 
           text: "Design " + e.target.value + " modified",
