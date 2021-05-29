@@ -23,7 +23,7 @@ function Landing() {
            </div>
             <section className={Style.sectionOne}>
             <div className={Style.sectionOneLeft}>
-                <h2>Hoe does it work?</h2>
+                <h2>How does it work?</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolores commodi atque, voluptas exercitationem eveniet tenetur illo, nobis cupiditate laudantium nihil fugit quos reprehenderit, provident nisi ut tempora repellat? Eaque.</p>
             </div>
             <div className={Style.sectionOneRight}>
