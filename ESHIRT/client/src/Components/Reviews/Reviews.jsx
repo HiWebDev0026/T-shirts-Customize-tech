@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Reviews.module.css";
-import { getShirtReview, postShirtReview, getShirtScore } from "../../Actions/index.js";
+import { getShirtReview, postShirtReview, getShirtScore, deleteReview} from "../../Actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -14,8 +14,7 @@ function Reviews(props) {
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   let id = props.match.params.id;
   let userData = user;
-  const [counter, setCounter] = useState(0)
-
+  const [counter, setCounter] = useState(0)  
   const [input, setInput] = useState({
     content: "",
     name: "",
@@ -34,7 +33,7 @@ useEffect(() => {
   
     dispatch(getShirtReview(id));
    
-  }, []);
+  }, [counter]);
 
 
   function handleSubmit(e) {
@@ -46,15 +45,17 @@ useEffect(() => {
       alert("you must be signed up to post a review");
     }
     if (isAuthenticated && parseInt(input.scoreReview ) > 0 ) {
+   
       dispatch(postShirtReview(input, id, userData.sub.split("|")[1]));
-      setCounter(prevState => prevState+1)
+      setCounter(prevState => prevState+1)      
       setInput({
         content: "",
         name: "",
         image: "",
         scoreReview: 0
       })
-      history.push('/catalogue')
+      dispatch(getShirtReview(id));
+    
     } 
    
   }
@@ -77,7 +78,12 @@ useEffect(() => {
       scoreReview
     })
   }
-
+  function handleDelete (e){
+    setCounter(prevState => prevState+1)      
+    let idReview = parseInt(e.target.value)
+    dispatch(deleteReview(idReview))  
+    dispatch(getShirtReview(id));  
+}
   // function getPromedio(){
   //   let stateCopy = [...usuarios];  
   //   let datasetSum = stateCopy.reduce((a,b) => a + parseInt(b.scoreReview),0);
@@ -85,6 +91,7 @@ useEffect(() => {
     
   //   setPromedio(p);
   //   }
+
 
     
   return (
@@ -126,11 +133,12 @@ useEffect(() => {
           </form>
        
         </div>
+
         {review.length > 0 ?
           review?.map((e) => {
             return (
               <div className={style.row} >              
-                <div className={style.col_md_offset_3}>
+                <div className={style.col_md_offset_3}>                
                   <div className={style.owl_carousel}>
                     <div className={style.feedback_slider_item}>
                       <img
@@ -138,9 +146,12 @@ useEffect(() => {
                         className={style.userimage}
                         alt="Customer Feedback"
                       />
+                      <button onClick={handleDelete} value={e.id} >X</button>
                       <h3 className={style.customer_name}>{e.name}</h3>
                       <p className={style.b3}>{e.content}</p>
+                    
                     </div>
+                     
                   </div>
                 </div>
               </div>
