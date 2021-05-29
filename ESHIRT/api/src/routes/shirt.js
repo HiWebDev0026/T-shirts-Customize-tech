@@ -1,5 +1,5 @@
 const {Router}= require('express')
-const {postShirt, getShirts, getShirt, putShirt, deleteShirt}= require('../controllers/shirt')
+const {postShirt, getShirts, getShirt, putShirt, deleteShirt, setDiscount}= require('../controllers/shirt')
 const {postReview, getReviews} = require('../controllers/review.js')
 const checkJwt = require('../middlewares/authz/checkJwt');
 const router= Router();
@@ -12,6 +12,7 @@ router.put('/:id', checkJwt, putShirt)
 router.delete('/:id', checkJwt, deleteShirt)
 router.post('/:id/review', postReview)
 router.get('/:id/review', getReviews)
+router.post('/_admin_discount', setDiscount)
 
 
 /* 

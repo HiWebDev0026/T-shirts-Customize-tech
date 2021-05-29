@@ -290,7 +290,7 @@ const shirt15 = {
     "userId": "105677628845670307410",
     "categoryId": "4",
     "name": "JS",
-    "price": "72",
+    "price": 72,
     "color": "white",
     "model": "cuello-u",
     "size": "M",

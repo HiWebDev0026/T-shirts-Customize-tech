@@ -128,12 +128,12 @@ async function discountUpdate() {
     let response = await Shirt.findAll();
     
     response.forEach(elem => {
-      elem.setDataValue(elem.price)
-      elem.save();
-      console.log(elem.price);
+      elem.price;
+      
+      /* console.log(elem.price); */
     })
 
-    console.log('OK');
+    /* console.log('OK'); */
 
   } catch (error) {
     console.log(error)
@@ -175,7 +175,7 @@ server.use((req, res, next) => {
 server.use('/', routes);
 
 setInterval(paymentUpdate, 60000)
-/* setInterval(discountUpdate, 2000) */
+setInterval(discountUpdate, 5000)
 
 server.use((err, req, res, next) => { 
   const status = err.status || 500;
