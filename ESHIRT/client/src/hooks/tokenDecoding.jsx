@@ -9,7 +9,7 @@ function useTokenDecode(catchedToken) {
 
     useEffect(()=> {
 
-        if(!catchedToken) {
+        if(!catchedToken && isAuthenticated) {
 
             (async ()  => {
                 const responseToken = await getAccessTokenSilently({
@@ -21,16 +21,16 @@ function useTokenDecode(catchedToken) {
 
             return;
         }
-        
+        if(isAuthenticated){
             const token = catchedToken.split('.');
             const parsedToken = JSON.parse(atob(token[1]));
             console.log(parsedToken, 'token concat');
-            parsedToken.permissions[0] === 'admin:auth' || DBAdmin ? setIsAdmin(true) : setIsAdmin(false);
+            parsedToken.permissions[0] === 'admin:auth' || DBAdmin ? setIsAdmin(true) : setIsAdmin(false);}
         
 
     }, [isAuthenticated, DBAdmin])
 
-    return isAdmin;
+    return !isAuthenticated? false : isAdmin;
 }
 
 export {useTokenDecode};

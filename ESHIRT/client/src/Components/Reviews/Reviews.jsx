@@ -4,8 +4,9 @@ import { getShirtReview, postShirtReview, getShirtScore, deleteReview} from "../
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {useTokenDecode} from '../../hooks/tokenDecoding';
 
+
+import {useTokenDecode} from '../../hooks/tokenDecoding';
 import {useHistory} from 'react-router-dom'
 
 function Reviews(props) {
@@ -150,7 +151,8 @@ useEffect(() => {
                         className={style.userimage}
                         alt="Customer Feedback"
                       />
-                     { isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ""  }
+                      {/* <button style={{display: ${isAdmin ? flex : none}}} */}
+                     { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
                       
                       <h3 className={style.customer_name}>{e.name}</h3>
                       <p className={style.b3}>{e.content}</p>
