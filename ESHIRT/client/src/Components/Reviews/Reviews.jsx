@@ -4,6 +4,9 @@ import { getShirtReview, postShirtReview, getShirtScore, deleteReview} from "../
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+
+
+import {useTokenDecode} from '../../hooks/tokenDecoding';
 import {useHistory} from 'react-router-dom'
 
 function Reviews(props) {
@@ -12,6 +15,7 @@ function Reviews(props) {
   
   const history = useHistory();
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const isAdmin = useTokenDecode(localStorage.currentToken);
   let id = props.match.params.id;
   let userData = user;
   const [counter, setCounter] = useState(0)  
@@ -79,6 +83,7 @@ useEffect(() => {
     })
   }
   function handleDelete (e){
+    
     setCounter(prevState => prevState+1)      
     let idReview = parseInt(e.target.value)
     dispatch(deleteReview(idReview))  
@@ -146,7 +151,9 @@ useEffect(() => {
                         className={style.userimage}
                         alt="Customer Feedback"
                       />
-                      <button onClick={handleDelete} value={e.id} >X</button>
+                      {/* <button style={{display: ${isAdmin ? flex : none}}} */}
+                     { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
+                      
                       <h3 className={style.customer_name}>{e.name}</h3>
                       <p className={style.b3}>{e.content}</p>
                     
