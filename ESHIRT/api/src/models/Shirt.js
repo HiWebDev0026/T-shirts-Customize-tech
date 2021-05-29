@@ -51,7 +51,7 @@ module.exports = (sequelize) => {
         /* console.log(newPrice);
         console.log(checkDiscountDay);
         console.log(value); */
-        return checkDiscountDay ? this.setDataValue('price', newPrice) : this.setDataValue('price', value)
+        return checkDiscountDay ? this.setDataValue('price', newPrice) : this.setDataValue('price', `${this.getDataValue('latestPrice')}`)
         } else {
           return this.setDataValue('price', value);
         }
@@ -94,7 +94,7 @@ module.exports = (sequelize) => {
     discount: { // will be set by user
       type: DataTypes.STRING, /*     Thursday-Categoria/20     */
       allowNull: true,
-      defaultValue: 'Friday-ALL/0',
+      defaultValue: `${new Intl.DateTimeFormat('en-US', {weekday: 'long'}).format(new Date())}-ALL/0`,
     }
   });
 };

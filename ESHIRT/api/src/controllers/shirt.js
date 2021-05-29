@@ -188,7 +188,7 @@ async function setDiscount(req, res, next) {
     const {discount} = req.body;
     const weekDay = discount.slice(0, discount.indexOf('-'));
     const category = discount.slice(discount.indexOf('-')+1, discount.indexOf('/'));
-    console.log(category, discount);
+    /* console.log(category, discount); */
     const desc = discount.slice(discount.indexOf('/')+1);
     try {
 
@@ -275,11 +275,36 @@ async function setDiscount(req, res, next) {
     }
 }
 
+
+async function setStock(req, res, next){
+    const shirtId = req.body.shirtId;
+    const newQtty = req.body.quantity;
+
+    try {
+
+        let response = await Shirt.findOne({where: {
+            id: shirtId
+        }})
+ 
+        response.stock = newQtty;
+        response.save();
+
+        res.status(200).send('Shirt stock changed successfully');
+
+    }catch(err) {
+
+        next({message: 'Unable to set stock. Shirt not found', error: 404})
+
+    }
+
+}
+
 module.exports = {
     postShirt,
     getShirts,
     getShirt,
     putShirt,
     deleteShirt,
-    setDiscount
+    setDiscount,
+    setStock
 }
