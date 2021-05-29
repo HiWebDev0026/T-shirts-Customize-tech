@@ -9,6 +9,7 @@ import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
 import {useHistory} from 'react-router-dom';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 export default function ShirtDetail(props) {
 const categories = useSelector((state)=> state.categoryReducer.allCategories)
@@ -27,6 +28,7 @@ const [input, setInput] = useState({
     size: '',
     public: '',
     price: '',
+    stock: ''
    
 });
 
@@ -37,7 +39,7 @@ useEffect(() => {
 
 
 function handleChange(e) {
-    const value = e.target.name === 'price' ? parseInt(e.target.value) : e.target.value;
+    const value = e.target.name === 'price' || e.target.name === 'stock' ? parseInt(e.target.value) : e.target.value;
     const name = e.target.name
 
     setInput({
@@ -53,9 +55,25 @@ function handleChange1(e) {
      array.push(index)
 }}
 
+function handleStockChange(e){
+    if(typeof input.stock === 'number' ){
+axios({
+    method: 'put',
+    url: '/shirt/_admin/_stock',
+    data: 
+        {
+            shirtId: props.match.params.id,
+            quantity: input.stock
+        }    
+        
+})
+return;}
+return;
+}
+
 
 function handleEdit(e) {
-    
+    e.preventDefault();
     if(!array){array= shirt.categories[0].id}
     if(!input.name){input.name= shirt.name}
     if(!input.color){input.color= shirt.color}
@@ -63,9 +81,11 @@ function handleEdit(e) {
     if(!input.size){input.size = shirt.size}
     if(!input.price) {input.price = shirt.price}
     if(!input.public) {input.public = shirt.public}
+    
  
-        if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
-        else{dispatch(putShirt({...input}, e.target.value))}
+        if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value));handleStockChange()}
+        else{dispatch(putShirt({...input}, e.target.value)) ; handleStockChange()}
+        
         swal({ 
             title: "MODIFIED", 
             text: "Shirt " + e.target.value + " modified , wait for the changes",
@@ -104,6 +124,15 @@ return(
                  <option  value="">PUBLIC</option>
                  <option value='false'>CANCEL</option>
                  </select>
+
+                 <input  type="range" 
+                        onChange={handleChange} 
+                        value={input.stock} 
+                        name="stock"
+                        min={0} 
+                        max={100} 
+                        step={1}></input> <span>{input.stock}</span>
+
                  <div className={Style.Categories}>
                         <label className={Style.ChangesTitle} for="categories">Chose the categories of the shirt: </label>
                         <select className={Style.Categories1} onChange={handleChange1} name="categories">
