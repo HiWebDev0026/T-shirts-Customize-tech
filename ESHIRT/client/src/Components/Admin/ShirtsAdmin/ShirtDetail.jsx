@@ -56,6 +56,7 @@ function handleChange1(e) {
 }}
 
 function handleStockChange(e){
+    if(typeof input.stock === 'number' ){
 axios({
     method: 'put',
     url: '/shirt/_admin/_stock',
@@ -64,13 +65,15 @@ axios({
             shirtId: props.match.params.id,
             quantity: input.stock
         }    
+        
 })
+return;}
 return;
 }
 
 
 function handleEdit(e) {
-    
+    e.preventDefault();
     if(!array){array= shirt.categories[0].id}
     if(!input.name){input.name= shirt.name}
     if(!input.color){input.color= shirt.color}
@@ -128,7 +131,7 @@ return(
                         name="stock"
                         min={0} 
                         max={100} 
-                        step={1}></input>
+                        step={1}></input> <span>{input.stock}</span>
 
                  <div className={Style.Categories}>
                         <label className={Style.ChangesTitle} for="categories">Chose the categories of the shirt: </label>
