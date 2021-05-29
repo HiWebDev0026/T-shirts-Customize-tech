@@ -17,7 +17,8 @@
 }
 
 .picture1{
-    background-image: url('https://images.unsplash.com/photo-1539506903458-4512befa7f2f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTQ2fHx0c2hpcnRzfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
+    background-image: url('./IMG/Ultima.jpeg');
+    background-size: cover;
     height: 100vh;
 }
 
@@ -30,11 +31,6 @@
     background-image: url('https://images.pexels.com/photos/2471422/pexels-photo-2471422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 100vh;
 }
-
-/* 'https://images.pexels.com/photos/2315217/pexels-photo-2315217.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' */
-/* 'https://images.pexels.com/photos/1861907/pexels-photo-1861907.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' */
-/* https://images.unsplash.com/photo-1503341733017-1901578f9f1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80 */
-
 
 .picture1, .picture2, .picture3 {
     position: relative;
@@ -49,10 +45,10 @@
    align-items: center;
    justify-content: center;
    color:white;
-   font-size: 350%;
+   font-size: 450%;
    top:20%;
-   left:3%;
-   font-weight: 800;
+   left:0;
+   font-weight: 900;
    height: 17%;
    width: 35%;
    opacity: 0.9;
@@ -62,9 +58,9 @@
 }
 
 .section2{
-    color:#a04668;
+    color:black;
     font-size: 100%;
-    font-weight: 900;
+    font-weight:800;
     top:30%;
     left:3%;
     line-height: 100%;
@@ -79,8 +75,8 @@
 
  .home{
      top:48%;
-     left:18%;
-     background-color: #a04668;
+     left:15%;
+     background-color: black;
      padding: 10px;
      width: 20px;
      height: auto;
@@ -107,10 +103,13 @@
 
 .sectionOne,.sectionTwo {
     padding: 5px;
-    background-color:#f1c711;
     color:white;
-    height: 45vh;
     display: flex;
+    height: 40vh;
+}
+
+.sectionOne{
+    background-color:black;
 }
 
 .sectionOne iframe{
@@ -131,8 +130,12 @@
     align-items: center;
 }
 
-
-
+.sectionTwo{
+    background-color: #ffb627;
+    display: flex;
+    direction: row;
+    padding: 0;
+}
 
 @media(max-width: 768px){
     .section1{
@@ -154,9 +157,13 @@
 }
 
 .left{
-    width: 50%;
+    width: 49%;
+    border: solid 2px blue;
+    height: 100%;
 }
 
 .rigth{
-    width: 40%;
+    width: 50%;
+    border: solid 2px blue;
+    height: 100%;
 }

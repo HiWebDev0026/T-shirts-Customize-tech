@@ -1,14 +1,18 @@
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getShirts, getReviews} from '../../Actions/index.js'
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { AiFillStar } from "react-icons/ai";
+
+import "./stylesCarouselLanding.css";
+import Style from "./CarouselLanding.module.css";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
-
-import "./stylesCarouselLanding.css";
-
 
 // import Swiper core and required modules
 import SwiperCore, {
@@ -18,54 +22,70 @@ import SwiperCore, {
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-
 export default function CarouselLanding() {
-  
-    let shirts=[
-        {
-    
-            name: "Metal!",
-            print: "http://www.wellcoders.com/images/GARMENTS/D/W/V/W/MAIN/d2087xWxVxWxMAIN.jpg",
-            score: "5",
-        },
-        {
-    
-            name: "Villans",
-            print: "https://images1.teeshirtpalace.com/images/productImages/av/ChillinWithMyVillainsHorrorMovieFunny/productImage/ChillinWithMyVillainsHorrorMovieFunny-black-av-front.jpg?width=713",
-            score: "3",
-        },
-        {
-    
-            name: "Dance",
-            print: "https://cdn.shopify.com/s/files/1/0443/3113/9234/products/t-shirt-femme-jpeux-pas-jai-pole-dance-noir-494817.jpg?v=1604670113",
-            score: "3",
-        },
-        {
-    
-            name: "Programmer",
-            print: "https://designyourown.pk/wp-content/uploads/2017/06/design-your-own-tshirt-creo-design-02-white-programmer-t-shirt.jpg",
-            score: "5",
-        },
-        {
-    
-            name: "Programmer2",
-            print: "https://rlv.zcache.com/trust_me_im_a_programmer_t_shirt-rd8277d0fe0424aedbff652af6dcbfd49_k2gr0_704.jpg",
-            score: "2",
+
+    const [shirtDisplay, setShirtDisplay] =useState([]);
+    const dispatch = useDispatch();
+   
+
+    const sortedScores = useSelector((state)=>state.reviewsReducer.sortedScores);
+    const allShirts = useSelector((state)=>state.shirtReducer.allShirts);
+
+    console.log('AAAA',sortedScores)
+    console.log('BBBBB',allShirts)
+
+    let scoresToDisplay =[];
+
+    useEffect(()=>{
+        dispatch(getShirts());
+        dispatch(getReviews());
+    },[]);
+
+    useEffect(()=>{
+        if(sortedScores && allShirts.length>0){
+            console.log('ENTREE')
+            setShirtDisplay(scoresToDisplayFunction(sortedScores,allShirts));
+            console.log('DI',shirtDisplay)
         }
-    ]
-  
+    },[sortedScores,allShirts]);
+
+    function scoresToDisplayFunction (scores, shirts) {
+        let result=scores.map(scoredShirt=>{
+            for (const shirt of shirts){
+                if(parseInt(scoredShirt.shirtId) === parseInt(shirt.id)){
+                    shirt['score'] = scoredShirt.score;
+                    return shirt;
+                };
+            };
+        });
+        console.log(result,'RESSUSULT');
+        return result;
+    };
+
+
   return (
-    <div className='general'>
-    <Swiper spaceBetween={30} pagination={{
-            "clickable": true
-            }} className="mySwiper">
-            {shirts.length>0?
-                shirts.sort((a,b)=> b.score-a.score).map(shirt=>{
-                    return <SwiperSlide><img src={shirt.print} alt={shirt.name}/></SwiperSlide>
+      <div>
+      <div>Carrusel</div>
+         <Swiper pagination={true} className="mySwiper">
+             {shirtDisplay.length>0?
+                shirtDisplay.slice(0,11).sort((a,b)=>{return b.score-a.score}).map(shirt=>{
+                    return(
+                        <SwiperSlide>
+                            <img src={shirt.print} atl={shirt.name}/>
+                            <h2>{shirt.name}</h2>
+                            <div className={Style.stars}>
+                                <AiFillStar className={shirt.score>=1?Style.blackStar:Style.star}/>
+                                <AiFillStar className={shirt.score>=2?Style.blackStar:Style.star}/>
+                                <AiFillStar className={shirt.score>=3?Style.blackStar:Style.star}/>
+                                <AiFillStar className={shirt.score>=4?Style.blackStar:Style.star}/>
+                                <AiFillStar className={shirt.score>=5?Style.blackStar:Style.star}/>
+                            </div>
+                        </SwiperSlide>
+                    )
                 })
-            :''
-            }
-  </Swiper>
-    </div>
+                 :''
+             } 
+        </Swiper>
+      </div>
   )
 }
