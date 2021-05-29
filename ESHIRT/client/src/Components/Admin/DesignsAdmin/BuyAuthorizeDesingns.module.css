@@ -17,16 +17,11 @@
 }
 .Btn2{
     color: red;
-    justify-content: center;
 }
 .Btn3{
     display: grid;
     justify-content: center;
     color: white;
-}
-.Btn4{
-    color:burlywood;
-    justify-content: center;
 }
 .Tarjet{
     border: 2px solid coral;
@@ -52,6 +47,9 @@
     margin-left: 43%;
     margin-right: 43%;
 }
+.Img{
+    width: 200px; height: 200px;
+  }
 .pagination {
     display: flex;
     padding: 0;

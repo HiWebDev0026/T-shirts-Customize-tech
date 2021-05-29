@@ -23,12 +23,10 @@ function UserData(){
     
     useEffect(() => {
         dispatch(getUsers());
-        dispatch(getUserById(id));
+        //dispatch(getUserById(id));
     }, []);
 
-    const isActive = allUsers.find(user =>{
-        console.log("find",user.id);
-        return user.id === userDB.id});
+    const isActive = allUsers.find(user =>user.id.toString() === id.toString());
     console.log("all", allUsers[0]);
     console.log("user", userDB);
     console.log("userId", userDB.id);
@@ -60,7 +58,9 @@ function UserData(){
    
         dispatch(putUser(userDB.id)); 
         alert("You have succesfully deleted your account");
-        history.push('/userDash');
+        //history.push('/userDash');
+        localStorage.removeItem('currentToken');
+        window.location.href = "/home";
     }
      return(
         isActive.status !== "deleted" ?

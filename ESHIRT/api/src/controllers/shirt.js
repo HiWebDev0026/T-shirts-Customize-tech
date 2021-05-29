@@ -72,7 +72,8 @@ async function postShirt(req, res, next) {
     }
 }
 
-async function getShirt(req, res, next) {     
+async function getShirt(req, res, next) {  
+    console.log('la concha de mi viejeehefhiufhwiu')   
     const shirtId = req.params.id
     try { 
         const shirt = await Shirt.findOne({where: {id: shirtId}, include: [Category]})

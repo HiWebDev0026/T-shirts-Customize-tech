@@ -69,7 +69,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     public: {
-      type: DataTypes.ENUM("pending", "true", "false"),
+      type: DataTypes.ENUM("pending", "true", "buy_authorize",  "false"),
       allowNull: false,
       
     },
