@@ -36,7 +36,7 @@ mercadopago.configure({
 
 //////////////////// MAILING ////////////////////////////
 
-const transporter = nodemailer.createTransport({
+/* const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'e.shirt2021@gmail.com',
@@ -61,7 +61,7 @@ async function sendEmail(email, status) {
       console.log('Email sent: ' + info.response);
     }
   });
-}
+} */
 
 
 /////////////////////////////////////////////////////////
@@ -103,7 +103,6 @@ async function paymentUpdate(){
     })
     Promise.all(ordersToCheck)
     .then(data => {
-      console.log(data[0])
       // data= [con lo que haya que chequear de la db] contra dataToCheck=[lo que me trajo mp]
       for (let i=0; i< mpData.length; i++){
         for (let j=0; j< data.length; j++){
@@ -111,7 +110,17 @@ async function paymentUpdate(){
             if(data[j].status !== 'DONE' && data[j].status !== 'DISPATCHED' && data[j].status !== 'CANCELED BY ADMIN'){
               data[j].status= mpData[i]?.status
               data[j].save()
-              if (mpData[i].email) sendEmail(mpData[i].email, mpData[i].status)
+              if (mpData[i].email){
+                let sent= axios({
+                  method: 'post',
+                  url:'http://localhost:3001/email',
+                  data:{
+                    email: mpData[i].email,
+                    status: mpData[i].status
+                  }
+                })
+              } // sendEmail(mpData[i].email, mpData[i].status)
+
             }
           }
         }
@@ -178,7 +187,7 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 
-setInterval(paymentUpdate, 60000)
+setInterval(paymentUpdate, 6000)
 /* setInterval(discountUpdate, 2000) */
 
 server.use((err, req, res, next) => { 

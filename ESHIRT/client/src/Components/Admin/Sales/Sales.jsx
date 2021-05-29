@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 import ReactPaginate from 'react-paginate';
 
 import {getOrders, modifyOrderStatus} from '../../../Actions/index.js'
+import axios from "axios";
 
 export default function Sales() {
   
@@ -93,9 +94,22 @@ function sortByDate2(a, b) {
       });
   }
 ////////////////EDIT STATUS////////////////////////////////
-    function handleEdit(e) {
+    async function handleEdit(e) {
      setCount(count +1)
       let index= input.name
+      console.log(sale[index-1].userId)
+      let user= await axios.get(`http://localhost:3001/user/${sale[index-1].userId}`, {responseType: 'json', headers: {
+        Authorization: `Bearer ${localStorage.currentToken}`
+    }})
+      
+      let sent= await axios({
+        method: 'post',
+        url:'http://localhost:3001/email',
+        data:{
+          email: user.data.email,
+          status: e.target.value
+        }
+      })
       dispatch(modifyOrderStatus({status: e.target.value}, index)); 
       dispatch(getOrders());
       dispatch(getOrders());
