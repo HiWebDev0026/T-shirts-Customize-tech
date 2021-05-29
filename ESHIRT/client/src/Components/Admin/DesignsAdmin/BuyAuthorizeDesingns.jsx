@@ -80,7 +80,7 @@ export default function BuyAuthorizeDesigns(){
 
     return(
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
-     <div className={Style.Title}> <h1 >Deleted and non-public designs</h1></div>
+     <div className={Style.Title}> <h1 >Desings approved for sale</h1></div>
       <div className={Style.Desings}>      
 {designs.length > 0  
       ? ( designs.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
