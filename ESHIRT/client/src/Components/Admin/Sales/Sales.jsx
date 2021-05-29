@@ -97,6 +97,17 @@ function sortByDate2(a, b) {
     async function handleEdit(e) {
      setCount(count +1)
       let index= input.name
+      dispatch(modifyOrderStatus({status: e.target.value}, index)); 
+      dispatch(getOrders());
+      dispatch(getOrders());
+      swal({ 
+        title: "MODIFIED", 
+        text: "Order " + e.target.value + " modified",
+        icon: "success",
+        timer: 2500,
+        padding: "0.75rem"
+        });
+        e.target.value= "status"
       console.log(sale[index-1].userId)
       let user= await axios.get(`http://localhost:3001/user/${sale[index-1].userId}`, {responseType: 'json', headers: {
         Authorization: `Bearer ${localStorage.currentToken}`
@@ -110,17 +121,7 @@ function sortByDate2(a, b) {
           status: e.target.value
         }
       })
-      dispatch(modifyOrderStatus({status: e.target.value}, index)); 
-      dispatch(getOrders());
-      dispatch(getOrders());
-      swal({ 
-        title: "MODIFIED", 
-        text: "Order " + e.target.value + " modified",
-        icon: "success",
-        timer: 2500,
-        padding: "0.75rem"
-        });
-        e.target.value= "status"
+      
     };
 //////////PAGINATION////////////////////////////////////////////////////////////////
     const INITIAL_PAGE= 8;
