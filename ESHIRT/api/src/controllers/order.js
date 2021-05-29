@@ -169,9 +169,7 @@ async function modifyStatus (req, res, next) {
         const order = await Order.findOne({where: {id: orderId}})
         if (!order) {throw {status: 404, message: 'Order not found'}}
 
-        if (order.status === 'CANCELED' || order.status === 'DONE') {throw {status: 400, message: 'This order status is already ' + order.status}}
         order.status = req.body.status.toUpperCase()
-
         
         await order.save()
         
