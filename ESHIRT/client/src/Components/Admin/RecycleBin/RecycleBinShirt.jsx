@@ -40,6 +40,12 @@ shirts.map((shirt) => {
 
     function handleDelete(e) {
 
+      swal({
+        title: "ARE YOU SURE?",
+        text: "The shirt is going to delete definitely",
+        buttons: ["CANCEL", "DELETE"]
+      }).then(respuesta =>{
+        if(respuesta){
         dispatch(deleteShirt(e.target.value)); 
         setCount(count +1);
         dispatch(getShirts());
@@ -51,7 +57,7 @@ shirts.map((shirt) => {
           timer: 2000,
           padding: "0.75rem"
           });   
-      };
+      };})}
 
       function handleEdit(e) {
         dispatch(putShirt({status: 'restored'}, e.target.value)); 

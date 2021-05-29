@@ -33,9 +33,15 @@ export default function BuyAuthorizeDesigns(){
 
     useEffect(() => {
       dispatch(getShirts());
-    }, []);
+    }, [count]);
 
     function handleDelete(e) {
+      swal({
+        title: "ARE YOU SURE?",
+        text: "The desing is going to delete definitely",
+        buttons: ["CANCEL", "DELETE"]
+      }).then(respuesta =>{
+        if(respuesta){
         dispatch(deleteShirt(parseInt(e.target.value))); 
         setCount(count +1);
         swal({ 
@@ -46,7 +52,7 @@ export default function BuyAuthorizeDesigns(){
           padding: "0.75rem"
           });
           dispatch(getShirts())
-      };
+      };})}
 
       function handlePublic(e) {
         const value = e.target.value;

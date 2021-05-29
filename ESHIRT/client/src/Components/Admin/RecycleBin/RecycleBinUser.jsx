@@ -33,6 +33,12 @@ function RecycleBinUser() {
   }, [count]);
 
     function handleDelete(e) {
+      swal({
+        title: "ARE YOU SURE?",
+        text: "The user is going to delete definitely",
+        buttons: ["CANCEL", "DELETE"]
+      }).then(respuesta =>{
+        if(respuesta){
         setCount(count+ 1)
         dispatch(deleteUser(e.target.value)); 
         dispatch(getUsers())
@@ -43,7 +49,7 @@ function RecycleBinUser() {
           timer: 2000,
           padding: "0.75rem"
           });        
-      };
+      };})}
 
       function handleEdit(e) {
         setCount(count+ 1)

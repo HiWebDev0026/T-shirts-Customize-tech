@@ -25,6 +25,7 @@ const [input, setInput] = useState({
     color: '',
     model: '',
     size: '',
+    public: '',
     price: '',
    
 });
@@ -61,6 +62,7 @@ function handleEdit(e) {
     if(!input.model){input.model= shirt.model}
     if(!input.size){input.size = shirt.size}
     if(!input.price) {input.price = shirt.price}
+    if(!input.public) {input.public = shirt.public}
  
         if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value)); }
         else{dispatch(putShirt({...input}, e.target.value))}
@@ -97,6 +99,10 @@ return(
                  <option value='L'>L</option>
                  <option value='XL'>XL</option>
                  <option value='XXL'>XXL</option>
+                 </select>
+                 <select name = 'public' className='public' onChange= {handleChange} >
+                 <option  value="">PUBLIC</option>
+                 <option value='false'>CANCEL</option>
                  </select>
                  <div className={Style.Categories}>
                         <label className={Style.ChangesTitle} for="categories">Chose the categories of the shirt: </label>

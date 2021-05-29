@@ -18,6 +18,12 @@ const [input2, setInput2] = useState('');
 
 
 function handleDelete(e) {
+    swal({
+        title: "ARE YOU SURE?",
+        text: "The desing is going to delete definitely",
+        buttons: ["CANCEL", "DELETE"]
+      }).then(respuesta =>{
+        if(respuesta){
     dispatch(deleteShirt(parseInt(e.target.value))); 
     swal({ 
         title: "DELETE", 
@@ -27,7 +33,7 @@ function handleDelete(e) {
         padding: "0.75rem"
         });
     history.push('/desings_admin')
-  };
+  };})}
 
   function handlePublic(e) {
     const value = e.target.value;

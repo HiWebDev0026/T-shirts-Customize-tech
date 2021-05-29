@@ -40,6 +40,12 @@ shirts.map((shirt) => {
     },[ count ]);
   
       function handleEdit(e) {
+        swal({
+          title: "ARE YOU SURE?",
+          text: "The shirt is going to move to trash",
+          buttons: ["CANCEL", "DELETE"]
+        }).then(respuesta =>{
+          if(respuesta){
         e.preventDefault();
         setCount(count + 1);
         dispatch(putShirt({status: 'deleted'}, e.target.value));
@@ -52,7 +58,7 @@ shirts.map((shirt) => {
           timer: 3000,
           padding: "0.75rem"
           });
-      };
+      };})}
 
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));

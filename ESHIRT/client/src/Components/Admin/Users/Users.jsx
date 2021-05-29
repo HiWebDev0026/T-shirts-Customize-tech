@@ -40,6 +40,12 @@ export default function Users() {
   }, [count]);
 
   function handleEdit(e) {
+    swal({
+      title: "ARE YOU SURE?",
+      text: "The user is going to move to trash",
+      buttons: ["CANCEL", "DELETE"]
+    }).then(respuesta =>{
+      if(respuesta){
     setCount(count + 1);
     dispatch(putUser({status: 'deleted'}, e.target.value)); 
     dispatch(getUsers());
@@ -50,9 +56,15 @@ export default function Users() {
       timer: 2000,
       padding: "0.75rem"
       });
-  };
+  };})}
 
   function handleAdmin(e) {
+    swal({
+      title: "ARE YOU SURE?",
+      text: "The user is going to bee an administrator",
+      buttons: ["CANCEL", "CONFIRM"]
+    }).then(respuesta =>{
+      if(respuesta){
     setCount(count +1)
     dispatch(putUser({isAdmin: 'true'}, e.target.value));
     swal({ 
@@ -63,7 +75,7 @@ export default function Users() {
       padding: "0.75rem"
       });
     history.push('/admins')
-  };
+  };})}
 
   function getUserId(e) { 
     dispatch(getUserById(e.target.value));
