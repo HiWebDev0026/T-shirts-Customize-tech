@@ -66,6 +66,7 @@ export function putShirt(dataToModify, shirtId){
 
     return async (dispatch) => {
         try {
+            delete dataToModify.stock
             const res= await axios.put(`/shirt/${shirtId}`, dataToModify, {responseType: 'json', headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
