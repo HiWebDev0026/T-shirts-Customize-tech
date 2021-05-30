@@ -23,16 +23,16 @@ function Landing() {
            </div>
             <section className={Style.sectionOne}>
             <div className={Style.sectionOneLeft}>
-                <h2>How to do it?</h2>
+                <h2>How you do it?</h2>
                 <p>Creating a T-shirt has never been easier:<br/>
-                <ol>
-                        <li>Log in &#128242; <br/></li>
-                        <li>Go to design &#9997;&#127996;</li>
-                        <li>Choose the features of your t-shirt &#128085;</li>
-                        <li>Upload your design</li>
-                        <li>Place your order</li>
-                </ol>
-                        You can also shop other users' designs and save them in your favorites.<br/>
+                <div className={Style.list} >
+                        <div>1.Log in &#128242; <br/></div>
+                        <div>2.Go to design &#9997;&#127996;</div>
+                        <div>3.Choose the features of your t-shirt &#128085;</div>
+                        <div>4.Upload your design &#11014;&#65039;</div>
+                        <div>5.Place your order 🛍️</div>
+                </div>
+                        You can also shop other users' designs and save them in your favorites 💛<br/>
 
                         What are you waiting for?
                 </p>
@@ -49,14 +49,33 @@ function Landing() {
            <section className={Style.sectionTwo}>
             <div className={Style.check}>
                 <div className={Style.left}>
-                    SHIRTS
+                <div className={Style.quote}>
+                    <h2>"Everything you can imagine is real."</h2>
+                    <h2 className={Style.picasso}>Pablo Picasso</h2>
+                </div>
+                <div className={Style.text}>
+                    <h4>As part of this community you can rate the designs of other creatives. Check out some of the top rated ones! 👀</h4>
+                </div>
                 </div>
                 <div className={Style.rigth}>
                     <CarouselLanding/>
                 </div>
             </div>
             </section>
-            <div className={Style.picture3}></div>
+            <div className={Style.picture3}>
+                <div className={Style.section4}>
+                    <div>
+                        <h2>Love what you see?</h2>
+                    </div>
+                    <div>
+                        <h3>Go <Link to='/home'><AiFillHome className={Style.home2}/></Link> for more!</h3>
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+               
         </div>
         )
 }
