@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { AiFillStar } from "react-icons/ai";
 
 import "./stylesCarouselLanding.css";
-import Style from "./CarouselLanding.module.css";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
@@ -27,14 +26,8 @@ export default function CarouselLanding() {
     const [shirtDisplay, setShirtDisplay] =useState([]);
     const dispatch = useDispatch();
    
-
     const sortedScores = useSelector((state)=>state.reviewsReducer.sortedScores);
     const allShirts = useSelector((state)=>state.shirtReducer.allShirts);
-
-    console.log('AAAA',sortedScores)
-    console.log('BBBBB',allShirts)
-
-    let scoresToDisplay =[];
 
     useEffect(()=>{
         dispatch(getShirts());
@@ -43,9 +36,7 @@ export default function CarouselLanding() {
 
     useEffect(()=>{
         if(sortedScores && allShirts.length>0){
-            console.log('ENTREE')
             setShirtDisplay(scoresToDisplayFunction(sortedScores,allShirts));
-            console.log('DI',shirtDisplay)
         }
     },[sortedScores,allShirts]);
 
@@ -58,27 +49,29 @@ export default function CarouselLanding() {
                 };
             };
         });
-        console.log(result,'RESSUSULT');
         return result;
     };
 
 
   return (
-      <div>
-      <div>Carrusel</div>
-         <Swiper pagination={true} className="mySwiper">
+      <div className='general'>
+      <Swiper spaceBetween={30} pagination={{"clickable": true}} className="mySwiper">
              {shirtDisplay.length>0?
                 shirtDisplay.slice(0,11).sort((a,b)=>{return b.score-a.score}).map(shirt=>{
                     return(
                         <SwiperSlide>
-                            <img src={shirt.print} atl={shirt.name}/>
-                            <h2>{shirt.name}</h2>
-                            <div className={Style.stars}>
-                                <AiFillStar className={shirt.score>=1?Style.blackStar:Style.star}/>
-                                <AiFillStar className={shirt.score>=2?Style.blackStar:Style.star}/>
-                                <AiFillStar className={shirt.score>=3?Style.blackStar:Style.star}/>
-                                <AiFillStar className={shirt.score>=4?Style.blackStar:Style.star}/>
-                                <AiFillStar className={shirt.score>=5?Style.blackStar:Style.star}/>
+                            <div className='images'>
+                                <img src={shirt.print} atl={shirt.name}/>
+                            </div>
+                            <div className='info'>
+                                <h2>{shirt.name}</h2>
+                                <div className='stars'>
+                                    <AiFillStar className={shirt.score>=1?'blackStar':'star'}/>
+                                    <AiFillStar className={shirt.score>=2?'blackStar':'star'}/>
+                                    <AiFillStar className={shirt.score>=3?'blackStar':'star'}/>
+                                    <AiFillStar className={shirt.score>=4?'blackStar':'star'}/>
+                                    <AiFillStar className={shirt.score>=5?'blackStar':'star'}/>
+                                </div>
                             </div>
                         </SwiperSlide>
                     )
