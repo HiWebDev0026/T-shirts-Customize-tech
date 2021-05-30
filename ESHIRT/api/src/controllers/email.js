@@ -5,11 +5,10 @@ var path = require("path");
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'e.shirt2021@gmail.com',
-      pass: 'eshirt2021grupo8'
+        user: 'e.shirt2021@gmail.com',
+        pass: 'eshirt2021grupo8'
     }
-    }
-);
+});
 
 
 var utils = {};
@@ -30,13 +29,10 @@ utils.promisifiedReadFile = function (filename) {
 			else resolve(str);
 		});
 	});
-};
-  
+};  
 
-
-  async function sendEmail(req, res, next){
-    let {email, status}= req.body
-    let textColor=''
+async function sendEmail(req, res, next){
+    const {email, status}= req.body
     let fileName=''
     switch (status){
         case 'APPROVED':
@@ -54,15 +50,12 @@ utils.promisifiedReadFile = function (filename) {
         default:    
             fileName= 'pending.html'
     }
-    var absolutePath = path.resolve(`./src/controllers/emails/approved.html`);
-    let htmlContent = await utils.promisifiedReadFile(absolutePath)
+    const absolutePath = path.resolve(`./src/controllers/emails/${fileName}`);
+    const htmlContent = await utils.promisifiedReadFile(absolutePath)
 
-    
-
-    status === 'APPROVED' ? textColor= 'green' : status === 'CANCELED' ? textColor= 'red' : textColor= 'orange' 
-    var mailOptions = {
+    const mailOptions = {
         from: 'e.shirt2021@gmail.com',
-        to: 'bolzicoemanuel@gmail.com',
+        to: email,
         subject: 'E-Shirt paymet update! (do not reply)',
         html: htmlContent
     };
