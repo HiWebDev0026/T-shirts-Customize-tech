@@ -10,9 +10,10 @@ function SearchBar(){
     let dispatch = useDispatch()
     const [searchString, setSearchString]= useState('')
     const shirtsByName= useSelector(state => state.shirtReducer.shirtsByName)
+
     function handleChange(e) {
         setSearchString(prevState => prevState = e.target.value)
-        dispatch(getShirtsByName(searchString, "true"))
+        
         return
     }
     const history = useHistory()
@@ -24,6 +25,8 @@ function SearchBar(){
                 dispatch(getShirts("true"))
                 return;
             }
+
+            dispatch(getShirtsByName(searchString, "true"))
 
     },[searchString, shirtsByName.length])
 
