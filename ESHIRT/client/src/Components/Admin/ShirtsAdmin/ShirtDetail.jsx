@@ -64,13 +64,34 @@ axios({
         {
             shirtId: props.match.params.id,
             quantity: input.stock
-        }    
-        
+        }          
 })
 return;}
 return;
 }
 
+function handleConsult(){
+    let names=[];
+    for(let i = 0 ; i<shirt.categories.length ; i ++){
+    names.push(' '+ shirt.categories[i].name)
+
+    swal({ 
+        title: names, 
+        text: "The category",
+        icon: "success",
+        timer: 3000,
+        padding: "0.75rem"
+        });
+}
+if(names.length === 0){
+    swal({ 
+        title: "Category", 
+        text: "NOT FOUND",
+        icon: "warning",
+        timer: 2000,
+        padding: "0.75rem"
+        });
+}}
 
 function handleEdit(e) {
     e.preventDefault();
@@ -82,7 +103,6 @@ function handleEdit(e) {
     if(!input.price) {input.price = shirt.price}
     if(!input.public) {input.public = shirt.public}
     
- 
         if(array.length>0){dispatch(putShirt({...input, categories: array}, e.target.value));handleStockChange()}
         else{dispatch(putShirt({...input}, e.target.value)) ; handleStockChange()}
         
@@ -139,7 +159,7 @@ return(
                             {categories.map((elem, index) => (<option className={Style.Categories1} value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
                     </div>
-                 
+                    <button onClick={handleConsult}>CONSULT CATEGORY</button>
                  <button className={Style.BtnChange} value={shirt.id} type='submit' onClick={handleEdit}>Change</button>      
                            
                     </div>
