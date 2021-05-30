@@ -8,6 +8,7 @@ function setTotalPrice (body) {
     for (const detail of body) {
         total_price += (parseInt(detail.price) * parseInt(detail.amount));
     }
+    console.log('resultado del setTotalPrice', total_price)
     return total_price;
 }
 
@@ -130,19 +131,21 @@ async function putOrder (req, res, next) {
         console.log(newOrder, orderId, operation)
         const oldOrder = await Order.findOne({where: {id: orderId}})
         if (!oldOrder) {throw {status: 404, message: 'Order not found'}}
+        const modifiedOrder = setOrderItems(newOrder, item[0], operation)
+        
         if (oldOrder.status === 'CANCELED' || oldOrder.status === 'DONE') {
             throw {status: 400, message: 'This order status is ' + oldOrder.status + '. It can not be modified'}
         }
-
-        //validateOrder(newOrder)
         
         const details = await Detail.findAll({where: {orderId: orderId}})
-        const modifiedOrder = setOrderItems(newOrder, item[0], operation)
-        
+
+        oldOrder.total_price = 0
         if (modifiedOrder.length > 0) {
             for (const detail of modifiedOrder) {
-                console.log('detail', detail)
+
+                oldOrder.total_price = oldOrder.total_price + (parseInt(detail.price) * parseInt(detail.amount)) 
                 detail.orderId = orderId
+
                 await Detail.create(detail)
             }
         }
@@ -150,7 +153,6 @@ async function putOrder (req, res, next) {
         for (const detail of details) {
             await detail.destroy()
         }
-        oldOrder.total_price = (modifiedOrder.length > 0 && setTotalPrice(newOrder)) || 0
         await oldOrder.save()
 
         const updatedOrder = await Order.findOne({where: {id: orderId}, include: [Detail]})
