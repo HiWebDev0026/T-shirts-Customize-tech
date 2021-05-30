@@ -17,16 +17,52 @@ export default function Discounts() {
     const categories= useSelector((state)=>state.categoryReducer.allCategories);
     const dispatch= useDispatch();
     const [discount, setDiscount] = useState({day: '', category: '', percentage:'' });
+    const [count, setCount]= useState(0);
+    console.log(categories, "aquiii cat")
+
 
     let category= ['Category', 'ALL']
     categories.map((temp) => {
         return category.push(temp.name)
       })
 
+      
+      function handleDiscount (){
+       let names= [];
+          setDiscount(count +1)
+      for(let i = 0; i < categories.length; i ++){
+        if(categories[i].shirts[0]?.latestPrice > categories[i].shirts[0]?.price){
+            names.push(' ' + categories[i].name)
+            
+             swal({ 
+                title: names, 
+                text: "have discount",
+                icon: "success",
+                timer: 3000,
+                padding: "0.75rem"
+                });
+                
+          
+        }
+        if(names.length === 0){
+            swal({ 
+                title: "Discounts ", 
+                text: "NOT FOUND",
+                icon: "warning",
+                timer: 2000,
+                padding: "0.75rem"
+                });
+        }
+        }
+    
+
+    }
+
+    
 
     useEffect(()=>{
         dispatch(getCategories());
-      },[])
+      },[count])
 
       
     function handleChange1(e) {
@@ -113,8 +149,13 @@ export default function Discounts() {
         <input name='percentage' type= 'number' min='0' max='75' placeholder='Choose the %' onChange={handleChange1}/>
         <button onClick={handleSubmit}>APLY</button>
         <button onClick={handleReset}>RESET</button>
-
-
+        <button onClick={handleDiscount}>CONSULT</button>
+{/* 
+        {
+            <div>
+            {'hola' && handleDiscount}
+            </div>
+} */}
 
 
 
