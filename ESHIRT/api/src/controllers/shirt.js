@@ -154,17 +154,18 @@ async function getShirts(req, res, next) {
 
         } else if(name && status) {
             name = name.toLowerCase()
-            console.log(typeof status);
+         
             const shirts = await Shirt.findAll({
                 where: {
                     name: {
-                        [Op.like]: `%${name}%`
+                        [Op.iLike]: `%${name}%`
                     },
-                    public: status
+                    public: `${status}`
                     
                 }, 
                 include: [Category]
             })
+    
             return res.status(200).json(shirts)
 
         } else if(!name && status) {
