@@ -1,7 +1,9 @@
 .general{
   /* border: solid 2px pink; */
   width: 100%;
-  height: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
 }
 
 .swiper-container {
@@ -14,7 +16,7 @@
   display: flex;
   justify-content: center;
   border-radius: 5px;
-  margin-top: 1%;
+  margin-top: 10px;
   color: white;
 }
 
