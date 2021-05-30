@@ -1,0 +1,32 @@
+.container{
+    position: fixed;
+    top: 7%;
+    left: 75%;
+}
+
+.box{
+    position: relative;
+    top: 40%;
+    left: 0%;
+    
+}
+
+.closeButton{
+    position: absolute;
+    top: 0%;
+    left: 85%;
+    z-index: 100;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 15%;
+    height: 8%;
+    font-size: 150%;
+}
+
+.img{
+    position: fixed;
+    top:70%;
+    right: 50px;
+}
