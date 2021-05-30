@@ -26,7 +26,6 @@ export default function Discounts() {
         return category.push(temp.name)
       })
 
-      
       function handleDiscount (){
        let names= [];
           setDiscount(count +1)
@@ -41,8 +40,6 @@ export default function Discounts() {
                 timer: 3000,
                 padding: "0.75rem"
                 });
-                
-          
         }
         if(names.length === 0){
             swal({ 
@@ -54,8 +51,6 @@ export default function Discounts() {
                 });
         }
         }
-    
-
     }
 
     
