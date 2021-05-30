@@ -38,33 +38,53 @@ export default function Discounts() {
     }
     function handleSubmit(e){
         e.preventDefault()
+        console.log(`${discount.day}-${discount.category}/${discount.percentage}`)
         axios({
-            method: 'post',
-            url: '/shirt/_admin_discount',
+            method: 'put',
+            url: '/shirt/_admin/_discount',
             data: {discount: `${discount.day}-${discount.category}/${discount.percentage}`}
-        })
+        }).then(()=>
         swal({ 
             title: "DISCOUNT",
-            text: "Category " + e.target.value + " have discount now",
+            text: "Category " + discount.category + " has been applied a discount of " + discount.percentage,
             icon: "success",
-            timer: 2500,
+            timer: 3500,
             padding: "0.75rem"
-            });
+            })
+        ).catch(()=> swal({
+            title: "Unable to set DISCOUNT",
+            text: `${discount.day}-${discount.category}/${discount.percentage}`,
+            icon: "error",
+        }))
     }
     function handleReset(e){
         e.preventDefault()
+
+        swal({
+            title: "All discounts will be reset to 0%. Are you sure?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willReset) => {
+            if(willReset){
         axios({
-            method: 'post',
-            url: '/shirt/_admin_discount',
-            data: {discount: "RESET-ALL/0"}
-        })
-        swal({ 
-            title: "DELETE",
-            text: "Category " + e.target.value + "  not have discount now",
-            icon: "error",
-            timer: 2500,
-            padding: "0.75rem"
-            });
+                method: 'put',
+                url: '/shirt/_admin/_discount',
+                data: {discount: "RESET-ALL/0"}
+             }).then(()=>swal({ 
+                title: "Reset",
+                text: "Category " + discount.category + "  has been reset",
+                icon: "info",
+                timer: 2500,
+                padding: "0.75rem"
+                }))
+    
+            } else {
+                swal("Discount not changed")
+            }
+        }
+        
+        )   
     }
     
     
