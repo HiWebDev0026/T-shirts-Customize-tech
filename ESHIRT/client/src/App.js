@@ -31,6 +31,7 @@ import { useAuth0} from "@auth0/auth0-react";
 import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
 import NewDashboard from './Components/Dashboard/User/NewDashboard';
+import ChatbotSelect from './Components/Chatbot/ChatbotSelect';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
@@ -161,6 +162,7 @@ function App({location}) {
       <Route exact path= '/recovery_account' component={RecoveryAccount}/>
       <ProtectedRoute path='/account' component={Account} />
       <ProtectedRoute path='/payment' component={Payment} />
+      <ChatbotSelect/>
       <Footer/>
       </div>  
 
