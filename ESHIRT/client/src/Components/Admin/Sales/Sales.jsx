@@ -94,8 +94,15 @@ function sortByDate2(a, b) {
       });
   }
 ////////////////EDIT STATUS////////////////////////////////
-    async function handleEdit(e) {
-     setCount(count +1)
+    function handleEdit(e) {
+      swal({
+        title: "ARE YOU SURE?",
+        text: "This operation can become irreversible",
+        buttons: ["CANCEL", "GO ON"]
+      }).then(async respuesta =>{
+        if(respuesta){
+          
+    setCount(count +1)
       let index= input.name
       dispatch(modifyOrderStatus({status: e.target.value}, index)); 
       dispatch(getOrders());
@@ -122,7 +129,7 @@ function sortByDate2(a, b) {
         }
       })
       
-    };
+    };e.target.value= "status"})}
 //////////PAGINATION////////////////////////////////////////////////////////////////
     const INITIAL_PAGE= 8;
     const offset = currentPage * INITIAL_PAGE;
