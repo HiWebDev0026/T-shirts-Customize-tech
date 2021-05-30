@@ -39,7 +39,7 @@
 
 	width: 50px;
 	height: 50px;
-
+	border-radius: 100%;
 }
 .b3{
 
@@ -156,7 +156,11 @@
 	z-index: -1;
 }
 
-
+.defaultImg {
+	width: 80px;
+	height: 66px;
+	border-radius: 100%;
+}
 
 
 

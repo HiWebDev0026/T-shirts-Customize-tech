@@ -1,6 +1,6 @@
 var fs = require('fs');
     
-const {User, Category, Shirt, Order, Detail} = require('./db.js')
+const {User, Category, Shirt, Order, Detail, Review} = require('./db.js')
 
 var utils = {};
 
@@ -26,38 +26,38 @@ utils.promisifiedReadFile = function (filename) {
 
 const user1 = {
     "id": "105677628845670307410",
-    "name": "USER1",
-    "email": "USER1@gmail.com",
+    "name": "Ezequiel Romio",
+    "email": "romio.ezequiel@gmail.com",
 }
 
 const user2 = {
     "id": "105677628845670307411",
-    "name": "USER2",
-    "email": "USER2@gmail.com",
+    "name": "Juan Pedro Gonzalez",
+    "email": "user2@gmail.com",
 }
 
 const user3 = {
     "id": "105677628845670307412",
-    "name": "USER3",
-    "email": "USER3@gmail.com",
+    "name": "Agustina Rodriguez",
+    "email": "user3@gmail.com",
 }
 
 const user4 = {
     "id": "105677628845670307413",
-    "name": "USER4",
-    "email": "USER4@gmail.com",
+    "name": "Micaela Benitez",
+    "email": "user4@gmail.com",
 }
 
 const user5 = {
     "id": "105677628845670307414",
-    "name": "USER5",
-    "email": "USER5@gmail.com",
+    "name": "Max Power",
+    "email": "user5@gmail.com",
 }
 
 const user6 = {
     "id": "105677628845670307415",
-    "name": "USER6",
-    "email": "USER6@gmail.com",
+    "name": "Pablo Diaz Ogni",
+    "email": "user6@gmail.com",
 }
 
 const category1 = {
@@ -377,7 +377,49 @@ const order4 = [
     }
 ]
 
-    
+const review1 = {
+    "shirtId": 1,
+    "userId": "105677628845670307414",
+    "name": "Max Power",
+    "scoreReview": 4,
+    "content": "Amazing Shirt!"
+}
+
+const review2 = {
+    "shirtId": 3,
+    "userId": "105677628845670307412",
+    "name": "Agustina Rodriguez",
+    "scoreReview": 5,
+    "content": "Heath Ledger is the best joker"
+}
+
+
+const review3 = {
+    "shirtId": 2,
+    "userId": "105677628845670307411",
+    "name": "Juan Pedro Gonzalez",
+    "scoreReview": 4,
+    "content": "gotta catch 'em all!"
+}
+
+
+const review4 = {
+    "shirtId": 7,
+    "userId": "105677628845670307411",
+    "name": "Juan Pedro Gonzalez",
+    "scoreReview": 5,
+    "content": "I'm a classic videogames fan (L)"
+}
+
+
+const review5 = {
+    "shirtId": 6,
+    "userId": "105677628845670307415",
+    "name": "Pablo Diaz Ogni",
+    "scoreReview": 2,
+    "content": "What is that thing?"
+}
+
 const setToLower = (array) => {
     for (const body of array) {
         for (const field in body) {
@@ -476,6 +518,13 @@ async function fillDB () {
         detail.orderId = orderPosted4.id
         await Detail.create(detail)
     }
+        
+    await Review.create(review1);
+    await Review.create(review2);
+    await Review.create(review3);
+    await Review.create(review4);
+    await Review.create(review5);        
+
     } catch (err) {
         console.log(err)
     }

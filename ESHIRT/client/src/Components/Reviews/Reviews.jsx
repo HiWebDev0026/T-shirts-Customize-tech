@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import {useTokenDecode} from '../../hooks/tokenDecoding';
 import {useHistory} from 'react-router-dom'
+import defaultImg from '../../Images/no_user_image.png'
 
 function Reviews(props) {
   const dispatch = useDispatch();
@@ -147,16 +148,16 @@ useEffect(() => {
                   <div className={style.owl_carousel}>
                     <div className={style.feedback_slider_item}>
                       <img
-                        src={e.image}
-                        className={style.userimage}
+                        src={e.image || defaultImg}
+                        className={e.image ? style.userimage : style.defaultImg}
                         alt="Customer Feedback"
                       />
                       {/* <button style={{display: ${isAdmin ? flex : none}}} */}
-                     { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
-                      
-                      <h3 className={style.customer_name}>{e.name}</h3>
-                      <p className={style.b3}>{e.content}</p>
-                    
+                      { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
+                      <div>
+                        <h3 className={style.customer_name}>{e.name}</h3>
+                        <p className={style.b3}>{e.content}</p>
+                      </div>
                     </div>
                      
                   </div>
