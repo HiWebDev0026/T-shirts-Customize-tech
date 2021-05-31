@@ -80,7 +80,7 @@ shirts.map((shirt) => {
     return(
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.General} >
-          <h1>SHIRTS</h1>
+          <h2 classname={Style.ShirtsTitle}>SHIRTS</h2>
         <table id="table-to-xls">
         <div id='tableShirts'>
             <br/>

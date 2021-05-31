@@ -3,8 +3,18 @@
 
 .General{
     
-    display: grid;
+    display: flex;
+    color: black;
     justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    padding: 2%;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.ShirtsTitle{
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
 }
 .Shirts{
     color: black;
