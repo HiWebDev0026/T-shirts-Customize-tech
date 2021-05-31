@@ -26,6 +26,7 @@ function handleEdit(e) {
   swal({
     title: "ARE YOU SURE?",
     text: "The administrator is going to move to trash",
+    dangerMode: true,
     buttons: ["CANCEL", "DELETE"]
   }).then(respuesta =>{
     if(respuesta){
@@ -34,6 +35,7 @@ function handleEdit(e) {
     swal({ 
       title: "DELETE", 
       text: "User " + e.target.value + " moved to trash",
+      dangerMode: true,
       icon: "warning",
       timer: 2000,
       padding: "0.75rem"

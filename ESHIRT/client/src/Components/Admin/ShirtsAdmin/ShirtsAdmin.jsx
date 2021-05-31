@@ -43,6 +43,7 @@ shirts.map((shirt) => {
         swal({
           title: "ARE YOU SURE?",
           text: "The shirt is going to move to trash",
+          dangerMode: true,
           buttons: ["CANCEL", "DELETE"]
         }).then(respuesta =>{
           if(respuesta){
@@ -54,6 +55,7 @@ shirts.map((shirt) => {
         swal({ 
           title: "DELETE", 
           text: "Shirt " + e.target.value + " moved to trash",
+          dangerMode: true,
           icon: "warning",
           timer: 3000,
           padding: "0.75rem"

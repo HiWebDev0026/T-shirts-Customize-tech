@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-.container {color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+.container {color: black;
+    font-family: 'Shadows Into Light', cursive;
     display: grid;
     justify-content: center;
-    
 }
 .Title{
 display: grid;
 justify-content: center;
 text-align: center;
-color:white;
-font-family: "Montserrat", sans-serif;;
+color: black;
+font-family: 'Shadows Into Light', cursive;
 }
 .ContBtn3{
     display: grid;
@@ -21,10 +20,10 @@ font-family: "Montserrat", sans-serif;;
 .Btn3{
     display: grid;
     justify-content: center;
-    color: coral;
+    color: #ffb627;
 }
 .Btn1{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }

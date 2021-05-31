@@ -3,8 +3,8 @@
 
 .Designs{
     display: grid;
-    color:white;
-    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-family: "Montsblackerrat", sans-serif;
     font-weight: 500;
     justify-content: center;
     grid-template-columns: repeat(6, 3fr);
@@ -13,7 +13,7 @@
 .Title{
     display: grid;
     justify-content: center;
-    color:tomato;
+    color: black;
 }
 .Btn2{
     color: red;
@@ -21,11 +21,11 @@
 .Btn3{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }
 .Tarjet{
-    border: 2px solid coral;
-    background-color: rgba(255, 127, 80, 0.151);
+    border: 2px solid #ffb627;
+    background-color: rgba(255, 243, 80, 0.151);
     border-radius: 5px ;
     display: grid;
     
@@ -64,9 +64,9 @@
     font-weight: bold;
   }
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color: black;
+    background: #ffb627;
   }
   .pagination__link__disabled a {
-    color:white;
+    color: black;
   }
