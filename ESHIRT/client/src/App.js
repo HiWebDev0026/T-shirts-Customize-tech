@@ -51,7 +51,7 @@ import Admins from './Components/Admin/Users/Admins';
 import Discount from './Components/Admin/Discount/Discounts';
 import Discounts from './Components/Admin/Discount/Discounts';
 import BuyAuthorizeDesigns from './Components/Admin/DesignsAdmin/BuyAuthorizeDesingns';
-
+import swal from 'sweetalert';
 
 
 function App({location}) {
@@ -87,8 +87,14 @@ function App({location}) {
                           Authorization: `Bearer ${token}`
                         }
                     })
-
-                    alert(`Welcome Back ${name}`);
+                    swal({ 
+                      title: "Signed up", 
+                      text: `Welcome Back ${name}`,
+                      icon: "success",
+                      timer: 3000,
+                      padding: "0.75rem"
+                      });
+                    
                   
 
               }catch(err) {

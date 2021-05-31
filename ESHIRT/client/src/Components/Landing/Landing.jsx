@@ -38,7 +38,7 @@ function Landing() {
                 </p>
             </div>
             <div className={Style.sectionOneRight}>
-                <iframe src="https://www.youtube.com/embed/2qbr_yUMbQs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/2qbr_yUMbQs?autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             </section>
             <div className={Style.picture2}>
