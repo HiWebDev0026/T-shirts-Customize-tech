@@ -61,7 +61,10 @@ function Filter(){
 
     return (
         <div className={style.container}>   
+            <a href= '#popup'>
             <h3 className={style.h3}>Filter by category</h3>
+            </a>
+            <div id= 'popup' className={style.popup}>  
             <div className={style.both}>
             <div className={style.boxes}>
             {allCategories.map((e, i) => {
@@ -75,6 +78,7 @@ function Filter(){
             })}
             </div>
                 <button className={style.btn} onClick={handleClick}>FILTER</button>
+            </div>
             </div>
         </div>
     )

@@ -134,15 +134,15 @@ export default function Users() {
     <div className={Style.general}>
       <h1 className={Style.TitleCategory}>Users</h1>
       <div className={Style.Order}>
+        <form onSubmit = {(e)=> handleSubmit(e)} className={Style.searchBar}>
+          <input className={Style.inputBox} type='text' placeholder= 'Find the user' value ={state} onChange={(e)=>handleChange(e)}/>
+          <input className={Style.inputBtn} type='submit' value= 'Search'/>
+        </form>
         <select onChange={handleOrder} className="options">
           <option  value="">ORDER</option>
           <option value="AZ">AZ</option>
           <option value="ZA">ZA</option>
         </select>
-        <form onSubmit = {(e)=> handleSubmit(e)}>
-                <input className={Style.inputBox} type='text' placeholder= 'Find the user' value ={state} onChange={(e)=>handleChange(e)}/>
-             <input className={Style.inputBtn} type='submit' value= 'Search'/>
-            </form>
       </div>
       <div className={Style.Users}>
       {users1.length > 0 ? ( users1.slice(offset, offset + INITIAL_PAGE).map((userToMap) => {
@@ -150,13 +150,13 @@ export default function Users() {
           return (
               <div className={Style.Tarjet}>
                 <Link to={`/user_detail/${userToMap.id}`}>
-                  <button value={userToMap.id} onClick={getUserId}>
+                  <button className={Style.userDetail} value={userToMap.id} onClick={getUserId}>
                     {userToMap.name}
                   </button>
                 </Link>
                 <p className={Style.Titles}>{userToMap.email}</p>
                 <div className={Style.Contenedores}>
-                  <button className={Style.Btn1} value={userToMap.id} disabled={user.sub.split('|')[1]===userToMap.id} onClick={handleEdit}>X</button>
+                  <button className={Style.BtnR} value={userToMap.id} disabled={user.sub.split('|')[1]===userToMap.id} onClick={handleEdit}>Remove</button>
                   <button className={Style.Btn1} value={userToMap.id} disabled={user.sub.split('|')[1]===userToMap.id} onClick={handleAdmin}>Admin</button>
                 </div>
             </div>
@@ -166,7 +166,7 @@ export default function Users() {
       ) 
       : (<p>Users not found</p>)}
       </div>
-      <div className={Style.pages}>
+      <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
