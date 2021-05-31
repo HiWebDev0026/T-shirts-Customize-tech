@@ -15,11 +15,11 @@ import "swiper/components/pagination/pagination.min.css"
 
 // import Swiper core and required modules
 import SwiperCore, {
-  Pagination, Mousewheel
+  Pagination, Mousewheel,Autoplay
 } from 'swiper/core';
 
 // install Swiper modules
-SwiperCore.use([Pagination, Mousewheel]);
+SwiperCore.use([Pagination, Mousewheel,Autoplay]);
 
 export default function CarouselLanding() {
 
@@ -59,6 +59,10 @@ export default function CarouselLanding() {
       spaceBetween={30} 
       direction={'horizontal'}
       mousewheel={true}
+      autoplay={{
+        "delay": 2500,
+        "disableOnInteraction": false
+      }}
       pagination={{"clickable": true}} 
       className="mySwiper">
              {shirtDisplay.length>0?
