@@ -1,41 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-.general {color:black;
-  font-family: 'Roboto Condensed', sans-serif;
-    display: grid;
+.general {
+    color:black;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .TitleCategory{
-display: grid;
+display: flex;
 justify-content: center;
 text-align: center;
+font-family: 'Shadows Into Light', cursive;
+color: black;
+align-items: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap:  wrap ;
 }
-
 .Tarjet{
     border: 2px solid #ffb627;
     background-color: rgba(252, 218, 29, 0.151);
     border-radius: 5px ;
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Users{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .ContBtn3{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
     color: black;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+}
+.Btn4{
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  align-content: center;
+  flex-wrap:  wrap ;
 }
 .Order{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .pagination {
     display: flex;
@@ -46,16 +79,20 @@ text-align: center;
     cursor: pointer;
     height: 10vh;
     width: 100%;
+    flex-wrap:  wrap ;
   }
   .pagination__link {
     font-weight: bold;
+    flex-wrap:  wrap ;
   }
   .pagination__link__active a {
     color: black;
     background: #ffb627;
+    flex-wrap:  wrap ;
   }
   .pagination__link__disabled a {
     color: black;
+    flex-wrap:  wrap ;
   }
 
 
