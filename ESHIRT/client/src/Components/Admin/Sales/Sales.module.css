@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
 .Sales{
-    color:white;
-    font-family: "Montserrat", sans-serif;
+    color:black;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
-
 }
 
 .Btn3{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }
 
 table {
@@ -22,7 +22,7 @@ table {
     padding: 8px;
   }
   th {
-    color: white;
+    color: black;
   }
 .pagination {
   display: flex;
@@ -38,11 +38,11 @@ table {
   font-weight: bold;
 }
 .pagination__link__active a {
-  color: white;
-  background: coral;
+  color: black;
+  background: #ffb627;
 }
 .pagination__link__disabled a {
-  color:white;
+  color:black;
   
 }
 

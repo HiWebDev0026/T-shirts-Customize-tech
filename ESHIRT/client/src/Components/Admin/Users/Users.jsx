@@ -43,6 +43,7 @@ export default function Users() {
     swal({
       title: "ARE YOU SURE?",
       text: "The user is going to move to trash",
+      dangerMode: true,
       buttons: ["CANCEL", "DELETE"]
     }).then(respuesta =>{
       if(respuesta){
@@ -52,6 +53,7 @@ export default function Users() {
     swal({ 
       title: "DELETE", 
       text: "User " + e.target.value + " moved to trash",
+      dangerMode: true,
       icon: "warning",
       timer: 2000,
       padding: "0.75rem"

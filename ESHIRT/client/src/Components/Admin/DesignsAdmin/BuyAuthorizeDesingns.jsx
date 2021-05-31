@@ -39,6 +39,7 @@ export default function BuyAuthorizeDesigns(){
       swal({
         title: "ARE YOU SURE?",
         text: "The desing is going to delete definitely",
+        dangerMode: true,
         buttons: ["CANCEL", "DELETE"]
       }).then(respuesta =>{
         if(respuesta){
@@ -47,6 +48,7 @@ export default function BuyAuthorizeDesigns(){
         swal({ 
           title: "DELETE", 
           text: "Design " + e.target.value + " deleted",
+          dangerMode: true,
           icon: "error",
           timer: 3500,
           padding: "0.75rem"

@@ -36,6 +36,7 @@ function RecycleBinUser() {
       swal({
         title: "ARE YOU SURE?",
         text: "The user is going to delete definitely",
+        dangerMode: true,
         buttons: ["CANCEL", "DELETE"]
       }).then(respuesta =>{
         if(respuesta){
@@ -45,6 +46,7 @@ function RecycleBinUser() {
         swal({ 
           title: "DELETE", 
           text: "User " + e.target.value + " deleted",
+          dangerMode: true,
           icon: "error",
           timer: 2000,
           padding: "0.75rem"

@@ -21,6 +21,7 @@ function handleDelete(e) {
     swal({
         title: "ARE YOU SURE?",
         text: "The desing is going to delete definitely",
+        dangerMode: true,
         buttons: ["CANCEL", "DELETE"]
       }).then(respuesta =>{
         if(respuesta){
@@ -28,6 +29,7 @@ function handleDelete(e) {
     swal({ 
         title: "DELETE", 
         text: "Design " + e.target.value + " moved to unapproval desings",
+        dangerMode: true,
         icon: "warning",
         timer: 3500,
         padding: "0.75rem"
