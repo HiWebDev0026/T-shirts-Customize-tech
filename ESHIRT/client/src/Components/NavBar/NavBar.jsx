@@ -19,8 +19,10 @@ function Navbar() {
                 <li><Login className={Style.eachLink}/></li>
             </ul>
         </nav>
+        
         <NavLink className={Style.eachLink} to='/cart'><GrCart /></NavLink>
         <SearchBar className={Style.searchBar} />
+        
   </header>
   );
 };

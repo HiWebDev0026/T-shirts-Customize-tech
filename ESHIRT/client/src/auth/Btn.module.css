@@ -5,8 +5,8 @@
     border: 2px solid black;
     color: #ffb627;
     height: 30px;
-    width:  70px;
-    margin-left: 30px;
+    
+    display: flex;
     border-radius: 5px;
     font-weight: 800;
     font-family: 'Roboto Condensed', sans-serif;
@@ -21,4 +21,11 @@
     border-radius: 5px;
     font-weight: 800;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+@media screen and (max-width: 960px) {
+    .loginBtn {
+        
+    }
 }

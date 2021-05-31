@@ -12,28 +12,69 @@
 
 .header{
     display: flex;
-    justify-content: space-evenly;
+    
+    
     align-items: center;
-    padding: 30px, 10%;
-    background: rgba(255, 255, 255, 0.411);
-    height: 70px;
+    width: 100%;
+    justify-content: space-evenly;
+    min-height: 120px;
+    max-width: 100vw;
     /* width: max-content; */
-    border-bottom: solid 1px; 
+    height: 115px;
     border-color:#ffb627;
     font-family: 'Roboto Condensed', sans-serif;
     background-color:#ffb627;
 }
 
-.logo{
-    max-width: 134px;
-    height: 60px;
-    margin-left: 5px;
+
+
+
+
+.navbarContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    justify-content: space-between;
+    min-width: 90px;
+    width: 440px;
+    
+    
+}
+
+.navbarContainer > nav {
+    position: relative;
+    bottom: -10px;
+    display: flex;
+    width: 100%;
+}
+.logoContainer{
+    max-width: 20%;
+    
+   
     margin-top: 10px;
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
     font-family: 'Shadows Into Light', cursive;
     font-weight: 900;
     color:white;
+}
+
+
+.panelNavBar {
+    display: flex;
+    flex-direction: row-reverse;
+    
+    align-items: center;
+    height: 110px;
+    justify-content: space-between;
+    width: 90%;
+    
+}
+
+
+.logoContainer > img {
+    height: 5vw;
+    width: auto;
 }
 
 .loginBtn{
@@ -45,43 +86,160 @@
 
 .navLinks{
     list-style: none;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    left: 50%;
 }
+
+.navSeparator {
+    height: 40%;
+    align-self: center;
+    
+    border-right: 0.5px solid black;
+}
+
+
+
 
 .navLinks li{
-    display: inline-block;
-    padding: 0px, 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 11.5em;
+    
+    max-width: max-content;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 6px;
+    font-weight: 800;
+    transition: background-color 0.33s ease-in-out;
 }
+
+
+.navLinks li:hover {
+    background-color:rgba(5, 5, 5, 0.116);
+    
+}
+
+/* .navLinks li:hover > .underline {
+    position: absolute;
+    height: 1px;
+    width: 99px;
+    background: black;
+} */
+
+/* .navLinks li:hover {
+    border-bottom: 1px solid black;
+    
+}
+ */
+/* .navLinks li:hover ~ [underline="true"] {
+    
+    
+}
+ */
+
+
+
 
 .eachLink{
+    display: flex;
     text-decoration: none;
-    transition: all 0.3s ease 0s;
-    padding-left: 30px;
+    transition: all 0.3s ease;
+    align-items: center;
     color: #2a2524;
+    height: 100%;
+    padding: inherit;
+    z-index: 3;
+    
 }
 
-.eachLink:hover{
-    color: #fd6702;  /* Cambiar acá el color de efecto de los botones*/
+.eachLink ~ .underline {
+    display: flex;
+    position: absolute;
+    height: 1px;
+    width: 0%;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    bottom: 0;
+    border-bottom: 2px solid black;
 }
 
 
-li, .searchBar{
+.eachLink:hover {
+    color: white;  /* Cambiar acá el color de efecto de los botones*/
+    text-shadow: 0.1px 0.1px 6px black, 0.1px 0.1px 6px black, 0.1px 0.1px 6px black;
+    
+    
+}
+
+
+.eachLink:hover > svg[iconified="true"]{
+   fill: white;
+   
+}
+
+.eachLink:hover ~ .underline {
+    
+    border-bottom: 2px solid black;
+    width: 100%;
+   
+}
+
+
+.home, .designIcon, .catalogueIcon{
+    width: 28px;
+    height: 35px;
+}
+
+
+
+
+
+.searchBar{
         font-family: 'Roboto Condensed', sans-serif;
         font-weight: 500;
         font-size: 16px;
         color: #fd6702; /* Cambiar acá el color de las letras*/
         text-decoration: none;
         font-weight: 700;
+        width: max-content;
+
 }
 
-.search{
+.loginPanel{
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    width: 205px;
+    
+    
 }
 
 .fav, .cart{
-    padding-right: 40px;
+    display: flex;
+    padding: 0;
 }
 
-.fav{
-    padding-left: 40px;
+
+@media screen and (max-width: 940px) {
+    .logoContainer {
+        font-size: 20px;
+    }
+    .navbarContainer {
+        height: max-content;
+        margin-left: 0;
+        width: auto;
+    }
+
+    .loginPanel {
+        width: auto;
+        flex-shrink: 2;
+        
+    }
+
+
 }

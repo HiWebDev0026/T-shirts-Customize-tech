@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom'
 import {getShirtsByName, getShirts, resetShirtSearch} from '../../Actions/index';
 import { useDispatch, useSelector } from 'react-redux';
 import Style from './SearchBar.module.css';
+import {ReactComponent as SearchButton} from '../../assets/149852.svg'
 
 
 function SearchBar(){
@@ -38,10 +39,19 @@ function SearchBar(){
     }
 
     return(
-        <div>
+        <div className={Style.searchBarMainContainer}>
             <form onSubmit = {(e)=> handleSubmit(e)}>
+                <div className={Style.searchContainer}>
                 <input className={Style.inputBox} type='text' placeholder= 'Find your next shirt' value ={searchString} onChange={(e)=>handleChange(e)}/>
-             <input className={Style.inputBtn} disabled={searchString.length < 2} type='submit' value={'Search'}/>
+                <div className={Style.buttonSearchContainer}>
+                    <div className={Style.backgroundSearchButton}>
+                        <SearchButton className={Style.searchIcon} />
+                    </div>
+                    <input className={Style.inputBtn} name="searchBarButton" disabled={searchString.length < 2} type='submit' value="asd" />
+                    </div>
+             
+             
+             </div>
             </form>
         </div>
     )
