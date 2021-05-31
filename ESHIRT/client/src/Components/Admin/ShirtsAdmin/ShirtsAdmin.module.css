@@ -1,14 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
 .General{
     
-    display: grid;
+    display: flex;
+    color: black;
     justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    padding: 2%;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.ShirtsTitle{
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
 }
 .Shirts{
-    color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
     display: grid;
     grid-template-columns: repeat(8, 8fr);
     grid-gap:unset;
@@ -18,8 +28,8 @@
     
 }
 .Tarjet{
-    border: 2px solid coral;
-    border-radius: 5px ;
+    border: 2px solid ;
+    border-radius: 5px #ffb627;
     display: grid; 
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 1px;
@@ -80,7 +90,7 @@
     grid-column: 9;
 }
 .Btn1:hover{
-    background-color: coral;
+    background-color: #ffb627;
     color: black;
     box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
     top: -1vh;
@@ -88,13 +98,13 @@
 .Btn3{
     display: flex;
     justify-content: center;
-    color: white;
+    color:black;
 }
 .Detail{
-    color:blanchedalmond;
+    color: black;
 }
 .Detail:hover{
-    color: coral;
+    color: #ffb627;
 }
 
 .pagination {
@@ -113,11 +123,11 @@
   }
   
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color: black;
+    background: #ffb627;
   }
   
   .pagination__link__disabled a {
-    color:white;
+    color: black;
     
   }

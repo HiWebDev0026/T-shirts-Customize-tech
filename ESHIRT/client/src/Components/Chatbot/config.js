@@ -7,6 +7,8 @@ import Problems from './Components/Problems';
 import Default from './Components/Default';
 import Understanding from './Components/Understanding';
 import Hello from './Components/Hello';
+import Shirts from './Components/Shirts';
+
 
 const config = {
     botName: 'E-shirt bot',
@@ -35,6 +37,14 @@ const config = {
         {
             widgetName: "hello",
             widgetFunc: (props) => <Hello {...props} />,
+        },
+        {
+            widgetName: "bye",
+            //widgetFunc: (props) => <Bye {...props} />,
+        },
+        {
+            widgetName: "shirts",
+            widgetFunc: (props) => <Shirts {...props} />,
         },
         {
             widgetName: "understanding",

@@ -6,6 +6,24 @@
     height: 80vh;
 }
 
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hiden;
+  transition:  1s  ease-in-out;
+  
+}
+
 .both{
     display: flex;
     background-color: transparent;

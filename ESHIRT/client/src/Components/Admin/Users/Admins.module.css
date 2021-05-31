@@ -1,38 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-.general {color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    display: grid;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+
+.general {color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
     
 }
 .TitleCategory{
-display: grid;
+display: flex;
 justify-content: center;
 text-align: center;
+align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 
 .Tarjet{
-    border: 2px solid coral;
-    background-color: rgba(255, 127, 80, 0.151);
+    border: 2px solid #ffb627;
+    background-color: rgba(255, 243, 80, 0.151);
     border-radius: 5px ;
-    display: grid;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Users{
     display: grid;
-    grid-template-columns: repeat(6, 3fr);
-    grid-gap: 5px;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .ContBtn3{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
-    color: white;
+    color: black;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Order{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }

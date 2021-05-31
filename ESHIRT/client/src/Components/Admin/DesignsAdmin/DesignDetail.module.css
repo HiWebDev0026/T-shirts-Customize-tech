@@ -2,7 +2,7 @@
 
 .Designs{
     display:grid;
-    color:white;
+    color: black;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
@@ -44,12 +44,12 @@
 .Btn3{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }
 .BtnDelete:hover{
     background-color:rgb(243, 68, 4);
     content: 'Danger';
-    color: white;
+    color: black;
 }
 .Btn2:hover{
     background-color: lightblue;

@@ -1,41 +1,264 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-.general {color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    display: grid;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+
+@media screen and (max-width: 600px){
+
+  .general {
+    color:red;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    
-}
-.TitleCategory{
-display: grid;
-justify-content: center;
-text-align: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+  }
+
+  .Users{
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+  }
+
+  .Tarjet {
+    border: 2px solid blue;
+    background-color: rgba(252, 218, 29, 0.151);
+    border-radius: 5px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+    margin: 1vh;
+    width: 90%;
+  }
+
+
+  
+  .Contenedores{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+  }
+  
+
+  .Order{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    margin: 1vh;
+  }
+  
+  .pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: 10vh;
+    width: 60%;
+    flex-wrap:  wrap ;
+  }
+  .pagination__link {
+    font-weight: bold;
+    flex-wrap:  wrap ;
+  }
+  .pagination__link__active a {
+    color: black;
+    background: #ffb627;
+    flex-wrap:  wrap ;
+  }
+  .pagination__link__disabled a {
+    color: black;
+    flex-wrap:  wrap ;
+  }
+
+
+} 
+
+.general {
+    color:black;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 
-.Tarjet{
-    border: 2px solid coral;
-    background-color: rgba(255, 127, 80, 0.151);
-    border-radius: 5px ;
-    display: grid;
+.TitleCategory{
+display: flex;
+justify-content: center;
+text-align: center;
+font-family: 'Shadows Into Light', cursive;
+color: black;
+align-items: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap:  wrap ;
 }
+.Tarjet{
+    border: 2px solid black;
+    background-color: rgba(252, 218, 29, 0.151);
+    border-radius: 5px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+    margin: 1vh;
+    padding: 1vh;
+    
+}
+
+.Contenedores{
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  justify-content: space-around;
+  margin: 2vh;
+}
+
+.userDetail{
+  background-color: white;
+  color: black;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.userDetail:hover{
+  background-color: black;
+  color: white;
+}
+
+.Btn1{
+  background-color: white;
+  color: black;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+
+  .Btn1:hover {
+    background-color: #ffb627;
+    color: black;
+  }
+
+  .BtnR{
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+    transition: ease-in 0.3s;
+  }
+
+  .BtnR:hover{
+    background-color: red;
+    color: white;
+  }
+
+
 .Users{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .ContBtn3{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
-    color: white;
+    color: black;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+}
+.Btn4{
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  align-content: center;
+  flex-wrap:  wrap ;
 }
 .Order{
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    margin: 1vh;
 }
+
+.Order > select {
+  height: 25px;
+  width: 150px;
+  border: 1px solid black;
+  border-radius: 10px;
+  outline: none;
+}
+
+.searchBar{
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  margin: 1vh;
+  align-items: center;
+}
+
+.inputBox{
+  text-align: center;
+  border: 1px solid black;
+  height: 25px;
+  width: 150px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.inputBtn{
+  font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    height: 25px;
+    width: 90px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: black;
+    color:white;
+    font-weight: 800;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+}
+
+.inputBtn:hover{
+  background-color:#24252A;
+  color: #ffb627;
+  border-radius: 10px;
+}
+
 .pagination {
     display: flex;
     padding: 0;
@@ -44,17 +267,21 @@ text-align: center;
     list-style: none;
     cursor: pointer;
     height: 10vh;
-    width: 100%;
+    width: 60%;
+    flex-wrap:  wrap ;
   }
   .pagination__link {
     font-weight: bold;
+    flex-wrap:  wrap ;
   }
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color: black;
+    background: #ffb627;
+    flex-wrap:  wrap ;
   }
   .pagination__link__disabled a {
-    color:white;
+    color: black;
+    flex-wrap:  wrap ;
   }
 
 

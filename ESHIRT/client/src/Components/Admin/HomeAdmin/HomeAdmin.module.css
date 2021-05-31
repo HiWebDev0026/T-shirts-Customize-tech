@@ -1,31 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+
 
 .General{
-    color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    display: grid;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title{
-    color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    display: grid;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title1{
-    color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title1:hover{
-    color: coral;
+    color: #ffb627;
     top: -1vh;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.582);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .img{
     width: 40px;
     height: 40px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 

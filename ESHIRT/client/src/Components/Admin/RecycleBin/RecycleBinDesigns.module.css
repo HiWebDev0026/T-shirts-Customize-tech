@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .General{
     display: grid;
@@ -6,8 +7,8 @@
 }
 .Desings{
     display: grid;
-    color:white;
-    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
     grid-template-columns: repeat(6, 3fr);
     grid-gap: 10px;
     font-weight: 500;
@@ -16,8 +17,8 @@
 .Title{
     display: grid;
     justify-content: center;
-    color: white;
-    font-family: "Montserrat", sans-serif;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 .Designs1{
     grid-template-columns: repeat(6, 3fr);
@@ -26,7 +27,7 @@
     justify-content: space-evenly;
 }
 .Tarjet{
-    border: 2px solid coral;
+    border: 2px solid #ffb627;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
    
@@ -39,14 +40,14 @@
 .Btn3{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }
 .Img{
     width: 200px; height: 200px;
   }
   .Btn1:hover{
       background-color: red;
-      color: white;
+      color: black;
   }
   .pagination {
     display: flex;
@@ -62,9 +63,9 @@
     font-weight: bold;
   }
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color: black;
+    background: #ffb627;
   }
   .pagination__link__disabled a {
-    color:white;
+    color: black;
   }

@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-.container {color:white;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+.container {
+    color:black;
+    font-family: 'Roboto Condensed', sans-serif;
     display: grid;
     justify-content: center;
     
@@ -16,12 +17,12 @@
 display: grid;
 justify-content: center;
 text-align: center;
-color:coral;
-font-family: "Montserrat", sans-serif;;
+color:#ffb627;
+font-family: 'Roboto Condensed', sans-serif;
 }
 .Tarjet{
-    border: 2px solid coral;
-    background-color: rgba(255, 127, 80, 0.151);
+    border: 2px solid #ffb627;
+    background-color: rgba(255, 243, 80, 0.151);
     border-radius: 5px ;
     display: grid;
 }
@@ -32,7 +33,7 @@ font-family: "Montserrat", sans-serif;;
 .Btn3{
     display: grid;
     justify-content: center;
-    color: white;
+    color: black;
 }
 .pagination {
     display: flex;
@@ -48,9 +49,9 @@ font-family: "Montserrat", sans-serif;;
     font-weight: bold;
   }
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color: black;
+    background: #ffb627;
   }
   .pagination__link__disabled a {
-    color:white;
+    color:black;
   }

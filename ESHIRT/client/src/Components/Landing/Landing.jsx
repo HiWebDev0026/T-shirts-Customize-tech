@@ -38,10 +38,14 @@ function Landing() {
                 </p>
             </div>
             <div className={Style.sectionOneRight}>
-                <iframe src="https://www.youtube.com/embed/2qbr_yUMbQs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe autoplay src="https://www.youtube.com/embed/2qbr_yUMbQs?autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             </section>
             <div className={Style.picture2}>
+                <video autoplay="true" loop muted="muted">
+                    <source src="https://player.vimeo.com/external/522711702.sd.mp4?s=171ebebab7fbd0b59714b8bb037766037630d514&profile_id=139&oauth2_token_id=57447761" type="video/mp4"></source>
+                    Your browser does not support the video tag.
+                </video>
                <div className={Style.section3}>
                top-rated
                </div>
