@@ -1,10 +1,11 @@
+.root span{
+  background-color: grey;
+}
+
 html{
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  background-image: url(https://wallpaperaccess.com/full/733839.jpg);
-
-  
-  
+  /* background-image: url(https://wallpaperaccess.com/full/733839.jpg); */
   
 }
 
@@ -16,7 +17,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 
 }
 

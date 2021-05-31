@@ -16,7 +16,7 @@ const initialState = {
 const shirtReducer = (state=initialState, action) => {
     switch(action.type) {
         case 'GET_SHIRTS':
-            let random= action.payload.slice(0,6)
+            let random= action.payload.slice(0,10)
                      
             return {
                 ...state,

@@ -1,16 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
 .loginBtn{
-    background: coral;
+    background: black;
     border: 2px solid black;
-    color: #24252A;
-    height: 40px;
-    width:  80px;
+    color: #ffb627;
+    height: 30px;
+    width:  70px;
     margin-left: 30px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 .logoutBtn{
-    background: black;
-    border: 2px solid #24252A;
-    color: coral;
-    height: 40px;
-    width:  80px;
+    background: white;
+    border: 2px solid white;
+    color: black;
+    height: 30px;
+    width:  70px;
     margin-left: 30px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-family: 'Roboto Condensed', sans-serif;
 }

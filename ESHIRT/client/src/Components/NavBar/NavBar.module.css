@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 
 /* *{
@@ -17,14 +18,22 @@
     background: rgba(255, 255, 255, 0.411);
     height: 70px;
     /* width: max-content; */
+    border-bottom: solid 1px; 
+    border-color:#ffb627;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color:#ffb627;
 }
 
 .logo{
     max-width: 134px;
-    height: 40px;
-    margin-left: 10px;
+    height: 60px;
+    margin-left: 5px;
+    margin-top: 10px;
     text-align: center;
-    font-size: 26px;
+    font-size: 30px;
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: 900;
+    color:white;
 }
 
 .loginBtn{
@@ -56,11 +65,12 @@
 
 
 li, .searchBar{
-        font-family: "Montserrat", sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
         font-weight: 500;
         font-size: 16px;
-    color: #fd6702; /* Cambiar acá el color de las letras*/
-    text-decoration: none;
+        color: #fd6702; /* Cambiar acá el color de las letras*/
+        text-decoration: none;
+        font-weight: 700;
 }
 
 .search{

@@ -9,7 +9,7 @@ import Login from '../../auth/AuthenticationButton';
 function Navbar() {
   return (
     <header className={Style.header}>
-        <span className={Style.logo}>E-Shirt</span>
+          <span className={Style.logo}>E-Shirt</span>
 
         <nav>
             <ul className={Style.navLinks}>
