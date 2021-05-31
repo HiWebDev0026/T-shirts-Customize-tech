@@ -3,6 +3,7 @@ import React,{useState} from 'react';
 
 import ImageSlider from './ImageSlider.jsx';
 import Style from './Home.module.css';
+import {useWidthCheck} from '../../hooks/widthCheck';
 
 
 export default function Home (){
