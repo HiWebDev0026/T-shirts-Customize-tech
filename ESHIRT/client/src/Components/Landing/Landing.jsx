@@ -11,15 +11,23 @@ function Landing() {
     return (
         <div className={Style.general}>
            <div className={Style.picture1}>
+               <div className={Style.topHomeContainer}>
+
                 <div className={Style.section1}>
                     E-SHIRT
                 </div>
                 <div className={Style.section2}>
+                    <div>
                     <h2>Turn ordinary into extraordinary </h2>
-                    <Link to='/home'>
+                    </div>
+                    <Link to='/home' ><div className={Style.buttonHomeContainer}>
+                    
                         <AiFillHome className={Style.home}/>
+                    
+                    </div>
                     </Link>
-                </div>     
+                </div>   
+                </div>  
            </div>
             <section className={Style.sectionOne}>
             <div className={Style.sectionOneLeft}>

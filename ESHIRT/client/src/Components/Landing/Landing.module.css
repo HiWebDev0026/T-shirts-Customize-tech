@@ -4,7 +4,8 @@
 
 .general{
     height: 100%;
-    margin:0;
+    display: block;
+    margin:0 auto;
     font-family: 'Roboto Condensed', sans-serif;
     line-height: 180%;
     color:white;
@@ -56,58 +57,83 @@
    justify-content: center;
    color:#ffb627;
    font-size: 80px;
-   top:20%;
-   left:5px;
    font-weight: 900;
    height: 90px;
    width: 330px;
    opacity: 0.9;
-   margin-bottom: 10px;
+   
    letter-spacing: 8px;
    font-family: 'Shadows Into Light', cursive;
    /* border:solid 2px red; */
 }
 
+
+.topHomeContainer {
+    min-height: 300px;
+    height: max-content;
+    width: max-content;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+    position: relative; 
+    top: 12%; 
+    left: 3%;
+}
+
 .section2{
     color:black;
-    font-weight:800;
-    top:30%;
-    left:5px;
-    line-height: 100%;
-    opacity: 0.9;
-    margin-top: 32px;
     display: flex;
-    justify-content: center;
-    height:100px;
+    font-weight:800;
+    opacity: 0.9;
+    
+    justify-content: space-around;
+    flex-direction: column;
+    min-height:150px; /* MÍNIMO DE ALTO */
+    height: max-content;
     width:330px;
     letter-spacing: 3px;
     background-color: rgba(255, 255, 255, 0.14);
     border-radius: 5px;
-    /* border:solid 2px blue; */
+   
  }
 
  .section2 h2{
      position: relative;
+     text-transform: uppercase;
      top:1px;
      right:1px;
      color:black;
      font-size: 18px;
  }
 
- .home{
+
+ .buttonHomeContainer {
+    position: relative;
+    min-height: 40px ;
+    min-width: 30px;
+    width: min-content;
+    margin: 0 auto;
+}
+
+ .home {
+
+     
+     margin: 0 auto;
      position: relative;
-     top:55px;
-     left:145px;
      background-color: black;
      padding: 10px;
      width: 20px;
-     height: auto;
+     top: -15px;
+     height: 20px;
      display: flex;
      align-items: center;
      justify-content: center;
      border-radius: 50%;
      color:white;
 }
+
+
+
 
  .section3{
     color:#ffb627;
@@ -159,7 +185,7 @@
     color: white;
 }
 
-.section1,.section2,.section3, .home{
+.home{
     position: absolute;
     text-transform: uppercase;
 }
@@ -179,12 +205,14 @@
 .sectionOne h2{
     font-size: 25px;
     font-weight: 600;
+    
     font-family: 'Shadows Into Light', cursive;
 }
 
 .sectionOne p{
     font-size: 15px;
     font-weight: 600;
+    
 }
 
 .list div{
@@ -264,9 +292,7 @@
 }
 
 @media(max-width: 768px){
-    .section1{
-        font-size: 180%;
-    }
+   
     .section2{
         font-size: 50%;
     }
