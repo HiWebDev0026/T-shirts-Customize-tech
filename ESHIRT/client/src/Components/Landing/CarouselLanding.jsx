@@ -15,11 +15,11 @@ import "swiper/components/pagination/pagination.min.css"
 
 // import Swiper core and required modules
 import SwiperCore, {
-  Pagination
+  Pagination, Mousewheel
 } from 'swiper/core';
 
 // install Swiper modules
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination, Mousewheel]);
 
 export default function CarouselLanding() {
 
@@ -55,7 +55,12 @@ export default function CarouselLanding() {
 
   return (
       <div className='general'>
-      <Swiper spaceBetween={30} pagination={{"clickable": true}} className="mySwiper">
+      <Swiper 
+      spaceBetween={30} 
+      direction={'horizontal'}
+      mousewheel={true}
+      pagination={{"clickable": true}} 
+      className="mySwiper">
              {shirtDisplay.length>0?
                 shirtDisplay.slice(0,11).sort((a,b)=>{return b.score-a.score}).map(shirt=>{
                     return(
