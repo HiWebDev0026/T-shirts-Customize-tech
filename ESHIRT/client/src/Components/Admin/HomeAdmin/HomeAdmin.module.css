@@ -5,27 +5,45 @@
 .General{
     color: black;
     font-family: 'Shadows Into Light', cursive;
-    display: grid;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title{
     color: black;
     font-family: 'Shadows Into Light', cursive;
-    display: grid;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title1{
     color: black;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title1:hover{
     color: #ffb627;
     top: -1vh;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.582);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .img{
     width: 40px;
     height: 40px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 
