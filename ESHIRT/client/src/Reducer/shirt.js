@@ -7,7 +7,7 @@ const initialState = {
     allShirts: [],
     shirtsByName: [],
     shirtId: {},
-    random6:[],
+    random10:[],
     shirtPostOk: null,
     filteredByCategory: [],
     shirtsToFavorites:[]
@@ -21,7 +21,7 @@ const shirtReducer = (state=initialState, action) => {
             return {
                 ...state,
                 allShirts: action.payload,
-                random6: random
+                random10: random
             }
         case 'GET_SHIRTS_NAME':
 

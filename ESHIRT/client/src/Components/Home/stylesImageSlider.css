@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+.slider{
+    position: relative;
+    height: 60%;
+    width: 80%;
+    background: white;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    z-index:0;
+}
+
+.slider .swiper-container {
+  width: 900px;
+  height: 100%;
+  /* border: solid 2px blue; */
+}
+
+.slider .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.slider .swiper-slide img {
+  display: block;
+  width: 75%;
+  height: 70%;
+  object-fit: cover;
+  /* border: solid 2px red; */
+}
+
+.design h3, .catalogue h3{
+    color: white;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 25px;
+}
+
+.design h4, .catalogue h4{
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.pic1{
+    background-image: url('https://images.unsplash.com/photo-1593726856932-b5b9a661ed46?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fHRzaGlydHN8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
+       
+}
+
+.pic2 {
+    background-image:url('https://images.unsplash.com/photo-1519722417352-7d6959729417?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fHRzaGlydHN8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+}
+
+.pic1, .pic2{
+    margin-top: 30px ;
+    border-radius: 5px; 
+    width: 75%;
+    height: 70%;
+    background-size: cover; 
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 10px;
+}

@@ -9,61 +9,11 @@
 }
 
 .generalHome h1{
-    display: flex;
-    justify-content: center;
-    /* border: solid 2px red; */
-    width: 1100px;
-    margin-top: 10%;
+color: black;
+display: flex;
+justify-content: center;
+font-family: 'Shadows Into Light', cursive;
+/* border: solid 2px blue;   */
 }
 
-.center{
-    height: 100vh;
-    width: 1100px;
-    padding: auto;
-    /* border: solid 2px green; */
-}
-.together{
-    /* border: solid 2px orange; */
-    height: 300px;
-    display: flex;
-    justify-content: center;
-}
 
-.generalHome video{
-    border-radius: 5px;
-    height: 300px;
-
-}
-
-.videoFunc h1{
-    color:black;
-    font-family: 'Shadows Into Light', cursive; 
-    font-size: 40px;  
- 
-
-}
-
-.generalHome button{
-    height: 300px;
-    width: 40px;
-    margin-left: 2px;
-    background-color: black;
-    border: solid 1px  black;
-    color: white;
-    border-radius: 5px;
-   
-}
-
-.generalHome button:hover{
-    background-color: #ffb627;
-    border: solid 1px  #ffb627;  
-}
-
-.generalHome button p{
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    margin:auto;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 15px;
-}
