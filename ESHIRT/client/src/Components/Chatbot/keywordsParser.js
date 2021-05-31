@@ -17,9 +17,7 @@ const keywords = ["hellows", "byes", "shirts"]
 const checkMessageInList = (wordList, message) => {
     
     for (const word of wordList) {
-        console.log("dentro del check", message, word)
         if (word.includes(message)) {
-            console.log('di true!')
             return true
         }
     }

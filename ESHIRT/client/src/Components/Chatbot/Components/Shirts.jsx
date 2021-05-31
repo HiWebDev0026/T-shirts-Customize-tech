@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function Hello(props) {
+function Shirts(props) {
     const options = [
         { text:'I have a problem with shopping', handler: props.actionProvider.handleProblemShopping, id :1,},
         { text:'When does my shirt arrives', handler: props.actionProvider.handleShirtArrive, id :2,},
@@ -21,8 +21,19 @@ function Hello(props) {
                     click here to check our shirts!
                 </h5>
             </Link>
+            <Link to={'/design'}>
+                <h5 style={{
+                    color: 'dodgerblue', 
+                    backgroundColor: 'white', 
+                    borderRadius: '10px',
+                    padding: '10px',
+                    border: '2px solid dodgerblue'
+                    }}>
+                    click here to create a new design!
+                </h5>
+            </Link>
       </div>
     );
 }
 
-export default Hello;
+export default Shirts;

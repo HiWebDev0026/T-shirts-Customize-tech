@@ -28,6 +28,15 @@ class ActionProvider {
         const message = this.createChatBotMessage("Hi! I'm Shirtbot, let's chat, why not?", {widget: 'hello'})
         this.addMessageToState(message);
     }
+    handleBye = () => {
+        const message = this.createChatBotMessage("Thanks for asking! I'll be here if you need anything else");
+        this.addMessageToState(message);
+    }
+    handleShirts = () => {
+        const message = this.createChatBotMessage("Doubts about shirts?", {widget: 'shirts'});
+        this.addMessageToState(message);
+    }
+
 
     addMessageToState = (messages) => {
         this.setState((state) => ({

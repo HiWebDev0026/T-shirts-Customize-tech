@@ -21,8 +21,11 @@ class MessageParser {
         //        }
         if(parsedMessage === "hellows") {
             this.actionProvider.handleHello();
+        } else if (parsedMessage === "byes"){
+            this.actionProvider.handleBye();
+        } else if (parsedMessage === "shirts"){
+            this.actionProvider.handleShirts();
         } else {
-            // I cant understand you
             this.actionProvider.handleNotUnderstanding();
         }
     }
