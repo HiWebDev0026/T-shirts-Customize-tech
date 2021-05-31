@@ -20,6 +20,15 @@ class ActionProvider {
         this.addMessageToState(message);
     }
 
+    handleNotUnderstanding = ()=>{
+        const message = this.createChatBotMessage("I'm sorry, but I can't understand this :( ", {widget: 'understanding'});
+        this.addMessageToState(message);
+    }
+    handleHello = () => {
+        const message = this.createChatBotMessage("Hi! I'm Shirtbot, let's chat, why not?", {widget: 'hello'})
+        this.addMessageToState(message);
+    }
+
     addMessageToState = (messages) => {
         this.setState((state) => ({
             ...state,

@@ -1,3 +1,5 @@
+import {searchMessage} from './keywordsParser'
+
 class MessageParser {
     constructor(actionProvider, state) {
       this.actionProvider = actionProvider;
@@ -5,18 +7,23 @@ class MessageParser {
     }
   
     parse(message) {
-
-        console.log(message)
         const lowerCase = message.toLowerCase();
-    
-        if(lowerCase.includes('our address')|| lowerCase.includes('address') || lowerCase.includes('adress') || lowerCase.includes('addres')){
-            this.actionProvider.handleAddress();
-        }
-        if(lowerCase.includes('our opening hours')|| lowerCase.includes('opening hours') || lowerCase.includes('hours') || lowerCase.includes('opening')){
-            this.actionProvider.handleHours();
-        }
-        if(lowerCase.includes('solving problems')|| lowerCase.includes('problem') || lowerCase.includes('problems') || lowerCase.includes('help')){
-            this.actionProvider.handleProblems();
+        const parsedMessage = searchMessage(lowerCase)
+        
+        // if(lowerCase.includes('our address')|| lowerCase.includes('address') || lowerCase.includes('adress') || lowerCase.includes('addres')){
+        //     this.actionProvider.handleAddress();
+        // }
+        // if(lowerCase.includes('our opening hours')|| lowerCase.includes('opening hours') || lowerCase.includes('hours') || lowerCase.includes('opening')){
+        //     this.actionProvider.handleHours();
+        // }
+        // if(lowerCase.includes('solving problems')|| lowerCase.includes('problem') || lowerCase.includes('problems') || lowerCase.includes('help')){
+        //     this.actionProvider.handleProblems();
+        //        }
+        if(parsedMessage === "hellows") {
+            this.actionProvider.handleHello();
+        } else {
+            // I cant understand you
+            this.actionProvider.handleNotUnderstanding();
         }
     }
 }
