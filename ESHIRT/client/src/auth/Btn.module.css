@@ -1,31 +1,131 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 .loginBtn{
-    background: black;
-    border: 2px solid black;
-    color: #ffb627;
-    height: 30px;
-    
-    display: flex;
-    border-radius: 5px;
+    background: #2364aa;
+    /* border: 0.5px solid black; */
+    border: none;
+    color: white;
+    height: 35px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 4px;
     font-weight: 800;
     font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: inset 0.1px 0.1px 8px 1px #3DA5D9;
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.loginBtn:hover{
+    box-shadow: inset 0.1px 0.1px 19px 8px #3DA5D9;
+    transform: scaleX(1.1) scaleY(1.1);
+
+    
+}
+.userPanel {
+    display: flex;
+    align-items: center;
+    width: max-content;
 }
 .logoutBtn{
-    background: white;
-    border: 2px solid white;
+    border: none;
+    background: none;
     color: black;
-    height: 30px;
-    width:  70px;
+    height: inherit;
+    font-size: 100%;
+    width:  min-content;
+    display: flex;
     margin-left: 30px;
+    margin-right: 10px;
     border-radius: 5px;
     font-weight: 800;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.deployArrowContainer {
+    width: 22px;
+    height: 22px;
+    background: none;
+    border: none;
+    z-index: 4;
+    
+}
 
-@media screen and (max-width: 960px) {
-    .loginBtn {
-        
+.deployArrowContainer svg {
+    width: 16px;
+    height: 16px;
+    background: none;
+    animation-fill-mode:both;
+    animation-iteration-count: 1;
+    animation-duration: 1.1s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-name: deployarrow;
+}
+
+.deployableMenuCommonUser, .deployableMenuAdmin {
+    position: absolute;
+    width: 12.8em;
+    z-index: 6;
+    
+}
+
+.deployableMenuCommonUser {
+    margin-top: 280px;
+}
+
+.deployableMenuAdmin {
+    margin-top: 400px;
+}
+
+.deployableMenuAdmin > ul, .deployableMenuCommonUser > ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 0;
+    height: max-content;
+    list-style-type: none;
+    background: rgb(233, 233, 233);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 1px 5px 9px 1px black;
+    animation-iteration-count: 1;
+    animation-duration: 1.1s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-name: deployarrow;
+}
+
+.deployableMenuCommonUser > ul > li,
+.deployableMenuAdmin > ul > li {
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.deployableMenu > ul > li:hover {
+    background-color: rgb(255, 255, 255, 0.2);
+}
+
+li > a{
+    width: 100%;
+}
+
+
+@keyframes deployarrow {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
+
+@media screen and (max-width: 960px) {
+  
+}
+

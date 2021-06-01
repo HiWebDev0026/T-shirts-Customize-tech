@@ -100,7 +100,7 @@ function App({location}) {
               }catch(err) {
                 
                   dispatch(postUser(userToPost));
-                  alert(`Welcome to our website ${name}`)
+                  /* alert(`Welcome to our website ${name}`) */
                   
 
               }
