@@ -18,7 +18,16 @@ const config = {
         botAvatar: (props) => <Avatar {...props}/>,
         userAvatar: (props) => <Avatar {...props} isUser={true}/>
     },
-    
+    customStyles: {
+        // Overrides the chatbot message styles
+        botMessageBox: {
+            backgroundColor: "rgba(125, 125, 125)",
+        },
+        // Overrides the chat button styles
+        chatButton: {
+          backgroundColor: "#ffb627",
+        },
+    },
     initialMessages: [createChatBotMessage(`Hi! How can we help?`, {widget: 'options'})],
     widgets: [
         {
