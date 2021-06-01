@@ -31,7 +31,7 @@ class ActionProvider {
 
     /*---------------------------Contact Info----------------------------------- */
     handleAddress = ()=>{
-        const message = this.createChatBotMessage('Great! Our address is Fake Street 123, dept. 8', {widget: 'default'});
+        const message = this.createChatBotMessage('Great! Our address is Fake Street 123, dept. 8');
         this.addMessageToState(message);
     }
 
@@ -41,7 +41,7 @@ class ActionProvider {
     }
 
     handlePhone = ()=>{
-        const message = this.createChatBotMessage('Sure! Our Phone number is +541123581321');
+        const message = this.createChatBotMessage(`Sure! Our Phone number is +541123581321`);
         this.addMessageToState(message);
     }
 
@@ -82,7 +82,7 @@ class ActionProvider {
     }
     
     handleCalculateSize = ()=>{
-        const message = this.createChatBotMessage("If your not sure which is your size, click the table below", {widget:'calculateSize'});
+        const message = this.createChatBotMessage("If your not sure which is your size, check the table below", {widget:'calculateSize'});
         this.addMessageToState(message);
     }
 

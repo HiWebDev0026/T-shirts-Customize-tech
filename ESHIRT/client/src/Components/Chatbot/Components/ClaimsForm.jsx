@@ -6,13 +6,13 @@ function ClaimsForm() {
     return (
         <div className={Style.form}>
             <form action="https://formsubmit.co/e.shirt2021@gmail.com" method="POST" >
-				<div class="fields" className={Style.boxForm}>
-				<div class="field half" className={Style.divForm}><input type="text" name="name" placeholder="Name" className={Style.inputForm} /></div>
-				<div class="field half"className={Style.divForm}><input type="email" name="email" placeholder="Email" /></div>
-				<div class="field"className={Style.divForm}><textarea name="message" placeholder="Message" rows="6"></textarea></div>
+				<div className={Style.boxForm}>
+				<div className={Style.divForm}><input type="text" name="name" placeholder="Name" className={Style.inputForm} /></div>
+				<div className={Style.divForm}><input type="email" name="email" placeholder="Email" className={Style.inputForm2} /></div>
+				<div className={Style.divForm}><textarea name="message" placeholder="Message" rows="6" className={Style.inputForm2} ></textarea></div>
 				</div>
-				<ul class="actions special">
-					<li><input type="submit" value="Send Message" /></li>
+				<ul className={Style.formUl}>
+					<li className={Style.formLi}><input className={Style.formBtn} type="submit" value="Send Message" /></li>
 				</ul>
 			</form>
         </div>
