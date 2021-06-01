@@ -36,7 +36,10 @@ class ActionProvider {
         const message = this.createChatBotMessage("Doubts about shirts?", {widget: 'shirts'});
         this.addMessageToState(message);
     }
-
+    handleHumans = () => {
+        const message = this.createChatBotMessage("You want to talk to a human? If so, send an e-mail to e.shirt2021@gmail.com");
+        this.addMessageToState(message);
+    }
 
     addMessageToState = (messages) => {
         this.setState((state) => ({

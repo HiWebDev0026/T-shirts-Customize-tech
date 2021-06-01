@@ -66,6 +66,9 @@ const config = {
             widgetName: "understanding",
             widgetFunc: (props) => <Understanding {...props} />,
         },
+        {
+            widgetName: "humans"
+        },
     ]
 }
 
