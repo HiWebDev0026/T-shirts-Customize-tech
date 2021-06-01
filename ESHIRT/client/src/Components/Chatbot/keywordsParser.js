@@ -19,8 +19,12 @@ const options = [
     "contact info", "purchase", "purchases", "design", "complaints", "behaivor", "report"
 ]
 
-const lists = [hellows, byes, shirts, humans, options]
-const keywords = ["hellows", "byes", "shirts", "humans", "options"]
+const payments = [
+    "mercado", "pago", "discount", "shipping", "amount", "payment"
+]
+
+const lists = [hellows, byes, shirts, humans, options, payments]
+const keywords = ["hellows", "byes", "shirts", "humans", "options", "payments"]
 
 const checkMessageInList = (wordList, message) => {
     
