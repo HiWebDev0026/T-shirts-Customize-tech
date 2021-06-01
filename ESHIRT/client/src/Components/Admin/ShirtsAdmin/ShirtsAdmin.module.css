@@ -86,12 +86,14 @@
 }
 .Btn1{
     transition: ease-in 0.3s;
+    border-radius: 3vh;
 }
 .Btn1:hover{
     background-color: red;
     color: white;
     box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
     top: -1vh;
+    border-radius: 3vh;
 }
 .Btn3{
     display: flex;
