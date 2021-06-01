@@ -25,9 +25,9 @@ export default function OrderDetail(props) {
 
     return(
         isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
-        
-        <div className={Style.Order}>
-            <h2>Order {orderId} Detail</h2>
+        <div className={Style.Sales}>
+        <div className={Style.Sales}>
+            <h2 className={Style.TitleSale}>Order {orderId} Detail</h2>
             <table>
                 <tr>
                     <th >Id</th>
@@ -52,10 +52,13 @@ export default function OrderDetail(props) {
                     :<h1>No details</h1>
                 }
             </table>
-            <h3>Total to pay: {orderDetail.reduce((a,c)=>a+c.amount*c.price,0)}</h3>
-            {/* <button onClick={handleRefresh}>Refresh</button> */}
-            <NavLink to='/sales'>
-                <button>Go back to orders</button>
+            <div>
+            <h3 className={Style.TitleSale1}>Total to pay: {orderDetail.reduce((a,c)=>a+c.amount*c.price,0)}</h3>
+            </div>
+           
+        </div>
+        <NavLink to='/sales'>
+                <button className={Style.BtnChange1}>Go back to orders</button>
             </NavLink>
         </div>
     )

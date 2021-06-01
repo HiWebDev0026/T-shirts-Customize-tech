@@ -39,6 +39,18 @@
   align-content: center;
   flex-wrap:  wrap ;
 }
+.Detail{
+  background-color: white;
+  color: black;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.Detail:hover{
+  background-color: black;
+  color: white;
+}
+
 
 .Btn3{
     display: flex;

@@ -1,12 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-.Order{
+.Sales{
     color: black;
     font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 
-.Order h3{
+.TitleSale{
     color: black;
-    font-weight: 500;
+    font-size: 250%;
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+}
+.TitleSale1{
+    display: flex;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 150%;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+}
+
+.BtnChange1{
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+    transition: ease-in 0.3s;
+}
+.BtnChange1:hover{
+    border-radius: 10px;
+    background-color: black;
+  color: white;
 }
