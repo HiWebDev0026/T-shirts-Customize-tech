@@ -21,6 +21,9 @@
     padding:0;
     display: flex;
     justify-content: center;
+    border-top: solid 2px black;
+    padding-top: 3px;
+   
 }
 
 .card img{

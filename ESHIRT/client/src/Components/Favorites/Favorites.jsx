@@ -55,8 +55,8 @@ export default function Favorites (){
                         nextLabel={<HiArrowCircleRight/>}
                         pageCount={pageCount}
                         onPageChange={handlePageClick}        
-                        previousLinkClassName={"pagination__link"}
-                        nextLinkClassName={"pagination__link"}
+                        previousLinkClassName={Style.pagination__link}
+                        nextLinkClassName={Style.pagination__link}
                         disabledClassName={Style.pagination__link__disabled}
                         activeClassName={Style.pagination__link__active}
                         containerClassName={Style.pagination}

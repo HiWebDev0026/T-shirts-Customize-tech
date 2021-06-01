@@ -28,19 +28,21 @@
     cursor: pointer;
     height: vh;
     width: 100%;
-    font-size: 20px;
   }
     
   .pagination__link {
     font-weight: bold;
+    font-size: 15px;
   }
   
   .pagination__link__active a {
     color:#ffb627;
+    font-size: 15px;
   }
   
-  .pagination__link__disabled a {
+  .pagination__link__disabled a  {
     color: grey;
+    font-size: 15px;
     
   }
 

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
+import {RiCloseLine} from "react-icons/ri";
 import swal from 'sweetalert';
 import { useAuth0} from "@auth0/auth0-react";
-
 import Style from './Popup.module.css';
 import {setCartItems,postOrder,putOrder } from '../../Actions/index.js';
 
@@ -75,10 +75,10 @@ export default function Popup (props){
                         <button className={Style.buttonAM} onClick={()=>quantity>1&&setQuantity(quantity-1)}>
                             <GrFormSubtract />
                         </button>
-                        </div>
-                            <button id={props.id} onClick={(e) => handleCartChange(e)}><HiShoppingCart/></button>
+                    </div>
+                            <button id={props.id} onClick={(e) => handleCartChange(e)} className={Style.cart}><HiShoppingCart/></button>
                 </div>
-                <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}>X</button>
+                <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}><RiCloseLine/></button>
             </div>
         </div>
     ):'';

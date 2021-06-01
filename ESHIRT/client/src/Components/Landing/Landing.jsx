@@ -34,11 +34,11 @@ function Landing() {
                 <h2>How you do it?</h2>
                 <p>Creating a T-shirt has never been easier:<br/>
                 <div className={Style.list} >
-                        <div>1.Log in &#128242; <br/></div>
-                        <div>2.Go to design &#9997;&#127996;</div>
-                        <div>3.Choose the features of your t-shirt &#128085;</div>
-                        <div>4.Upload your design &#11014;&#65039;</div>
-                        <div>5.Place your order 🛍️</div>
+                        <div>1.Log in  <br/></div>
+                        <div>2.Go to design </div>
+                        <div>3.Choose the features of your t-shirt </div>
+                        <div>4.Upload your design </div>
+                        <div>5.Place your order </div>
                 </div>
                         You can also shop other users' designs and save them in your favorites 💛<br/>
 
