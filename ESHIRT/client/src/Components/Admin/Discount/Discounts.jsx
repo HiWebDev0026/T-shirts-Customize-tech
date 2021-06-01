@@ -127,9 +127,9 @@ export default function Discounts() {
         <div>
            
             <div className={Style.Title}>
-                <h1>DISCOUNTS</h1>
+                <h1 className={Style.Title1}>DISCOUNTS</h1>
           
-            <select name='day' onChange={handleChange1}>
+            <select className={Style.Order} name='day' onChange={handleChange1}>
           {days.map((temp) => {
             return <option value={temp}>{temp} </option>; //Template
           })}
@@ -140,11 +140,11 @@ export default function Discounts() {
             return <option value={temp}>{temp} </option>; //Template
           })}
         </select>
-        <p>Percentage</p>
-        <input name='percentage' type= 'number' min='0' max='75' placeholder='Choose the %' onChange={handleChange1}/>
-        <button onClick={handleSubmit}>APLY</button>
-        <button onClick={handleReset}>RESET</button>
-        <button onClick={handleDiscount}>CONSULT</button>
+        <p className={Style.Title2}>PERCENTAGE</p>
+        <input className={Style.Percentage} name='percentage' type= 'number' min='0' max='75' placeholder='%' onChange={handleChange1}/>
+        <button className={Style.Btn}  onClick={handleSubmit}>APLY</button>
+        <button className={Style.Btn2} onClick={handleReset}>RESET</button>
+        <button className={Style.Btn1} onClick={handleDiscount}>CONSULT</button>
 {/* 
         {
             <div>
