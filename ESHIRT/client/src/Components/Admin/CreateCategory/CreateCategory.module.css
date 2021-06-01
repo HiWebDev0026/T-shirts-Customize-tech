@@ -7,9 +7,8 @@
 .TitleCategory{
     display: flex;
     justify-content: center;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 500%;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 450%;
 }
 .Categories{
 display: flex;
@@ -17,7 +16,6 @@ justify-content: space-around;
 }
 .Titles{
     font-size: 150% ;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: black;
 }
 .Contenedores{
@@ -25,39 +23,54 @@ justify-content: space-around;
     justify-content: center;
 }
 .Tarjet{
-    border: 2px solid #ffb627;
-    background-color: rgba(255, 200, 80, 0.151);
+    border: 2px solid black;
+    background-color: rgba(252, 218, 29, 0.151);
     border-radius: 5px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+    margin: 1vh;
+    padding: 1vh;
 
     
 }
 .Titles:first-letter {
     text-transform: uppercase;
 }    
-.Btn{
-    background-color: yellowgreen;
-    border-radius: 5px;
-    border-radius: 5px;
-}
 .Btn1{
-    border-radius: 5px;
-}
-.Btn1:hover{
-    background-color: red;
-    color: white;
-}
-.Btn2{
-    border-radius: 5px;
-}
-.Btn2:hover{
-    background-color: rgb(255, 255, 0);
-    border-radius: 5px;
-}
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+    transition: ease-in 0.3s;
+  }
+  
+  
+    .Btn1:hover {
+      background-color: #ffb627;
+      color: black;
+    }
+  
+    .BtnR{
+      background-color: white;
+      color: black;
+      border-radius: 3vh;
+      transition: ease-in 0.3s;
+    }
+  
+    .BtnR:hover{
+      background-color: red;
+      color: white;
+    }
+  
 .Create{
-    font-size: 250%;
+    font-size: 200%;
+    font-family: 'Shadows Into Light', cursive;
     display: flex;
     justify-content: center;
-    color: #ffb627;
+    color: black;
 }
 .Contains{
     display:flex;
@@ -76,10 +89,12 @@ justify-content: space-around;
     display: flex;
     justify-content: space-around;
     border-radius: 5px;
+    transition: ease-in 0.3s;
 }
 .Create2:hover{
     background-color: yellowgreen;
     border-radius: 5px;
+    color: white;
 }
 .ContBtn3{
     display: flex;

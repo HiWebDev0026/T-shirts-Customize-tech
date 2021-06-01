@@ -12,17 +12,12 @@
     padding: 2%;
     font-family: 'Roboto Condensed', sans-serif;
 }
+
 .ShirtsTitle{
     color: black;
     font-family: 'Shadows Into Light', cursive;
 }
-.Shirts{
-    color: black;
-    font-family: 'Roboto Condensed', sans-serif;
-    display: grid;
-    grid-template-columns: repeat(8, 8fr);
-    grid-gap:unset;
-}
+
 .Container{
     display: grid;
     
@@ -89,9 +84,12 @@
 .Btn{
     grid-column: 9;
 }
+.Btn1{
+    transition: ease-in 0.3s;
+}
 .Btn1:hover{
-    background-color: #ffb627;
-    color: black;
+    background-color: red;
+    color: white;
     box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
     top: -1vh;
 }
@@ -102,9 +100,16 @@
 }
 .Detail{
     color: black;
+    font-size: 120%;
+    transition: ease-in 0.3s;
+    font-family: 'Shadows Into Light', cursive;
+   
 }
 .Detail:hover{
-    color: #ffb627;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 150%;
+    font-weight: 500;
+   
 }
 
 .pagination {
@@ -115,19 +120,19 @@
     list-style: none;
     cursor: pointer;
     height: 10vh;
-    width: 100%;
+    width: 60%;
+    flex-wrap:  wrap ;
   }
-    
   .pagination__link {
     font-weight: bold;
+    flex-wrap:  wrap ;
   }
-  
   .pagination__link__active a {
     color: black;
     background: #ffb627;
+    flex-wrap:  wrap ;
   }
-  
   .pagination__link__disabled a {
     color: black;
-    
+    flex-wrap:  wrap ;
   }

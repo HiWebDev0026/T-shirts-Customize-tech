@@ -81,7 +81,7 @@ function handleEdit(e) {
                 </Link>
                 <p className={Style.Titles}>{user.email}</p>
                 <div className={Style.Contenedores}>
-                  <button className={Style.Btn1} value={user.id} onClick={handleEdit}>X</button>
+                  <button className={Style.BtnR} value={user.id} onClick={handleEdit}>Delete</button>
                   <button className={Style.Btn1} value={user.id} onClick={handleNoAdmin}>NO Admin</button>
                 </div>
             </div>
