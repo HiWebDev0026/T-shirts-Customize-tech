@@ -8,15 +8,23 @@ const byes = [
 ]
 
 const shirts = [
-    "shirt size", "shirt color", "shirt image", "shirt design", "color", "what", "shirt", "shirts"
+    "shirt size", "shirt color", "shirt image", "shirt design", "color", "what", "shirt", "shirts", "catalogue"
 ]
 
 const humans = [
     "human", "human being", "talk to", "human help", "claim"
 ]
 
-const lists = [hellows, byes, shirts, humans]
-const keywords = ["hellows", "byes", "shirts", "humans"]
+const options = [
+    "contact info", "purchase", "purchases", "design", "complaints", "behaivor", "report"
+]
+
+const payments = [
+    "mercado", "pago", "discount", "shipping", "amount", "payment"
+]
+
+const lists = [hellows, byes, shirts, humans, options, payments]
+const keywords = ["hellows", "byes", "shirts", "humans", "options", "payments"]
 
 const checkMessageInList = (wordList, message) => {
     

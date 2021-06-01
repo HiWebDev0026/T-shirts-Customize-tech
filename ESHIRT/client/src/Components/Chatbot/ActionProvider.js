@@ -124,6 +124,12 @@ class ActionProvider {
         const message = this.createChatBotMessage("I'm sorry, but I can't understand this :( ", {widget: 'understanding'});
         this.addMessageToState(message);
     }
+    handleNotUserInput = () => {
+        const message = this.createChatBotMessage("Please write some text before sending the message :)");
+        this.addMessageToState(message);
+    }
+
+
     handleHello = () => {
         const message = this.createChatBotMessage("Hi! I'm Shirtbot, let's chat, would you?", {widget: 'hello'})
         this.addMessageToState(message);
@@ -140,7 +146,10 @@ class ActionProvider {
         const message = this.createChatBotMessage("You want to talk to a human? If so, send an e-mail to e.shirt2021@gmail.com");
         this.addMessageToState(message);
     }
-
+    handleOptions = () => {
+        const message = this.createChatBotMessage("Maybe this options can help you!", {widget: 'options'})
+        this.addMessageToState(message);
+    }
     /*---------------------------------------------------------------------------------------------------------- */
 
 
