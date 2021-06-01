@@ -11,7 +11,7 @@ const displayImage = (imgToDisplay, isUser) => {
       height={"45px"}
       style={
         isUser ? 
-          {borderRadius: "100%", backgroundColor: "yellow"} : 
+          {borderRadius: "100%", backgroundColor: "gold"} : 
           {borderRadius: "100%", backgroundColor: "#ffb627"}
         }
     ></img>

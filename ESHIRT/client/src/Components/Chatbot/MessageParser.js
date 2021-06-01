@@ -25,6 +25,8 @@ class MessageParser {
             this.actionProvider.handleBye();
         } else if (parsedMessage === "shirts"){
             this.actionProvider.handleShirts();
+        } else if (parsedMessage === "humans") {
+            this.actionProvider.handleHumans();
         } else {
             this.actionProvider.handleNotUnderstanding();
         }

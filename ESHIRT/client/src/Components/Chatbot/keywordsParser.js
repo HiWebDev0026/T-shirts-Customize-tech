@@ -11,13 +11,17 @@ const shirts = [
     "shirt size", "shirt color", "shirt image", "shirt design", "color", "what", "shirt", "shirts"
 ]
 
-const lists = [hellows, byes, shirts]
-const keywords = ["hellows", "byes", "shirts"]
+const humans = [
+    "human", "human being", "talk to", "human help", "claim"
+]
+
+const lists = [hellows, byes, shirts, humans]
+const keywords = ["hellows", "byes", "shirts", "humans"]
 
 const checkMessageInList = (wordList, message) => {
     
     for (const word of wordList) {
-        if (word.includes(message)) {
+        if (message.includes(word)) {
             return true
         }
     }
