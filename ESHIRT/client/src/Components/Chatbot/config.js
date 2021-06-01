@@ -8,10 +8,26 @@ import Default from './Components/Default';
 import Understanding from './Components/Understanding';
 import Hello from './Components/Hello';
 import Shirts from './Components/Shirts';
-
+import Avatar from './Components/Avatar';
+import Style from './ChatbotSelect.module.css'
 
 const config = {
     botName: 'E-shirt bot',
+    customComponents: {
+        header: () => <div className={Style.header}>E-Shirt Chat Bot</div>,
+        botAvatar: (props) => <Avatar {...props}/>,
+        userAvatar: (props) => <Avatar {...props} isUser={true}/>
+    },
+    customStyles: {
+        // Overrides the chatbot message styles
+        botMessageBox: {
+            backgroundColor: "rgba(125, 125, 125)",
+        },
+        // Overrides the chat button styles
+        chatButton: {
+          backgroundColor: "#ffb627",
+        },
+    },
     initialMessages: [createChatBotMessage(`Hi! How can we help?`, {widget: 'options'})],
     widgets: [
         {

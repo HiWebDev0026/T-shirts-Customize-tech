@@ -8,7 +8,7 @@ const byes = [
 ]
 
 const shirts = [
-    "shirt size", "shirt color", "shirt image", "shirt design", "color", "what",
+    "shirt size", "shirt color", "shirt image", "shirt design", "color", "what", "shirt", "shirts"
 ]
 
 const lists = [hellows, byes, shirts]

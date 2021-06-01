@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+
+.header {
+    font-family: 'Shadows Into Light', cursive;
+    color: #ffb627;
+    background-color: black;
+    font-size: 28px;
+    border-radius: 5px;
+    padding-left: 5%;
+}
+
+.shadowsFamily {
+    font-family: 'Shadows Into Light', cursive;
+    color: #ffb627;
+    background-color: black;
+}
+
+.robotoFamily {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #ffb627;
+    background-color: black;
+}
+
+.LinkMessage {
+    color: '#ffb627'; 
+    background-color: 'white';
+    border-radius: '10px';
+    padding: '10px';
+    border: '2px solid #ffb627';
+}
+
 .container{
     position: fixed;
     top: 7%;
