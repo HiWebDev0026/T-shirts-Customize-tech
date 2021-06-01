@@ -61,10 +61,10 @@ function sortByDate2(a, b) {
   return 0;}
 
   let sales = filtered.length > 0 ? filtered : sale;
-  let statusSales= ['By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED','CANCELED BY ADMIN'];
-  let statusSales2= ['status',  'DISPATCHED', 'DONE', 'CANCELED BY ADMIN'];
+  let statusSales= ['Filter By Status', 'CART', 'PENDING', 'APPROVED', 'DISPATCHED', 'DONE', 'CANCELED','CANCELED BY ADMIN'];
+  let statusSales2= ['Status To Change',  'DISPATCHED', 'DONE', 'CANCELED BY ADMIN'];
   
-  let idsUsuarios= ['By User ID']
+  let idsUsuarios= ['Filter By User ID']
   sale.map((id) =>{
      if(idsUsuarios.indexOf(id.userId) === - 1){idsUsuarios.push(id.userId)}
   })
@@ -114,7 +114,7 @@ function sortByDate2(a, b) {
         timer: 2500,
         padding: "0.75rem"
         });
-        e.target.value= "status"
+        e.target.value= "Status To Change"
       console.log(sale[index-1].userId)
       let user= await axios.get(`http://localhost:3001/user/${sale[index-1].userId}`, {responseType: 'json', headers: {
         Authorization: `Bearer ${localStorage.currentToken}`
@@ -129,7 +129,7 @@ function sortByDate2(a, b) {
         }
       })
       
-    };e.target.value= "status"})}
+    };e.target.value= "Status To Change"})}
 //////////PAGINATION////////////////////////////////////////////////////////////////
     const INITIAL_PAGE= 8;
     const offset = currentPage * INITIAL_PAGE;
@@ -141,19 +141,19 @@ function sortByDate2(a, b) {
     return(
         !isAdmin ? (<ErrorNoAdminPage />) : <div className={Style.Sales}>
         <div>
-          <h2>Orders</h2>
-          <select onChange={handleOrder} className= 'options'>
-  <option value =''>BY PRICE</option>
+        <h2 className={Style.SalesTittle}>SALES</h2>
+          <div className={Style.Sales1}>
+          
+          <select onChange={handleOrder}>
+  <option value =''> ORDER BY PRICE</option>
   <option value ='STRENGTHUP'>PRICE+</option>
   <option value ='STRENGTHDN'>PRICE-</option>
 </select>
 <select onChange={handleOrder} className= 'options'>
-  <option value =''>BY DATE</option>
+  <option value =''> ORDER BY DATE</option>
   <option value ='sortByDate'>DATE +</option>
   <option value ='sortByDate2'>DATE -</option>
 </select>
-<div className="searchs">
-<h2>FILTER</h2>
         <select onChange={handleFilter}className="type1">
           {statusSales.map((temp) => {
             return <option value={temp}>{temp} </option>; //Template
@@ -165,13 +165,16 @@ function sortByDate2(a, b) {
           })}
         </select>
  </div>
-<h2>MODIFY THE STATUS</h2>
+ <h2 className={Style.Sales2}>MODIFY THE STATUS</h2>
+ <div className={Style.Sales2}>
+
  <input name = 'name' className= 'name' placeholder='Write the id number' onChange={handleChange1} />
  <select onChange={handleEdit}className="type1">
           {statusSales2.map((temp) => {
            return <option value={temp}> {temp} </option>; //Template
           })}
         </select>
+        </div>
           <table id="table-to-xls">
               <tr>
               <th >Id</th>
@@ -203,7 +206,7 @@ function sortByDate2(a, b) {
               }
           </table>
           <div>
-          <h4>Total sales: ${sales.reduce((a,c)=>a+c.total_price,0)}</h4>
+          <h4 className={Style.Sales3}>Total sales: ${sales.reduce((a,c)=>a+c.total_price,0)}</h4>
           <div>
             <button onClick={handleRefresh}>Refresh</button>
           </div>
