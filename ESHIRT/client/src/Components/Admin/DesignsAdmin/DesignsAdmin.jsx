@@ -69,8 +69,11 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
 
     return(
       
-      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+      <div className={Style.General}>
+      <div className={Style.General}>
         <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
+        
         <select onChange={handleOrder} className={Style.Options}>
           <option  value="">ORDER</option>
           <option value="AZ">AZ</option>
@@ -96,13 +99,8 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
       : (<p>Desings not found</p>)}
       
         </div> 
-        <NavLink to='recycleBinDesigns'>
-        <h5 className={Style.Btn2}>UNAPPROVED DESIGNS</h5>
-    </NavLink>  
-    <NavLink to='buy_authorize'>
-        <h5 className={Style.Btn4}>BUY AUTHORIZE DESIGNS</h5>
-    </NavLink>  
-    <div className={Style.pages}>
+      
+    <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -115,9 +113,18 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
                         containerClassName={Style.pagination}
                     />  
                 </div>
-        <NavLink to='home_admin'>
-        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+                <div className={Style.Btn}>
+                <NavLink to='recycleBinDesigns'>
+        <h5 className={Style.Btn3}>UNAPPROVED DESIGNS</h5>
     </NavLink>  
+    <NavLink to='buy_authorize'>
+        <h5 className={Style.Btn3}>BUY AUTHORIZE DESIGNS</h5>
+    </NavLink>  
+        <NavLink to='home_admin'>
+        <h4 className={Style.Btn4}>CONTROL PANEL</h4>
+    </NavLink>  
+    </div>
+        </div>
         </div>
     )
 }
