@@ -20,13 +20,17 @@ align-items: center;
 }
 
 .Tarjet{
-    border: 2px solid #ffb627;
-    background-color: rgba(255, 243, 80, 0.151);
+    border: 2px solid black;
+    background-color: rgba(252, 218, 29, 0.151);
     border-radius: 5px ;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     align-content: center;
     flex-wrap:  wrap ;
+    margin: 1vh;
+    padding: 5vh;
 }
 .Users{
     display: grid;
@@ -34,6 +38,30 @@ align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
 }
+.Btn1{
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+    transition: ease-in 0.3s;
+  }
+  
+  
+    .Btn1:hover {
+      background-color: #ffb627;
+      color: black;
+    }
+  
+    .BtnR{
+      background-color: white;
+      color: black;
+      border-radius: 3vh;
+      transition: ease-in 0.3s;
+    }
+  
+    .BtnR:hover{
+      background-color: red;
+      color: white;
+    }
 .ContBtn3{
     display: flex;
     justify-content: center;

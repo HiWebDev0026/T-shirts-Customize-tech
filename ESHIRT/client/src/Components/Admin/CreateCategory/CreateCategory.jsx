@@ -66,7 +66,7 @@ export default function CreateCategory (){
 
     
  function handleDelete (e) {
-    //   if(categories.shirts[0].latestPrice){return alert("no se puede ejecutar")}
+    
     swal({
         title: "ARE YOU SURE?",
         text: "The category is going to delete definitely",
@@ -98,7 +98,7 @@ export default function CreateCategory (){
         return (
         <div>
             <input type='text' value={change} placeholder='type new name' onChange={(e)=> setChange(e.target.value)}/>
-            <input className={Style.Btn} type='submit' onClick={handleEdit}/>
+            <input className={Style.Btn1} type='submit' onClick={handleEdit}/>
             <button onClick={(e)=>setEditButtonTarget(false)}>Done</button>
         </div>
         )
@@ -116,7 +116,7 @@ export default function CreateCategory (){
         isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
         <div className={Style.general}>
             <div>
-                <h1 className= {Style.TitleCategory}>Categories</h1>
+                <h2 className= {Style.TitleCategory}>Categories</h2>
                 <div className={Style.Categories}>
                     {
                         categories.length>0?
@@ -124,8 +124,8 @@ export default function CreateCategory (){
                         return <div className={Style.Tarjet} key={category.id}>
                                     <p className={Style.Titles}>{category.name}</p>
                                     <div className={Style.Contenedores}>
-                                    <button className={Style.Btn1} value={category.id} onClick={handleDelete}>X</button>
-                                    <button className={Style.Btn2} value={category.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>Edit</button>
+                                    <button className={Style.BtnR} value={category.id} onClick={handleDelete}>Delete</button>
+                                    <button className={Style.Btn1} value={category.id} onClick={(e)=>setEditButtonTarget(parseInt(e.target.value))}>Edit</button>
                                     {editButtonTarget === category.id && showEditbutton()}
                                     </div>
                             </div>

@@ -65,10 +65,6 @@ shirts.map((shirt) => {
       function getShirtId(e) { 
         dispatch(getShirtById(e.target.value));
       };
-      
-      // useEffect(() => {setMax(shirts.length - 10); setPage(0);}, [count]);
-      // const nextPage = () => { page < max && setPage(page + 10); };
-      // const prevPage = () => { page > 0 && setPage(page - 10); };
     
       const INITIAL_PAGE= 8;
       const offset = currentPage * INITIAL_PAGE;
@@ -84,8 +80,8 @@ shirts.map((shirt) => {
         <table id="table-to-xls">
         <div id='tableShirts'>
             <br/>
-            <tr>
-            <div className={Style.Shirts} >
+            <tr className={Style.Container}>
+            <div className={Style.Tarjet} >
              <th className={Style.Title1}> Id</th>
               <th className={Style.Title2}> Name</th>
               <th className={Style.Title3}> Color</th>
@@ -110,7 +106,7 @@ shirts.map((shirt) => {
               <th className={Style.Titles6}> {shirt.score}</th>
               <th className={Style.Titles7}> {shirt.public}</th>
               <th className={Style.Titles8}> {shirt.created_by_user}</th>
-              <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>X</button></th>
+              <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Delete</button></th>
               <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId} className={Style.Detail}>Detail</NavLink>
               </div>
                </tr>
@@ -120,8 +116,7 @@ shirts.map((shirt) => {
       ) 
       : (<p>Shirts not found</p>)}
       </table>
-      <br />
-      <div>
+      
       <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className="download-table-xls-button"
@@ -129,8 +124,10 @@ shirts.map((shirt) => {
                     filename="shirtsxls"
                     sheet="shirtsxls"
                     buttonText="Download as XLS"/>
-      </div>
-      <div className={Style.pages}>
+      
+     
+      
+      <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -143,15 +140,15 @@ shirts.map((shirt) => {
                         containerClassName={Style.pagination}
                     />  
                 </div>
-      {/* <div className={Style.Buttons}>
-          <button onClick={prevPage} className="buttonPrev">{" "}PREV{" "}</button>
-          <button onClick={nextPage} className="buttonNext">{" "}NEXT{" "}</button>
-        </div> */}
+                
+      
+      </div>
+      
 
-<NavLink to='home_admin'>
+ 
+    <NavLink to='home_admin'>
 <h4 className={Style.Btn3}>CONTROL PANEL</h4>
-    </NavLink>  
-    </div>
+    </NavLink> 
         </div>
     );
 };
