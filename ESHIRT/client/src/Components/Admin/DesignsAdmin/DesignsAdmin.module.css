@@ -1,53 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
 
 .Designs{
-    display: grid;
+    display: flex;
     color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-family: 'Roboto Condensed', sans-serif;
     justify-content: center;
-    grid-template-columns: repeat(6, 3fr);
-    grid-gap: 5px;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
 }
 .Title{
-    display: grid;
-    justify-content: center;
-    color: #ffb627;
-}
-.Btn2{
-    color: red;
-    justify-content: center;
-}
-.Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
     color: black;
+    font-family: 'Shadows Into Light', cursive;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
+    font-size: 250%;
+}
+.Btn{
+    font-family: 'Shadows Into Light', cursive;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
+}
+.Btn3{
+    display: flex;
+    justify-content: center;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
+    font-size: 150%;
+}
+.Btn3:hover{
+    display: flex;
+    justify-content: center;
+    color: #ffb627;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
+    font-size: 150%;
 }
 .Btn4{
-    color:burlywood;
+    display: flex;
+    font-family: 'Roboto Condensed', sans-serif;
     justify-content: center;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
 }
 .Tarjet{
     border: 2px solid #ffb627;
     background-color: rgba(255, 252, 80, 0.151);
     border-radius: 5px ;
-    display: grid;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
     
 }
 .Titles2{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
 }
 .Titles2:hover{
     background-color: lightblue;
 }
 .General{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;  
 }
 .Options{
-    display: grid;
+    display: flex;
     justify-content: center;
     margin-left: 43%;
     margin-right: 43%;
