@@ -197,7 +197,7 @@ function sortByDate2(a, b) {
                                   <th> {s.userId}</th>
                                   <th>
                                     <NavLink to={`order_detail/${s.id}`}>
-                                      <button id={s.id}>Details</button>
+                                      <button className={Style.Detail} id={s.id}>Details</button>
                                     </NavLink>
                                   </th>
                             </tr>

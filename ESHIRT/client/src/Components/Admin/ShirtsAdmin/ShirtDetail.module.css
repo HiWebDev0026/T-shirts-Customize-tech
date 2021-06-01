@@ -80,13 +80,14 @@ font-size: 150%;
     font-family: 'Shadows Into Light', cursive;
     font-size: 150%;
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: rgb(175, 175, 175);
-    border-radius: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
 
 }
 .BtnChange1:hover{
-    border-radius: 10px;
-    background-color: rgb(73, 72, 72);
+    border-radius: 3vh;
+    background-color: black;
     color: white;
 }
 .Buttons{
