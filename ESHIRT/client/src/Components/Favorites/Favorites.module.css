@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 .container{
-    border: solid 2px red;
     width:100%;
     height:100vh;
     display: flex;
     flex-direction: column;
-    text-align: center;    
+    text-align: center;  
+}
+
+.container h1{
+  font-family: 'Shadows Into Light', cursive;
 }
 
 .info{
@@ -12,15 +18,17 @@
     justify-content: center;
 }
 
+
 .pagination {
     display: flex;
     padding: 0;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     list-style: none;
     cursor: pointer;
-    height: 10vh;
+    height: vh;
     width: 100%;
+    font-size: 20px;
   }
     
   .pagination__link {
@@ -28,15 +36,15 @@
   }
   
   .pagination__link__active a {
-    color: white;
-    background: coral;
+    color:#ffb627;
   }
   
   .pagination__link__disabled a {
-    color:white;
+    color: grey;
     
   }
 
   h1{
-    color:white;
+    color: black;
+    font-size: 40px;
   }

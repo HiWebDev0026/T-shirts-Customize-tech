@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
+import { HiArrowCircleLeft,HiArrowCircleRight } from "react-icons/hi";
+import { GiCircle } from "react-icons/gi";
 import FavoritesItems from './FavoritesItems.jsx';
 import {getShirts,postFavorite,getFavorites} from '../../Actions/index.js';
 import { useAuth0} from "@auth0/auth0-react";
@@ -26,7 +28,7 @@ export default function Favorites (){
  
     const favorites = useSelector((state)=>state.shirtReducer.shirtsToFavorites);
 
-    const INITIAL_PAGE= 4;
+    const INITIAL_PAGE= 5;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(favorites.length / INITIAL_PAGE);
     
@@ -40,7 +42,7 @@ export default function Favorites (){
     
     return(
         <div className={Style.container}>
-                <h1>Your favorites!</h1>
+                <h1>Your ❤s</h1>
                 <div className={Style.info}>
                 {favorites.length>0?
                 favorites.slice(offset, offset + INITIAL_PAGE).map(favorite => 
@@ -49,8 +51,8 @@ export default function Favorites (){
                 </div>
                 <div className={Style.pages}>
                     <ReactPaginate
-                        previousLabel={'← Previous'}
-                        nextLabel={'Next →'}
+                        previousLabel={<HiArrowCircleLeft/>}
+                        nextLabel={<HiArrowCircleRight/>}
                         pageCount={pageCount}
                         onPageChange={handlePageClick}        
                         previousLinkClassName={"pagination__link"}

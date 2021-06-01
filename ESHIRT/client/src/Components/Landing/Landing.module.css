@@ -28,6 +28,7 @@
     background-color: white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .picture2 video {
@@ -61,10 +62,8 @@
    height: 90px;
    width: 330px;
    opacity: 0.9;
-   
    letter-spacing: 8px;
    font-family: 'Shadows Into Light', cursive;
-   /* border:solid 2px red; */
 }
 
 
@@ -116,8 +115,6 @@
 }
 
  .home {
-
-     
      margin: 0 auto;
      position: relative;
      background-color: black;
@@ -137,21 +134,16 @@
 
  .section3{
     color:#ffb627;
-    top:45%;
+    top:50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 60px;
-    top:40%;
-    right:0px;
     font-weight: 900;
     height: 90px;
     width: 380px;
-    opacity: 0.9;
-    margin-bottom: 10px;
     letter-spacing: 8px;
     font-family: 'Shadows Into Light', cursive;
-    /* border:solid 2px red; */
  }
 
  .section4{

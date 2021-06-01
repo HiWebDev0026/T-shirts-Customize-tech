@@ -3,7 +3,6 @@ import {useDispatch} from 'react-redux';
 import {HiShoppingCart} from "react-icons/hi";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
-
 import {deleteFavorite} from '../../Actions/index.js';
 import {MdDeleteForever} from "react-icons/md";
 import Popup from './Popup.jsx';
@@ -34,7 +33,7 @@ export default function FavoritesItems ({favorite}) {
           <main>
             <img src={favorite.print} alt={favorite.name}/>
             <h5 className={Style.name}>{favorite.name}</h5>
-            <h5 className={Style.price}>${favorite.price}</h5>
+            <h4 className={Style.price}>${favorite.price}</h4>
             <div className={Style.btns}>
                 <button id={favorite.id} onClick={(e) => handleDelete(e, favorite.id)} ><MdDeleteForever/></button>
                 <button id={favorite.id} onClick={()=>setButtonPopup(true)} ><HiShoppingCart/></button>

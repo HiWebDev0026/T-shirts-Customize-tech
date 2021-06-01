@@ -55,7 +55,7 @@ function Landing() {
                     Your browser does not support the video tag.
                 </video>
                <div className={Style.section3}>
-               top-rated
+               Top-Rated
                </div>
            </div>
            <section className={Style.sectionTwo}>

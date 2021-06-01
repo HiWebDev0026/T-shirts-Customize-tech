@@ -11,8 +11,8 @@ export default function Home (){
     return(
         <div className={Style.generalHome}>
             <div>
-            <h1>unique personalities deserve unique t-shirts</h1>
-            <ImageSlider/>
+                <h1>unique personalities deserve unique t-shirts</h1>
+                <ImageSlider/>
             </div>
             <div>
 
