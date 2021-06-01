@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+
   width: 60%;
   
 }
@@ -26,12 +26,11 @@
 }
 
 .container1{
-    display: flex;
-    height: max-content;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    background-color: transparent;
-    justify-content: space-between;
+    display: flex;  
+    min-height: 100vh;
+    height: auto;
+    max-width: 100vw;
+    width: auto;
 }
 
 .pages{

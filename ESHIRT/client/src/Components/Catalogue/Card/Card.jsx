@@ -116,12 +116,13 @@ function Card({ title, score, price, size, model, color, image, id }) {
       }
 
   return (
-    <div>
+    <div  >
       <div className={style.wrapper}>
-        <a onClick={handleScore} href={`#popup${id}`}>
+        <a onClick={handleScore} href={`#popup${id}`} >
           <div className={style.container}>
             <div className={style.top}>
-              <img className={style.image} src={image} />
+            <img className={style.image} src={image} />
+                       
             </div>
                 <div className={style.details}>
                   <a>{title}</a>                 

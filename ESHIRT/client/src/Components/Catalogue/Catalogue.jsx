@@ -14,7 +14,7 @@ import { SideCart } from "../Cart/SideCart";
 
 // {title, price, width, height, model, color}
 
-const INITIAL_PAGE= 10;
+const INITIAL_PAGE= 9;
 
 function Catalogue(){
     
