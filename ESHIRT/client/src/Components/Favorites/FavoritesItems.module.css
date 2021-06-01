@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 .card{
-    border: solid 2px white;
+    /* border: solid 2px black; */
+    box-shadow: 2px 2px 2px 2px rgb(228, 227, 227);
     width: 200px;
-    height: 310px;
-    margin:2px;
+    height: 270px;
+    margin:6px;
     border-radius: 5px;
 }
 
+.card:hover{
+    width: 210px;
+    height: 280px;
+}
+
 .name{
-    color:white;
-    font-size: 20px;
+    font-size: 15px;
     margin:0;
     padding:0;
     display: flex;
@@ -16,24 +24,32 @@
 }
 
 .card img{
-    width: 100%;
-    height:auto;
+    width: 80%;
 }
 
 .card h5{
-    color: white;
+    color: black;
+    font-weight: 900;
+    font-family: 'Roboto Condensed', sans-serif;
 } 
 
+.card h4{
+    color: black;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 .btns button{
-    font-size: 7px;;
+    font-size: 16px;;
     width: 30px;
-    height: 15px;;
+    height: 20px;;
     margin:0;
     margin-right: 2px;
-    background-color: black;
-    border: solid 2px white;
+    background-color: transparent;
+    border: solid 2px transparent;
     border-radius: 5px;
-    color:white;
+    color:grey;
 }
 
 .btns button:hover{

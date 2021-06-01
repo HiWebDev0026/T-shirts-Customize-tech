@@ -41,41 +41,67 @@
 
 .slider .swiper-slide img {
   display: block;
-  width: 75%;
-  height: 70%;
+  width: 200px;
+  height: 220px;
   object-fit: cover;
   /* border: solid 2px red; */
 }
 
 .design h3, .catalogue h3{
-    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 1px;
     font-family: 'Shadows Into Light', cursive;
     font-size: 25px;
+    margin-bottom: 110px;
 }
 
-.design h4, .catalogue h4{
-    color: white;
-    font-family: 'Roboto Condensed', sans-serif;
+.design h3{
+    color:black;
+}
+.catalogue h3{
+    color:#ffb627;
+    height: 49px;
+    margin-top: 10px;
 }
 
 .pic1{
-    background-image: url('https://images.unsplash.com/photo-1593726856932-b5b9a661ed46?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fHRzaGlydHN8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
-       
+    background-image: url('https://images.unsplash.com/photo-1557431968-2c43c8e896e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5MDY4OTQ0NXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
+    opacity: 0.85;
 }
 
 .pic2 {
-    background-image:url('https://images.unsplash.com/photo-1519722417352-7d6959729417?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fHRzaGlydHN8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background-image:url('https://images.unsplash.com/photo-1591480185595-2bb4e4b27ff4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTU5fHx0JTIwc2hpcnRzfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    opacity: 0.80;
 }
 
 .pic1, .pic2{
-    margin-top: 30px ;
     border-radius: 5px; 
-    width: 75%;
-    height: 70%;
+    width: 200px;
+    height: 220px;
     background-size: cover; 
-    opacity: 0.7;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     padding-bottom: 10px;
+    line-height: 110%;
+}
+
+.pic1 button{
+    border: solid 2px #ffb627;
+    border: solid 2px black;
+    background-color: #ffb627;
+    border-radius: 5px;
+    color: black;
+    font-weight: 800;
+}
+
+.pic2 button{
+    border: solid 2px black;
+    background-color: #ffb627;
+    border-radius: 5px;
+    color: black;
+    font-weight: 800;
+}
+
+.pic1 button:hover, .pic2 button:hover{
+    background-color: white;
+    color:black;
 }

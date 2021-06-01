@@ -9,6 +9,8 @@
 }
 
 .generalHome h1{
+margin-top:60px;
+margin-bottom:0px;
 color: black;
 display: flex;
 justify-content: center;
