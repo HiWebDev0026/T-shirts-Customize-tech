@@ -236,7 +236,6 @@
 }
 .popup_inner {
   position: relative;
-  justify-content: space-around;
   bottom: -100vw;
   right: -100vh;
   display: flex;
@@ -246,13 +245,15 @@
   background-color: rgb(255, 255, 255);
   -webkit-backdrop-filter: blur (15px);
   backdrop-filter: blur (15px);
-  transform: rotate(
+  transform: rotate( 
 0.5turn
 );
   transition: 0.64s ease-in-out;
   padding: 0;
   flex-direction: column;
   flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
 
   
 
@@ -260,10 +261,9 @@
 .popup__photo {
   display: flex;
   justify-content: top;  
-
-  width:30%;
+  width:75%;
   height: 70%;
-  overflow: hidden;
+
   /* border-right: thick solid #0c0c0c; */
 }
 .popup__photo img {
@@ -454,13 +454,11 @@ input[type="radio"]:checked ~ label {
 }
 
 .stars i {
+  margin-top: 10%;
     font-size: 18px;
     color: #e26c0b
 }
 
-.rating_text {
-    margin-top: 10px
-}
 
 
 
