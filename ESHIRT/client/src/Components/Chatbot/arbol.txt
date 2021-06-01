@@ -1,0 +1,40 @@
+
+introducción: Hi! I'm E-shirt bot, I'm here to answer your questions!
+              Here some options to get us going
+
+
+
+- datos del local{
+    -horarios;
+    -dirección
+    -telefono
+}
+- compras{
+    -con que puedo pagar; 
+    -qué días hay descuentos;
+    -hay costo de envío;
+    -hay envío a todo el país;  
+    -me devuelven mí dinero;
+    -cuantas remeras puedo comprar;
+    -el estado de ultima orden;
+    como se mi talle
+}
+- diseños{
+    - colores disponibles;
+    - qué material tienen las remeras;
+    - cómo hago que mi diseño deje de ser público;
+}
+- reclamos{
+    - no me llegó un mail de confirmación;
+    - me llego una remera equivocada;
+    - no es el talle que pedí;
+    - no es el modelo que pedi;
+    - como devuelvo mi remera
+}
+- reportar comportamiento inadecuado{
+    - vi un comentario ofensivo;
+    - vi una remera con diseño ofensivo;
+}
+- por default?{
+    - quiero hablar con un humano;
+}
