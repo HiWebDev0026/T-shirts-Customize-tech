@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 .wrapper {
-  width: 8vw;
-  height: 30vh;
+  width: 15vw;
+  height: 50vh;
   background: white;
   margin: auto;
   position: relative;
   overflow: hidden;
-  /* border-radius: 10px 10px 10px 10px; */
+  border-radius: 10px 10px 10px 10px;
   box-shadow: 0;
-  transform: scale(0.95);
+  transform: scale(0.98);
   transition: box-shadow 0.5s, transform 0.5s;
+  
+  
 }
 .wrapper:hover {
   transform: scale(1);
-  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+  
 }
 .wrapper .container {
   width: 100%;
@@ -57,12 +59,20 @@
   position: relative;
   float: left;
 }
-.wrapper .container .bottom .left .details {
-  padding: 0.5vh;
-  float: left;
+.details {
+  display: flex; 
+  margin-left: 10%;
   width: calc(70% - 40px);
-  font-size: 2vh;
-  font-family: "Montserrat", sans-serif;
+  font-size: 3vh;
+  font-family: 'Roboto Condensed', sans-serif;
+  
+}
+.price{
+  display: flex; 
+  margin-left: 10%;
+  width: calc(70% - 40px);
+  font-size: 2.8vh;
+  font-family: 'Roboto Condensed', sans-serif;
   
 }
 .wrapper .container .bottom .left .buy {
@@ -102,6 +112,7 @@
   padding: 20px;
   float: right;
   width: calc(70% - 40px);
+
 }
 
 .cart{
