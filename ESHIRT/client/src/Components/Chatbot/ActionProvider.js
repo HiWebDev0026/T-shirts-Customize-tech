@@ -140,7 +140,10 @@ class ActionProvider {
         const message = this.createChatBotMessage("You want to talk to a human? If so, send an e-mail to e.shirt2021@gmail.com");
         this.addMessageToState(message);
     }
-
+    handleOptions = () => {
+        const message = this.createChatBotMessage("Maybe this options can help you!", {widget: 'options'})
+        this.addMessageToState(message);
+    }
     /*---------------------------------------------------------------------------------------------------------- */
 
 
