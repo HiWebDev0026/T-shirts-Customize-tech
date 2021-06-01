@@ -20,7 +20,7 @@ const [count, setCount] = useState([]);
 const [temp, SetTemp] = useState([]);
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
-console.log(shirt)
+
 const [input, setInput] = useState({
     name: '',
     color: '',
@@ -70,11 +70,29 @@ return;}
 return;
 }
 
+function handleStock(){
+    if(shirt.stock === 0){
+        return swal({ 
+            title: 'No stock of', 
+            text: shirt.name,
+            icon: "warning",
+            timer: 3000,
+            padding: "0.75rem"
+            });
+    }
+    swal({ 
+        title: shirt.stock + ' units is your stock of', 
+        text: shirt.name,
+        icon: "success",
+        timer: 3000,
+        padding: "0.75rem"
+        });
+}
+
 function handleConsult(){
     let names=[];
     for(let i = 0 ; i<shirt.categories.length ; i ++){
     names.push(' '+ shirt.categories[i].name)
-
     swal({ 
         title: names, 
         text: "The category",
@@ -117,17 +135,19 @@ function handleEdit(e) {
 }
 
 return(
-    isAdmin === null ? 'LOADING' : isAdmin === false ?  (<ErrorNoAdminPage />) : <div className={Style.General}>
+    isAdmin === null ? 'LOADING' : isAdmin === false ?  (<ErrorNoAdminPage />) : 
+    <div className={Style.Total}>
+        <h2 className={Style.ChangesTitle}>Do you want to change it?</h2>
+    
+    <div className={Style.General}>
+        
 <div className={Style.Tarjet} >
-              <th className={Style.Titles1}> {shirt.id}</th>
-              <th className={Style.Titles2}> {shirt.name}</th>
-              <th className={Style.Titles3}> {shirt.color}</th>
-              <th className={Style.Titles4}> {shirt.model}</th>
-              <th className={Style.Titles5}> {shirt.size}</th>
+              
               <img src={shirt.print} className={Style.Image}/>
               </div>
-              <div className={Style.Changes}>
-              <h5 className={Style.ChangesTitle}>Do you want to change it?</h5>
+             
+             <div className={Style.Change}>
+              
                  <input name = 'name' className= 'name' type = 'text' placeholder= {shirt.name} onChange= {handleChange} required/>
                  <input name = 'color' className= 'color' type = 'text' placeholder= {shirt.color} onChange= {handleChange} required/>
                  <input name = 'model' className= 'model' type = 'text' placeholder= {shirt.model} onChange= {handleChange} required/>
@@ -144,6 +164,8 @@ return(
                  <option  value="">PUBLIC</option>
                  <option value='false'>CANCEL</option>
                  </select>
+                 <h5>STOCK</h5>
+
 
                  <input  type="range" 
                         onChange={handleChange} 
@@ -152,17 +174,22 @@ return(
                         min={0} 
                         max={100} 
                         step={1}></input> <span>{input.stock}</span>
-
+                        <button onClick={handleStock}>CONSULT STOCK</button>
+               </div>
+               
                  <div className={Style.Categories}>
-                        <label className={Style.ChangesTitle} for="categories">Chose the categories of the shirt: </label>
+                        <label className={Style.ChangesCategory} for="categories">Choose the categories of the shirt: </label>
                         <select className={Style.Categories1} onChange={handleChange1} name="categories">
                             {categories.map((elem, index) => (<option className={Style.Categories1} value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
+                        <button onClick={handleConsult}>CONSULT CATEGORY</button>
                     </div>
-                    <button onClick={handleConsult}>CONSULT CATEGORY</button>
-                 <button className={Style.BtnChange} value={shirt.id} type='submit' onClick={handleEdit}>Change</button>      
-                           
                     </div>
+
+                    <div className={Style.BtnChange}>
+                 <button className={Style.BtnChange1} value={shirt.id} type='submit' onClick={handleEdit}>Change</button>      
+                 </div>  
+                   
 <NavLink to='/shirts_admin'>
     <h4 className={Style.Btn3}>SHIRTS</h4>
     </NavLink>  
@@ -170,5 +197,7 @@ return(
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>
+   
+    
 )
 }
