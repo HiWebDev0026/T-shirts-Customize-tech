@@ -1,15 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
+import {Link} from 'react-router-dom';
 import Style from './Btn.module.css';
 import {setCartItems} from '../Actions/cart.js';
-
+import {ReactComponent as DeployIcon} from '../assets/32195.svg';
+import {ReactComponent as UnextendIcon} from '../assets/130906.svg'
+import {useTokenDecode} from '../hooks/tokenDecoding';
 
 const LogoutButton = () => {
-  const { logout } = useAuth0();
+
+  const [deployed, setDeployed] = useState(false);
+  const isAdmin = useTokenDecode(localStorage.currentToken);
+  const { logout, user } = useAuth0();
  /*  const history = useHistory(); */
- const  dispatch= useDispatch();
+  const  dispatch= useDispatch();
+
+  useEffect(()=> {
+    
+    const closeIt = (e)=> {
+      console.log(e.target, e.target.name);
+
+      if(e.target.name === undefined || !e.target.name ) {
+        return setDeployed(false);
+      }
+      if(e.target.name =='ButtonDeploy' || e.target.name =='userForClick') {
+        return setDeployed(prevState => !prevState);
+        
+      }
+
+      
+      
+    }
+    window.addEventListener('click', closeIt)
+
+    return ()=> window.removeEventListener('click', closeIt)
+  }, [])
+
   const unauthRedirections = [
                         '/users', 
                         '/create_user',
@@ -28,18 +56,56 @@ const LogoutButton = () => {
                         '/favorites',
                       ]
   return (
-    <button className={Style.logoutBtn}
-      onClick={() =>{
-        
-         localStorage.removeItem('currentToken')
-         localStorage.removeItem('items')
-         dispatch(setCartItems({}, 'clear'))
-        logout({
-          returnTo: unauthRedirections.includes(window.location.pathname) ? window.location.origin + '/home' : window.location.href,
-        })}
-      }>
-      Log Out
+    <div className={Style.userPanel} name="userForClick">
+    <button className={Style.logoutBtn} name="userForClick" /* onClick={()=> {
+      return !deployed ? setDeployed(true) : setDeployed(false);
+    }} */  >
+      {user.name}
     </button>
+    <button className={Style.deployArrowContainer} name="ButtonDeploy" /* onClick={()=> {
+      return !deployed ? setDeployed(true) : setDeployed(false);
+    }} */  >
+      {!deployed ? <DeployIcon /> : <UnextendIcon />}
+    </button>
+    {deployed && !isAdmin && <div className={Style.deployableMenuCommonUser}>
+      <ul name="listorti">
+        <li onClick={()=> setDeployed(false)}><Link to='/account'>Profile</Link></li>
+        <li><Link to='/userData'>Personal data</Link></li>
+        {/* <li><Link to=''>Purchases</Link></li> */}
+        <li><Link to='/userOrders'>My orders</Link></li>
+        <li onClick={() =>{
+        
+        localStorage.removeItem('currentToken')
+        localStorage.removeItem('items')
+        dispatch(setCartItems({}, 'clear'))
+       logout({
+         returnTo: unauthRedirections.includes(window.location.pathname) ? window.location.origin + '/home' : window.location.href,
+       })}
+     }>LOG OUT</li>
+      </ul>
+      </div>}
+      {
+        deployed && isAdmin && <div className={Style.deployableMenuAdmin}>
+        <ul>
+          <li><Link to='/userDash'>Profile</Link></li>
+          <li><Link to='/users'>User management</Link></li>
+          <li><Link to='/desings_admin'>Shirt designs</Link></li>
+          <li><Link to='/shirts_admin'>Shirts</Link></li>
+          <li><Link to='/recycleBin'>Recycle bin</Link></li>
+          <li><Link to='/discounts'>Discounts</Link></li>
+          <li onClick={() =>{
+          
+          localStorage.removeItem('currentToken')
+          localStorage.removeItem('items')
+          dispatch(setCartItems({}, 'clear'))
+         logout({
+           returnTo: unauthRedirections.includes(window.location.pathname) ? window.location.origin + '/home' : window.location.href,
+         })}
+       }>LOGOUT</li>
+        </ul>
+        </div>
+      }
+    </div>
   );
 };
 

@@ -66,7 +66,7 @@
     
     align-items: center;
     height: 110px;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 90%;
     
 }
@@ -95,8 +95,9 @@
 .navSeparator {
     height: 40%;
     align-self: center;
-    
-    border-right: 0.5px solid black;
+    box-shadow: 1px 1px 10px 4px rgba(1, 87, 61, 0.116);
+    border-right: 1.7px solid black;
+    border-radius: 50%;
 }
 
 
@@ -214,7 +215,9 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 205px;
+    min-width: 245px;
+    width: 30%;
+    max-width: 40%;
     
     
 }
@@ -224,6 +227,39 @@
     padding: 0;
 }
 
+.fav, .cart {
+    
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    box-shadow: 0.1px 0.1px 8px 4px black;
+    /* border: 4px solid rgba(255, 255, 255, 0.411); */
+    background-color: #7dcfc7;
+}
+
+
+.cart svg {
+width: 23px;
+margin: 0 auto;
+transition: width 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.cart:hover > svg {
+    width: 28px;
+}
+
+.fav svg {
+    position: relative;
+    height: auto;
+    width: 23px;
+    top: 5%;
+    margin: 0 auto;
+    transition: width 0.3s cubic-bezier(0.075, 0.82, 0.965, 1);
+}
+
+.fav:hover > svg {
+    width: 29px;
+}
 
 @media screen and (max-width: 940px) {
     .logoContainer {

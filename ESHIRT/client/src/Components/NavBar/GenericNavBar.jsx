@@ -7,6 +7,8 @@ import Login from '../../auth/AuthenticationButton';
 import {ReactComponent as HomeButton} from '../../assets/25694.svg'
 import {ReactComponent as DesignButton} from '../../assets/3456377.svg';
 import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg'
+import {ReactComponent as HeartFavorite} from '../../assets/2107845.svg'
+import {ReactComponent as CartIcon} from '../../assets/879815.svg';
 import logoEShirt from '../../assets/img/E - SHIRT.png'
 import {useWidthCheck} from '../../hooks/widthCheck';
 
@@ -28,8 +30,9 @@ function GenericNavbar() {
             
             
             {width > 960 ? (<div className={Style.loginPanel}><Login className={Style.loginBtn}/>
-            <NavLink className={Style.fav} to='/favorites'>< GrFavorite /></NavLink>
-            <NavLink className={Style.cart} to='/cart'><GrCart /></NavLink></div>) : 
+                <div className={Style.navSeparator} style={{height: '30px'}}></div>
+            <NavLink className={Style.fav} to='/favorites'>< HeartFavorite /></NavLink>
+            <NavLink className={Style.cart} to='/cart'><CartIcon /></NavLink></div>) : 
 
             'responsive'
 
