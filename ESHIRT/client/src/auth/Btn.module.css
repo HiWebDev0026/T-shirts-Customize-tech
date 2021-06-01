@@ -34,6 +34,7 @@
     font-size: 100%;
     width:  min-content;
     display: flex;
+    align-items: center;
     margin-left: 30px;
     margin-right: 10px;
     border-radius: 5px;
@@ -44,7 +45,10 @@
 .deployArrowContainer {
     width: 22px;
     height: 22px;
+    display: flex;
+    align-items: center;
     background: none;
+    margin-left: 3px;
     border: none;
     z-index: 4;
     
@@ -69,11 +73,11 @@
 }
 
 .deployableMenuCommonUser {
-    margin-top: 280px;
+    margin-top: 285px;
 }
 
 .deployableMenuAdmin {
-    margin-top: 400px;
+    margin-top: 405px;
 }
 
 .deployableMenuAdmin > ul, .deployableMenuCommonUser > ul {
@@ -107,7 +111,8 @@
 }
 
 .deployableMenu > ul > li:hover {
-    background-color: rgb(255, 255, 255, 0.2);
+    background-color: rgba(146, 141, 141, 0.781);
+    transform: scaleX(1.1);
 }
 
 li > a{
