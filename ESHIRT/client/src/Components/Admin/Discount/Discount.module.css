@@ -4,23 +4,103 @@
 .General{
     color:black;
     font-family: 'Roboto Condensed', sans-serif;
-    display: grid;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    flex-direction: column;
 }
 .Title{
     color: black;;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
-    display: grid;
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    flex-direction: column;
 }
 .Title1{
     color: black;
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    flex-direction: column;
+    font-size: 350%;
+}
+.Title2{
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    flex-direction: column;
+    font-size: 150%;
+}
+.Percentage{
+    display: flex;
+    align-content: center;
+    flex-wrap:  wrap ;
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+    flex-direction: column;
 }
 .Btn3{
     display: flex;
     justify-content: center;
     color: black;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
+.Btn{
+    transition: ease-in 0.5s;
+    padding: 1vh;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 3vh;
+  }
+  .Btn:hover{
+    background-color: white;
+    color: black;
+  }
+  .Btn1{
+    transition: ease-in 0.5s;
+    padding: 1vh;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+  }
+  .Btn1:hover{
+    background-color: black;
+    color: white;
+  }
+  .Btn2{
+    transition: ease-in 0.5s;
+    padding: 1vh;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+  }
+  .Btn2:hover{
+    background-color: #ffb627;
+    color: white;
+  }
+  
