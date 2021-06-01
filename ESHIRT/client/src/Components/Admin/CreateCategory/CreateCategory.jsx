@@ -34,11 +34,6 @@ export default function CreateCategory (){
 
     }, [errors, categories.length]);
 
-  /*   useEffect(() => {
-        console.log(errors)
-        
-    }) */
-
     function handleSubmit (e) {
         e.preventDefault();
         dispatch(postCategory({'name':category})); 
@@ -64,7 +59,6 @@ export default function CreateCategory (){
             });
     }
 
-    
  function handleDelete (e) {
     
     swal({
@@ -113,7 +107,7 @@ export default function CreateCategory (){
   }
 
     return(
-        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
+        isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div >
         <div className={Style.general}>
             <div>
                 <h2 className= {Style.TitleCategory}>Categories</h2>
@@ -136,7 +130,8 @@ export default function CreateCategory (){
                 </div>
             </div>
 
-            <div className={Style.Contains}>
+        </div>
+        <div className={Style.Contains}>
             <form onSubmit={handleSubmit}>
             <h1 className={Style.Create}>Create new category</h1>
             <div className={Style.ContainCreate} >
@@ -145,8 +140,7 @@ export default function CreateCategory (){
             </div>
             </form>
             </div>
-        </div>
-        <div className={Style.pages}>
+        <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
