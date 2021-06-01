@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-.general {color: black;
+.general {
+    color: black;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    justify-content: center;
 }
 
 .TitleCategory{
@@ -9,17 +15,29 @@
     justify-content: center;
     font-family: 'Shadows Into Light', cursive;
     font-size: 450%;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Categories{
 display: flex;
 justify-content: space-around;
+align-items: center;
+align-content: center;
+flex-wrap:  wrap ;
 }
 .Titles{
     font-size: 150% ;
     color: black;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Contenedores{
     display:flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
     justify-content: center;
 }
 .Tarjet{
@@ -45,6 +63,7 @@ justify-content: space-around;
     color: black;
     border-radius: 3vh;
     transition: ease-in 0.3s;
+    
   }
   
   
@@ -71,13 +90,22 @@ justify-content: space-around;
     display: flex;
     justify-content: center;
     color: black;
+    align-content: center;
+    flex-wrap:  wrap ;
+    justify-content: center;
 }
 .Contains{
     display:flex;
     justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    justify-content: center;
 }
 .ContainCreate{
     display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
     justify-content: center;
 }
 .Create1{
@@ -88,13 +116,19 @@ justify-content: space-around;
 .Create2{
     display: flex;
     justify-content: space-around;
-    border-radius: 5px;
+    border-radius: 3vh;
     transition: ease-in 0.3s;
+    align-content: center;
+    flex-wrap:  wrap ;
+    justify-content: center;
+    color: white;
+    background-color: black;
+
 }
 .Create2:hover{
-    background-color: yellowgreen;
-    border-radius: 5px;
-    color: white;
+    background-color: white;
+    border-radius: 3vh;
+    color: black;
 }
 .ContBtn3{
     display: flex;

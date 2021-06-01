@@ -83,12 +83,23 @@ font-size: 150%;
     background-color: white;
     color: black;
     border-radius: 3vh;
-
 }
 .BtnChange1:hover{
     border-radius: 3vh;
     background-color: black;
     color: white;
+}
+.BtnConsult{
+    background-color: black;
+    color: white;
+    border-radius: 3vh;
+    transition: ease-in 0.5s;
+}
+.BtnConsult:hover{
+    background-color: white;
+    color: black;
+    border-radius: 3vh;
+    transition: ease-in 0.5s;
 }
 .Buttons{
     display: flex;

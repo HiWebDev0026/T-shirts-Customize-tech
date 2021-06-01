@@ -174,7 +174,7 @@ return(
                         min={0} 
                         max={100} 
                         step={1}></input> <span>{input.stock}</span>
-                        <button onClick={handleStock}>CONSULT STOCK</button>
+                        <button className={Style.BtnConsult} onClick={handleStock}>CONSULT STOCK</button>
                </div>
                
                  <div className={Style.Categories}>
@@ -182,7 +182,7 @@ return(
                         <select className={Style.Categories1} onChange={handleChange1} name="categories">
                             {categories.map((elem, index) => (<option className={Style.Categories1} value={elem.id} key={index}>{elem.name}</option>))}
                         </select>
-                        <button onClick={handleConsult}>CONSULT CATEGORY</button>
+                        <button className={Style.BtnConsult} onClick={handleConsult}>CONSULT CATEGORY</button>
                     </div>
                     </div>
 
