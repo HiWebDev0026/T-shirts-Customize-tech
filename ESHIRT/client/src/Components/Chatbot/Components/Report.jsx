@@ -8,7 +8,7 @@ function Report(props) {
     ]
     const buttons = options.map(option=><button key={option.id} onClick={option.handler} className={Style.btn} >{option.text}</button>)
     return (
-      <div className={Style.btn}>
+      <div className={Style.btnContainer}>
         {buttons}
       </div>
     );
