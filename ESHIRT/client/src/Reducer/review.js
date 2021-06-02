@@ -21,7 +21,7 @@ const reviewsReducer = (state=initialState, action) => {
        
             return {
                 ...state,
-                reviews: [...state, ],
+                reviews: [...state.reviews, action.payload]
             }
         case 'GET_SCORE_BY_ID':
             

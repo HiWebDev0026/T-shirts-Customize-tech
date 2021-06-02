@@ -143,7 +143,8 @@ function Reviews(props) {
                         alt="Customer Feedback"
                       />
                       {/* <button style={{display: ${isAdmin ? flex : none}}} */}
-                      { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
+                      { isAuthenticated && isAdmin ? <button onClick={handleDelete} 
+                      value={e.id} >X</button> : ''  }
                       <div>
                         <h3 className={style.customer_name}>{e.name}</h3>
                         <p className={style.b3}>{e.content}</p>

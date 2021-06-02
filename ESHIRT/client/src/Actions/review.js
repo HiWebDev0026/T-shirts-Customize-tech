@@ -23,9 +23,9 @@ export function postShirtReview(dataReview, shirtId, userId){
            
             dataReview.userId = userId           
             const res= await axios.post(`/shirt/${shirtId}/review`, dataReview, {responseType: 'json'})
-            const shirtReview = res.data
+            dataReview.id = res.data.id 
             
-            dispatch({type: 'POST_SHIRT_REVIEW', payload: shirtReview})
+            dispatch({type: 'POST_SHIRT_REVIEW', payload: dataReview})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
