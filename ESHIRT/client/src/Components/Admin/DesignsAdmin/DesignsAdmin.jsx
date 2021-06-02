@@ -27,6 +27,7 @@ if (desing.public === 'pending')
 {designs.push({
     id: desing.id,
     name: desing.name,
+    print: desing.print
   })
 }})
 
@@ -71,7 +72,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
       
       isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
       <div className={Style.General}>
-      <div className={Style.General}>
+     
         <h1 className={Style.Title}>DESINGS WAITING FOR APPROVAL</h1>
         
         <select onChange={handleOrder} className={Style.Options}>
@@ -89,6 +90,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
             <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
               <button onClick={getShirtId} value={shirt.id} className={Style.Titles2}> {shirt.name} </button>
+              <div><img src={shirt.print} className={Style.Img}/></div>
              
               </div>
                </div>
@@ -98,7 +100,7 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
       ) 
       : (<p>Desings not found</p>)}
       
-        </div> 
+     
       
     <div className={Style.pagination}>
                     <ReactPaginate

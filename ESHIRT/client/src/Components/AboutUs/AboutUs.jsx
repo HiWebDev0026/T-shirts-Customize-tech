@@ -4,7 +4,7 @@ import Style from './AboutUs.module.css';
 
 
 function AboutUs(){
-
+    const colors = ["#2364aa", "#3da5d9", "#73bfb8", "#33cc33","#fec601", "#ea7317", "#ff6666"]
     let data = [
         {
             name: "Agustin Genes",
@@ -28,7 +28,7 @@ function AboutUs(){
             name: "German Montori",
             nickName: "The Resercher",
             description: "Ger is constantly browsing, bringing new ideas to upgrade the proyect",
-            image: "https://media-exp1.licdn.com/dms/image/C4E03AQHfLOGZs29CMg/profile-displayphoto-shrink_200_200/0/1576249795330?e=1628121600&v=beta&t=yno2Vgpb1i-nww8Ib50U7vdQn-y3Eu_EjwR5hULEsEc",
+            image: "https://avatars.githubusercontent.com/u/76887226?v=4",
             linkedin:"https://www.linkedin.com/in/german-luis-montori/",
             github:"https://github.com/Montori86",
             web:""
@@ -81,6 +81,8 @@ function AboutUs(){
                                   linkedin={each.linkedin}
                                   github={each.github}
                                   web={each.web}
+                                  color={colors[index]}
+                                  index={index}
                                   key={index}/>)
             }
         </div>

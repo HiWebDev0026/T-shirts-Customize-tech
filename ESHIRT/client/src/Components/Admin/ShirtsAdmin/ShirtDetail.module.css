@@ -29,7 +29,18 @@ color: black;
     align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease-in;
+    border-radius: 2vh;
 }
+.Tarjet:hover{
+    top: -1vh;
+    box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+  }
 .Change{
     display: flex;
     flex-wrap:  wrap ;
@@ -80,20 +91,21 @@ font-size: 150%;
     font-family: 'Shadows Into Light', cursive;
     font-size: 150%;
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     border-radius: 3vh;
 }
 .BtnChange1:hover{
     border-radius: 3vh;
     background-color: black;
     color: white;
+    padding: 3vh;
 }
 .BtnConsult{
     background-color: black;
     color: white;
     border-radius: 3vh;
-    transition: ease-in 0.5s;
+    transition: ease-in 0.7s;
 }
 .BtnConsult:hover{
     background-color: white;

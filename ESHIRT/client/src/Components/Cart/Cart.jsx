@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import Payment from './Payment/Payment'
 import {NavLink} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import { HiArrowCircleLeft,HiArrowCircleRight } from "react-icons/hi";
 
 import {
     getOrdersByUserId,
@@ -177,8 +178,8 @@ export default function Cart (props){
             </div>
                 <div className={Style.pages}>
                     <ReactPaginate
-                        previousLabel={'← Previous'}
-                        nextLabel={'Next →'}
+                        previousLabel={<HiArrowCircleLeft/>}
+                        nextLabel={<HiArrowCircleRight/>}
                         pageCount={pageCount}
                         onPageChange={handlePageClick}        
                         previousLinkClassName={"pagination__link"}

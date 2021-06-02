@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
 import { HiArrowCircleLeft,HiArrowCircleRight } from "react-icons/hi";
-import { GiCircle } from "react-icons/gi";
 import FavoritesItems from './FavoritesItems.jsx';
 import {getShirts,postFavorite,getFavorites} from '../../Actions/index.js';
 import { useAuth0} from "@auth0/auth0-react";

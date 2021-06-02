@@ -4,8 +4,10 @@
 .btn{
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 14px;
-    color: #ffb627;
-    background-color: rgba(125, 125, 125);
+    font-weight: 600;
+    color: grey;
+    background-color: white;
+    border: 3px solid #ffb627;
     border-radius: 5px;
     margin: 2px;
     width: 85%;

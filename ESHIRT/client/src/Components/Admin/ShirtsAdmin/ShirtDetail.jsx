@@ -164,7 +164,7 @@ return(
                  <option  value="">PUBLIC</option>
                  <option value='false'>CANCEL</option>
                  </select>
-                 <h5>STOCK</h5>
+                 <h5>CHOOSE THE STOCK</h5>
 
 
                  <input  type="range" 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 //import { FaVideoSlash } from 'react-icons/fa';
 import Style from './ChatbotSelect.module.css';
-import ChatbotImg from '../../Images/chatbot.png';
+import ChatbotImg from '../../Images/chatbot2.png';
 import Chatbot from 'react-chatbot-kit'
 import config from "./config";
 import MessageParser from "./MessageParser";
@@ -28,7 +28,7 @@ function ChatbotSelect() {
                     actionProvider={ActionProvider}
                 />
             </div>
-            : <img width={'200px'} height={'240px'} src={ChatbotImg} onClick={handleButton} className={Style.img}/> }
+            : <img width={'120px'} height={'120px'} src={ChatbotImg} onClick={handleButton} className={Style.img}/> }
       </div>
     );
 }

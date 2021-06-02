@@ -20,16 +20,16 @@ const LogoutButton = () => {
   useEffect(()=> {
     
     const closeIt = (e)=> {
-      console.log(e.target, e.target.name);
+      console.log(e.target.id);
 
-      if(e.target.name === undefined || !e.target.name ) {
-        return setDeployed(false);
-      }
-      if(e.target.name =='ButtonDeploy' || e.target.name =='userForClick') {
+
+      if(e.target.id =='ButtonDeploy' || e.target.name =='userForClick' || e.target.outerHTML.includes('ButtonDeploy')) {
         return setDeployed(prevState => !prevState);
         
+      } else {
+        return setDeployed(false);
       }
-
+      
       
       
     }
@@ -61,11 +61,12 @@ const LogoutButton = () => {
       return !deployed ? setDeployed(true) : setDeployed(false);
     }} */  >
       {user.name}
-    </button>
-    <button className={Style.deployArrowContainer} name="ButtonDeploy" /* onClick={()=> {
+    
+    <div className={Style.deployArrowContainer} name="ButtonDeploy" /* onClick={()=> {
       return !deployed ? setDeployed(true) : setDeployed(false);
     }} */  >
       {!deployed ? <DeployIcon /> : <UnextendIcon />}
+    </div>
     </button>
     {deployed && !isAdmin && <div className={Style.deployableMenuCommonUser}>
       <ul name="listorti">

@@ -23,18 +23,11 @@ function UserData(){
     
     useEffect(() => {
         dispatch(getUsers());
-        //dispatch(getUserById(id));
+        dispatch(getUserById(id));
     }, []);
 
-    const isActive = allUsers.find(user =>user.id.toString() === id.toString());
-    console.log("all", allUsers[0]);
-    console.log("user", userDB);
-    console.log("userId", userDB.id);
-    console.log("isActive",isActive);
+    // const isActive = allUsers.find(user =>user.id.toString() === id.toString());
     
-    
-    
-
     function changePass(){
         // var options = {
         //     method: 'POST',
@@ -63,26 +56,28 @@ function UserData(){
         window.location.href = "/home";
     }
      return(
-        isActive.status !== "deleted" ?
-        <div className={Style.container}>   
-            <h3 className={Style.title}>Personal Info</h3>
-            <ul className={Style.ul}>
-                <li>FullName: {userDB.name}  </li>
-                <li>E-mail : {userDB.email}</li>
-                <li>Id : {id}</li>
-            </ul>
+        //isActive.status !== "deleted" ?
+        <div className={Style.container}>
+            <div className={Style.box}>
+                <h3 className={Style.title}>Personal Info</h3>
+                <ul className={Style.ul}>
+                    <li className={Style.li}><b>FullName:</b> {userDB.name}  </li>
+                    <li className={Style.li}><b>E-mail:</b>  {userDB.email}</li>
+                    <li className={Style.li}><b>Id:</b> {id}</li>
+                </ul>
+            </div>   
             <div className={Style.boxBtn}>
                 <button className={Style.btn} onClick={changePass}>CHANGE YOUR PASSWORD</button>
-                <button className={Style.btn} onClick={deleteAccount}>DELETE YOUR ACCOUNT</button>
+                {/* <button className={Style.btn} onClick={deleteAccount}>DELETE YOUR ACCOUNT</button> */}
                 <NavLink to='/userEdit'>
                     <button className={Style.btn}>EDIT INFO</button>
                 </NavLink>
-            </div>
                 <NavLink to='/userDash'>
                     <button className={Style.btn}>CONTROL PANEL</button>
                 </NavLink>
+            </div>
         </div>
-        :<Error />
+        //:<Error />
     )
 
 }

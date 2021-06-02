@@ -1,56 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-
-.Designs{
-    display: grid;
-    color: black;
-    font-family: "Montsblackerrat", sans-serif;
-    font-weight: 500;
+.General{
+    display: flex;
     justify-content: center;
-    grid-template-columns: repeat(6, 3fr);
-    grid-gap: 5px;
+}
+.Desings{
+    display: flex;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 1vh;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title{
-    display: grid;
-    justify-content: center;
+    display: flex;
     color: black;
-}
-.Btn2{
-    color: red;
-}
-.Btn3{
-    display: grid;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 250%;
     justify-content: center;
-    color: black;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.Designs1{
+    display: flex;
+    justify-content: space-evenly;
 }
 .Tarjet{
-    border: 2px solid #ffb627;
-    background-color: rgba(255, 243, 80, 0.151);
-    border-radius: 5px ;
-    display: grid;
-    
+  border: 2px solid #ffb627;
+  background-color: rgba(255, 243, 80, 0.151);
+  border-radius: 5px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap:  wrap ;
+  border: 2px solid black;
+  border-radius: 2vh;
 }
-.Titles2{
-    display: grid;
+
+.Public{
     justify-content: center;
-}
-.Titles2:hover{
-    background-color: lightblue;
-}
-.General{
-    display: grid;
+    display: flex;
     justify-content: center;
-}
-.Options{
-    display: grid;
+    align-items: center;
     justify-content: center;
-    margin-left: 43%;
-    margin-right: 43%;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.Btn2{
+  transition: all 0.1s ease-in;
+border-radius: 1vh;
+background-color: black;
+color: white;
+padding: 0.5vh;
+}
+.Btn2:hover{
+  padding: 0.8vh;
+}
+.BtnDelete{
+  transition: all 0.1s ease-in;
+  border-radius: 1vh;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  height: 20px;
+  }
+  .BtnDelete:hover{
+      background-color:rgb(243, 68, 4);
+      content: 'Danger';
+      color: white;
+  }
+.Btn3{
+    display: flex;
+    justify-content: center;
+    color: black;
 }
 .Img{
     width: 200px; height: 200px;
   }
-.pagination {
+  .Btn1:hover{
+      background-color: red;
+      color: black;
+  }
+  .pagination {
     display: flex;
     padding: 0;
     justify-content: space-around;

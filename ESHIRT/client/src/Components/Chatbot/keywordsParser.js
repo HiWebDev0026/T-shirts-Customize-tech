@@ -1,3 +1,7 @@
+const options = [
+    "contact info", "purchase", "purchases", "design", "complaint", "behaivor", "report"
+]
+
 const hellows = [
     "hola", "hello", "hi", "que tal", "good morning", "good afternoon", "buen dia", 
     "buenos dias", "good evening"
@@ -15,16 +19,12 @@ const humans = [
     "human", "human being", "talk to", "human help", "claim"
 ]
 
-const options = [
-    "contact info", "purchase", "purchases", "design", "complaints", "behaivor", "report"
-]
-
 const payments = [
     "mercado", "pago", "discount", "shipping", "amount", "payment"
 ]
 
-const lists = [hellows, byes, shirts, humans, options, payments]
-const keywords = ["hellows", "byes", "shirts", "humans", "options", "payments"]
+const lists = [options, hellows, byes, shirts, humans, payments]
+const keywords = ["options", "hellows", "byes", "shirts", "humans", "payments"]
 
 const checkMessageInList = (wordList, message) => {
     

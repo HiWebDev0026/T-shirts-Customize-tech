@@ -1,59 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
 .Designs{
-    display:grid;
+    display: flex;
     color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btns{
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title{
     display: grid;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 200%;
 }
 .Container{
-    display: grid;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    grid-row: 1;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease-in;
+    border: 2px solid black;
+    border-radius: 2vh;
+}
+.Container:hover{
+    top: -1vh;
+    box-shadow: 0 4px 5px rgba(170, 169, 169, 0.582);
+    align-items: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Name{
-    display: grid;
+    display: flex;
     justify-content: center;
-    grid-row: 2;
     text-transform: uppercase;
-    
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Color{
-    display: grid;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    grid-row: 3;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Formulario{
     justify-content: center;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
     
 }
 .Image{
-    display: grid;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    grid-row: 4;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
     color: black;
+}
+.BtnDelete{
+transition: all 0.1s ease-in;
+border-radius: 1vh;
 }
 .BtnDelete:hover{
     background-color:rgb(243, 68, 4);
     content: 'Danger';
-    color: black;
+    color: white;
+}
+.Btn2{
+    transition: all 0.1s ease-in;
+border-radius: 1vh;
+background-color: black;
+color: white;
+padding: 1vh;
 }
 .Btn2:hover{
-    background-color: lightblue;
-    
+    padding: 1.5vh;
 }
 .Img{
     width: 350px; height: 350px;

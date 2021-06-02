@@ -17,7 +17,7 @@ function UserDashboard(){
   useEffect(() => {
     dispatch(getUserById(id));
     dispatch(getUsers());
-}, []);
+  }, []);
 
   return (
 

@@ -20,7 +20,7 @@ export default function BuyAuthorizeDesigns(){
     const [count, setCount] = useState([]);
     const [input2, setInput2] = useState('');
 
-    console.log(designsTotal, "acaaaaaaa")
+   
     let designs= [];
     designsTotal.map((desing) => {
     if (desing.public === "buy_authorize")
@@ -43,8 +43,9 @@ export default function BuyAuthorizeDesigns(){
         buttons: ["CANCEL", "DELETE"]
       }).then(respuesta =>{
         if(respuesta){
-        dispatch(deleteShirt(parseInt(e.target.value))); 
         setCount(count +1);
+        dispatch(deleteShirt(parseInt(e.target.value))); 
+        dispatch(getShirts())
         swal({ 
           title: "DELETE", 
           text: "Design " + e.target.value + " deleted",
@@ -65,8 +66,9 @@ export default function BuyAuthorizeDesigns(){
       function handleEdit (e) {
         if(input2.length >0){  
         e.preventDefault();
-        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
         setCount(count +1);
+        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
+        dispatch(getShirts())
         swal({ 
           title: "Modified", 
           text: "Design " + e.target.value + " modified",
@@ -74,12 +76,12 @@ export default function BuyAuthorizeDesigns(){
           timer: 3500,
           padding: "0.75rem"
           });
+          dispatch(getShirts())
         }    
-        dispatch(getShirts())
     }
 
      ///////////PAGINATION//////////////////////////////
-  const INITIAL_PAGE= 4;
+  const INITIAL_PAGE= 8;
   const offset = currentPage * INITIAL_PAGE;
   const pageCount = Math.ceil(designs.length / INITIAL_PAGE);
   function handlePageClick({ selected: selectedPage }) {
@@ -87,30 +89,34 @@ export default function BuyAuthorizeDesigns(){
 }
 
     return(
-      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
-     <div className={Style.Title}> <h1 >Desings approved for sale</h1></div>
-      <div className={Style.Desings}>      
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+      <div>
+      <h2 className={Style.Title}>Buy Authorized Desings</h2>
+    <div className={Style.General}>
+   <div className={Style.General}>
+    <div className={Style.Desings}>      
 {designs.length > 0  
-      ? ( designs.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
-          
-          return (
-            <div className={Style.Designs1}>
-              <div className={Style.Tarjet}>
-              <img src={shirt.print} className={Style.Img}/>
-         <div className={Style.Btns}>
+    ? ( designs.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
+        
+        return (
+          <div className={Style.Designs1}>
+            <div className={Style.Tarjet}>
+            <img src={shirt.print} className={Style.Img}/>
+        <div className={Style.Public}> 
+        
         <form>
-          <div className={Style.Public}> 
-          <h4>Public?</h4>
-         <label>Yes</label>
+         <label>Make Public</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
-                    </div>
+                    
+                    
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
          </div>
-         <div><button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button> </div>
+         <button className={Style.BtnDelete} value={shirt.id} onClick={handleDelete}>X</button> 
+         </div>
         </div>
              
-              </div>
+            
                
           );
       
@@ -118,7 +124,11 @@ export default function BuyAuthorizeDesigns(){
       ) : (<p>Desings not found</p>)}
 </div>
 <div>
-<div className={Style.pages}>
+    </div>
+    </div>
+    
+        </div>
+        <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -131,14 +141,12 @@ export default function BuyAuthorizeDesigns(){
                         containerClassName={Style.pagination}
                     />  
                 </div>
-<NavLink to='recycleBin'>
+        <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-        
-        </div>
         </div>
     )
 }

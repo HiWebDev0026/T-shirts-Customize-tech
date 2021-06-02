@@ -1,61 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 .general{
-    color:white;
+    color:black;
 }
 
 
 .container{
     width: 100%;
     display:flex;
+    color:black;
     
 }
 
 .title{
     display: flex;
     justify-content: center;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    margin-left: 90px;
+}
+
+.message{
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top:-40px;
 }
 
 .total{
+  padding:0;
   display:flex;
   justify-content: center;
+  color:black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size:30px;
+}
+.total1{
+  padding:-10px;
+  height: 30px;
+  margin-top:30%;
+  display:flex;
+  justify-content: center;
+  color:black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size:25px;
 }
 
 .left{
-    width: 60%;
+    width: 50%;
     height: 0%;
     position: relative;
-
 }
 
 .rigth{
-    width: 40%;
+    width: 30%;
     position: relative;
     top:0%;
     left:0%;
+    color:black;
+    margin-left:100px;
+    margin-top:90px;
+    line-height: 80%;
+    
+    
 }
 
 .total{
-    margin-top:5%;
+    margin-top:15%;
     display: flex;
     justify-content: center;
+    color:black;
+    font-size:20px;
+    
+
 }
 
 .totalPay{
-  margin-top:5%;
   display: flex;
   justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
 }
 
 .buttons{
-  margin-top:5%;
+  margin-top:10%;
   display:flex;
   justify-content: center;
 }
 
 .buttons button {
-  background-color: transparent;
-  border: solid 2px white;
   color: white;
+  font-weight: 600;
   margin-left:2px;
+  margin-top: 10px;
+  border: solid 2px black;
+  background-color: black;
+  border-radius: 5px;
+  margin:10px;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding:5px;
+}
+
+.buttons button:hover{
+  background-color: #ffb627;
+  color:black;
 }
 
 .q{
@@ -71,26 +119,29 @@
   }
   
   .pagination {
-      display: flex;
-      padding: 0;
-      justify-content: space-around;
-      align-items: center;
-      list-style: none;
-      cursor: pointer;
-      height: 10vh;
-      width: 80%;
-    }
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    height: vh;
+    width: 100%;
+  }
       
-    .pagination__link {
-      font-weight: bold;
-    }
+  .pagination__link {
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .pagination__link__active a {
+    color:#ffb627;
+    font-size: 15px;
+  }
+  
+  .pagination__link__disabled a  {
+    color: grey;
+    font-size: 15px;
     
-    .pagination__link__active a {
-      color: black;
-      background: coral;
-    }
-    
-    .pagination__link__disabled a {
-      color:black;
-      
-    }
+  }

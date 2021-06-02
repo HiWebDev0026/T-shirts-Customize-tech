@@ -61,7 +61,9 @@ function handleDelete(e) {
 const isAdmin = useTokenDecode(localStorage.currentToken);
 
 return(
-    isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.Designs}>
+    isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+    <div className={Style.Designs}>
+<h2 className={Style.Title}>DO YOU WANT TO APPROVAL?</h2>
 {
         <div className={Style.Container}> 
          <p className={Style.Name}>{designs.name}</p>
@@ -69,12 +71,14 @@ return(
          <div className={Style.Btns}>
          
         <form>
-        <h4>DO YOU WANT TO APPROVAL?</h4>
+        
             <div className={Style.Formulario}>
-         <label>Yes</label>
+                <div>
+         <label>Public</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic} />
-                    <label >No</label>
+                    <label >No Public</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}  />
+                    </div>
                     <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >Submit</button>
                     </div>
                     </form>
