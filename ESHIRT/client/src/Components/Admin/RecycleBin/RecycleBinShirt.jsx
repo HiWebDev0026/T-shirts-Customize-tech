@@ -101,8 +101,8 @@ shirts.map((shirt) => {
               <th className={Style.Titles2}> {shirt.name}</th>
               <th className={Style.Titles3}> {shirt.color}</th>
               <div><img src={shirt.print} className={Style.Img}/></div>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Restore</button>
+              <button className={Style.BtnR} value={shirt.id} onClick={handleDelete}>X</button>
+              <button className={Style.BtnRestore} value={shirt.id} onClick={handleEdit}>Restore</button>
               </div>
               
           );
