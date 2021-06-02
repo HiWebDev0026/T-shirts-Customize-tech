@@ -14,7 +14,7 @@
 }
 
 .picture{
-    width: 10%;
+    width: 65px;
     height: auto;
     margin:10px;
 }
@@ -64,7 +64,7 @@
     margin-right: -2px;
     margin-left: -2px;
     background-color: white;
-    font-size: 5px;
+    font-size:15px;
 }
 
 .buttonAM:hover{
@@ -156,4 +156,82 @@
 
 .image{
     width:100%;
+}
+
+@media(max-width:1024px){
+    .cartCard{
+        height: 130px;
+    }
+
+    .picture{
+        height: 100%;
+        width: 40%;
+        margin-top:0px;
+    }
+
+    .column1{
+        margin-top: 15px;
+    }
+
+    .column2{
+        margin-right: 10px;
+    }
+
+    .column3{
+        display: flex;
+        flex-direction: column;
+    }
+    .amount{
+        width: 100%;
+    }
+
+    .size {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media(max-width:768px){
+    .cartCard{
+        width:90%;
+        margin-left: 15px;
+    }
+
+    .picture{
+        height: 90%;
+        width: 20%;
+        margin-top: 0px;
+    }
+
+    .column1{
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+    }
+}
+
+@media(max-width:425px){
+
+    .picture{
+        height: 85%;
+        width: 25%;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:375px){
+
+    .picture{
+        height: 70%;
+        width: 30%;
+        margin-top: 20px;
+    }
+    .qty{
+            margin-left:1px;
+            margin-right:1px;
+    }
 }
