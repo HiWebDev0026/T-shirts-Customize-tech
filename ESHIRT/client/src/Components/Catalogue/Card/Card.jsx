@@ -7,7 +7,7 @@ import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0 } from "@auth0/auth0-react";
 import swal from "sweetalert";
-
+import {HiShoppingCart} from "react-icons/hi";
 import { BsFillHeartFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
@@ -21,7 +21,7 @@ import {
   getShirtReview,
 } from "../../../Actions/index.js";
 
-function Card({ title, score, price, size, model, color, image, id }) {
+function Card({ title, score, price, size, model, color, image, id, latestPrice }) {
   const cart = useSelector((state) => state.cartReducer.items);
   const orderId = useSelector((state) => state.ordersReducer.orderId);
   const scoreReview = useSelector((state) => state.reviewsReducer.score);
@@ -121,10 +121,13 @@ function Card({ title, score, price, size, model, color, image, id }) {
             <div className={style.top}>
               <img className={style.image} src={image} />
             </div>
+            
             <div className={style.details}>
               <a>{title}</a>
+              <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
             </div>
             <a className={style.price}>${price}</a>
+            
           </div>
         </a>
       </div>
