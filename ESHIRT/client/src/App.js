@@ -32,6 +32,7 @@ import DesignDetail from './Components/Admin/DesignsAdmin/DesignDetail';
 import Landing from './Components/Landing/Landing';
 import NewDashboard from './Components/Dashboard/User/NewDashboard';
 import ChatbotSelect from './Components/Chatbot/ChatbotSelect';
+import ReviewContainer from './Components/Reviews/ReviewContainer';
 
 import Favorites from './Components/Favorites/Favorites.jsx'
 import AdminDashboard from './Components/Dashboard/Admin/AdminDashboard';
@@ -154,7 +155,7 @@ function App({location}) {
       <ProtectedRoute exact path= '/add_category'  component={CreateCategory}/> 
       <ProtectedRoute path= '/users'  component={Users}/>
       <ProtectedRoute path= '/admins'  component={Admins}/>
-      <Route path= '/shirt/:id/review' component={Reviews}/>
+      <Route path= '/shirt/:id/review' component={ReviewContainer}/>
       <ProtectedRoute exact path= '/user_detail/:id'  component={UserDetail}/>
       <ProtectedRoute exact path= '/shirts_admin'  component={ShirtsAdmin}/>
       <ProtectedRoute exact path= '/shirt_detail/:id'  component={ShirtDetail}/>

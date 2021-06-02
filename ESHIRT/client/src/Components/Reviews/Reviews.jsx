@@ -27,19 +27,11 @@ function Reviews(props) {
     scoreReview: 0
   });
 
-
-
-
-
-
-
-
-useEffect(() => {
-  
-    dispatch(getShirtReview(id));
-   
-  }, [counter]);
-
+  useEffect(() => {
+    
+      dispatch(getShirtReview(id));
+    
+    }, [counter]);
 
   function handleSubmit(e) {
    e.preventDefault();
@@ -97,8 +89,6 @@ useEffect(() => {
     
   //   setPromedio(p);
   //   }
-
-
     
   return (
     <div className={style.customer_feedback}>
@@ -153,7 +143,8 @@ useEffect(() => {
                         alt="Customer Feedback"
                       />
                       {/* <button style={{display: ${isAdmin ? flex : none}}} */}
-                      { isAuthenticated && isAdmin ? <button onClick={handleDelete} value={e.id} >X</button> : ''  }
+                      { isAuthenticated && isAdmin ? <button onClick={handleDelete} 
+                      value={e.id} >X</button> : ''  }
                       <div>
                         <h3 className={style.customer_name}>{e.name}</h3>
                         <p className={style.b3}>{e.content}</p>
