@@ -69,6 +69,39 @@
   font-family: 'Roboto Condensed', sans-serif;
   
 }
+.off{
+ margin-top: -160px;
+  position: absolute; 
+  box-sizing: content-box;
+  min-width: 100%;
+  max-width:100%;
+  text-align: center;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  white-space: nowrap; 
+  overflow: hidden;
+  color: white;
+  background-color: rgba(241, 9, 9, 0.685); 
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 5vh;
+}
+.stock{
+  margin-top: -160px;
+  position: absolute; 
+  box-sizing: content-box;
+  min-width: 100%;
+  max-width:100%;
+  text-align: center;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  white-space: nowrap; 
+  overflow: hidden;
+  color: white;
+  background-color: rgba(10, 10, 10, 0.685); 
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 5vh;
+}
+
  .btns {
     font-size: 20px;;
     width: 30px;

@@ -21,7 +21,7 @@ import {
   getShirtReview,
 } from "../../../Actions/index.js";
 
-function Card({ title, score, price, size, model, color, image, id, latestPrice }) {
+function Card({ title, score, price, size, model, color, image, id, latestPrice, stock }) {
   const cart = useSelector((state) => state.cartReducer.items);
   const orderId = useSelector((state) => state.ordersReducer.orderId);
   const scoreReview = useSelector((state) => state.reviewsReducer.score);
@@ -118,11 +118,14 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice 
       <div className={style.wrapper}>
         <a onClick={handleScore} href={`#popup${id}`}>
           <div className={style.container}>
+       
             <div className={style.top}>
+            <div className={style.off}>{latestPrice}</div>
+            {stock !== 0 ? <div className={style.stock}>{stock}</div> : false}   
               <img className={style.image} src={image} />
-            </div>
-            
+            </div>       
             <div className={style.details}>
+           
               <a>{title}</a>
               <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
             </div>
