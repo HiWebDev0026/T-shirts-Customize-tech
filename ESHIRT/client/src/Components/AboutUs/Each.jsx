@@ -6,48 +6,97 @@ import emailImg from '../../Images/email_img.png'
 const linkedinImg = "https://paulinaacostadelrio.com/wp-content/uploads/2020/03/linkedin-png-logo-5.png"
 
 
-function DogCard({name,nickName, description, image, linkedin, github, web}){
+function DogCard({name,nickName, description, image, linkedin, github, color,web, index}){
+    const setImgSide = () => {
+        const isEven = (parseInt(index) === 0 || index % 2 === 0) ? true : false
 
-    return(
-        <div className={Style.container}>
-            <div className={Style.left}>
-                <img src={image} className={Style.img}/>
-            </div>
-            <div className={Style.right}>
-                <h1 className={Style.h1}>{name}</h1>
-                <h3 className={Style.nick}>{nickName}</h3>
-                <p className={Style.p}>{description}</p>
-                <div className={Style.links}>
-                    
-                    <a href={linkedin} target={"_blank"}>
-                        <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                            <img src={linkedinImg} width={"40px"} height={"40px"}/>
-                            <span>LinkedIn</span>
+        return (
+            <div>
+                {isEven ? 
+                
+                <div className={Style.cardContainer}>
+                    <div > {/****** 3 ITEMS  ******/}
+                        <div className={Style.titlesContainer}>
+                            <h1 className={Style.h1}>{name}</h1>
+                            <div className={Style.as}>as</div>
+                            <h3 className={Style.nick}>{nickName}</h3>
                         </div>
-                    </a>
-                    <div style={{border: "1px solid black", height: "42px", marginRight: "5px", marginLeft: "10px"}}>
+                        <p className={Style.p} style={{textAlign: "end", marginLeft: "25%"}}>{description}</p>        
+                    </div>
+
+                    <div className={Style.separator} style={{marginRight: "180px"}}></div>
+
+                    <div >
+                        <img src={image} className={Style.img}/>
+                    </div>
+                    <div className={Style.links}>        
+                        <a href={linkedin} target={"_blank"}>
+                            <div className={Style.flexRowCenter}>
+                                <img src={linkedinImg} width={"40px"} height={"40px"}/>
+                                <span>LinkedIn</span>
+                            </div>
+                        </a>
+                        <div className={Style.smallSeparator}>
+                        </div>
+                        <a href={github} target={"_blank"}>
+                            <div className={Style.flexRowCenter}>
+                                <img src={githubImg} width={"40px"} height={"40px"}/>
+                                <span>Github</span>
+                            </div>
+                        </a>        
+                    </div>
+
+
+                </div>
+            
+                    :
+                <div className={Style.cardContainer}>
+                    <div className={Style.links}>        
+                        <a href={linkedin} target={"_blank"}>
+                            <div className={Style.flexRowCenter}>
+                                <img src={linkedinImg} width={"40px"} height={"40px"}/>
+                                <span>LinkedIn</span>
+                            </div>
+                        </a>
+                        <div className={Style.smallSeparator}>
+                        </div>
+                        <a href={github} target={"_blank"}>
+                            <div className={Style.flexRowCenter}>
+                                <img src={githubImg} width={"40px"} height={"40px"}/>
+                                <span>Github</span>
+                            </div>
+                        </a>        
 
                     </div>
-                    <a href={github} target={"_blank"}>
-                        <div style={{
-                            display: "flex", 
-                            flexDirection: "row", 
-                            alignItems: "center"}}>
-                            <img src={githubImg} width={"40px"} height={"40px"}/>
-                            <span>Github</span>
+                    <div >
+                        <img src={image} className={Style.img}/>
+                    </div>
+                    <div className={Style.separator} style={{marginLeft: "180px"}}></div>
+
+
+                    <div > {/****** 3 ITEMS  ******/}
+                        <div className={Style.titlesContainer}>
+                            <h1 className={Style.h1}>{name}</h1>
+                            <div className={Style.as}>as</div>
+                            <h3 className={Style.nick}>{nickName}</h3>
                         </div>
-                    </a>
-                
-                    {/* <div style={{
-                        display: "flex", 
-                        flexDirection: "row", 
-                        alignItems: "center"}}>
-                        <img src={emailImg} width={"50px"} height={"40px"}/>
-                        <span>{web}</span>
-                    </div> */}
+                        <p className={Style.p} style={{textAlign: "start", marginRight: "25%"}}>{description}</p>        
+                    </div>
+
+
                     
+
+
                 </div>
+                }
             </div>
+        )
+    }
+    
+
+    return(
+        <div className={Style.container} style={{backgroundColor: color}}>
+            {setImgSide()}
         </div>
     )
 }

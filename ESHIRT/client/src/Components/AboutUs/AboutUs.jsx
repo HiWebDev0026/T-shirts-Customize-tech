@@ -4,7 +4,7 @@ import Style from './AboutUs.module.css';
 
 
 function AboutUs(){
-
+    const colors = ["#2364aa", "#3da5d9", "#73bfb8", "#33cc33","#fec601", "#ea7317", "#ff6666"]
     let data = [
         {
             name: "Agustin Genes",
@@ -81,6 +81,8 @@ function AboutUs(){
                                   linkedin={each.linkedin}
                                   github={each.github}
                                   web={each.web}
+                                  color={colors[index]}
+                                  index={index}
                                   key={index}/>)
             }
         </div>
