@@ -74,9 +74,9 @@ return(
         
             <div className={Style.Formulario}>
                 <div>
-         <label>Yes</label>
+         <label>Public</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic} />
-                    <label >No</label>
+                    <label >No Public</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}  />
                     </div>
                     <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >Submit</button>
