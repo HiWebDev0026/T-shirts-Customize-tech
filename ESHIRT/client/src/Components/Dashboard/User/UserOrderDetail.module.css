@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 
 .container{
     display: flex;
@@ -8,20 +9,43 @@
 
 .container h1{
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 50px;
     
+}
+
+.orderContainer{
+    display: flex;
+    box-shadow: 5px 5px 5px 5px rgb(228, 227, 227);
+    border-radius: 20px;
+}
+
+.name{
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0%;
+}
+
+.title{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 50px;
 }
 
 .box{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: coral;
     width: 35%;
     padding-bottom: 30px;
     margin-top: 30px;
+}
+.img{
+    width: 230px;
+    height: 300px;
+    margin-bottom: 0%;
 }
 
 .ul{
@@ -29,48 +53,64 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    font-family: "Montserrat", sans-serif;
+    width: 250px;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     list-style: none;
-    border: 2px solid black;
+    margin: 0%;
+    padding: 0%;
+    color: black;
 }
 
 .li{
     height: 30px;
     margin-bottom: 10px;
-    color: white;
+    color: black;
     text-align: center;
-    margin: 5px;
     padding-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
 }
 
 .btn, .filterBtn{
     width: 120px;
     height: 50px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 16px;
+    margin: 5px;
+    background: white;
+    border-radius: 5px;
+}
+.btn{
+    border: 2px solid #ffb627;
 }
 .btn:hover, .filterBtn:hover{
     background: black;
-    color: coral;
+    color: #ffb627;
+
+}
+
+.btnBox{
+    display: flex;
+    margin: 10px;
 }
 
 .select{
     width: 152px;
     height: 50px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 16px;
 }
 .option{
     width: 120px;
     height: 50px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    background: coral;
+    background: #ffb627;
 }

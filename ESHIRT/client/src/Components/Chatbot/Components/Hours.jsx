@@ -1,12 +1,15 @@
 import React from 'react';
+import Style from './General.module.css';
 
 function Hours(props) {
     return (
-      <div>
-        <h3>We're Open</h3>
-        <h4>Monday to Friday: from 8am to 6pm</h4>
-        <h4>Saturday: from 10am to 2pm</h4>
-        <h4>Sunday and Holidays Closed!</h4>
+      <div className={Style.hoursContainer}>
+        <h3 className={Style.hoursH3}>We're Open</h3>
+        <ul className={Style.hoursUl}>
+          <li>Monday to Friday: from 8am to 6pm</li>
+          <li>Saturday: from 10am to 2pm</li>
+          <li>Sunday and Holidays Closed!</li>
+        </ul>
       </div>
     );
 }

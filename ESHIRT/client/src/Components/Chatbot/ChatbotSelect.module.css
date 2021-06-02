@@ -45,16 +45,16 @@
 
 .closeButton{
     position: absolute;
-    top: 0%;
+    top: 2%;
     left: 85%;
     z-index: 100;
-    background: red;
+    background: #ffb627;
     color: white;
     border-radius: 5px;
     border: none;
-    width: 15%;
-    height: 8%;
-    font-size: 150%;
+    width: 10%;
+    height: 5%;
+    font-size: 120%;
 }
 
 .img{
@@ -64,3 +64,5 @@
     border-radius: 100%;
     border: 1px solid black;
 }
+
+

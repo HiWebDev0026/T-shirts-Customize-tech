@@ -3,10 +3,15 @@
 
 .btn{
     font-family: 'Roboto Condensed', sans-serif;
-    color: #ffb627;
-    background-color: rgba(125, 125, 125);
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+    background-color: white;
+    border: 3px solid #ffb627;
     border-radius: 5px;
     margin: 2px;
+    width: 85%;
+    height: 35px;
 }
 
 .btnContainer{
@@ -15,7 +20,7 @@
     align-items: center;
 }
 
-.h3, inputForm{
+.h3, .inputForm{
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 14px;
 }
@@ -30,5 +35,72 @@
 }
 
 .divForm{
+    padding: 0;
+    padding-right: 7px;
+    margin: 5px ;
+    display: flex;
+}
+
+.inputForm, .inputForm2{
+    border: 2px solid #ffb627;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.inputForm{
+    margin-top: 10px;
+}
+
+.formUl{
+    margin: 10px;
+    padding: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLi{
     
+    list-style: none;
+    padding-bottom: 8px;
+}
+
+.formBtn{
+    display: flex;
+    padding: 5px;
+    margin: 0%;
+    height: 40px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    color: black;
+    background-color: #ffb627;
+    border-radius: 5px;
+}
+
+.formBtn:hover{
+    color: #ffb627;
+    background-color: black;
+    border: 2px solid #ffb627;
+    
+}
+
+.hoursContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #ffb627;
+    border-radius: 5px;
+}
+
+.hoursH3{
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 24px;
+
+}
+
+.sizeImg{
+    width: 270px;
 }
