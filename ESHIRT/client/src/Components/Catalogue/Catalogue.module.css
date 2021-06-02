@@ -60,7 +60,7 @@
     padding: 10px;
     outline: none;
     border: 1px solid white;
-    color: white;
+    color: black;
   }
   
   .pagination__link {
@@ -83,4 +83,14 @@
   flex-direction: column;
   width: 20%;
  
+}
+
+@media(max-width: 690px){
+  .box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;  
+    width: 80%;
+    
+  }
 }

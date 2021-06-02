@@ -203,6 +203,12 @@
   html, body {
     font-size: 12px;
   }
+
+  .image{
+    height: 80%;
+    width: 100%;
+  }
+
 }
 
 
@@ -475,6 +481,7 @@ input[type="radio"]:checked ~ label {
 	border-radius: 10px;
 	z-index: -1;
 }
+
 
 
 

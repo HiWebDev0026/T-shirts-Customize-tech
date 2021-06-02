@@ -144,6 +144,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
               )}
               <div className={style.stars}>{setStars(scoreReview)}</div>
             </div>
+           
 
             <a className={style.popup__close} href="#">
               X
