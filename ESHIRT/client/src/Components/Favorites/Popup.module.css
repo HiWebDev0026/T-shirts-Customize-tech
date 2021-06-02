@@ -88,8 +88,6 @@
     font-weight: 900;
     display: flex;
     justify-content: center;
-
-    
 }
 
 .size:hover{
@@ -124,7 +122,7 @@
 
 .buttonAM:hover{
     border-radius: 50%;
-    background-color: grey;
+    background-color: rgba(200, 195, 195, 0.407);
 }
 
 .cart{

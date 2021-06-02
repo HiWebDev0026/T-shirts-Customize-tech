@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .cartCard{
-    border: solid 2px white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgb(228, 227, 227);
     display: flex;
     margin-bottom: 5px;
     color:white;
+    height: 90px;
+    margin:6px;
+    margin-left: 50px;
+    
 }
 
 .picture{
     width: 10%;
     height: auto;
+    margin:10px;
 }
 
 .picture img{
@@ -16,8 +24,12 @@
 }
 
 .column1{
-    width: 40%;
-    margin:auto;
+    width: 25%;
+    margin-left:30px;
+    margin-right:20px;
+    margin-top:10px;
+    color:black;
+    font-family: 'Shadows Into Light', cursive;
 }
 
 .detail{
@@ -29,24 +41,52 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    color:black;
+    margin-right:60px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .column3{
     margin-top:4%;
     width: 30%;  
+    color:black;
+}
+
+.buttonAM{
+    font-family: 'Roboto Condensed', sans-serif;
+    border-color: transparent;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:1px;
+    margin-right: -2px;
+    margin-left: -2px;
+    background-color: white;
+    font-size: 5px;
+}
+
+.buttonAM:hover{
+    border-radius: 50%;
+    background-color: rgba(200, 195, 195, 0.407);
 }
 
 .name{
     font-size:20px;
+    
 }
 
 .sku{
     font-size:10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: -5px;
 }
 
 .amount{
     display: flex;
     justify-content: center;
+    align-items: center;
     margin:auto;
 }
 .amount button{
@@ -56,38 +96,62 @@
     border: solid 2px white;
     display: flex;
     justify-content: center;
+    color:black;
 }
 
 .qty{
     display: flex;
     justify-content: center;
     width:15%; 
+    margin-left:-3px;
+    margin-top: 2px;
+    font-size: 15px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 .size{
-    width:25%;
+    width:35%;
     margin:auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding-left: 35%;
-    padding-right: 35%;
+    padding-right: 35%; 
 }
 
 .size select {
     background-color: transparent;
-    color: white;
-    border: solid 2px white;
+    border: solid 1px color;
     display: flex;
     justify-content: center;
+    color:black;
+    border-radius: 5px;
+    width: 55px;
+}
+
+.size select:hover{
+    background-color: black;
+    color: white;
 }
 
 .btns button {
-    margin:1px;
+    margin:-7px;
+    background-color: transparent;
+    border-color: transparent;
+    color:black;
+
+}
+
+.btns button:hover{
+    color:#ffb627;
 }
 
 .blackHeart{
     color:black;
+    background-color: transparent;
+    border-color: transparent;
 }
 .greyHeart{
     color:grey;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .image{
