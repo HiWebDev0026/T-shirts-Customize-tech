@@ -27,7 +27,7 @@ export default function Favorites (){
  
     const favorites = useSelector((state)=>state.shirtReducer.shirtsToFavorites);
 
-    const INITIAL_PAGE= 5;
+    const INITIAL_PAGE= 10;
     const offset = currentPage * INITIAL_PAGE;
     const pageCount = Math.ceil(favorites.length / INITIAL_PAGE);
     
@@ -45,7 +45,7 @@ export default function Favorites (){
                 <div className={Style.info}>
                 {favorites.length>0?
                 favorites.slice(offset, offset + INITIAL_PAGE).map(favorite => 
-                    {return<FavoritesItems key={favorite.id} favorite={{...favorite, price:favorite.price}}/>})
+                    {return<FavoritesItems  key={favorite.id} favorite={{...favorite, price:favorite.price}}/>})
                 :<p>No items in favorites</p>}
                 </div>
                 <div className={Style.pages}>
