@@ -27,19 +27,11 @@ function Reviews(props) {
     scoreReview: 0
   });
 
-
-
-
-
-
-
-
-useEffect(() => {
-  
-    dispatch(getShirtReview(id));
-   
-  }, [counter]);
-
+  useEffect(() => {
+    
+      dispatch(getShirtReview(id));
+    
+    }, [counter]);
 
   function handleSubmit(e) {
    e.preventDefault();
@@ -97,8 +89,6 @@ useEffect(() => {
     
   //   setPromedio(p);
   //   }
-
-
     
   return (
     <div className={style.customer_feedback}>
