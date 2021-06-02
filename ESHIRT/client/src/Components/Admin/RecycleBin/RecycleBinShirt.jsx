@@ -30,7 +30,8 @@ shirts.map((shirt) => {
        size: shirt.size,
        score: shirt.score,
        public: shirt.public,
-       created: shirt.created
+       created: shirt.created,
+       print: shirt.print
      })
    }})
 
@@ -94,22 +95,23 @@ shirts.map((shirt) => {
       ? (shirts1.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
        
           return (
-            <div className={Style.Container}>
+           
               <div className={Style.Tarjet} >
               <th className={Style.Titles1}> {shirt.id}</th>
               <th className={Style.Titles2}> {shirt.name}</th>
               <th className={Style.Titles3}> {shirt.color}</th>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>X</button>
-              <button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Restore</button>
+              <div><img src={shirt.print} className={Style.Img}/></div>
+              <button className={Style.BtnR} value={shirt.id} onClick={handleDelete}>X</button>
+              <button className={Style.BtnRestore} value={shirt.id} onClick={handleEdit}>Restore</button>
               </div>
-               </div>
+              
           );
         
         })
       ) 
       : (<p>Shirts not found</p>)}
     </div>
-    <div className={Style.pages}>
+    <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
