@@ -55,16 +55,19 @@ function handlePageClick({ selected: selectedPage }) {
     if ( e.status !== 'deleted' && e.public === 'true'){
     return (        
     <div>
-         {e.latestPrice > 0 ? <p>OFF!</p> : <p></p> }
-        <Card
-            title= {e.name}
+     
+        <Card          
+            title= {e.name}            
             price= {e.price}
             size= {e.size}
             model= {e.model}
             color= {e.color}
             image= {e.print}
             score= {e.score}   
-            id={e.id}         
+            id={e.id} 
+            latestPrice={ e.latestPrice > 0 ? <div >SALE !</div> : false }    
+            stock= {e.stock === 0 ? <div>NO STOCK</div> : <div></div>  && e.stock <= 10 ? <div>Last units...</div> : <div></div>   }  
+
         />
       
        </div>
