@@ -53,9 +53,13 @@ export default function Cart (props){
     function proceed(click, id){
         return (
             <div onClick={(e)=> click(e, id)}>
-                <NavLink to='/payment' >
-                    <button>Go to pay</button>
-                </NavLink>
+                {items.length > 0 ?
+                    <NavLink to='/payment' >
+                        <button>Go to pay</button>
+                    </NavLink>
+                    : 
+                    <div>No items to shop</div>
+                }
             </div>
         )
     }
