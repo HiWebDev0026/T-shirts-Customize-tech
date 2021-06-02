@@ -77,7 +77,7 @@ function RecycleBinUser() {
 
     return (
         !isAdmin ? (<ErrorNoAdminPage />) :
-        <div>
+        <div >
             <h2 className={Style.Title}>Users deleted</h2>
         <div className={Style.container}>
              <div className={Style.Users}>
@@ -87,8 +87,8 @@ function RecycleBinUser() {
                 <p className={Style.Titles}>{user.name}</p>
                 <p className={Style.Titles}>{user.email}</p>
                 <div className={Style.Contenedores}>
-                  <button className={Style.Btn1} value={user.id} onClick={handleDelete}>X</button>
-                  <button className={Style.Btn1} value={user.id} onClick={handleEdit}>Restore</button>
+                  <button className={Style.BtnR} value={user.id} onClick={handleDelete}>X</button>
+                  <button className={Style.BtnRestore} value={user.id} onClick={handleEdit}>Restore</button>
                 </div>
             </div>
           );
@@ -96,7 +96,7 @@ function RecycleBinUser() {
       ) 
       : (<p>Users not found</p>)}
     </div>
-    <div className={Style.pages}>
+    <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -109,13 +109,14 @@ function RecycleBinUser() {
                         containerClassName={Style.pagination}
                     />  
                 </div>
-    <NavLink to='recycleBin'>
+    
+           </div>
+           <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-           </div>
         </div>
     )
 }

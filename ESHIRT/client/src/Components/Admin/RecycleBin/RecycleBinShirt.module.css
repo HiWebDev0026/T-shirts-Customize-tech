@@ -50,10 +50,28 @@
     align-content: center;
     flex-wrap:  wrap ;
     position: relative;
-    height: 60%;
-    width: 60%;
-   
-  
+    
+}
+.BtnR{
+  background-color: white;
+  color: black;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.BtnR:hover{
+  background-color: red;
+  color: white;
+}
+.BtnRestore{
+  background-color: black;
+  color: white;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.BtnRestore:hover{
+  padding: 0.7vh;
 }
 .ContBtn3{
     display: flex;
