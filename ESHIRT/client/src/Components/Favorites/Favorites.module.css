@@ -33,7 +33,7 @@
     
   .pagination__link {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 25px;
   }
   
   .pagination__link__active a {
@@ -43,7 +43,7 @@
   
   .pagination__link__disabled a  {
     color: grey;
-    font-size: 15px;
+    font-size: 25px;
     
   }
 
