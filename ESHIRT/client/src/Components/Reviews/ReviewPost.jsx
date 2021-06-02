@@ -1,11 +1,10 @@
 import React from "react";
 import style from "./Reviews.module.css";
-import { getShirtReview, postShirtReview, getShirtScore, deleteReview} from "../../Actions/index.js";
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { postShirtReview } from "../../Actions/index.js";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const ReviewPost = ({shirtId, userData, isAuthenticated}) => {
-    // shirtId, userData, isAustenticated
     const dispatch = useDispatch();
 
     const [input, setInput] = useState({
@@ -25,14 +24,13 @@ const ReviewPost = ({shirtId, userData, isAuthenticated}) => {
         }
         if (isAuthenticated && parseInt(input.scoreReview ) > 0 ) {
             dispatch(postShirtReview(input, shirtId, userData.sub.split("|")[1]));
-            //setCounter(prevState => prevState+1)      
             setInput({
                 content: "",
                 name: "",
                 image: "",
                 scoreReview: 0
             })
-            dispatch(getShirtReview(shirtId));
+
         }     
     }
     function handleChange(e) {
@@ -86,7 +84,7 @@ const ReviewPost = ({shirtId, userData, isAuthenticated}) => {
                     <label for="radio4">★</label>
                     <input id="radio5" type="radio" name="star" value="1" className={style.star}style={{display:'none'}}/>
                     <label for="radio5">★</label>
-                    </p>
+                </p>
                     </div>
                 <input type="submit" value="SUBMIT" />
             

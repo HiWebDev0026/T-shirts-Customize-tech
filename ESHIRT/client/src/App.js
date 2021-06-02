@@ -43,7 +43,7 @@ import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 
 import Payment from './Components/Cart/Payment/Payment'
 
-import Reviews from './Components/Reviews/Reviews.jsx'
+//import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
