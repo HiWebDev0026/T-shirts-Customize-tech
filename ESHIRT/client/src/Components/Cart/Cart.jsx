@@ -18,6 +18,7 @@ import {
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import {useTokenDecode} from '../../hooks/tokenDecoding'
 
 export default function Cart (props){
     
@@ -38,6 +39,8 @@ export default function Cart (props){
     
     const {isAuthenticated, user, loginWithPopup}=useAuth0();
 
+    const isAdmin = useTokenDecode(localStorage.currentToken);
+
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
        
@@ -53,12 +56,13 @@ export default function Cart (props){
     function proceed(click, id){
         return (
             <div onClick={(e)=> click(e, id)}>
-                {items.length > 0 ?
-                    <NavLink to='/payment' >
-                        <button>Go to pay</button>
-                    </NavLink>
-                    : 
-                    <div>No items to shop</div>
+                {
+                !isAdmin && items.length > 0 ?
+                        <NavLink to='/payment' >
+                            <button>Go to pay</button>
+                        </NavLink>
+                            : 
+                        <button>No items to shop</button>
                 }
             </div>
         )
