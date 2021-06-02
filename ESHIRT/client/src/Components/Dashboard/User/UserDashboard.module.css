@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+
+
 .container{
     display: flex;
     flex-direction: column;
@@ -23,14 +27,17 @@
 
 .left{
     display: flex;
-    background-image: url('../../../Images/people.jpg');
+    background-image: url('../../../Images/userDash.jpg');
     background-size: cover;
     margin-left: 50px;
     width: 70%;
+    border-radius: 20px;
 }
 
 .left h1{
     padding: 10px;
+    font-family: 'Shadows Into Light', cursive;
+    color: white;
 }
 
 .options{
