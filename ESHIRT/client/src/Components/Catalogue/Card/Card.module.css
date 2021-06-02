@@ -114,6 +114,12 @@
     color:grey;
 }
 
+.cartBtns{
+  display: inherit;
+  justify-content: center;
+  right: 15px;
+}
+
 .btns :hover{
     color:black;
     background-color: white;

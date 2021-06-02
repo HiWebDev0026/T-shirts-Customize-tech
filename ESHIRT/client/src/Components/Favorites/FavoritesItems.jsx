@@ -36,7 +36,12 @@ export default function FavoritesItems ({favorite}) {
             <h4 className={Style.price}>${favorite.price}</h4>
             <div className={Style.btns}>
                 <button id={favorite.id} onClick={(e) => handleDelete(e, favorite.id)} ><MdDeleteForever/></button>
+            {
+            favorite.stock > 0 && (favorite.public === 'true' || favorite.public === 'buy_authorize')  ?    
                 <button id={favorite.id} onClick={()=>setButtonPopup(true)} ><HiShoppingCart/></button>
+                    :
+                <div></div>
+            }
             </div>
           </main>
                 <Popup favorite={favorite} trigger={buttonPopup} setTrigger={setButtonPopup}/>
