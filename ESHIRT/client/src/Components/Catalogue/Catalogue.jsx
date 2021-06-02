@@ -66,7 +66,7 @@ function handlePageClick({ selected: selectedPage }) {
             score= {e.score}   
             id={e.id} 
             latestPrice={ e.latestPrice > 0 ? <div >SALE !</div> : false }    
-            stock= {e.stock === 0 ? <div>NO STOCK</div> : <div></div>  && e.stock <= 10 ? <div>Last units...</div> : <div></div>   }  
+            stock= {e.stock} 
 
         />
       

@@ -112,7 +112,6 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
       </div>
     );
   }
-
   return (
     <div>
       <div className={style.wrapper}>
@@ -121,13 +120,18 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
        
             <div className={style.top}>
             <div className={style.off}>{latestPrice}</div>
-            {stock !== 0 ? <div className={style.stock}>{stock}</div> : false}   
+            {stock !== 0 ? stock <= 10 ? <div className={style.stock}>Latest units...</div> : <div></div> : <div className={style.stock}>NO STOCK</div>}   
               <img className={style.image} src={image} />
             </div>       
             <div className={style.details}>
            
               <a>{title}</a>
+            {
+              stock > 0 ?
               <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
+                :
+              <div></div>
+            }
             </div>
             <a className={style.price}>${price}</a>
             
@@ -205,18 +209,25 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
               >
                 <BsFillHeartFill />
               </button>
-              <button
-                className={style.buttonCart}
-                onClick={(e) => handleCartChange(e, "+")}
-              >
-                <FaCartPlus />
-              </button>
-              <button
-                className={style.buttonCart}
-                onClick={(e) => handleCartChange(e, "-")}
-              >
-                <MdDeleteForever />
-              </button>
+              { 
+              stock >= 1 ?
+                <div>
+                <button
+                  className={style.buttonCart}
+                  onClick={(e) => handleCartChange(e, "+")}
+                >
+                  <FaCartPlus />
+                </button>
+                <button
+                  className={style.buttonCart}
+                  onClick={(e) => handleCartChange(e, "-")}
+                >
+                  <MdDeleteForever />
+                </button>
+                </div>
+                  : 
+                <div></div>
+              }
             </div>
           </div>
         </div>
