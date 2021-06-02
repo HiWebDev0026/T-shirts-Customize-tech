@@ -67,7 +67,7 @@ function UserData(){
                 </ul>
             </div>   
             <div className={Style.boxBtn}>
-                <button className={Style.btn} onClick={changePass}>CHANGE YOUR PASSWORD</button>
+                {/* <button className={Style.btn} onClick={changePass}>CHANGE YOUR PASSWORD</button> */}
                 {/* <button className={Style.btn} onClick={deleteAccount}>DELETE YOUR ACCOUNT</button> */}
                 <NavLink to='/userEdit'>
                     <button className={Style.btn}>EDIT INFO</button>

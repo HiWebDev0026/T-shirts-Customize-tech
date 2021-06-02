@@ -29,7 +29,7 @@ function Clock(){
 
     return(
         <div className={Style.container}>   
-            {clock}
+            <span>{clock}</span>
         </div>
     )
 }

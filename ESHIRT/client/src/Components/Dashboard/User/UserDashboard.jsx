@@ -21,7 +21,7 @@ function UserDashboard(){
 
   return (
 
-    <div className={Style.container}>   
+    // <div className={Style.container}>   
       <div className={Style.box}>
         <div className={Style.left}>
           <h1>Welcome {userDB.name}</h1>
@@ -33,8 +33,8 @@ function UserDashboard(){
         <Clock />
         <HomeUser  />
         </div>
-    </div>
-  </div>
+      </div>
+    // </div>
   )
 };
 
