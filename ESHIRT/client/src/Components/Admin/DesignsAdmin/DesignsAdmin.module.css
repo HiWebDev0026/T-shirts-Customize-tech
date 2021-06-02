@@ -11,6 +11,7 @@
     align-content: center;
     flex-wrap:  wrap ;  
 }
+
 .Title{
     display: flex;
     justify-content: center;
