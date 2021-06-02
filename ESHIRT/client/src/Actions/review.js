@@ -6,8 +6,18 @@ export function getShirtReview(shirtId){
     return async (dispatch) => {
         try {
             const res = await axios.get(`/shirt/${shirtId}/review`, {responseType: 'json'})
-            const shirt = res.data      
-           
+            const shirt = res.data
+            if (shirt.length === 0) {
+                shirt.push({
+                    id: 0,
+                    content: 'No reviews yet',
+                    image: null,
+                    name: '',
+                    scoreReview: 0,
+                    shirtId
+                })
+            }
+
             dispatch({type: 'GET_SHIRT_REVIEW', payload: shirt})
            
         } catch (err) {
