@@ -1,19 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+
 
 .container{
-    color:white;
-    font-family: "Montserrat", sans-serif;
+    color:black;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     display: grid;
     justify-content: space-evenly;
     text-align: center;
+
+    width:100%;
 }
 
 .title{
-    color: white;
+    font-family: 'Shadows Into Light', cursive;
+    color: black;
+    border-radius: 10px;
 }
-.title1:hover{
-    color: coral;
+.title:hover{
+
+    color: #ffb627;
     top: -1vh;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.582);
 }

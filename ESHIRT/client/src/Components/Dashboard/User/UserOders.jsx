@@ -69,8 +69,8 @@ function UserOrders(){
                 :<h1>You have no orders</h1>
             }
             </div>
-            <NavLink to='/userDash'>
-                <h4 className={Style.btn}>CONTROL PANEL</h4>
+            <NavLink to='/userDash' className={Style.btnBox}>
+                <button className={Style.btn}>CONTROL PANEL</button>
             </NavLink>
         </div>
     )

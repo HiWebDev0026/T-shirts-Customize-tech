@@ -27,8 +27,8 @@ export default function OrderDetail(props) {
     function getShirtImage(id){
         let shirtImage = allShirt.find(image=> parseInt(image.id) === parseInt(id));
         return <div>
-            <img src={shirtImage.print}/>
-            <h3 style={{color:'white'}}>{shirtImage.name}</h3>
+            <img src={shirtImage.print} className={Style.img}/>
+            <h3 className={Style.name}>{shirtImage.name}</h3>
         </div>
     }
 
@@ -36,27 +36,28 @@ export default function OrderDetail(props) {
     return(
         
         <div className={Style.container}>
-            <h2>Order {order.id} Detail</h2>
+            <h2 className={Style.title}>Order {order.id} Detail</h2>
                 {
                     order.length>0?
                     order[0].details.map(order => {
-                        return <div>
+                        return <div className={Style.orderContainer}>
+                                    {getShirtImage(order.shirtId)}
                                     <ul className={Style.ul}>
-                                        {getShirtImage(order.shirtId)}
                                         <li className={Style.li}>Size: {order.size}</li>
-                                        <li className={Style.li}>Individual Price:{order.price}</li>
+                                        <li className={Style.li}>Individual Price: ${order.price}</li>
                                         <li className={Style.li}>Amount: {order.amount}</li>
-                                        <li className={Style.li}>Total Price{order.price*order.amount}</li>
+                                        <li className={Style.li}>Total Price: ${parseInt(order.price) * parseInt(order.amount)}</li>
                                     </ul>
                                 </div>
                     })
                     :<h1>No details</h1>
                 }
-            <h3>Total to pay: {order.reduce((a,c)=>a+c.amount*c.price,0)}</h3>
-            <button className={Style.btn} onClick={handleRefresh}>Refresh</button>
-            <NavLink to='/userOrders'>
-                <button className={Style.btn}>Go back to orders</button>
-            </NavLink>
+            <div className={Style.btnBox}>
+                <button className={Style.btn} onClick={handleRefresh}>Refresh</button>
+                <NavLink to='/userOrders'>
+                    <button className={Style.btn}>Go back to orders</button>
+                </NavLink>
+            </div>
         </div>
     )
 }
