@@ -1,29 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
-.container {color: black;
+.container {
+    color: black;
     font-family: 'Shadows Into Light', cursive;
     display: grid;
-    justify-content: center;
+    justify-content: space-around;
 }
+
 .Title{
-display: grid;
-justify-content: center;
-text-align: center;
-color: black;
-font-family: 'Shadows Into Light', cursive;
-}
-.ContBtn3{
     display: grid;
     justify-content: center;
+    text-align: center;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
 }
+
 .Btn3{
     display: grid;
     justify-content: center;
     color: #ffb627;
+    border: 1px solid black;
 }
+
+.Btn3:hover {
+    color: black;
+    background-color: #ffb627;
+}
+
 .Btn1{
     display: grid;
     justify-content: center;
     color: black;
+}
+
+.Btn1:hover {
+    color: #ffb627;
 }
