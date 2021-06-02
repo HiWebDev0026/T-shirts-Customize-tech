@@ -92,9 +92,9 @@ export default function CartItem ({item, index}){
                     </select>
                 </div>
                 <div className={Style.amount}>
-                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '+')}><GrAdd/></button>
+                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '+')}>+</button>
                     <div className={Style.qty}>{item.amount}</div>
-                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '-')}><GrFormSubtract/></button>
+                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '-')}>-</button>
                 </div>
             </div>
         </li>
