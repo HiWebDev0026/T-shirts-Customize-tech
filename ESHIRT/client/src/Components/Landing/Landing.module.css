@@ -242,6 +242,20 @@
     align-items: center;
 }
 
+@media(max-width: 768px){
+    .sectionOne{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .sectionOne iframe{
+        margin: 0 auto;
+    }
+}
+
 .sectionTwo{
     background-color: #ffb627;
     display: flex;
