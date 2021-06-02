@@ -2,17 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .card{
-    /* border: solid 2px black; */
     box-shadow: 2px 2px 2px 2px rgb(228, 227, 227);
-    width: 200px;
-    height: 270px;
+    width: 210px;
+    height: 280px;
     margin:6px;
     border-radius: 5px;
 }
 
 .card:hover{
-    width: 210px;
-    height: 280px;
+    width: 220px;
+    height: 290px;
 }
 
 .name{

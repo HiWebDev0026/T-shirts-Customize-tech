@@ -3,10 +3,10 @@
 
 .container{
     width:100%;
-    height:100vh;
+    height:100%;
     display: flex;
     flex-direction: column;
-    text-align: center;  
+    text-align: center; 
 }
 
 .container h1{
@@ -14,8 +14,11 @@
 }
 
 .info{
-    display:flex;
-    justify-content: center;
+  width:100%;
+  height: 800%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap:wrap;
 }
 
 
@@ -49,5 +52,11 @@
 
   h1{
     color: black;
-    font-size: 40px;
+    font-size: 50px;
   }
+
+  /* @media(max-width: 960px){
+    .container{
+      border: solid 2px red;
+    }
+  } */
