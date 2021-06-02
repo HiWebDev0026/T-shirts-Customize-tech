@@ -31,7 +31,6 @@ export default function BuyAuthorizeDesigns(){
       })
     }})
 
-    console.log(designsTotal)
     useEffect(() => {
       dispatch(getShirts());
     }, [count]);
@@ -44,8 +43,8 @@ export default function BuyAuthorizeDesigns(){
         buttons: ["CANCEL", "DELETE"]
       }).then(respuesta =>{
         if(respuesta){
-        dispatch(deleteShirt(parseInt(e.target.value))); 
         setCount(count +1);
+        dispatch(deleteShirt(parseInt(e.target.value))); 
         dispatch(getShirts())
         swal({ 
           title: "DELETE", 
@@ -55,6 +54,7 @@ export default function BuyAuthorizeDesigns(){
           timer: 3500,
           padding: "0.75rem"
           });
+          dispatch(getShirts())
       };})}
 
       function handlePublic(e) {
@@ -66,8 +66,8 @@ export default function BuyAuthorizeDesigns(){
       function handleEdit (e) {
         if(input2.length >0){  
         e.preventDefault();
-        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
         setCount(count +1);
+        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
         dispatch(getShirts())
         swal({ 
           title: "Modified", 
@@ -76,6 +76,7 @@ export default function BuyAuthorizeDesigns(){
           timer: 3500,
           padding: "0.75rem"
           });
+          dispatch(getShirts())
         }    
     }
 
