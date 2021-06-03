@@ -90,6 +90,9 @@
     align-content: center;
     flex-wrap:  wrap ;
 }
+.Btn3:hover{
+  color:#ffb627;
+}
 .pagination {
     display: flex;
     padding: 0;

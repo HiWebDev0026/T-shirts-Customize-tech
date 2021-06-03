@@ -90,6 +90,9 @@
     justify-content: center;
     color: black;
 }
+.Btn3:hover{
+    color:#ffb627;
+  }
 .BtnDelete{
 transition: all 0.1s ease-in;
 border-radius: 1vh;
