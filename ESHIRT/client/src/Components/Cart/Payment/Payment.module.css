@@ -1,22 +1,24 @@
+
 .container{
     display: flex;
-    
     justify-content: center;
-    
+    background-image: url('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/175717207/original/fddb4f371c9afeac5ebc1f66e7564543087cbd6f/create-customised-t-shirts-and-merchandise.jpg');
+    background-size: contain;
 }
 
 .form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     padding: 3vh;
-    border: 2px solid coral;
+    border: 2px solid black;
+    background: rgba(0, 0, 0, 0.363);
 }
+
 
 .form > div{
     display: flex;
-    color: white;
+    color: black;
     font-size: 3vh;
     margin: 1vh;
 }
@@ -27,9 +29,9 @@
     height: 5vh;
     margin: 0.5vh;
     text-align: center;
-    background: transparent;
-    color: coral;
-    border: 2px solid coral;
+    background: white;
+    color: rgb(255, 188, 2);
+    border: 2px solid rgb(255, 188, 2);
     outline: none;
 }
 
@@ -40,8 +42,8 @@
     margin: 0.5vh;
     text-align: center;
     background: transparent;
-    color: coral;
-    border: 2px solid coral;
+    color: rgb(255, 188, 2);
+    border: 2px solid rgb(255, 188, 2);
     outline: none;
 }
 
@@ -92,4 +94,22 @@
     background: transparent;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 960px){
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3vh;
+        border: 2px solid black;
+        background: rgba(0, 0, 0, 0.507);
+    }
+    
+    .form > div{
+        display: flex;
+        color: white;
+        font-size: 3vh;
+        margin: 1vh;
+    }
 }

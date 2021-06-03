@@ -69,7 +69,9 @@ function Filter(){
     return (
         <div className={style.container}>   
             <a href= '#popup'>
-                <FilterIcon className={style.filterIcon} onClick={deployFilter}/>Filter
+                <div className={style.filterContainer}>
+                    <FilterIcon className={style.filterIcon} onClick={deployFilter}/>Filter
+                </div>
             </a>
             {   popup && 
             <div id= 'popup' className={style.popupFilter}>  
