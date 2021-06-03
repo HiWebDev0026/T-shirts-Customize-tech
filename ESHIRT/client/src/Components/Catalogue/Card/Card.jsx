@@ -203,7 +203,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                 </select>
               </label>
             </div>
-           <ul className={style.textReview}>
+           <ul className={style.textReview2}>
             <li>Size: {newSize}</li>
             <li>Color: {color}</li>
             <li>Model: {model}</li>

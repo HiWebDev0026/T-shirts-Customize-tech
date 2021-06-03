@@ -524,6 +524,13 @@ input[type="radio"]:checked ~ label {
   font-size: 25px;
   list-style: none;
 }
+.textReview2{
+  font-family: 'Shadows Into Light', cursive;
+  color: black; 
+  margin: 0%;
+  font-size: 20px;
+  list-style: none;
+}
 .textMoreReview{
   font-family: 'Shadows Into Light', cursive;
   color: black; 
@@ -557,6 +564,19 @@ font-size: 60px;
   height: 80px;
   overflow:auto;
   overflow-y: inherit;
+}
+.size{
+  font-family: 'Shadows Into Light', cursive;
+ 
+  font-size: 18px;
+  height: 30px;
+  width: 10vh;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: black;
+  transition-duration: 0.4s;
+  border-radius: 10px;
+  
 }
 
 @media(max-width:960px){
@@ -598,7 +618,7 @@ font-size: 60px;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-around;
-   
+    flex-wrap: nowrap;
     
   
   }
@@ -606,8 +626,8 @@ font-size: 60px;
     display: none;
   }
   .imagePopup {
-   width:25%;
-   margin-left: 50%;
+   width:35%;
+   margin-left: 35%;
   }
   .ratings{
     width:25%;
@@ -654,19 +674,19 @@ font-size: 60px;
     margin: 0%;
     font-size: 45px;
     }
-    .textMoreReview{
+    .textMoreReview ul {
       font-family: 'Shadows Into Light', cursive;
       color: black; 
       margin: 0%;
-      font-size: 30px;
+      font-size: 20%;
     }
     
-    @media(max-width:400px){
-      .textMoreReview{
+    @media(max-width:360px){
+      .textMoreReview2{
         font-family: 'Shadows Into Light', cursive;
         color: black; 
         margin: 0%;
-        font-size: 10px;
+        font-size: 10%;
       }
       .shadowsTitle {
         font-family: 'Shadows Into Light', cursive;
@@ -676,7 +696,8 @@ font-size: 60px;
       font-size: 35px;
       }
       .imagePopup {
-        width:23%;
+        width:70%;
+        margin-left: 20%;
         
        }
        .ratings{
