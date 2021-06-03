@@ -3,22 +3,38 @@
 
 @media (max-width: 960px){
     
+    .Title{
+        display: flex;
+    }
+
+    .nav{
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        justify-content: space-around;
+    }
+
+    .form{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
     .Tarjet{
         display: flex;
         flex-direction: column;
         color: black;
-        width: 20vw;
+        width: 100%;
         height: 50vh;
-        gap: 1vh;
         margin: 2vw;
         border-radius: 10px;
-        position: relative;
-        top: 0;
         transition: all 0.1s ease-in;
         border: 2px solid #ffb627;
         align-items: center;
-        justify-content: space-around;
-        flex-wrap:  wrap ;
+        justify-content: center;
         font-size: 1.5vh;
     } 
     .field{
@@ -29,6 +45,7 @@
         font-size: 90%;
         align-items: center;
         flex-wrap:  wrap ;
+        width: 5vh;
     } 
     .Centers{
         justify-content: center;
@@ -57,14 +74,25 @@
     flex-wrap:  wrap ;
 }
 .field{
+    display: flex;
     justify-content: center;
-    display: grid;
+    width: 80%;
+    margin: 0 auto;
     text-transform: uppercase;
     font-size: 90%;
     align-items: center;
-    align-content: center;
     flex-wrap:  wrap ;
 } 
+
+.edit {
+    display: flex;
+    width: 100%;
+}
+
+.edit > input {
+    width: 100%;
+}
+
 .field:first-letter {
     text-transform: uppercase;
     align-items: center;
@@ -73,27 +101,27 @@
     } 
 .Centers{
     justify-content: center;
-    display: grid;
+    display: flex;
+    width: 100%;
     text-transform: uppercase;
     font-size: 90%;
     align-items: center;
     align-content: center;
-    flex-wrap:  wrap ;
+    flex-wrap:  wrap;
+    text-align: center;
 }
 .Tarjet{
-        color: black;
-        width: 20vw;
-        height: 50vh;
-        gap: 1vh;
-        margin: 2vw;
-        border-radius: 10px;
-        position: relative;
-        top: 0;
-        transition: all 0.1s ease-in;
-        border: 2px solid #ffb627;
-        align-items: center;
-        align-content: center;
-        flex-wrap:  wrap ;
+    color: black;
+    width: 100%;
+    height: 50vh;
+    margin: 0 auto;
+    padding: 1vh;
+    border-radius: 10px;
+    transition: all 0.1s ease-in;
+    border: 2px solid #ffb627;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:  wrap ;
 }
 .Tarjet:hover{
     top: -1vh;
@@ -113,12 +141,19 @@
       align-content: center;
       flex-wrap:  wrap ;
   }
-  .Submit:hover{
-      background-color: #ffb627;
-      align-items: center;
-      align-content: center;
-      flex-wrap:  wrap ;
+
+  .Submit{
+    width: 100%;
+    border: 1px solid #ffb627;
+    margin: 1vh;
   }
+
+  .Submit:hover{
+    background-color: #ffb627;
+    align-items: center;
+    align-content: center;
+  }
+
   .Centers{
       justify-content: center;
       align-items: center;
@@ -127,11 +162,16 @@
   }
   .Btn3{
     display: flex;
+    font-family: 'Shadows Into Light', cursive;
     justify-content: center;
     color: black;
     align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
+}
+
+.Btn3:hover{
+    color: #ffb627;
 }
 
 

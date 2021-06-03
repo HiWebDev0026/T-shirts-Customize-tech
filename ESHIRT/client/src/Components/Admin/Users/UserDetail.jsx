@@ -83,32 +83,32 @@ export default function UserDetail ({match}){
                             <p className={Style.Centers}>{field}: {user[field]} {edit && showEditInput(field)}</p>
                         </div>
                     );
-                })};
+                })}
             </div>
         );
     };
 
     return (
         <div className={Style.Title}>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className={Style.form}>
                     <h2 className={Style.Detail}>User detail</h2>
                     {setDataToDisplay()}
-                    <div>                    
-                        <button  onClick={handleClick}> Edit </button>
+                    <div >                    
+                        <button className={Style.Submit} onClick={handleClick}> Edit </button>
                     </div>
-                </div>
                 {edit && <input className={Style.Submit} type='submit' ></input>}
             </form>
-            <NavLink to='/users'>
-            <h5 className={Style.Btn3}>USERS</h5>
-            </NavLink>
-            <NavLink to='/admins'>
-            <h5 className={Style.Btn3}>ADMINISTRATORS</h5>
-            </NavLink>
-            <NavLink to='/home_admin'>
-            <h4 className={Style.Btn3}>CONTROL PANEL</h4>
-            </NavLink>
+            <div className={Style.nav}>
+                <NavLink to='/users'>
+                    <h4 className={Style.Btn3}>USERS</h4>
+                </NavLink>
+                <NavLink to='/admins'>
+                    <h4 className={Style.Btn3}>ADMINISTRATORS</h4>
+                </NavLink>
+                <NavLink to='/home_admin'>
+                    <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+                </NavLink>
+            </div>
         </div>
     );
 };
