@@ -1,4 +1,4 @@
-import {searchMessage} from './keywordsParser'
+import searchMessage from './keywordsParser'
 
 class MessageParser {
     constructor(actionProvider, state) {

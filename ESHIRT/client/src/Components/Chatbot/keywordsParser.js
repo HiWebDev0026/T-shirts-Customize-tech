@@ -45,6 +45,4 @@ const searchMessage = (message) => {
     }
 }
 
-module.exports = {
-    searchMessage
-}
+export default searchMessage;
