@@ -59,8 +59,16 @@ function handleChange(e){
         timer: 3500,
         padding: "0.75rem"
         });
-    history.push('/desings_admin');
+   return history.push('/desings_admin');
     }    
+    swal({ 
+        title: "Error, Price not found ", 
+        text: "Complete all the items and try again",
+        dangerMode: true,
+        icon: "warning",
+        timer: 3000,
+        padding: "0.75rem"
+        });
 }
 
 const isAdmin = useTokenDecode(localStorage.currentToken);
