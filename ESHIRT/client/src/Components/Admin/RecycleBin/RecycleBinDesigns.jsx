@@ -19,6 +19,7 @@ export default function RecycleBinDesigns(){
     const isAdmin = useTokenDecode(localStorage.currentToken);
     const [count, setCount] = useState([]);
     const [input2, setInput2] = useState('');
+    const [input, setInput]= useState('')
 
     let designs= [];
     designsTotal.map((desing) => {
@@ -62,10 +63,27 @@ export default function RecycleBinDesigns(){
             value
         );
     }
+    let array= '';
+    function handleChange(e){
+          let index= parseInt(e.target.value);
+           array= index
+    }
+
       function handleEdit (e) {
+        if(array=== ''){
+          return swal({ 
+            title: "Error, Price not found ", 
+            text: "Complete all the items and try again",
+            dangerMode: true,
+            icon: "warning",
+            timer: 3000,
+            padding: "0.75rem"
+            });
+        }
+
         if(input2.length >0){  
         e.preventDefault();
-        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
+        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize', price: array }, e.target.value));
         setCount(count +1);
         dispatch(getShirts())
         swal({ 
@@ -107,7 +125,7 @@ export default function RecycleBinDesigns(){
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
                     <label>Buy_authorize</label>
                     <input type="radio" name="public" value="buy_authorize" onChange= {handlePublic}  />
-                    
+                    <input onChange={handleChange} placeholder='Choose the price'/>
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
          </div>
