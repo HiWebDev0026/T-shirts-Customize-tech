@@ -1,8 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
 
+@media (max-width: 960px){
+
+    .Container{
+        display: grid;
+    }
+
+    .Tarjet{
+        border: 1px solid ;
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1px;
+    }
+
+    .Btn1{
+        grid-column: 4;
+    }
+
+    .Detail{
+        grid-column: 3;
+    }
+
+    .Title3{display: none;}
+    .Titles3{display: none;}
+
+    .Title4{display: none;}
+    .Titles4{display: none;}
+
+    .Title5{display: none;}
+    .Titles5{display: none;}
+
+    .Title6{display: none;}
+    .Titles6{display: none;}
+
+    .Title7{display: none;}
+    .Titles7{display: none;}
+
+    .Title8{display: none;}
+    .Titles8{display: none;}
+}
+
 .General{
-    
     display: flex;
     color: black;
     justify-content: space-around;
@@ -22,9 +61,15 @@
     display: grid;
     
 }
+
+.excel{
+    display: grid;
+    height: 5vh;
+    width: 20vh;
+}
+
 .Tarjet{
     border: 2px solid ;
-    border-radius: 5px #ffb627;
     display: grid; 
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 1px;
@@ -81,12 +126,11 @@
 .Title8{
     grid-column: 8;
 }
-.Btn{
-    grid-column: 9;
-}
+
 .Btn1{
     transition: ease-in 0.3s;
     border-radius: 3vh;
+    
 }
 .Btn1:hover{
     background-color: red;

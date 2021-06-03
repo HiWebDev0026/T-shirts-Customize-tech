@@ -9,16 +9,9 @@ function AdminDashboard(){
     return(
         <div className={Style.container}>   
             <h1>Welcome!</h1>
-            <Clock />
             <div className={Style.box}>
                 <div className={Style.sideBar}>
                     <HomeAdmin />
-                </div>
-                <div className={Style.adminData}>
-                    <AdminData />
-                </div>
-                <div className={Style.calendar}>
-                    <Calendar />
                 </div>
             </div>
         </div>

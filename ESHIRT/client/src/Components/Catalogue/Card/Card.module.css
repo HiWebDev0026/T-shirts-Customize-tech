@@ -114,6 +114,12 @@
     color:grey;
 }
 
+.cartBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cartBtns{
   display: inherit;
   justify-content: center;
