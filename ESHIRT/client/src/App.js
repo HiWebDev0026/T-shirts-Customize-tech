@@ -1,6 +1,6 @@
 import './App.css';
-import {Route, Switch} from 'react-router-dom';
-import {useEffect} from 'react';
+import {Route, Switch, withRouter} from 'react-router-dom';
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {postUser} from './Actions/index.js';
 import axios from 'axios';
@@ -42,8 +42,9 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
 
 import Payment from './Components/Cart/Payment/Payment'
+import ScrollToTop from './hooks/windowPath';
+import Reviews from './Components/Reviews/Reviews.jsx'
 
-//import Reviews from './Components/Reviews/Reviews.jsx'
 import RecycleBinShirt from './Components/Admin/RecycleBin/RecycleBinShirt';
 import RecycleBinUser from './Components/Admin/RecycleBin/RecycleBinUser';
 import RecycleBinDesigns from './Components/Admin/RecycleBin/RecycleBinDesigns';
@@ -55,11 +56,19 @@ import BuyAuthorizeDesigns from './Components/Admin/DesignsAdmin/BuyAuthorizeDes
 import swal from 'sweetalert';
 
 
+
+
+
+
 function App({location}) {
 
   const {isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const [current, setCurrent] = useState(window.location.pathname);
   const dispatch = useDispatch();
+  const topRef = useRef(null);
   
+
+
   useEffect(() => {
     let token;
     (async () => {
@@ -123,13 +132,20 @@ function App({location}) {
 
   }, [isAuthenticated, localStorage.currentToken]);
 
+ 
 
   return (
     <div>
+      <ScrollToTop />
       <Switch >
-
+      
+      
+      
       <Route exact path= '/' component={Landing}/>
+      
       <div className= 'App' >
+      
+      
       <MainNavBar />  
       <Route exact path= '/newDashBoard' component={NewDashboard}/> 
       {/* <Route path= '/' component={MainNavBar}/>   */}

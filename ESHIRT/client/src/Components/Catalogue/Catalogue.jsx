@@ -110,9 +110,9 @@ function handlePageClick({ selected: selectedPage }) {
             </div>
 
         </div>
-        <div className={style.cart}>
-            <SideCart/>
-        </div>
+        
+           {/*  <SideCart/> */}
+        
 
         </div>   
     )

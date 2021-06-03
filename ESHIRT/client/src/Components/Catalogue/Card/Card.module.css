@@ -253,22 +253,6 @@
   opacity: 1;
 }
 
-
-
-
-@media screen and (max-width: 768px) {
-  html, body {
-    font-size: 12px;
-  }
-
-  .image{
-    height: 80%;
-    width: 100%;
-  }
-
-}
-
-
 .button {
   text-decoration: none;
   font-size: 0.875rem;
