@@ -64,7 +64,7 @@ export function SideCart({closeCart}){
 
     const showProceed = () => {
         return (
-            <NavLink to={'cart/'}>
+            <NavLink to={'cart/'} onClick={()=> closeCart(false)}>
                 <button className={style.cartBtnP}><ConfirmCheckout style={isAuthenticated ? {fill: 'green'} : {fill: 'black'}}/><span>CHECKOUT</span></button>
             </NavLink>
         )
