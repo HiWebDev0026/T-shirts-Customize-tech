@@ -10,12 +10,12 @@ import {ReactComponent as UnextendIcon} from '../assets/130906.svg'
 import {useTokenDecode} from '../hooks/tokenDecoding';
 import { useWidthCheck } from "../hooks/widthCheck";
 
-const LogoutButton = () => {
+const LogoutButton = ({menuClose}) => {
 
   const [deployed, setDeployed] = useState(false);
   const isAdmin = useTokenDecode(localStorage.currentToken);
   const { logout, user } = useAuth0();
- /*  const history = useHistory(); */
+  const history = useHistory();
   const  dispatch= useDispatch();
   const width = useWidthCheck();
 
@@ -59,7 +59,15 @@ const LogoutButton = () => {
                       ]
   return (
     <div className={Style.userPanel} name="userForClick">
-    <button className={Style.logoutBtn} name="userForClick" /* onClick={()=> {
+    <button className={Style.logoutBtn} name="userForClick" onClick={()=> {
+      if(width < 960) {
+      history.push('/account') 
+      menuClose(false);
+      return;
+      }
+
+      return null;
+    }}/* onClick={()=> {
       return !deployed ? setDeployed(true) : setDeployed(false);
     }} */  >
       {user.name}

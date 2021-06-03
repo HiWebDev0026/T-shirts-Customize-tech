@@ -41,7 +41,7 @@ function GenericNavbar() {
                 return setCartDeployed(true);
             }}><CartIcon /></div></div>) : 
 
-            <ResponsiveMenu />
+            <ResponsiveMenu setCartDeployed={setCartDeployed}/>
 
             }
        

@@ -315,4 +315,25 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
         width: 100%;
     }
 
+
+    .responsiveNavBar {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        top: 10%;
+    }
+    .navLinks {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .navLinks li {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 270px;
+        font-size: 26px;
+    }
+
+    
+
 }
