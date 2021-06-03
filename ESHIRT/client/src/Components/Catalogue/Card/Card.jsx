@@ -209,6 +209,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
               >
                 <BsFillHeartFill />
               </button>
+              <div className={style.cartBtns}>
               { 
               stock >= 1 ?
                 <div>
@@ -228,6 +229,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                   : 
                 <div></div>
               }
+              </div>
             </div>
           </div>
         </div>
