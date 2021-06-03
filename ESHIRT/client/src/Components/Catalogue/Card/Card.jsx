@@ -151,7 +151,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
               ) : (
                 <div className={style.textReview}>
                   <span class={style.product_rating}>{scoreReview}</span>
-                  <span >/5</span> <span>$:{price}</span>
+                  <span >/5</span> <span>${price}</span>
                 </div>
               )}
               <div className={style.stars}>{setStars(scoreReview)}</div>

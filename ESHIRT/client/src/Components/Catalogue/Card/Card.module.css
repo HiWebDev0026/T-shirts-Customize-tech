@@ -375,7 +375,7 @@
   font-size: 0.875rem;
   font-weight: 300;
   border-radius: 100%;
-  background-color: coral;
+  background-color: #ffb627;
   z-index: 4;
   color: #fff;
   line-height: 3rem;
@@ -516,14 +516,14 @@ input[type="radio"]:checked ~ label {
   display: flex;
   flex-direction: column;
   align-items:flex-start;
-  margin-right: 35%;
   border-radius: 20px;
   color: white;
   background-color: rgba(125, 125, 125, 0.4);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+  padding-right: 25px;
+  width: 50%;
   
-  width: 30%;
 }
 .textReview{
   font-family: 'Shadows Into Light', cursive;
