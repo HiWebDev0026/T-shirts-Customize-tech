@@ -144,10 +144,16 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
           <div>
-            <img src={image} className={style.popup__photo} />
+            
+          <div className={style.offPopup}>{latestPrice}</div>
+            {stock !== 0 ? stock <= 10 ? <div className={style.stockPopup}>Latest units...</div> : <div></div> : <div className={style.stock}>NO STOCK</div>}   
+              <img className={style.imagePopup} src={image} />
             <div className={style.ratings}>
               {isNaN(scoreReview) ? (
+                <div className={style.textReview}>
                 <p>no reviews, be the first...</p>
+                 <p>${price}</p>
+                 </div>
               ) : (
                 <div className={style.textReview}>
                   <span class={style.product_rating}>{scoreReview}</span>
