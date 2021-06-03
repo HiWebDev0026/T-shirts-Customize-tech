@@ -18,6 +18,16 @@ import Understanding from './Components/Understanding';
 import Hello from './Components/Hello';
 import Shirts from './Components/Shirts';
 import ClaimsForm from './Components/ClaimsForm';
+import Agus from './Components/Agus';
+import Dani from './Components/Dani';
+import Ger from './Components/Ger';
+import Lean from './Components/Lean';
+import Ema from './Components/Ema';
+import Eze from './Components/Eze';
+import Javi from './Components/Javi';
+import Toni from './Components/Toni';
+import Fran from './Components/Fran';
+
 
 const config = {
     botName: 'E-shirt bot',
@@ -116,6 +126,47 @@ const config = {
         },
         {
             widgetName: "humans"
+        },
+        /*-----------------Easter Eggs---------------------------------- */
+        {
+            widgetName: "agus",
+            widgetFunc: (props) => <Agus {...props} />,
+        },
+        {
+            widgetName: "agus",
+            widgetFunc: (props) => <Agus {...props} />,
+        },
+        {
+            widgetName: "dani",
+            widgetFunc: (props) => <Dani {...props} />,
+        },
+        {
+            widgetName: "ger",
+            widgetFunc: (props) => <Ger {...props} />,
+        },
+        {
+            widgetName: "javi",
+            widgetFunc: (props) => <Javi {...props} />,
+        },
+        {
+            widgetName: "lean",
+            widgetFunc: (props) => <Lean {...props} />,
+        },
+        {
+            widgetName: "ema",
+            widgetFunc: (props) => <Ema {...props} />,
+        },
+        {
+            widgetName: "eze",
+            widgetFunc: (props) => <Eze {...props} />,
+        },
+        {
+            widgetName: "toni",
+            widgetFunc: (props) => <Toni {...props} />,
+        },
+        {
+            widgetName: "fran",
+            widgetFunc: (props) => <Fran {...props} />,
         },
     ]
 }
