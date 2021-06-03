@@ -7,11 +7,11 @@
     height: 280px;
     margin:6px;
     border-radius: 5px;
+    border: 2px solid transparent;
 }
 
 .card:hover{
-    width: 220px;
-    height: 290px;
+   border: 2px solid #ffb627;
 }
 
 .name{
