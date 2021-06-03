@@ -661,7 +661,29 @@ font-size: 60px;
       font-size: 30px;
     }
     
-    
+    @media(max-width:400px){
+      .textMoreReview{
+        font-family: 'Shadows Into Light', cursive;
+        color: black; 
+        margin: 0%;
+        font-size: 10px;
+      }
+      .shadowsTitle {
+        font-family: 'Shadows Into Light', cursive;
+        color: black;
+        text-shadow:3px 5px 5px #ffb627;
+      margin: 0%;
+      font-size: 35px;
+      }
+      .imagePopup {
+        width:23%;
+        
+       }
+       .ratings{
+         display:none;
+       }
+
+    }
     
     
    
