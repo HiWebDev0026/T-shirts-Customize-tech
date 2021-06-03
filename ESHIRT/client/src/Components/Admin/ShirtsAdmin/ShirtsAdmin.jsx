@@ -74,60 +74,62 @@ shirts.map((shirt) => {
     }
       
     return(
-      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+      <div>
         <div className={Style.General} >
           <h2 classname={Style.ShirtsTitle}>SHIRTS</h2>
         <table id="table-to-xls">
         <div id='tableShirts'>
             <br/>
             <tr className={Style.Container}>
-            <div className={Style.Tarjet} >
-             <th className={Style.Title1}> Id</th>
-              <th className={Style.Title2}> Name</th>
-              <th className={Style.Title3}> Color</th>
-              <th className={Style.Title4}> Model</th>
-              <th className={Style.Title5}>Size</th>
-              <th className={Style.Title6}> Score</th>
-              <th className={Style.Title7}> public</th>
-              <th className={Style.Title8}> Created</th>
-              </div>
-              </tr>
-              </div>
-            {shirts1.length > 0  ? ( shirts1.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
-             
-          return (
-            <tr className={Style.Container}>
               <div className={Style.Tarjet} >
-              <th className={Style.Titles1}> {shirt.id}</th>
-              <th className={Style.Titles2}> {shirt.name}</th>
-              <th className={Style.Titles3}> {shirt.color}</th>
-              <th className={Style.Titles4}> {shirt.model}</th>
-              <th className={Style.Titles5}> {shirt.size}</th>
-              <th className={Style.Titles6}> {shirt.score}</th>
-              <th className={Style.Titles7}> {shirt.public}</th>
-              <th className={Style.Titles8}> {shirt.created_by_user}</th>
-              <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Delete</button></th>
-              <NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId} className={Style.Detail}>Detail</NavLink>
+                <th className={Style.Title1}> Id</th>
+                <th className={Style.Title2}> Name</th>
+                <th className={Style.Title3}> Color</th>
+                <th className={Style.Title4}> Model</th>
+                <th className={Style.Title5}>Size</th>
+                <th className={Style.Title6}> Score</th>
+                <th className={Style.Title7}> public</th>
+                <th className={Style.Title8}> Created</th>
               </div>
-               </tr>
-          );
-        
-        })
-      ) 
-      : (<p>Shirts not found</p>)}
+            </tr>
+        </div>
+        <tr className={Style.Container}>
+            {shirts1.length > 0  ? ( shirts1.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
+              
+              return (
+                <div className={Style.Tarjet} >
+                  <th className={Style.Titles1}> {shirt.id}</th>
+                  <th className={Style.Titles2}> {shirt.name}</th>
+                  <th className={Style.Titles3}> {shirt.color}</th>
+                  <th className={Style.Titles4}> {shirt.model}</th>
+                  <th className={Style.Titles5}> {shirt.size}</th>
+                  <th className={Style.Titles6}> {shirt.score}</th>
+                  <th className={Style.Titles7}> {shirt.public}</th>
+                  <th className={Style.Titles8}> {shirt.created_by_user}</th>
+                  <th><button className={Style.Btn1} value={shirt.id} onClick={handleEdit}>Delete</button></th>
+                  <th><NavLink to={`/shirt_detail/${shirt.id}`} onClick={getShirtId} className={Style.Detail}>Detail</NavLink></th>
+                </div>
+              );
+                
+              })
+              ) 
+              : (<p>Shirts not found</p>)}
+        </tr>
       </table>
+
+        <div className={Style.excel}>
+          <ReactHTMLTableToExcel
+            id="test-table-xls-button"
+            className="download-table-xls-button"
+            table="table-to-xls"
+            filename="shirtsxls"
+            sheet="shirtsxls"
+            buttonText="Download as XLS"
+          />
+        </div>
       
-      <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
-                    className="download-table-xls-button"
-                    table="table-to-xls"
-                    filename="shirtsxls"
-                    sheet="shirtsxls"
-                    buttonText="Download as XLS"/>
-      
-     
-      
-      <div className={Style.pagination}>
+        <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -139,16 +141,16 @@ shirts.map((shirt) => {
                         activeClassName={Style.pagination__link__active}
                         containerClassName={Style.pagination}
                     />  
-                </div>
+        </div>
                 
       
       </div>
       
 
  
-    <NavLink to='home_admin'>
-<h4 className={Style.Btn3}>CONTROL PANEL</h4>
-    </NavLink> 
-        </div>
+      <NavLink to='home_admin'>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
+      </NavLink> 
+    </div>
     );
 };

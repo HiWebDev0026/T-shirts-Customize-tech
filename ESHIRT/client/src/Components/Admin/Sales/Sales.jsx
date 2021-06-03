@@ -177,12 +177,12 @@ function sortByDate2(a, b) {
         </div>
           <table id="table-to-xls">
               <tr>
-              <th >Id</th>
+                <th >Id</th>
                 <th>Total Price</th>
-                <th >Status</th>
-                <th >CreateAt</th>
-                <th>UpdateAt</th>
-                <th >UserId</th>
+                <th className={Style.noResponsive}>Status</th>
+                <th className={Style.noResponsive}>CreateAt</th>
+                <th className={Style.noResponsive}>UpdateAt</th>
+                <th className={Style.noResponsive}>UserId</th>
                 <th >Details</th>
               </tr>
               {
@@ -191,10 +191,10 @@ function sortByDate2(a, b) {
                     return <tr>
                                   <th> {s.id}</th>
                                   <th> {s.total_price}</th>
-                                  <th> {s.status}</th>
-                                  <th> {s.createdAt.slice(0,10)}</th>
-                                  <th> {s.updateAt?.slice(0,10)}</th>
-                                  <th> {s.userId}</th>
+                                  <th className={Style.noResponsive}> {s.status}</th>
+                                  <th className={Style.noResponsive}> {s.createdAt.slice(0,10)}</th>
+                                  <th className={Style.noResponsive}> {s.updateAt?.slice(0,10)}</th>
+                                  <th className={Style.noResponsive}> {s.userId}</th>
                                   <th>
                                     <NavLink to={`order_detail/${s.id}`}>
                                       <button className={Style.Detail} id={s.id}>Details</button>
