@@ -17,4 +17,7 @@
     .container{
         width: 200px;
     }
+    .container span{
+        font-size: 250%;
+    }
 }

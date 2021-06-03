@@ -546,3 +546,15 @@ input[type="radio"]:checked ~ label {
 margin: 0%;
 font-size: 60px;
 }
+
+@media(max-width:900px){
+  .wrapper{
+    width: 250px;
+  }
+  .container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
