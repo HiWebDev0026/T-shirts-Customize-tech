@@ -120,10 +120,10 @@ const ZA = (a, b) => {return b.name > a.name ? 1 : -1;};
         <h5 className={Style.Btn3}>UNAPPROVED DESIGNS</h5>
     </NavLink>  
     <NavLink to='buy_authorize'>
-        <h5 className={Style.Btn3}>BUY AUTHORIZE DESIGNS</h5>
+        <h4 className={Style.Btn3}>BUY AUTHORIZE DESIGNS</h4>
     </NavLink>  
         <NavLink to='home_admin'>
-        <h4 className={Style.Btn4}>CONTROL PANEL</h4>
+        <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>  
     </div>
         </div>

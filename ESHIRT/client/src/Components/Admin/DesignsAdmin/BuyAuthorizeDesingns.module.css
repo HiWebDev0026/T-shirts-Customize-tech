@@ -81,6 +81,9 @@ padding: 0.5vh;
     justify-content: center;
     color: black;
 }
+.Btn3:hover{
+  color:#ffb627;
+}
 .Img{
     width: 200px; height: 200px;
   }

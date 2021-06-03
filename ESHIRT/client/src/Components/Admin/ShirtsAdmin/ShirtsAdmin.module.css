@@ -144,6 +144,9 @@
     justify-content: center;
     color:black;
 }
+.Btn3:hover{
+    color:#ffb627;
+  }
 .Detail{
     color: black;
     font-size: 120%;

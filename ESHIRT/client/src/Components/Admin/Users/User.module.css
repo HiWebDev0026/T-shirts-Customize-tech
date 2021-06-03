@@ -190,13 +190,8 @@ align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
 }
-.Btn4{
-  display: flex;
-  justify-content: center;
-  color: black;
-  align-items: center;
-  align-content: center;
-  flex-wrap:  wrap ;
+.Btn3:hover{
+  color:#ffb627;
 }
 .Order{
     display: flex;
