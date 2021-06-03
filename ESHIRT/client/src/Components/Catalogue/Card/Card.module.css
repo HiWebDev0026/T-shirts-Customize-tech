@@ -559,6 +559,110 @@ font-size: 60px;
   overflow-y: inherit;
 }
 
-@media(max-width:900px){
+@media(max-width:960px){
+  .popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 6;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hiden;
+    transition:  1s  ease-in-out;
+    flex-wrap: nowrap;
 
+  }
+  .popup_inner  {
+    position: relative;
+    bottom: -100vw;
+    right: -100vh;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 90%;
+    background-color: rgb(255, 255, 255);
+    -webkit-backdrop-filter: blur (15px);
+    backdrop-filter: blur (15px);
+    transform: rotate( 
+  0.5turn
+  );
+    transition: 0.64s ease-in-out;
+    padding: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+   
+    
+  
+  }
+  .background_review{
+    display: none;
+  }
+  .imagePopup {
+   width:25%;
+   margin-left: 50%;
+  }
+  .ratings{
+    width:25%;
+   margin-left: 50%;
+  }
+  
+  .offPopup {
+    margin-top: 1px;
+    position: absolute; 
+    box-sizing: content-box;
+    min-width: 35%;
+    max-width:10%;
+    text-align: center;
+    text-rendering: optimizeSpeed;
+     -webkit-font-smoothing: subpixel-antialiased;
+    white-space: nowrap; 
+    overflow: hidden;
+    color: white;
+    background-color: rgba(241, 9, 9, 0.685); 
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 5vh;
+    
+    }
+    .stockPopup{
+     
+      position: absolute; 
+      box-sizing: content-box;
+      min-width: 5%;
+      max-width:100%;
+      text-align: center;
+      text-rendering: optimizeSpeed;
+      -webkit-font-smoothing: subpixel-antialiased;
+      white-space: nowrap; 
+      overflow: hidden;
+      color: white;
+      background-color: rgba(10, 10, 10, 0.685); 
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 3vh;
+    }
+    .shadowsTitle {
+      font-family: 'Shadows Into Light', cursive;
+      color: black;
+      text-shadow:3px 5px 5px #ffb627;
+    margin: 0%;
+    font-size: 45px;
+    }
+    .textMoreReview{
+      font-family: 'Shadows Into Light', cursive;
+      color: black; 
+      margin: 0%;
+      font-size: 30px;
+    }
+    
+    
+    
+    
+   
 }
