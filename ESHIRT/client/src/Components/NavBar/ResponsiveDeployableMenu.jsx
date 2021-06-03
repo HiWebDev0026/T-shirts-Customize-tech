@@ -5,13 +5,14 @@ import {ReactComponent as CartIcon} from '../../assets/879815.svg'
 import {ReactComponent as HeartFavorite} from '../../assets/2107845.svg'
 import {ReactComponent as HomeButton} from '../../assets/25694.svg'
 import {ReactComponent as DesignButton} from '../../assets/3456377.svg';
-import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg'
+import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg';
+import {useHistory} from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton'
 import {NavLink} from 'react-router-dom';
 
 export default function ResponsiveDeployableMenu({deploy, menuClose, setCartDeployed}) {
 
-
+    const history = useHistory();
     return (
         deploy && <div className={Style.menuSection}>
             <div className={Style.topPanelIcons}>
@@ -24,7 +25,9 @@ export default function ResponsiveDeployableMenu({deploy, menuClose, setCartDepl
                     <CartIcon />
                 </div>
                 <div className={Style.navSeparator} style={{height: '30px'}}></div>
-                <div className={Style.fav}>
+                <div className={Style.fav} onClick={()=> {
+                    return history.push('/favorites')
+                }}>
                     <HeartFavorite />
                 </div>
             </div>
