@@ -4,7 +4,7 @@
 .slider{
     position: relative;
     height: 60%;
-    width: 80%;
+    width: 100%;
     background: white;
     font-size: 14px;
     color: #000;
@@ -14,9 +14,9 @@
 }
 
 .slider .swiper-container {
-  width: 900px;
+  width: 94vh;
   height: 100%;
-  /* border: solid 2px blue; */
+  padding:5px;
 }
 
 .slider .swiper-slide {
@@ -44,7 +44,6 @@
   width: 200px;
   height: 220px;
   object-fit: cover;
-  /* border: solid 2px red; */
 }
 
 .design h3, .catalogue h3{
@@ -104,4 +103,10 @@
 .pic1 button:hover, .pic2 button:hover{
     background-color: white;
     color:black;
+}
+
+@media(max-width: 545px){
+    .slider .swiper-container{
+        width: 50vh;
+    }
 }

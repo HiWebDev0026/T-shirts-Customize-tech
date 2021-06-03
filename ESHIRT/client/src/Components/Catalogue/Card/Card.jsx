@@ -106,9 +106,11 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
     }
     return (
       <div>
+        
         {stars.map((n) => {
           return <i key={n}>★</i>;
         })}
+        
       </div>
     );
   }
@@ -142,14 +144,20 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
           <div>
-            <img src={image} className={style.popup__photo} />
+            
+          <div className={style.offPopup}>{latestPrice}</div>
+            {stock !== 0 ? stock <= 10 ? <div className={style.stockPopup}>Latest units...</div> : <div></div> : <div className={style.stock}>NO STOCK</div>}   
+              <img className={style.imagePopup} src={image} />
             <div className={style.ratings}>
               {isNaN(scoreReview) ? (
+                <div className={style.textReview}>
                 <p>no reviews, be the first...</p>
+                 <p>${price}</p>
+                 </div>
               ) : (
-                <div>
+                <div className={style.textReview}>
                   <span class={style.product_rating}>{scoreReview}</span>
-                  <span>/5</span>
+                  <span >/5</span> <span>${price}</span>
                 </div>
               )}
               <div className={style.stars}>{setStars(scoreReview)}</div>
@@ -161,19 +169,19 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
             </a>
           </div>
           <NavLink to={`/shirt/${id}/review`}>
-            <button className={style.size}>Reviews</button>
+            <a className={style.textMoreReview}>More reviews...</a>
           </NavLink>
           {review ? (
             <div className={style.background_review}>
-              <h3>{review[review.length - 1]?.name}</h3>
+              <h3 className={style.textReview}>{review[review.length - 1]?.name}</h3>
               <p>{review[review.length - 1]?.content}</p>
             </div>
           ) : (
-            <p>no reviews yet</p>
+            <p className={style.textReview}>no reviews yet</p>
           )}
           <div className={style.popup__text}>
             <div>
-              <h2>{title}</h2>
+              <h3 className={style.shadowsTitle}>{title}</h3>
             </div>
 
             <div>
@@ -195,21 +203,15 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                 </select>
               </label>
             </div>
-
-            <p>Size: {newSize}</p>
-            <p>Color: {color}</p>
-            <p>Model: {model}</p>
-            <p>Amount: {amount}</p>
-
+           <ul className={style.textReview}>
+            <li>Size: {newSize}</li>
+            <li>Color: {color}</li>
+            <li>Model: {model}</li>
+            <li>Amount: {amount}</li>
+            
+            </ul>
             <div className={style.cartBox}>
-              <button
-                id={id}
-                onClick={handleFavorite}
-                className={isAuthenticated ? style.buttonAM : style.greyHeart}
-              >
-                <BsFillHeartFill />
-              </button>
-              <div className={style.cartBtns}>
+              
               { 
               stock >= 1 ?
                 <div>
@@ -225,11 +227,17 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                 >
                   <MdDeleteForever />
                 </button>
+                <button
+                id={id}
+                onClick={handleFavorite}
+                className={isAuthenticated ? style.buttonAM : style.greyHeart}
+              >
+                <BsFillHeartFill />
+              </button>
                 </div>
                   : 
                 <div></div>
               }
-              </div>
             </div>
           </div>
         </div>
@@ -239,3 +247,4 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
 }
 
 export default Card;
+

@@ -1,6 +1,8 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {useWidthCheck} from '../../hooks/widthCheck';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import {getShirt, getShirts} from '../../Actions/index.js';
@@ -22,18 +24,18 @@ import SwiperCore, {
 
 export default function ImageSlider (){
 
+    // const [screenWidth, setScreenWidth] = useState('');
+
     const tShirts=useSelector((state)=> state.shirtReducer.random10);
-    console.log('TSHIRTS', tShirts)
 
     const dispatch=useDispatch();
 
-    useEffect(()=>{
-        dispatch(getShirts('true'));
-    },[])
+    const width = useWidthCheck();
 
+  
     return (
         <div className='slider'>
-            <Swiper slidesPerView={3} spaceBetween={30} slidesPerGroup={3} loop={true} loopFillGroupWithBlank={true} pagination={{
+            <Swiper slidesPerView={width<=500?1:width>500&&width<1000?2:3} spaceBetween={30} slidesPerGroup={width<=500?1:width>500&&width<900?2:3} loop={true} loopFillGroupWithBlank={true} pagination={{
             "clickable": true
             }}  className="mySwiper">
                 <SwiperSlide className='design'>
