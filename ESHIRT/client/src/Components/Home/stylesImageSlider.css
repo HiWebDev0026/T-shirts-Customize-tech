@@ -104,3 +104,9 @@
     background-color: white;
     color:black;
 }
+
+@media(max-width: 545px){
+    .slider .swiper-container{
+        width: 50vh;
+    }
+}
