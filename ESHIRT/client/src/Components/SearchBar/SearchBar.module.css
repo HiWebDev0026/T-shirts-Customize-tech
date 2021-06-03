@@ -8,6 +8,7 @@
     width: auto;
     min-width: 70px;
     flex-shrink: 2;
+    
 
 }
 
@@ -80,3 +81,14 @@
     z-index: 5;
 }
 
+
+@media (max-width: 960px){
+
+    .searchBarMainContainer {
+        width: 250px;
+    }
+    .inputBox{
+        width: 100%;
+    }
+
+}

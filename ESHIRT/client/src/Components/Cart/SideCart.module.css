@@ -1,53 +1,221 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-.container{
+.containerSideCart{
     display: flex;
     flex-direction: column;
-    margin: 2vh;
-    border: 2px solid rgba(255, 255, 255, 0.993);
-    padding: 2vh;
+    position: fixed;
+    right: 0;
+    /* border: 2px solid black; */
+    backdrop-filter: blur(45px);
+    background-color: #ffffff88;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    height: 100vh;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    top: 0;
+    width: 360px;
+    z-index: 6;
+    box-shadow: 1px 1px 335px 85px black;
+    animation-name: deploying;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
+
+.emptyCart {
+    position: relative;
+    top: 40%;
+    height: 30%;
+    width: max-content;
+    max-width: 360px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.emptyCart svg {
+    height: 70%;
+    width: 69px;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    
+}
+
+.emptyCart > h3 {
+    width: 300px;
+    text-align: center;
+}
+
+
+.cartIconDeploy {
+    
+    width: 100%;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(40px);
+    background-color: rgba(255, 255, 255, 0.979);
+    /* box-shadow: 1px 1px 15px 45px white; */
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.cartIconDeploy svg{
+    background-color: black;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 5%;
+    height: 70px;
+    width: 60px;
+    fill: white;
+    padding-top: 8px;
+    padding-left: 10px;
+    padding-right: 18px;
+    
+    padding-bottom: 5px;
+}
+
 
 .items{
     display: flex;
     flex-direction: column;
-    color: white;
-    width: 100%;
+    color: black;
+    width: inherit;
     
 }
 
-.cartBtnC{
+.items > h2 {
+    margin-right: 0;
+}
+
+
+.btnPanelContainer {
+    display: flex;
     width: 100%;
+    justify-content: space-around;
+    top: 83px;
+    position: sticky;
+    background-color: white;
+    flex-direction: row;
+    box-shadow: 1px 15px 19px 9px white;
+}
+
+.cartTotalContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.cartBtnC{
+    width: max-content;
     background-color: transparent;
+    font-family: "Montserrat", sans-serif;
     transition: ease 0.3s;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.993);
+    color: black;
+    border: none;
+}
+
+.cartBtnClose{
+    width: max-content;
+    background-color: transparent;
+    font-family: "Montserrat", sans-serif;
+    transition: ease 0.3s;
+    color: black;
+    border: none;
+}
+
+.cartBtnClose svg {
+    fill: black;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 40px;
+    height: 50px;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
+}
+
+.cartBtnClose:hover svg {
+    transform: scaleX(1.1) scaleY(1.1);
+    
+}
+
+
+.cartBtnC svg {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 40px;
+    height: 50px;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
 }
 
 .cartBtnP{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
     background-color: transparent;
     transition: ease 0.3s;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.993);
+    color: black;
+    border: none;
+    
+}
+
+.cartBtnP svg {
+    width: 40px;
+    height: 50px;
+    margin: 0 auto;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .cartBtnC:hover{
-    width: 100%;
-    background-color: crimson;
-    color: white;
+    
+    text-shadow: 0.1px 0.1px 0.1px black;
+    color: black;
+
+}
+
+.cartBtnC:hover svg {
+    fill: crimson;
+    transform: scaleX(1.1) scaleY(1.1);
 }
 
 .cartBtnP:hover{
     width: 100%;
-    background-color: green;
-    color: white;
+    
+    color: black;
+}
+
+.cartBtnP:hover svg {
+    fill: green;
+}
+
+.addToFav {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
+
+.addToFav span{
+    margin-left: 15px;
+    color: gray;
+    transition: all 0.15s ease-in-out;
+}
+
+.addToFav:hover span {
+    font-weight: 800;
+    
 }
 
 .item{
     display: flex;
     margin: 4vh;
-    border: 2px solid rgba(255, 255, 255, 0.993);
+    justify-content: space-around;
+    
     backdrop-filter: blur (7px);
     padding: 1vh;
 }
@@ -57,17 +225,19 @@
     flex-direction: column;
 }
 
-.item > h2 {
+.items > h2 {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
     padding: 0;
+    
 }
 
 .data{
     display: flex;
+    width: 60%;
     flex-direction: column;
-    height: 5vh;
+    height: max-content;
 }
 
 .data > h4 {
@@ -78,23 +248,116 @@
     font-size: 16px;
 }
 
+.amount button {
+    border: none;
+    background: none;
+}
+
+
+.amount svg {
+    height: 20px;
+    margin: 0 auto;
+    width: 20px;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+}
+
+.amount svg:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
 .total{ 
-    color: white;
+    color: black;
 }
 
 .ctrls > img {
-    width: 6vh;
-    height: 7vh;
-    margin: 1vh;
+    width: 45px;
+    height: 55px;
+    margin: 0 auto;
 }
 
 .blackHeart{
-    color:black;
+    color:red;
     width:30px;
+    height: 29px;
+    background: none;
+    border-radius: 50%;
+    display: flex;
+    border:1px solid red;
+    align-items: center;
+    justify-content: center;
 }
+
+.blackHeart:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.blackHeart:hover svg{
+    transform: scaleX(1.3) scaleY(1.4);
+}
+
+
+.blackHeart svg {
+    width: 100%;
+    margin-top: 2px;
+}
+
 
 .greyHeart{
     color:grey;
     width:30px;
     height: 18px;
+}
+
+.bottomShadowCart {
+    height: 15px;
+    width: 80%;
+    max-width: 360px;
+    display: flex;
+    border: 8px solid white;
+    position:sticky;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 1px 1px 10px 15px white;
+}
+
+
+@keyframes deploying {
+    0% {
+        right: -880px;
+    }
+
+    100% {
+        right: 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    .containerSideCart {
+        height: 100vh;
+        width: 99vw;
+        margin: 0 auto;
+        padding: 0;
+        border-radius: 0;
+        left: 0;
+        border: none;
+        overflow-y: scroll;
+        z-index: 6;
+    }
+
+    .items > h2 {
+        
+        width: max-content;
+        margin: 0 auto;
+    }
+
+
+    .btnPanelContainer {
+        
+        top: 83px;
+        
+    }
+ 
+   
 }

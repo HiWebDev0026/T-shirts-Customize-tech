@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SearchBar from '../SearchBar/SearchBar';
+import ResponsiveMenu from './ResponsiveMenu';
 import {NavLink} from 'react-router-dom';
 import { GrCart, GrFavorite } from "react-icons/gr";
 import Style from './NavBar.module.css';
@@ -9,20 +10,24 @@ import {ReactComponent as DesignButton} from '../../assets/3456377.svg';
 import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg'
 import {ReactComponent as HeartFavorite} from '../../assets/2107845.svg'
 import {ReactComponent as CartIcon} from '../../assets/879815.svg';
+import { SideCart } from "../Cart/SideCart";
 import logoEShirt from '../../assets/img/E - SHIRT.png'
 import {useWidthCheck} from '../../hooks/widthCheck';
 
+
+
 function GenericNavbar() {
 
+    const [cartDeployed, setCartDeployed] = useState(false);
     const width = useWidthCheck();
 
     return (
     <header className={Style.header}>
         
-        <div className={Style.logoContainer}>
-            {/* <img src={logoEShirt} /> */}
+        {/* <div className={Style.logoContainer}>
+            
             LOGO SHIRTS
-        </div>
+        </div> */}
 
         
         <div className={Style.panelNavBar}>
@@ -32,9 +37,11 @@ function GenericNavbar() {
             {width > 960 ? (<div className={Style.loginPanel}><Login className={Style.loginBtn}/>
                 <div className={Style.navSeparator} style={{height: '30px'}}></div>
             <NavLink className={Style.fav} to='/favorites'>< HeartFavorite /></NavLink>
-            <NavLink className={Style.cart} to='/cart'><CartIcon /></NavLink></div>) : 
+            <div className={Style.cart} onClick={()=> {
+                return setCartDeployed(true);
+            }}><CartIcon /></div></div>) : 
 
-            'responsive'
+            <ResponsiveMenu />
 
             }
        
@@ -55,6 +62,7 @@ function GenericNavbar() {
         </nav>}
         </div>
         </div>
+        {cartDeployed && <SideCart closeCart={setCartDeployed}/>}
     </header>
   );
 };

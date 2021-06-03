@@ -8,6 +8,7 @@ import {setCartItems} from '../Actions/cart.js';
 import {ReactComponent as DeployIcon} from '../assets/32195.svg';
 import {ReactComponent as UnextendIcon} from '../assets/130906.svg'
 import {useTokenDecode} from '../hooks/tokenDecoding';
+import { useWidthCheck } from "../hooks/widthCheck";
 
 const LogoutButton = () => {
 
@@ -16,6 +17,7 @@ const LogoutButton = () => {
   const { logout, user } = useAuth0();
  /*  const history = useHistory(); */
   const  dispatch= useDispatch();
+  const width = useWidthCheck();
 
   useEffect(()=> {
     
@@ -62,13 +64,13 @@ const LogoutButton = () => {
     }} */  >
       {user.name}
     
-    <div className={Style.deployArrowContainer} name="ButtonDeploy" /* onClick={()=> {
+    {width > 960 && <div className={Style.deployArrowContainer} name="ButtonDeploy" /* onClick={()=> {
       return !deployed ? setDeployed(true) : setDeployed(false);
     }} */  >
       {!deployed ? <DeployIcon /> : <UnextendIcon />}
-    </div>
+    </div>}
     </button>
-    {deployed && !isAdmin && <div className={Style.deployableMenuCommonUser}>
+    {width > 960 && deployed && !isAdmin && <div className={Style.deployableMenuCommonUser}>
       <ul name="listorti">
         <li onClick={()=> setDeployed(false)}><Link to='/account'>Profile</Link></li>
         <li><Link to='/userData'>Personal data</Link></li>
@@ -88,7 +90,7 @@ const LogoutButton = () => {
       {
         deployed && isAdmin && <div className={Style.deployableMenuAdmin}>
         <ul>
-          <li><Link to='/userDash'>Profile</Link></li>
+          <li><Link to='/adminDash'>Profile</Link></li>
           <li><Link to='/users'>User management</Link></li>
           <li><Link to='/desings_admin'>Shirt designs</Link></li>
           <li><Link to='/shirts_admin'>Shirts</Link></li>
