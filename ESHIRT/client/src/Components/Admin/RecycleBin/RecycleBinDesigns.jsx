@@ -125,7 +125,7 @@ export default function RecycleBinDesigns(){
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
                     <label>Buy_authorize</label>
                     <input type="radio" name="public" value="buy_authorize" onChange= {handlePublic}  />
-                    <input onChange={handleChange} placeholder='Choose the price'/>
+                    <input onChange={handleChange} placeholder='Choose the price'required/>
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
          </div>

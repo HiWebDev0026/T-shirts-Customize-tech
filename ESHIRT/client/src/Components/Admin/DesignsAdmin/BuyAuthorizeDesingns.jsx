@@ -63,11 +63,26 @@ export default function BuyAuthorizeDesigns(){
             value
         );
     }
+    let array= '';
+    function handleChange(e){
+          let index= parseInt(e.target.value);
+           array= index
+    }
       function handleEdit (e) {
+        if(array=== ''){
+          return swal({ 
+            title: "Error, Price not found ", 
+            text: "Complete all the items and try again",
+            dangerMode: true,
+            icon: "warning",
+            timer: 3000,
+            padding: "0.75rem"
+            });
+        }
         if(input2.length >0){  
         e.preventDefault();
         setCount(count +1);
-        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
+        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize', price: array }, e.target.value));
         dispatch(getShirts())
         swal({ 
           title: "Modified", 
@@ -107,7 +122,7 @@ export default function BuyAuthorizeDesigns(){
         <form>
          <label>Make Public</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
-                    
+                    <input onChange={handleChange} placeholder='Choose the price'required/>
                     
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
