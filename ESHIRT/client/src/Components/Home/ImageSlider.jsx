@@ -35,7 +35,7 @@ export default function ImageSlider (){
   
     return (
         <div className='slider'>
-            <Swiper slidesPerView={width<=500?1:width>500&&width<1000?2:3} spaceBetween={30} slidesPerGroup={width<=500?1:width>500&&width<900?2:3} loop={true} loopFillGroupWithBlank={true} pagination={{
+            <Swiper slidesPerView={width<=500?1:width>500&&width<1000?2:3} spaceBetween={30} slidesPerGroup={1} loop={true} loopFillGroupWithBlank={true} pagination={{
             "clickable": true
             }}  className="mySwiper">
                 <SwiperSlide className='design'>
