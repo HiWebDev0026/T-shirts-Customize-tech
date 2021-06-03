@@ -30,7 +30,7 @@ async function postFavorites (req, res, next) {
             throw {status: 400, message: 'User or shirtId no provided'}
         }
     } catch (error) {
-        return next(err);
+        return next(error);
     }
 };
 
