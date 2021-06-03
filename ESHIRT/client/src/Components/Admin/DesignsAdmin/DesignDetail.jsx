@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getShirtById, deleteShirt , putShirt } from "../../../Actions/index";
+import { getShirtById, deleteShirt , putShirt , getShirts} from "../../../Actions/index";
 import {NavLink} from 'react-router-dom';
 import {useTokenDecode} from '../../../hooks/tokenDecoding';
 import ErrorNoAdminPage from '../ErrorPages/ErrorNoAdmin';
@@ -15,7 +15,6 @@ const designs = useSelector((state) => state.shirtReducer.shirtId);
 const dispatch = useDispatch();
 const history = useHistory();
 const [input2, setInput2] = useState('');
-
 
 function handleDelete(e) {
     swal({
@@ -43,10 +42,16 @@ function handleDelete(e) {
         value
     );
 }
+let array= '';
+function handleChange(e){
+      let index= parseInt(e.target.value);
+       array= index
+}
+
   function handleEdit (e) {
-    if(input2.length >0){  
+    if(input2.length >0 && array != ''){  
     e.preventDefault();
-    dispatch(putShirt({public: input2 === 'true' ? true : false}, designs.id));
+    dispatch(putShirt({public: input2 === 'true' ? true : false , price: array}, designs.id));
     swal({ 
         title: "NOTICE", 
         text: "Design " + e.target.value + " modified",
@@ -79,7 +84,8 @@ return(
                     <label >No Public</label>
                     <input type="radio" name="public" value="false" onChange= {handlePublic}  />
                     </div>
-                    <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >Submit</button>
+                    <input onChange={handleChange} placeholder='Choose the price' required/>
+                    { <button className={Style.Btn2} value={designs.id} type='submit' onClick={handleEdit} >Submit</button>}
                     </div>
                     </form>
          <br></br> <br></br>
