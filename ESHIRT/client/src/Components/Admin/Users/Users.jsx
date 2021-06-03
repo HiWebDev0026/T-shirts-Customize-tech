@@ -164,7 +164,7 @@ export default function Users() {
       
         })
       ) 
-      : (<p>Users not found</p>)}
+      : (<p>Loading...</p>)}
       </div>
       <div className={Style.pagination}>
                     <ReactPaginate

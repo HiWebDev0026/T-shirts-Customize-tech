@@ -114,7 +114,7 @@ shirts.map((shirt) => {
                 
               })
               ) 
-              : (<p>Shirts not found</p>)}
+              : (<p>Loading...</p>)}
         </tr>
       </table>
 
