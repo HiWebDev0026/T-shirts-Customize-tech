@@ -106,9 +106,11 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
     }
     return (
       <div>
+        
         {stars.map((n) => {
           return <i key={n}>★</i>;
         })}
+        
       </div>
     );
   }
@@ -147,9 +149,9 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
               {isNaN(scoreReview) ? (
                 <p>no reviews, be the first...</p>
               ) : (
-                <div>
+                <div className={style.textReview}>
                   <span class={style.product_rating}>{scoreReview}</span>
-                  <span>/5</span>
+                  <span >/5</span> <span>$:{price}</span>
                 </div>
               )}
               <div className={style.stars}>{setStars(scoreReview)}</div>
@@ -161,19 +163,19 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
             </a>
           </div>
           <NavLink to={`/shirt/${id}/review`}>
-            <button className={style.size}>Reviews</button>
+            <a className={style.textMoreReview}>More reviews...</a>
           </NavLink>
           {review ? (
             <div className={style.background_review}>
-              <h3>{review[review.length - 1]?.name}</h3>
+              <h3 className={style.textReview}>{review[review.length - 1]?.name}</h3>
               <p>{review[review.length - 1]?.content}</p>
             </div>
           ) : (
-            <p>no reviews yet</p>
+            <p className={style.textReview}>no reviews yet</p>
           )}
           <div className={style.popup__text}>
             <div>
-              <h2>{title}</h2>
+              <h3 className={style.shadowsTitle}>{title}</h3>
             </div>
 
             <div>
@@ -195,20 +197,15 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                 </select>
               </label>
             </div>
-
-            <p>Size: {newSize}</p>
-            <p>Color: {color}</p>
-            <p>Model: {model}</p>
-            <p>Amount: {amount}</p>
-
+           <ul className={style.textReview}>
+            <li>Size: {newSize}</li>
+            <li>Color: {color}</li>
+            <li>Model: {model}</li>
+            <li>Amount: {amount}</li>
+            
+            </ul>
             <div className={style.cartBox}>
-              <button
-                id={id}
-                onClick={handleFavorite}
-                className={isAuthenticated ? style.buttonAM : style.greyHeart}
-              >
-                <BsFillHeartFill />
-              </button>
+              
               { 
               stock >= 1 ?
                 <div>
@@ -224,6 +221,13 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
                 >
                   <MdDeleteForever />
                 </button>
+                <button
+                id={id}
+                onClick={handleFavorite}
+                className={isAuthenticated ? style.buttonAM : style.greyHeart}
+              >
+                <BsFillHeartFill />
+              </button>
                 </div>
                   : 
                 <div></div>

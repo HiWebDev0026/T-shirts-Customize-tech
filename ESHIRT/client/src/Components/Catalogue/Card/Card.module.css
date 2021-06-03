@@ -394,21 +394,22 @@
   width: 6vh;
   margin-left: 5px;
   margin-right: 5px;
-  border-color: rgba(255, 127, 80, 0.397);
+  border-color: #ffb627;
   transition-duration: 0.4s;
   border-radius: 10px;
 }
 
 .size{
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Shadows Into Light', cursive;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 20px;
   height: 38px;
   width: 10vh;
   margin-left: 5px;
 
   margin-right: 5px;
-  border-color: rgba(255, 127, 80, 0.397);
+  color: black;
+
   transition-duration: 0.4s;
   border-radius: 10px;
   
@@ -416,7 +417,7 @@
 
 .buttonCart:hover{
   background-color:#24252A;
-  color: rgba(255, 127, 80, 0.397);
+  color: #ffb627;
   border-radius: 10px;
 }
 
@@ -435,15 +436,16 @@
   width: 6vh;
   margin-left: 5px;
   margin-right: 5px;
-  border-color: rgba(255, 127, 80, 0.397);
+  border-color: #ffb627;
   transition-duration: 0.4s;
   border-radius: 10px;
 }
 
 .buttonAM:hover{
   background-color:#24252A;
-  color: rgba(255, 127, 80, 0.397);
+  border-color: #ffb627;
   border-radius: 10px;
+  color: #ffb627;
 }
 .clasificacion {
   display:flex;
@@ -453,11 +455,11 @@ unicode-bidi: bidi-override;
 font-size: 5vh;
 }
 input[type="radio"]:checked ~ label {
-	color: coral;
+	color: #ffb627;
   }
   label:hover,
   label:hover ~ label {
-	color: coral;
+	color: #ffb627;
   }
 
 .greyHeart{
@@ -502,27 +504,53 @@ input[type="radio"]:checked ~ label {
 
 .stars i {
   margin-top: 10%;
-    font-size: 18px;
-    color: #e26c0b
+    font-size: 20px;
+    color: #ffb627;
+    text-shadow:3px 5px 5px #a37e32;
 }
 
 
 
 
 .background_review {
-	content: "";	
-	width: 70vh;
-	height: 20vh;
-	left: 30px;
-	right: 30px;
-	bottom: 0;
-	top: 400px;
-	background-color: #ebcca3;
-	border: 1px solid rgba(251, 90, 13, 0.1);
-	border-radius: 10px;
-	z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  margin-right: 35%;
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(125, 125, 125, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  
+  width: 30%;
+}
+.textReview{
+  font-family: 'Shadows Into Light', cursive;
+  color: black; 
+  margin: 0%;
+  font-size: 25px;
+  list-style: none;
+}
+.textMoreReview{
+  font-family: 'Shadows Into Light', cursive;
+  color: black; 
+  margin: 0%;
+  font-size: 28px;
 }
 
 
-
-
+.textMoreReview:hover{
+  font-family: 'Shadows Into Light', cursive;
+  color: black; 
+  text-shadow:3px 5px 5px #ffb627;
+  margin: 0%;
+  font-size: 28px;
+}
+.shadowsTitle {
+  font-family: 'Shadows Into Light', cursive;
+  color: black;
+  text-shadow:3px 5px 5px #ffb627;
+margin: 0%;
+font-size: 60px;
+}
