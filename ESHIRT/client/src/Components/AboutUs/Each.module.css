@@ -52,17 +52,9 @@
     align-items: center;
     justify-content: space-evenly;
     width: 240px;
+    height: 40px;
+    margin-right: 30px;
 }
-/* 
-.links a h3{
-    color: white;
-}
-
-.links a {
-    text-decoration: none;
-    padding-left: 10px;
-} */
-
 
 .img{
     width: 150px;
@@ -70,6 +62,10 @@
     border-radius: 50%;
     border: 1px solid black;
     margin: 5px 0px 5px 0px;
+}
+
+.img:hover {
+    box-shadow: 1px 1px 13px 2px gold;
 }
 
 .nick{
@@ -95,5 +91,100 @@
     margin: 5px 0px 10px 0px;
     padding: 0%;
     max-width: 480px;
-    font-style: italic;
+    /* font-style: italic; */
+}
+
+.txtAlignEnd {
+    text-align: end;
+    margin-left: 25%;
+}
+
+.txtAlignStart {
+    text-align: start;
+    margin-right: 25%;
+}
+
+.responsiveAux {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 960px) {
+    .cardContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+    .titlesContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .txtAlignEnd {
+        text-align: center;
+        margin: 20px 0px 20px 0px;
+    }
+    .txtAlignStart {
+        text-align: center;
+        margin: 20px 0px 20px 0px;
+    }
+
+    .separator {
+        visibility: hidden;
+    }
+    .nick{
+        color: white;
+        font-size: 18px;
+        margin: 0%;
+        padding: 0%;
+        text-decoration: 1px white underline;
+    }
+    .h1{
+        font-family: 'Shadows Into Light', cursive;
+        font-size: 40px;
+        margin: 0%;
+        padding: 0%;
+    }
+    
+    .img{
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        border: 1px solid black;
+        /* margin: 5px 0px 5px 0px; */
+    }
+    .p{
+        color: #2a2524;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 14px;
+        font-weight: bolder;
+        margin: 5px 0px 10px 0px;
+        padding: 0%;
+        max-width: 300px;
+        /* font-style: italic; */
+    }
+    .responsiveAux {
+        display: flex;
+        flex-direction: column;
+        flex-flow: column-reverse;
+        /* justify-content: space-between; */
+    }
+    .links {
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 240px;
+        height: 32px;
+    }
+    .smallSeparator {
+        border: 0.5px solid whitesmoke;
+    }
+    
 }

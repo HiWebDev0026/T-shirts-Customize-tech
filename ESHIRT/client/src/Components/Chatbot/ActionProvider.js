@@ -150,6 +150,44 @@ class ActionProvider {
         const message = this.createChatBotMessage("Maybe this options can help you!", {widget: 'options'})
         this.addMessageToState(message);
     }
+    /*-----------------------------------------------Easter Eggs------------------------------------------------- */
+    handleAgus = () => {
+        const message = this.createChatBotMessage("We hope you get to work here some day", {widget: 'agus'})
+        this.addMessageToState(message);
+    }
+    handleDani = () => {
+        const message = this.createChatBotMessage("Here is a nice cat for you, there are more, just follow the link", {widget: 'dani'})
+        this.addMessageToState(message);
+    }
+    handleGer = () => {
+        const message = this.createChatBotMessage("Hope you like this book", {widget: 'ger'})
+        this.addMessageToState(message);
+    }
+    handleJavi = () => {
+        const message = this.createChatBotMessage("I just love her...", {widget: 'javi'})
+        this.addMessageToState(message);
+    }
+    handleLean = () => {
+        const message = this.createChatBotMessage("New vegan recepes for you!", {widget: 'lean'})
+        this.addMessageToState(message);
+    }
+    handleEma = () => {
+        const message = this.createChatBotMessage("Hope you get to work with them soon", {widget: 'ema'})
+        this.addMessageToState(message);
+    }
+    handleEze = () => {
+        const message = this.createChatBotMessage("And the price for the best 'Traper' goes to Eze!", {widget: 'eze'})
+        this.addMessageToState(message);
+    }
+    handleToni = () => {
+        const message = this.createChatBotMessage("Here you have 3 recomended photographers, check the out", {widget: 'toni'})
+        this.addMessageToState(message);
+    }
+    handleFran = () => {
+        const message = this.createChatBotMessage("Quilotoa is a beautiful place to go, and to make it easier, we pick a hotel for you, click the image to see it", {widget: 'fran'})
+        this.addMessageToState(message);
+    }
+
     /*---------------------------------------------------------------------------------------------------------- */
 
 

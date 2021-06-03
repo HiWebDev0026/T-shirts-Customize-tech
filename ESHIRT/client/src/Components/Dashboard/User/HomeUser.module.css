@@ -10,11 +10,12 @@
     justify-content: space-evenly;
     text-align: center;
 
-    width:100%;
+    width: 280px;
 }
 
 .title{
     font-family: 'Shadows Into Light', cursive;
+    font-size: 100%;
     color: black;
     border-radius: 10px;
 }

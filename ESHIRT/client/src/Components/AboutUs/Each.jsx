@@ -21,7 +21,7 @@ function DogCard({name,nickName, description, image, linkedin, github, color,web
                             <div className={Style.as}>as</div>
                             <h3 className={Style.nick}>{nickName}</h3>
                         </div>
-                        <p className={Style.p} style={{textAlign: "end", marginLeft: "25%"}}>{description}</p>        
+                        <p className={`${Style.p} ${Style.txtAlignEnd}`}>{description}</p>        
                     </div>
 
                     <div className={Style.separator} style={{marginRight: "180px"}}></div>
@@ -51,25 +51,27 @@ function DogCard({name,nickName, description, image, linkedin, github, color,web
             
                     :
                 <div className={Style.cardContainer}>
-                    <div className={Style.links}>        
-                        <a href={linkedin} target={"_blank"}>
-                            <div className={Style.flexRowCenter}>
-                                <img src={linkedinImg} width={"40px"} height={"40px"}/>
-                                <span>LinkedIn</span>
+                    <div className={Style.responsiveAux}>
+                        <div className={Style.links}>        
+                            <a href={linkedin} target={"_blank"}>
+                                <div className={Style.flexRowCenter}>
+                                    <img src={linkedinImg} width={"40px"} height={"40px"}/>
+                                    <span>LinkedIn</span>
+                                </div>
+                            </a>
+                            <div className={Style.smallSeparator}>
                             </div>
-                        </a>
-                        <div className={Style.smallSeparator}>
-                        </div>
-                        <a href={github} target={"_blank"}>
-                            <div className={Style.flexRowCenter}>
-                                <img src={githubImg} width={"40px"} height={"40px"}/>
-                                <span>Github</span>
-                            </div>
-                        </a>        
+                            <a href={github} target={"_blank"}>
+                                <div className={Style.flexRowCenter}>
+                                    <img src={githubImg} width={"40px"} height={"40px"}/>
+                                    <span>Github</span>
+                                </div>
+                            </a>        
 
-                    </div>
-                    <div >
-                        <img src={image} className={Style.img}/>
+                        </div>
+                        <div >
+                            <img src={image} className={Style.img}/>
+                        </div>
                     </div>
                     <div className={Style.separator} style={{marginLeft: "180px"}}></div>
 
@@ -80,12 +82,8 @@ function DogCard({name,nickName, description, image, linkedin, github, color,web
                             <div className={Style.as}>as</div>
                             <h3 className={Style.nick}>{nickName}</h3>
                         </div>
-                        <p className={Style.p} style={{textAlign: "start", marginRight: "25%"}}>{description}</p>        
+                        <p className={`${Style.p} ${Style.txtAlignStart}`}>{description}</p>        
                     </div>
-
-
-                    
-
 
                 </div>
                 }

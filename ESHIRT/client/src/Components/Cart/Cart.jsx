@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import Payment from './Payment/Payment'
 import {NavLink} from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import { HiArrowCircleLeft,HiArrowCircleRight } from "react-icons/hi";
 
 import {
     getOrdersByUserId,
@@ -17,6 +18,7 @@ import {
 import CartItem from './CartItem.jsx'
 import Style from './Cart.module.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import {useTokenDecode} from '../../hooks/tokenDecoding'
 
 export default function Cart (props){
     
@@ -37,6 +39,8 @@ export default function Cart (props){
     
     const {isAuthenticated, user, loginWithPopup}=useAuth0();
 
+    const isAdmin = useTokenDecode(localStorage.currentToken);
+
     useEffect(()=>{
         localStorage.setItem('items',JSON.stringify(items));
        
@@ -52,9 +56,14 @@ export default function Cart (props){
     function proceed(click, id){
         return (
             <div onClick={(e)=> click(e, id)}>
-                <NavLink to='/payment' >
-                    <button>Go to pay</button>
-                </NavLink>
+                {
+                !isAdmin && items.length > 0 ?
+                        <NavLink to='/payment' >
+                            <button>Go to pay</button>
+                        </NavLink>
+                            : 
+                        <button>No items to shop</button>
+                }
             </div>
         )
     }
@@ -177,8 +186,8 @@ export default function Cart (props){
             </div>
                 <div className={Style.pages}>
                     <ReactPaginate
-                        previousLabel={'← Previous'}
-                        nextLabel={'Next →'}
+                        previousLabel={<HiArrowCircleLeft/>}
+                        nextLabel={<HiArrowCircleRight/>}
                         pageCount={pageCount}
                         onPageChange={handlePageClick}        
                         previousLinkClassName={"pagination__link"}

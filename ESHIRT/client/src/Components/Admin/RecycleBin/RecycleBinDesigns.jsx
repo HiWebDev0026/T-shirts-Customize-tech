@@ -19,6 +19,7 @@ export default function RecycleBinDesigns(){
     const isAdmin = useTokenDecode(localStorage.currentToken);
     const [count, setCount] = useState([]);
     const [input2, setInput2] = useState('');
+    const [input, setInput]= useState('')
 
     let designs= [];
     designsTotal.map((desing) => {
@@ -62,10 +63,27 @@ export default function RecycleBinDesigns(){
             value
         );
     }
+    let array= '';
+    function handleChange(e){
+          let index= parseInt(e.target.value);
+           array= index
+    }
+
       function handleEdit (e) {
+        if(array=== ''){
+          return swal({ 
+            title: "Error, Price not found ", 
+            text: "Complete all the items and try again",
+            dangerMode: true,
+            icon: "warning",
+            timer: 3000,
+            padding: "0.75rem"
+            });
+        }
+
         if(input2.length >0){  
         e.preventDefault();
-        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize' }, e.target.value));
+        dispatch(putShirt({public: input2 === 'true' ? 'true' : 'buy_authorize', price: array }, e.target.value));
         setCount(count +1);
         dispatch(getShirts())
         swal({ 
@@ -80,7 +98,7 @@ export default function RecycleBinDesigns(){
     }
 
      ///////////PAGINATION//////////////////////////////
-  const INITIAL_PAGE= 4;
+  const INITIAL_PAGE= 8;
   const offset = currentPage * INITIAL_PAGE;
   const pageCount = Math.ceil(designs.length / INITIAL_PAGE);
   function handlePageClick({ selected: selectedPage }) {
@@ -88,8 +106,11 @@ export default function RecycleBinDesigns(){
 }
 
     return(
-      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : <div className={Style.General}>
-     <div className={Style.Title}> <h1 >Deleted and non-public designs</h1></div>
+      isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
+      <div>
+        <h2 className={Style.Title}>Unapproved Designs</h2>
+      <div className={Style.General}>
+     <div className={Style.General}>
       <div className={Style.Desings}>      
 {designs.length > 0  
       ? ( designs.slice(offset, offset + INITIAL_PAGE).map((shirt) => {
@@ -98,22 +119,21 @@ export default function RecycleBinDesigns(){
             <div className={Style.Designs1}>
               <div className={Style.Tarjet}>
               <img src={shirt.print} className={Style.Img}/>
-         <div className={Style.Btns}>
-        <form>
           <div className={Style.Public}> 
-          <h4>Public?</h4>
-         <label>Yes</label>
+          <form>
+         <label>Public</label>
                     <input type="radio" name="public" value="true" onChange= {handlePublic}  />
                     <label>Buy_authorize</label>
                     <input type="radio" name="public" value="buy_authorize" onChange= {handlePublic}  />
-                    </div>
+                    <input onChange={handleChange} placeholder='Choose the price'required/>
                     </form>
          <button className={Style.Btn2} value={shirt.id} type='submit' onClick={handleEdit} >Submit</button>
          </div>
-         <div><button className={Style.Btn1} value={shirt.id} onClick={handleDelete}>REMOVE</button> </div>
+         <button className={Style.BtnDelete} value={shirt.id} onClick={handleDelete}>X</button> 
+         </div>
         </div>
              
-              </div>
+            
                
           );
       
@@ -121,7 +141,11 @@ export default function RecycleBinDesigns(){
       ) : (<p>Desings not found</p>)}
 </div>
 <div>
-<div className={Style.pages}>
+    </div>
+    </div>
+    
+        </div>
+        <div className={Style.pagination}>
                     <ReactPaginate
                         previousLabel={'← Previous'}
                         nextLabel={'Next →'}
@@ -134,14 +158,12 @@ export default function RecycleBinDesigns(){
                         containerClassName={Style.pagination}
                     />  
                 </div>
-<NavLink to='recycleBin'>
+        <NavLink to='recycleBin'>
     <h4 className={Style.Btn3}>RECYCLE BIN</h4>
     </NavLink>
     <NavLink to='home_admin'>
     <h4 className={Style.Btn3}>CONTROL PANEL</h4>
     </NavLink>
-        
-        </div>
         </div>
     )
 }

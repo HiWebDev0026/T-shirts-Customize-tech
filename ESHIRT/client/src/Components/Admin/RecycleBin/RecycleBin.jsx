@@ -17,24 +17,20 @@ function RecycleBin() {
         !isAdmin ? (<ErrorNoAdminPage />) :
         <div className={Style.container}>
             <h1 className={Style.Title}>RECYCLE BIN </h1>
-
-    <NavLink to='recycleBinUser'>
-    <h3 className={Style.Btn3}>USERS DELETED</h3>
-    </NavLink>
-    <NavLink to='recycleBinShirt'>
-    <h3 className={Style.Btn3}>SHIRTS DELETED</h3>
-    <NavLink to='recycleBinDesigns'>
-        <h3 className={Style.Btn3}>UNAPPROVED DESIGNS</h3>
-    </NavLink> 
-    </NavLink>
-    <NavLink to='home_admin'>
-    <h4 className={Style.Btn1}>CONTROL PANEL</h4>
-    </NavLink>
-    
-        </div>
-        
+            <NavLink to='recycleBinUser'>
+                <h3 className={Style.Btn3}>USERS DELETED</h3>
+            </NavLink>
+            <NavLink to='recycleBinShirt'>
+                <h3 className={Style.Btn3}>SHIRTS DELETED</h3>
+            </NavLink>
+            <NavLink to='recycleBinDesigns'>
+                <h3 className={Style.Btn3}>UNAPPROVED DESIGNS</h3>
+            </NavLink> 
+            <NavLink to='home_admin'>
+                <h4 className={Style.Btn1}>CONTROL PANEL</h4>
+            </NavLink>
+        </div>  
     )
 }
-
 
 export default RecycleBin;

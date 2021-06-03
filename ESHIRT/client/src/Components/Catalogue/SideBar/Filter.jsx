@@ -3,6 +3,7 @@ import style from './Filter.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {useState, useEffect, forwardRef} from 'react'
 import {filterByCategory, getCategories} from '../../../Actions/index'
+import {ReactComponent as FilterIcon} from '../../../assets/img/filter.svg'
 
 function Filter(){
     
@@ -10,6 +11,7 @@ function Filter(){
     const allCategories= useSelector(state => state.categoryReducer.allCategories)
     const filteredByCategories = useSelector(state => state.shirtReducer.filteredByCategory)
     const [filtered, setFiltered]= useState([])
+    const [popup, setPopup]= useState(false)
 
     useEffect(() => {
 
@@ -55,31 +57,38 @@ function Filter(){
 
     function handleClick(){
         dispatch(filterByCategory(filtered))
-        return;
+        setFiltered([])
+        return setPopup(prevState => !prevState)
+    }
+
+    function deployFilter(){
+        return setPopup(prevState => !prevState)
     }
 
 
     return (
         <div className={style.container}>   
             <a href= '#popup'>
-            <h3 className={style.h3}>Filter by category</h3>
+                <FilterIcon className={style.filterIcon} onClick={deployFilter}/>Filter
             </a>
-            <div id= 'popup' className={style.popup}>  
-            <div className={style.both}>
-            <div className={style.boxes}>
-            {allCategories.map((e, i) => {
-                return ( 
-                    <div className={style.box} key={i*3.25}>
-                        <input  className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
-                        <label  className={style.label} htmlFor={i}>{e.name}</label >
-                        
+            {   popup && 
+            <div id= 'popup' className={style.popupFilter}>  
+                <div className={style.both}>
+                <h1>Categories</h1>
+                    <div className={style.boxes}>
+                        {allCategories.map((e, i) => {
+                            return ( 
+                                <div className={style.box} key={i*3.25}>
+                                    <input  className={style.input} type="checkbox" id={i} value={e.name} onChange={handleChange}/>
+                                    <label  className={style.label} htmlFor={i}>{e.name}</label >
+                                </div>
+                            )
+                        })}
                     </div>
-                )
-            })}
+                    <button className={style.btn} onClick={handleClick}>FILTER</button>
+                </div>
             </div>
-                <button className={style.btn} onClick={handleClick}>FILTER</button>
-            </div>
-            </div>
+            }
         </div>
     )
 }

@@ -7,7 +7,7 @@ import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { useAuth0 } from "@auth0/auth0-react";
 import swal from "sweetalert";
-
+import {HiShoppingCart} from "react-icons/hi";
 import { BsFillHeartFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import style from "./Card.module.css";
@@ -21,7 +21,7 @@ import {
   getShirtReview,
 } from "../../../Actions/index.js";
 
-function Card({ title, score, price, size, model, color, image, id }) {
+function Card({ title, score, price, size, model, color, image, id, latestPrice, stock }) {
   const cart = useSelector((state) => state.cartReducer.items);
   const orderId = useSelector((state) => state.ordersReducer.orderId);
   const scoreReview = useSelector((state) => state.reviewsReducer.score);
@@ -58,8 +58,6 @@ function Card({ title, score, price, size, model, color, image, id }) {
       );
     }
   };
-
-
 
   // useEffect(() => {
   //   if (isAuthenticated && !orderIdChecked) {
@@ -101,78 +99,83 @@ function Card({ title, score, price, size, model, color, image, id }) {
     }
   }
 
-  function setStars (scoreReview){
-      const stars = [];
-      for (let i = 0; i < scoreReview; i++ ){ 
-        stars.push(i)
-      }
-      return (
-        <div>
-          {stars.map(n => {
-            return <i key={n}>★</i> 
-          })}
-        </div>
-      )
-      }
-
+  function setStars(scoreReview) {
+    const stars = [];
+    for (let i = 0; i < scoreReview; i++) {
+      stars.push(i);
+    }
+    return (
+      <div>
+        {stars.map((n) => {
+          return <i key={n}>★</i>;
+        })}
+      </div>
+    );
+  }
   return (
-    <div  >
+    <div>
       <div className={style.wrapper}>
-        <a onClick={handleScore} href={`#popup${id}`} >
+        <a onClick={handleScore} href={`#popup${id}`}>
           <div className={style.container}>
+       
             <div className={style.top}>
-            <img className={style.image} src={image} />
-                       
+            <div className={style.off}>{latestPrice}</div>
+            {stock !== 0 ? stock <= 10 ? <div className={style.stock}>Latest units...</div> : <div></div> : <div className={style.stock}>NO STOCK</div>}   
+              <img className={style.image} src={image} />
+            </div>       
+            <div className={style.details}>
+           
+              <a>{title}</a>
+            {
+              stock > 0 ?
+              <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
+                :
+              <div></div>
+            }
             </div>
-                <div className={style.details}>
-                  <a>{title}</a>                 
-                </div>
-                <a className={style.price}>${price}</a>
+            <a className={style.price}>${price}</a>
+            
           </div>
         </a>
       </div>
 
       <div className={style.popup} id={`popup${id}`}>
         <div className={style.popup_inner}>
-       
-          <div >
+          <div>
             <img src={image} className={style.popup__photo} />
             <div className={style.ratings}>
-            
-            {isNaN(scoreReview) ?  
-            <p>no reviews, be the first...
-            </p>
-            : <div><span class={style.product_rating}>{scoreReview}</span>
-            <span>/5</span></div>
-            }
-            <div className={style.stars}>
-                       
-              {setStars(scoreReview)}
-              
+              {isNaN(scoreReview) ? (
+                <p>no reviews, be the first...</p>
+              ) : (
+                <div>
+                  <span class={style.product_rating}>{scoreReview}</span>
+                  <span>/5</span>
+                </div>
+              )}
+              <div className={style.stars}>{setStars(scoreReview)}</div>
             </div>
-            </div>
-            <NavLink to={`/shirt/${id}/review`}>
-              <button className={style.size}>Reviews</button>
-            </NavLink>
+           
+
             <a className={style.popup__close} href="#">
               X
             </a>
           </div>
-          
-          { review ?
-                    <div className={style.background_review}>
-                    <h3>{review[review.length - 1]?.name}</h3>
-                    <p >{review[review.length - 1]?.content}</p>
-                  </div>
-                    : 
-                    <p>no reviews yet</p>
-    }    
-            <div className={style.popup__text}>
-           
+          <NavLink to={`/shirt/${id}/review`}>
+            <button className={style.size}>Reviews</button>
+          </NavLink>
+          {review ? (
+            <div className={style.background_review}>
+              <h3>{review[review.length - 1]?.name}</h3>
+              <p>{review[review.length - 1]?.content}</p>
+            </div>
+          ) : (
+            <p>no reviews yet</p>
+          )}
+          <div className={style.popup__text}>
             <div>
               <h2>{title}</h2>
             </div>
-        
+
             <div>
               <button className={style.buttonAM} onClick={handleAddOne}>
                 <GrAdd />
@@ -195,7 +198,7 @@ function Card({ title, score, price, size, model, color, image, id }) {
 
             <p>Size: {newSize}</p>
             <p>Color: {color}</p>
-            <p>Model: {model}</p>          
+            <p>Model: {model}</p>
             <p>Amount: {amount}</p>
 
             <div className={style.cartBox}>
@@ -206,28 +209,31 @@ function Card({ title, score, price, size, model, color, image, id }) {
               >
                 <BsFillHeartFill />
               </button>
-              <button
-                className={style.buttonCart}
-                onClick={(e) => handleCartChange(e, "+")}
-              >
-                <FaCartPlus />
-              </button>
-              <button
-                className={style.buttonCart}
-                onClick={(e) => handleCartChange(e, "-")}
-              >
-                <MdDeleteForever />
-              </button>
+              { 
+              stock >= 1 ?
+                <div>
+                <button
+                  className={style.buttonCart}
+                  onClick={(e) => handleCartChange(e, "+")}
+                >
+                  <FaCartPlus />
+                </button>
+                <button
+                  className={style.buttonCart}
+                  onClick={(e) => handleCartChange(e, "-")}
+                >
+                  <MdDeleteForever />
+                </button>
+                </div>
+                  : 
+                <div></div>
+              }
             </div>
           </div>
-     
         </div>
-     
       </div>
-    
     </div>
   );
 }
 
 export default Card;
-

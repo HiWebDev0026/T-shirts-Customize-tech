@@ -24,6 +24,9 @@
 }
 .Title1{
     color: black;
+    height: 7vh;
+    width: 15vh;
+    justify-content: center;
     display: flex;
     align-items: center;
     align-content: center;

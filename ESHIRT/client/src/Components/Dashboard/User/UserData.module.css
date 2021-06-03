@@ -12,7 +12,9 @@
     border: 2px solid grey;
     border-radius: 20px;
     margin: 15px;
+    width: 400px;
 }
+
 
 .ul{
     border: 5px solid rgba(255, 255, 255, 0.411);
@@ -24,14 +26,15 @@
     color: black;
     padding: 5px;
     font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 150%;
     margin: 5px;
 }
 
 .title{
     color: black;
-    font-size: 50px;
+    font-size: 300%;
     font-family: 'Shadows Into Light', cursive;
     text-align: center;
     margin: 0%;
@@ -40,6 +43,7 @@
 .boxBtn{
     display: flex;
 }
+
 
 .btn{
     width: 120px;
@@ -55,4 +59,18 @@
 .btn:hover{
     background: black;
     color: #ffb627;
+}
+
+
+@media (max-width: 400px){
+    
+    .boxBtn{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box{
+        width: 300px;
+    }
+
 }

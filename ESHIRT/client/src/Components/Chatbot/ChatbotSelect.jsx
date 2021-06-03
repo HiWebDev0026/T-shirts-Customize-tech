@@ -28,7 +28,9 @@ function ChatbotSelect() {
                     actionProvider={ActionProvider}
                 />
             </div>
-            : <img width={'120px'} height={'120px'} src={ChatbotImg} onClick={handleButton} className={Style.img}/> }
+            : 
+            
+            <img src={ChatbotImg} onClick={handleButton} className={Style.img}/> }
       </div>
     );
 }

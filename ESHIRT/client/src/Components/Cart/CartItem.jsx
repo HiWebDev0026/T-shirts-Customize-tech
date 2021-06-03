@@ -9,7 +9,8 @@ import {
     postFavorite
 } from '../../Actions/index.js'
 
-import { BsFillHeartFill,BsFillTrashFill } from 'react-icons/bs';
+import {GrAdd, GrFormSubtract} from "react-icons/gr";
+import {BsFillHeartFill,BsFillTrashFill} from 'react-icons/bs';
 import { useAuth0} from "@auth0/auth0-react";
 
 
@@ -91,9 +92,9 @@ export default function CartItem ({item, index}){
                     </select>
                 </div>
                 <div className={Style.amount}>
-                    <button id= {index} onClick={(e) => handleCartChange(e, '+')}>+</button>
+                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '+')}>+</button>
                     <div className={Style.qty}>{item.amount}</div>
-                    <button id= {index} onClick={(e) => handleCartChange(e, '-')}>-</button>
+                    <button className={Style.buttonAM} id= {index} onClick={(e) => handleCartChange(e, '-')}>-</button>
                 </div>
             </div>
         </li>

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import Card from './Card/Card.jsx';
 import ReactPaginate from "react-paginate";
 import {useDispatch, useSelector} from 'react-redux'
-
+import { HiArrowCircleLeft,HiArrowCircleRight } from "react-icons/hi";
 
 //import {getShirts} from '../../Actions/Actions'
 import {getShirts} from '../../Actions/index'
@@ -54,17 +54,23 @@ function handlePageClick({ selected: selectedPage }) {
   .map((e) => {
     if ( e.status !== 'deleted' && e.public === 'true'){
     return (        
-
-        <Card
-            title= {e.name}
+    <div>
+     
+        <Card          
+            title= {e.name}            
             price= {e.price}
             size= {e.size}
             model= {e.model}
             color= {e.color}
             image= {e.print}
             score= {e.score}   
-            id={e.id}         
+            id={e.id} 
+            latestPrice={ e.latestPrice > 0 ? <div >SALE !</div> : false }    
+            stock= {e.stock} 
+
         />
+      
+       </div>
     )
     }
 
@@ -91,8 +97,8 @@ function handlePageClick({ selected: selectedPage }) {
             </div>
             <div className={style.pages}>
                 <ReactPaginate
-                    previousLabel={'← Previous'}
-                    nextLabel={'Next →'}
+                    previousLabel={<HiArrowCircleLeft/>}
+                    nextLabel={<HiArrowCircleRight/>}
                     pageCount={data < INITIAL_PAGE ? 1 : pageCount}
                     onPageChange={handlePageClick}        
                     previousLinkClassName={style.pagination__link}

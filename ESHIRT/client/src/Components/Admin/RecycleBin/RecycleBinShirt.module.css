@@ -3,47 +3,92 @@
 
 .General{color:black;
     font-family: 'Roboto Condensed', sans-serif;
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap:  wrap ;
     
 }
 .TitleContainer{
-    display: grid;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Title{
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    color: #ffb627;
+    display: flex;
+    color: black;
     font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    justify-content: center;
+    font-size: 300%;
+    align-content: center;
+    font-family: 'Shadows Into Light', cursive;
+    flex-wrap:  wrap ;
     }
 .Container2{
-    display: grid;
-    grid-template-columns: repeat(6, 3fr);
-    grid-gap: 5px;
-    justify-content: center;
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
-.Container{
-display: grid;
-justify-content: space-around;
-}
+.Img{
+    width: 80px; height: 80px;
+  }
 .Tarjet{
-    border: 2px solid #ffb627;
+    border: 2px solid black;
     background-color: rgba(255, 127, 80, 0.151);
     border-radius: 5px ;
-    display: grid;
-   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
+    position: relative;
+    
+}
+.BtnR{
+  background-color: white;
+  color: black;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.BtnR:hover{
+  background-color: red;
+  color: white;
+}
+.BtnRestore{
+  background-color: black;
+  color: white;
+  border-radius: 3vh;
+  transition: ease-in 0.3s;
+}
+
+.BtnRestore:hover{
+  padding: 0.7vh;
 }
 .ContBtn3{
-    display: grid;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .Btn3{
-    display: grid;
+    display: flex;
     justify-content: center;
     color: black;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap:  wrap ;
 }
 .pagination {
     display: flex;

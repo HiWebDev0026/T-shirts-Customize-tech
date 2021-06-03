@@ -1,4 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
 
+.mainContainer {
+	backdrop-filter: blur(5px)
+}
+
+.mainContainerCards {
+	background-color: "#eee";
+	margin: 5%; 
+	border-radius: 5px; 
+}
+
+.reviewCardContainer {
+	display: flex;
+	flex-direction: column;
+	align-items:flex-end;
+	border-radius: 5px;
+}
+
+.cardContent {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-flow: row-reverse;
+	margin-right: 25%;
+	border-radius: 20px;
+	color: white;
+	background-color: rgba(125, 125, 125, 0.4);
+	backdrop-filter: blur(5px);
+	padding: 5px;
+	width: 25%;
+}
+
+.starDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.shadowsFamily {
+    font-family: 'Shadows Into Light', cursive;
+    color: black;
+    text-shadow:3px 5px 5px #ffb627;
+	margin: 0%;
+	font-size: 60px;
+}
+
+.robotoFamily {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+	margin: 0%;
+	margin-top: 60px;
+}
+
+.postTxtArea {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 14px;
+    color: black;
+	margin: 0%;
+	background-color: rgba(200, 200, 200, 0.5);
+	border: 2px solid #ffb627;
+	border-radius: 5px;
+	outline: gold;
+}
+
+.submitButton {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 18px;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 2px 30px 2px 30px;
+	color: white;
+	background-color: #ffb627;
+}
+
+.submitButton:hover {
+	color:#ffb627 ;
+	background-color: white;
+
+}
+
+.robotoFamilyWhite {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+	margin: 0%;
+	font-size: 14px;
+	text-align: center;
+}
+
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.avatar {
+	border-radius: 100%;
+}
+
+.separatorLine {
+	border: 1px solid #ffb627;
+	width: 60%;
+	align-self: center;	
+}
+
+.notMargin {
+	margin: 0%;
+}
+
+.starPostContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.starsDirection {
+	display: flex;
+	flex-direction: row;
+	flex-flow: row-reverse;
+	justify-content: center;
+	font-size: 28px;
+}
+
+.reviewsForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.star {
+	color: gold;
+	font-size: 70px;
+	text-shadow: 3px 5px 5px black;	
+}
+
+@media screen and (max-width: 767px) {
+	.cardContent {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-flow: row-reverse;
+		margin-right: 25%;
+		border-radius: 20px;
+		color: white;
+		background-color: rgba(125, 125, 125, 0.4);
+		backdrop-filter: blur(5px);
+		padding: 5px;
+		width: 50%;
+		max-height: 100px;
+		min-height: 100px;
+	}
+	.starPostContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-flow: column-reverse;
+		justify-content: space-evenly;
+	}
+}
+
+
+
+/* 
 
 .section_title {
 	font-size: 28px;
@@ -34,7 +201,7 @@
 	border-radius: 50%;
 }
 
-/* CAROUSEL STARTS */
+
 .userimage  {
 
 	width: 50px;
@@ -100,8 +267,8 @@
 	font-size: 12px;
 }
 
-/*star ranquing */ 
-/* #form {
+
+#form {
 	width: 250px;
 	margin: 0 auto;
 	height: 50px;
@@ -113,15 +280,15 @@
   
   #form label {
 	font-size: 20px;
-  } */
+  }
   
-  /* input[type="radio"] {
+  input[type="radio"] {
 	display: none;
   }
   
   label {
 	color: rgb(128, 128, 128);
-  } */
+  }
   
   .clasificacion {
     display:flex;
@@ -131,16 +298,16 @@
 	font-size: 50px;
   }
   
-  /* label:hover,
+  label:hover,
   label:hover ~ label {
 	color: coral;
   }
   
   input[type="radio"]:checked ~ label {
 	color: coral;
-  } */
+  }
 
-/* GREY BACKGROUND COLOR OF THE ACTIVE SLIDER */
+
 .feedback_slider_item:after {
 	content: "";
 	position: absolute;
@@ -181,7 +348,7 @@
 
 
 
-/* DOTS */
+
 .customer_feedback .owl_dots {
 	position: absolute;
 	left: 50%;
@@ -209,7 +376,7 @@
 	background-color: rgb(251, 90, 13);
 }
 
-/* RESPONSIVE */
+
 @media screen and (max-width: 767px) {
 	.feedback_slider_item:after {
 		left: 30px;
@@ -228,4 +395,4 @@
 	.customer_feedback .owl_next {
 		right: 0;
 	}
-}
+} */

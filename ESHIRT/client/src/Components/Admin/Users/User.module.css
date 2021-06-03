@@ -108,17 +108,16 @@ align-items: center;
   flex-wrap:  wrap ;
 }
 .Tarjet{
-    border: 2px solid black;
-    background-color: rgba(252, 218, 29, 0.151);
-    border-radius: 5px ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap:  wrap ;
-    margin: 1vh;
-    padding: 1vh;
+  border: 2px solid black;
+  border-radius: 5px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap:  wrap ;
+  margin: 1vh;
+  padding: 1vh;
     
 }
 

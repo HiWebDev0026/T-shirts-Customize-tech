@@ -6,8 +6,18 @@ export function getShirtReview(shirtId){
     return async (dispatch) => {
         try {
             const res = await axios.get(`/shirt/${shirtId}/review`, {responseType: 'json'})
-            const shirt = res.data      
-           
+            const shirt = res.data
+            if (shirt.length === 0) {
+                shirt.push({
+                    id: 0,
+                    content: 'No reviews yet',
+                    image: null,
+                    name: '',
+                    scoreReview: 0,
+                    shirtId
+                })
+            }
+
             dispatch({type: 'GET_SHIRT_REVIEW', payload: shirt})
            
         } catch (err) {
@@ -23,9 +33,9 @@ export function postShirtReview(dataReview, shirtId, userId){
            
             dataReview.userId = userId           
             const res= await axios.post(`/shirt/${shirtId}/review`, dataReview, {responseType: 'json'})
-            const shirtReview = res.data
+            dataReview.id = res.data.id 
             
-            dispatch({type: 'POST_SHIRT_REVIEW', payload: shirtReview})
+            dispatch({type: 'POST_SHIRT_REVIEW', payload: dataReview})
         } catch (err){
             console.log((err.response && err.response.data) || 'Server not working!');
             dispatch({type: 'HANDLE_REQUEST_ERROR', payload: (err.response && err.response.data) || {status: 500, message: 'Server problem'}})
