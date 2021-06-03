@@ -146,7 +146,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
           <div>
             
           <div className={style.offPopup}>{latestPrice}</div>
-            {stock !== 0 ? stock <= 10 ? <div className={style.stockPopup}>Latest units...</div> : <div></div> : <div className={style.stock}>NO STOCK</div>}   
+            {stock !== 0 ? stock <= 10 ? <div className={style.stockPopup}>Latest units...</div> : <div></div> : <div className={style.stockPopup}>NO STOCK</div>}   
               <img className={style.imagePopup} src={image} />
             <div className={style.ratings}>
               {isNaN(scoreReview) ? (
@@ -174,7 +174,7 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
           {review ? (
             <div className={style.background_review}>
               <h3 className={style.textReview}>{review[review.length - 1]?.name}</h3>
-              <p>{review[review.length - 1]?.content}</p>
+              <p className={style.textReviewCont}>{review[review.length - 1]?.content}</p>
             </div>
           ) : (
             <p className={style.textReview}>no reviews yet</p>
