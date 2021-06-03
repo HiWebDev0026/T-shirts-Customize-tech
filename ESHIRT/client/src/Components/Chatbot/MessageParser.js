@@ -20,7 +20,33 @@ class MessageParser {
             // if(lowerCase.includes('solving problems')|| lowerCase.includes('problem') || lowerCase.includes('problems') || lowerCase.includes('help')){
             //     this.actionProvider.handleProblems();
             //        }
-            if(parsedMessage === "hellows") {
+            if(lowerCase.includes('agus')){
+                this.actionProvider.handleAgus();
+            }
+            else if(lowerCase.includes('dani')){
+                this.actionProvider.handleDani();
+            }
+            else if(lowerCase.includes('ger')){
+                this.actionProvider.handleGer();
+            }
+            else if(lowerCase.includes('javi')){
+                this.actionProvider.handleJavi();
+            }
+            else if(lowerCase.includes('lean')){
+                this.actionProvider.handleLean();
+            }
+            else if(lowerCase.includes('ema')){
+                this.actionProvider.handleEma();
+            }
+            else if(lowerCase.includes('toni')){
+                this.actionProvider.handleToni();
+            }
+            else if(lowerCase.includes('fran')){
+                this.actionProvider.handleFran();
+            }
+            else if(lowerCase.includes('eze')){
+                this.actionProvider.handleEze();
+            }else if(parsedMessage === "hellows") {
                 this.actionProvider.handleHello();
             } else if (parsedMessage === "byes"){
                 this.actionProvider.handleBye();
