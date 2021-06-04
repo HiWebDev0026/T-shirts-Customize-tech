@@ -25,11 +25,11 @@
   justify-content: center;
   position: fixed;
   width: 60vh;
-  height: inherit;
+  height: 80vh;
   border: 4px solid rgb(255, 208, 0);
   border-radius: 4vh;
   right: 50%;
-  transform: translateX(50%) translateY(0%);
+  transform: translateX(140%) translateY(0%);
   background-color: rgba(0, 0, 0, 0.808);
   z-index: 5;
   animation-name: appear;
@@ -107,7 +107,7 @@
     position: absolute;
     opacity: 0;
     z-index: -1;
-  }
+}
   
   .label {
     position: relative;
@@ -153,7 +153,8 @@
     transition: 0.25s all ease;
   }
 
-  @media (max-width: 960px){
+
+@media (max-width: 960px){
     .container{
       display: flex;
       flex-direction: column;
@@ -175,17 +176,17 @@
   
   .popupFilter {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: fixed;
-    width: 60vh;
-    height: inherit;
+    width: 40vh;
+    height: 80vh;
     border: 4px solid rgb(255, 208, 0);
     border-radius: 4vh;
     right: 50%;
-    transform: translateX(50%) translateY(0%);
+    transform: translateX(50%) translateY(-15%);
     background-color: rgba(0, 0, 0, 0.808);
-    z-index: 5;
+    z-index: 1;
     animation-name: appear;
     animation-duration: 0.8s;
     animation-timing-function: ease-in;
@@ -207,8 +208,7 @@
       display: flex;
       flex-direction: column;
       background-color: transparent;
-      height: 60vh;
-      bottom: 5vh;
+      height: 60vh; 
   }
   
   .both > h1 {

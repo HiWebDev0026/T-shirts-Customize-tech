@@ -596,17 +596,29 @@ font-size: 60px;
     flex-wrap: nowrap;
   }
 
-  .wrapper {
-    width: 15vw;
-    height: 50vh;
-    background: white;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0;
-    transform: scale(0.98);
-    transition: box-shadow 0.5s, transform 0.5s;
+  .wrapper{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+  }
+  .container{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .image{
+    height: 300px;
+    margin-bottom: 10px;
+  }
+  .top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .popup_inner  {

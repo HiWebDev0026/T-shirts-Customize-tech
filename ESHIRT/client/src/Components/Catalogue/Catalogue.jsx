@@ -56,8 +56,6 @@ function handlePageClick({ selected: selectedPage }) {
   .map((e) => {
     if ( e.status !== 'deleted' && e.public === 'true'){
     return (        
-    <div>
-     
         <Card          
             title= {e.name}            
             price= {e.price}
@@ -70,9 +68,7 @@ function handlePageClick({ selected: selectedPage }) {
             latestPrice={ e.latestPrice > 0 ? <div >SALE !</div> : false }    
             stock= {e.stock} 
 
-        />
-      
-       </div>
+        />    
     )
     }
 
