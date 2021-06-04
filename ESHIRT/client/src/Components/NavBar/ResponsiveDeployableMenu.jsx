@@ -33,11 +33,35 @@ export default function ResponsiveDeployableMenu({deploy, menuClose, setCartDepl
             </div>
             <div className={Style.responsiveNavBar}>
                 <ul className={Style.navLinks}>
-                <li><NavLink className={Style.eachLink} onClick={()=>menuClose(false)} exact to='/home'><HomeButton className={Style.home} iconified="true" /><span style={{marginLeft: '8px'}}>Home</span></NavLink><div className={Style.underline}></div></li>
-                <div className={Style.navSeparator}></div>
-                <li><NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/catalogue'><CatalogueIcon className={Style.catalogueIcon} iconified="true"/><span style={{marginLeft: '8px'}} >Catalog</span></NavLink><div className={Style.underline}></div></li>
-                <div className={Style.navSeparator}></div>
-                <li><NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/design'><DesignButton className={Style.designIcon} iconified="true"/><span style={{marginLeft: '8px'}}>Design</span></NavLink><div className={Style.underline}></div></li> 
+                    <li>
+                        <NavLink className={Style.eachLink} onClick={()=>menuClose(false)} exact to='/home'>
+                            <HomeButton className={Style.home} iconified="true" />
+                            <span style={{marginLeft: '8px'}}>Home</span>
+                        </NavLink>
+                        <div className={Style.underline}/>
+                    </li>
+                    <div className={Style.navSeparator}/>
+                <li>
+                    <NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/catalogue'>
+                        <CatalogueIcon className={Style.catalogueIcon} iconified="true"/>
+                        <span style={{marginLeft: '8px'}} >Catalog</span>
+                    </NavLink>
+                    <div className={Style.underline}/>
+                </li>
+                <div className={Style.navSeparator}/>
+                <li>
+                    <NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/design'>
+                        <DesignButton className={Style.designIcon} iconified="true"/>
+                        <span style={{marginLeft: '8px'}}>Design</span>
+                    </NavLink>
+                    <div className={Style.underline}/>
+                </li>
+                <li>
+                    <NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/home'>
+                        <span style={{marginLeft: '8px'}}>LOG OUT</span>
+                    </NavLink>
+                    <div className={Style.underline}/>
+                </li>  
                 </ul>
             </div>
         </div>

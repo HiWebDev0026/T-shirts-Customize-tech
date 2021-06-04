@@ -89,7 +89,7 @@ function handleEdit(e) {
       }
         })
       ) 
-      : (<p> Users not found</p>)}
+      : (<p>Loading...</p>)}
       <NavLink to='users'>
     <h5 className={Style.Btn3}>USERS</h5>
     </NavLink>

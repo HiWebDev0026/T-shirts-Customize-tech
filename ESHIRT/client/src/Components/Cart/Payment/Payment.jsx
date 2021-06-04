@@ -140,18 +140,6 @@ function Payment() {
             }
             
         </form>
-        <div style={{
-            position: 'absolute',
-            display: 'none',
-            width: '100vw',
-            height: '100vh',
-            backdropFilter: 'blur(10px)',
-            backgroundColor: 'rgb(0,0,0,0.5)',
-            zIndex: 3,
-            color: 'white',
-        }} ref={loadingSpinner}>
-            'LOADING'
-        </div>
         </div>
     )
 }

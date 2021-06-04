@@ -35,6 +35,8 @@
   }
 }
 
+
+
 .both{
     display: flex;
     flex-direction: column;
@@ -143,6 +145,22 @@
   .label::before {
     transition: 0.25s all ease;
   }  
+
+  .filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    width: 10vh;
+    height: 10vh;
+    padding: 1vh;
+  }
+
+  .filterIcon {
+    width: 3vh;
+    height: 3vh;
+  }
+  
 }
 
 /* /////////////// NORMAL WIDTH ////////////////////// */
@@ -154,6 +172,17 @@
     margin-top: 1vh;
     height: 80vh;
     backdrop-filter: blur (20px);
+}
+
+.filterContainer {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  width: 10vh;
+  height: 10vh;
+  padding: 1vh;
 }
 
 .popupFilter {

@@ -125,7 +125,7 @@ export default function CreateCategory (){
                             </div>
                             
                         })
-                        :<p>Categories not found</p>
+                        :<p>Loadingg...</p>
                     }
                 </div>
             </div>
