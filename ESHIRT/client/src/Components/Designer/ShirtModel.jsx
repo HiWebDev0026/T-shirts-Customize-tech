@@ -32,7 +32,7 @@ function ShirtModel(props) {
     return (
         <div className={ModelCSS.containerOfDesign}>
             <div className={ModelCSS.title}>
-                <h4>{!data && !props.phase.modelSelected.data ? 'Choose the model of your shirt' : !data ? props.phase.modelSelected.data : data}</h4>
+                <h2>{!data && !props.phase.modelSelected.data ? 'Choose the model of your shirt' : !data ? props.phase.modelSelected.data : data}</h2>
                 {/* <span>{data && <button className={ModelCSS.GoAhead}onClick={()=>{
                     if(data!== null) {
                         return props.setPhase({

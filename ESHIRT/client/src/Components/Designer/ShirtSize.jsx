@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import SizeCSS from './ShirtSize.module.css';
 import swal from 'sweetalert';
+import img from '../../assets/manga_larga.png';
+import img2 from '../../assets/img/random_remera_front.png';
+import sizeBoard from '../../Images/size_board.jpeg'
 
 function ShirtSize(props) {
 
@@ -27,22 +30,25 @@ function ShirtSize(props) {
 
     return (<div className={SizeCSS.containerOfSize}>
                 <div className={SizeCSS.title}>
-                    <h4>
-                    Choose the size of your custom shirt
-                    </h4>
-                    </div>
+                    <h2>
+                        Choose the size of your custom shirt
+                    </h2>
+                </div>
+                <div>
+                    <img className={SizeCSS.sizeBoard} src={sizeBoard}></img>
+                </div>
                 <div className={SizeCSS.sizeCardContainer}>
-                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'S' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: 'rgba(50, 200, 12, 0.4)'} : {}}onClick={()=>{
+                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'S' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: '#ffb627'} : {}}onClick={()=>{
                         setData('S')
                     }}>
                         <h2>S</h2>
                     </div>
-                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'M' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: 'rgba(50, 200, 12, 0.4)'} : {}} onClick={()=>{
+                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'M' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: '#ffb627'} : {}} onClick={()=>{
                         return setData('M')
                     }}>
                         <h2>M</h2>
                     </div>
-                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'L' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: 'rgba(50, 200, 12, 0.4)'} : {}} onClick={()=>{
+                    <div className={SizeCSS.sizeCard} style={props.phase.sizeSelected.data === 'L' ? {transform: 'scaleX(1.1) scaleY(1.1)', backgroundColor: '#ffb627'} : {}} onClick={()=>{
                         return setData('L')
                     }}>
                         <h2>L</h2>

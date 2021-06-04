@@ -1,18 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap%27');
+
+.parentContainer {
+    background-image: url("../../Images/bg_img5.jpeg");
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position-x: center;
+
+}
+
 .mainContainer{
 
     min-height: 90vh;
     height: auto;
     display: flex;
     align-items: center;
-    
-    
+
 }
+
+.header {
+    font-family: 'Shadows Into Light', cursive;
+    color: black;
+    /* background-color: black; */
+    font-size: 28px;
+    border-radius: 5px;
+    padding-left: 5%; /*#ffb627*/
+}
+
+
+.shadowsFamily {
+    font-family: 'Shadows Into Light', cursive;
+    color: black;
+    text-shadow:3px 3px 3px #ffb627;
+	margin: 0%;
+	font-size: 60px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.robotoFamily {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+	margin: 0%;
+	margin-top: 60px;
+}
+
+
 
 @media (max-width: 610px) {
     .mainContainer {
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
+    }
+    .parentContainer {
+        background-image: url("../../Images/bg_img5.jpeg");
+        background-repeat: no-repeat;
+        background-size: 50%;
+        background-position-x: center;
+    
+    }
+    .shadowsFamily {
+        font-family: 'Shadows Into Light', cursive;
+        color: black;
+        text-shadow:3px 3px 3px #ffb627;
+        margin: 0%;
+        font-size: 60px;
+        text-align: center;
+        padding-top: 50px;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 }
 
