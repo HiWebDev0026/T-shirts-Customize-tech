@@ -136,10 +136,12 @@ export default function FinalShirt(props) {
                         </select>
                     </div>
                     <div className={FinalCSS.Desing}> Do you want to share your design?</div>
-                    <label className={FinalCSS.Desing1}>Yes</label>
-                    <input type="radio" name="public" value="pending" onChange= {handleChange}/>
-                    <label className={FinalCSS.Desing2}>No</label>
-                    <input type="radio" name="public" value="false" onChange= {handleChange}/>
+                    <div className={FinalCSS.shareOptions}>
+                        <label className={FinalCSS.Desing1}>Yes</label>
+                        <input type="radio" name="public" value="pending" onChange= {handleChange}/>
+                        <label className={FinalCSS.Desing2}>No</label>
+                        <input type="radio" name="public" value="false" onChange= {handleChange}/>
+                    </div>
                         <input type="submit" />
                     </form>
                 </div>
