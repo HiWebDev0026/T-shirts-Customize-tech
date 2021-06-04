@@ -33,7 +33,7 @@
 .navbarContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 20%;
+    margin-left: 5%;
     justify-content: space-between;
     min-width: 90px;
     width: 440px;
@@ -48,17 +48,23 @@
     width: 100%;
 }
 .logoContainer{
-    max-width: 20%;
     
-   
-    margin-top: 10px;
+    display: flex;
+    width: max-content;
+    height: max-content;
+    
     text-align: center;
-    font-size: 35px;
+    width: 35%;
     font-family: 'Shadows Into Light', cursive;
     font-weight: 900;
     color:white;
 }
+ 
 
+.logoContainer img {
+    width: 100%;
+    max-height: 120px;
+}
 
 .panelNavBar {
     display: flex;
@@ -72,10 +78,6 @@
 }
 
 
-.logoContainer > img {
-    height: 5vw;
-    width: auto;
-}
 
 .loginBtn{
     
@@ -295,9 +297,17 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
     width: 100%;
 }
 
-@media screen and (max-width: 940px) {
-    .logoContainer {
-        font-size: 20px;
+@media (max-width: 940px) {
+
+    /* .logoContainer svg {
+        width: 200px !important;
+        height: 120px !important;
+    } */
+
+    #SvgjsG1008{
+        transform: matrix(1.6113725277858055,0,0,2.6113725277858055,4.51090090748698,5.77041374278567) !important;
+        
+        
     }
     .navbarContainer {
         height: max-content;

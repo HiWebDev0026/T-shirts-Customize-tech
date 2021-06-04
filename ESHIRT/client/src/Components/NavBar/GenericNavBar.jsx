@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 import { GrCart, GrFavorite } from "react-icons/gr";
 import Style from './NavBar.module.css';
 import Login from '../../auth/AuthenticationButton';
+import LogoEshirt from '../../assets/logo_1_page.png';
 import {ReactComponent as HomeButton} from '../../assets/25694.svg'
 import {ReactComponent as DesignButton} from '../../assets/3456377.svg';
 import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg'
@@ -24,10 +25,11 @@ function GenericNavbar() {
     return (
     <header className={Style.header}>
         
-        {/* <div className={Style.logoContainer}>
+        <div className={Style.logoContainer}>
             
-            LOGO SHIRTS
-        </div> */}
+            <img src={LogoEshirt}/>
+            
+        </div>
 
         
         <div className={Style.panelNavBar}>

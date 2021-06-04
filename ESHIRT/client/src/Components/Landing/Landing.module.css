@@ -65,6 +65,10 @@
    font-family: 'Shadows Into Light', cursive;
 }
 
+.section1 img {
+    width: 100%;
+}
+
 
 .topHomeContainer {
     min-height: 300px;
@@ -328,7 +332,7 @@
     }
 
     .section1{
-        margin-left: -15px;
+        margin-left: -10px;
     }
 
     .section2{
