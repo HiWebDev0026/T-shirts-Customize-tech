@@ -6,7 +6,7 @@ export default function ColorBattery(props) {
 
     const {setData, setPhase} = props.props;
 
-    return (<div className={ColorBatteryCSS.container}>
+    return (<div className={ColorBatteryCSS.containerOfBattery}>
 
         <button style={{backgroundColor: 'red', borderRadius: '8px', fontSize: '18px', borderColor: 'black'}} 
             onClick={() => colorModifier('red', props.props, setData)}
