@@ -45,7 +45,11 @@ There are two types of people, those who follow trends and those who create them
 ### Oh wait! Are you a business owner? 
 Oh, wait! Are you a business owner? No problem. Manage your t-shirt business from our platform. Create designs, handle your stock, create deals, manage users, check your sales, among other things. E-shirt connects you with your customers in a unique way:)
 
-#### We are wainting for you...
+#### We are waiting for you...
+![catalgoEshirt](https://user-images.githubusercontent.com/74310843/120820043-90964e80-c52a-11eb-9f6d-acbbec4e9a26.png)
+
+###### Know Us
+
 
 
  
