@@ -1,4 +1,3 @@
-
 import style from './Payment.module.css'
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
@@ -59,7 +58,7 @@ function Payment() {
 
     async function handleSubmit(e){
         e.preventDefault();
-        loadingSpinner.current.style.display = 'block';
+        //loadingSpinner.current.style.display = 'block';
         let unavailableStock = [];
 
         try {
@@ -67,7 +66,7 @@ function Payment() {
                                         method: 'get',
                                         url: '/order/_checkStock/'+orderId,
                                     });
-            loadingSpinner.current.style.display = 'none';
+            //loadingSpinner.current.style.display = 'none';
 
         } catch (err) {
 
@@ -76,7 +75,7 @@ function Payment() {
                 text: 'The shirts: '+ unavailableStock.toString() +'ran out of available stock! You can still add them to your favorites and wait for stock refill.',
                 icon: 'error',
             }).then(val => {
-                loadingSpinner.current.style.display='none';
+                //loadingSpinner.current.style.display='none';
                 history.push('/catalogue')
             })
             return;
