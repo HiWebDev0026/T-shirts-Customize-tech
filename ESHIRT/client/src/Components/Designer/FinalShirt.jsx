@@ -45,11 +45,11 @@ export default function FinalShirt(props) {
         }
 
         if (errors) {
-            alert(`${errors.message}`)
+            // alert(`${errors.message}`)
             dispatch(resetErrors()) 
         } else if (postOk) {
             // alert('Shirt created!')
-            history.push('/catalogue')
+            // history.push('/catalogue')
         }
     })
 
@@ -108,6 +108,7 @@ export default function FinalShirt(props) {
                     timer: 3000,
                     padding: "0.75rem"
                     });
+                    history.push('/catalogue')
                
 
                 return;
