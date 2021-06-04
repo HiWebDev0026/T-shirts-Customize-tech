@@ -4,9 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 60%;
-  
 }
 
 .sideBar{
@@ -81,7 +79,7 @@
  
 }
 
-@media(max-width: 690px){
+@media(max-width: 960px){
   .box{
     display: flex;
     flex-direction: row;
@@ -90,6 +88,6 @@
     
   }
   .sideBar{
-    z-index: 100;
+    z-index: 0;
   }
 }

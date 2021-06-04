@@ -10,6 +10,7 @@ import {getShirts} from '../../Actions/index'
 
 import SideBar from './SideBar/SideBar'
 import { SideCart } from "../Cart/SideCart";
+import Filter from "./SideBar/Filter";
 
 
 // {title, price, width, height, model, color}
@@ -88,7 +89,7 @@ function handlePageClick({ selected: selectedPage }) {
         
             
             <div className={style.sideBar}>
-                <SideBar/>
+                <Filter/>
             </div>
         <div className={style.box}>
             <div className={style.shirts}>

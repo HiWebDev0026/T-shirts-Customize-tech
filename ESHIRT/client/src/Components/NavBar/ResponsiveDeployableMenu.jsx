@@ -9,10 +9,12 @@ import {ReactComponent as CatalogueIcon} from '../../assets/4357336.svg';
 import {useHistory} from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton'
 import {NavLink} from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function ResponsiveDeployableMenu({deploy, menuClose, setCartDeployed}) {
-
+    const {isAuthenticated, logout}= useAuth0()
     const history = useHistory();
+
     return (
         deploy && <div className={Style.menuSection}>
             <div className={Style.topPanelIcons}>
@@ -57,8 +59,15 @@ export default function ResponsiveDeployableMenu({deploy, menuClose, setCartDepl
                     <div className={Style.underline}/>
                 </li>
                 <li>
-                    <NavLink className={Style.eachLink} onClick={()=>menuClose(false)} to='/home'>
-                        <span style={{marginLeft: '8px'}}>LOG OUT</span>
+                    <NavLink className={Style.eachLink} to='/home'>
+                        <span style={{marginLeft: '8px'}}>
+                            {
+                                isAuthenticated ? 
+                                <span onClick={() => {logout()}}>LOG OUT</span>
+                                : 
+                                <div></div>
+                            }
+                        </span>
                     </NavLink>
                     <div className={Style.underline}/>
                 </li>  

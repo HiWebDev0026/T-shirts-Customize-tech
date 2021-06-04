@@ -1,182 +1,16 @@
-@media (max-width: 960px){
-  .container{
-    display: flex;
-    flex-direction: column;
-    border: 2px solid rgba(255, 255, 255, 0.993);
-    margin-top: 1vh;
-    height: 80vh;
-}
-
-.popupFilter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 60vh;
-  height: inherit;
-  border: 4px solid rgb(255, 208, 0);
-  border-radius: 4vh;
-  right: 50%;
-  transform: translateX(50%) translateY(0%);
-  background-color: rgba(0, 0, 0, 0.808);
-  z-index: 5;
-  animation-name: appear;
-  animation-duration: 0.8s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-}
-
-@keyframes appear{
-  0%{
-    background-color: transparent;
-  }
-  100%{
-    background-color: rgba(0, 0, 0, 0.808);
-  }
-}
-
-
-
-.both{
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    height: 60vh;
-    bottom: 5vh;
-}
-
-.both > h1 {
-  color: white;
-}
-
-.btn{
-  position: relative;
-  height: 5vh;
-  width: 100%;
-  align-self: flex-start;
-  background: none;
-  color: rgba(255, 255, 255, 0.993);
-  border: 2px solid rgba(255, 255, 255, 0.993);
-  margin: 0.5vh;
-  transition: ease 0.3s;
-}
-
-.btn:hover{
-    background-color: rgba(255, 255, 255, 0.993);
-    color: green;
-}
-
-
-.boxes {
-    display: flex;
-    margin: 0.5vh;
-    justify-content: space-around;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: transparent;
-    color: white;
-    width: 100%;
-    height: inherit;
-}
-
-/* No entiendo porque no le da bola */
-.container > a {
-  position: fixed;
-  left: 20vh;
-  width: 5vh;
-  height: 5vh;
-}
-
-.box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 0.2em;
-    margin-top: 0.2em;
-}
-
-.input[type=checkbox] {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-  }
-  
-  .label {
-    position: relative;
-    margin-right: 1em;
-    padding-left: 2em;
-    padding-right: 1em;
-    line-height: 2;
-    cursor: pointer;
-    
-    width: 15vh;
-    text-align: center;
-  }
-  .label:before {
-    box-sizing: border-box;
-    content: " ";
-    position: absolute;
-    top: 0.3em;
-    left: 0;
-    display: block;
-    width: 1.4em;
-    height: 1.4em;
-    border: 2px solid rgba(255, 255, 255, 0.993);
-  
-    z-index: -1;
-  }
-  
-  /* Checked */
-  .input[type=checkbox]:checked + .label{
-    padding-left: 1em;
-    color: black;
-    background-color: rgba(255, 255, 255, 0.993);
-  }
-  .input[type=checkbox]:checked + .label:before{
-    top: 0;
-    width: 100%;
-    height: 2em;
-    background: rgba(255, 255, 255, 0.993);
-  }
-  
-  /* Transition */
-  .label,
-  .label::before {
-    transition: 0.25s all ease;
-  }  
-
-  .filterContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid transparent;
-    width: 10vh;
-    height: 10vh;
-    padding: 1vh;
-  }
-
-  .filterIcon {
-    width: 3vh;
-    height: 3vh;
-  }
-  
-}
 
 /* /////////////// NORMAL WIDTH ////////////////////// */
 
 .container{
     display: flex;
     flex-direction: column;
-    border: 2px solid rgba(255, 255, 255, 0.993);
     margin-top: 1vh;
-    height: 80vh;
+    height: 10vh;
     backdrop-filter: blur (20px);
 }
 
 .filterContainer {
   display: flex;
-  position: fixed;
   align-items: center;
   justify-content: center;
   border: 2px solid black;
@@ -205,7 +39,6 @@
 }
 
 .container > a {
-  position: fixed;
   left: 10vh;
   width: 5vh;
   height: 5vh;
@@ -250,7 +83,7 @@
 
 
 .boxes {
-    display: flex;
+  display: flex;
     margin: 0.5vh;
     justify-content: space-around;
     flex-direction: column;
@@ -259,7 +92,7 @@
     color: white;
     width: 100%;
     height: inherit;
-}
+  }
 
 .box {
     display: flex;
@@ -297,7 +130,7 @@
     width: 1.4em;
     height: 1.4em;
     border: 2px solid rgba(255, 255, 255, 0.993);
-  
+    
     z-index: -1;
   }
   
@@ -318,4 +151,165 @@
   .label,
   .label::before {
     transition: 0.25s all ease;
+  }
+
+  @media (max-width: 960px){
+    .container{
+      display: flex;
+      flex-direction: column;
+      margin-top: 1vh;
+      height: 10vh;
+      
+    }
+
+  .filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    width: 5vh;
+    height: 5vh;
+    padding: 1vh;
+    z-index: 0;
+  }
+  
+  .popupFilter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 60vh;
+    height: inherit;
+    border: 4px solid rgb(255, 208, 0);
+    border-radius: 4vh;
+    right: 50%;
+    transform: translateX(50%) translateY(0%);
+    background-color: rgba(0, 0, 0, 0.808);
+    z-index: 5;
+    animation-name: appear;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes appear{
+    0%{
+      background-color: transparent;
+    }
+    100%{
+      background-color: rgba(0, 0, 0, 0.808);
+    }
+  }
+  
+  
+  
+  .both{
+      display: flex;
+      flex-direction: column;
+      background-color: transparent;
+      height: 60vh;
+      bottom: 5vh;
+  }
+  
+  .both > h1 {
+    color: white;
+  }
+  
+  .btn{
+    position: relative;
+    height: 5vh;
+    width: 100%;
+    align-self: flex-start;
+    background: none;
+    color: rgba(255, 255, 255, 0.993);
+    border: 2px solid rgba(255, 255, 255, 0.993);
+    margin: 0.5vh;
+    transition: ease 0.3s;
+  }
+  
+  .btn:hover{
+      background-color: rgba(255, 255, 255, 0.993);
+      color: green;
+  }
+  
+  
+  .boxes {
+      display: flex;
+      margin: 0.5vh;
+      justify-content: space-around;
+      flex-direction: column;
+      flex-wrap: wrap;
+      background-color: transparent;
+      color: white;
+      width: 100%;
+      height: inherit;
+  }
+  
+  /* No entiendo porque no le da bola */
+  .container > a {
+    left: 20vh;
+    width: 5vh;
+    height: 5vh;
+  }
+  
+  .box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 0.2em;
+      margin-top: 0.2em;
+  }
+  
+  .input[type=checkbox] {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+    
+    .label {
+      position: relative;
+      margin-right: 1em;
+      padding-left: 2em;
+      padding-right: 1em;
+      line-height: 2;
+      cursor: pointer;
+      
+      width: 15vh;
+      text-align: center;
+    }
+    .label:before {
+      box-sizing: border-box;
+      content: " ";
+      position: absolute;
+      top: 0.3em;
+      left: 0;
+      display: block;
+      width: 1.4em;
+      height: 1.4em;
+      border: 2px solid rgba(255, 255, 255, 0.993);
+    
+      z-index: -1;
+    }
+    
+    /* Checked */
+    .input[type=checkbox]:checked + .label{
+      padding-left: 1em;
+      color: black;
+      background-color: rgba(255, 255, 255, 0.993);
+    }
+    .input[type=checkbox]:checked + .label:before{
+      top: 0;
+      width: 100%;
+      height: 2em;
+      background: rgba(255, 255, 255, 0.993);
+    }
+    
+    /* Transition */
+    .label,
+    .label::before {
+      transition: 0.25s all ease;
+    }  
+  
+    
   }
