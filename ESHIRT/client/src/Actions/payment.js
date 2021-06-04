@@ -10,9 +10,9 @@ export function createPayment({order, shipments, userId, email}){
             items:order,
             shipments,
             back_urls: {
-                "success": `http://localhost:3000/home`,
-                "failure": `http://localhost:3000/home`,
-                "pending": `http://localhost:3000/home`
+                "success": /* `http://localhost:3000/home` */'https://eshirt.vercel.app/home',
+                "failure": /* `http://localhost:3000/home` */'https://eshirt.vercel.app/home',
+                "pending": /* `http://localhost:3000/home` */ 'https://eshirt.vercel.app/home'
             },
             payer:{
                 identification:{

@@ -61,7 +61,7 @@ function Payment() {
         //loadingSpinner.current.style.display = 'block';
         let unavailableStock = [];
 
-        try {
+        /* try {
             let shirtsWithStock = await axios({ //CHECK AND UPDATE STOCK
                                         method: 'get',
                                         url: '/order/_checkStock/'+orderId,
@@ -79,7 +79,7 @@ function Payment() {
                 history.push('/catalogue')
             })
             return;
-        }
+        } */
 
         if (!deliveryData.zip_code || !deliveryData.street_name || !deliveryData.street_number || !deliveryData.city_name || !deliveryData.state_name || !deliveryData.country_name){
             return alert('Mandatory fields not completed')

@@ -51,7 +51,7 @@ export function SideCart({closeCart}){
             }
             dispatch(putOrder([...items.map(i => { return {...i}}), {...item, amount: 1}], orderId, auxOperation))
         } else if (orderId === 0) {
-            alert(orderId)
+            // alert(orderId)
             dispatch(postOrder([...items, item], user.sub.split('|')[1]))
         }
         dispatch(setCartItems({ 
