@@ -45,6 +45,8 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
       amount: (operation === "-" && 500) || amount,
     };
     dispatch(setCartItems(item, operation));
+    
+    operation === '+' && swal({ title: "added to Cart!", icon: "success", timer: 3000 })
 
     if (isAuthenticated && !orderId) {
       dispatch(postOrder([...cart, item], user.sub.split("|")[1]));

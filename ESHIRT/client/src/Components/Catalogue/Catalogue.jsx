@@ -43,6 +43,7 @@ function Catalogue(){
 
 function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
+    window.scrollTo(0, 0)
   }
   
  /*  <button onClick={()=>dispatch(getShirts())}></button>

@@ -16,7 +16,7 @@ import './stylesImageSlider.css';
 
 // import Swiper core and required modules
 import SwiperCore, {
-    Pagination
+    Pagination, Mousewheel
   } from 'swiper/core';
   
   // install Swiper modules
@@ -35,7 +35,15 @@ export default function ImageSlider (){
   
     return (
         <div className='slider'>
-            <Swiper slidesPerView={width<=500?1:width>500&&width<1000?2:3} spaceBetween={30} slidesPerGroup={1} loop={true} loopFillGroupWithBlank={true} pagination={{
+            <Swiper 
+                slidesPerView={width<=500?1:width>500&&width<1000?2:3} 
+                spaceBetween={30} 
+                slidesPerGroup={1}
+                direction={'horizontal'}
+                mousewheel={true} 
+                loop={true} 
+                loopFillGroupWithBlank={true} 
+                pagination={{
             "clickable": true
             }}  className="mySwiper">
                 <SwiperSlide className='design'>

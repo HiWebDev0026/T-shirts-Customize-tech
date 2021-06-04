@@ -58,7 +58,7 @@ export default function CarouselLanding() {
       <Swiper 
       spaceBetween={30} 
       direction={'horizontal'}
-      mousewheel={true}
+      mousewheel={true} 
       autoplay={{
         "delay": 2500,
         "disableOnInteraction": false
