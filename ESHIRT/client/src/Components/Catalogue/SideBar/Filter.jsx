@@ -68,15 +68,15 @@ function Filter(){
 
     return (
         <div className={style.container}>   
-            <a href= '#popup'>
+            <a href= '#popup' onClick={deployFilter}>
                 <div className={style.filterContainer}>
-                Filter<FilterIcon onClick={deployFilter}/>
+                    Filter<FilterIcon/>
                 </div>
             </a>
             {   popup && 
             <div id= 'popup' className={style.popupFilter}>  
                 <div className={style.both}>
-                <h1>Categories</h1>
+                    <h1>Categories</h1>
                     <div className={style.boxes}>
                         {allCategories.map((e, i) => {
                             return ( 
@@ -88,6 +88,7 @@ function Filter(){
                         })}
                     </div>
                     <button className={style.btn} onClick={handleClick}>FILTER</button>
+                    <button className={style.btn} onClick={deployFilter}>CLOSE</button>
                 </div>
             </div>
             }
