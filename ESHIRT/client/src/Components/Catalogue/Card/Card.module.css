@@ -11,8 +11,6 @@
   box-shadow: 0;
   transform: scale(0.98);
   transition: box-shadow 0.5s, transform 0.5s;
-  
-  
 }
 
 .wrapper:hover {
@@ -596,8 +594,21 @@ font-size: 60px;
     overflow: hiden;
     transition:  1s  ease-in-out;
     flex-wrap: nowrap;
-
   }
+
+  .wrapper {
+    width: 15vw;
+    height: 50vh;
+    background: white;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    transform: scale(0.98);
+    transition: box-shadow 0.5s, transform 0.5s;
+  }
+
   .popup_inner  {
     position: relative;
     bottom: -100vw;

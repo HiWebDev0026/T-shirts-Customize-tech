@@ -79,7 +79,7 @@
  
 }
 
-@media(max-width: 690px){
+@media(max-width: 960px){
   .box{
     display: flex;
     flex-direction: row;
