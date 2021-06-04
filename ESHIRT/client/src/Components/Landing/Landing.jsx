@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Style from './Landing.module.css';
 import CarouselLanding from './CarouselLanding.jsx';
 import { AiFillHome } from "react-icons/ai";
-
+import LogoEshirt from '../../assets/logodani2.png';
 
 function Landing() {
     
@@ -14,7 +14,7 @@ function Landing() {
                <div className={Style.topHomeContainer}>
 
                 <div className={Style.section1}>
-                    E-SHIRT
+                    <img src={LogoEshirt}></img>
                 </div>
                 <div className={Style.section2}>
                     <div>

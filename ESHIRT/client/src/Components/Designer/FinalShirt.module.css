@@ -15,7 +15,7 @@
 }
 
 .finalShirt img {
-   width: auto;
+   width: 410px;
    height: auto;
     
     
@@ -52,9 +52,14 @@
     color:white;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 970px) {
     .container {
         flex-direction: column;
+    }
+
+    .finalShirt > img {
+        width: 360px;
+        height: auto;
     }
 }
 

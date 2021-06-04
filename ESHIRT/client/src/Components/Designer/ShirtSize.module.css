@@ -1,9 +1,10 @@
-.container {
+.containerOfSize {
     display: flex; 
     flex-direction: column; 
     width: 80%; 
     align-items: center;
-    justify-content: center;
+    min-height: 85vh;
+    justify-content: space-around;
     margin: 0 auto;
 }
 
@@ -11,34 +12,60 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 2px solid coral;
     text-align: center;
     height: 125px;
+    width: 100%;
     
 }
 
-.title > h3 {
+.title > h4 {
 
     width: max-content;
     display:'flex';
+    font-family: 'Roboto Condensed', sans-serif;
     margin: 0 auto;
-    color: white;
+    color: black;
 }
 
-.formContainer {
+.sizeCardContainer {
     margin: 0 auto; 
-    width: 70%;
-    height: auto;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-around;
 }
 
-.form {
+.sizeCard {
+    min-height: 225px;
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    width: 20%;
+    align-items: center;
+    box-shadow: 1px 1px 11px 2px black;
+    transition: all 0.23s ease-in;
+}
+
+.sizeCard > h2{
+    margin: 0 auto;
+    font-size: 92px;
+    color: black;
+    text-shadow: 0.1px 0.1px 1px #FEC601, 0.1px 0.1px 1px #FEC601,0.1px 0.1px 1px #FEC601, 0.1px 0.1px 1px #FEC601;
+}
+
+.sizeCard:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+    background-color: #fec70149;
+    box-shadow: 1px 1px 15px 8px black;
+}
+/* .form {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
-}
+} */
 
-.form > select {
+/* .form > select {
     display: flex;
     border: 2px solid coral;
     background-color: black;
@@ -49,21 +76,33 @@
     
     
 }
-
-.form > select > option {
+ */
+/* .form > select > option {
     border: 2px solid coral;
     background-color: black;
     color: coral;
 }
-
+ */
 /* .form > select > option:hover {
     background: coral;
 } */
-
+/* 
 .form > input {
     
     border: 2px solid coral;
     background-color: black;
     color: coral;
     height: 33px;
+} */
+
+
+@media (max-width: 960px) {
+    .sizeCardContainer{
+        flex-direction: column;
+    }
+
+    .sizeCard {
+        width: 100%;
+        margin-bottom: 40px;
+    }
 }

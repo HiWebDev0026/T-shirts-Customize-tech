@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useLayoutEffect, useRef} from 'react';
 import {fabric} from 'fabric';
-import img from '../../assets/img/random_remera_front.png';
+import img from '../../assets/manga_larga.png';
+import img2 from '../../assets/img/random_remera_front.png';
+import img3 from '../../assets/img/women_Vshirt.png';
 import ColorCSS from './ShirtColor.module.css';
 import ColorBattery from './ColorBattery.jsx';
 
@@ -28,7 +30,7 @@ function ShirtModel(props) {
     useEffect(()=>{
 
         let imgBlob = new Image(340, 420);
-        imgBlob.src = img;
+        imgBlob.src = props.phase.modelSelected.data !== 'Long sleeve' && props.phase.modelSelected.data !== 'Cuello V' ? img2 : props.phase.modelSelected.data !== 'T-Shirt' && props.phase.modelSelected.data !== 'Long sleeve' ? img3 : img;
         
         console.log(imgBlob);
         
@@ -54,14 +56,14 @@ function ShirtModel(props) {
                     
                 }))
                 .add(new fabric.Image(imgBlob, {
-                    scaleX: 0.8,
-                    scaleY: 0.7,
+                    scaleX: props.phase.modelSelected.data === 'Long sleeve' ?  0.6 : 0.8,
+                    scaleY: props.phase.modelSelected.data === 'Long sleeve' ? 0.5 : 0.7,
                     evented: false,
                     lockMovementY: true,
                     lockMovementX: true,
-                    width: 492,
-                    height: 585,
-                    left: -38,
+                    width: props.phase.modelSelected.data === 'Long sleeve' ? 880: 520,
+                    height: props.phase.modelSelected.data === 'Long sleeve' ? 860 : 585,
+                    left: props.phase.modelSelected.data === 'Long sleeve' ? -77 : -38,
                     selectable: false,
                     
                 }));
