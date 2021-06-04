@@ -7,7 +7,7 @@ import { postShirt, resetErrors, postFavorite } from '../../Actions/index.js';
 import {useHistory} from 'react-router-dom';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {getCategories} from '../../Actions/index';
-
+import swal from 'sweetalert';
 export default function FinalShirt(props) {
 
     const {phase} = props;
@@ -48,7 +48,7 @@ export default function FinalShirt(props) {
             alert(`${errors.message}`)
             dispatch(resetErrors()) 
         } else if (postOk) {
-            alert('Shirt created!')
+            // alert('Shirt created!')
             history.push('/catalogue')
         }
     })
@@ -101,6 +101,13 @@ export default function FinalShirt(props) {
                         categories: input.categories,
                     }
                 ))
+                swal({ 
+                    title: "Shirt Created", 
+                    text: "The administrator will approve your design in the next few minutes",
+                    icon: "success",
+                    timer: 3000,
+                    padding: "0.75rem"
+                    });
                
 
                 return;
