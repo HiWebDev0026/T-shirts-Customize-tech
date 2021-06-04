@@ -54,7 +54,6 @@ export default function FinalShirt(props) {
     })
 
     function handleChange(e) {
-        console.log('\n\n\n', 'BEFORE SENDING:', input);
         const value = e.target.value;
         const name = e.target.name
         if(name === 'categories') {
@@ -89,7 +88,6 @@ export default function FinalShirt(props) {
     async function handleSubmit (e, phase) {
         
         e.preventDefault();
-        console.log('\n\n\n', 'BEFORE SENDING:', input);
         if(isAuthenticated) {
                 dispatch(postShirt( 
                     {
