@@ -115,7 +115,6 @@ function sortByDate2(a, b) {
         padding: "0.75rem"
         });
         e.target.value= "Status To Change"
-      console.log(sale[index-1].userId)
       let user= await axios.get(`http://localhost:3001/user/${sale[index-1].userId}`, {responseType: 'json', headers: {
         Authorization: `Bearer ${localStorage.currentToken}`
     }})

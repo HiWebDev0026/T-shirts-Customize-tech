@@ -22,7 +22,6 @@ const LogoutButton = ({menuClose}) => {
   useEffect(()=> {
     
     const closeIt = (e)=> {
-      console.log(e.target.id);
 
 
       if(e.target.id =='ButtonDeploy' || e.target.name =='userForClick' || e.target.outerHTML.includes('ButtonDeploy')) {

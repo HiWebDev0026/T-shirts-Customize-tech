@@ -74,13 +74,7 @@ function ShirtDesign(props) {
                                 top: 120,
 
                         })
-                        
-
-                
-                        
-                        
-                        
-                        console.log(data.width, data.height);
+                                                
                         canvas.add(inputImage);
 
                     }

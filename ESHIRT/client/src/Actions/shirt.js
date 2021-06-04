@@ -6,7 +6,7 @@ export function getShirts(status){
         try {
             const res= await axios.get(!status ? `/shirt` : `/shirt?status=${status}`, {responseType: 'json'});
             const shirts = res.data;
-            /* console.log(res); */
+            
             dispatch({type: 'GET_SHIRTS', payload: shirts})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
@@ -16,7 +16,6 @@ export function getShirts(status){
 }
 
 export function getShirtsByName(shirtName, status){
-    console.log("Estoy en la action", shirtName);
     return async (dispatch) => {
         try {
             const res = await axios.get(`/shirt/?name=${shirtName}&status=${status}`, {responseType: 'json'})
@@ -46,7 +45,7 @@ export function getShirtById(shirtId){
 export function postShirt(shirt){
 
     return async (dispatch) => {
-        try {/* console.log(shirt) */
+        try {
             const res = await axios.post(`/shirt`, shirt, {headers: {
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})

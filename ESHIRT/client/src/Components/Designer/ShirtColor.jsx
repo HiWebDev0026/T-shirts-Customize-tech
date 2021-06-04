@@ -31,9 +31,7 @@ function ShirtModel(props) {
 
         let imgBlob = new Image(340, 420);
         imgBlob.src = props.phase.modelSelected.data !== 'Long sleeve' && props.phase.modelSelected.data !== 'Cuello V' ? img2 : props.phase.modelSelected.data !== 'T-Shirt' && props.phase.modelSelected.data !== 'Long sleeve' ? img3 : img;
-        
-        console.log(imgBlob);
-        
+                
             let canvas = new fabric.StaticCanvas('canvas', {
                 
                     width: 350,

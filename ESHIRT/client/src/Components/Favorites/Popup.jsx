@@ -34,7 +34,6 @@ export default function Popup (props){
         id: props.favorite.id,
         amount: quantity
         }
-        console.log(`Test${JSON.stringify(item)}`);
         dispatch(setCartItems(item, '+'));
 
         if (isAuthenticated && !orderId) {

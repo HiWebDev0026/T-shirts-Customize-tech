@@ -17,10 +17,8 @@ export default function OrderDetail(props) {
     },[refresh])
 
     let order = allOrders.filter(order=>parseInt(order.id) === parseInt(orderId));
-    console.log("order", order);
 
     function handleRefresh () {
-        console.log('REFRESH')
         setRefresh(!refresh)
     }
     

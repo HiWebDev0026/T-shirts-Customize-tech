@@ -8,7 +8,7 @@ export function getUsers(){
                 Authorization: `Bearer ${localStorage.currentToken}`
             }})
             const users= res.data
-            console.log(res)
+            
             dispatch({type: 'GET_USERS', payload: users})
         } catch (err) {
             console.log((err.response && err.response.data) || 'Server not working!');
@@ -93,7 +93,7 @@ export function deleteUser(userId){
     // Hacer un get antes de usar esta action porque se necesita el id
     return async (dispatch) => {
         try {
-            console.log(typeof userId, "soy id de delete")
+            
             const res= await axios.delete(`/user/${userId}`, {
                 headers:{
                     Authorization: `Bearer ${localStorage.currentToken}`

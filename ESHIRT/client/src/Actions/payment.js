@@ -5,7 +5,7 @@ export function createPayment({order, shipments, userId, email}){
         const resGetOrder = await axios.get(`/order/user/${userId}`, {responseType: 'json'})
         const Asc = (a, b) => { return parseInt(b.id) - parseInt(a.id) }
         const orderId = resGetOrder.data.sort(Asc)[0].id
-        console.log(orderId)
+        
         order= {
             items:order,
             shipments,
@@ -32,7 +32,7 @@ export function createPayment({order, shipments, userId, email}){
                     url: '/payment',                 
                     data: order
             })
-            console.log(response)
+            
             dispatch({type: 'CREATE_PAYMENT', payload: response.data})
         }
         catch (error){

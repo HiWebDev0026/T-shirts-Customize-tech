@@ -25,7 +25,6 @@ function Design(props) {
 
     useEffect(()=> {
         
-   /*  console.log('useeffect'); */
         for(let prop in phase) {
             if(phase[prop].status == false) {
                 return setPhase(prevPhase => {
@@ -47,9 +46,6 @@ function Design(props) {
             }
         })
     }
-
-    
-    console.log('i render');
 
     return (
         <div className={DesignCSS.parentContainer}>

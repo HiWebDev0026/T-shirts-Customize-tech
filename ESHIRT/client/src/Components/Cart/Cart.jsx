@@ -79,12 +79,9 @@ export default function Cart (props){
     function click(e, id){
         e.preventDefault()
         if (id == 0) {
-
-            console.log('click function', 'POST')
             dispatch(postOrder([...items], user.sub.split('|')[1]))
 
           } else if (id) {
-            console.log('click function', 'PUT')
             dispatch(putOrder([...items], id, 'add'))
           } 
     }

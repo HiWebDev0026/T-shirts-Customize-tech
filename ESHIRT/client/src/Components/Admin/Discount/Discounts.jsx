@@ -18,8 +18,6 @@ export default function Discounts() {
     const dispatch= useDispatch();
     const [discount, setDiscount] = useState({day: '', category: '', percentage:'' });
     const [count, setCount]= useState(0);
-    console.log(categories, "aquiii cat")
-
 
     let category= ['Category', 'ALL']
     categories.map((temp) => {
@@ -69,7 +67,6 @@ export default function Discounts() {
     }
     function handleSubmit(e){
         e.preventDefault()
-        console.log(`${discount.day}-${discount.category}/${discount.percentage}`)
         axios({
             method: 'put',
             url: '/shirt/_admin/_discount',

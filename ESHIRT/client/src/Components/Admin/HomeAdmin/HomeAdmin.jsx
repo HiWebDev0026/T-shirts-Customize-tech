@@ -12,8 +12,6 @@ export default function HomeAdmin() {
     const {isAuthenticated} = useAuth0();
     const isAdmin = useTokenDecode(localStorage.currentToken);
   
-    console.log(isAdmin, 'hook test')
-
     return(
         isAdmin === null ? 'LOADING' : isAdmin === false ? (<ErrorNoAdminPage />) : 
         <div>
