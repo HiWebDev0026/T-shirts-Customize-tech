@@ -5,6 +5,7 @@ import img2 from '../../assets/img/random_remera_front.png';
 import img3 from '../../assets/img/women_Vshirt.png';
 import Design from './Design';
 import PrintCSS from './ShirtDesign.module.css';
+import swal from 'sweetalert';
 
 
 
@@ -31,11 +32,11 @@ function ShirtDesign(props) {
         
         })
           .add(new fabric.Image(imgBlob, {
-                        scaleX: props.phase.modelSelected.data === 'Long sleeve' ?  0.6 : 0.8,
+                        scaleX: props.phase.modelSelected.data === 'Long sleeve' ?  0.57 : 0.8,
                         scaleY: props.phase.modelSelected.data === 'Long sleeve' ? 0.5 : 0.7,
                         width: props.phase.modelSelected.data === 'Long sleeve' ? 880 : 520,
                         height: props.phase.modelSelected.data === 'Long sleeve' ? 860 : 585,
-                        left: props.phase.modelSelected.data === 'Long sleeve' ? -82 : -38,
+                        left: props.phase.modelSelected.data === 'Long sleeve' ? -72 : -38,
                         selectable: false,
                         objectCaching: false,
                         
@@ -121,6 +122,20 @@ function ShirtDesign(props) {
 
         const setPhotoHandler = async (e) => {
 
+                const validExtensions = {
+                        jpg: '',
+                        jpeg: '' ,
+                        png: '',
+                        svg: '',
+                }
+
+                if(!validExtensions.hasOwnProperty(e.target.value.split('.')[1])) {
+                        return swal({
+                                title: 'Invalid file',
+                                text: 'Your file has an invalid extension. We only accept images as avatars.',
+                                icon: 'error',
+                        })
+                }
                 
                 try {
                         const HTMLImage = await convertToHTMLElement(e.target.files[0])
@@ -161,17 +176,20 @@ function ShirtDesign(props) {
 
                                                 
                                                         <label style={{                                        
-                                                                border: '3px solid coral', 
+                                                                border: '1px solid coral', 
                                                                 padding: '8px 40px 8px 40px', 
                                                                 fontSize: '18px', 
-                                                                backgroundColor: 'coral',
+                                                                backgroundColor: '#FEC601',
+                                                                fontFamily: 'Roboto Condensed, sans-serif',
+                                                                fontWeight: 900,
                                                                 color: 'black',
+                                                                borderRadius: '12px',
                                                                 borderColor: 'salmon',
                                                                 margin: '20px 0px 0px 0px'
                                                         }}>
                                                                 Upload Image
                                                         
-                                                                <input type="file" style={{display: 'none'}} onChange={setPhotoHandler}/>
+                                                                <input type="file" accept="image/*" style={{display: 'none'}} onChange={setPhotoHandler}/>
                                                         </label>
 
                                                         <input 
@@ -182,8 +200,10 @@ function ShirtDesign(props) {
                                                                         borderRadius: '5px', 
                                                                         padding: '10px 40px 10px 40px', 
                                                                         fontSize: '18px', 
-                                                                        backgroundColor: data !== null && 'forestgreen',
-                                                                        margin: '130px 0px 0px 0px',
+                                                                        backgroundColor: data !== null && 'rgb(19, 195, 5)',
+                                                                        margin: '50px 0px 0px 0px',
+                                                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                                                        fontWeight: 900,
                                                                         color: data !== null && 'white',
                                                                         borderColor: data !== null && 'mediumseagreen'
                                                                 }} 

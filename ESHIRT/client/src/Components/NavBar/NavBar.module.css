@@ -63,6 +63,8 @@
 
 .logoContainer img {
     width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
     max-height: 120px;
 }
 
@@ -304,6 +306,26 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
         height: 120px !important;
     } */
 
+    .header {
+        flex-direction: column;
+    }
+
+    .logoContainer {
+        height: 100%;
+        width: 60%;
+        max-height: 70px;
+        
+    }
+
+    .logoContainer img{
+        height: 100%;
+        max-width: 210px;
+    }
+
+    .topPanelIcons {
+        padding-top: 18px;
+    }
+
     #SvgjsG1008{
         transform: matrix(1.6113725277858055,0,0,2.6113725277858055,4.51090090748698,5.77041374278567) !important;
         
@@ -346,4 +368,18 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 
     
 
+}
+@media screen and (max-width: 500px) {
+    .logoContainer {
+        height: 100%;
+        width: 60%;
+        max-height: 70px;
+        
+    }
+
+    .logoContainer img{
+        height: 100%;
+        max-width: calc(height*3);
+    }
+   
 }

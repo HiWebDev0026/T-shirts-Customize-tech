@@ -56,14 +56,14 @@ function ShirtModel(props) {
                     
                 }))
                 .add(new fabric.Image(imgBlob, {
-                    scaleX: props.phase.modelSelected.data === 'Long sleeve' ?  0.6 : 0.8,
+                    scaleX: props.phase.modelSelected.data === 'Long sleeve' ?  0.57 : 0.8,
                     scaleY: props.phase.modelSelected.data === 'Long sleeve' ? 0.5 : 0.7,
                     evented: false,
                     lockMovementY: true,
                     lockMovementX: true,
                     width: props.phase.modelSelected.data === 'Long sleeve' ? 880: 520,
                     height: props.phase.modelSelected.data === 'Long sleeve' ? 860 : 585,
-                    left: props.phase.modelSelected.data === 'Long sleeve' ? -77 : -38,
+                    left: props.phase.modelSelected.data === 'Long sleeve' ? -72 : -38,
                     selectable: false,
                     
                 }));
@@ -87,23 +87,21 @@ function ShirtModel(props) {
                     borderRadius: '5px', 
                     padding: '10px 40px 10px 40px', 
                     fontSize: '18px', 
-                    backgroundColor: data !== null && 'forestgreen',
+                    fontFamily: 'Roboto Condensed, sans-serif',
+                    fontWeight: 900,
+                    backgroundColor: data !== null && 'rgb(19, 195, 5)',
                     margin: '30px',
                     color: data !== null && 'white',
                     borderColor: data !== null && 'mediumseagreen'
                 }} 
             />
             </div>
-            <div className={ColorCSS.side}>
+            
                 <ColorBattery props={{
                     setData: (arg)=> setData(arg), 
                     setPhase: (arg)=> props.setPhase(arg)}} 
                 />
-                <form 
-                    
-                >                    
-                </form>
-            </div>        
+                 
         </div>
     )
 }

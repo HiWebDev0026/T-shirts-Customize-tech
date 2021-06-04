@@ -1,13 +1,38 @@
-.container{
+.containerOfBattery{
     display: flex; 
-    flex-direction: column; 
-    max-width: 30vh;
+    min-height: 250px;
+    height: 20vw;
+    max-height: 620px;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    max-width: 40%;
+    margin-top: 5%;
+    min-width: max-content;
     border: 1px solid coral;
+    flex-direction: column;
+    flex-wrap: wrap;
     border-radius: 6px;
     
 }
 
-.container > button {
+.containerOfBattery > button {
     margin: 1vh;
+    min-width: 76px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 900;
+    width: 30%;
+    max-width: 100px;
     border-radius: 0.5vh;
+}
+
+
+@media (max-width:960px) {
+
+.containerOfBattery{ 
+    width: 80%;
+    margin: 0 auto;
+    max-width: 350px;
+}
+
 }

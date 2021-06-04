@@ -3,21 +3,17 @@
         display: flex; 
         justify-content: space-around; 
         padding-top: 6%;
-        width: max-content;
+        width: 90%;
+        max-width: 1366px;
         margin: 0 auto;
 }
 
 .side{
         display: flex;
+        width: max-content;
         flex-direction: column;
 }
 
-.side > input {
-        border: 2px solid coral;
-        background-color: black;
-        color: coral;
-        height: 3vh;
-    }
 
 .shirtInputContainer {
         display: flex;
@@ -25,8 +21,14 @@
         justify-content: space-evenly;
 }
 
-@media (max-width: 610px) {
+@media (max-width: 960px) {
         .container {
                 flex-direction: column;
+                width: 100%;
+        }
+
+        .shirtInputContainer {
+                max-width: 350px;
+                margin: 0 auto;
         }
 }

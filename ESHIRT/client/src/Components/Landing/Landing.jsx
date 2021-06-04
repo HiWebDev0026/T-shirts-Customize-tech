@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Style from './Landing.module.css';
 import CarouselLanding from './CarouselLanding.jsx';
 import { AiFillHome } from "react-icons/ai";
-import LogoEshirt from '../../assets/logodani2.png';
+import LogoEshirt from '../../assets/landing_logo_1.png';
 
 function Landing() {
     
