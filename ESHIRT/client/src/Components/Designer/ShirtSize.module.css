@@ -6,8 +6,33 @@
     min-height: 85vh;
     justify-content: space-around;
     margin: 0 auto;
+    margin-bottom: 5%;
 }
 
+.title{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 125px;
+    width: 40%;
+    border: 2px solid #ffb627;
+    border-radius: 10px;
+    backdrop-filter: blur(5px)
+}
+
+.title > h2 {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: black;
+    color:white ;
+    border: 2px solid #ffb627;
+    border-radius: 10px;
+}
+
+/* 
 .title {
     position: relative;
     display: flex;
@@ -25,7 +50,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     margin: 0 auto;
     color: black;
-}
+} */
 
 .sizeCardContainer {
     margin: 0 auto; 
@@ -55,8 +80,12 @@
 
 .sizeCard:hover {
     transform: scaleX(1.2) scaleY(1.2);
-    background-color: #fec70149;
+    background-color: #ffb627;
     box-shadow: 1px 1px 15px 8px black;
+}
+
+.sizeBoard {
+    margin-top: 14vh;
 }
 /* .form {
     display: flex;
@@ -105,4 +134,56 @@
         width: 100%;
         margin-bottom: 40px;
     }
+}
+
+@media (max-width: 670px) {
+    .title{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        height: 50px;
+        width: 340px;
+        border: 2px solid #ffb627;
+        border-radius: 10px;
+        backdrop-filter: blur(5px)
+    }
+    
+    .title > h2 {
+        margin-right: 10px;
+        margin-left: 10px;
+        padding: 0px;
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: black;
+        color:white ;
+        border: 2px solid #ffb627;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+    .sizeBoard {
+        margin-top: 7vh;
+        width: 340px;
+    }
+
+    .sizeCardContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    .sizeCard {
+        min-height: 125px;
+        border: 1px solid black;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 1px 1px 11px 2px black;
+        transition: all 0.23s ease-in;
+    }
+    
 }

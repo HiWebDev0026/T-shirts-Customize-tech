@@ -52,16 +52,16 @@ function Design(props) {
     console.log('i render');
 
     return (
-        <div className={DesignCSS.mainContainer}>
-            <PhaseController 
-                phase={phase} 
-                setPhase={phaseSetter} />
-                        
-                        {!phase.modelSelected.status && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
-                        {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
-                        {phase.allGoodForSubmit && <FinalShirt phase={phase} setPhase={phaseSetter}/>}
+        <div className={DesignCSS.parentContainer}>
+            <h1 className={DesignCSS.shadowsFamily}>Design your own shirt!</h1>
+            <div className={DesignCSS.mainContainer}>
+                <PhaseController phase={phase} setPhase={phaseSetter} />
+                {!phase.modelSelected.status && <ShirtModel phase={phase} setPhase={phaseSetter}/>}
+                {!phase.sizeSelected.status && <ShirtSize phase={phase} setPhase={phaseSetter}/>}
+                {!phase.colorSelected.status && <ShirtColor phase={phase} setPhase={phaseSetter}/>}
+                {!phase.designSelected.status && <ShirtDesign phase={phase} setPhase={phaseSetter}/>}
+                {phase.allGoodForSubmit && <FinalShirt phase={phase} setPhase={phaseSetter}/>}
+            </div>
         </div>
     )
 }
