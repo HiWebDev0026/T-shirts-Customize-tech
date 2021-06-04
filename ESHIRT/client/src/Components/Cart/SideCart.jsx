@@ -36,8 +36,6 @@ export function SideCart({closeCart}){
             
         return elem.price*elem.amount;
     })?.reduce((acc, actual) => acc+actual)
-
-    console.log(total, 'here');
     
     const handleCartChange = (e, operation) => {
         e.preventDefault();
@@ -99,16 +97,16 @@ export function SideCart({closeCart}){
     return (
         <div className={style.containerSideCart}>
             <div className={style.cartIconDeploy}>
-                    <CartIconDeploy />
-                    <div className={style.cartTotalContainer}>
+                <CartIconDeploy />
+                <div className={style.cartTotalContainer}>
                     <div>
-                    <h2>{items.reduce((a,c)=>a+c.amount,0)} ITEMS</h2>
+                        <h2>{items.reduce((a,c)=>a+c.amount,0)} ITEMS</h2>
                     </div>
                     <div className={style.total}>
-                    <h2>US$ {total || 0}</h2>
+                        <h2>US$ {total || 0}</h2>
                     </div>
                 </div>
-                </div>
+            </div>
             <div className={style.items}>
                 
                 
@@ -140,11 +138,37 @@ export function SideCart({closeCart}){
 
                             </div>
                             <div className={style.ctrls}>
-                            <img src={item.image}/> 
-                            <div className={style.amount}>
-                                <button id= {index} onClick={(e) => handleCartChange(e, '+')}><AddOne style={{fill: '#73BFB8'}}/></button>
-                                <button id= {index} onClick={(e) => handleCartChange(e, '-')}><SubstractOne style={{fill: '#EA7317'}}/></button>
-                            </div>
+                                <img src={item.image}/> 
+                                <div className={style.amount} style={{display: "flex"}}>
+                                    <div style={{position: "relative" }}>
+                                        <AddOne style={{fill: '#73BFB8'}}/>
+                                        <button 
+                                            id={index} 
+                                            onClick={(e) => handleCartChange(e, '+')}
+                                            style={{
+                                                position: "absolute", 
+                                                bottom: "20%", 
+                                                right: "20%", 
+                                                width: "20px", 
+                                                height: "20px"
+                                                }}
+                                            ></button>
+                                    </div>
+                                    <div style={{position: "relative" }}>
+                                        <SubstractOne style={{fill: '#EA7317'}}/>
+                                        <button 
+                                            id={index} 
+                                            onClick={(e) => handleCartChange(e, '-')}
+                                            style={{
+                                                position: "absolute", 
+                                                bottom: "20%", 
+                                                right: "20%", 
+                                                width: "20px", 
+                                                height: "20px"
+                                                }}
+                                            ></button>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
