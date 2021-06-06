@@ -6,31 +6,35 @@
     color: black;
     font-family: 'Shadows Into Light', cursive;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     text-align: center;
     align-items: center;
     align-content: center;
-    flex-wrap:  wrap ;
+    flex-wrap:  wrap;
+    width: 100%;
 }
 .Title{
     color: black;
     font-family: 'Shadows Into Light', cursive;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
     align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
+    margin: 2vh;
 }
 .Title1{
     color: black;
     height: 7vh;
-    width: 15vh;
-    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     align-content: center;
-    flex-wrap:  wrap ;
+    flex-wrap:  wrap;
+    margin: 2vh;
 }
 .Title1:hover{
     color: #ffb627;
@@ -48,5 +52,46 @@
     align-items: center;
     align-content: center;
     flex-wrap:  wrap ;
+    margin: 1vh;
+}
+.Title > #User:hover{
+    
 }
 
+
+@media (max-width: 960px){
+    .General{
+        color: black;
+        font-family: 'Shadows Into Light', cursive;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap:  wrap ;
+        height: 100%;
+    }
+    .Title{
+        color: black;
+        font-family: 'Shadows Into Light', cursive;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap:  wrap ;
+        margin: 2vh;
+    }
+    .Title1{
+        color: black;
+        height: 7vh;
+        width: 30vh;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        flex-wrap:  wrap ;
+        margin: 2vh;
+    }
+}
