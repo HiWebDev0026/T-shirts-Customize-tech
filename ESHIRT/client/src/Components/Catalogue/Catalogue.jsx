@@ -53,6 +53,7 @@ function Catalogue(){
     console.log(data)
     const filteredShirts = data.filter(shirt => shirt.status !== 'deleted' && shirt.public === 'true')
     const currentPageData = filteredShirts
+    .sort((a, b) => {return b.id - a.id})
     .slice(offset, offset + INITIAL_PAGE)
     .map((e) => {
         return (        
