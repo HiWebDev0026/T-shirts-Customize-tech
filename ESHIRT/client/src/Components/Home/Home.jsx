@@ -1,23 +1,96 @@
-import React,{useState} from 'react';
-// import Carousel from '../Carousel/Carousel.jsx';
+import React, { useRef, useState } from "react";
+import {Link} from 'react-router-dom'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import ImageSlider from './ImageSlider.jsx';
-import Style from './Home.module.css';
-import {useWidthCheck} from '../../hooks/widthCheck';
+// Import Swiper styles
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css"
+import "swiper/components/navigation/navigation.min.css"
+
+import "./SwiperStyles.css";
+import {useSelector} from 'react-redux'
 
 
-export default function Home (){
+// import Swiper core and required modules
+import SwiperCore, {
+  Parallax,Pagination,Navigation
+} from 'swiper/core';
 
-    return(
-        <div className={Style.generalHome}>
-            <div>
-                <h1>unique personalities deserve unique t-shirts</h1>
-                <ImageSlider/>
-            </div>
-            <div>
+// install Swiper modules
+SwiperCore.use([Parallax,Pagination,Navigation]);
 
-            </div>
 
-        </div>
-    )
-};
+export default function App() {
+  
+  const tShirts=useSelector((state)=> state.shirtReducer.random10);
+  const reviews= [
+    "Great place to make your own personal shirt! - Ricky Bobby",
+    "The best birthday present - Marta Cuzman",
+    "Done it in only 5 min for my sister - Lucas Aguero",
+    "I felt like a designer - Agustin Gonzalez",
+    "First design I've ever made and it looked beautifull! - Amy James",
+    "It's awesome, you can do anything on your mind! - Ezequiel Otero Tracey",
+    "A friend recommended it to me, and man, he was right about it! - Joan Zorovich",
+    "It really exceeded my expectations - Federico Bombay",
+    "I thought they were gonna be so expensive, but they really are affordable and have a good quality! - Jessica Korn",
+    "So easy to use and it looks so good! - Jake Crain"
+  ]
+
+  return (
+    
+  <div className="home">
+    <Swiper style={{
+      '--swiper-navigation-color': '#fff',
+      '--swiper-pagination-color': '#fff'
+      }} 
+      speed={600} 
+      parallax={true} 
+      pagination={{
+        "clickable": true
+      }} 
+      navigation={true} 
+      className="swiper-container"
+      autoplay={{
+        "delay": 4000,
+        "disableOnInteraction": false
+      }}>
+      <div slot="container-start" className="parallax-bg" data-swiper-parallax="-23%"></div>
+        {
+          tShirts.length>0?
+            tShirts.map((shirt, index)=>{
+              return(
+                <SwiperSlide className="swiperItem">
+                  <img className="swiperCard" src={shirt.print} alt={shirt.name}/>  
+                  <h2>
+                    <i>
+                      {
+                        index < reviews.length ?
+                        reviews[index]
+                            :
+                            ''
+                      }
+                    </i>
+                  </h2>
+                </SwiperSlide>
+              )
+            })
+            :''
+        }
+    </Swiper>
+    <div className="toThePage">
+      <div className='pic1'>
+          <h2>Let's make some magic!</h2>
+          <Link to='/design'>
+            <button>Create your T-shirt</button>
+          </Link>
+      </div>
+      <div className='pic2'>
+        <Link to='/catalogue'>
+          <button>Go to Catalogue</button>
+        </Link>
+      </div>
+    </div>
+  </div>  
+  )
+}
