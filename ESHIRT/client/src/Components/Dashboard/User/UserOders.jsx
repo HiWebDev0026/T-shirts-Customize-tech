@@ -40,7 +40,6 @@ function UserOrders(){
     function filter(e){
         e.preventDefault();
         setFiltered( orders.filter((item)=> item.status === statusToFilter ))
-
     }
 
     let ordersToMap = filtered.length > 0 ? filtered : orders;
@@ -52,7 +51,7 @@ function UserOrders(){
                 <select onChange={handleChange} className={Style.select}>
                     {status.map((each, index)=>{ return <option className={Style.option} key={index} value ={each} >{each}</option>})}
                 </select>
-                <button className={Style.filterBtn}  onClick={(e)=>filter(e)}>Status</button>
+                <button className={Style.filterBtn}  onClick={(e)=>filter(e)}>SEARCH</button>
             </div>
 
             <div className={Style.box}>
