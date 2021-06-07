@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getShirts, getReviews} from '../../Actions/index.js';
+import { AiFillStar } from "react-icons/ai";
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"
 
 import style from "./SwiperStyles.module.css";
-import {useSelector} from 'react-redux'
-
 
 // import Swiper core and required modules
 import SwiperCore, {
@@ -37,6 +37,35 @@ export default function App() {
     "So easy to use and it looks so good! - Jake Crain"
   ]
 
+  const [shirtDisplay, setShirtDisplay] =useState([]);
+  const dispatch = useDispatch();
+ 
+  const sortedScores = useSelector((state)=>state.reviewsReducer.sortedScores);
+  const allShirts = useSelector((state)=>state.shirtReducer.allShirts);
+
+  useEffect(()=>{
+      dispatch(getShirts());
+      dispatch(getReviews());
+  },[]);
+
+  useEffect(()=>{
+      if(sortedScores && allShirts.length>0){
+          setShirtDisplay(scoresToDisplayFunction(sortedScores,allShirts));
+      }
+  },[sortedScores,allShirts]);
+
+  function scoresToDisplayFunction (scores, shirts) {
+      let result=scores.map(scoredShirt=>{
+          for (const shirt of shirts){
+              if(parseInt(scoredShirt.shirtId) === parseInt(shirt.id)){
+                  shirt['score'] = scoredShirt.score;
+                  return shirt;
+              };
+          };
+      });
+      return result;
+  };
+
   return (
     
   <div className={style.home}>
@@ -57,8 +86,8 @@ export default function App() {
       }}>
       <div slot="container-start" className={style.parallaxBg} data-swiper-parallax="-23%"></div>
         {
-          tShirts.length>0?
-            tShirts.map((shirt, index)=>{
+            shirtDisplay.length>0?
+            shirtDisplay.slice(0,11).sort((a,b)=>{return b.score-a.score}).map((shirt, index)=>{
               return(
                 <SwiperSlide className={style.swiperItem}>
                   <img className={style.swiperCard} src={shirt.print} alt={shirt.name}/>  
@@ -71,6 +100,15 @@ export default function App() {
                             ''
                       }
                     </i>
+                    <h2>{shirt.name}</h2>
+                    <div className='stars'>
+                                    <AiFillStar className={shirt.score>=1? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=2? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=3? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=4? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=5? style.blackStar : style.star}/>
+                                </div>
+
                   </h2>
                 </SwiperSlide>
               )

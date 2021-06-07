@@ -179,3 +179,12 @@
 .pic2 > a > button:hover {
   transform: scale(1.1, 1.1);
 }
+
+.blackStar{
+  color: gold;
+  height: 20px;
+  width: 20px;
+}
+.star{
+  color:rgba(128, 128, 128, 0.229);
+}
