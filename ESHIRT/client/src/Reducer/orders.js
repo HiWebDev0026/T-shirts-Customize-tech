@@ -43,11 +43,15 @@ const ordersReducer = (state=initialState, action) => {
                     ...state,
                     orderId: cart[0].id
                 } */
-            const oldOrders = action.payload.map(order => {
-                if (order.status.toUpperCase() === 'CART') {
-                    return Number(order.id)
-                }
-            })
+            const oldOrders = [];
+            
+            for(let i = 0; i < action.payload.length; i++) {
+
+                action.payload[i].status.toUpperCase() === 'CART' ? oldOrders.push(Number(action.payload[i].id)) : null;
+                if(action.payload[i].status.toUpperCase() === 'CART') oldOrders.push(Number(action.payload[i].id));
+
+            }
+
             const oldOrder = Math.max(...oldOrders)
             let newOrderId = null;
            

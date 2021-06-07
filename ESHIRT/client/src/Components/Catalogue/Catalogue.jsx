@@ -65,7 +65,7 @@ function handlePageClick({ selected: selectedPage }) {
             image= {e.print}
             score= {e.score}   
             id={e.id} 
-            latestPrice={ e.latestPrice > 0 ? <div >SALE !</div> : false }    
+            latestPrice={ parseInt(e.discount.split('/')[1]) > 0 ? <div >SALE !</div> : false }
             stock= {e.stock} 
 
         />    
