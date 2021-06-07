@@ -10,7 +10,8 @@ import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"
 
-import "./SwiperStyles.css";
+import style from "./SwiperStyles.module.css";
+import {useSelector} from 'react-redux'
 
 // import Swiper core and required modules
 import SwiperCore, {
@@ -69,7 +70,7 @@ export default function App() {
 
   return (
     
-  <div className="home">
+  <div className={style.home}>
     <Swiper style={{
       '--swiper-navigation-color': '#fff',
       '--swiper-pagination-color': '#fff'
@@ -80,18 +81,18 @@ export default function App() {
         "clickable": true
       }} 
       navigation={true} 
-      className="swiper-container"
+      className={style.swiperContainer}
       autoplay={{
         "delay": 4000,
         "disableOnInteraction": false
       }}>
-      <div slot="container-start" className="parallax-bg" data-swiper-parallax="-23%"></div>
+      <div slot="container-start" className={style.parallaxBg} data-swiper-parallax="-23%"></div>
         {
             shirtDisplay.length>0?
             shirtDisplay.slice(0,11).sort((a,b)=>{return b.score-a.score}).map((shirt, index)=>{
               return(
-                <SwiperSlide className="swiperItem">
-                  <img className="swiperCard" src={shirt.print} alt={shirt.name}/>  
+                <SwiperSlide className={style.swiperItem}>
+                  <img className={style.swiperCard} src={shirt.print} alt={shirt.name}/>  
                   <h2>
                     <i>
                       {
@@ -117,14 +118,14 @@ export default function App() {
             :''
         }
     </Swiper>
-    <div className="toThePage">
-      <div className='pic1'>
+    <div className={style.toThePage}>
+      <div className={style.pic1}>
           <h2>Let's make some magic!</h2>
           <Link to='/design'>
             <button>Create your T-shirt</button>
           </Link>
       </div>
-      <div className='pic2'>
+      <div className={style.pic2}>
         <Link to='/catalogue'>
           <button>Go to Catalogue</button>
         </Link>
