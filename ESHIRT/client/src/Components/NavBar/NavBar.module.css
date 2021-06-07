@@ -379,7 +379,6 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 
     .logoContainer img{
         height: 100%;
-        max-width: calc(height*3);
     }
    
 }
