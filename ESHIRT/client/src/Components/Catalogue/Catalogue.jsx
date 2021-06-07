@@ -42,37 +42,35 @@ function Catalogue(){
         filteredByCategory?.length>0 ? setData(filteredByCategory) : shirtsByName.length>0 ? setData(shirtsByName) : setData(allShirts)
     }, [filteredByCategory, shirtsByName, allShirts]) */
 
-function handlePageClick({ selected: selectedPage }) {
+    function handlePageClick({ selected: selectedPage }) {
     setCurrentPage(selectedPage);
     window.scrollTo(0, 0)
-  }
-  
- /*  <button onClick={()=>dispatch(getShirts())}></button>
-  '/status?=pending' */
-  const offset = currentPage * INITIAL_PAGE;
-  console.log(data)
-  const currentPageData= data
-  .slice(offset, offset + INITIAL_PAGE)
-  .map((e) => {
-    if ( e.status !== 'deleted' && e.public === 'true'){
-    return (        
-        <Card          
-            title= {e.name}            
-            price= {e.price}
-            size= {e.size}
-            model= {e.model}
-            color= {e.color}
-            image= {e.print}
-            score= {e.score}   
-            id={e.id} 
-            latestPrice={ parseInt(e.discount.split('/')[1]) > 0 ? <div >SALE !</div> : false }
-            stock= {e.stock} 
-
-        />    
-    )
     }
 
-})
+    /*  <button onClick={()=>dispatch(getShirts())}></button>
+    '/status?=pending' */
+    const offset = currentPage * INITIAL_PAGE;
+    console.log(data)
+    const filteredShirts = data.filter(shirt => shirt.status !== 'deleted' && shirt.public === 'true')
+    const currentPageData = filteredShirts
+    .slice(offset, offset + INITIAL_PAGE)
+    .map((e) => {
+        return (        
+            <Card          
+                title= {e.name}            
+                price= {e.price}
+                size= {e.size}
+                model= {e.model}
+                color= {e.color}
+                image= {e.print}
+                score= {e.score}   
+                id={e.id} 
+                latestPrice={ parseInt(e.discount.split('/')[1]) > 0 ? <div >SALE !</div> : false }
+                stock= {e.stock} 
+
+            />    
+        )
+    })
   
     
 
@@ -87,25 +85,25 @@ function handlePageClick({ selected: selectedPage }) {
             <div className={style.sideBar}>
                 <Filter/>
             </div>
-        <div className={style.box}>
-            <div className={style.shirts}>
-            {
-                currentPageData
-            }
-            </div>
-            <div className={style.pages}>
-                <ReactPaginate
-                    previousLabel={<HiArrowCircleLeft/>}
-                    nextLabel={<HiArrowCircleRight/>}
-                    pageCount={data < INITIAL_PAGE ? 1 : pageCount}
-                    onPageChange={handlePageClick}        
-                    previousLinkClassName={style.pagination__link}
-                    nextLinkClassName={style.pagination__link}
-                    disabledClassName={style.pagination__link__disabled}
-                    activeClassName={style.pagination__link__active}
-                    containerClassName={style.pagination}
-                />
-            </div>
+            <div className={style.box}>
+                <div className={style.shirts}>
+                {
+                    currentPageData
+                }
+                </div>
+                <div className={style.pages}>
+                    <ReactPaginate
+                        previousLabel={<HiArrowCircleLeft/>}
+                        nextLabel={<HiArrowCircleRight/>}
+                        pageCount={data < INITIAL_PAGE ? 1 : pageCount}
+                        onPageChange={handlePageClick}        
+                        previousLinkClassName={style.pagination__link}
+                        nextLinkClassName={style.pagination__link}
+                        disabledClassName={style.pagination__link__disabled}
+                        activeClassName={style.pagination__link__active}
+                        containerClassName={style.pagination}
+                    />
+                </div>
 
         </div>
         
