@@ -47,7 +47,7 @@ const ordersReducer = (state=initialState, action) => {
             
             for(let i = 0; i < action.payload.length; i++) {
 
-                action.payload[i].status.toUpperCase() === 'CART' ? oldOrders.push(Number(action.payload[i].id)) : null;
+          
                 if(action.payload[i].status.toUpperCase() === 'CART') oldOrders.push(Number(action.payload[i].id));
 
             }
