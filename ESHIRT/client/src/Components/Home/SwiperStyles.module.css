@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.swiper-container {
+.swiperContainer {
   justify-self: left;
   width: 70%;
   height: 80vh;
@@ -52,7 +52,7 @@
     height: 60vh;
 }
 
-.parallax-bg {
+.parallaxBg {
   position: absolute;
   left: 0;
   top: 0;
