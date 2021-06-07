@@ -6,7 +6,9 @@
     justify-content: center;
     /* border: solid 2px violet;   */
     height: 100vh;
-    width: 99%;
+    width: 100%;
+    background-image: url(https://unblast.com/wp-content/uploads/2019/07/Urban-T-Shirt-Mockup-3.jpg);
+    background-size: cover;
 }
 
 .generalHome h1{
