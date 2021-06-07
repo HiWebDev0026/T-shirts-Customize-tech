@@ -11,7 +11,6 @@ import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"
 
 import style from "./SwiperStyles.module.css";
-import {useSelector} from 'react-redux'
 
 // import Swiper core and required modules
 import SwiperCore, {
@@ -67,7 +66,6 @@ export default function App() {
       return result;
   };
 
-
   return (
     
   <div className={style.home}>
@@ -102,13 +100,13 @@ export default function App() {
                             ''
                       }
                     </i>
-                    <h3>{shirt.name}</h3>
+                    <h2>{shirt.name}</h2>
                     <div className='stars'>
-                                    <AiFillStar className={shirt.score>=1?'blackStar':'star'}/>
-                                    <AiFillStar className={shirt.score>=2?'blackStar':'star'}/>
-                                    <AiFillStar className={shirt.score>=3?'blackStar':'star'}/>
-                                    <AiFillStar className={shirt.score>=4?'blackStar':'star'}/>
-                                    <AiFillStar className={shirt.score>=5?'blackStar':'star'}/>
+                                    <AiFillStar className={shirt.score>=1? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=2? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=3? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=4? style.blackStar : style.star}/>
+                                    <AiFillStar className={shirt.score>=5? style.blackStar : style.star}/>
                                 </div>
 
                   </h2>

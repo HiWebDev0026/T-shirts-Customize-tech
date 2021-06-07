@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {useTokenDecode} from '../../hooks/tokenDecoding';
 import ReviewCard from './ReviewCard';
 import ReviewPost from './ReviewPost';
-import Stars from './Starts';
+import Stars from './Stars';
 import Style from './Reviews.module.css';
 
 const ReviewContainer = (props) => {
