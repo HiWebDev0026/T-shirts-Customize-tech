@@ -21,8 +21,6 @@ export default function CreateCategory (){
     
     const dispatch= useDispatch();
 
-    console.log(categories, "acaaaa")
-
     useEffect(()=>{
 
         dispatch(getCategories());
