@@ -17,6 +17,7 @@
 
 .shirts{
   display: flex;
+  margin-top: 1%;
   align-items: flex-start;
   flex-wrap: wrap;
   height: inherit;
@@ -26,10 +27,12 @@
 
 .container1{
     display: flex;  
-    min-height: 100vh;
+    min-height: 80vh;
     height: auto;
     max-width: 100vw;
     width: auto;
+    background-image: url(../../Images/catalogue_girl.jpg);
+    background-size: cover;
 }
 
 .pages{
