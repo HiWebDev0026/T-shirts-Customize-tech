@@ -132,7 +132,7 @@ export default function Cart (props){
             <div className={Style.container}>
                 <div className={Style.left}>
                     <div className={Style.title}>
-                        <h2>Let's do some shopping!</h2>
+                        <h2>Your order detail:</h2>
                     </div >
                     <ul>
                         {

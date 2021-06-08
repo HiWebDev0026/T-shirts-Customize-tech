@@ -6,17 +6,26 @@
     flex-direction: column;
     margin-top: 1vh;
     height: 10vh;
-    backdrop-filter: blur (20px);
 }
 
 .filterContainer {
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: center;
+  margin-left: 2%;
   border: 2px solid black;
+  border-radius: 10%;
   width: 10vh;
   height: 10vh;
   padding: 1vh;
+  background-color: rgba(255, 255, 255, 0.698);
+  box-shadow: 1px 1px 5vh 0.5vh black;
+  transition: ease 0.2s;
+}
+
+.filterContainer:hover {  
+  transform: scale(1.05);
 }
 
 .popupFilter {
@@ -26,7 +35,7 @@
   position: fixed;
   width: 60vh;
   height: 80vh;
-  border: 4px solid rgb(255, 208, 0);
+  border: 3px solid white;
   border-radius: 4vh;
   right: 50%;
   transform: translateX(140%) translateY(0%);
