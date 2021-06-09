@@ -52,7 +52,7 @@ export default function OrderDetail(props) {
                 }
             <div className={Style.btnBox}>
                 <button className={Style.btn} onClick={handleRefresh}>Refresh</button>
-                <NavLink to='/userOrders'>
+                <NavLink to='/account'>
                     <button className={Style.btn}>Go back to orders</button>
                 </NavLink>
             </div>

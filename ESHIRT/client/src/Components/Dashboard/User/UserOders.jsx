@@ -14,7 +14,6 @@ function UserOrders(){
     const {user} = useAuth0();
     const {sub} = user;
     let id = sub.split("|")[1];
-    
 
     useEffect(() => {
         dispatch(getOrders());
@@ -51,24 +50,23 @@ function UserOrders(){
                 <select onChange={handleChange} className={Style.select}>
                     {status.map((each, index)=>{ return <option className={Style.option} key={index} value ={each} >{each}</option>})}
                 </select>
-                <button className={Style.filterBtn}  onClick={(e)=>filter(e)}>SEARCH</button>
+                <button className={Style.filterBtn}  onClick={(e)=>filter(e)}>FILTER</button>
             </div>
 
             <div className={Style.box}>
             {
                 ordersToMap.length> 0 ?
                 ordersToMap.map(order => {
-                    return <ul className={Style.ul}>
-                                <NavLink to={`/userOrderDetail/${order.id}`}><li className={Style.li}>Order id: {order.id}</li></NavLink>
-                                <li className={Style.li}>Status: {order.status}</li>
-                            </ul>
+                    return <div className={Style.ul}>
+                                <NavLink to={`/userOrderDetail/${order.id}`}>
+                                    <p className={Style.li}>Order id: {order.id}</p>
+                                </NavLink>
+                                <p className={Style.li}>Status: {order.status}</p>
+                            </div>
                 })
                 :<h1>You have no orders</h1>
             }
             </div>
-            <NavLink to='/userDash' className={Style.btnBox}>
-                <button className={Style.btn}>CONTROL PANEL</button>
-            </NavLink>
         </div>
     )
 }

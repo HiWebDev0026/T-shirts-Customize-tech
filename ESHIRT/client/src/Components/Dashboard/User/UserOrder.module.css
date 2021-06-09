@@ -21,35 +21,23 @@
     align-items: center;
     background: #ffb627;
     width: 300px;
-    padding-bottom: 30px;
     margin: 30px;
     border-radius: 10px;
 }
 
-.ul{
+.ul {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 80%;
+    height: max-content;
+    margin: 1vh;
     justify-content: center;
-    width: 200px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    text-decoration: none;
-    list-style: none;
+    align-items: center;
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
 }
-
-.li{
-    height: 30px;
-    margin-bottom: 10px;
+.ul > a:hover {
     color: white;
-    text-align: center;
-    margin: 5px;
-    padding-top: 10px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 120%;
 }
 
 .submitBtn, .filterBtn{
@@ -58,10 +46,20 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 18px;
+    margin: 0.5vh;
+    transition: ease 0.3s;
+    border: 2px solid #ffb627;
+    background-color: white;
+    border-radius: 10px;
 }
-.submitBtn:hover, .filterBtn:hover{
+.submitBtn:hover{
     background: black;
     color: #ffb627;
+}
+
+.filterBtn:hover {
+    color: black;
+    background-color: #ffb627;
 }
 
 .select{
@@ -70,7 +68,10 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    background-color: gray;
+    background-color: black;
+    color: white;
+    outline: none;
+    border-radius: 10px;
 }
 .option{
     width: 120px;
@@ -78,10 +79,6 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 18px;
-    background: #ffb627;
-}
-.select .option:hover{
-    background: gray;
 }
 
 .btn{

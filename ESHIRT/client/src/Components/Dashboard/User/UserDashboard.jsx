@@ -23,15 +23,14 @@ function UserDashboard(){
 
     // <div className={Style.container}>   
       <div className={Style.box}>
+        <div className={Style.sideBar}>
+          <HomeUser  />
+        </div>
         <div className={Style.left}>
           <h1>Welcome {userDB.name}</h1>
           {/* <div>
             {display}
           </div> */}
-        </div>
-        <div className={Style.sideBar}>
-        <Clock />
-        <HomeUser  />
         </div>
       </div>
     // </div>

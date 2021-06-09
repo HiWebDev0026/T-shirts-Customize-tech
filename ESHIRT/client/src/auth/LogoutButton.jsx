@@ -10,7 +10,7 @@ import {ReactComponent as UnextendIcon} from '../assets/130906.svg'
 import {useTokenDecode} from '../hooks/tokenDecoding';
 import { useWidthCheck } from "../hooks/widthCheck";
 
-const LogoutButton = ({menuClose}) => {
+const LogoutButton = ({menuClose} ) => {
 
   const [deployed, setDeployed] = useState(false);
   const isAdmin = useTokenDecode(localStorage.currentToken);
@@ -79,10 +79,10 @@ const LogoutButton = ({menuClose}) => {
     </button>
     {width > 960 && deployed && !isAdmin && <div className={Style.deployableMenuCommonUser}>
       <ul name="listorti">
-        <li onClick={()=> setDeployed(false)}><Link to='/account'>Profile</Link></li>
-        <li><Link to='/userData'>Personal data</Link></li>
+        <li onClick={()=> setDeployed(false)}><Link to='/account'>My account</Link></li>
+        {/* <li><Link to='/userData'>Personal data</Link></li> */}
         {/* <li><Link to=''>Purchases</Link></li> */}
-        <li><Link to='/userOrders'>My orders</Link></li>
+        {/* <li><Link to='/userOrders'>My orders</Link></li> */}
         <li onClick={() =>{
         
         localStorage.removeItem('currentToken')
