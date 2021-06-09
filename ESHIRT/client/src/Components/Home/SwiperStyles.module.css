@@ -188,3 +188,58 @@
 .star{
   color:rgba(128, 128, 128, 0.229);
 }
+
+
+@media (max-width:768px){
+  /*Order: 
+    home {
+      swiperContainer {
+        parallaxBg,
+        swiperItem {
+          swiperCard
+        }
+      },
+      toThePage {
+        pic1,
+        pic2
+      }
+    }
+  */
+  .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+    width: 100vw;
+    padding: 0;
+    position: relative;      
+  }
+  .toThePage {
+    display: none;
+  }
+  .swiperContainer {
+    /* justify-self: left; */
+    width: 100%;
+    height: 80vh;
+    
+    /* background-size: cover; */
+    /* position: absolute; */
+    /* left: 0; */
+  }
+  .swiperItem {
+    display: flex;
+    /* width: 100%; */
+    /* height: 100%; */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .swiperCard {
+    border: 2px solid black;
+    border-radius: 3vh;
+    box-shadow: 1px 1px 5vh 0.5vh black;
+    width: 30vh;
+    height: 36vh;
+  }
+  
+}

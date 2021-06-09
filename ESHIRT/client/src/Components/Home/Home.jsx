@@ -28,7 +28,7 @@ export default function App() {
     "Great place to make your own personal shirt! - Ricky Bobby",
     "The best birthday present - Marta Cuzman",
     "Done it in only 5 min for my sister - Lucas Aguero",
-    "I felt like a designer - Agustin Gonzalez",
+    "I felt like a professional designer - Agustin Gonzalez",
     "First design I've ever made and it looked beautifull! - Amy James",
     "It's awesome, you can do anything on your mind! - Ezequiel Otero Tracey",
     "A friend recommended it to me, and man, he was right about it! - Joan Zorovich",
@@ -92,14 +92,14 @@ export default function App() {
                 <SwiperSlide className={style.swiperItem}>
                   <img className={style.swiperCard} src={shirt.print} alt={shirt.name}/>  
                   <h2>
-                    <i>
+                    
                       {
                         index < reviews.length ?
                         reviews[index]
                             :
                             ''
                       }
-                    </i>
+                    
                     <h2>{shirt.name}</h2>
                     <div className='stars'>
                                     <AiFillStar className={shirt.score>=1? style.blackStar : style.star}/>
@@ -114,7 +114,7 @@ export default function App() {
               )
             })
             :''
-        }
+        } 
     </Swiper>
     <div className={style.toThePage}>
       <div className={style.pic1}>
