@@ -44,11 +44,11 @@ React | Redux | Node.js | Express.js | Sequelize | PostgreSQL | HTML | CSS | Can
 
 There are two types of people, those who follow trends and those who create them. For either of them, E-shirt is the answer. Do you like to follow trends? We present you with different designs created by diverse users from which you can choose between different categories. Do you like to create? Make use of our design tool. You can pick the type of T-shirt you want to style, its color, and most importantly, the design you want to print on it. Isn't it fun? Be a designer from the comfort of your home!
 
-### Oh wait! Are you a business owner? 
-Oh, wait! Are you a business owner? No problem. Manage your t-shirt business from our platform. Create designs, handle your stock, create deals, manage users, check your sales, among other things. E-shirt connects you with your customers in a unique way:)
-
 ### Do your own shirt and feel like you are a designer
 ![Deseing (1)](https://user-images.githubusercontent.com/74310843/121400688-43e9b380-c92e-11eb-860c-e3882eee80c1.gif)
+
+### Oh wait! Are you a business owner? 
+Oh, wait! Are you a business owner? No problem. Manage your t-shirt business from our platform. Create designs, handle your stock, create deals, manage users, check your sales, among other things. E-shirt connects you with your customers in a unique way:)
 
 #### We are waiting for you...
 ![CatalogueESHIRT](https://user-images.githubusercontent.com/74310843/121396810-1c90e780-c92a-11eb-946e-1fd7b0f59272.jpg)
