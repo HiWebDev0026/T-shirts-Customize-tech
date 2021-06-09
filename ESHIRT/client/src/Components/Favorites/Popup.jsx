@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {GrAdd, GrFormSubtract} from "react-icons/gr";
 import {HiShoppingCart} from "react-icons/hi";
-import {RiCloseLine} from "react-icons/ri";
 import swal from 'sweetalert';
 import { useAuth0} from "@auth0/auth0-react";
 import Style from './Popup.module.css';
@@ -77,7 +76,7 @@ export default function Popup (props){
                     </div>
                             <button id={props.id} onClick={(e) => handleCartChange(e)} className={Style.cart}><HiShoppingCart/></button>
                 </div>
-                <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}><RiCloseLine/></button>
+                <button className={Style.closebtn} onClick={()=>props.setTrigger(false)}>X</button>
             </div>
         </div>
     ):'';

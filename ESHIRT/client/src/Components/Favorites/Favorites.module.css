@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .container{
+    background-image: url('https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+    background-size: cover;
     width:100%;
     height:100%;
     display: flex;
@@ -11,13 +13,15 @@
 
 .container h1{
   font-family: 'Shadows Into Light', cursive;
+  color: black;
+  text-shadow: 5px 5px 5px #ffb627;
 }
 
 .info{
   width:100%;
   height: 800%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap:wrap;
 }
 
