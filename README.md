@@ -50,6 +50,9 @@ There are two types of people, those who follow trends and those who create them
 ### Oh wait! Are you a business owner? 
 Oh, wait! Are you a business owner? No problem. Manage your t-shirt business from our platform. Create designs, handle your stock, create deals, manage users, check your sales, among other things. E-shirt connects you with your customers in a unique way:)
 
+### Acept new desings and manage your products
+![acept](https://user-images.githubusercontent.com/74310843/121402181-f66e4600-c92f-11eb-9cf0-cca601f9096f.gif)
+
 #### We are waiting for you...
 ![CatalogueESHIRT](https://user-images.githubusercontent.com/74310843/121396810-1c90e780-c92a-11eb-946e-1fd7b0f59272.jpg)
 
