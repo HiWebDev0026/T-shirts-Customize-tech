@@ -54,7 +54,7 @@ export default function ImageSlider (){
                             <button>Create your T-shirt</button>
                         </Link>
                     </div>
-                </SwiperSlide> */}
+                </SwiperSlide> 
                 {
                     tShirts.length>0?
                         tShirts.map(shirt=>{
@@ -73,7 +73,7 @@ export default function ImageSlider (){
                                 <button>Go to Catalogue</button>
                             </Link>
                     </div>
-                </SwiperSlide> */}
+                </SwiperSlide> 
             </Swiper>
         </div>
     )
