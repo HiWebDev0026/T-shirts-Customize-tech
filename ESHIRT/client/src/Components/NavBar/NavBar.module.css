@@ -12,8 +12,7 @@
 
 .header{
     display: flex;
-    
-    
+    border-bottom: 2px solid black;
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
@@ -21,7 +20,6 @@
     max-width: 100vw;
     /* width: max-content; */
     height: 125px;
-    border-color:#ffb627;
     font-family: 'Roboto Condensed', sans-serif;
     background-color:white;
 }

@@ -19,6 +19,7 @@
     display: flex;
     box-shadow: 5px 5px 5px 5px rgb(228, 227, 227);
     border-radius: 20px;
+    margin: 1vh;
 }
 
 .name{

@@ -15,8 +15,6 @@
   justify-self: left;
   width: 70%;
   height: 80vh;
-  
-  /* background-size: cover; */
   position: absolute;
   left: 0;
 }
@@ -50,6 +48,7 @@
     box-shadow: 1px 1px 5vh 0.5vh black;
     width: 50vh;
     height: 60vh;
+    margin-left: 3%;
 }
 
 .parallaxBg {
