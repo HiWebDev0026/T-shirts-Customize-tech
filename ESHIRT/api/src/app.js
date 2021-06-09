@@ -8,7 +8,7 @@ const path = require('path');
 const {createProxyMiddleware} = require('http-proxy-middleware')
 const mercadopago= require('mercadopago');
 const { default: axios } = require('axios');
-const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN}= process.env
+const {CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, BACKEND_URL}= process.env
 const {Order, Shirt}= require('./db')
 const {getPayment}= require('./controllers/payment')
 const {Op}= require('sequelize')
@@ -113,7 +113,7 @@ async function paymentUpdate(){
               if (mpData[i].email){
                 let sent= axios({
                   method: 'post',
-                  url:'http://localhost:3001/email',
+                  url: BACKEND_URL || 'http://localhost:3001/email',
                   data:{
                     email: mpData[i].email,
                     status: mpData[i].status

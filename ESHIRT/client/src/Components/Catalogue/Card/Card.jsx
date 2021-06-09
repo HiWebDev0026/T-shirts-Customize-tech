@@ -128,16 +128,17 @@ function Card({ title, score, price, size, model, color, image, id, latestPrice,
               <img className={style.image} src={image} />
             </div>       
             <div className={style.details}>
-           
-              <a>{title}</a>
-            {
-              stock > 0 ?
-              <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
+                {title}
+              <div className={style.bottomInfo}>
+              {
+                stock > 0 ?
+                <i  className={style.btns} onClick={(e) => handleCartChange(e, "+")}><HiShoppingCart /></i>
                 :
-              <div></div>
-            }
+                <div></div>
+              }
+              <div className={style.price}>${price}</div>
+              </div>
             </div>
-            <a className={style.price}>${price}</a>
             
           </div>
         </a>

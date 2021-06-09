@@ -10,7 +10,8 @@
     height: 90px;
     margin:6px;
     margin-left: 50px;
-    
+    padding: 3%;
+    background-color: rgba(0, 0, 0, 0.801);
 }
 
 .picture{
@@ -28,7 +29,7 @@
     margin-left:30px;
     margin-right:20px;
     margin-top:10px;
-    color:black;
+    color:white;
     font-family: 'Shadows Into Light', cursive;
 }
 
@@ -41,7 +42,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color:white;
     margin-right:60px;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -49,12 +50,13 @@
 .column3{
     margin-top:4%;
     width: 30%;  
-    color:black;
+    color:white;
 }
 
 .buttonAM{
     font-family: 'Roboto Condensed', sans-serif;
     border-color: transparent;
+    border-radius: 5px;
     height: 20px;
     width: 20px;
     display: flex;
@@ -68,7 +70,6 @@
 }
 
 .buttonAM:hover{
-    border-radius: 50%;
     background-color: rgba(200, 195, 195, 0.407);
 }
 
@@ -96,7 +97,7 @@
     border: solid 2px white;
     display: flex;
     justify-content: center;
-    color:black;
+    color:white;
 }
 
 .qty{
@@ -121,22 +122,30 @@
     border: solid 1px color;
     display: flex;
     justify-content: center;
-    color:black;
+    color:white;
     border-radius: 5px;
     width: 55px;
+    outline: none;
 }
 
 .size select:hover{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    height: 40%;
+    margin: 0;
 }
 
 .btns button {
-    margin:-7px;
     background-color: transparent;
     border-color: transparent;
-    color:black;
-
+    color:white;
+    
 }
 
 .btns button:hover{
@@ -144,7 +153,7 @@
 }
 
 .blackHeart{
-    color:black;
+    color:white;
     background-color: transparent;
     border-color: transparent;
 }

@@ -1,22 +1,31 @@
 
 /* /////////////// NORMAL WIDTH ////////////////////// */
-
+ 
 .container{
     display: flex;
     flex-direction: column;
     margin-top: 1vh;
     height: 10vh;
-    backdrop-filter: blur (20px);
 }
 
 .filterContainer {
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: center;
+  margin-left: 2%;
   border: 2px solid black;
+  border-radius: 10%;
   width: 10vh;
   height: 10vh;
   padding: 1vh;
+  background-color: rgba(255, 255, 255, 0.698);
+  box-shadow: 1px 1px 5vh 0.5vh black;
+  transition: ease 0.2s;
+}
+
+.filterContainer:hover {  
+  transform: scale(1.05);
 }
 
 .popupFilter {
@@ -24,11 +33,12 @@
   align-items: center;
   justify-content: center;
   position: fixed;
+  padding: 0% 5% 0% 5%;
   width: 60vh;
-  height: 80vh;
-  border: 4px solid rgb(255, 208, 0);
+  /* height: max-content; */
+  border: 3px solid white;
   border-radius: 4vh;
-  right: 50%;
+  /* right: 50%; */
   transform: translateX(140%) translateY(0%);
   background-color: rgba(0, 0, 0, 0.808);
   z-index: 5;
@@ -57,15 +67,19 @@
     display: flex;
     flex-direction: column;
     background-color: transparent;
+    width: 100%;
     height: 60vh;
+    margin: 0;
 }
 
 .both > h1 {
   color: white;
+  font-size: 28px;
+  text-align: center;
 }
 
 .btn{
-  position: relative;
+  /* position: relative; */
   height: 5vh;
   width: 100%;
   align-self: flex-start;
@@ -84,14 +98,14 @@
 
 .boxes {
   display: flex;
-    margin: 0.5vh;
+    /* margin: 0.5vh; */
     justify-content: space-around;
     flex-direction: column;
     flex-wrap: wrap;
     background-color: transparent;
     color: white;
     width: 100%;
-    height: inherit;
+    height: 50vh;
   }
 
 .box {
@@ -160,7 +174,7 @@
     justify-content: center;
     position: fixed;
     width: 40vh;
-    height: 80vh;
+    height: 75vh;
     border: 4px solid rgb(255, 208, 0);
     border-radius: 4vh;
     right: 50%;
@@ -200,7 +214,7 @@
     justify-content: center;
     position: fixed;
     width: 40vh;
-    height: 90vh;
+    /* height: 90vh; */
     border: 4px solid rgb(255, 208, 0);
     border-radius: 4vh;
     right: 50%;

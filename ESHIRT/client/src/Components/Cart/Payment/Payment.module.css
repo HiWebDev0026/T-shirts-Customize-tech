@@ -10,8 +10,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40%;
     padding: 3vh;
     border: 2px solid black;
+    border-radius: 10px;
     background: rgba(0, 0, 0, 0.363);
 }
 
@@ -25,13 +27,15 @@
 
 .form > input{
     display: flex;
+    font-size: 20px;
     width: 30vh;
     height: 5vh;
     margin: 0.5vh;
     text-align: center;
-    background: white;
+    background: rgba(3, 3, 3, 0.801);
     color: rgb(255, 188, 2);
     border: 2px solid rgb(255, 188, 2);
+    border-radius: 10px;
     outline: none;
 }
 
@@ -50,16 +54,18 @@
 .form > button{
     width: 10vh;
     height: 5vh;
+    font-size: 20px;
     background: transparent;
-    transition: ease 0.5s;
+    transition: ease 0.3s;
     justify-content: center;
     align-items: center;
-    border: 2px solid lightgreen;
-    color: lightgreen;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: black;
 }
 
 .form > button:hover{
-    background: lightgreen;
+    background: rgb(255, 188, 2);
     color: black;
     border: 2px solid black;
 }

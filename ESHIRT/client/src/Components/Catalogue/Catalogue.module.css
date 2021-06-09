@@ -6,17 +6,18 @@
   align-items: center;
   width: 60%;
 }
-
+/* 
 .sideBar{
   display: flex;
   height: 10vh;
   width: 10vh;
   background-color: inherit;
   margin: 1vh;
-}
+} */
 
 .shirts{
   display: flex;
+  margin-top: 1%;
   align-items: flex-start;
   flex-wrap: wrap;
   height: inherit;
@@ -26,10 +27,12 @@
 
 .container1{
     display: flex;  
-    min-height: 100vh;
+    min-height: 80vh;
     height: auto;
     max-width: 100vw;
     width: auto;
+    background-image: url(../../Images/catalogue_girl.jpg);
+    background-size: cover;
 }
 
 .pages{
@@ -88,7 +91,12 @@
     height: auto;
     max-width: 100vw;
     width: auto;
-  }  
+    background-image: url('../../Images/catalogue_girl.jpg'), url('https://static.highsnobiety.com/thumbor/9LC4p5GLF9tI6Kh5UEw3MCcrXi8=/1600x1067/static.highsnobiety.com/wp-content/uploads/2019/12/13124156/vintage-clothes-thrift-shopping-main.jpg');
+    /* background-size: 50% 50%; */
+    background-position: top center, center center;
+    background-repeat: no-repeat, no-repeat;
+  }
+  
   .box{
     display: flex;
     margin-left: 10%;

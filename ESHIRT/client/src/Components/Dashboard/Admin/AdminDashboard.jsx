@@ -8,7 +8,6 @@ import Calendar from '../Calendar';
 function AdminDashboard(){
     return(
         <div className={Style.container}>   
-            <h1>Welcome!</h1>
             <div className={Style.box}>
                 <div className={Style.sideBar}>
                     <HomeAdmin />

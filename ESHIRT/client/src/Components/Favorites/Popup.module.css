@@ -40,6 +40,8 @@
 .left p{
     font-weight: 600;
     font-size: 30px;
+    color: black;
+    text-shadow:3px 5px 5px #ffb627;
 
 }
 
@@ -49,10 +51,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 45%;
+    height: 50%;
     margin-top:10%;
-    border: solid 2px black;
-    /* background-color:#ffb627 ; */
     border-radius: 5px;
     margin-left: 10%;
 
@@ -60,45 +60,38 @@
 
 .popupinner .closebtn {
     position: absolute;
+    right: -1rem;
+    top: -1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    border-radius: 100%;
+    background-color: #ffb627;
+    border-color:transparent;
+    z-index: 4;
+    color: #fff;
+    line-height: 3rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    right: 3px;
-    top: 3px;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: transparent;
-    z-index: 4;
-    border:solid 2px black;
-    background-color: black;
-    color:#ffb627;
-    font-weight: 900;
-  
 } 
 
-.closebtn:hover{
-   font-size: 80px;
-}
-
 .size{
-    margin-bottom: 10px;
-    font-size: 12px;
-    height: 25px;
-    width: 60px;
-    border-color: black;
-    transition-duration: 0.4s;
-    border-radius: 5px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 900;
-    display: flex;
-    justify-content: center;
-}
-
-.size:hover{
-    background-color:black;
-    color:white;
-    width: 65px;
+font-family: 'Shadows Into Light', cursive;
+  font-weight: 500;
+  font-size: 15px;
+  height: 25px;
+  width: 10vh;
+  margin-left: 2px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  color: black;
+  transition-duration: 0.4s;
+  border-radius: 10px;
 }
 
 .amount{
@@ -115,28 +108,47 @@
 }
 
 .buttonAM{
-    font-family: 'Roboto Condensed', sans-serif;
-    border-color: transparent;
-    height: 20px;
-    width: 20px;
-    display: flex;
-    justify-content: center;
-    margin:2px;
-    background-color: transparent;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: #ffb627;
+  transition-duration: 0.4s;
+  border-radius: 10px;
 }
 
 .buttonAM:hover{
-    border-radius: 50%;
-    background-color: rgba(200, 195, 195, 0.407);
+    background-color:#24252a9c;
+    border-color: #ffb627;
+    border-radius: 10px;
+    color: #ffb627;
 }
 
 .cart{
-    background-color:transparent;
-    color:grey;
-    border-color: transparent;
-    margin:-10px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    height: 30px;
+    width: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-color: #ffb627;
+    transition-duration: 0.4s;
+    border-radius: 10px;
 }
 
 .cart:hover{
-    color: black;
+    background-color: black;
+    color: #ffb627;
+    border-radius: 10px;
+}
+
+@media(max-width:485px){
+    .popupinner .closebtn{
+        right: 2px;
+        top: 2px;
+    }
 }

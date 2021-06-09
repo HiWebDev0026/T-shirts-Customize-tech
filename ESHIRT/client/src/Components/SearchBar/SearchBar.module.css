@@ -6,10 +6,11 @@
 .searchBarMainContainer {
     display: flex;
     width: auto;
-    min-width: 70px;
+    min-width: 100px;
     flex-shrink: 2;
+    border: 2px solid black;
+    border-radius: 3vh;
     
-
 }
 
 .searchBarMainContainer > form {
@@ -35,7 +36,8 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 500;
     font-size: 17.5px;
-    border-radius: 25px;
+    border-radius: 3vh;
+    outline: none;
 }
 
 .buttonSearchContainer {

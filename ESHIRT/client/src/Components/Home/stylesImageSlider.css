@@ -2,11 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 .slider{
-    /* position: relative; */
-    height: 20%;
-    width: 50%;
-    /* background: ; */
-    backdrop-filter: blur(20px);
+    position: relative;
+    height: 60%;
+    width: 100%;
+    background: transparent;
     font-size: 14px;
     color: #000;
     margin-top: 40px;
