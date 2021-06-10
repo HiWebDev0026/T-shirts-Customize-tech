@@ -4,7 +4,8 @@
 ![WhatsApp Image 2021-06-04 at 1 05 43 PM](https://user-images.githubusercontent.com/74310843/120831499-f805cb80-c535-11eb-955e-ffd3565c72ff.jpeg)
 
 
-🔭 onPress = {() => https://eshirt.vercel.app/ }
+🔭 onPress = {() => https://eshirt.vercel.app/ , https://www.youtube.com/watch?v=Lje1MAXgt5Q } 
+
 
 
 We used the following technologies on Javascript:
