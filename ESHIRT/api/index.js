@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const {fillDB} = require('./src/fill_db.js');
 
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
     fillDB();
     server.listen(process.env.PORT, () => {
     console.log('%s listening at', process.env.PORT, '\nDATABASE UP'); // eslint-disable-line no-console
