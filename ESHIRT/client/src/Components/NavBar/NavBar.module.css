@@ -282,7 +282,7 @@ transition: transform 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
     flex-direction: column;
     right: 50%;
     transform:translateX(50%);
-    background-color: #FEC601;
+    background-color: rgb(219, 219, 219);
     position: absolute;
     display: flex;
 }
