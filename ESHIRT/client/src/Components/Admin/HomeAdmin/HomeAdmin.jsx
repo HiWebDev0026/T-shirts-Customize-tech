@@ -12,6 +12,7 @@ import Categories from '../../../assets/img/categories.png'
 import Designs from '../../../assets/img/designs.png'
 import Users from '../../../assets/img/users.png'
 import Discounts from '../../../assets/img/discounts.png'
+import Admin from '../../../assets/img/admin_bg.jpg'
 
 export default function HomeAdmin() {
 
@@ -53,17 +54,10 @@ export default function HomeAdmin() {
             <NavLink to= '/recycleBin' className={Style.Title1}>
                 <h2>RECYCLE BIN</h2>
                 <img src={RecicleBin} className={Style.img} />
-    
             </NavLink>
             </div>
-            <div className={Style.toShow}>
-                <img src={Users} className={Style.toShowUs}/>
-                <img src={Users} className={Style.toShowCat}/>
-                <img src={Users} className={Style.toShowShi}/>
-                <img src={Users} className={Style.toShowSal}/>
-                <img src={Users} className={Style.toShowDes}/>
-                <img src={Users} className={Style.toShowDis}/>
-                <img src={Users} className={Style.toShowRec}/>
+            <div className={Style.bg}>
+                <img src={Admin} />
             </div>
         </div>
     )
