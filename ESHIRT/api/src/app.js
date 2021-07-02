@@ -185,7 +185,7 @@ server.use((req, res, next) => {
     );*/
            
 
-server.use('/', routes);
+server.use('/api', routes);
 
 
 setInterval(paymentUpdate, 60000)

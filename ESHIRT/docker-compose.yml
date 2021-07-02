@@ -1,44 +1,89 @@
 version: '3.3'
 
 services:
-    database:
-        
-        image: postgres:latest
-        restart: always
-        
+
+
+    db:
+      image: postgres:latest
+      ports:
+        - "5432:5432"
+      environment:
+          POSTGRES_PASSWORD: lapa3142
+          POSTGRES_DB: eshirt
+
+    frontend:
+        image: nginx-frontend
+        build: 
+          context: ./client
         environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: Interaccion90
-            POSTGRES_DB: eshirt
-        expose:
-            - "5432"
+          - REACT_APP_AUTH0_AUDIENCE=eshirts-api
+          - REACT_APP_AUTH0_CLIENT=DIUPLYgXWA1dwcwZ9hP8WY1y8XFdZOVe
+          - REACT_APP_AUTH0_DOMAIN=eshirts-henry.us.auth0.com
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - /etc/ssl/certs:/etc/ssl/certs
+          - /etc/ssl/certs/private:/etc/ssl/certs/private
+        depends_on:
+          - backend
+
+
+    backend:
+        image: nginx-backend
+        ports:
+          - "8080:8080"
+          - "440:440"
+        env_file:
+            - ./api/server.env
+        build:
+            context: ./api
+
+        depends_on:
+          - db
+
+
+
+    #database:
+        
+     #   image: postgres:latest
+      #  restart: always
+        
+       # environment:
+        #    POSTGRES_USER: postgres
+         #   POSTGRES_PASSWORD: Interaccion90
+          #  POSTGRES_DB: eshirt
+        #expose:
+         #   - "5432"
     
 
 
-    api:
-        restart: always
-        build:
-            context: ./api
-        ports:
-            - "3001:3001"
-        depends_on: 
-            - database
-        volumes:
-            - /api/node_modules
-            - ./api:/app
+    #api:
+     #   restart: always
+      #  build:
+       #     context: ./api
+        #ports:
+         #   - "3001:3001"
+        #depends_on: 
+         #   - database
+        #volumes:
+          #  - /api/node_modules
+           # - ./api:/app
 
-    client:
-        restart: always
-        command: npm start
-        build:
-            context: ./client
+    #client:
+     #   restart: always
+      #  command: npm start
+       # build:
+        #    context: ./client
             
-        ports:
-            - "3000:3000"
-        volumes:
-                - /client/node_modules
-                - ./client:/app
-volumes:
-    apiDb:    
+        #ports:
+         #   - "3000:3000"
+        #volumes:
+         #       - /client/node_modules
+          #      - ./client:/app
+#volumes:
+ #   apiDb:    
+
+
     
         

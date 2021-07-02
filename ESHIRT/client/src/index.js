@@ -9,11 +9,16 @@ import Auth0ProviderWithHistory from './auth/Auth0Provider';
 import {BrowserRouter} from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from './Store/store'
+
 dotenv.config();
 
+console.log(process.env.REACT_APP_AUTH0_AUDIENCE)
+console.log(process.env.REACT_APP_AUTH0_DOMAIN)
+console.log(process.env)
 
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "api";
 
 
 
