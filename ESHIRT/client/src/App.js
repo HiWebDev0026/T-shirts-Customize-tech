@@ -40,7 +40,7 @@ import UserDashboard from './Components/Dashboard/User/UserDashboard';
 import UserData from './Components/Dashboard/User/UserData';
 import AboutUs from './Components/AboutUs/AboutUs';
 import RecycleBin from './Components/Admin/RecycleBin/RecycleBin';
-
+import { Helmet } from 'react-helmet';
 import Payment from './Components/Cart/Payment/Payment'
 import ScrollToTop from './hooks/windowPath';
 import Reviews from './Components/Reviews/Reviews.jsx'
@@ -137,6 +137,16 @@ function App({location}) {
   return (
     <div>
       <ScrollToTop />
+        <Helmet>
+          <title>
+            Create your own shirt. E-Shirt
+          </title>
+          <meta name="description" content="Welcome to our revolutionary project for customized shirt creation and marketing. In this website you will be able to customize your own shirts, share your design, create them, buy other peoples' design and also rate all of the currently approved designs."/>
+          <meta property="og:site_name" content="E-shirts"/>
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://res.cloudinary.com/dqeao9uzt/image/upload/v1625256392/WhatsApp_Image_2021-07-02_at_17.06.20_axdxa2.jpg" />
+        </Helmet>
       <Switch >
       
       

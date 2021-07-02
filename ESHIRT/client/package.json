@@ -21,6 +21,7 @@
     "react-calendar": "^3.4.0",
     "react-chatbot-kit": "^1.1.20",
     "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
     "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^4.2.0",
     "react-paginate": "^7.1.2",
@@ -66,5 +67,4 @@
       "last 1 safari version"
     ]
   }
-  
 }
